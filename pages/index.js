@@ -21,10 +21,10 @@ export async function getStaticProps() {
   } catch (e) {
     // Metadata not built yet; that's okay for UI
   }
-  return { props: { sections, sectionsWithOffsets: filtered, metadata } };
+  return { props: { sections, sectionsWithOffsets: filtered, metadata, markers } };
 }
 
-export default function Home({ sections, sectionsWithOffsets, metadata }) {
+export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
   const [query, setQuery] = useState(''); // executed search
   const [input, setInput] = useState(''); // text in the box
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -35,6 +35,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
   const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'High school', age: '16' });
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
   matchRefs.current = [];
@@ -120,8 +121,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
       return total;
     };
     result.sort((a, b) => romanToInt(a.act) - romanToInt(b.act));
+    // Add Prologue before Act I if available
+    if (markers?.prologueStart != null) {
+      const sectionIndex = ((offset) => {
+        let idx = 0;
+        for (let i = 0; i < sectionsWithOffsets.length; i++) {
+          if (sectionsWithOffsets[i].startOffset <= offset) idx = i; else break;
+        }
+        return idx;
+      })(markers.prologueStart);
+      result.unshift({ act: 'Prologue', scenes: [{ act: 'Prologue', scene: '', title: 'THE PROLOGUE', startOffset: markers.prologueStart, sectionIndex }] });
+    }
     return result;
-  }, [metadata, sectionsWithOffsets]);
+  }, [metadata, sectionsWithOffsets, markers]);
 
   // Track active scene for highlighting in TOC based on scroll + metadata scene ranges
   const [activeScene, setActiveScene] = useState(null);
@@ -235,9 +247,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
     return () => window.removeEventListener('hashchange', applyHash);
   }, [metadata, sectionsWithOffsets, sections]);
 
+  
+
+  
+
   // Persist conversations and options in localStorage (guard against double-invoke in StrictMode)
   const [storeHydrated, setStoreHydrated] = useState(false);
   const [optsHydrated, setOptsHydrated] = useState(false);
+  useEffect(() => {
+    const handler = () => setShowSettings(true);
+    if (typeof window !== 'undefined') window.addEventListener('open-settings', handler);
+    return () => { if (typeof window !== 'undefined') window.removeEventListener('open-settings', handler); };
+  }, []);
   useEffect(() => {
     try {
       const raw = localStorage.getItem('explanations');
@@ -278,6 +299,46 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
     if (!selectionId) return -1;
     return allExplanations.findIndex((e) => e.id === selectionId);
   }, [allExplanations, selectionId]);
+
+  // Header search state sync (after allExplanations/currentExIdx are declared)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('search-state', {
+        detail: {
+          count: totalMatches,
+          index: totalMatches ? currentIdx + 1 : 0,
+          submitted: !!query,
+          exCount: allExplanations.length,
+          exIndex: currentExIdx >= 0 ? currentExIdx + 1 : 0,
+        },
+      }));
+    }
+  }, [totalMatches, currentIdx, query, allExplanations, currentExIdx]);
+
+  // Bridge header search and explanation navigation buttons (after declarations)
+  useEffect(() => {
+    const onSubmit = (e) => setQuery((e.detail?.query || '').trim());
+    const onPrev = () => handlePrev();
+    const onNext = () => handleNext();
+    const onExPrev = () => navigateExplanation('prev');
+    const onExNext = () => navigateExplanation('next');
+    if (typeof window !== 'undefined') {
+      window.addEventListener('search-submit', onSubmit);
+      window.addEventListener('search-prev', onPrev);
+      window.addEventListener('search-next', onNext);
+      window.addEventListener('ex-prev', onExPrev);
+      window.addEventListener('ex-next', onExNext);
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('search-submit', onSubmit);
+        window.removeEventListener('search-prev', onPrev);
+        window.removeEventListener('search-next', onNext);
+        window.removeEventListener('ex-prev', onExPrev);
+        window.removeEventListener('ex-next', onExNext);
+      }
+    };
+  }, [totalMatches, currentIdx, allExplanations, currentExIdx]);
 
   function navigateExplanation(direction) {
     const n = allExplanations.length;
@@ -364,60 +425,62 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
         <title>Romeo and Juliet — Explained</title>
         <meta name="description" content="Romeo and Juliet text with space for explanations." />
       </Head>
-      <div className="page">
+      <div className={`page`}>
         <nav className="sidebar">
           <div className="toc">
             <h2>Contents</h2>
             {toc.map((group) => (
               <div key={`act-${group.act}`}>
-                <ul>
-                  <li style={{ fontWeight: 600, color: '#53483e' }}>Act {group.act}</li>
-                  {group.scenes.map((sc) => {
-                    const key = `${sc.act}-${sc.scene}`;
-                    const isActive = activeScene === key;
-                    return (
-                      <li key={`scene-${key}`} className={isActive ? 'active' : ''}>
-                        <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection(sc.sectionIndex);
-                          }}
-                          title={`Act ${sc.act}, Scene ${sc.scene}`}
-                        >
-                          {sc.title}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
+                {group.act === 'Prologue' ? (
+                  <ul>
+                    {(() => {
+                      const sc = group.scenes[0];
+                      const key = `${sc.act}-${sc.scene}`;
+                      const isActive = activeScene === key;
+                      return (
+                        <li key={`scene-${key}`} className={isActive ? 'active' : ''}>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              scrollToSection(sc.sectionIndex);
+                            }}
+                            title="Prologue"
+                          >
+                            Prologue
+                          </a>
+                        </li>
+                      );
+                    })()}
+                  </ul>
+                ) : (
+                  <ul>
+                    <li style={{ fontWeight: 600, color: '#53483e', fontFamily: 'IM Fell English, serif' }}>{`Act ${group.act}`}</li>
+                    {group.scenes.map((sc) => {
+                      const key = `${sc.act}-${sc.scene}`;
+                      const isActive = activeScene === key;
+                      return (
+                        <li key={`scene-${key}`} className={isActive ? 'active' : ''}>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              scrollToSection(sc.sectionIndex);
+                            }}
+                            title={`Act ${sc.act}, Scene ${sc.scene}`}
+                          >
+                            {sc.title}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
         </nav>
         <main className="container">
-        <SearchBar
-          input={input}
-          onInputChange={setInput}
-          onSubmit={handleSubmitSearch}
-          onClear={handleClear}
-          onPrev={handlePrev}
-          onNext={handleNext}
-          count={totalMatches}
-          index={totalMatches ? currentIdx + 1 : 0}
-          onPrint={() => window.print()}
-          onOpenPrintView={() => {
-            const url = new URL(window.location.href);
-            url.pathname = '/print';
-            // carry current selection hash if any
-            url.hash = window.location.hash;
-            window.open(url.toString(), '_blank');
-          }}
-          exCount={allExplanations.length}
-          exIndex={currentExIdx >= 0 ? currentExIdx + 1 : 0}
-          onPrevEx={() => navigateExplanation('prev')}
-          onNextEx={() => navigateExplanation('next')}
-        />
         {sections.map((section, idx) => {
           const savedExplanations = Object.entries(conversations || {})
             .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last && id !== selectionId)
@@ -455,6 +518,46 @@ export default function Home({ sections, sectionsWithOffsets, metadata }) {
         })}
         </main>
       </div>
+      {showSettings && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)', zIndex: 50 }} onClick={() => setShowSettings(false)}>
+          <div
+            style={{ background: '#fff', maxWidth: 560, margin: '10vh auto', padding: '1rem', borderRadius: 8, border: '1px solid #ddd' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 style={{ marginTop: 0 }}>Settings</h3>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <label>Provider
+                <select value={llmOptions.provider || 'openai'} onChange={(e) => setLlmOptions({ ...llmOptions, provider: e.target.value })} style={{ marginLeft: 6 }}>
+                  <option value="openai">OpenAI</option>
+                  <option value="anthropic">Anthropic</option>
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="gemini">Gemini</option>
+                </select>
+              </label>
+              <label>Model
+                <input type="text" value={llmOptions.model || ''} onChange={(e) => setLlmOptions({ ...llmOptions, model: e.target.value })} style={{ marginLeft: 6 }} />
+              </label>
+              <label>Language
+                <input type="text" value={llmOptions.language || ''} onChange={(e) => setLlmOptions({ ...llmOptions, language: e.target.value })} style={{ marginLeft: 6 }} />
+              </label>
+              <label>Education
+                <select value={llmOptions.educationLevel || 'High school'} onChange={(e) => setLlmOptions({ ...llmOptions, educationLevel: e.target.value })} style={{ marginLeft: 6 }}>
+                  <option>Middle school</option>
+                  <option>High school</option>
+                  <option>Undergraduate</option>
+                  <option>Graduate</option>
+                </select>
+              </label>
+              <label>Age
+                <input type="number" min="10" max="100" value={llmOptions.age || ''} onChange={(e) => setLlmOptions({ ...llmOptions, age: e.target.value })} style={{ marginLeft: 6, width: 72 }} />
+              </label>
+            </div>
+            <div style={{ marginTop: '0.75rem', textAlign: 'right' }}>
+              <button type="button" onClick={() => setShowSettings(false)}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -571,7 +674,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   );
 }
 
-function SearchBar({ input, onInputChange, onSubmit, onClear, onPrev, onNext, count, index, onPrint, onOpenPrintView, exCount = 0, exIndex = 0, onPrevEx, onNextEx }) {
+function SearchBar({ input, onInputChange, onSubmit, onClear, onPrev, onNext, count, index, onOpenPrintView, exCount = 0, exIndex = 0, onPrevEx, onNextEx, submitted }) {
   return (
     <form
       className="searchBar"
@@ -582,41 +685,30 @@ function SearchBar({ input, onInputChange, onSubmit, onClear, onPrev, onNext, co
       }}
     >
       <input
-        type="text"
+        type="search"
         placeholder="Search the play…"
         value={input}
         onChange={(e) => onInputChange(e.target.value)}
         aria-label="Search text"
       />
-      <button type="submit" aria-label="Run search">
-        Search
-      </button>
-      <button type="button" onClick={onClear} aria-label="Clear search">
-        Clear
-      </button>
-      <button type="button" onClick={onPrev} disabled={!count} aria-label="Previous result">
-        ◀ Prev
-      </button>
-      <button type="button" onClick={onNext} disabled={!count} aria-label="Next result">
-        Next ▶
-      </button>
-      <span className="searchCount" aria-live="polite">
-        {count ? `${index} / ${count}` : '0 results'}
-      </span>
-      <button type="button" onClick={onPrevEx} disabled={!exCount} title="Previous explanation">
-        ◀ Prev Ex
-      </button>
-      <button type="button" onClick={onNextEx} disabled={!exCount} title="Next explanation">
-        Next Ex ▶
-      </button>
+      {count > 1 && (
+        <>
+          <button type="button" onClick={onPrev} aria-label="Previous result">◀</button>
+          <button type="button" onClick={onNext} aria-label="Next result">▶</button>
+        </>
+      )}
+      {count > 0 ? (
+        <span className="searchCount" aria-live="polite">{`${index} / ${count}`}</span>
+      ) : submitted ? (
+        <span className="searchCount" aria-live="polite">No results</span>
+      ) : null}
+      <button type="button" onClick={onPrevEx} disabled={!exCount} title="Previous explanation">◀</button>
+      <button type="button" onClick={onNextEx} disabled={!exCount} title="Next explanation">▶</button>
       <span className="searchCount" aria-live="polite">
         {exCount ? `${exIndex} / ${exCount}` : '0 explanations'}
       </span>
-      <button type="button" onClick={onPrint} aria-label="Print page">
-        Print
-      </button>
       <button type="button" onClick={onOpenPrintView} aria-label="Open print view">
-        Print View
+        Print
       </button>
     </form>
   );

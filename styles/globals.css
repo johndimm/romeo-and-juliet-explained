@@ -2,6 +2,9 @@
   --page-max-width: 1100px;
   --section-gap: 1.25rem; /* replaces blank lines between sections */
   --col-gap: 1rem;
+  --header-h: 56px; /* compact fixed header */
+  --header-spacer: 16px; /* visual space below header */
+  --search-h: 0px; /* search lives inside header */
 }
 
 html, body, #__next {
@@ -13,7 +16,39 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: #111;
   background: #faf9f7;
+  /* Reserve space for header + spacer; JS sets --header-offset dynamically. */
+  padding-top: var(--header-offset, calc(var(--header-h) + var(--header-spacer)));
 }
+
+.appHeader {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  background: #faf9f7;
+  border-bottom: 1px solid #e8e6e3;
+  height: var(--header-h);
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+.appHeader::after {
+  content: "";
+  display: block;
+  height: var(--header-spacer);
+}
+
+.appTitle {
+  font-size: clamp(18px, 2.2vw, 24px);
+}
+
+.appHeaderInner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: var(--header-h);
+}
+
+.headerSpacer { height: var(--header-spacer); }
 
 .page {
   display: grid;
@@ -24,7 +59,7 @@ body {
 
 .sidebar {
   position: sticky;
-  top: 0;
+  top: var(--header-offset, var(--header-h)); /* avoid sliding under header */
   align-self: start;
   max-height: 100vh;
   overflow: auto;
@@ -50,6 +85,7 @@ body {
   color: #2f2a25;
   text-decoration: none;
   border-radius: 4px;
+  font-family: "IM Fell English", serif;
 }
 
 .toc li a:hover {
@@ -67,23 +103,22 @@ body {
   padding: 1rem;
 }
 
-/* Sticky single-line search bar */
+/* Search bar embedded in header row */
 .searchBar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  position: static;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #faf9f7;
-  border-bottom: 1px solid #e8e6e3;
-  padding: 0.5rem 0.25rem;
-  white-space: nowrap; /* keep on one line */
+  background: transparent;
+  padding: 0;
+  white-space: nowrap;
 }
 
+.searchBar input[type="search"],
 .searchBar input[type="text"] {
-  flex: 1 1 auto;
-  min-width: 140px;
+  flex: 0 1 480px;
+  min-width: 200px;
+  max-width: 560px;
   font-size: 0.95rem;
   padding: 0.35rem 0.5rem;
   border: 1px solid #d8d5d0;
@@ -103,6 +138,14 @@ body {
 .searchBar button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Override when search bar is placed in header */
+.headerSearchBar {
+  position: static !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 .searchCount {
@@ -136,7 +179,7 @@ body {
   margin: 0;
   padding: 0.25rem 0.5rem;
   background: #fff;
-  border: 1px solid #e8e6e3;
+  border: none; /* remove paragraph border */
   border-radius: 6px;
   font-family: "IM Fell English", serif;
   font-size: 18px;
@@ -172,8 +215,8 @@ body {
 
 /* Right column: explanations placeholder */
 .explanations {
-  background: #fffefb;
-  border: 1px dashed #ddd3c6;
+  background: #fffdf5;
+  border: 2px solid #e7d7b8; /* more visible */
   border-radius: 6px;
   min-height: 2rem;
   padding: 0.5rem;
@@ -189,6 +232,30 @@ body {
   .section {
     grid-template-columns: 1fr;
   }
+  /* Allow header content to wrap; push links to a new row if needed */
+  .appHeader { height: auto; }
+  /* padding-top handled dynamically via --header-offset fallback */
+  .appHeaderInner { flex-wrap: wrap; row-gap: 0.5rem; }
+  .appHeader nav { width: 100%; justify-content: flex-end; }
+  .searchBar input[type="search"],
+  .searchBar input[type="text"] {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: none;
+  }
+  /* TOC at top should scroll with content (not sticky) */
+  .sidebar {
+    position: static;
+    top: auto;
+    max-height: none;
+    overflow: visible;
+    border-right: none;
+    border-bottom: 1px solid #e8e6e3;
+    padding: 0.5rem 1rem;
+    background: #faf9f7;
+    z-index: 1;
+  }
+  /* On narrow screens, explanations stack below text (always visible). */
 }
 
 /* Print layout: remove UI chrome, stack content, keep explanations */

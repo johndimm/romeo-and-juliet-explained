@@ -1,0 +1,41 @@
+Styling
+
+  - Remove border around paragraphs
+  - Make it more visible for explanations
+
+Simplify search UI and remove some buttons
+
+  - no need for Search button, the user will press carriage return
+  - no need for Clear button, add the clear feature with "x" in the search box
+  - Next and Prev buttons can be reduced to just arrows
+    - do not show them until there are multiple hits Found
+
+User docs 
+  - create a user guide
+  - create an about page 
+
+header
+
+  - The header should have "Romeo and Juliet Explained" somewhere in it.
+  - link to user guide and about
+  - gear icon to open the settings popup
+    - all options currently placed in each explanation
+
+toc
+
+  - Use same font as play text
+  - Prologue should appear here before Act IM
+
+LLM Models
+
+  - add Anthropic, DeepSeek, Gemini
+  - in .env.local: ANTHROPIC_API_KEY, DEEPSEEK_API_KEY, GEMINI_API_KEY
+
+Adapt to narrow screens
+
+  - not just for mobile, any narrow screen
+  - place TOC at top of page
+  - start with play text alone
+  - when an explanation is requested, slide right to show the explanation column
+  - handle or other affordance to get back to the play
+    - same to go to the explanation column without requesting one

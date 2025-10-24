@@ -14,12 +14,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing selectionText or context' });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'Missing OPENAI_API_KEY' });
-  }
-
-  const model = options?.model || 'gpt-4o-mini';
+  const provider = options?.provider || 'openai';
+  const model = options?.model || (provider === 'openai' ? 'gpt-4o-mini' : provider === 'anthropic' ? 'claude-3-5-sonnet-20240620' : provider === 'deepseek' ? 'deepseek-chat' : 'gemini-1.5-flash');
   const language = options?.language || 'English';
   const edu = options?.educationLevel || 'High school';
   const age = options?.age || '16';
@@ -68,29 +64,66 @@ export default async function handler(req, res) {
   const history = Array.isArray(messages) ? messages.slice(-10) : [];
 
   try {
-    const resp = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        temperature: 0.3,
-        messages: [
-          { role: 'system', content: sys },
-          ...history,
-          { role: 'user', content: userPrompt },
-        ],
-      }),
-    });
-
-    if (!resp.ok) {
-      const text = await resp.text();
-      return res.status(500).json({ error: 'LLM request failed', detail: text });
+    let content = '';
+    if (provider === 'openai') {
+      const apiKey = process.env.OPENAI_API_KEY;
+      if (!apiKey) return res.status(500).json({ error: 'Missing OPENAI_API_KEY' });
+      const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({ model, temperature: 0.3, messages: [{ role: 'system', content: sys }, ...history, { role: 'user', content: userPrompt }] }),
+      });
+      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
+      const data = await resp.json();
+      content = data?.choices?.[0]?.message?.content || '';
+    } else if (provider === 'anthropic') {
+      const apiKey = process.env.ANTHROPIC_API_KEY;
+      if (!apiKey) return res.status(500).json({ error: 'Missing ANTHROPIC_API_KEY' });
+      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 800,
+          temperature: 0.3,
+          system: sys,
+          messages: [...history, { role: 'user', content: userPrompt }].map((m) => ({ role: m.role, content: m.content })),
+        }),
+      });
+      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
+      const data = await resp.json();
+      content = data?.content?.[0]?.text || '';
+    } else if (provider === 'deepseek') {
+      const apiKey = process.env.DEEPSEEK_API_KEY;
+      if (!apiKey) return res.status(500).json({ error: 'Missing DEEPSEEK_API_KEY' });
+      const resp = await fetch('https://api.deepseek.com/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({ model, temperature: 0.3, messages: [{ role: 'system', content: sys }, ...history, { role: 'user', content: userPrompt }] }),
+      });
+      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
+      const data = await resp.json();
+      content = data?.choices?.[0]?.message?.content || '';
+    } else if (provider === 'gemini') {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) return res.status(500).json({ error: 'Missing GEMINI_API_KEY' });
+      const geminiModel = encodeURIComponent(model);
+      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${sys}\n\n${userPrompt}` }] }] }),
+      });
+      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
+      const data = await resp.json();
+      content = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    } else {
+      return res.status(400).json({ error: 'Unknown provider' });
     }
-    const data = await resp.json();
-    const content = data?.choices?.[0]?.message?.content || '';
+
     return res.status(200).json({ content });
   } catch (e) {
     return res.status(500).json({ error: 'LLM request error', detail: String(e) });
