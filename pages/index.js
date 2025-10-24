@@ -139,45 +139,45 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const [activeScene, setActiveScene] = useState(null);
   const sectionElsRef = useRef([]);
   useEffect(() => {
+    const container = document.querySelector('.container');
+    if (!container) return;
     const onScroll = () => {
-      // Find the section closest to top within viewport (above a small threshold)
       const els = sectionElsRef.current.filter(Boolean);
-      let best = null;
-      let bestTop = -Infinity;
+      const y = container.scrollTop;
+      // choose the last section whose top is <= current scroll + threshold
+      let bestIndex = 0;
+      const threshold = 40; // small offset from the top
       for (let i = 0; i < els.length; i++) {
-        const rect = els[i].getBoundingClientRect();
-        if (rect.top <= 80 && rect.top > bestTop) { // 80px threshold under the top
-          bestTop = rect.top;
-          best = i;
-        }
+        const el = els[i];
+        if (!el) continue;
+        const top = el.offsetTop; // relative to container
+        if (top <= y + threshold) bestIndex = i; else break;
       }
-      if (best == null) return;
-      const startOffset = sectionsWithOffsets[best]?.startOffset;
+      const startOffset = sectionsWithOffsets[bestIndex]?.startOffset;
       if (startOffset == null || !metadata?.scenes) return;
-      // Find scene containing this offset
       let current = null;
       for (const s of metadata.scenes) {
         if (s.startOffset != null && s.endOffset != null) {
           if (startOffset >= s.startOffset && startOffset <= s.endOffset) {
             current = { act: s.act, scene: s.scene };
+            break;
           }
         }
       }
       const key = current ? `${current.act}-${current.scene}` : null;
       setActiveScene(key);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    container.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => container.removeEventListener('scroll', onScroll);
   }, [metadata, sectionsWithOffsets]);
 
   const scrollToSection = (index) => {
     const el = sectionElsRef.current[index];
-    if (!el) return;
-    const bar = document.querySelector('.searchBar');
-    const offset = bar ? bar.getBoundingClientRect().height + 8 : 8;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const container = document.querySelector('.container');
+    if (!el || !container) return;
+    const target = el.offsetTop; // within container
+    container.scrollTo({ top: Math.max(0, target - 8), behavior: 'smooth' });
   };
 
   // Compute LLM context for current selection using metadata
@@ -502,7 +502,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               conversation: selectionId ? conversations[selectionId] : null,
               onMore: () => callLLM({ mode: 'more' }),
               onFollowup: (q) => callLLM({ mode: 'followup', followup: q }),
-              onDeleteCurrent: () => { if (selectionId) deleteExplanationById(selectionId); },
+              onDeleteCurrent: () => {
+                if (selectionId) {
+                  deleteExplanationById(selectionId);
+                  // also clear the current selection to remove the panel immediately
+                  setSelection(null);
+                }
+              },
             }}
             selectedId={selection && selection.sectionIndex === idx ? selectionId : null}
             savedExplanations={savedExplanations}

@@ -14,8 +14,29 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing selectionText or context' });
   }
 
-  const provider = options?.provider || 'openai';
-  const model = options?.model || (provider === 'openai' ? 'gpt-4o-mini' : provider === 'anthropic' ? 'claude-3-5-sonnet-20240620' : provider === 'deepseek' ? 'deepseek-chat' : 'gemini-1.5-flash');
+  const provider = (options?.provider || 'openai').toLowerCase();
+  let model = options?.model;
+  // Pick a sensible default per provider and coerce incompatible names
+  function pickModel(p, m) {
+    if (p === 'openai') {
+      if (!m || !/^gpt-/.test(m)) return 'gpt-4o-mini';
+      return m;
+    }
+    if (p === 'anthropic') {
+      if (!m || !/^claude/.test(m)) return 'claude-3-5-sonnet-20240620';
+      return m;
+    }
+    if (p === 'deepseek') {
+      if (!m || !/deepseek/.test(m)) return 'deepseek-chat';
+      return m;
+    }
+    if (p === 'gemini') {
+      if (!m || !/^gemini/.test(m)) return 'gemini-1.5-flash';
+      return m;
+    }
+    return m || 'gpt-4o-mini';
+  }
+  model = pickModel(provider, model);
   const language = options?.language || 'English';
   const edu = options?.educationLevel || 'High school';
   const age = options?.age || '16';

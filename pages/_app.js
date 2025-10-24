@@ -3,33 +3,17 @@ import Link from 'next/link';
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
-  const headerRef = React.useRef(null);
-  React.useEffect(() => {
-    const update = () => {
-      if (!headerRef.current) return;
-      const h = headerRef.current.getBoundingClientRect().height;
-      const gap = 16; // match --header-spacer in CSS so content clears header + spacer
-      document.body.style.setProperty('--header-offset', `${h + gap}px`);
-    };
-    update();
-    window.addEventListener('resize', update);
-    window.addEventListener('orientationchange', update);
-    return () => {
-      window.removeEventListener('resize', update);
-      window.removeEventListener('orientationchange', update);
-    };
-  }, []);
 
   return (
     <>
-      <header className="appHeader" ref={headerRef}>
-        <div className="container appHeaderInner">
+      <header className="appHeader">
+        <div className="appHeaderInner">
           <div className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap' }}>Romeo and Juliet — Explained</div>
           <HeaderSearch />
-          <nav style={{ marginLeft: 'auto', display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <nav className="headerLinks">
             <Link href="/print" target="_blank" rel="noopener noreferrer">Print</Link>
-            <Link href="/user-guide">User Guide</Link>
-            <Link href="/about">About</Link>
+            <Link href="/user-guide" style={{ marginLeft: 12 }}>User Guide</Link>
+            <Link href="/about" style={{ marginLeft: 12 }}>About</Link>
             <a
               href="#"
               onClick={(e) => {
@@ -40,6 +24,7 @@ export default function App({ Component, pageProps }) {
               }}
               title="Settings"
               aria-label="Open settings"
+              style={{ marginLeft: 12 }}
             >
               Settings
             </a>
@@ -77,9 +62,22 @@ function HeaderSearch() {
     if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('search-submit', { detail: { query: input } }));
   };
 
+  const onInputChange = (e) => {
+    const v = e.target.value;
+    setInput(v);
+    // If user clears the box (via keyboard or the native clear "x"),
+    // immediately clear search highlights by submitting an empty query.
+    if (v === '') {
+      setSubmitted(false);
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('search-submit', { detail: { query: '' } }));
+      }
+    }
+  };
+
   return (
-    <form className="searchBar headerSearchBar" role="search" onSubmit={(e) => { e.preventDefault(); submit(); }} style={{ marginLeft: 'auto' }}>
-      <input type="search" placeholder="Search the play…" value={input} onChange={(e) => setInput(e.target.value)} aria-label="Search text" />
+    <form className="searchBar headerSearchBar" role="search" onSubmit={(e) => { e.preventDefault(); submit(); }}>
+      <input type="search" placeholder="Search the play…" value={input} onChange={onInputChange} aria-label="Search text" />
       {count > 1 && (
         <>
           <button type="button" onClick={() => window.dispatchEvent(new Event('search-prev'))} aria-label="Previous result">◀</button>
@@ -91,9 +89,10 @@ function HeaderSearch() {
       ) : submitted ? (
         <span className="searchCount" aria-live="polite">No results</span>
       ) : null}
+      <span className="exTag" aria-hidden title="Explanation navigation" style={{ marginLeft: 10, marginRight: 4, color: '#6b5f53' }}>Ex</span>
       <button type="button" onClick={() => window.dispatchEvent(new Event('ex-prev'))} disabled={!exCount} title="Previous explanation">◀</button>
       <button type="button" onClick={() => window.dispatchEvent(new Event('ex-next'))} disabled={!exCount} title="Next explanation">▶</button>
-      <span className="searchCount" aria-live="polite">{exCount ? `${exIndex} / ${exCount}` : ' '}</span>
+      <span className="exCount" aria-live="polite">{exCount ? `${exIndex} / ${exCount}` : ''}</span>
     </form>
   );
 }
