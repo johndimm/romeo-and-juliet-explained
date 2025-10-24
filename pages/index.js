@@ -32,7 +32,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const matchRefs = useRef([]); // flat list of all match elements
   const [selection, setSelection] = useState(null); // { sectionIndex, start, end }
   const [selectionContext, setSelectionContext] = useState(null); // { act, scene, onStage, speaker, text, byteOffset }
-  const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'High school', age: '16' });
+  const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'High school', age: '16', provider: 'openai', length: 'brief' });
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -138,19 +138,36 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   // Track active scene for highlighting in TOC based on scroll + metadata scene ranges
   const [activeScene, setActiveScene] = useState(null);
   const sectionElsRef = useRef([]);
+  // Helper to choose the active scroll container (desktop: .container, narrow: .page)
+  function getScroller() {
+    if (typeof document === 'undefined') return null;
+    const cont = document.querySelector('.container');
+    if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+    const pg = document.querySelector('.page');
+    if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+    return null;
+  }
+
+  function getElementTopWithin(el, scroller) {
+    const rectEl = el.getBoundingClientRect();
+    if (!scroller || scroller === window) return rectEl.top + window.scrollY;
+    const rectSc = scroller.getBoundingClientRect();
+    return rectEl.top - rectSc.top + scroller.scrollTop;
+  }
+
   useEffect(() => {
-    const container = document.querySelector('.container');
-    if (!container) return;
+    const scroller = getScroller();
     const onScroll = () => {
+      const s = getScroller();
+      if (!s) return;
       const els = sectionElsRef.current.filter(Boolean);
-      const y = container.scrollTop;
-      // choose the last section whose top is <= current scroll + threshold
+      const y = s === window ? window.scrollY : s.scrollTop;
       let bestIndex = 0;
-      const threshold = 40; // small offset from the top
+      const threshold = 40;
       for (let i = 0; i < els.length; i++) {
         const el = els[i];
         if (!el) continue;
-        const top = el.offsetTop; // relative to container
+        const top = getElementTopWithin(el, s);
         if (top <= y + threshold) bestIndex = i; else break;
       }
       const startOffset = sectionsWithOffsets[bestIndex]?.startOffset;
@@ -167,17 +184,24 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       const key = current ? `${current.act}-${current.scene}` : null;
       setActiveScene(key);
     };
-    container.addEventListener('scroll', onScroll, { passive: true });
+    if (scroller) scroller.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
     onScroll();
-    return () => container.removeEventListener('scroll', onScroll);
+    return () => {
+      const s = getScroller();
+      if (s) s.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [metadata, sectionsWithOffsets]);
 
   const scrollToSection = (index) => {
     const el = sectionElsRef.current[index];
-    const container = document.querySelector('.container');
-    if (!el || !container) return;
-    const target = el.offsetTop; // within container
-    container.scrollTo({ top: Math.max(0, target - 8), behavior: 'smooth' });
+    if (!el) return;
+    const scroller = getScroller();
+    if (!scroller) return;
+    const target = getElementTopWithin(el, scroller) - 8;
+    if (scroller === window) window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+    else scroller.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
   };
 
   // Compute LLM context for current selection using metadata
@@ -361,7 +385,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     setConversations(next);
   }
 
-  async function callLLM({ mode = 'brief', followup }) {
+  async function callLLM({ mode = 'brief', followup, length }) {
     if (!selectionContext) return;
     setLoadingLLM(true);
     try {
@@ -381,9 +405,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       const data = await res.json();
       if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
       const assistantMsg = { role: 'assistant', content: data.content };
+      const reqLen = length || llmOptions.length || 'brief';
       const newMsgs = [
         ...conv.messages,
-        { role: 'user', content: buildUserPrompt(selectionContext, mode, followup) },
+        { role: 'user', content: buildUserPrompt(selectionContext, mode, followup, reqLen) },
         assistantMsg,
       ].slice(-12);
       // attach metadata so we can render persistent cards per section
@@ -406,17 +431,44 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     }
   }
 
-  function buildUserPrompt(selCtx, mode, followup) {
+  function buildUserPrompt(selCtx, mode, followup, respLen) {
     const parts = [
       'Explain the selected Romeo and Juliet line(s) directly — no prefaces like "In this quote", and do not repeat the quote or restate Act/Scene/Speaker.',
       'Help the reader parse the sentence: briefly clarify unfamiliar/archaic words or idioms and any tricky syntax (inversions, ellipses), then give a clear paraphrase.',
       'Avoid boilerplate claims ("pivotal", "foreshadows", "underscores the theme", "sets the stage") unless clearly warranted by these exact lines; be concrete or skip such claims.',
       'Prefer precise paraphrase + immediate purpose in the scene.',
     ];
-    if (mode === 'brief') parts.push('Brief: 2–3 sentences.');
-    if (mode === 'more') parts.push('More detail: connect to themes/subtext.');
+    const len = (respLen || '').toLowerCase();
+    if (mode === 'brief' || len === 'brief') parts.push('Length: brief (2–3 sentences).');
+    if (len === 'medium') parts.push('Length: medium (concise paragraph).');
+    if (mode === 'more' || len === 'large') parts.push('Length: large (detailed but focused).');
     if (mode === 'followup' && followup) parts.push(`Follow-up: ${followup}`);
     return parts.join('\n');
+  }
+
+  // Provider/model helpers for Settings
+  // Dynamic model listing per provider (fetched from /api/models)
+  const [providerModels, setProviderModels] = useState([]);
+  const providerRef = useRef(llmOptions.provider || 'openai');
+  useEffect(() => {
+    const prov = (llmOptions.provider || 'openai').toLowerCase();
+    providerRef.current = prov;
+    fetch(`/api/models?provider=${encodeURIComponent(prov)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
+        if (providerRef.current === prov) setProviderModels(list);
+      })
+      .catch(() => setProviderModels([]));
+  }, [llmOptions.provider]);
+  function defaultModelForProvider(p) {
+    if (providerModels && providerModels.length) return providerModels[0];
+    // static fallback
+    const prov = (p || 'openai').toLowerCase();
+    if (prov === 'anthropic') return 'claude-3-5-sonnet-20240620';
+    if (prov === 'deepseek') return 'deepseek-chat';
+    if (prov === 'gemini') return 'gemini-1.5-pro-latest';
+    return 'gpt-4o-mini';
   }
 
   return (
@@ -500,8 +552,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               setOptions: setLlmOptions,
               loading: loadingLLM,
               conversation: selectionId ? conversations[selectionId] : null,
-              onMore: () => callLLM({ mode: 'more' }),
-              onFollowup: (q) => callLLM({ mode: 'followup', followup: q }),
+              onLength: (len) => callLLM({ mode: len === 'brief' ? 'brief' : 'more', length: len }),
               onDeleteCurrent: () => {
                 if (selectionId) {
                   deleteExplanationById(selectionId);
@@ -533,7 +584,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             <h3 style={{ marginTop: 0 }}>Settings</h3>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <label>Provider
-                <select value={llmOptions.provider || 'openai'} onChange={(e) => setLlmOptions({ ...llmOptions, provider: e.target.value })} style={{ marginLeft: 6 }}>
+                <select
+                  value={(llmOptions.provider || 'openai')}
+                  onChange={(e) => {
+                    const prov = e.target.value;
+                    const model = defaultModelForProvider(prov);
+                    setLlmOptions({ ...llmOptions, provider: prov, model });
+                  }}
+                  style={{ marginLeft: 6 }}
+                >
                   <option value="openai">OpenAI</option>
                   <option value="anthropic">Anthropic</option>
                   <option value="deepseek">DeepSeek</option>
@@ -541,7 +600,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 </select>
               </label>
               <label>Model
-                <input type="text" value={llmOptions.model || ''} onChange={(e) => setLlmOptions({ ...llmOptions, model: e.target.value })} style={{ marginLeft: 6 }} />
+                <select
+                  value={(providerModels.includes(llmOptions.model) ? llmOptions.model : defaultModelForProvider(llmOptions.provider))}
+                  onChange={(e) => setLlmOptions({ ...llmOptions, model: e.target.value })}
+                  style={{ marginLeft: 6 }}
+                >
+                  {(providerModels.length ? providerModels : [defaultModelForProvider(llmOptions.provider)]).map((m) => (
+                    <option key={m} value={m}>{m}</option>
+                  ))}
+                </select>
               </label>
               <label>Language
                 <input type="text" value={llmOptions.language || ''} onChange={(e) => setLlmOptions({ ...llmOptions, language: e.target.value })} style={{ marginLeft: 6 }} />
@@ -887,9 +954,7 @@ function expandToSentence(text, index) {
 }
 
 function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
-  const [followup, setFollowup] = useState('');
-  const [showControls, setShowControls] = useState(false);
-  const { options, setOptions, loading, conversation, onMore, onFollowup, onDeleteCurrent } = llm || {};
+  const { options, loading, conversation, onDeleteCurrent, onLength } = llm || {};
   return (
     <div>
       {conversation?.last ? (
@@ -898,95 +963,23 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
           <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{conversation.last}</div>
         </div>
       ) : null}
-      {loading && (
-        <div style={{ marginTop: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
-      )}
-      <div style={{ marginTop: '0.5rem' }}>
-        <button type="button" onClick={() => setShowControls((v) => !v)}>
-          {showControls ? 'Hide Controls' : 'Show Controls'}
+      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <span style={{ color: '#6b5f53' }}>Length:</span>
+        <button type="button" disabled={loading} onClick={() => onLength?.('brief')}>Brief</button>
+        <button type="button" disabled={loading} onClick={() => onLength?.('medium')}>Medium</button>
+        <button type="button" disabled={loading} onClick={() => onLength?.('large')}>Large</button>
+        <button type="button" onClick={onFocusSource} title="Highlight source in text">Locate Source</button>
+        <span style={{ marginLeft: 'auto', color: '#6b5f53' }}>Provider/Model: {(options?.provider || 'openai')}/{options?.model || ''}</span>
+        <button
+          type="button"
+          onClick={() => { if (onDeleteCurrent && confirm('Delete this explanation?')) onDeleteCurrent(); }}
+          title="Delete this explanation"
+        >
+          Delete
         </button>
       </div>
-      {showControls && (
-        <div style={{ marginTop: '0.5rem' }}>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <button type="button" onClick={onMore} disabled={loading}>
-              More
-            </button>
-            <button type="button" onClick={onFocusSource} title="Highlight source in text">
-              Locate Source
-            </button>
-            <button type="button" onClick={onCopyLink} title="Copy sharable link">
-              Copy Link
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                if (onDeleteCurrent && confirm('Delete this explanation?')) onDeleteCurrent();
-              }}
-              title="Delete this explanation"
-            >
-              Delete
-            </button>
-            <select
-              value={options?.model || ''}
-              onChange={(e) => setOptions({ ...options, model: e.target.value })}
-              title="Model"
-            >
-              <option value="gpt-4o-mini">gpt-4o-mini</option>
-              <option value="gpt-4o">gpt-4o</option>
-            </select>
-            <select
-              value={options?.language || ''}
-              onChange={(e) => setOptions({ ...options, language: e.target.value })}
-              title="Language"
-            >
-              <option>English</option>
-              <option>Spanish</option>
-              <option>French</option>
-              <option>German</option>
-              <option>Italian</option>
-              <option>Portuguese</option>
-              <option>Chinese</option>
-              <option>Japanese</option>
-            </select>
-            <select
-              value={options?.educationLevel || ''}
-              onChange={(e) => setOptions({ ...options, educationLevel: e.target.value })}
-              title="Education level"
-            >
-              <option>Middle school</option>
-              <option>High school</option>
-              <option>Undergraduate</option>
-              <option>Graduate</option>
-            </select>
-            <input
-              type="number"
-              min="10"
-              max="100"
-              value={options?.age || ''}
-              onChange={(e) => setOptions({ ...options, age: e.target.value })}
-              title="Age"
-              style={{ width: 64 }}
-            />
-          </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (followup.trim()) onFollowup?.(followup.trim());
-              setFollowup('');
-            }}
-            style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem' }}
-          >
-            <input
-              type="text"
-              placeholder="Ask a follow-up…"
-              value={followup}
-              onChange={(e) => setFollowup(e.target.value)}
-              style={{ flex: 1 }}
-            />
-            <button type="submit" disabled={loading}>Ask</button>
-          </form>
-        </div>
+      {loading && (
+        <div style={{ marginTop: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
       )}
     </div>
   );

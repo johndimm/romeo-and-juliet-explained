@@ -31,8 +31,9 @@ export default async function handler(req, res) {
       return m;
     }
     if (p === 'gemini') {
-      if (!m || !/^gemini/.test(m)) return 'gemini-1.5-flash';
-      return m;
+      // Prefer the 1.5 pro/flash latest variants
+      if (!m || !/^gemini/.test(m)) return 'gemini-1.5-pro-latest';
+      return /-latest$/.test(m) ? m : `${m}-latest`;
     }
     return m || 'gpt-4o-mini';
   }
@@ -88,7 +89,7 @@ export default async function handler(req, res) {
     let content = '';
     if (provider === 'openai') {
       const apiKey = process.env.OPENAI_API_KEY;
-      if (!apiKey) return res.status(500).json({ error: 'Missing OPENAI_API_KEY' });
+      if (!apiKey) return res.status(400).json({ error: 'Missing OPENAI_API_KEY. Set it in .env.local' });
       const resp = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
@@ -99,7 +100,7 @@ export default async function handler(req, res) {
       content = data?.choices?.[0]?.message?.content || '';
     } else if (provider === 'anthropic') {
       const apiKey = process.env.ANTHROPIC_API_KEY;
-      if (!apiKey) return res.status(500).json({ error: 'Missing ANTHROPIC_API_KEY' });
+      if (!apiKey) return res.status(400).json({ error: 'Missing ANTHROPIC_API_KEY. Set it in .env.local' });
       const resp = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -120,7 +121,7 @@ export default async function handler(req, res) {
       content = data?.content?.[0]?.text || '';
     } else if (provider === 'deepseek') {
       const apiKey = process.env.DEEPSEEK_API_KEY;
-      if (!apiKey) return res.status(500).json({ error: 'Missing DEEPSEEK_API_KEY' });
+      if (!apiKey) return res.status(400).json({ error: 'Missing DEEPSEEK_API_KEY. Set it in .env.local' });
       const resp = await fetch('https://api.deepseek.com/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
@@ -131,22 +132,52 @@ export default async function handler(req, res) {
       content = data?.choices?.[0]?.message?.content || '';
     } else if (provider === 'gemini') {
       const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) return res.status(500).json({ error: 'Missing GEMINI_API_KEY' });
-      const geminiModel = encodeURIComponent(model);
-      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${sys}\n\n${userPrompt}` }] }] }),
-      });
-      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
-      const data = await resp.json();
-      content = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      if (!apiKey) return res.status(400).json({ error: 'Missing GEMINI_API_KEY. Set it in .env.local' });
+      async function callGemini(mod) {
+        const geminiModel = encodeURIComponent(mod);
+        return fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${sys}\n\n${userPrompt}` }] }] }),
+        });
+      }
+      // Try a small set of common Gemini model aliases in order
+      const candidates = Array.from(new Set([
+        model,
+        /-latest$/.test(model) ? model : `${model}-latest`,
+        'gemini-1.5-pro-latest',
+        'gemini-1.5-flash-latest',
+        'gemini-pro',
+        'gemini-pro-latest',
+      ]));
+      let resp = null;
+      let okModel = null;
+      for (const mod of candidates) {
+        try {
+          const r = await callGemini(mod);
+          if (r.ok) { resp = r; okModel = mod; break; }
+        } catch (e) { /* ignore and continue */ }
+      }
+      if (!resp || !resp.ok) {
+        const detail = resp ? await resp.text() : 'no response';
+        return res.status(502).json({
+          error: 'Gemini model unavailable',
+          detail,
+          tried: candidates,
+        });
+      }
+      model = okModel || model;
+      {
+        const data = await resp.json();
+        content = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      }
     } else {
       return res.status(400).json({ error: 'Unknown provider' });
     }
 
     return res.status(200).json({ content });
   } catch (e) {
-    return res.status(500).json({ error: 'LLM request error', detail: String(e) });
+    console.error('LLM request error:', e);
+    return res.status(502).json({ error: 'LLM request error', detail: String(e) });
   }
 }
