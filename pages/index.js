@@ -52,7 +52,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
       const el = matchRefs.current[currentIdx];
       el.classList.add('current');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      // Scroll within our active scroller rather than window to avoid header shifts on mobile
+      const scroller = getScroller();
+      if (scroller) {
+        try {
+          const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
+          if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+        } catch (e) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+        }
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      }
     } else {
       // Ensure no stale 'current' class remains when there are no matches
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
@@ -138,14 +150,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   // Track active scene for highlighting in TOC based on scroll + metadata scene ranges
   const [activeScene, setActiveScene] = useState(null);
   const sectionElsRef = useRef([]);
-  // Helper to choose the active scroll container (desktop: .container, narrow: .page)
+  const [pendingFocus, setPendingFocus] = useState(null); // {sectionIndex, id}
+  const [showTocButton, setShowTocButton] = useState(false);
+  const [tocOpen, setTocOpen] = useState(false);
+  // Helper to choose the active scroll container (desktop: .container, narrow: .page, or window/body)
   function getScroller() {
     if (typeof document === 'undefined') return null;
     const cont = document.querySelector('.container');
     if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
     const pg = document.querySelector('.page');
     if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
-    return null;
+    // Fallback to window/body scrolling
+    return typeof window !== 'undefined' ? window : null;
   }
 
   function getElementTopWithin(el, scroller) {
@@ -160,6 +176,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const onScroll = () => {
       const s = getScroller();
       if (!s) return;
+      // Toggle the floating TOC button after meaningful scroll
+      const scrollTop = s === window ? window.scrollY : s.scrollTop;
+      setShowTocButton(scrollTop > 240);
       const els = sectionElsRef.current.filter(Boolean);
       const y = s === window ? window.scrollY : s.scrollTop;
       let bestIndex = 0;
@@ -203,6 +222,37 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     if (scroller === window) window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
     else scroller.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
   };
+
+  const scrollToTocTop = () => {
+    const scroller = getScroller();
+    if (!scroller) return;
+    if (scroller === window) window.scrollTo({ top: 0, behavior: 'smooth' });
+    else scroller.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Listen for global header "Contents" command
+  useEffect(() => {
+    const handler = () => {
+      if (typeof window !== 'undefined' && window.innerWidth <= 820) {
+        setTocOpen(true);
+      } else {
+        scrollToTocTop();
+      }
+    };
+    if (typeof window !== 'undefined') window.addEventListener('toggle-toc', handler);
+    return () => { if (typeof window !== 'undefined') window.removeEventListener('toggle-toc', handler); };
+  }, []);
+
+  // Close on ESC and lock body scroll when open
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setTocOpen(false); };
+    if (typeof window !== 'undefined') window.addEventListener('keydown', onKey);
+    if (typeof document !== 'undefined') {
+      if (tocOpen) document.body.style.overflow = 'hidden';
+      else document.body.style.overflow = '';
+    }
+    return () => { if (typeof window !== 'undefined') window.removeEventListener('keydown', onKey); };
+  }, [tocOpen]);
 
   // Compute LLM context for current selection using metadata
   useEffect(() => {
@@ -248,6 +298,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   useEffect(() => {
     const applyHash = () => {
       if (!metadata || !sectionsWithOffsets || !sections) return;
+      // Handle cross-page actions
+      if ((location.hash || '').includes('action=settings')) {
+        setShowSettings(true);
+        const url = new URL(window.location.href); url.hash = ''; window.history.replaceState(null, '', url.toString());
+        return;
+      }
+      if ((location.hash || '').includes('action=toc')) {
+        setTocOpen(true);
+        const url = new URL(window.location.href); url.hash = ''; window.history.replaceState(null, '', url.toString());
+        return;
+      }
       const parsed = parseSelectionHash(location.hash);
       if (!parsed) return;
       const { byteOffset, length } = parsed;
@@ -536,7 +597,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         {sections.map((section, idx) => {
           const savedExplanations = Object.entries(conversations || {})
             .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last && id !== selectionId)
-            .map(([, c]) => c);
+            .map(([, c]) => c)
+            .sort((a, b) => {
+              const sa = (a.meta?.start ?? 0);
+              const sb = (b.meta?.start ?? 0);
+              if (sa !== sb) return sa - sb;
+              const ba = (a.meta?.byteOffset ?? 0);
+              const bb = (b.meta?.byteOffset ?? 0);
+              return ba - bb;
+            });
           return (
           <Section
             key={idx}
@@ -562,6 +631,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               },
             }}
             selectedId={selection && selection.sectionIndex === idx ? selectionId : null}
+            pendingFocus={pendingFocus && pendingFocus.sectionIndex === idx ? pendingFocus : null}
+            onPendingFocusConsumed={() => setPendingFocus(null)}
             savedExplanations={savedExplanations}
             onCopyLink={() => {
               const curr = selectionContext;
@@ -574,6 +645,76 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           );
         })}
         </main>
+        {/* Desktop: floating back-to-top button; hidden on mobile via CSS */}
+        <button
+          type="button"
+          className={`backToToc ${showTocButton ? 'show' : ''}`}
+          onClick={scrollToTocTop}
+          title="Back to contents"
+          aria-label="Back to contents"
+        >
+          ↑
+        </button>
+
+        {/* Mobile: slim edge handle for opening the drawer */}
+        {!tocOpen && (
+          <button
+            type="button"
+            className="tocHandle"
+            onClick={() => setTocOpen(true)}
+            title="Open contents"
+            aria-label="Open contents"
+          >
+            <span>CONTENTS</span>
+          </button>
+        )}
+
+        {/* Slide-in TOC Drawer (mobile only) */}
+        <div className={`tocDrawer ${tocOpen ? 'open' : ''}`} aria-hidden={!tocOpen}>
+          {tocOpen ? <div className="overlay" onClick={() => setTocOpen(false)} /> : null}
+          <aside className="panel" role="dialog" aria-label="Contents">
+            <button type="button" className="tocCloseHandle" onClick={() => setTocOpen(false)} aria-label="Close contents"><span>CLOSE</span></button>
+            <div className="drawerHeader">
+              <span>Contents</span>
+              <button type="button" className="closeBtn" onClick={() => setTocOpen(false)} aria-label="Close contents">✕</button>
+            </div>
+            <div className="toc">
+              {toc.map((group) => (
+                <div key={`d-act-${group.act}`}>
+                  {group.act === 'Prologue' ? (
+                    <ul>
+                      {(() => {
+                        const sc = group.scenes[0];
+                        const key = `${sc.act}-${sc.scene}`;
+                        const isActive = activeScene === key;
+                        return (
+                          <li key={`d-scene-${key}`} className={isActive ? 'active' : ''}>
+                            <a href="#" onClick={(e) => { e.preventDefault(); setTocOpen(false); scrollToSection(sc.sectionIndex); }} title="Prologue">Prologue</a>
+                          </li>
+                        );
+                      })()}
+                    </ul>
+                  ) : (
+                    <ul>
+                      <li style={{ fontWeight: 600, color: '#53483e', fontFamily: 'IM Fell English, serif' }}>{`Act ${group.act}`}</li>
+                      {group.scenes.map((sc) => {
+                        const key = `${sc.act}-${sc.scene}`;
+                        const isActive = activeScene === key;
+                        return (
+                          <li key={`d-scene-${key}`} className={isActive ? 'active' : ''}>
+                            <a href="#" onClick={(e) => { e.preventDefault(); setTocOpen(false); scrollToSection(sc.sectionIndex); }} title={`Act ${sc.act}, Scene ${sc.scene}`}>
+                              {sc.title}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
       </div>
       {showSettings && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)', zIndex: 50 }} onClick={() => setShowSettings(false)}>
@@ -613,6 +754,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               <label>Language
                 <input type="text" value={llmOptions.language || ''} onChange={(e) => setLlmOptions({ ...llmOptions, language: e.target.value })} style={{ marginLeft: 6 }} />
               </label>
+              <label>Default length
+                <select
+                  value={(llmOptions.length || 'brief')}
+                  onChange={(e) => setLlmOptions({ ...llmOptions, length: e.target.value })}
+                  style={{ marginLeft: 6 }}
+                >
+                  <option value="brief">Brief</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
+                </select>
+              </label>
               <label>Education
                 <select value={llmOptions.educationLevel || 'High school'} onChange={(e) => setLlmOptions({ ...llmOptions, educationLevel: e.target.value })} style={{ marginLeft: 6 }}>
                   <option>Middle school</option>
@@ -635,7 +787,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed }) {
   const preRef = useRef(null);
 
   // Handle mouse up to detect user selection (click-drag) or single click (expand to sentence)
@@ -678,12 +830,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     if (!container) return;
     let selEl = null;
     if (targetId) selEl = container.querySelector(`.selected[data-sel-id="${targetId}"]`);
-    if (!selEl) selEl = container.querySelector('.selected');
+    if (!selEl) return; // don't focus wrong element
     if (!selEl) return;
     selEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
     selEl.classList.add('flash');
     setTimeout(() => selEl.classList.remove('flash'), 1800);
   };
+
+  // After selectionId updates to match pending focus, perform the focus then consume flag
+  useEffect(() => {
+    if (pendingFocus && selectedId && pendingFocus.id === selectedId) {
+      focusSelected(selectedId);
+      onPendingFocusConsumed?.();
+    }
+  }, [pendingFocus, selectedId]);
 
   const hasAside = !!selectedRange || (savedExplanations && savedExplanations.length > 0);
   return (
@@ -711,14 +871,14 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   key={`ex-${i}-${ex?.meta?.byteOffset || i}`}
                   passage={ex?.meta?.text || ''}
                   content={ex?.last || ''}
-                  onLocate={() => {
-                    if (ex?.meta) {
-                      onSelectRange({ start: ex.meta.start, end: ex.meta.end });
-                      const len = new TextEncoder().encode(ex.meta.text || '').length;
-                      const id = `${ex.meta.byteOffset}-${len}`;
-                      setTimeout(() => focusSelected(id), 50);
-                    }
-                  }}
+                onLocate={() => {
+                  if (ex?.meta) {
+                    onSelectRange({ start: ex.meta.start, end: ex.meta.end });
+                    const len = new TextEncoder().encode(ex.meta.text || '').length;
+                    const id = `${ex.meta.byteOffset}-${len}`;
+                    setPendingFocus({ sectionIndex: idx, id });
+                  }
+                }}
                   onCopy={() => {
                     if (ex?.meta) {
                       const len = new TextEncoder().encode(ex.meta.text || '').length;

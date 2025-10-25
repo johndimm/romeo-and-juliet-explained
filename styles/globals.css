@@ -60,6 +60,103 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 
 .container { position: absolute; top: 0; bottom: 0; left: 260px; right: 0; overflow-y: auto; overflow-x: hidden; padding: 1rem; box-sizing: border-box; }
 
+/* Floating helper to jump back to TOC on small screens */
+.backToToc {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1000;
+  background: #3b3228;
+  color: #fff;
+  border: 1px solid #2a241e;
+  border-radius: 9999px;
+  width: 36px;
+  height: 36px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.backToToc.show { display: flex; }
+
+/* Slide-in TOC drawer (mobile) */
+.tocDrawer { display: none; }
+.tocDrawer.open { display: block; }
+.tocDrawer {
+  position: fixed;
+  top: var(--header-h);
+  left: 0; right: 0; bottom: 0;
+  z-index: 999;
+  pointer-events: none;
+}
+.tocDrawer .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  pointer-events: auto;
+}
+.tocDrawer .panel {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: min(84vw, 320px);
+  background: #faf9f7;
+  border-right: 1px solid #e8e6e3;
+  transform: translateX(-100%);
+  transition: transform 180ms ease;
+  pointer-events: auto;
+  overflow: auto;
+  padding: 0.5rem 0.75rem 1rem 0.75rem;
+  box-sizing: border-box;
+}
+.tocDrawer.open .panel { transform: translateX(0); }
+.tocDrawer .drawerHeader { font-weight: 600; color: #53483e; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.tocDrawer .closeBtn { border: 1px solid #cfc7bb; background: #fff; border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+
+/* Close handle attached to the open drawer's edge */
+.tocCloseHandle {
+  position: absolute;
+  top: 50%;
+  right: 0; /* anchor to edge; move out via transform to avoid layout width */
+  transform: translate(80%, -50%);
+  width: 48px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3b3228;
+  color: #fff;
+  border: 1px solid #2a241e;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.tocCloseHandle span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; letter-spacing: 1px; }
+
+/* Minimal edge handle to open the drawer (mobile) */
+.tocHandle {
+  position: fixed;
+  top: 50%;
+  left: 0; /* anchor to edge; move out via transform so it doesn't widen page */
+  transform: translate(-70%, -50%);
+  z-index: 1000;
+  width: 48px;
+  height: 130px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #3b3228;
+  color: #fff;
+  border: 1px solid #2a241e;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.tocHandle span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; letter-spacing: 1px; }
+
 /* Search bar embedded in header row */
 .searchBar { position: static; display: inline-block; vertical-align: middle; background: transparent; padding: 0; white-space: nowrap; }
 .headerSearchBar { margin-left: 16px; }
@@ -261,28 +358,76 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 
 /* Narrow screens: TOC at top (scrolls away), explanations below text */
 @media (max-width: 820px) {
-  .page {
-    position: absolute;
-    top: var(--header-h);
-    left: 0; right: 0; bottom: 0;
-    overflow-y: auto; overflow-x: hidden;
-  }
+  /* Let the document scroll normally on mobile to avoid gutter/blank space issues */
+  html, body, #__next { height: auto; width: 100vw !important; max-width: 100vw !important; }
+  body { overflow: hidden; }
+  /* Taller, wrapping header so controls aren't clipped */
+  :root { --mobile-header-h: 132px; }
+  .appHeader { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: auto; overflow: visible; box-shadow: 0 1px 0 #e8e6e3; background: #faf9f7; }
+  .appHeaderInner { height: auto; white-space: normal; overflow: visible; padding: 8px 20px; display: grid; grid-template-columns: auto 1fr; grid-template-areas: 'title title' 'links search'; align-items: center; gap: 6px 8px; }
+  .appHeaderInner .appTitle { display: block; grid-area: title; }
+  .appHeaderInner nav { grid-area: links; float: none; margin: 0; display: flex; flex-wrap: nowrap; gap: 4px; }
+  .appHeaderInner nav { justify-content: flex-end; }
+  .headerSearchBar { grid-area: search; display: flex; margin: 0; width: 100%; justify-self: end; justify-content: flex-start; align-items: center; gap: 6px; flex-wrap: nowrap; }
+  /* Make the search box narrower on phones */
+  .searchBar input[type="search"], .searchBar input[type="text"] { width: 100%; max-width: 150px; }
+  .searchBar button { min-width: 28px; padding: 0 6px; }
+  .searchBar .searchCount { display: none; }
+
+  /* Icon-only header links on mobile (DOM icons) */
+  .headerLinks a { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; border: 1px solid #d8d5d0; border-radius: 6px; background: #fff; text-decoration: none; color: #3b3228; min-width: 30px; }
+  .headerLinks a .icon { font-size: 16px; line-height: 1; display: inline-block; }
+  .headerLinks a .lbl { position: absolute; left: -9999px; }
+  /* On phones, hide all but the gear icon */
+  .headerLinks .lnk-contents,
+  .headerLinks .lnk-print,
+  .headerLinks .lnk-guide,
+  .headerLinks .lnk-about { display: none; }
+
+  /* Mobile popup menu */
+  .mobileMenu { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.25); z-index: 1500; }
+  .mobileMenu .panel { position: absolute; right: 20px; top: 8px; width: 220px; background: #fff; border: 1px solid #d8d5d0; border-radius: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.2); padding: 6px; }
+  .mobileMenu .menuItem { display: block; width: 100%; text-align: left; background: #fff; border: 1px solid #e8e6e3; border-radius: 6px; padding: 8px; margin: 4px 0; font-size: 16px; color: #2f2a25; text-decoration: none; }
+  .mobileMenu .menuItem:hover { background: #f6f2ea; }
+
+  .page { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; width: 100vw; }
   .sidebar {
     position: static;
     width: auto; height: auto;
     overflow: visible;
     border-right: none;
     border-bottom: 1px solid #e8e6e3;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem; /* edge-to-edge on mobile */
     box-sizing: border-box;
   }
   .container {
     position: static;
     height: auto;
     overflow: visible;
-    padding: 1rem;
+    padding: 0 0 0.5rem; /* bottom spacing */
     box-sizing: border-box;
   }
   .section { display: block; margin-top: var(--section-gap); }
   .section .explanations { margin-top: 0.5rem; }
+
+  /* Reduce inner padding so text uses the screen */
+  .playText pre { padding: 0.25rem 0.35rem; }
+  .explanations { padding: 0.4rem; }
+
+  /* Content gutters: 20px on left/right for inner content */
+  .container, .sidebar { margin-left: 20px; margin-right: 20px; }
+  .section,
+  .playText,
+  .playText pre,
+  .explanations { width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; overflow-x: hidden; }
+
+  /* Hide the bottom-right button on mobile; use handle/drawer instead */
+  .backToToc { display: none !important; }
+  .backToToc.show { display: none !important; }
+
+  /* Enable the drawer only on small screens */
+  .tocDrawer { display: block; top: 0; }
+
+  /* Show the edge handle */
+  .tocHandle { display: flex; }
 }

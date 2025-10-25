@@ -11,7 +11,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap"
           rel="stylesheet"
         />
-        {/* viewport is automatically handled by Next.js */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       <body>
         <Main />
