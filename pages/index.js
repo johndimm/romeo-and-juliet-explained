@@ -789,6 +789,41 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
 function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed }) {
   const preRef = useRef(null);
+  const selPendingRef = useRef(false);
+  const longPressRef = useRef(false);
+  const movedRef = useRef(false);
+  const pressTimerRef = useRef(null);
+  const startXYRef = useRef({ x: 0, y: 0 });
+  const selDebounceRef = useRef(null);
+  const touchActiveRef = useRef(false);
+
+  const processSelection = () => {
+    const container = preRef.current;
+    if (!container) return;
+    const sel = window.getSelection && window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    const range = sel.getRangeAt(0);
+    if (!range) return;
+    // Case 1: selection fully within this section
+    if (container.contains(range.startContainer) && container.contains(range.endContainer)) {
+      const offsets = getOffsetsWithin(container, range);
+      if (!offsets) return;
+      let { start, end } = offsets;
+      if (start != null && end != null && end > start) {
+        onSelectRange({ start, end });
+      }
+      return;
+    }
+    // Case 2: selection spans multiple sections; anchor to the LAST section
+    if (container.contains(range.endContainer)) {
+      const r0 = document.createRange();
+      r0.selectNodeContents(container);
+      const beforeEnd = r0.cloneRange();
+      beforeEnd.setEnd(range.endContainer, range.endOffset);
+      const end = beforeEnd.toString().length;
+      if (end > 0) onSelectRange({ start: 0, end, fullText: sel.toString() });
+    }
+  };
 
   // Handle mouse up to detect user selection (click-drag) or single click (expand to sentence)
   const handleMouseUp = (e) => {
@@ -802,7 +837,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       const offsets = getOffsetsWithin(container, range);
       if (!offsets) return;
       let { start, end } = offsets;
-      if (start === end) {
+      // Tap: collapsed selection -> expand to sentence
+      if (start === end && !(longPressRef.current || movedRef.current)) {
         const expanded = expandToSentence(text, start);
         if (expanded) ({ start, end } = expanded);
       }
@@ -823,6 +859,82 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         onSelectRange({ start: 0, end, fullText: sel.toString() });
       }
     }
+  };
+
+  // Selection handling: react to selectionchange and also finalize on touch/pointer end
+  useEffect(() => {
+    const onSelChange = () => {
+      selPendingRef.current = true;
+      // If a touch is active (user still dragging), don't process yet.
+      // Fallback only when there is no active touch (e.g., iOS context menu without touchend)
+      if (!touchActiveRef.current) {
+        clearTimeout(selDebounceRef.current);
+        selDebounceRef.current = setTimeout(() => {
+          if (selPendingRef.current && !touchActiveRef.current) {
+            selPendingRef.current = false;
+            processSelection();
+          }
+        }, 250);
+      }
+    };
+    const onFinalize = () => {
+      touchActiveRef.current = false;
+      if (!selPendingRef.current) return;
+      selPendingRef.current = false;
+      // small delay so browser settles selection bounds
+      clearTimeout(selDebounceRef.current);
+      setTimeout(processSelection, 30);
+    };
+    const onStart = (e) => {
+      // Only consider real touch interactions
+      if (e.pointerType && e.pointerType !== 'touch') return;
+      touchActiveRef.current = true;
+    };
+    document.addEventListener('selectionchange', onSelChange);
+    document.addEventListener('touchend', onFinalize);
+    document.addEventListener('touchcancel', onFinalize);
+    document.addEventListener('pointerup', onFinalize);
+    document.addEventListener('pointercancel', onFinalize);
+    document.addEventListener('touchstart', onStart, { passive: true });
+    document.addEventListener('pointerdown', onStart, { passive: true });
+    return () => {
+      document.removeEventListener('selectionchange', onSelChange);
+      document.removeEventListener('touchend', onFinalize);
+      document.removeEventListener('touchcancel', onFinalize);
+      document.removeEventListener('pointerup', onFinalize);
+      document.removeEventListener('pointercancel', onFinalize);
+      document.removeEventListener('touchstart', onStart);
+      document.removeEventListener('pointerdown', onStart);
+      clearTimeout(selDebounceRef.current);
+    };
+  }, []);
+
+  // Long-press detection to distinguish tap vs. drag-selection
+  const onTouchStart = (e) => {
+    const t = e.touches && e.touches[0];
+    startXYRef.current = { x: t ? t.clientX : 0, y: t ? t.clientY : 0 };
+    movedRef.current = false;
+    longPressRef.current = false;
+    touchActiveRef.current = true;
+    clearTimeout(pressTimerRef.current);
+    pressTimerRef.current = setTimeout(() => { longPressRef.current = true; }, 350);
+  };
+  const onTouchMove = (e) => {
+    const t = e.touches && e.touches[0];
+    if (!t) return;
+    const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
+    const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
+    if (dx + dy > 8) {
+      movedRef.current = true;
+      longPressRef.current = true; // treat as drag-selection
+      clearTimeout(pressTimerRef.current);
+    }
+  };
+  const onTouchEnd = () => {
+    clearTimeout(pressTimerRef.current);
+    touchActiveRef.current = false;
+    // handleMouseUp will run and decide tap vs. long-press based on flags
+    setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
   };
 
   const focusSelected = (targetId) => {
@@ -849,7 +961,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   return (
     <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
       <div className="playText">
-        <pre ref={preRef} onMouseUp={handleMouseUp}>
+        <pre ref={preRef} onMouseUp={handleMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={(e)=>{onTouchEnd(e); handleMouseUp(e);}} onPointerUp={handleMouseUp}>
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
       </div>

@@ -260,6 +260,26 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
   font-size: 0.95rem;
 }
 
+/* Desktop header buttons: icon + label styled as buttons */
+@media (min-width: 821px) {
+  .headerLinks a, .headerLinks button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid #cfc7bb;
+    border-radius: 6px;
+    background: #fff;
+    color: #3b3228;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .headerLinks a:hover, .headerLinks button:hover { background: #f6f2ea; }
+  .headerLinks .icon { font-size: 16px; line-height: 1; }
+  .headerLinks .lbl { position: static; }
+}
+
 /* mobile-specific rules can be added later if needed */
 
 /* Print layout: remove UI chrome, stack content, keep explanations */
