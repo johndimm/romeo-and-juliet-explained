@@ -46,7 +46,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showSettings, setShowSettings] = useState(false);
   // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
   // we normalize to 0–100 via a log scale.
-  const [noteThreshold, setNoteThreshold] = useState(0);
+  const [noteThreshold, setNoteThreshold] = useState(70);
   const suppressAutoExplainRef = useRef(false);
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
@@ -435,7 +435,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const opt = localStorage.getItem('llmOptions');
       if (opt) setLlmOptions(JSON.parse(opt));
       const nt = localStorage.getItem('noteThreshold');
-      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 0);
+      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 70);
     } catch {}
     setOptsHydrated(true);
   }, []);
@@ -456,6 +456,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     let p = Number(it?.perplexity ?? it?.confusion ?? 0);
     if (!Number.isFinite(p) || p < 0) p = 0;
     const model = String(it?.perplexityModel || '').toLowerCase();
+    // Prefer dataset-normalized score if present
+    if (typeof it?.perplexityNorm === 'number') {
+      const n = Math.round(Math.max(0, Math.min(100, it.perplexityNorm)));
+      return n;
+    }
     // If already in 0–100 (from LLM), just clamp
     if (p <= 100 && model !== 'gpt2') return Math.max(0, Math.min(100, p));
     // For true LM PPL (often > 100), map to 0–100 using log10 scale
@@ -715,6 +720,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             query={query}
             matchRefs={matchRefs}
             precomputedItems={(preBySection.get(idx) || []).filter((it) => { const score = normalizedPerplexity(it); return !noteThreshold || score >= noteThreshold; })}
+            precomputedAllItems={(preBySection.get(idx) || [])}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => setSelection(range ? { sectionIndex: idx, ...range } : null)}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
@@ -723,6 +729,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             sectionStartOffset={sectionStartOffset}
             suppressNextAutoExplain={() => { suppressAutoExplainRef.current = true; }}
             metadata={metadata}
+            noteThreshold={noteThreshold}
+            setNoteThreshold={setNoteThreshold}
             llm={{
               options: llmOptions,
               setOptions: setLlmOptions,
@@ -911,8 +919,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold }) {
   const preRef = useRef(null);
+  const asideRef = useRef(null);
   const selPendingRef = useRef(false);
   const longPressRef = useRef(false);
   const movedRef = useRef(false);
@@ -926,6 +935,50 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const [preFollowLoading, setPreFollowLoading] = useState(false);
   // Mini chat history per speech (keyed by startOffset)
   const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
+  const [forceShow, setForceShow] = useState(false);
+
+  // No local perplexity normalizer needed now that placeholder is removed
+
+  function isStageOrTitle(it) {
+    try {
+      const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+      const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+      const startC = bytesToCharOffset(text || '', startRelB);
+      const endC = bytesToCharOffset(text || '', endRelB);
+      const snippet = (text || '').slice(startC, endC).trim();
+      if (!snippet) return false;
+      // Titles: all caps words (allow spaces and punctuation)
+      const hasLetters = /[A-Z]/.test(snippet);
+      const hasLower = /[a-z]/.test(snippet);
+      if (hasLetters && !hasLower) return true;
+      // Stage directions common patterns
+      if (/^(Enter|Re-enter|Exit|Exeunt)\b/i.test(snippet)) return true;
+      return false;
+    } catch { return false; }
+  }
+  // Determine if the extracted snippet is stage/title; build visibility-aware lists
+  const visiblePreItems = (precomputedItems || []).filter((it) => !isStageOrTitle(it));
+  const visibleAllItems = (precomputedAllItems || []).filter((it) => !isStageOrTitle(it));
+  function pickVisibleItem(list, startIdx) {
+    if (!list || !list.length) return null;
+    const n = list.length;
+    const s = Math.max(0, Math.min(startIdx || 0, n - 1));
+    for (let i = s; i < n; i++) if (list[i]) return list[i];
+    for (let i = s - 1; i >= 0; i--) if (list[i]) return list[i];
+    return null;
+  }
+  const currentVisible = pickVisibleItem(visiblePreItems, autoIdx);
+  const currentForceVisible = pickVisibleItem(visibleAllItems, autoIdx);
+  // Show the aside only when there is something to show
+  const hasAside = !!selectedRange
+    || (savedExplanations && savedExplanations.length > 0)
+    || (!!currentVisible)
+    || (forceShow && !!currentForceVisible);
+  // Indicate clickability in the text area when a suppressed note exists for the current speech
+  const canForceReveal = !selectedRange
+    && (!savedExplanations || savedExplanations.length === 0)
+    && !currentVisible
+    && !!currentForceVisible;
 
   const processSelection = () => {
     const container = preRef.current;
@@ -969,6 +1022,23 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       let { start, end } = offsets;
       // Tap: collapsed selection -> expand to sentence
       if (start === end && !(longPressRef.current || movedRef.current)) {
+        // If the caret is not on a text character (likely whitespace/gap), treat as a request
+        // to reveal the precomputed note instead of explaining.
+        let onChar = false;
+        try {
+          const node = range.startContainer;
+          if (node && node.nodeType === 3) { // text node
+            const s = node.textContent || '';
+            const ch = s[start] || '';
+            onChar = /\w/.test(ch);
+          }
+        } catch {}
+        if (!onChar) {
+          try { window.getSelection()?.removeAllRanges?.(); } catch {}
+          suppressNextAutoExplain?.();
+          setForceShow(true);
+          return;
+        }
         const expanded = expandToSentence(text, start);
         if (expanded) ({ start, end } = expanded);
       }
@@ -1041,7 +1111,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // In-view observer using invisible anchors per speech start
   useEffect(() => {
-    if (!precomputedItems || !precomputedItems.length) return;
+    const list = precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : precomputedItems;
+    if (!list || !list.length) return;
     const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
     if (!anchors.length) return;
     function getScroller() {
@@ -1066,7 +1137,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     }, { root: root || undefined, threshold: [0, 0.01, 0.1] });
     anchors.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [precomputedItems, sectionRef]);
+  }, [precomputedAllItems, precomputedItems, sectionRef]);
 
   // Long-press detection to distinguish tap vs. drag-selection
   const onTouchStart = (e) => {
@@ -1116,26 +1187,34 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     }
   }, [pendingFocus, selectedId]);
 
-  const hasAside = !!selectedRange || (savedExplanations && savedExplanations.length > 0) || (precomputedItems && precomputedItems.length > 0);
+  // hasAside is recomputed just before render using visibility-aware lists
+
+  // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
     <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
       <div className="playText" style={{ position: 'relative' }}>
         {/* Invisible anchors at speech starts for IntersectionObserver */}
         {(() => {
           const secChars = (text || '').length || 1;
-          return (precomputedItems || []).map((it, i) => {
+          const list = precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : precomputedItems || [];
+          return list.map((it, i) => {
             const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
             const startC = bytesToCharOffset(text || '', startRelB);
             const topPct = (startC / Math.max(1, secChars)) * 100;
             return <div key={`anch-${i}`} className="speechAnchor" data-idx={i} style={{ position: 'absolute', top: `${topPct}%`, left: 0, width: 1, height: 1, pointerEvents: 'none' }} />;
           });
         })()}
-        <pre ref={preRef} onMouseUp={handleMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={(e)=>{onTouchEnd(e); handleMouseUp(e);}} onPointerUp={handleMouseUp}>
+        <pre ref={preRef} onMouseUp={handleMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={(e)=>{onTouchEnd(e); handleMouseUp(e);}} onPointerUp={handleMouseUp} style={{ cursor: canForceReveal ? 'pointer' : undefined }}>
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
       </div>
       {hasAside ? (
-        <aside className="explanations" aria-label="Explanations">
+        <aside
+          className="explanations"
+          aria-label="Explanations"
+          ref={asideRef}
+        >
+          {/* Aside is only rendered when it has content to show */}
           {selectedRange ? (
             <LlmPanel
               passage={text.slice(selectedRange.start, selectedRange.end)}
@@ -1145,11 +1224,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               onCopyLink={onCopyLink}
             />
           ) : null}
-          {precomputedItems && precomputedItems.length ? (
+          {( !!currentVisible || (forceShow && !!currentForceVisible) ) ? (
             <div>
               {(() => {
-                const it = precomputedItems[Math.min(autoIdx, precomputedItems.length - 1)];
-                if (!it) return null;
+                const it = (currentVisible || (forceShow ? currentForceVisible : null));
+                if (!it) return null; // safety
                 const toggleFollow = () => setShowPreFollow((v)=>!v);
                 const submitFollow = async () => {
                   const q = (preFollowInput || '').trim();
@@ -1189,7 +1268,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 };
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
-                    <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }} onClick={toggleFollow} title="Ask a follow-up about this note">{it.content || ''}</div>
+                    <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ suppressNextAutoExplain?.(); toggleFollow(); }} title="Ask a follow-up about this note">{it.content || ''}</div>
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {it.model ? `Model: ${it.model}` : ''}
                     </div>
@@ -1219,6 +1298,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               })()}
             </div>
           ) : null}
+          {/* Placeholder removed; clicking the empty aside reveals the suppressed note */}
           {savedExplanations.length > 0 && (
             <div style={{ marginTop: '0.75rem' }}>
               {savedExplanations.map((ex, i) => (

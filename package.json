@@ -1,28 +1,29 @@
 {
-  "name": "romeo-and-juliet-explained",
-  "private": true,
-  "type": "module",
-  "version": "0.1.0",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint --no-inline-config",
-    "snapshot": "node scripts/search-snapshot.mjs",
-    "build:characters": "node scripts/build-character-map.mjs",
-    "gen:scene": "node scripts/gen-scene-deepseek.mjs --act=I --scene=I",
-    "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json",
-    "merge:explanations": "node scripts/merge-explanations.mjs",
-    "gen:all": "node scripts/gen-all-deepseek.mjs --mode=all",
-    "gen:prologue": "node scripts/gen-prologue-deepseek.mjs",
-    "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json",
-    "score:llm": "node scripts/score-perplexity-deepseek.mjs --in=data/explanations.json",
-    "score:gpt2": "python3 scripts/score-perplexity-gpt2.py --in data/explanations.json --out data/explanations.json",
-    "hist:perplexity": "node scripts/hist-perplexity.mjs --in data/explanations.json --bins 10"
-  },
+  "version": "0.1.0", 
+  "private": true, 
   "dependencies": {
-    "next": "14.2.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
-  }
+    "react": "18.3.1", 
+    "react-dom": "18.3.1", 
+    "next": "14.2.5"
+  }, 
+  "scripts": {
+    "gen:scene": "node scripts/gen-scene-deepseek.mjs --act=I --scene=I", 
+    "normalize:perplexity": "node scripts/normalize-perplexity.mjs --in data/explanations.json --out data/explanations.json", 
+    "score:llm": "node scripts/score-perplexity-deepseek.mjs --in=data/explanations.json", 
+    "gen:all": "node scripts/gen-all-deepseek.mjs --mode=all", 
+    "score:gpt2": "python3 scripts/score-perplexity-gpt2.py --in data/explanations.json --out data/explanations.json", 
+    "lint": "next lint --no-inline-config", 
+    "dev": "next dev", 
+    "gen:prologue": "node scripts/gen-prologue-deepseek.mjs", 
+    "start": "next start", 
+    "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json", 
+    "snapshot": "node scripts/search-snapshot.mjs", 
+    "build": "next build", 
+    "build:characters": "node scripts/build-character-map.mjs", 
+    "hist:perplexity": "node scripts/hist-perplexity.mjs --in data/explanations.json --bins 10", 
+    "merge:explanations": "node scripts/merge-explanations.mjs", 
+    "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json"
+  }, 
+  "type": "module", 
+  "name": "romeo-and-juliet-explained"
 }
