@@ -1,0 +1,112 @@
+[
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 115603,
+    "endOffset": 115725,
+    "content": "Lady Capulet is urgently directing the Nurse to gather more ingredients for the wedding feast preparations. The Nurse's reply indicates that the kitchen staff is also requesting specific fruits—dates and quinces—for the pastry cooks, highlighting the bustling activity and last-minute haste in the Capulet household.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 115670,
+    "endOffset": 115742,
+    "content": "The Nurse is bustling about, giving orders for the wedding feast preparations. She mentions that the cooks are being called to bring \"dates and quinces\" (types of fruit) to the pastry kitchen, which shows the busy, festive atmosphere in the Capulet household as they prepare for Juliet's marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 115742,
+    "endOffset": 116029,
+    "content": "Capulet is bustling about, urgently preparing for Juliet's wedding feast. He notes it's 3 a.m. and tells the servants to spare no expense on the food. The Nurse then sharply tells him to go to bed, calling him a \"cot-quean\" (a man who meddles in women's work), warning he'll be sick from staying up all night.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 115920,
+    "endOffset": 116029,
+    "content": "The Nurse is scolding the Capulet servant for fussing like a housewife (\"cot-quean\") and staying up all night. She tells him to go to bed, warning that he will be sick tomorrow from staying awake so late.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116029,
+    "endOffset": 116137,
+    "content": "Capulet is dismissing his wife's concern that he might be tired from staying up all night preparing for the wedding. He boasts that he has stayed awake for less important reasons in the past without any ill effects, showing his energetic and domineering nature as he takes charge of the frantic preparations.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 116137,
+    "endOffset": 116242,
+    "content": "Lady Capulet is accusing her husband of having been a womanizer in his youth, calling him a \"mouse-hunt,\" an old term for a cat that hunts mice, here meaning a pursuer of women. She declares that she will now keep a close watch on him to prevent him from such behavior. This sharp remark reveals her bitterness and distrust, adding tension to their interaction on what is supposed to be their daughter's wedding day.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116279,
+    "endOffset": 116321,
+    "content": "Capulet is scolding the Nurse for being overly protective and suspicious, calling her a \"jealous-hood\" (an old term for a jealous person). He's impatient and dismissive, wanting her to stop fussing so the wedding preparations for Juliet can proceed without interruption.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 116399,
+    "endOffset": 116462,
+    "content": "The servant is telling Capulet that he has brought items for the cook, but he doesn't know the specifics of what they are. This line highlights the frantic, disorganized preparations for Juliet's wedding, creating a sense of bustling activity that contrasts sharply with the tragic reality of the situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116462,
+    "endOffset": 116496,
+    "content": "Capulet is urgently directing his servants to prepare for Juliet's wedding to Paris. His repeated command emphasizes the frantic, bustling atmosphere in the household as they rush to get everything ready for the ceremony they believe is about to take place.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 116598,
+    "endOffset": 116711,
+    "content": "The servant is boasting that he can find firewood without needing to ask Peter for help. His \"head\" refers to his own intelligence and resourcefulness. This brief exchange shows the bustling, efficient preparations in the Capulet household for Juliet's wedding.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116711,
+    "endOffset": 117133,
+    "content": "Capulet is cheerfully ordering the household to prepare for Juliet's wedding to Paris. He hears music signaling Paris's arrival and urgently calls for the Nurse to wake and dress the bride, showing his excitement and haste as the wedding day begins.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

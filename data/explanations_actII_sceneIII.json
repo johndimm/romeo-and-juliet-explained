@@ -1,0 +1,192 @@
+[
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 47837,
+    "endOffset": 48861,
+    "content": "Friar Lawrence observes the sunrise, using vivid imagery of light overcoming darkness to show the natural cycle of day and night. He then explains his task of gathering both poisonous and medicinal plants, reflecting on how the earth provides life and death. This leads to his key philosophical point: even good things can become harmful if misused, and bad things can serve good purposes, foreshadowing how the lovers' pure love will lead to tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49239,
+    "endOffset": 49268,
+    "content": "Romeo greets Friar Laurence with a respectful \"Good morning.\" This polite address establishes their familiar relationship and sets a calm tone before Romeo reveals his sudden change of heart from Rosaline to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49268,
+    "endOffset": 49776,
+    "content": "Friar Lawrence greets Romeo, noting that his unusually early visit suggests something is wrong. He observes that while old men like himself are kept awake by worries, young people should be sleeping soundly. The Friar concludes that Romeo must be either sick or, more likely, hasn't been to bed at all.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49776,
+    "endOffset": 49830,
+    "content": "Romeo is agreeing with Friar Laurence's earlier comment that he was not in his own bed last night. He confirms he found a more pleasant rest elsewhere, hinting at his secret meeting with Juliet. This is his coy way of introducing the fact that he has a new love interest.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49830,
+    "endOffset": 49888,
+    "content": "Friar Lawrence is surprised to see Romeo out so early and assumes he must have been with his previous love, Rosaline. He asks this to understand why Romeo is there, revealing he is unaware that Romeo has already moved on to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49888,
+    "endOffset": 49982,
+    "content": "Romeo tells Friar Laurence that he has completely forgotten about Rosaline and the sadness he felt for her. He is emphasizing how quickly and thoroughly his affections have shifted to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49982,
+    "endOffset": 50052,
+    "content": "The Friar is surprised to see Romeo out so early and asks where he has been. This question immediately establishes that Romeo's all-night absence is unusual and prompts him to confess he was with Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 50052,
+    "endOffset": 50338,
+    "content": "Romeo explains to Friar Laurence that he has fallen in love with Juliet, a Capulet—his family's enemy—and that she loves him in return. He asks the Friar to marry them, arguing that this union will end their families' feud, since he feels no hatred toward the Capulets and believes the marriage will benefit both houses.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 50338,
+    "endOffset": 50447,
+    "content": "The Friar is telling Romeo to speak plainly and directly, as he can see Romeo is being evasive. He warns that if Romeo's confession is confusing, the advice he receives in return will be equally unhelpful. This establishes the Friar as a practical, no-nonsense father figure trying to get to the heart of the matter.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 50447,
+    "endOffset": 50802,
+    "content": "Romeo confesses to Friar Laurence that he has fallen in love with Juliet Capulet and that she returns his feelings. He explains that their love is already mutual and complete, lacking only the formal bond of marriage, and he urgently asks the Friar to perform the wedding ceremony for them that very day.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 50802,
+    "endOffset": 51537,
+    "content": "Friar Lawrence is shocked that Romeo has so quickly abandoned his supposed love for Rosaline. He criticizes Romeo's fickleness, suggesting his love is superficial and based on sight rather than genuine feeling. The Friar points to Romeo's recent tears for Rosaline as proof of his insincerity, concluding that if men are this weak and changeable, it's no wonder women might also be led astray.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51537,
+    "endOffset": 51589,
+    "content": "Friar Laurence is pointing out that Romeo used to be scolded for his excessive, lovesick behavior over Rosaline. He is highlighting the sudden and complete shift in Romeo's affection to show how fickle and impulsive Romeo's love seems. This sets up the Friar's skepticism about Romeo's new claim of love for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51589,
+    "endOffset": 51646,
+    "content": "The Friar corrects Romeo, saying his feelings for Rosaline were an immature infatuation, not genuine love. He makes this distinction to highlight how quickly and shallowly Romeo's affections have shifted from one woman to another.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51646,
+    "endOffset": 51681,
+    "content": "Friar Laurence had previously advised Romeo to forget about Rosaline and move on from his infatuation. Romeo is now reminding the Friar of this advice, which he ignored, as he has immediately fallen in love with Juliet instead. This highlights Romeo's impulsive nature and sets up his request for the Friar to marry him to his new love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51681,
+    "endOffset": 51749,
+    "content": "The Friar is expressing his disapproval of Romeo's sudden shift in affection from Rosaline to Juliet. He uses a metaphor of graves, suggesting it is improper to bury one love while immediately exhuming another. His point is that such fickleness is unnatural and shows Romeo's love is not grounded in genuine depth.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51749,
+    "endOffset": 51866,
+    "content": "Romeo is asking Friar Laurence not to scold him for his sudden shift in affection. He explains that his new love, Juliet, returns his feelings equally (\"grace for grace and love for love\"), unlike Rosaline, who did not reciprocate.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51866,
+    "endOffset": 52117,
+    "content": "The Friar is telling Romeo that Rosaline knew his previous love declarations were just memorized and insincere, unlike his genuine feelings for Juliet. He agrees to help Romeo marry Juliet because he sees their union as a potential opportunity to end the bitter feud between the Montagues and Capulets.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 52117,
+    "endOffset": 52166,
+    "content": "Romeo urges his friends to leave quickly because he is impatient to act. \"Stand on sudden haste\" means he feels a sense of urgent hurry. He wants to go find Juliet right away after meeting her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 52166,
+    "endOffset": 52228,
+    "content": "The Friar warns Romeo that acting too quickly leads to mistakes, while being deliberate and cautious leads to success. This advice directly responds to Romeo's sudden shift of affection from Rosaline to Juliet, cautioning him against the impulsiveness of his new love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,642 @@
+[
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 129428,
+    "endOffset": 129952,
+    "content": "Paris orders his page to extinguish the torch and hide by a yew tree, listening for footsteps so he can whistle a warning—this shows Paris is secretly visiting Juliet’s tomb and fears being discovered. The page’s aside reveals his fear of the churchyard but also his loyalty, as he resolves to obey despite his unease.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 129839,
+    "endOffset": 129952,
+    "content": "The Page admits his fear of being alone in the graveyard but resolves to take the risk anyway. His brief moment of bravery is crucial, as he stays to witness the tragic events that follow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 129952,
+    "endOffset": 130452,
+    "content": "Paris is mourning at Juliet's tomb, believing her to be truly dead. He vows to visit nightly to decorate her grave with flowers and weep for her, performing these rituals as a tribute to his lost love. When his page whistles a warning, Paris hides, fearing that any intruder would disrespect his private mourning ceremony.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 130507,
+    "endOffset": 131279,
+    "content": "Romeo orders Balthasar to hand over tools to break into the Capulet tomb, then gives him a letter for Montague. He commands Balthasar to leave and not return, threatening violent dismemberment if he disobeys, explaining his savage intent is driven by the need to see Juliet and retrieve a ring.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 131279,
+    "endOffset": 131333,
+    "content": "Balthasar is telling Romeo he will leave and not bother him further. He says this because Romeo has just threatened him with death if he stays to watch what happens at the tomb. This line shows Balthasar's obedience and fear, but he secretly disobeys by hiding nearby to watch over his master.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 131333,
+    "endOffset": 131443,
+    "content": "Romeo is speaking to Balthasar, his servant, whom he has just paid. He gives him money (\"Take thou that\") as a gesture of friendship and to ensure his loyalty. He then orders Balthasar to leave him alone at the tomb, wishing him a good life so that he will not interfere with Romeo's plan to kill himself.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 131443,
+    "endOffset": 131557,
+    "content": "Balthasar decides to hide nearby because he is frightened by Romeo's wild appearance and suspects his master may be planning something dangerous. He fears Romeo's desperate state of mind and wants to stay close to watch over him without being seen.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 131557,
+    "endOffset": 131789,
+    "content": "Romeo personifies the tomb as a monstrous, devouring stomach that has consumed Juliet. He forces open the tomb door, vowing to defy it by adding his own body as more \"food,\" meaning he will join Juliet in death. This violent imagery underscores his desperation and resolve to be with her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 131789,
+    "endOffset": 132212,
+    "content": "Paris mistakenly believes Romeo has come to desecrate the bodies in the tomb, blaming him for Juliet's death (thinking she died from grief over Tybalt). He confronts Romeo, accusing him of being a condemned criminal and attempting to arrest him to face execution for his crimes.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132212,
+    "endOffset": 132636,
+    "content": "Romeo is warning Balthasar to leave because he is dangerously desperate and armed against himself. He says that if Balthasar stays and provokes him further, it will only add to his sins. Romeo insists he loves Balthasar enough to spare him, urging him to flee and later tell others that a madman showed mercy by letting him escape.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 132636,
+    "endOffset": 132708,
+    "content": "Paris rejects Romeo's plea to leave him alone, interpreting it as a magical spell (\"conjuration\"). He then declares he is arresting Romeo as a criminal (\"felon\") for being in the Capulet tomb, which is a crime in Verona.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132708,
+    "endOffset": 132833,
+    "content": "Romeo is challenging Paris, who is trying to arrest him at the Capulet tomb. His words are a direct threat, signaling his refusal to be stopped and his readiness for violence. The Page's reaction highlights the danger and illegality of the fight, as he runs to summon the authorities.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 132780,
+    "endOffset": 132845,
+    "content": "The Page sees Paris and Romeo fighting and immediately decides to alert the city watch. His action is crucial, as it sets in motion the arrival of the authorities who will discover the tragedy in the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 132845,
+    "endOffset": 132947,
+    "content": "Paris is fatally wounded by Romeo and makes a final plea. He asks his killer to show mercy by placing his body in the Capulet tomb next to Juliet, revealing his devotion to her even in death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132947,
+    "endOffset": 135025,
+    "content": "Romeo, having just killed Paris, recognizes him and recalls Balthasar mentioning that Paris was to marry Juliet. He then addresses Juliet, whose lifelike appearance makes him question whether death has truly taken her, leading him to decide to remain with her forever. He drinks the poison, kisses her, and dies, believing he is joining her in death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135120,
+    "endOffset": 135276,
+    "content": "The Friar is startled and uneasy, calling on his patron saint for protection after tripping near tombs in the dark. He hears someone and demands to know who would keep company with the dead at this late hour.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135276,
+    "endOffset": 135341,
+    "content": "Balthasar is telling Romeo that he is a loyal friend who knows him well. He says this to reassure Romeo of his trustworthiness before warning him about entering the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135341,
+    "endOffset": 135530,
+    "content": "The Friar notices a torch burning in the Capulet tomb and is confused, as it seems wasteful for a light to shine only on the dead. He is asking his companion to identify who would be there, revealing his surprise and growing suspicion about the activity at the vault.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135530,
+    "endOffset": 135608,
+    "content": "Balthasar confirms the Friar's observation that someone is present, then identifies Romeo as the man lying there. He emphasizes Romeo's relationship to the Friar by calling him \"one that you love,\" trying to prompt the Friar to act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135608,
+    "endOffset": 135636,
+    "content": "The Friar hears a noise and calls out to identify who is there. This creates immediate tension, as he is in the tomb where he expects to find only Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135636,
+    "endOffset": 135655,
+    "content": "Romeo's servant Balthasar is calling out to his master, who is in the churchyard. This simple address establishes the scene and creates immediate tension, as Balthasar is anxiously trying to locate Romeo in this ominous setting.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135655,
+    "endOffset": 135701,
+    "content": "The Friar is asking how long Romeo has been in the tomb. He needs this information to understand the situation, as he has just arrived and discovered the bodies of Paris and Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135701,
+    "endOffset": 135732,
+    "content": "Balthasar is answering Romeo's question about how long Juliet has been dead. He exaggerates the time to \"a full half an hour\" to emphasize that she is truly gone and cannot be revived, hoping this will discourage Romeo from any desperate action at the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135732,
+    "endOffset": 135774,
+    "content": "The Friar is urging someone to accompany him to the Capulet family tomb. He says this because he knows Juliet will soon awaken from her drugged sleep, and he wants to be there to help her escape and avoid her planned marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135774,
+    "endOffset": 135921,
+    "content": "Balthasar explains he cannot stay because Romeo believes he has already left and threatened to kill him if he witnessed his actions. He fears Romeo's violent intentions and must obey this command to avoid death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135921,
+    "endOffset": 136025,
+    "content": "The Friar is speaking to himself after Balthasar refuses to accompany him into the tomb. He feels a sudden sense of dread and foreboding, explicitly stating he is afraid that something terrible has happened. This line builds immediate tension, signaling to the audience that the tragic outcome is imminent.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 136025,
+    "endOffset": 136146,
+    "content": "Balthasar explains that while sleeping under a yew tree, he dreamed of Romeo fighting and killing another man. This foreshadows the impending tragedy, as his dream unknowingly reflects Paris's death at Romeo's hands moments earlier.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 136146,
+    "endOffset": 136557,
+    "content": "The Friar arrives at the tomb and is immediately horrified to find bloodstains and abandoned swords at the entrance, a violent contrast to the peaceful burial site. Upon entering, he discovers the bodies of Romeo and Paris, realizing a terrible tragedy has occurred just before Juliet begins to wake from her sleep.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 136557,
+    "endOffset": 136698,
+    "content": "Juliet has just awakened from her drugged sleep and is disoriented. She calls the Friar \"comfortable\" (meaning comforting) because she expects him to be there, but she quickly realizes she is alone in the tomb. Her immediate, frantic concern is for Romeo's whereabouts, showing her love and priority for him above her own frightening situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 136698,
+    "endOffset": 137097,
+    "content": "The Friar urgently tells Juliet to leave the tomb because he hears the watch approaching. He explains that their plan has failed by a divine power, revealing that both Romeo and Paris are dead. Fearing capture, he tries to persuade her to flee with him to a nunnery, insisting they have no time to delay.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 137097,
+    "endOffset": 137147,
+    "content": "Juliet is speaking to Friar Laurence, who has just urged her to flee the tomb. She defiantly refuses to leave, choosing to stay with Romeo's body. Her resolve shows her commitment to death, as she has already decided to join her husband.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 137474,
+    "endOffset": 137522,
+    "content": "The First Watch is calling out from offstage, asking his guide to lead him toward the disturbance. The line establishes that the authorities are arriving at the churchyard, heightening the tension as they approach the tragic scene.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 137522,
+    "endOffset": 137722,
+    "content": "Juliet hears a noise and decides to act quickly. She calls the dagger \"happy\" because it will reunite her with Romeo, and by saying \"this is thy sheath,\" she means her own body will be the scabbard for the blade. Her final words express her wish to be at peace in death with her husband.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 137760,
+    "endOffset": 137820,
+    "content": "The Page points out the tomb where Juliet lies, indicating the burning torch as a landmark. He is guiding Paris to the location for his intended mourning visit, showing he has followed his master's instructions to lead him there.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 137820,
+    "endOffset": 138384,
+    "content": "The First Watch orders his men to secure the area and arrest anyone they find, immediately grasping the horror of the scene with the fresh bodies of Paris and Juliet. He sends messengers to alert the Prince and the feuding families, recognizing this is a major crisis. He then reflects that while they can see the physical evidence of the tragedy, they cannot understand its true cause without knowing the full story, which is why they bring in a witness like Balthasar.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "SECOND WATCH",
+    "startOffset": 138384,
+    "endOffset": 138455,
+    "content": "The Second Watch is reporting to his superiors that they have found Balthasar, Romeo's servant, in the churchyard. This is significant because Balthasar's presence connects him to the scene of the recent deaths, making him a key witness or suspect in the tragic events that have just unfolded.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 138455,
+    "endOffset": 138721,
+    "content": "The First Watch orders the others to guard the suspect until the Prince arrives. The Third Watch then presents Friar Lawrence, explaining they found him distressed and carrying grave-digging tools near the churchyard, making him appear suspicious in the context of the recent deaths.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 138721,
+    "endOffset": 138809,
+    "content": "The First Watchman has just discovered the bodies of Romeo, Juliet, and Paris, so he orders his men to detain the Friar, who is present and acting suspiciously. This command immediately creates a suspect for the tragedy, setting the stage for the Prince's arrival and the subsequent investigation that will uncover the full story.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 138809,
+    "endOffset": 138943,
+    "content": "The Prince is startled from his sleep by the commotion at the Capulet tomb and demands to know what emergency has disturbed him so early. His question establishes the scene's urgency and the gravity of the situation that has roused the city's highest authority from his bed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 138943,
+    "endOffset": 138999,
+    "content": "Capulet hears loud cries of distress from outside the tomb and is asking what could be causing the commotion. He is expressing confusion and alarm, wanting to know the reason for the shrieking he hears.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 138999,
+    "endOffset": 139498,
+    "content": "Lady Capulet reports that citizens are shouting the names of Romeo, Juliet, and Paris as they rush toward the Capulet tomb. The Prince demands to know what has caused this commotion. The First Watchman then reveals the shocking discovery: Paris, Romeo, and Juliet are all dead, their bodies still warm. The Prince orders an investigation, and the Watchman presents Friar Laurence and Balthasar, who were found with tools suitable for opening tombs.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139131,
+    "endOffset": 139186,
+    "content": "The Prince arrives at the tomb and urgently asks what the alarming noise and commotion are all about. He is demanding an immediate explanation from the Watchmen for the disturbance that has drawn him to the scene.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 139186,
+    "endOffset": 139309,
+    "content": "The First Watch reports to the Prince that he has found three bodies: Paris, Romeo, and Juliet, who has been dead slightly longer. He notes they are all still warm, indicating their deaths are very recent. This discovery is the climactic moment that reveals the full tragedy to the authorities.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139309,
+    "endOffset": 139369,
+    "content": "The Prince orders his guards to investigate the cause of the deaths he has just discovered. He uses the phrase \"foul murder\" to immediately assume a violent crime has occurred, setting in motion the official inquiry that will ultimately uncover the full tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 139369,
+    "endOffset": 139498,
+    "content": "The First Watch reports discovering Friar Laurence and Balthasar near the tomb with tools suitable for opening burial vaults. This immediately creates suspicion that these two are responsible for the scene of death inside, making them key suspects in the tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 139498,
+    "endOffset": 139683,
+    "content": "Capulet cries out in horror at finding Juliet's body, mistakenly believing she has just died. He sees the dagger in her chest and wrongly assumes it belongs to Montague, thinking it was meant for him but accidentally stabbed her instead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 139683,
+    "endOffset": 139775,
+    "content": "Lady Capulet expresses that seeing her daughter's body is like a funeral bell tolling for her own impending death from grief. The metaphor conveys that this tragedy has aged her instantly, making her feel she will soon join Juliet in the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139804,
+    "endOffset": 139893,
+    "content": "The Prince addresses Lord Montague, noting that he has risen early only to find his son dead even sooner. This grim wordplay on \"early\" underscores the tragic irony of the situation, where a father's morning begins with the ultimate loss.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 139893,
+    "endOffset": 140078,
+    "content": "Montague tells the Prince that his wife has just died, explaining that her grief over Romeo's banishment killed her. He then asks what other misfortune could possibly befall him in his old age. The Prince's response directs him to look at the scene before them, where the bodies of Romeo and Juliet lie, revealing the ultimate tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140043,
+    "endOffset": 140078,
+    "content": "The Prince is directing someone—likely a bystander or one of his attendants—to observe the tragic scene before them. He is pointing out the dead bodies of Romeo, Juliet, and Paris, confirming the terrible outcome of the feud.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 140078,
+    "endOffset": 140478,
+    "content": "Montague is horrified that his son Romeo has died before him, violating the natural order where a father should precede his child in death. The Prince immediately intervenes to stop the mounting grief and outrage, commanding everyone to be patient while the full story of the tragedy is investigated. He promises to oversee their mourning and uncover the truth, ordering that the suspicious parties be brought forward for questioning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140170,
+    "endOffset": 140478,
+    "content": "The Prince commands everyone to stop their loud grieving and hold back their anger until the true causes of the tragedy can be discovered. He promises to guide them through their sorrow and uncover the full story, but for now, they must be patient. He then orders the suspected individuals to be brought forward for questioning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 140478,
+    "endOffset": 140758,
+    "content": "The Friar admits his authority should make him most capable of helping, but the circumstances make him appear guilty instead. He stands ready to both accuse and defend himself, feeling simultaneously condemned and excused. The Prince demands he immediately share what he knows.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140703,
+    "endOffset": 140758,
+    "content": "The Prince is demanding that Friar Laurence immediately tell everything he knows about the deaths of Romeo and Juliet. He is speaking with authority, cutting to the chase after the initial shock of discovering the bodies in the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 140758,
+    "endOffset": 142625,
+    "content": "The Friar explains he's summarizing because he's near death. He confirms Romeo and Juliet were secretly married, and Tybalt's death led to Romeo's banishment, which caused Juliet's grief. Her family then arranged her marriage to Paris, prompting her to threaten suicide unless the Friar helped.\n\nHe gave her a sleeping potion to mimic death, planning to reunite her with Romeo after she awoke in the tomb. But his letter explaining the plan never reached Romeo due to Friar John's quarantine. Arriving at the vault, he found Paris and Romeo already dead, and Juliet, upon waking, refused to leave and killed herself. He admits his role but notes the Nurse knew of the marriage, offering his life if he's at fault.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 142525,
+    "endOffset": 142625,
+    "content": "The Prince acknowledges Friar Laurence's reputation as a respected clergyman. He then immediately shifts focus to Balthasar, Romeo's servant, recognizing he may hold crucial information about the tragic events.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 142625,
+    "endOffset": 143727,
+    "content": "Balthasar explains that he informed Romeo of Juliet's supposed death, prompting Romeo's urgent return from Mantua to the tomb. Romeo threatened Balthasar with death if he didn't leave him alone at the vault, after giving him a letter for Montague.\n\nThe Prince reads Romeo's letter, which confirms the Friar's account of their secret marriage and Juliet's false death. He reveals Romeo bought poison from an apothecary to die beside Juliet, showing how the families' hatred destroyed their own children through love.\n\nThe Prince concludes that both families are punished for their feud, which has caused the deaths of their children and two of his own relatives. He acknowledges his own fault in tolerating their conflict for too long.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 142899,
+    "endOffset": 143046,
+    "content": "The Prince asks for Friar Laurence's letter to understand the events, then seeks the servant who alerted the watchmen. He questions the servant about why Paris was at the tomb, showing his immediate focus on gathering facts to solve the mystery.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 143046,
+    "endOffset": 143260,
+    "content": "The Page explains that Paris arrived with flowers to decorate Juliet's grave and ordered him to keep his distance. He then saw someone with a light approach the tomb, after which Paris drew his sword against that person, prompting the Page to flee and alert the city watch.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 143260,
+    "endOffset": 143727,
+    "content": "The Prince confirms that Romeo's letter supports Friar Laurence's account, detailing their secret marriage, Juliet's feigned death, and Romeo's purchase of poison to join her in the tomb. He then confronts the feuding families, declaring their hatred has caused heaven to punish them by destroying their children through love. Finally, the Prince admits his own fault in tolerating their feud, noting that he too has lost relatives and all are now punished.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 143727,
+    "endOffset": 143835,
+    "content": "Capulet is addressing his former rival Montague, offering reconciliation after their children's tragic deaths. He refers to the marriage statue as his daughter's \"jointure\" (dowry or marriage settlement), acknowledging he can ask for nothing more than this monument to their love. This shows his acceptance of the situation and desire to end their feud.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 143835,
+    "endOffset": 144035,
+    "content": "Montague promises to honor Juliet by building a golden statue of her, ensuring that as long as Verona exists, no monument will be as valued as hers. This vow acknowledges her loyalty and virtue, showing the Capulets that the Montagues now recognize Juliet's worth and seek to end the feud through shared grief and tribute.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 144035,
+    "endOffset": 144382,
+    "content": "Capulet acknowledges that Romeo and Juliet have become equally valuable sacrifices to their families' feud, implying their deaths should end the conflict. The Prince then declares this tragic outcome has brought a sorrowful peace, ordering further discussion of punishments and pardons while emphasizing this story's unparalleled sorrow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 144121,
+    "endOffset": 144395,
+    "content": "The Prince announces a sorrowful peace has arrived, with the sun itself too grief-stricken to appear. He commands everyone to leave so they can discuss the tragic events further, promising that some will be pardoned while others will face punishment. He concludes by stating that no story has ever contained more misery than that of Romeo and Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

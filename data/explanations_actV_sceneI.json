@@ -1,0 +1,152 @@
+[
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 123937,
+    "endOffset": 124449,
+    "content": "Romeo is expressing a buoyant, hopeful mood, believing his pleasant dream foretells good news. He dreamed that Juliet kissed him back to life, making him feel like an emperor. This joyful feeling from a mere dream makes him reflect on how much richer real love must be.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 124669,
+    "endOffset": 124972,
+    "content": "Balthasar mistakenly believes Juliet is dead and tells Romeo her body rests in the Capulet tomb while her soul is in heaven. He explains he witnessed her burial and rode quickly to bring this news, apologizing for delivering it since Romeo assigned him this duty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 124972,
+    "endOffset": 125112,
+    "content": "Romeo has just learned of Juliet's supposed death from Balthasar. He immediately rejects his predetermined fate (\"defy you, stars\") and decides to take immediate action. He orders Balthasar to fetch writing materials and horses so he can return to Verona tonight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 125112,
+    "endOffset": 125224,
+    "content": "Balthasar urges Romeo to calm down because his pale, frantic appearance suggests something terrible has happened. \"Import/Some misadventure\" means his expression indicates a disastrous event—Balthasar knows Juliet is \"dead\" but hasn't yet revealed this news directly.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 125224,
+    "endOffset": 125344,
+    "content": "Romeo dismisses Balthasar's mistaken belief that Juliet is dead, insisting he is wrong and commanding him to leave. He then urgently asks if the Friar has sent any letters, revealing his desperate hope for news from Verona.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 125344,
+    "endOffset": 125374,
+    "content": "Balthasar is respectfully telling Romeo that he will not leave him alone in Mantua. He feels loyalty and concern for his master, especially since Romeo appears distressed. This sets up Balthasar’s presence for the crucial news he is about to deliver.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 125374,
+    "endOffset": 125461,
+    "content": "Romeo dismisses Balthasar's concerns and orders him to leave immediately to hire horses for their journey. He promises to follow shortly, showing his urgent determination to reach Juliet's tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126498,
+    "endOffset": 126530,
+    "content": "The Apothecary responds to Romeo's loud knocking at his door, establishing the setting and introducing the character. This brief line immediately creates tension and sets up the illegal transaction that follows.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 126530,
+    "endOffset": 126977,
+    "content": "Romeo offers the Apothecary a large sum of money—forty ducats—to buy a powerful, fast-acting poison. He describes it as a substance that will spread instantly through the veins, causing the \"life-weary taker\" to die as quickly as gunpowder explodes from a cannon. The Apothecary hesitates, noting that selling such deadly drugs is punishable by death in Mantua.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126882,
+    "endOffset": 126977,
+    "content": "The Apothecary is telling Romeo that he does possess deadly poisons, but selling them is a capital offense under Mantua's law. This hesitation establishes the stakes for the transaction, making Romeo's subsequent bribe more urgent and morally significant.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 126977,
+    "endOffset": 127354,
+    "content": "Romeo is trying to convince the impoverished Apothecary to sell him poison, which is illegal. He argues that the Apotheary's desperate, starving appearance shows he has nothing to lose from breaking the law, since the world offers him no lawful way to escape his poverty. In response, the Apothecary agrees, stating that only his extreme need, and not his personal desire, makes him consent to the illegal act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127303,
+    "endOffset": 127354,
+    "content": "The Apothecary is stating that his desperate financial situation forces him to sell Romeo the illegal poison, even though his conscience objects to the transaction. This highlights the moral conflict between his ethical will and his physical need, making him a reluctant accomplice in the tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 127354,
+    "endOffset": 127544,
+    "content": "Romeo is paying the Apothecary for the poison, acknowledging that he is exploiting the man's desperate poverty rather than his willingness to sell an illegal substance. The Apotheecary then gives him instructions, warning that the poison is so potent it would kill even a man with the strength of twenty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127399,
+    "endOffset": 127544,
+    "content": "The Apothecary is giving Romeo instructions for using the poison he has just sold him. He explains that the substance is lethal enough to kill twenty men at once, emphasizing its immediate and overwhelming potency. This underscores the finality of Romeo's desperate plan to join Juliet in death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 127544,
+    "endOffset": 127875,
+    "content": "Romeo is paying the Apothecary for poison, but he claims that money itself is a more destructive poison in society than the actual toxic compounds. He tells the Apothecary to use the gold to buy food and improve his health. Finally, Romeo renames the poison a \"cordial,\" or restorative drink, because he intends to use it to join Juliet in death, which he sees as a welcome release.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

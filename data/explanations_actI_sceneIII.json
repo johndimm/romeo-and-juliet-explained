@@ -1,0 +1,292 @@
+[
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 18634,
+    "endOffset": 18843,
+    "content": "Lady Capulet is calling for her daughter Juliet to come speak with her. The Nurse responds with a comic oath about her own virginity at age twelve, then affectionately calls for Juliet using pet names like \"lamb\" and \"ladybird.\"",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 18701,
+    "endOffset": 18859,
+    "content": "The Nurse swears on her virginity—a humorous and ironic oath for an old nurse—that she called for Juliet when she was twelve. Her exclamations (\"lamb,\" \"ladybird\") are affectionate nicknames, showing her deep, motherly fondness for Juliet as she impatiently calls her to appear.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 18859,
+    "endOffset": 18909,
+    "content": "Juliet is responding to being summoned, showing her readiness to attend to her mother. The Nurse immediately identifies Lady Capulet as the caller, establishing the domestic setting and Juliet's obedient role within her family.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 18888,
+    "endOffset": 18909,
+    "content": "The Nurse is answering Juliet's question about who is calling for her. She clarifies that it is Lady Capulet, Juliet's mother, who wants to speak with her. This simple reply establishes the immediate situation and the person Juliet must now attend to.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 18909,
+    "endOffset": 18955,
+    "content": "Julet is responding to her mother's summons with formal obedience. Her question shows she is ready to listen to Lady Capulet's instructions, establishing their relationship as proper but distant. This polite deference sets the stage for the significant request about marriage that follows.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 18955,
+    "endOffset": 19209,
+    "content": "Lady Capulet initially dismisses the Nurse so she can speak privately with Juliet about marriage, but immediately calls her back, acknowledging the Nurse's close relationship with her daughter. The Nurse eagerly confirms her intimate knowledge of Juliet's life, establishing her as a trusted confidante in this discussion. This shows Lady Capulet's indecisiveness about the Nurse's role and highlights the Nurse's deep involvement in Juliet's upbringing.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19161,
+    "endOffset": 19209,
+    "content": "The Nurse boasts to Lady Capulet that she knows Juliet's exact age down to the hour. This emphasizes her long, intimate history with the family and her role as a mother figure, establishing her as a key source of information about Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 19209,
+    "endOffset": 19394,
+    "content": "Lady Capulet is correcting the Nurse, emphasizing that Juliet is not yet fourteen years old. The Nurse humorously agrees, swearing by her few remaining teeth, and asks how long it is until Lammas-tide (August 1st), which is Juliet’s birthday. This exchange highlights Juliet’s youth and the Nurse’s fond, familiar manner.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19246,
+    "endOffset": 19394,
+    "content": "The Nurse is humorously emphasizing that Juliet is not yet fourteen by offering a ridiculous wager—she'd bet fourteen teeth, even though she only has four left. She then asks Lady Capulet to confirm the exact time until Lammas-tide (August 1st), which is Juliet's birthday, showing her affectionate, familiar role in the household.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 19394,
+    "endOffset": 20914,
+    "content": "The Nurse is correcting Lady Capulet's estimate of Juliet's age, insisting she will be fourteen on Lammas Eve (August 1st). She then launches into a rambling, sentimental memory of weaning Juliet, using bitter wormwood on her breast, and recalls her late husband's joking prophecy that Juliet would \"fall backward\" (a sexual innuendo about lying down for a man) when she grew wiser. This long-winded, earthy speech characterizes the Nurse as a garrulous, lower-class figure who views love in physical terms, contrasting sharply with Lady Capulet's more formal and distant relationship with her daughter.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19435,
+    "endOffset": 20914,
+    "content": "The Nurse is telling Lady Capulet that Juliet will turn fourteen on Lammas Eve (July 31st), but she gets sidetracked into a long, rambling story about Juliet as a baby. She recalls weaning Juliet with bitter wormwood, an earthquake that happened at the same time, and her late husband's crude joke that Juliet would one day \"fall backward\"—a sexual innuendo meaning she would lie down for a man. This digression reveals the Nurse's earthy, affectionate nature and her long, intimate history with the family.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 20914,
+    "endOffset": 21360,
+    "content": "Lady Capulet is impatiently telling the Nurse to stop talking. The Nurse, however, ignores this and continues reminiscing about a humorous memory from Juliet's childhood. She recalls a time when the toddler Juliet fell and had a bump on her head, and her husband joked that Juliet would \"fall backward\" (a euphemism for having sex) when she was older, to which the young Juliet innocently agreed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 20973,
+    "endOffset": 21360,
+    "content": "The Nurse is recalling a humorous memory of Juliet as a toddler, who stopped crying and said \"Yes\" after a bad fall. Her husband joked that if Juliet fell forward now, she'd fall backward (a sexual innuendo about lying down for a man) when she grew older—and young Juliet innocently agreed again. This shows the Nurse's earthy, familiar relationship with Juliet and foreshadows Juliet's future romantic experiences.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 21360,
+    "endOffset": 21583,
+    "content": "Juliet is impatiently telling her Nurse to stop talking. The Nurse responds by blessing Juliet, recalling her as the most beautiful baby she ever cared for, and expressing her wish to see Juliet married someday.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 21416,
+    "endOffset": 21583,
+    "content": "The Nurse is telling Juliet to be quiet because she's finished speaking. She affectionately recalls that Juliet was the most beautiful baby she ever cared for and says her only wish is to live long enough to see Juliet get married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 21583,
+    "endOffset": 21722,
+    "content": "\"Marry\" here is an archaic interjection meaning \"indeed\" or \"by the Virgin Mary.\" Lady Capulet is telling Juliet that marriage is exactly the subject she came to discuss. She then directly asks her daughter how she feels about the prospect of getting married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 21722,
+    "endOffset": 21870,
+    "content": "Juliet is politely deflecting her mother's suggestion of marriage, saying she hasn't even considered it yet. The Nurse, in her earthy way, finds this response so unexpectedly wise that she jokes Juliet must have gained wisdom directly from breastfeeding.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 21768,
+    "endOffset": 21870,
+    "content": "The Nurse is telling Juliet that it's an honor to be her only nurse, and she playfully suggests that if she weren't, she would say Juliet got her wisdom from breastfeeding. This affectionate exaggeration highlights the Nurse's deep bond with Juliet and her pride in having raised her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 21870,
+    "endOffset": 22221,
+    "content": "Lady Capulet is urging Juliet to consider marrying Paris, pointing out that many respected young women in Verona are already mothers at her age. She emphasizes her own early motherhood to strengthen her argument.\n\nThe Nurse enthusiastically agrees, calling Paris a perfect man—\"a man of wax\" means he's as handsome as a statue. She is reinforcing Lady Capulet's matchmaking efforts with her characteristic earthy praise.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 22133,
+    "endOffset": 22221,
+    "content": "The Nurse is enthusiastically praising Paris to Juliet, calling him a perfect specimen of a man, as if he were a flawless wax statue. She means he is handsome, ideal, and admired by everyone.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 22221,
+    "endOffset": 22332,
+    "content": "Lady Capulet is telling Juliet that Paris is the finest young man in Verona, comparing his qualities to the most beautiful summer flower. The Nurse enthusiastically agrees, reinforcing the compliment to emphasize that Paris is an exceptionally handsome and worthy suitor.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 22278,
+    "endOffset": 22332,
+    "content": "The Nurse is praising Paris, calling him a perfect example of a fine young man, comparing him to a beautiful flower. She is enthusiastically agreeing with Lady Capulet, who has just been describing Paris as a worthy suitor for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 22332,
+    "endOffset": 23095,
+    "content": "Lady Capulet is urging Juliet to consider marrying Paris, using an extended metaphor comparing him to a beautiful book. She tells Juliet to study Paris's face and features at the feast that night, suggesting his inner qualities are visible in his eyes. The metaphor continues as she claims Paris, like an unbound book, only needs a wife—the \"cover\"—to be complete, implying that marriage to him will elevate Juliet's status.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 23047,
+    "endOffset": 23095,
+    "content": "The Nurse crudely jokes that women grow physically larger during pregnancy. She is telling Lady Capulet that Juliet is mature enough for marriage and motherhood.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 23095,
+    "endOffset": 23156,
+    "content": "Lady Capulet is asking Juliet if she could develop romantic feelings for Paris. She wants a quick, direct answer because she is eager to arrange a marriage. This question pressures Juliet to consider a suitor she has not yet met.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 23156,
+    "endOffset": 23299,
+    "content": "Julet tells her mother she will consider Paris as a potential suitor, but promises not to let her feelings develop any further than her mother's permission allows. The phrase \"looking liking move\" means she'll try to like him if simply seeing him can inspire affection. She uses the metaphor of a dart to represent her gaze, vowing not to let it fly deeper than her mother approves.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "SERVANT",
+    "startOffset": 23318,
+    "endOffset": 23525,
+    "content": "The servant breathlessly reports that the Capulet feast is in full chaotic swing: guests have arrived, dinner is ready, Juliet is being summoned, and the Nurse is being scolded in the pantry. He urgently asks Lady Capulet to follow him immediately because he must return to his duties.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 23525,
+    "endOffset": 23556,
+    "content": "Lady Capulet is telling the Nurse to lead the way, showing she defers to the Nurse's familiarity with Juliet's daily life. This brief line establishes the Nurse's intimate, guiding role within the household as they go to speak with Juliet about marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 23603,
+    "endOffset": 23667,
+    "content": "The Nurse is encouraging Juliet to go enjoy herself at the Capulet feast, hoping she will find romantic happiness there. Her blessing suggests she is more concerned with Juliet's immediate pleasure and potential marriage than with the formalities of courtship.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,552 @@
+[
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 38863,
+    "endOffset": 39969,
+    "content": "Romeo, having just overheard Mercutio's crude jokes about love, dismisses them as the words of someone who has never been in love himself. He then sees Juliet on her balcony and immediately launches into a series of rapturous comparisons, establishing the play's central light/dark imagery.\n\nHe first metaphorically transforms her into the sun, commanding this \"fair sun\" to replace the \"envious moon,\" which represents the pale, virginal Diana. He urges Juliet to reject this \"vestal livery\" (the chaste, green-sick appearance of the moon) and not to remain a virgin.\n\nHis adoration then focuses on her silent presence, believing her eyes speak volumes he feels he can answer. He imagines her eyes are so bright that two stars have borrowed them, and that their light in the sky would be so brilliant it would fool birds into singing as if it were day. The speech culminates in his intimate, yearning wish to be a glove on her hand so he could touch her cheek.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 39969,
+    "endOffset": 39985,
+    "content": "Juliet sighs in frustration, expressing her sudden realization that she has fallen in love with Romeo—a Montague, her family's sworn enemy. This brief exclamation reveals her inner conflict and sets the tone for her following soliloquy about the complications of their newfound love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 39985,
+    "endOffset": 40289,
+    "content": "Romeo hears Juliet speak and is overwhelmed by her voice, comparing her to a divine angel whose presence is as awe-inspiring to him as an archangel appearing in the sky is to mortals on earth. He uses exalted imagery—\"white-upturned wondering eyes\" and \"bestrides the lazy-puffing clouds\"—to convey how her words elevate her above ordinary experience, making her seem heavenly and unattainable. This expresses his instant, worshipful infatuation and the sense of wonder she inspires in him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 40289,
+    "endOffset": 40455,
+    "content": "Juliet is lamenting that Romeo is a Montague, her family's enemy. \"Wherefore\" means \"why\"—she's asking why he must be Romeo Montague. She declares that if he renounces his name or pledges his love to her, she will abandon her own family name to be with him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 40455,
+    "endOffset": 40519,
+    "content": "Romeo is debating whether to continue eavesdropping on Juliet or to reveal his presence. He is torn between listening to her private thoughts and interrupting to declare his own love. This aside reveals his internal conflict and heightens the tension of the moment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 40519,
+    "endOffset": 41006,
+    "content": "Juliet argues that Romeo's name is meaningless—it's an artificial label, not part of his true self. She uses the famous rose analogy to claim that his inner worth would remain unchanged even if he had a different name. She then urges him symbolically to abandon his family name, offering herself in exchange.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 41006,
+    "endOffset": 41121,
+    "content": "Romeo eagerly accepts Juliet's offer to deny his family name. He declares that if she calls him her \"love,\" he will be reborn with a new identity, abandoning the name \"Romeo\" and the feud it represents forever.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41121,
+    "endOffset": 41209,
+    "content": "Juliet is startled by an unseen man in the dark who has overheard her private thoughts. She demands to know his identity, using \"bescreen'd\" to mean hidden and \"counsel\" to refer to her secret musings about Romeo. This establishes the tension and secrecy of their nighttime meeting.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 41209,
+    "endOffset": 41381,
+    "content": "Romeo is telling Juliet that he hates his own name because it is Montague, the family she is sworn to hate. He is so desperate to erase this barrier between them that he claims he would physically destroy the word if it were written down.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41381,
+    "endOffset": 41520,
+    "content": "Juliet recognizes Romeo's voice after hearing only a few words, showing how instantly familiar he has become to her. She confirms his identity by asking if he is both Romeo and a Montague, acknowledging the dangerous family rivalry that complicates their connection.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 41520,
+    "endOffset": 41572,
+    "content": "Romeo is assuring Juliet that he is neither a Montague nor a Capulet if she finds either name offensive. He means that he would willingly give up his family name and identity for her love. This shows his immediate and total devotion, prioritizing his feelings for her over his family allegiance.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41572,
+    "endOffset": 41761,
+    "content": "Julet is startled to find Romeo in her family's orchard and immediately asks how and why he came. She points out the physical danger of the high walls and the mortal danger he is in, as her kinsmen would kill him if they discovered a Montague on their property. Her tone is a mixture of wonder and urgent concern for his safety.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 41761,
+    "endOffset": 41953,
+    "content": "Romeo explains that he climbed the high walls to reach Juliet by imagining love gave him wings, since physical barriers cannot block love. He insists that her relatives are no obstacle because love will dare to try anything it is capable of.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41953,
+    "endOffset": 42006,
+    "content": "Juliet warns Romeo that if her family's guards spot him, they will kill him. She expresses immediate fear for his safety, emphasizing the real danger he faces by trespassing on Capulet property. This shows her protective concern overriding her own family loyalty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 42006,
+    "endOffset": 42143,
+    "content": "Romeo tells Juliet that her angry or disapproving look is more dangerous to him than the swords of twenty of her family members. He is saying that if she will only look at him with kindness, he will feel protected and invulnerable to the hatred of his enemies.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 42143,
+    "endOffset": 42198,
+    "content": "Juliet is expressing her fear that Romeo will be discovered by her family's guards if he remains in the orchard. She means she would not want him to be seen there under any circumstances, as it would put him in grave danger. This shows her immediate concern for his safety over her own feelings.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 42198,
+    "endOffset": 42385,
+    "content": "Romeo tells Juliet that darkness conceals him from her family. He declares he would rather be killed by the Capulets now than live a long life without her love, emphasizing that her love is more important to him than his own life.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 42385,
+    "endOffset": 42445,
+    "content": "Juliet is asking Romeo how he managed to find her balcony, expressing her surprise and concern for his safety. She worries that if her kinsmen were to discover him, he would be in grave danger.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 42445,
+    "endOffset": 42668,
+    "content": "Romeo explains that love guided him to find Juliet and gave him the wisdom to seek her out. He then uses a metaphor of a merchant sailing to a distant shore to declare that, even if she were impossibly far away, he would still risk the journey to reach her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 42668,
+    "endOffset": 43680,
+    "content": "Juliet acknowledges that the darkness hides her blushes, or she’d be embarrassed Romeo overheard her private declaration of love. She admits she’s bypassing customary coyness to ask directly if he loves her, but immediately worries that if he swears it, he might be lying—since, as the saying goes, the gods laugh at lovers’ broken vows. She then frets that her openness might make her seem too easily won, but insists her love is more genuine than that of women who play hard to get, and she asks him not to mistake her honesty for shallowness.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 43680,
+    "endOffset": 43776,
+    "content": "Romeo swears his love by the moon, which he describes as \"blessed\" and silvering the orchard trees. He uses this grand, romantic oath to convince Juliet of his sincerity and devotion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 43776,
+    "endOffset": 43917,
+    "content": "Juliet asks Romeo not to swear his love by the moon because it is \"inconstant,\" meaning it changes its appearance every month as it orbits the Earth. She fears that if he swears by something so changeable, his love for her might also prove fickle and unreliable.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 43917,
+    "endOffset": 43948,
+    "content": "Romeo is asking what he should swear an oath on to prove his love is sincere. He is responding to Juliet's concern that their vows are happening too quickly and might be insincere. This shows his eagerness to convince her and his willingness to pledge by anything she chooses.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 43948,
+    "endOffset": 44081,
+    "content": "Juliet is telling Romeo not to swear his love by the moon, which is changeable, because she wants a vow that is as constant as his own self. By asking him to swear \"by thy gracious self,\" she elevates him to a god-like status in her personal worship, showing the depth of her devotion. This reveals her desire for a sincere and unwavering commitment from him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 44081,
+    "endOffset": 44119,
+    "content": "Romeo is declaring that his love for Juliet is so profound that he is willing to give up his family name, the very thing that defines him, to be with her. He is speaking to Juliet, trying to convince her that the feud between their families is a trivial obstacle compared to his devotion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 44119,
+    "endOffset": 44548,
+    "content": "Juliet urges Romeo not to swear his love by the moon because it is inconstant, changing its position in the sky every night. She fears that if he swears by something so variable, his love might prove equally changeable and unreliable.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 44548,
+    "endOffset": 44593,
+    "content": "Romeo is asking Juliet if she will end their secret meeting without giving him what he truly desires—a formal commitment or vow of love. The word \"unsatisfied\" here refers to his emotional longing, not a physical need. He fears their intense exchange will end without the reassurance of her affection and a promise for their future.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 44593,
+    "endOffset": 44645,
+    "content": "Juliet is asking Romeo what assurance or fulfillment he can possibly offer her this evening. She is questioning the sincerity and feasibility of his romantic advances, given their families' feud and the suddenness of their love. This shows her practical concern and desire for a serious commitment rather than fleeting words.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 44645,
+    "endOffset": 44706,
+    "content": "Romeo is proposing a mutual commitment, asking Juliet to pledge her love to him as he pledges his to her. He wants a binding exchange of vows to formalize their newfound romantic devotion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 44706,
+    "endOffset": 44801,
+    "content": "Juliet admits she pledged her love to Romeo before he even asked for it, showing her eagerness and lack of restraint. However, she immediately regrets her haste, wishing she could take back her confession so she could follow the proper, more cautious courtship rituals expected of young women in her society.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 44801,
+    "endOffset": 44862,
+    "content": "Romeo is asking Juliet why she would take back her declaration of love for him. He uses the term \"withdraw it\" to refer to her spoken affection, showing his eagerness and slight anxiety that she might regret her words.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 44862,
+    "endOffset": 45222,
+    "content": "Juliet is telling Romeo that she wants to be generous and give him her love freely. She explains that her capacity for love is limitless and grows the more she gives, comparing it to a boundless sea. She is then interrupted by the Nurse calling from inside, so she must leave but promises to return quickly, urging Romeo to remain faithful.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 45234,
+    "endOffset": 45362,
+    "content": "Romeo expresses his overwhelming joy at meeting Juliet but fears it's too perfect to be real. \"Afeard\" means afraid, and \"substantial\" means real or solid. He worries this blissful night is just a dream, too wonderful to be true.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 45384,
+    "endOffset": 45734,
+    "content": "Juliet is proposing marriage to Romeo, telling him that if his intentions are honorable, he should send her details about when and where they can be wed. She promises to entrust her entire life to him and follow him anywhere. The Nurse's offstage call interrupts their secret meeting, forcing Juliet to end their conversation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 45707,
+    "endOffset": 45734,
+    "content": "The Nurse is calling from offstage to get Juliet's attention. She is likely announcing that Juliet's mother is looking for her, which will interrupt Juliet's private conversation with Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 45734,
+    "endOffset": 45839,
+    "content": "Juliet is calling back to Romeo, promising to return shortly (\"anon\"), but she interrupts herself to voice her sudden fear that his intentions may not be honorable. She begins to plead with him, but is cut off when her Nurse calls for her from inside the house, creating urgency and interrupting her private moment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 45812,
+    "endOffset": 45839,
+    "content": "The Nurse is calling from offstage to get Juliet's attention. She is likely announcing that Juliet's mother is looking for her, which will interrupt Juliet's private conversation with Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 45839,
+    "endOffset": 45936,
+    "content": "Juliet is calling out to Romeo, who is hiding below her balcony, telling him she'll return shortly. She asks him to stop his insistence on staying and let her grieve alone for now. She promises to send him a message tomorrow about their future plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 45936,
+    "endOffset": 45966,
+    "content": "Romeo swears by his soul's salvation that he will speak truthfully. This oath emphasizes his sincerity and the depth of his feelings as he prepares to address Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 45966,
+    "endOffset": 46004,
+    "content": "Juliet is reluctantly ending their secret meeting, expressing how difficult it is to part from Romeo. Her exaggerated \"a thousand times\" emphasizes her deep affection and longing, showing she wishes they could prolong their farewell indefinitely. This line captures her youthful passion and the bittersweet nature of their hidden romance.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46016,
+    "endOffset": 46227,
+    "content": "Romeo expresses that being separated from Juliet feels a thousand times worse than being without daylight. He compares a lover going to meet their beloved to a schoolboy happily leaving his books, but parting from their love is like a child trudging reluctantly back to school. This highlights his misery at having to leave her balcony.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 46227,
+    "endOffset": 46493,
+    "content": "Juliet is whispering to call Romeo back, comparing him to a well-trained falcon (\"tassel-gentle\") that she wishes she could summon loudly. She explains that she must stay quiet because she is in \"bondage\"—restricted by her family's presence—or else she would shout his name so loudly that she would overwhelm even Echo, the mythical nymph.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46493,
+    "endOffset": 46629,
+    "content": "Romeo is saying that Juliet's voice is calling to his very soul. He compares the sound of lovers speaking at night to soft, beautiful music, emphasizing how enchanting and intimate her words are to him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 46629,
+    "endOffset": 46645,
+    "content": "Juliet is startled to find Romeo in her family's orchard and whispers his name in surprise. This simple, breathless utterance reveals her shock and the immediate danger of his presence, as he is a Montague trespassing on Capulet property.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46645,
+    "endOffset": 46662,
+    "content": "Romeo is testing whether Juliet can hear him without revealing his presence. \"My dear?\" is a gentle, tentative call to get her attention. He's hoping she will respond so he can speak with her privately.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 46662,
+    "endOffset": 46717,
+    "content": "Juliet is asking Romeo what time she should send a messenger to him the next day. She wants to arrange a time to receive his plans for their secret marriage, showing her practical and determined side in moving their relationship forward.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46717,
+    "endOffset": 46746,
+    "content": "Romeo is confirming the time he will send a messenger to Juliet tomorrow. He says \"nine\" meaning nine o'clock in the morning, when he will arrange for them to be married. This is his direct answer to Juliet's question about when she should send a messenger to receive the wedding plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 46746,
+    "endOffset": 46843,
+    "content": "Juliet is assuring Romeo she will send someone to him tomorrow. Her claim that \"’Tis twenty years till then\" is a hyperbole, dramatically emphasizing how unbearably long the wait feels. She then admits she has forgotten why she called him back, showing she is so overwhelmed by love and the moment that her thoughts are scattered.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46843,
+    "endOffset": 46892,
+    "content": "Romeo playfully insists on staying until Juliet recalls her promise to call him back. He is teasing her, prolonging their secret meeting under her balcony. This shows his eagerness and reluctance to part from her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 46892,
+    "endOffset": 46985,
+    "content": "Juliet playfully tells Romeo that if he keeps standing there, she’ll forget he’s present because she’ll be so lost in thinking about how much she enjoys his company. This is a flirtatious way of saying she wants him to stay with her rather than leave.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 46985,
+    "endOffset": 47079,
+    "content": "Romeo is telling Juliet he will remain hidden in her garden so she can continue to forget he is there, which will allow him to forget any home but this spot near her. He uses the word \"still\" to mean \"continually\" or \"always.\" This emphasizes his desire to abandon his old life and family loyalty just to be close to her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 47079,
+    "endOffset": 47341,
+    "content": "Juliet is torn between wanting Romeo to leave for his safety and wanting to keep him close. She compares her desire to a spoiled child who lets a pet bird hop just out of reach, only to pull it back with a thread—jealously possessive of its freedom. This metaphor captures her conflicted feelings: she loves him too much to let him go entirely.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 47341,
+    "endOffset": 47374,
+    "content": "Romeo wishes he could be Juliet's pet bird so he could be near her always. This metaphor expresses his desire for closeness and the freedom to be with her without the constraints of their feuding families.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 47374,
+    "endOffset": 47547,
+    "content": "Juliet playfully warns Romeo that her intense love and affection might overwhelm him. She then expresses the bittersweet pain of their separation, saying that even saying good night is sorrowful, yet sweet because it leads to the joy of meeting again tomorrow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 47559,
+    "endOffset": 47750,
+    "content": "Romeo wishes Juliet peaceful sleep, then expresses a longing to be sleep and peace itself so he could rest sweetly with her. He then resolves to visit Friar Lawrence (\"ghostly Sire\") to seek his help and tell him about his new love (\"dear hap\").",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 112874,
+    "endOffset": 113100,
+    "content": "Juliet is politely dismissing the Nurse so she can be alone to take the sleeping potion. She claims she needs to say prayers (\"orisons\") to improve her troubled and sinful situation, which is a cover story to hide her true, dangerous plan from the Nurse.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 113122,
+    "endOffset": 113179,
+    "content": "Lady Capulet is checking on Juliet before her wedding to Paris, asking if she needs assistance with preparations. She uses \"ho\" as an attention-getting interjection, not unlike saying \"hey there.\" This shows her performing expected maternal duties, though their relationship remains formal and distant.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 113179,
+    "endOffset": 113432,
+    "content": "Julet is politely telling her mother she has already chosen the clothes and accessories appropriate for her wedding. She asks to be left alone and suggests the Nurse stay with Lady Capulet, pretending concern about the sudden wedding preparations to avoid suspicion about her real plan to take the potion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 113432,
+    "endOffset": 113505,
+    "content": "Lady Capulet is bidding her daughter goodnight, telling Juliet to go to bed and rest because she looks tired. This is a moment of dramatic irony, as the audience knows Juliet is feigning tiredness to be alone and take the sleeping potion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 113542,
+    "endOffset": 115532,
+    "content": "Juliet is voicing her terror before drinking the potion, imagining every possible disaster: that it might be poison, that it won't work at all, or that she will wake up too early in the tomb and go mad from the horror of her surroundings. Her fears culminate in a hallucination of Tybalt's ghost, but she overcomes this panic, toasts Romeo, and drinks.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

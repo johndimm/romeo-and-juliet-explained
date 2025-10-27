@@ -1,0 +1,482 @@
+[
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 117211,
+    "endOffset": 117964,
+    "content": "The Nurse is trying to wake Juliet, who is feigning death from the Friar's potion. She playfully scolds her for sleeping in, joking that she should get her rest now because Paris will keep her awake on their wedding night. Her tone shifts from teasing to panic when Juliet doesn't respond, leading her to realize Juliet appears dead and she cries out for help.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 117964,
+    "endOffset": 118025,
+    "content": "Lady Capulet hears the Nurse's cries and urgently asks what is happening. The Nurse responds with a dramatic exclamation of grief, immediately signaling that something terrible has occurred.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 117999,
+    "endOffset": 118025,
+    "content": "The Nurse cries out in despair upon discovering Juliet's seemingly lifeless body. Her exclamation underscores the immediate shock and grief of the scene, marking the tragic turn where the family believes Juliet is truly dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 118025,
+    "endOffset": 118093,
+    "content": "Lady Capulet asks what's wrong, and the Nurse's frantic exclamation signals that something terrible has happened. \"Heavy day\" means a sorrowful or grievous day, indicating she has just discovered Juliet apparently dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 118060,
+    "endOffset": 118093,
+    "content": "The Nurse cries out in shock and grief upon discovering Juliet, who appears to be dead. Her exclamation \"O heavy day!\" expresses her deep sorrow and the weight of the tragedy she believes has occurred.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 118093,
+    "endOffset": 118209,
+    "content": "Lady Capulet cries out in despair upon finding Juliet seemingly dead. She desperately calls for Juliet to wake up, believing her daughter is her only reason for living. Her frantic commands for help show her immediate panic and grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 118226,
+    "endOffset": 118348,
+    "content": "Capulet is impatiently ordering the Nurse to bring Juliet downstairs because Paris, her intended husband, has arrived for their wedding. The Nurse responds with horrified exclamations, declaring that Juliet is dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 118285,
+    "endOffset": 118348,
+    "content": "The Nurse is crying out in shock and grief, announcing Juliet's apparent death to the household. Her repetition of \"dead\" and \"deceas'd\" emphasizes the finality of the situation and her own horrified disbelief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 118348,
+    "endOffset": 118420,
+    "content": "Lady Capulet cries out in despair, believing Juliet has died from grief over Tybalt. Her repetition of \"she's dead\" emphasizes her shock and immediate acceptance of this tragic loss. This exclamation begins the household's collective lamentation over Juliet's seemingly lifeless body.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 118420,
+    "endOffset": 118677,
+    "content": "Capulet discovers Juliet's seemingly lifeless body and describes the physical signs of death: her coldness, lack of circulation, and rigidity. He then uses a metaphor comparing her to a beautiful flower killed by an unexpected frost, emphasizing the tragedy of her youth and apparent untimely death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 118651,
+    "endOffset": 118677,
+    "content": "The Nurse cries out in despair upon discovering Juliet's seemingly lifeless body. She expresses overwhelming grief and shock at the apparent tragedy, immediately alerting the household to the dire situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 118677,
+    "endOffset": 118706,
+    "content": "Lady Capulet cries out in despair over what she believes is Juliet's death. Her exclamation expresses the overwhelming grief and tragedy of the moment, as she sees her daughter lying lifeless.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 118706,
+    "endOffset": 118813,
+    "content": "Capulet is overwhelmed with grief, believing Juliet has died. He personifies Death as having stolen her away to cause him sorrow, and now it's silencing him, rendering him unable to express his anguish.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 118862,
+    "endOffset": 118921,
+    "content": "The Friar arrives expecting to perform Juliet's wedding to Paris, unaware she has taken the potion and appears dead. His opening question establishes the dramatic irony of the situation, as the audience knows the tragic truth he is about to discover.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 118921,
+    "endOffset": 119223,
+    "content": "Capulet personifies Death as Juliet's groom, saying she has been \"deflowered\" (a metaphor for losing her virginity) by dying the night before her wedding. He bitterly declares that Death is now his heir and son-in-law, to whom he will leave everything, as life itself now belongs to Death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PARIS",
+    "startOffset": 119223,
+    "endOffset": 119323,
+    "content": "Paris expresses his shock and disappointment upon arriving for his wedding to Juliet, only to find her seemingly dead. He had been eagerly anticipating this day, and the tragic sight before him is the opposite of the joyful morning he expected.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 119323,
+    "endOffset": 119815,
+    "content": "Lady Capulet expresses her profound grief over Juliet's apparent death, emphasizing that her daughter was her only source of joy and comfort. She personifies death as a cruel force that has violently stolen her sole happiness. The Nurse then echoes this despair, repeating \"woeful day\" to amplify the shared anguish and dramatic irony of the scene.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 119595,
+    "endOffset": 119815,
+    "content": "The Nurse is crying out in despair because she believes Juliet is dead. She repeats \"woeful day\" and \"hateful day\" to emphasize her shock and grief, using hyperbole to call it the worst day she has ever seen. This immediate, emotional reaction helps convey the household's devastation at finding Juliet seemingly lifeless.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PARIS",
+    "startOffset": 119815,
+    "endOffset": 119996,
+    "content": "Paris laments Juliet's apparent death, listing the ways Death has wronged her: deceived, separated from him, harmed, and killed. He personifies Death as a cruel enemy who has stolen her away. His final cry expresses that his love for her now exists only in death, not in life.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 119996,
+    "endOffset": 120257,
+    "content": "Capulet is lamenting over Juliet's seemingly lifeless body, expressing his profound grief and despair. He personifies the timing of her death as an unwelcome intruder that has ruined their wedding celebration, then shifts to a heartbreaking realization that his daughter—and with her, all his happiness—is gone.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 120257,
+    "endOffset": 121125,
+    "content": "The Friar scolds the Capulets for mourning Juliet's supposed death, arguing they should rejoice instead. He claims their grief is selfish since Juliet has achieved eternal life in heaven—the very \"advancement\" they wanted for her in marriage. He insists they follow funeral customs, explaining that while natural sorrow is understandable, reason should recognize her blessed state.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 121125,
+    "endOffset": 121422,
+    "content": "Capulet is lamenting how every joyful preparation for Juliet's wedding has been transformed into something for her funeral. He contrasts each element: festive music becomes tolling bells, wedding food becomes a funeral meal, and hymns turn into mournful songs. This emphasizes the sudden, tragic reversal of celebration into mourning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 121422,
+    "endOffset": 121649,
+    "content": "The Friar is commanding the grieving family to stop mourning and prepare for Juliet's burial. He suggests their sorrow is a punishment from heaven for some past wrong, and they should not anger the heavens further by resisting this fate. This speech maintains the ruse of Juliet's death while urging the family to proceed with the funeral plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 121702,
+    "endOffset": 121763,
+    "content": "The First Musician jokes that since the wedding is now a funeral, they can pack up their instruments and leave. He is speaking to his fellow musicians, suggesting there is no longer any need for their festive music. This line provides a moment of dark, practical humor, contrasting with the household's grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 121763,
+    "endOffset": 121854,
+    "content": "The Nurse is telling the musicians to put away their instruments because this is a sorrowful occasion. She is trying to quiet them out of respect for what the household believes is Juliet's death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 121854,
+    "endOffset": 121946,
+    "content": "The First Musician is responding to the Nurse's earlier complaints about their music, sarcastically agreeing that the situation could be improved. His remark is a dry, witty comment made to his fellow musicians after the Nurse has left the room. The entrance of Peter then shifts the scene's focus, as he will proceed to banter with the musicians.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 121946,
+    "endOffset": 122123,
+    "content": "Peter urgently demands the musicians play the cheerful tune \"Heart's Ease\" to relieve his overwhelming grief over Juliet's apparent death. The First Musician questions this request, finding it inappropriate to play a happy song during a time of mourning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122080,
+    "endOffset": 122123,
+    "content": "The musician questions why they should play the cheerful tune \"Heart's Ease\" at a time of mourning, since Juliet is believed to be dead. This highlights the jarring contrast between the festive music and the tragic situation, emphasizing the musicians' practical, somewhat detached perspective amid the family's grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122123,
+    "endOffset": 122299,
+    "content": "Peter is asking the musicians to play a cheerful tune to lift his spirits, using a metaphor that his own heart is playing a sad song. The First Musician refuses, saying it's inappropriate to play music at such a sorrowful time.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122239,
+    "endOffset": 122299,
+    "content": "The musician uses \"dump\" to mean a sad tune, refusing to play because the household believes Juliet is dead. He says this is not the right moment for music, as everyone is in mourning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122299,
+    "endOffset": 122347,
+    "content": "Peter is frustrated because the musicians refuse to play a cheerful song for him. He asks them one last time, and the First Musician flatly refuses, showing their indifference to the tragic situation in the house.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122326,
+    "endOffset": 122347,
+    "content": "The musician refuses to play, stating simply, \"No.\" This blunt refusal highlights the disconnect between the musicians' practical concerns and the household's overwhelming grief over Juliet's apparent death. They see a canceled gig, while the Capulets are in mourning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122347,
+    "endOffset": 122428,
+    "content": "Peter is threatening to beat the musicians for their disrespectful jokes about Juliet's \"death.\" When the First Musician misunderstands and asks what he will give them, he is taking the word \"give\" literally, expecting a tip rather than a beating. This creates a moment of dark comedy through the misunderstanding.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122388,
+    "endOffset": 122428,
+    "content": "The First Musician is asking for payment, since the wedding celebration has turned into a funeral and their services are no longer needed. This highlights the sudden shift from joy to tragedy and the practical, mercenary concerns of the working-class characters, contrasting with the intense emotions of the nobles.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122428,
+    "endOffset": 122564,
+    "content": "Peter sarcastically refuses to pay the musicians, saying he'll only give them mockery (\"the gleek\") and then insults them by calling one a \"minstrel.\" The First Musician retorts by insulting Peter back, calling him a lowly \"serving-creature.\" This quick exchange of insults shows the servants' dark humor and highlights the jarring contrast between the tragedy unfolding upstairs and the petty squabbling below.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122504,
+    "endOffset": 122564,
+    "content": "The musician is refusing to pay Peter, the Nurse's servant, for a song. He uses the insulting term \"serving-creature\" to belittle Peter and dismiss his request, showing the musicians' cynical and mercenary attitude amidst the household's grief over Juliet's apparent death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122564,
+    "endOffset": 122831,
+    "content": "Peter threatens to hit the First Musician with a kitchen knife, declaring he won't tolerate their \"crotchets\" (puns on musical notes/quarrelsome ideas). The musicians cleverly turn his musical puns back on him, with the Second Musician dryly advising him to put away both his weapon and his attempted wit.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 122707,
+    "endOffset": 122762,
+    "content": "The musician is punning on musical notes (\"re,\" \"fa\") to complain that the Nurse is dismissing them without pay. He means she is \"noting\" them—writing them down as debtors—instead of paying them for their services. This dark humor contrasts with the tragic scene of Juliet's apparent death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "SECOND MUSICIAN",
+    "startOffset": 122762,
+    "endOffset": 122831,
+    "content": "The Second Musician is telling Peter to stop threatening them with his dagger and to stop trying to be clever. He is responding to Peter's aggressive and sarcastic behavior by asking him to calm down and cease his foolish banter.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 122831,
+    "endOffset": 123244,
+    "content": "Peter, a servant, is angrily challenging the musicians with wordplay instead of actual violence. He sarcastically quotes a ballad about music's soothing power to mock them for playing cheerful tunes at a time of grief. His question about \"silver sound\" is a taunt, implying their music is worthless and out of place.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 123180,
+    "endOffset": 123244,
+    "content": "The musician is explaining why the instrument called a \"silver sound\" is so named; \"silver\" here refers to the metal used in the instrument's construction, which produces a pleasing, clear tone. He is making a simple, literal pun to answer Peter's question, highlighting the musician's practical, unemotional perspective amidst the household's grief over Juliet's apparent death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 123244,
+    "endOffset": 123366,
+    "content": "Peter rudely dismisses the musicians' earlier conversation as idle chatter (\"prates\"). He then directly challenges the Second Musician, Hugh Rebeck, to explain his earlier comment about \"silver sound.\" The musician's reply is a cynical pun, stating that musicians play their instruments (\"sound\") in order to get paid (\"for silver\").",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "SECOND MUSICIAN",
+    "startOffset": 123287,
+    "endOffset": 123366,
+    "content": "The Second Musician makes a pun on the word \"silver,\" explaining that musicians play for money (\"silver\") as well as for the \"silver sound\" of their instruments. This cynical joke highlights the professional reality of the musicians, who are now out of a job because the wedding feast has been canceled due to Juliet's apparent death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 123366,
+    "endOffset": 123465,
+    "content": "Peter sarcastically addresses the musician James Soundpost, calling his words meaningless chatter. This highlights the servants' cynical, detached reaction to the noble household's grief over Juliet's apparent death, contrasting their practical concerns with the family's emotional turmoil.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "THIRD MUSICIAN",
+    "startOffset": 123417,
+    "endOffset": 123465,
+    "content": "The musician is expressing confusion and helplessness, admitting he has no idea how to respond to the chaotic situation. His remark highlights the stark contrast between the household's grief over Juliet's apparent death and the musicians' practical, detached perspective.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "PETER",
+    "startOffset": 123465,
+    "endOffset": 123705,
+    "content": "Peter sarcastically tells the musicians they can only afford \"silver sound\" because they are too poor for gold. He then quotes a line from a popular song, twisting its meaning to mock their financial state and dismiss their request for payment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "FIRST MUSICIAN",
+    "startOffset": 123717,
+    "endOffset": 123771,
+    "content": "The musician is complaining about Peter, who just rudely insulted them and refused to pay for their services. He's calling Peter a \"pestilent knave,\" meaning an annoying and contemptible low-born man. This exchange provides a moment of comic relief and a cynical, practical perspective on death, contrasting with the family's tragic grief over Juliet's supposed corpse.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "V",
+    "speaker": "SECOND MUSICIAN",
+    "startOffset": 123771,
+    "endOffset": 123892,
+    "content": "The Second Musician dismisses the absent Peter with a curse, telling his companions they should go inside the Capulet house to wait for the funeral party and then stay for the meal. This brief exchange highlights the practical, almost indifferent attitude of the working-class characters, providing a moment of dark comic relief amidst the tragic discovery of Juliet's \"death.\"",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 91542,
+    "endOffset": 91854,
+    "content": "Capulet is apologizing to Paris for not yet having spoken to Juliet about their marriage plans, explaining that Tybalt's death has left the household in mourning. He then abruptly ends the conversation, saying it's too late for Juliet to come down and that he is too tired to continue, effectively postponing the discussion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 91854,
+    "endOffset": 91952,
+    "content": "Paris is telling Lady Capulet that the recent death of Tybalt makes this a sorrowful time, not a suitable one for courtship. He politely ends the conversation and asks her to pass his regards to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 91952,
+    "endOffset": 92054,
+    "content": "Lady Capulet is telling Capulet she will speak with Juliet in the morning about marrying Paris. She explains that Juliet is currently shut away in her room, overwhelmed by grief over Tybalt's death, and thus unavailable for conversation tonight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92054,
+    "endOffset": 92361,
+    "content": "Capulet is promising Paris that he will offer Juliet's hand in marriage, confidently asserting that she will obey his decision. He then instructs his wife to inform Juliet about the planned wedding this coming Wednesday, but he pauses to check what day it currently is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 92361,
+    "endOffset": 92386,
+    "content": "Paris is informing Lord Capulet that the current day is Monday. This detail is crucial because Capulet is about to propose that Paris marry Juliet in just a few days, on Thursday, setting a frantic pace for the tragic events to come.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92386,
+    "endOffset": 92835,
+    "content": "Capulet is hastily arranging Juliet's marriage to Paris, settling on Thursday. He wants a small, quiet ceremony because Tybalt has just died; a large celebration would seem disrespectful to their slain kinsman. He asks Paris if he approves of the quick date and modest plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 92835,
+    "endOffset": 92889,
+    "content": "Paris is eager to marry Juliet and wishes the wedding could happen immediately. He expresses this impatience to Lord Capulet, hoping to speed up their arranged marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92889,
+    "endOffset": 93152,
+    "content": "Capulet tells his wife to inform Juliet that her marriage to Paris is set for Thursday. He then calls for a servant to light his way to bed, noting how late it has become—so late it will soon be morning. This hasty decision, made without Juliet's consent, sets up the tragic conflict to follow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,682 @@
+[
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 93265,
+    "endOffset": 93493,
+    "content": "Juliet insists it is still night, not morning, so Romeo need not leave yet. She claims the bird they heard was the nightingale (which sings at night) rather than the lark (which heralds dawn), trying to prolong their time together. This shows her desperation to delay their separation after their secret wedding night.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 93493,
+    "endOffset": 93767,
+    "content": "Romeo insists that the morning light means he must leave Juliet immediately to avoid being caught and executed. He poetically describes dawn's arrival to emphasize their time together is over, creating urgency and foreshadowing his tragic fate if he stays.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 93767,
+    "endOffset": 93984,
+    "content": "Julet insists the light isn't morning sun but a meteor, which she imagines as a torchbearer to light Romeo's path to Mantua. She uses this fanciful explanation to persuade him he doesn't need to leave yet, desperately trying to prolong their time together before his banishment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 93984,
+    "endOffset": 94396,
+    "content": "Romeo insists he would rather be captured and killed than leave Juliet, denying that the morning light is dawn and the bird's song is the lark's. He claims it is still night, showing his desperation to stay with her despite the danger. His willingness to die if Juliet wishes it underscores his devotion and the tragic recklessness of their love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 94396,
+    "endOffset": 94848,
+    "content": "Juliet urgently tells Romeo to flee because the lark's song signals daybreak, which means he will be caught and killed if he stays. She bitterly contrasts the traditional belief that the lark sings sweetly with her own experience of its \"harsh\" notes, which forces them to separate. The \"hunt's-up\" is a morning song used to wake hunters, here metaphorically chasing Romeo away as daylight increases.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 94848,
+    "endOffset": 94907,
+    "content": "Romeo observes that as daylight increases, their troubles grow more severe. He uses this paradox to express that their situation is worsening with the morning's arrival. This line emphasizes the deepening conflict between their secret love and the harsh reality of their families' feud.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 94922,
+    "endOffset": 94937,
+    "content": "The Nurse is addressing Juliet's mother, Lady Capulet, with a formal and respectful title. This simple address establishes the Nurse's subordinate position in the household and sets the scene for their following conversation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 94937,
+    "endOffset": 95044,
+    "content": "Juliet calls for the Nurse, who urgently warns her that Lady Capulet is approaching her bedroom. The Nurse adds that day has broken, cautioning Juliet to be careful and alert since Romeo must flee before he is discovered.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 94953,
+    "endOffset": 95056,
+    "content": "The Nurse urgently warns Juliet that her mother is approaching, so she must be cautious and alert. This creates immediate tension, as Lady Capulet must not discover Romeo's presence in her daughter's room.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 95056,
+    "endOffset": 95109,
+    "content": "Julet is telling the dawn to enter through her window, symbolically letting in the day, while also wishing for Romeo's life to depart so he can escape before he is caught and killed. This line uses a poetic antithesis to express her desperate conflict: she wants the safety of night to continue for her new husband, but the dangerous reality of day is arriving.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 95109,
+    "endOffset": 95183,
+    "content": "Romeo is saying goodbye to Juliet after their secret wedding night, promising one final kiss before climbing down from her balcony. His descent marks their painful separation, as he must flee Verona to avoid execution for killing Tybalt. This moment heightens the tragedy by showing their desperate love amid forced parting.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 95183,
+    "endOffset": 95395,
+    "content": "Julet is expressing her intense longing for Romeo after their secret wedding night, fearing their separation will feel unbearably long. She exaggerates time's passage—\"in a minute there are many days\"—to show how each moment without him will stretch into what feels like years. This highlights her youthful passion and foreshadows the agony of their impending separation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 95395,
+    "endOffset": 95485,
+    "content": "Romeo is reassuring Juliet that he will send messages to her whenever possible. He promises not to miss any chance to communicate his affection and stay connected despite their separation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 95485,
+    "endOffset": 95536,
+    "content": "Juliet anxiously asks Romeo if they will ever see each other again, revealing her deep fear and foreboding about their future. She is worried that their forced separation after his banishment will be permanent. This line highlights her desperation and the tragic uncertainty hanging over their relationship.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 95536,
+    "endOffset": 95633,
+    "content": "Romeo is reassuring Juliet that their current sorrows will one day become the source of sweet stories they will tell each other in the future. He uses this hopeful perspective to comfort her as they part at dawn, suggesting that their present suffering will eventually enrich their love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 95633,
+    "endOffset": 95807,
+    "content": "Juliet has a sudden, ominous premonition as she watches Romeo leave. She vividly imagines him lying dead at the bottom of a tomb, and she notes that he looks pale, which intensifies her feeling of dread. This foreshadows the play's tragic conclusion and reveals her deep anxiety about their future.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "ROMEO",
+    "startOffset": 95807,
+    "endOffset": 95899,
+    "content": "Romeo is telling Juliet that she looks as pale and sorrowful as he feels, suggesting their shared grief is physically draining them. The phrase \"dry sorrow drinks our blood\" means that sadness consumes their vitality. He then bids her a final, urgent farewell as he must leave.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 95917,
+    "endOffset": 96130,
+    "content": "Julet is addressing Fortune as if it were a fickle person, questioning why it would be associated with someone as faithful as Romeo. She paradoxically wishes for Fortune to be fickle so that it will not keep Romeo away from her for long and will quickly return him to Verona. This shows her desperation and hope for his swift return from exile.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 96130,
+    "endOffset": 96183,
+    "content": "Lady Capulet is calling from outside Juliet's room, checking if she is awake. This establishes the morning setting and her motherly concern, while also creating tension because the audience knows Juliet has just spent her wedding night with Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 96183,
+    "endOffset": 96325,
+    "content": "Juliet is startled by Lady Capulet's unexpected arrival at her bedroom so late at night or early in the morning. She wonders aloud what unusual reason could have brought her mother to visit at this hour, immediately sensing that something is wrong.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 96347,
+    "endOffset": 96384,
+    "content": "Lady Capulet is startled by Juliet's visible distress, which is actually grief over Romeo's banishment, though her mother mistakes it for sorrow over Tybalt's death. She asks this question to find out why her daughter is so upset, beginning a conversation where she will unknowingly deepen Juliet's anguish by announcing the arranged marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 96384,
+    "endOffset": 96415,
+    "content": "Juliet tells her mother she feels unwell to avoid discussing marriage to Paris. This is a polite excuse that conceals her true distress over Romeo's banishment and her secret marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 96415,
+    "endOffset": 96679,
+    "content": "Lady Capulet is scolding Juliet for continuing to cry over Tybalt's death, suggesting that excessive mourning is pointless and foolish. She argues that while some grief demonstrates love, too much of it reveals a lack of intelligence. This is ironic because Juliet is actually weeping for Romeo's banishment, not Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 96679,
+    "endOffset": 96729,
+    "content": "Juliet is asking for permission to grieve the painful separation from Romeo, whom she believes she has lost. Her request reveals her deep sorrow and the emotional toll of their forced parting.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 96729,
+    "endOffset": 96811,
+    "content": "Lady Capulet is telling Juliet that she will soon experience the pain of Tybalt's death, but she won't be mourning the person Juliet actually grieves for—Romeo. This is a dramatic irony, as Juliet is secretly weeping for Romeo's banishment, not Tybalt's death, while her mother believes she shares the family's hatred for Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 96811,
+    "endOffset": 96883,
+    "content": "Julet is expressing her profound grief over Tybalt's death, saying she feels the loss so deeply that she must constantly weep for him. She calls him \"the friend\" to emphasize their familial bond, though her sorrow is complicated by the fact that Romeo—whom she cannot openly mourn—killed him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 96883,
+    "endOffset": 97002,
+    "content": "Lady Capulet is telling Juliet that she believes Juliet's tears are not truly for Tybalt's death, but because Romeo, the man who killed him, is still alive. She is trying to align Juliet with the family's desire for revenge, not realizing Juliet is secretly grieving for her banished husband. The word \"slaughter'd\" simply means killed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 97002,
+    "endOffset": 97032,
+    "content": "Juliet is responding to her mother, who has just cursed the \"villain\" Romeo for killing Tybalt. Juliet's question is a clever double entendre—she pretends not to know who her mother means, while secretly expressing horror at Romeo being called a villain. This allows her to defend Romeo without revealing her secret marriage or true feelings.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 97032,
+    "endOffset": 97072,
+    "content": "Lady Capulet is cursing Romeo, whom she believes murdered her nephew Tybalt. She calls him a \"villain\" to express her hatred and desire for revenge. This shows her complete opposition to Juliet's secret marriage and sets up her later demand for Romeo's death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 97072,
+    "endOffset": 97205,
+    "content": "Julet is insisting that Romeo is not a villain, despite Tybalt's death, and she forgives him completely. However, she admits that his actions have caused her immense personal sorrow, creating a painful conflict between her love for him and her grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 97205,
+    "endOffset": 97264,
+    "content": "Lady Capulet is telling Juliet that Romeo still lives, calling him a traitor and murderer for killing Tybalt. She believes justice won't be served until Romeo is dead. This directly contrasts with Juliet's secret grief over Romeo's banishment, showing the family's hatred that separates the lovers.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 97264,
+    "endOffset": 97367,
+    "content": "Julet is telling her mother she wishes she could personally avenge Tybalt's death with her own hands. The word \"venge\" means to take revenge, and she's pretending to agree with Lady Capulet's anger while secretly referring to Romeo, whom she cannot harm. This is dramatic irony, as the audience knows her true feelings conflict with her words.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 97367,
+    "endOffset": 97647,
+    "content": "Lady Capulet promises revenge on Romeo for killing Tybalt, telling Juliet to stop crying. She plans to send someone to Mantua to poison Romeo (\"an unaccustom'd dram\"), ensuring he dies and joins Tybalt in death, hoping this will satisfy Juliet's grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 97647,
+    "endOffset": 98055,
+    "content": "Juliet is using double meanings to mislead her mother, who believes Juliet is grieving Tybalt. When she says she wants to see Romeo \"dead,\" she secretly means in her bed, but her mother hears it as a wish for his death. Her talk of poisoning Romeo is a clever act to conceal her true love and loyalty for him, while outwardly appearing to seek revenge.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 98055,
+    "endOffset": 98166,
+    "content": "Lady Capulet is telling Juliet she will arrange a marriage to Paris if Juliet can find a way to get out of her current situation. She then shifts to a cheerful tone to announce what she believes is good news.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 98166,
+    "endOffset": 98256,
+    "content": "Julet is responding to her mother, who has just announced she has \"joyful tidings.\" Juliet, who is secretly married to Romeo, hopes this means news of him. She politely asks her mother to share the news, using the formal \"your ladyship\" to show respect.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 98256,
+    "endOffset": 98442,
+    "content": "Lady Capulet is telling Juliet that her father has thoughtfully arranged a surprise to cheer her up. She refers to Lord Capulet's plan for Juliet to marry Paris, which he believes will end her apparent grief over Tybalt's death. This is meant to present the marriage as a happy solution, though Juliet knows it will only worsen her distress.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 98442,
+    "endOffset": 98491,
+    "content": "Juliet is asking her mother, Lady Capulet, which day she is referring to, pretending to be pleasantly curious. She has just heard her mother mention \"Thursday\" but feigns ignorance to avoid revealing her secret marriage to Romeo. This line shows Juliet's quick thinking as she tries to gather information while maintaining her deceptive composure.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 98491,
+    "endOffset": 98680,
+    "content": "Lady Capulet informs Juliet that she will be married to Paris at Saint Peter's Church next Thursday morning. She describes Paris with flattering terms like \"gallant\" and \"noble\" to make the arranged marriage sound appealing. This announcement directly contradicts Juliet's secret marriage to Romeo, creating immediate and intense dramatic conflict.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 98680,
+    "endOffset": 99033,
+    "content": "Julet emphatically swears she will not marry Paris, expressing shock at being rushed into marriage before even being courted. She defiantly tells her mother she refuses the wedding, then adds bitter irony by claiming she'd rather marry Romeo—whom the family believes she hates—knowing this will outrage them while secretly speaking the truth about her actual husband.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 99033,
+    "endOffset": 99137,
+    "content": "Lady Capulet is warning Juliet that her father is approaching and sarcastically suggesting she deliver her refusal to marry Paris directly to him. She implies this will provoke Lord Capulet's anger, shifting responsibility for the confrontation onto Juliet. This heightens tension by setting up the imminent clash between Juliet and her authoritarian father.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 99164,
+    "endOffset": 99715,
+    "content": "Capulet is using elaborate metaphors to mock Juliet's excessive weeping over Tybalt's death. He compares her to a ship (bark) tossed in a stormy sea of her own tears, with her sighs as the wind, warning that this emotional tempest will overwhelm her. He then abruptly turns to his wife to ask if she has informed Juliet of their decision that she must marry Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 99715,
+    "endOffset": 99824,
+    "content": "Lady Capulet is telling Capulet that Juliet refuses his command to marry Paris. Her harsh wish that Juliet be \"married to her grave\" is a dramatic and cruel curse, meaning she'd rather see her daughter dead than be so disobedient. This shows her complete alignment with her husband's anger and her lack of maternal sympathy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 99824,
+    "endOffset": 100064,
+    "content": "Capulet interrupts his wife, asking her to slow down and explain. He is shocked that Juliet is refusing the marriage to Paris, listing the benefits she should be grateful for. He sarcastically questions her lack of pride and gratitude, emphasizing that he has secured a highly suitable husband for her, whom he considers far above her own worth.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 100064,
+    "endOffset": 100205,
+    "content": "Juliet is telling Romeo she isn't proud of their marriage, but she is grateful for it. She clarifies that she could never take pride in something she's been forced to hate—their union, due to the family feud—but she can still feel thankful for it because his intentions were loving. This shows her conflicted loyalty between her family and her secret husband.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 100205,
+    "endOffset": 100602,
+    "content": "Capulet is furiously mocking Juliet's contradictory words and defiant attitude. He commands her to prepare for her wedding to Paris this Thursday, threatening to drag her there by force if she refuses. His final insults—\"green-sickness carrion,\" \"baggage,\" and \"tallow-face\"—mock her pale complexion and call her worthless.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 100602,
+    "endOffset": 100646,
+    "content": "\"Fie, fie!\" is an archaic exclamation of disgust or disapproval, like saying \"Shame on you!\" Lady Capulet is reacting with shock and anger to Juliet's refusal to marry Paris, interpreting her daughter's passionate grief (over Romeo's banishment) as irrational madness. She is scolding Juliet for defying her father's authority and the family's plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 100646,
+    "endOffset": 100738,
+    "content": "Juliet kneels before her father, Lord Capulet, in a desperate plea for him to listen to her. She is humbling herself to beg for a moment of his patience, hoping to explain why she cannot marry Paris. This posture of submission starkly contrasts with her father's escalating rage in this confrontation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 100738,
+    "endOffset": 101189,
+    "content": "Capulet furiously calls Juliet a \"baggage\" (burden) and a \"hilding\" (worthless person), commanding her to marry Paris on Thursday or be disowned. He tells her not to speak and admits his \"fingers itch\" to strike her, lamenting that his only child has become a curse. The Nurse immediately defends Juliet, boldly telling Capulet he is wrong to scold her so harshly.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 101113,
+    "endOffset": 101189,
+    "content": "The Nurse is defending Juliet against her father's harsh scolding. She directly tells Lord Capulet that he is at fault for berating his daughter so severely.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 101189,
+    "endOffset": 101316,
+    "content": "Capulet is angrily dismissing the Nurse's attempt to reason with him about his daughter's marriage. He sarcastically calls her \"my lady wisdom\" and \"prudence\" to mock her advice, telling her to be quiet and go gossip with her friends instead. The Nurse's brief reply is a defensive claim that her words are not disrespectful or rebellious.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 101288,
+    "endOffset": 101316,
+    "content": "The Nurse is defending herself against Juliet's accusation of disloyalty after she advises Juliet to marry Paris. She means she is not speaking against her duty or betraying the family. This marks her shift from being Juliet's confidante to siding with the Capulet household's practical plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 101316,
+    "endOffset": 101371,
+    "content": "Capulet is furiously mocking his daughter, Juliet, for refusing to marry Paris. His sarcastic exclamation \"God ye good-en!\" is an archaic way of saying \"God give you good evening,\" which he uses to cruelly mimic her sorrowful state. When the Nurse tries to intervene, he immediately silences her, showing he will tolerate no opposition.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 101344,
+    "endOffset": 101371,
+    "content": "The Nurse is interrupting a tense exchange between Juliet and her mother, who is demanding an answer about marrying Paris. She speaks up to defend Juliet or ease the mounting conflict, but Lady Capulet immediately silences her. This shows the Nurse's diminished power in the household now that she has advised Juliet to betray Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 101371,
+    "endOffset": 101477,
+    "content": "Capulet is angrily dismissing the Nurse, who has just spoken in Juliet's defense. He insults her by calling her a babbling old woman and tells her to save her serious advice (\"gravity\") for idle chatter over drinks with friends—implying her opinion is worthless here.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 101477,
+    "endOffset": 101509,
+    "content": "Lady Capulet is telling her husband to calm down, calling him too angry or rash. She's trying to de-escalate the situation as he is furious with Juliet for refusing to marry Paris. This brief interjection shows her attempting to be a peacemaker in the heated family conflict.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 101509,
+    "endOffset": 102468,
+    "content": "Capulet is furious that Juliet refuses to marry Paris, whom he describes as an ideal, well-bred gentleman. He calls her a \"puling fool\" (a whining child) and a \"mammet\" (a doll or puppet) for rejecting this advantageous match. In a brutal ultimatum, he tells her she must consent to the wedding by Thursday or be disowned and left to beg or die in the streets.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 102480,
+    "endOffset": 102725,
+    "content": "Juliet desperately appeals to her mother for compassion, asking if heaven can see her profound sorrow. She pleads not to be cast out and begs for a delay of the marriage—even just a week—or threatens that if forced, she will kill herself and share a tomb with Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "LADY CAPULET",
+    "startOffset": 102725,
+    "endOffset": 102829,
+    "content": "Lady Capulet is refusing to speak to or help her daughter, Juliet, any further. She says this because she is furious that Juliet has disobeyed her and Lord Capulet by refusing to marry Paris. Her words are a final, cold dismissal, leaving Juliet completely isolated.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 102841,
+    "endOffset": 103818,
+    "content": "Juliet desperately asks the Nurse for advice on how to avoid marrying Paris, since she is already married to Romeo. She sees her situation as a cruel trick from heaven, as her marital vows are sacred and cannot be undone unless Romeo dies.\n\nThe Nurse responds by crudely advising Juliet to forget Romeo and marry Paris. She callously dismisses the banished Romeo as worthless compared to Paris and argues that since Juliet cannot be with Romeo, she should take the new match, which she insists is better.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 103225,
+    "endOffset": 103818,
+    "content": "The Nurse bluntly tells Juliet that Romeo is banished and unlikely to return, so she should marry Paris. She crudely reverses her previous praise of Romeo, now calling him a \"dishclout\" (dishrag) compared to the \"eagle\"-like Paris. Her harsh conclusion is that Juliet's first marriage is useless since Romeo is as good as dead to her in Verona.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 103818,
+    "endOffset": 103914,
+    "content": "Juliet is asking the Nurse if she truly believes what she just said. The Nurse swears she is speaking sincerely from her heart and soul, using \"beshrew\" (a mild curse) to emphasize her honesty. This confirms her earnest support for Juliet's secret marriage to Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 103857,
+    "endOffset": 103914,
+    "content": "The Nurse is swearing an oath that she speaks from her deepest feelings. She means that if her words are not true, a curse should fall upon both her soul and her heart. This is her emphatic way of assuring Juliet that she is being completely sincere.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 103914,
+    "endOffset": 103943,
+    "content": "Juliet is sarcastically agreeing with the Nurse's earlier suggestion that she should marry Paris now that Romeo is banished. Her terse \"Amen\" is a bitter, dismissive response, showing she rejects the advice entirely. The Nurse's startled \"What?\" indicates her surprise at Juliet's sharp and uncharacteristic tone.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 103929,
+    "endOffset": 103943,
+    "content": "The Nurse is reacting with shock and disbelief to Juliet's sudden change of heart about Romeo. Her single-word question expresses her confusion and serves to prompt Juliet to explain her harsh new opinion of her husband.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 103943,
+    "endOffset": 104174,
+    "content": "Juliet is being sarcastic, telling the Nurse that her advice to marry Paris has been anything but comforting. She then lies, saying she's going to Friar Laurence's cell for confession to cover her real plan to seek his help. The Nurse approves, believing Juliet is wisely submitting to her father's will.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 104126,
+    "endOffset": 104186,
+    "content": "The Nurse agrees to help Juliet by going to find Romeo and tell him to come for their wedding night. Her quick exit shows she is acting immediately on this plan, demonstrating her loyalty and eagerness to assist the young lovers.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 104186,
+    "endOffset": 104539,
+    "content": "Juliet curses the Nurse as a damned, wicked demon for advising her to break her marriage vow to Romeo and marry Paris instead. She severs their close relationship, declaring she will seek Friar Laurence's help—and if no solution is found, she has the power to take her own life.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,382 @@
+[
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 83331,
+    "endOffset": 83470,
+    "content": "The Friar calls Romeo out of hiding, addressing him as someone overwhelmed by fear. He personifies suffering as being in love with Romeo's qualities, meaning misfortune constantly follows him. This metaphor emphasizes Romeo's tragic tendency to attract disaster.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 83485,
+    "endOffset": 83606,
+    "content": "Romeo asks Friar Laurence for news of his punishment from the Prince. He fears the worst, expressing that a new sorrow seems to be approaching him that he is not yet aware of.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 83606,
+    "endOffset": 83720,
+    "content": "The Friar is telling Romeo that he has become too accustomed to the misery of his banishment. He then immediately states his purpose: he has come with news about the punishment decreed by the Prince.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 83720,
+    "endOffset": 83776,
+    "content": "Romeo is reacting to the Prince's sentence of banishment. He calls it a \"doom\" that feels as terrible as doomsday because it means he will be separated from Juliet forever. He is arguing that, for him, exile is a fate worse than death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 83776,
+    "endOffset": 83883,
+    "content": "Friar Lawrence is telling Romeo that the Prince has shown mercy by exiling him from Verona instead of sentencing him to death for killing Tybalt. He emphasizes that this is a much lighter punishment, hoping Romeo will see it as a reprieve rather than a disaster.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 83883,
+    "endOffset": 84016,
+    "content": "Romeo pleads with Friar Laurence to sentence him to death instead of banishment. He argues that exile from Verona, and therefore from Juliet, is a far more terrifying prospect than dying, as it means a life of separation and misery.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 84016,
+    "endOffset": 84115,
+    "content": "The Friar informs Romeo that he has been exiled from Verona as punishment for killing Tybalt. He urges Romeo to be patient and see his situation in a larger context, reminding him that there are other places to live besides Verona.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 84115,
+    "endOffset": 84426,
+    "content": "Romeo argues that being banished from Verona is worse than death, since outside the city walls lies only suffering. He accuses Friar Laurence of using the gentle word \"banished\" to disguise a death sentence, comparing it to being executed with a luxurious but still fatal axe.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 84426,
+    "endOffset": 84675,
+    "content": "The Friar scolds Romeo for his ingratitude, pointing out that the Prince has shown him mercy by commuting his death sentence to banishment. He emphasizes that Romeo is failing to recognize this act of leniency as the fortunate reprieve it truly is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 84675,
+    "endOffset": 85655,
+    "content": "Romeo is lamenting to Friar Laurence that banishment from Verona is a fate worse than death because it separates him from Juliet. He envies even the lowliest creatures in the city, who can still see her, while he is forbidden. He accuses the Friar of cruelty for offering exile as a solution, equating the word \"banished\" with the torments of hell.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 85655,
+    "endOffset": 85715,
+    "content": "The Friar is scolding Romeo for his rash despair after killing Tybalt and being banished. He calls Romeo \"fond\" (foolish) and \"mad\" to emphasize how irrational he is being, and he demands that Romeo stop lamenting and listen to his practical advice.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 85715,
+    "endOffset": 85763,
+    "content": "Romeo is anticipating that Friar Laurence will repeat the word \"banishment,\" a punishment he finds worse than death. He dreads hearing it because it means permanent separation from Juliet. This shows his despair and how he equates exile with a living death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 85763,
+    "endOffset": 85908,
+    "content": "The Friar is telling Romeo that he will provide him with a defense against his sorrow. He calls philosophy \"adversity's sweet milk,\" meaning it is a nourishing source of comfort. He offers this wisdom to console Romeo in his state of banishment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 85908,
+    "endOffset": 86076,
+    "content": "Romeo dismisses any attempt to find comfort in reason or logic. He argues that philosophy is useless because it cannot bring Juliet to him or undo the Prince's decree of banishment. This outburst reveals his despair and his refusal to be consoled, as he sees his separation from Juliet as a fate worse than death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 86076,
+    "endOffset": 86134,
+    "content": "The Friar is frustrated that Romeo isn't listening to his logical advice. He means that people who are acting irrationally (\"mad men\") are incapable of hearing reason. This is his exasperated reaction to Romeo's hysterical despair over his banishment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 86134,
+    "endOffset": 86192,
+    "content": "Romeo is arguing that even wise men lack foresight, so how could the stars—which are inanimate—possibly guide his fate? He's rejecting the idea of astrological influence, using this rhetorical question to express his despair and sense of helplessness after killing Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 86192,
+    "endOffset": 86249,
+    "content": "The Friar is telling Romeo he wants to calmly discuss his current situation. He uses the word \"dispute\" here to mean \"reason\" or \"debate,\" and \"estate\" refers to Romeo's circumstances—specifically, his banishment. He is attempting to offer counsel and perspective to the distraught Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 86249,
+    "endOffset": 86582,
+    "content": "Romeo insists the Friar cannot understand his pain because he hasn't experienced it himself. He lists his specific circumstances—youth, new marriage, murdering Tybalt, and banishment—to argue that only someone in his exact position would be driven to such extreme, grief-stricken actions. His final image of measuring his own \"unmade grave\" shows he already sees himself as dead due to the separation from Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 86582,
+    "endOffset": 86644,
+    "content": "The Friar urgently tells Romeo to get up and hide because someone is knocking at the door. This creates immediate tension, as Romeo is a fugitive in Mantua for killing Tybalt and risks being discovered.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 86644,
+    "endOffset": 86758,
+    "content": "Romeo is saying he will not leave unless his own sorrowful sighs surround him like a mist, hiding him from sight. This metaphor emphasizes his despair and desire to be invisible due to his grief over killing Tybalt and being banished. The knocking interrupts his lament, signaling the arrival of the Nurse.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 86758,
+    "endOffset": 87148,
+    "content": "The Friar is urgently telling Romeo to hide because someone is at the door and he risks being captured. His frantic, interrupted commands show his panic and the immediate danger Romeo is in. The Nurse then shouts from outside, identifying herself and revealing she brings news from Juliet, which escalates the tension as her arrival signals a critical update.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 87057,
+    "endOffset": 87148,
+    "content": "The Nurse is calling from outside Friar Laurence's cell, urgently demanding entry. She immediately reveals she has come from Juliet to establish her authority and the importance of her message.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 87148,
+    "endOffset": 87179,
+    "content": "The Friar greets Romeo, who has just arrived at his cell after killing Tybalt. This simple welcome establishes the scene for their urgent, private conversation about the consequences of Romeo's banishment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 87194,
+    "endOffset": 87284,
+    "content": "The Nurse is frantically asking Friar Laurence where Romeo is. She calls him \"my lady's lord\" to emphasize that he is Juliet's husband. Her urgency stems from the fact that Romeo has just killed Tybalt and been banished, and she needs to find him for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 87284,
+    "endOffset": 87658,
+    "content": "The Friar describes Romeo collapsed on the floor, so overwhelmed with weeping that he is incapacitated. The Nurse immediately draws a parallel, noting that Juliet is in the exact same state of desperate, weeping misery. She scolds Romeo, telling him to be a man and stand up for Juliet's sake, and questions why he would fall into such a dramatic, despairing fit.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 87353,
+    "endOffset": 87658,
+    "content": "The Nurse tells Romeo that Juliet is in the same miserable state he is—crying uncontrollably. She urges him to stop his dramatic moaning and stand up like a man for Juliet's sake, arguing that his despair is pointless and unhelpful.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 87658,
+    "endOffset": 87723,
+    "content": "The Nurse arrives to inform Romeo of his punishment—exile—for killing Tybalt. Her opening line is a conventional expression of grief, meaning that death is the ultimate fate for everyone, but here it also foreshadows the tragedy to come.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 87673,
+    "endOffset": 87723,
+    "content": "The Nurse is telling Friar Laurence that Juliet is so overwhelmed with grief over Romeo's banishment that she is inconsolable and acting as if she's dying. She is dramatically emphasizing the severity of the situation to the Friar, urging him to find a solution.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 87723,
+    "endOffset": 88168,
+    "content": "Romeo is frantic, asking the Nurse if Juliet now sees him as a murderer for killing her cousin Tybalt. He fears their new marriage is ruined (\"cancell'd love\") because he has stained their happiness with blood nearly as close to her as her own.\n\nThe Nurse reports that Juliet is overwhelmed, alternating between collapsing in grief and crying out for both Tybalt and Romeo, showing her torn loyalties and despair.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 87997,
+    "endOffset": 88168,
+    "content": "The Nurse describes Juliet's frantic, alternating grief over Tybalt's death and Romeo's banishment. Her physical collapse and sudden starts show she is overwhelmed, shifting between sorrow for her slain cousin and despair for her exiled husband. This paints a vivid picture of her emotional turmoil and inner conflict.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 88168,
+    "endOffset": 88452,
+    "content": "Romeo is distraught that his name, \"Montague,\" was the weapon that emotionally wounded Juliet, just as his hand killed her cousin Tybalt. He desperately asks Friar Laurence to point out where in his body this hated name resides so he can destroy it by suicide, physically acting out his self-loathing by drawing his sword.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 88452,
+    "endOffset": 90800,
+    "content": "Friar Lawrence is scolding Romeo for his emotional collapse after killing Tybalt and being banished. He argues that Romeo is acting inconsistently with his identity as a man, a lover, and a rational being—his tears are \"womanish,\" his rage \"beastly,\" and his threats of suicide a betrayal of his love for Juliet. The Friar insists Romeo is squandering his blessings: his body, love, and intellect, which he possesses in abundance but fails to use properly.\n\nHe then shifts to listing reasons Romeo should be happy: Juliet is alive, he killed Tybalt in self-defense, and his punishment is exile, not death. The Friar urges him to see Juliet secretly before fleeing to Mantua, where they can plan for a future reconciliation. He instructs the Nurse to prepare Juliet for Romeo’s visit and ensure the household goes to bed early.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 90656,
+    "endOffset": 90800,
+    "content": "The Nurse is so impressed by Friar Laurence's wise advice that she wishes she could stay longer to listen. She then assures Romeo that she will inform Juliet he is coming to her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 90800,
+    "endOffset": 90946,
+    "content": "Romeo is telling the Nurse to tell Juliet to prepare to scold him for killing Tybalt. The Nurse then gives Romeo a ring from Juliet, urging him to hurry because it is getting late. This ring is a token of Juliet's continued love and her message for Romeo to come to her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 90850,
+    "endOffset": 90958,
+    "content": "The Nurse brings Romeo a ring from Juliet, signaling that she still loves him despite his banishment and Tybalt's death. Her urgent tone encourages him to visit Juliet quickly, as their time together is limited.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 90958,
+    "endOffset": 91008,
+    "content": "Romeo is responding to the Nurse's news that Juliet still loves him despite his killing of Tybalt. His despair briefly lifts because he learns his banishment hasn't cost him her affection. This line shows his volatile emotions, as he swings from suicidal grief to sudden hope based on Juliet's continued loyalty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 91008,
+    "endOffset": 91344,
+    "content": "The Friar is urgently telling Romeo to flee Verona immediately—either before the night watch is posted or at dawn in disguise—and to live in Mantua. He promises to send Romeo’s servant to keep him updated with any good news from Verona, then bids him a hasty farewell because it’s late and they must part.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 91344,
+    "endOffset": 91447,
+    "content": "Romeo tells the Friar that the overwhelming happiness of his marriage to Juliet makes any sorrow from their parting feel short-lived. He is saying that his joy is so immense it overshadows the brief grief of saying goodbye. This line emphasizes the intensity of his love, even in the face of his sudden banishment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

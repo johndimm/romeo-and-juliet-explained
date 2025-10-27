@@ -1,0 +1,192 @@
+[
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 61661,
+    "endOffset": 62410,
+    "content": "Julet anxiously complains that the Nurse is late returning from her secret meeting with Romeo. She contrasts the speed of love's messengers—which should be as fast as thought or doves—with the Nurse's frustrating slowness, blaming her age for making her as sluggish and heavy as lead. This outburst reveals Juliet's youthful impatience and heightens the tension as she awaits news that will determine her future.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62523,
+    "endOffset": 62574,
+    "content": "Peter is the Nurse's servant, and she orders him to wait for her at the gate to ensure they are not interrupted. This creates a moment of privacy, heightening the suspense as she is about to deliver Romeo's crucial message to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 62574,
+    "endOffset": 62864,
+    "content": "Juliet is impatient for news from Romeo and immediately notices the Nurse's sad expression. She instructs her that if the news is bad, she should deliver it cheerfully to soften the blow, but if it is good, her gloomy face is ruining it. The Nurse, however, dodges the question by complaining of exhaustion and her aching bones from the long walk.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62772,
+    "endOffset": 62864,
+    "content": "The Nurse complains of exhaustion and body aches to emphasize the effort she has just expended running Juliet's errand to Romeo. She exaggerates her physical state to delay giving Juliet the news, building suspense and teasing the impatient girl.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 62864,
+    "endOffset": 63064,
+    "content": "Julet is impatient for news from Romeo, using exaggerated language to show she'd trade her own body to hear it immediately. She then urgently pleads with the Nurse to stop delaying and speak. The Nurse, physically exhausted from her errand, protests the rush and asks for a moment to catch her breath.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62972,
+    "endOffset": 63064,
+    "content": "The Nurse is complaining that Juliet is rushing her to deliver news about Romeo. She dramatically emphasizes her physical exhaustion to make Juliet wait and appreciate her effort.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 63064,
+    "endOffset": 63795,
+    "content": "Juliet is impatiently scolding the Nurse for delaying her news about Romeo with unnecessary complaints and physical descriptions. She demands a direct answer about whether the news is good or bad, showing her anxiety about their secret marriage plans. The Nurse responds with teasing praise of Romeo's appearance and character, deliberately prolonging Juliet's suspense rather than delivering the actual message.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63380,
+    "endOffset": 63795,
+    "content": "The Nurse is teasing Juliet by pretending to criticize Romeo before listing his physical perfections in exaggerated detail. She playfully suggests he lacks polished manners but assures he's gentle, then abruptly changes the subject to ask if Juliet has eaten—showing her fondness for dramatic delays while withholding the news Juliet desperately awaits.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 63795,
+    "endOffset": 64121,
+    "content": "Julet is impatiently dismissing the Nurse's irrelevant details about Romeo, demanding to hear the crucial news about their marriage plans. The Nurse deliberately avoids answering by complaining about her physical aches and blaming Juliet for making her run around, heightening the dramatic tension by prolonging Juliet's suspense.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63888,
+    "endOffset": 64121,
+    "content": "The Nurse is complaining about her physical pains to delay giving Juliet the news from Romeo, heightening Juliet's frustration. She exaggerates her aches and blames Juliet for sending her on the errand, using \"beshrew your heart\" as a mild curse. This means: \"A curse on you for making me run around until I die from exhaustion.\"",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64121,
+    "endOffset": 64375,
+    "content": "Julet is impatiently urging the Nurse to stop complaining and finally deliver Romeo's message about their wedding plans. The Nurse, teasing Juliet, praises Romeo's good character at length but then abruptly changes the subject by asking about Juliet's mother, creating suspense and delaying the crucial news.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64231,
+    "endOffset": 64375,
+    "content": "The Nurse praises Romeo's character to Juliet, listing his admirable qualities to reassure her of his worthiness. She abruptly changes the subject by asking about Juliet's mother, creating a moment of suspense and shifting the focus back to the practical matter of their secret plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64375,
+    "endOffset": 64694,
+    "content": "Juliet is impatiently questioning the Nurse about Romeo's message, but the Nurse deliberately misunderstands and replies about Juliet's mother instead. This frustrates Juliet, who quotes Romeo's actual question to show how absurd the Nurse's deflection is. The Nurse responds with exasperation, pretending offense at Juliet's eagerness and threatening to stop being their messenger.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64543,
+    "endOffset": 64694,
+    "content": "The Nurse is annoyed that Juliet is impatient for news of Romeo. She sarcastically asks if Juliet's eagerness is supposed to be a cure for her own tiredness from the errand. In frustration, she declares she won't run any more messages for her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64694,
+    "endOffset": 64798,
+    "content": "Julet is impatiently urging the Nurse to stop fussing and deliver Romeo's message. The Nurse, however, delays answering by asking if Juliet has permission to go to confession, which is the cover story for their secret wedding.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64748,
+    "endOffset": 64798,
+    "content": "The Nurse is asking Juliet if she has permission to go to confession. This is a pretext for Juliet to leave the house and meet Romeo so they can be married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64798,
+    "endOffset": 65263,
+    "content": "The Nurse confirms that Romeo is waiting at Friar Lawrence's to marry Juliet. She teases Juliet about blushing at the news, then outlines her own tasks: she'll fetch the rope ladder Romeo will use to climb to Juliet's room that night. The Nurse calls herself a \"drudge\" doing this work for their pleasure, but jokes that Juliet will \"bear the burden\" of her wedding night.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64815,
+    "endOffset": 65263,
+    "content": "The Nurse tells Juliet to hurry to Friar Laurence's cell where Romeo is waiting to marry her. She teases Juliet for blushing, then explains she must fetch a rope ladder for Romeo to climb to Juliet's room that night, calling herself their overworked servant while hinting at their wedding night.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 65263,
+    "endOffset": 65317,
+    "content": "Julet is urging the Nurse to hurry to Romeo and bring back news of their marriage plans, wishing her good luck on this important mission. She affectionately calls the Nurse \"honest\" to show trust and respect before sending her off.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

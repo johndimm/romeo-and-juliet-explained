@@ -54,6 +54,7 @@ export default async function handler(req, res) {
     'Provide a plain-English paraphrase that preserves the meaning and shows how the clauses connect.',
     'If there are no unfamiliar terms or unusual syntax, keep the focus on a concise paraphrase.',
     'If the lines are simple stage business, humor, or exposition with no larger significance, say so plainly.',
+    'Assume adjacent paragraphs may also be explained: avoid repeating the same scene-level theme or plot point in every note; focus on what is new or specific to these exact lines. If a point was already covered just before, add only the fresh detail and keep it short.',
     'When asked for a brief explanation, keep it to 2-3 sentences max.',
     'When asked for more, expand with relevant context, metaphors, and themes, but stay concise and focused on the selected passage.',
   ].join('\n');

@@ -1,0 +1,92 @@
+[
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 65401,
+    "endOffset": 65501,
+    "content": "The Friar is praying that God will bless Romeo and Juliet's marriage so that their future is not filled with regret and sadness. He is expressing his hope that this joyful union will not later be the cause of their suffering.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "ROMEO",
+    "startOffset": 65501,
+    "endOffset": 65760,
+    "content": "Romeo is telling Friar Laurence that any future sorrow is insignificant compared to the joy he gets from seeing Juliet. He urges the Friar to marry them immediately, saying that even if their love leads to his death, it will be worth it as long as he can call Juliet his wife.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 65760,
+    "endOffset": 66080,
+    "content": "The Friar warns that intense passions burn out quickly and self-destruct, just as gunpowder explodes when ignited. He advises that extreme love can become sickening, so moderation ensures lasting affection. Rushing into love is as unwise as moving too slowly.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "JULIET",
+    "startOffset": 66291,
+    "endOffset": 66335,
+    "content": "Juliet greets Friar Laurence with a playful, respectful title, calling him her \"ghostly confessor\"—a term for a priest who hears confessions. This sets a warm, trusting tone for their conversation about her secret marriage to Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 66335,
+    "endOffset": 66399,
+    "content": "Friar Lawrence is speaking to Juliet, assuring her that Romeo will express gratitude on behalf of both of them. This line emphasizes the Friar's role in uniting the couple and his hope that their marriage will bring peace.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "JULIET",
+    "startOffset": 66399,
+    "endOffset": 66453,
+    "content": "Juliet is telling Friar Laurence that she will give Romeo as much love as he gives her; otherwise, Romeo's gratitude would be excessive. She is emphasizing the equal and reciprocal nature of their love, assuring the Friar that her commitment matches Romeo's.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "ROMEO",
+    "startOffset": 66453,
+    "endOffset": 66726,
+    "content": "Romeo is saying that if Juliet is as joyful as he is, and if she is better at expressing it, she should speak aloud so her words can make the air around them sweet and reveal the happiness they both feel from being together. He uses \"blazon\" to mean proclaim or announce, and \"unfold\" to mean reveal or describe.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "JULIET",
+    "startOffset": 66726,
+    "endOffset": 66949,
+    "content": "Juliet argues that genuine love is too profound to be captured by mere words or superficial boasts. She believes those who can quantify their love's value are actually poor in it, whereas her own love for Romeo has grown so immense she cannot calculate even half of its worth. This emphasizes her overwhelming, inexpressible devotion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "VI",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 66949,
+    "endOffset": 67102,
+    "content": "The Friar is telling Romeo and Juliet to come with him quickly to be married. He insists they won't be left alone together until after the wedding ceremony has officially joined them as one. This shows his urgency to formalize their union and prevent any premarital intimacy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 36787,
+    "endOffset": 36934,
+    "content": "Romeo is torn between leaving and staying near Juliet, whom he calls his \"heart.\" He addresses his body as \"dull earth,\" commanding it to return to Juliet, who is its \"centre\" or gravitational core. This metaphor emphasizes his belief that his true place is with her, leading him to climb into the Capulet orchard.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 36965,
+    "endOffset": 37007,
+    "content": "Benvolio is calling out for Romeo, who has just slipped away from his friends after the Capulet feast. He is concerned about Romeo's whereabouts and well-being, trying to locate him in the dark. This highlights Romeo's sudden isolation as he is now solely focused on his new love for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37007,
+    "endOffset": 37076,
+    "content": "Mercutio is sarcastically suggesting that Romeo, having disappeared after the party, has wisely gone home to bed. He is mocking Romeo's lovesick behavior and trying to provoke him to come out of hiding by calling him \"wise\" for avoiding their company.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37076,
+    "endOffset": 37157,
+    "content": "Benvolio is telling Mercutio that Romeo has escaped them by climbing over the wall of a private garden. He suggests Mercutio call out for him, hoping to lure Romeo back without having to follow him into the private property.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37157,
+    "endOffset": 37843,
+    "content": "Mercutio is mocking Romeo's lovesick behavior by sarcastically calling on him as if he were a spirit to be summoned. He lists exaggerated romantic clichés—like sighing, rhyming \"love\" with \"dove,\" and invoking Venus and Cupid—to tease Romeo for his melodramatic passion. The crude reference to Rosaline's body (\"demesnes that there adjacent lie\") underscores Mercutio's view that Romeo's infatuation is more about physical desire than true love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37843,
+    "endOffset": 37895,
+    "content": "Benvolio warns Mercutio that Romeo is nearby and will be upset by his mocking words. He cautions that Romeo, likely hiding in the darkness, will take offense to the jokes being made at his expense.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37895,
+    "endOffset": 38209,
+    "content": "Mercutio is explaining to Benvolio that his teasing won't actually anger Romeo. He jokes that it would only be truly offensive if he were conjuring a sexual spirit in Rosaline's \"circle\" (a crude pun on female anatomy) and making it remain there. Instead, Mercutio claims his calls are \"fair and honest\" because he's only trying to \"raise up\" Romeo himself, not anything inappropriate.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 38209,
+    "endOffset": 38350,
+    "content": "Benvolio suggests Romeo has hidden among the trees to keep company with the moody, damp night. He means Romeo's infatuation is irrational—\"blind\"—and therefore suited to darkness, where reason doesn't apply.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 38350,
+    "endOffset": 38719,
+    "content": "Mercutio mocks Romeo's lovesick state with crude sexual puns, suggesting he wishes Rosaline were a \"medlar\" (a fruit slang for female genitalia) and Romeo a \"poperin pear\" (slang for penis). He then gives up on summoning Romeo, declaring the outdoor \"field-bed\" too cold and heading indoors to his \"truckle-bed\" (a small bed on wheels).",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 38719,
+    "endOffset": 38803,
+    "content": "Benvolio is telling Mercutio to give up searching for Romeo, who has climbed over the orchard wall. He means that it's pointless to look for someone who is deliberately hiding and doesn't want to be found.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

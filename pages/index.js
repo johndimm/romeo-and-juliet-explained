@@ -15,16 +15,24 @@ export async function getStaticProps() {
   const sections = filtered.map((s) => s.text);
   // Load prebuilt metadata if available (built via npm run build:characters)
   let metadata = null;
+  let precomputed = [];
   try {
     const p = path.join(process.cwd(), 'data', 'metadata.json');
     metadata = JSON.parse(fs.readFileSync(p, 'utf8'));
   } catch (e) {
     // Metadata not built yet; that's okay for UI
   }
-  return { props: { sections, sectionsWithOffsets: filtered, metadata, markers } };
+  try {
+    const p2 = path.join(process.cwd(), 'data', 'explanations.json');
+    precomputed = JSON.parse(fs.readFileSync(p2, 'utf8')) || [];
+    if (!Array.isArray(precomputed)) precomputed = [];
+  } catch (e) {
+    // No precomputed explanations yet; runtime will ignore
+  }
+  return { props: { sections, sectionsWithOffsets: filtered, metadata, markers, precomputed } };
 }
 
-export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
+export default function Home({ sections, sectionsWithOffsets, metadata, markers, precomputed }) {
   const [query, setQuery] = useState(''); // executed search
   const [input, setInput] = useState(''); // text in the box
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -147,12 +155,52 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     return result;
   }, [metadata, sectionsWithOffsets, markers]);
 
+  // Index precomputed explanations by section for quick access
+  const preBySection = useMemo(() => {
+    if (!Array.isArray(precomputed) || !precomputed.length) return new Map();
+    const enc = new TextEncoder();
+    // Compute section byte end offsets once
+    const secRanges = sectionsWithOffsets.map((s) => {
+      const start = s.startOffset || 0;
+      const end = start + enc.encode(s.text || '').length;
+      return { start, end };
+    });
+    const map = new Map();
+    const overlaps = (a0, a1, b0, b1) => Math.max(a0, b0) < Math.min(a1, b1);
+    for (const item of precomputed) {
+      const a0 = item?.startOffset ?? null;
+      const a1 = item?.endOffset ?? null;
+      if (a0 == null) continue;
+      // If no endOffset provided, treat as point and attach to nearest section
+      if (a1 == null) {
+        let idx = 0;
+        for (let i = 0; i < secRanges.length; i++) {
+          if (secRanges[i].start <= a0) idx = i; else break;
+        }
+        if (!map.has(idx)) map.set(idx, []);
+        map.get(idx).push(item);
+        continue;
+      }
+      // Attach to all sections the item overlaps so long speeches render wherever they appear
+      for (let i = 0; i < secRanges.length; i++) {
+        const { start, end } = secRanges[i];
+        if (overlaps(a0, a1, start, end)) {
+          if (!map.has(i)) map.set(i, []);
+          map.get(i).push(item);
+        }
+      }
+    }
+    for (const [k, list] of map.entries()) list.sort((a, b) => (a.startOffset || 0) - (b.startOffset || 0));
+    return map;
+  }, [precomputed, sectionsWithOffsets]);
+
   // Track active scene for highlighting in TOC based on scroll + metadata scene ranges
   const [activeScene, setActiveScene] = useState(null);
   const sectionElsRef = useRef([]);
   const [pendingFocus, setPendingFocus] = useState(null); // {sectionIndex, id}
   const [showTocButton, setShowTocButton] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
+  const lastPosSaveRef = useRef(0);
   // Helper to choose the active scroll container (desktop: .container, narrow: .page, or window/body)
   function getScroller() {
     if (typeof document === 'undefined') return null;
@@ -189,6 +237,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         const top = getElementTopWithin(el, s);
         if (top <= y + threshold) bestIndex = i; else break;
       }
+      // Persist reading position occasionally
+      try {
+        const now = Date.now();
+        if (now - (lastPosSaveRef.current || 0) > 500) {
+          const off = sectionsWithOffsets[bestIndex]?.startOffset;
+          if (typeof off === 'number') localStorage.setItem('last-pos', String(off));
+          lastPosSaveRef.current = now;
+        }
+      } catch {}
       const startOffset = sectionsWithOffsets[bestIndex]?.startOffset;
       if (startOffset == null || !metadata?.scenes) return;
       let current = null;
@@ -212,6 +269,25 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       window.removeEventListener('resize', onScroll);
     };
   }, [metadata, sectionsWithOffsets]);
+
+  // Restore reading position on load (when there is no deep-link selection)
+  useEffect(() => {
+    try {
+      if (!sectionsWithOffsets || !sectionsWithOffsets.length) return;
+      if (typeof window === 'undefined') return;
+      if (/^#sel=/.test(window.location.hash || '')) return; // selection link takes precedence
+      const raw = localStorage.getItem('last-pos');
+      if (!raw) return;
+      const off = parseInt(raw, 10);
+      if (!isNaN(off)) {
+        let idx = 0;
+        for (let i = 0; i < sectionsWithOffsets.length; i++) {
+          if (sectionsWithOffsets[i].startOffset <= off) idx = i; else break;
+        }
+        setTimeout(() => scrollToSection(idx), 50);
+      }
+    } catch {}
+  }, [sectionsWithOffsets]);
 
   const scrollToSection = (index) => {
     const el = sectionElsRef.current[index];
@@ -498,6 +574,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       'Help the reader parse the sentence: briefly clarify unfamiliar/archaic words or idioms and any tricky syntax (inversions, ellipses), then give a clear paraphrase.',
       'Avoid boilerplate claims ("pivotal", "foreshadows", "underscores the theme", "sets the stage") unless clearly warranted by these exact lines; be concrete or skip such claims.',
       'Prefer precise paraphrase + immediate purpose in the scene.',
+      'Assume adjacent paragraphs may also have explanations: do not repeat the same theme or scene-level plot point that a neighboring note would already cover; focus on what is new or specific to these exact lines.',
+      'If these lines merely continue an idea already explained in the previous passage, add only the fresh detail and keep it short.',
     ];
     const len = (respLen || '').toLowerCase();
     if (mode === 'brief' || len === 'brief') parts.push('Length: brief (2–3 sentences).');
@@ -606,16 +684,20 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               const bb = (b.meta?.byteOffset ?? 0);
               return ba - bb;
             });
+          const sectionStartOffset = sectionsWithOffsets[idx]?.startOffset || 0;
           return (
           <Section
             key={idx}
             text={section}
             query={query}
             matchRefs={matchRefs}
+            precomputedItems={preBySection.get(idx) || []}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => setSelection(range ? { sectionIndex: idx, ...range } : null)}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
             contextInfo={selection && selection.sectionIndex === idx ? selectionContext : null}
+            sectionIndex={idx}
+            sectionStartOffset={sectionStartOffset}
             llm={{
               options: llmOptions,
               setOptions: setLlmOptions,
@@ -634,6 +716,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             pendingFocus={pendingFocus && pendingFocus.sectionIndex === idx ? pendingFocus : null}
             onPendingFocusConsumed={() => setPendingFocus(null)}
             savedExplanations={savedExplanations}
+            onDeleteSaved={(id) => {
+              const next = { ...(conversations || {}) };
+              delete next[id];
+              setConversations(next);
+            }}
             onCopyLink={() => {
               const curr = selectionContext;
               if (!curr) return;
@@ -787,7 +874,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved }) {
   const preRef = useRef(null);
   const selPendingRef = useRef(false);
   const longPressRef = useRef(false);
@@ -796,6 +883,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const startXYRef = useRef({ x: 0, y: 0 });
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
+  const [autoIdx, setAutoIdx] = useState(0);
 
   const processSelection = () => {
     const container = preRef.current;
@@ -909,6 +997,35 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     };
   }, []);
 
+  // In-view observer using invisible anchors per speech start
+  useEffect(() => {
+    if (!precomputedItems || !precomputedItems.length) return;
+    const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
+    if (!anchors.length) return;
+    function getScroller() {
+      const cont = document.querySelector('.container');
+      if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+      const pg = document.querySelector('.page');
+      if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+      return null;
+    }
+    const root = getScroller();
+    const io = new IntersectionObserver((entries) => {
+      // Pick the top-most/intersecting anchor (closest to top-quarter)
+      let best = null;
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const idx = parseInt(e.target.getAttribute('data-idx') || '0', 10) || 0;
+        const r = e.boundingClientRect;
+        const score = Math.abs(r.top - (root ? root.getBoundingClientRect().top + (root.clientHeight * 0.25) : 0));
+        if (!best || score < best.score) best = { idx, score };
+      }
+      if (best) setAutoIdx(best.idx);
+    }, { root: root || undefined, threshold: [0, 0.01, 0.1] });
+    anchors.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [precomputedItems, sectionRef]);
+
   // Long-press detection to distinguish tap vs. drag-selection
   const onTouchStart = (e) => {
     const t = e.touches && e.touches[0];
@@ -957,10 +1074,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     }
   }, [pendingFocus, selectedId]);
 
-  const hasAside = !!selectedRange || (savedExplanations && savedExplanations.length > 0);
+  const hasAside = !!selectedRange || (savedExplanations && savedExplanations.length > 0) || (precomputedItems && precomputedItems.length > 0);
   return (
     <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
-      <div className="playText">
+      <div className="playText" style={{ position: 'relative' }}>
+        {/* Invisible anchors at speech starts for IntersectionObserver */}
+        {(() => {
+          const secChars = (text || '').length || 1;
+          return (precomputedItems || []).map((it, i) => {
+            const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+            const startC = bytesToCharOffset(text || '', startRelB);
+            const topPct = (startC / Math.max(1, secChars)) * 100;
+            return <div key={`anch-${i}`} className="speechAnchor" data-idx={i} style={{ position: 'absolute', top: `${topPct}%`, left: 0, width: 1, height: 1, pointerEvents: 'none' }} />;
+          });
+        })()}
         <pre ref={preRef} onMouseUp={handleMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={(e)=>{onTouchEnd(e); handleMouseUp(e);}} onPointerUp={handleMouseUp}>
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
@@ -976,6 +1103,22 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               onCopyLink={onCopyLink}
             />
           ) : null}
+          {precomputedItems && precomputedItems.length ? (
+            <div>
+              {(() => {
+                const it = precomputedItems[Math.min(autoIdx, precomputedItems.length - 1)];
+                if (!it) return null;
+                return (
+                  <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
+                    <div style={{ whiteSpace: 'pre-wrap' }}>{it.content || ''}</div>
+                    <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
+                      {it.model ? `Model: ${it.model}` : ''}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          ) : null}
           {savedExplanations.length > 0 && (
             <div style={{ marginTop: '0.75rem' }}>
               {savedExplanations.map((ex, i) => (
@@ -988,7 +1131,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     onSelectRange({ start: ex.meta.start, end: ex.meta.end });
                     const len = new TextEncoder().encode(ex.meta.text || '').length;
                     const id = `${ex.meta.byteOffset}-${len}`;
-                    setPendingFocus({ sectionIndex: idx, id });
+                    setPendingFocus({ sectionIndex, id });
                   }
                 }}
                   onCopy={() => {
@@ -1003,10 +1146,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     if (ex?.meta) {
                       const len = new TextEncoder().encode(ex.meta.text || '').length;
                       const id = `${ex.meta.byteOffset}-${len}`;
-                      // Delete and if it was the current selection, keep selection but without explanation
-                      const next = { ...conversations };
-                      delete next[id];
-                      setConversations(next);
+                      onDeleteSaved?.(id);
                     }
                   }}
                 />

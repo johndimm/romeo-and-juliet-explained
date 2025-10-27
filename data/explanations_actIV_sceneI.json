@@ -1,0 +1,332 @@
+[
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 104632,
+    "endOffset": 104691,
+    "content": "Friar Lawrence expresses surprise at the suddenness of the wedding, noting there are only two days to prepare. His concern highlights the impractical rush of the plan, setting up his need to devise a desperate solution.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 104691,
+    "endOffset": 104776,
+    "content": "Paris is telling Friar Laurence that Lord Capulet has arranged his marriage to Juliet, and he is not reluctant to go along with his father-in-law's rushed plans. This shows Paris's eagerness to please the Capulets and his complete unawareness of Juliet's true feelings.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 104776,
+    "endOffset": 104873,
+    "content": "The Friar expresses concern that Juliet's consent is uncertain, making the plan risky. He dislikes this unpredictability and feels uneasy about proceeding without her agreement.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 104873,
+    "endOffset": 105289,
+    "content": "Paris explains to Friar Laurence that Juliet is grieving excessively for Tybalt, which has prevented him from courting her properly. He says Capulet believes that marriage will distract her from her sorrow and provide companionship to help her recover, which is why the wedding is being rushed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 105289,
+    "endOffset": 105413,
+    "content": "Friar Lawrence is expressing private concern that the marriage is being delayed, though he doesn't know the reason. He immediately shifts attention by announcing Juliet's arrival, ending his private thought to address Paris directly.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105429,
+    "endOffset": 105471,
+    "content": "Paris greets Juliet with cheerful formality, addressing her as his future bride. He uses the conventional language of courtship, unaware that Juliet has come to Friar Laurence in deep distress to avoid this very marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105471,
+    "endOffset": 105520,
+    "content": "Juliet is telling Paris that she might be happy to be called his wife only after they are actually married. She is being evasive and polite, concealing her true feelings and her secret marriage to Romeo. This shows her forced composure in a tense situation where she is desperate to avoid this arranged marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105520,
+    "endOffset": 105574,
+    "content": "Paris is insisting that his marriage to Juliet must happen this coming Thursday. He is speaking to Friar Laurence, trying to confirm the wedding date that Lord Capulet has arranged. His repetition of \"must be\" shows he is determined and sees the marriage as an unavoidable certainty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105574,
+    "endOffset": 105606,
+    "content": "Juliet is expressing a fatalistic resignation to her desperate situation. She means that whatever is destined to happen will happen, showing her acceptance of the Friar's dangerous plan to fake her death. This line underscores her resolve to take extreme action rather than be forced to marry Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 105606,
+    "endOffset": 105648,
+    "content": "Friar Lawrence is confirming that Juliet's statement about preferring death over marrying Paris is a reliable and serious declaration. He uses \"certain text\" to mean her words are a trustworthy source, showing he believes she is absolutely resolved. This leads him to propose his risky plan, trusting her desperation and commitment.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105648,
+    "endOffset": 105700,
+    "content": "Paris is asking Juliet if she has come to Friar Laurence to confess her sins. He is unaware of her secret marriage to Romeo and still believes she is his own intended bride. This question highlights the public misunderstanding of Juliet's situation and her private desperation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105700,
+    "endOffset": 105750,
+    "content": "Juliet is evading Paris's question about whether she loves him. She says that if she were to answer directly, she would have to admit something she doesn't want to say. This polite but evasive reply shows her desperation to avoid this arranged marriage without revealing her secret marriage to Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105750,
+    "endOffset": 105795,
+    "content": "Paris is urging Juliet to admit her supposed affection for him to her father, Lord Capulet. He believes this will help smooth the way for their arranged marriage, which he sees as a joyful event.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105795,
+    "endOffset": 105843,
+    "content": "Juliet is confessing her love for Paris to Friar Laurence, but she is being deliberately deceptive. She knows the Friar believes she is speaking of Paris, but she is actually referring to Romeo, using this double meaning to set up her desperate plea for help in avoiding the marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105843,
+    "endOffset": 105892,
+    "content": "Paris is reassuring Juliet that she will agree to marry him because he believes she loves him. He is speaking confidently, assuming her feelings match his own, which adds dramatic irony since the audience knows Juliet is already married to Romeo and deeply distressed by this arranged match.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105892,
+    "endOffset": 105987,
+    "content": "Juliet is telling Friar Laurence that if she praises Romeo in his absence, her words will carry more weight and sincerity than if she said them directly to him. She implies that praise given when the person isn't present is less likely to be flattery and therefore more valuable.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105987,
+    "endOffset": 106044,
+    "content": "Paris observes that Juliet's face is swollen and disfigured from her constant crying. He is attempting to be sympathetic, but his comment is a superficial observation of her grief, which he mistakenly believes is for her dead cousin Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106044,
+    "endOffset": 106137,
+    "content": "Juliet is dismissing her own crying as pointless, saying her grief was already unbearable even before she started weeping. She means her tears haven't actually helped relieve her suffering—they've only added to her misery.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 106137,
+    "endOffset": 106198,
+    "content": "Paris is telling Juliet that her sorrowful words are more harmful to her face than tears would be. He believes her grief is damaging her beauty, and he is trying to comfort her by suggesting that verbal expressions of sadness are worse for her appearance than crying would be.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106198,
+    "endOffset": 106291,
+    "content": "Julet is telling Friar Laurence that she cannot be accused of slander because she is merely stating a true fact about herself. By saying she spoke \"to my face,\" she clarifies that she was speaking about herself directly, not gossiping about someone else. This is her justification for her earlier blunt confession that she wishes to die if she cannot avoid marrying Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 106291,
+    "endOffset": 106347,
+    "content": "Paris is accusing Juliet of slandering her own face—which he considers his property since they are betrothed—by crying and making it look sorrowful. He believes her display of grief dishonors the happy appearance she should have as his future wife.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106347,
+    "endOffset": 106472,
+    "content": "Julet is telling Friar Laurence that Paris's claim of marriage may be true, but she cannot accept it because her heart belongs to Romeo. She then politely asks if the Friar is available to speak, or if she should wait until the evening church service.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 106472,
+    "endOffset": 106578,
+    "content": "Friar Lawrence politely tells Juliet he is available to speak with her, calling her \"pensive daughter\" to acknowledge her troubled state. He then asks Lord Capulet and Paris to leave them alone so they can have a private conversation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 106578,
+    "endOffset": 106713,
+    "content": "Paris politely excuses himself for interrupting Juliet's prayers. He reminds her that he will wake her early on Thursday for their wedding, then bids her farewell with a symbolic kiss. This emphasizes his formality and the looming, fixed date of the marriage, which intensifies the pressure on Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106725,
+    "endOffset": 106831,
+    "content": "Julet is desperately asking the Friar to shut the door so they can be alone. She then pleads for him to join her in mourning, expressing her utter despair that her situation is beyond any hope, remedy, or assistance.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 106831,
+    "endOffset": 107018,
+    "content": "Friar Lawrence is telling Juliet he already knows about her distress over the forced marriage. He admits her situation is so difficult it pushes him beyond the limits of his own cleverness. He confirms he has heard she must marry Paris this coming Thursday and that nothing can delay it.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 107018,
+    "endOffset": 107808,
+    "content": "Juliet demands the Friar offer a solution to avoid marrying Paris, or she will kill herself with the dagger she is holding. She insists that since he joined her and Romeo in marriage, she would rather die than be unfaithful. Her desperate ultimatum pressures the Friar to immediately provide the risky potion plan.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 107808,
+    "endOffset": 108217,
+    "content": "Friar Lawrence is telling Juliet that he has a dangerous plan to prevent her marriage to Paris, which will require as much courage as suicide. He suggests that if she is willing to kill herself to avoid shame, she might instead be brave enough to simulate death. He offers her a potion that will make her appear dead, allowing her to escape her predicament.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 108217,
+    "endOffset": 108760,
+    "content": "Juliet is telling Friar Laurence she would rather face terrifying dangers than be forced to marry Paris. She lists horrifying scenarios—like leaping from a tower, being chained with bears, or hiding among corpses—that would normally make her tremble with fear. She insists she would endure any of these horrors without hesitation to remain a faithful wife to Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 108760,
+    "endOffset": 110160,
+    "content": "Friar Lawrence is giving Juliet a sleeping potion that will make her appear dead for 42 hours. He instructs her to take it the night before her wedding to Paris, after which she will be placed in the Capulet tomb. The Friar will then inform Romeo, who will retrieve her when she awakens so they can escape to Mantua together.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 110160,
+    "endOffset": 110210,
+    "content": "Juliet is demanding the vial from Friar Laurence, showing her desperation and resolve to escape her arranged marriage to Paris. She dismisses any talk of fear, emphasizing her willingness to face any horror—even death—rather than break her vow to Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 110210,
+    "endOffset": 110360,
+    "content": "Friar Lawrence is reassuring Juliet that he will immediately send a messenger to Mantua with a letter explaining their plan to Romeo. He urges her to be brave and stick to their agreement, promising swift action to ensure Romeo is informed. This is part of their secret scheme to reunite her with Romeo after she takes the sleeping potion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 110360,
+    "endOffset": 110447,
+    "content": "Juliet is steeling herself to drink the Friar's potion, asking for courage to go through with the desperate plan. Her farewell to her father is ironic, as she is speaking to the empty room, knowing her family will soon believe her dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

@@ -1,0 +1,232 @@
+[
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 76727,
+    "endOffset": 78181,
+    "content": "Juliet is impatiently longing for nightfall so Romeo can secretly join her. She personifies night as a protective, modest figure who will hide their lovemaking from prying eyes and help her overcome her shyness. Her speech reveals intense desire and idealization of Romeo, imagining his beauty transforming the night sky before shifting to frustration that their marriage remains unconsummated.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 78291,
+    "endOffset": 78342,
+    "content": "The Nurse is responding to Juliet's request for the rope ladder (cords) Romeo will use to climb to her chamber that night. By throwing them down, she expresses her distress and anger over Tybalt's death, which Romeo caused, showing she now sees the ladder as useless or tainted by the tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 78342,
+    "endOffset": 78557,
+    "content": "Juliet sees the Nurse wringing her hands in distress and asks what has happened. The Nurse, in her grief, exclaims that \"he\" is dead, repeating the phrase for emphasis, and laments that they are ruined. She is referring to Tybalt's death, but her dramatic delivery makes Juliet mistakenly believe she is speaking of Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 78400,
+    "endOffset": 78557,
+    "content": "The Nurse is distraughtly telling Juliet that someone is dead, repeating herself to emphasize the tragedy. She uses exclamations like \"well-a-day\" (alas) and \"alack the day\" to express her grief. She believes this death has ruined them, though she hasn't yet named the victim, creating suspense before revealing it is Tybalt, not Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 78557,
+    "endOffset": 78688,
+    "content": "Juliet is asking if fate could be so cruel as to let Romeo, her husband, kill her cousin Tybalt. The Nurse confirms that Romeo did the deed, lamenting in shock that he, of all people, could have committed such an act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 78592,
+    "endOffset": 78688,
+    "content": "The Nurse is lamenting that Romeo, a man, could kill Tybalt, though heaven (representing divine will) would not permit such violence. She expresses shock and disbelief that Romeo, Juliet's beloved husband, could commit this terrible act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 78688,
+    "endOffset": 79306,
+    "content": "Juliet is in agony, imagining that Romeo has killed himself. She tells the Nurse that a simple \"yes\" would be more poisonous to her than a mythical monster's deadly gaze. Her identity and life depend entirely on the single word the Nurse uses to answer her.\n\nThe Nurse, misunderstanding Juliet's fear, describes the fatal wound she saw—but she is actually referring to Tybalt's body, not Romeo's. Her graphic description of the \"piteous corse\" and her fainting at the sight creates the tragic misunderstanding that Romeo is dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79078,
+    "endOffset": 79306,
+    "content": "The Nurse is telling Juliet she saw Tybalt's fatal wound with her own eyes, emphasizing its location on his chest. Her graphic description—\"gore-blood\" means thick, clotted blood—is meant to horrify Juliet, and she mentions fainting (\"swounded\") from the shock. This builds tension because the audience knows the Nurse is actually describing Romeo's victim, not Romeo himself.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 79306,
+    "endOffset": 79622,
+    "content": "Juliet commands her heart to break and her eyes to never look on freedom again, wishing for death to end her suffering after learning Romeo killed Tybalt. She imagines her body and Romeo’s lying together on a funeral bier, showing her despair has shifted from anger to a longing for shared death. The Nurse’s lament for Tybalt then interrupts, emphasizing the personal loss and contrasting with Juliet’s focus on Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79493,
+    "endOffset": 79622,
+    "content": "The Nurse is distraught and lamenting Tybalt's death, emphasizing her personal affection for him by calling him her best friend and praising his honorable character. Her grief is compounded by the shock and tragedy of witnessing the death of someone she held in such high esteem.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 79622,
+    "endOffset": 79929,
+    "content": "Juliet is trying to make sense of the Nurse's confusing, grief-stricken news. She asks if both Tybalt and Romeo are dead, calling Tybalt her \"dearest cousin\" and Romeo her \"dearer lord\" (meaning her husband, who is more dear to her). She believes that if both are dead, it would be like the end of the world (\"the general doom\"), as there would be no one left worth living for.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79844,
+    "endOffset": 79929,
+    "content": "The Nurse is distraughtly telling Juliet that Tybalt is dead and Romeo has been exiled as his killer. She repeats \"banished\" to emphasize the finality of the punishment, which she believes is a fate worse than death for the newlyweds.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 79929,
+    "endOffset": 80033,
+    "content": "Juliet is horrified to learn that Romeo killed her cousin Tybalt. The Nurse confirms this, lamenting the tragic turn of events. This revelation creates a terrible conflict for Juliet between her love for her husband and her loyalty to her family.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79987,
+    "endOffset": 80033,
+    "content": "The Nurse is confirming that Tybalt is dead, repeating herself in distress. She is speaking to Juliet, who has been anxiously waiting for news of Romeo. Her repetition and lament show her shock and sorrow over the violent event.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 80033,
+    "endOffset": 80801,
+    "content": "Juliet expresses her shock and anguish upon learning that Romeo has killed Tybalt, using a series of oxymorons to convey her horror at the contradiction between his beautiful appearance and his violent actions. She feels betrayed, describing him as a \"beautiful tyrant\" and a \"damned saint\" to capture the conflict between the man she loves and the crime he has committed.\n\nThe Nurse responds by cursing Romeo and lamenting the deceitfulness of men, sharing in Juliet's grief and calling for a drink (\"aqua vitae\") to cope with the distress. Her exclamation that these sorrows are making her old emphasizes the profound emotional impact of the situation on them both.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 80564,
+    "endOffset": 80801,
+    "content": "The Nurse is cursing all men as faithless liars after learning that Romeo has killed Tybalt. She calls for her servant and a strong drink (\"aqua vitae\") to cope with the stress, which she says is aging her. Her final line directly blames and wishes shame upon Romeo for causing this grief.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 80801,
+    "endOffset": 81108,
+    "content": "Julet fiercely defends Romeo's honor, rejecting the Nurse's earlier wish for shame to fall upon him. She insists his face is too noble for shame and instead deserves universal honor. She immediately regrets having criticized him earlier, showing her unwavering loyalty despite his killing of Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 81046,
+    "endOffset": 81108,
+    "content": "The Nurse is challenging Juliet's loyalty by reminding her that Romeo has just killed Tybalt, Juliet's cousin. She is testing Juliet's reaction to see if she will still defend Romeo despite this violent act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 81108,
+    "endOffset": 82615,
+    "content": "Julet is torn between loyalty to her new husband Romeo and grief over Tybalt, whom Romeo killed. She initially tries to find comfort in the fact that Romeo survived Tybalt's attack, but then fixates on Romeo's banishment, which she considers far worse than Tybalt's death. Her anguish escalates as she realizes banishment means permanent separation from Romeo, making her feel utterly alone despite her parents being alive and mourning nearby.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 82517,
+    "endOffset": 82615,
+    "content": "The Nurse is telling Juliet that her family is grieving loudly over Tybalt's body (\"corse\"). She then asks if Juliet wants to join them, offering to take her there immediately. This creates dramatic irony, as the audience knows Juliet's tears are for Romeo's banishment, not for Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 82615,
+    "endOffset": 83157,
+    "content": "Julet laments that while her family mourns Tybalt, she will weep longer for Romeo's exile. She addresses the ropes meant to help Romeo climb to her chamber, saying they are useless now that he is banished, leaving her a virgin widow. In despair, she declares that only death will take her virginity now.\n\nThe Nurse interrupts, urging Juliet to her room while promising to fetch Romeo from Friar Laurence's cell to comfort her. She assures Juliet he will come to her that night, attempting to soothe the distraught girl with immediate action rather than philosophical comfort.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 82981,
+    "endOffset": 83157,
+    "content": "The Nurse urges Juliet to go to her room while she fetches Romeo, who is hiding at Friar Lawrence's cell. She assures Juliet that Romeo will come to her that night, promising to bring him for comfort.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 83157,
+    "endOffset": 83256,
+    "content": "Juliet urgently asks the Nurse to find Romeo and give him a ring as a token of her enduring love, calling him her \"true knight.\" She requests that he come to her so they can say goodbye, as his banishment means they will be separated. This demonstrates her loyalty and desperation to see him one last time despite the danger.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

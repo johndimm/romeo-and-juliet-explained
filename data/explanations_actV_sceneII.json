@@ -1,0 +1,82 @@
+[
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 127945,
+    "endOffset": 127994,
+    "content": "Friar John is urgently calling out for Friar Laurence. His tone suggests he has important news, likely about the failed delivery of Friar Laurence's letter to Romeo, which will lead to the tragic misunderstanding in the final act.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128018,
+    "endOffset": 128163,
+    "content": "Friar Lawrence recognizes Friar John's voice and immediately asks for news from Romeo in Mantua. He urgently wants to know Romeo's response to his letter explaining Juliet's fake death, or to read the letter itself if Romeo wrote one. This shows his anxiety about whether his plan has been successfully communicated.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128163,
+    "endOffset": 128511,
+    "content": "Friar John explains that he was quarantined by health officials who suspected he and another friar had been in a plague-infected house. This prevented him from delivering Friar Laurence's letter to Romeo in Mantua, which sets up the tragic misunderstanding to follow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128511,
+    "endOffset": 128562,
+    "content": "Friar Lawrence is urgently asking who delivered his letter to Romeo, since Romeo should have known about Juliet's fake death but instead came to the tomb believing she was truly dead. This question reveals that the letter never reached Romeo, creating the tragic misunderstanding that will lead to both lovers' deaths.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128562,
+    "endOffset": 128692,
+    "content": "Friar John explains to Friar Laurence that he failed to deliver the letter to Romeo. Due to a plague outbreak, the authorities quarantined him and he couldn't find another messenger willing to risk exposure. This crucial failure means Romeo remains unaware of Juliet's fake death, setting the stage for tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128692,
+    "endOffset": 128926,
+    "content": "Friar Lawrence realizes with alarm that the undelivered letter was critically important, not trivial, and its failure to reach Romeo could lead to disastrous consequences. He urgently sends Friar John to fetch a crowbar so he can personally retrieve Juliet from the tomb before she wakes, hoping to prevent the tragedy he now fears is imminent.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128926,
+    "endOffset": 128977,
+    "content": "Friar John is speaking to Friar Laurence, agreeing to fetch something for him. This brief line shows his willingness to assist, but the audience knows he is about to fail in his crucial mission to deliver Friar Laurence's letter to Romeo, setting up the tragic conclusion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128989,
+    "endOffset": 129289,
+    "content": "Friar Lawrence must go alone to the Capulet tomb because Juliet will awaken soon. He worries she will be angry that Romeo was not informed of their plan, so he intends to hide her in his cell while sending another letter to Mantua. The final line vividly describes Juliet as a living person trapped in a burial vault meant for the dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]
