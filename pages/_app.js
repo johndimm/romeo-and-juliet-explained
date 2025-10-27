@@ -95,17 +95,13 @@ function HeaderSearch() {
   const [submitted, setSubmitted] = React.useState(false);
   const [count, setCount] = React.useState(0);
   const [index, setIndex] = React.useState(0);
-  const [exCount, setExCount] = React.useState(0);
-  const [exIndex, setExIndex] = React.useState(0);
 
   React.useEffect(() => {
     const onState = (e) => {
-      const { count = 0, index = 0, submitted = false, exCount = 0, exIndex = 0 } = e.detail || {};
+      const { count = 0, index = 0, submitted = false } = e.detail || {};
       setCount(count);
       setIndex(index);
       setSubmitted(submitted);
-      setExCount(exCount);
-      setExIndex(exIndex);
     };
     if (typeof window !== 'undefined') window.addEventListener('search-state', onState);
     return () => { if (typeof window !== 'undefined') window.removeEventListener('search-state', onState); };
@@ -143,18 +139,15 @@ function HeaderSearch() {
 
   return (
     <form className="searchBar headerSearchBar" role="search" onSubmit={(e) => { e.preventDefault(); submit(); }}>
-      <button type="button" onClick={() => window.dispatchEvent(new Event('search-prev'))} aria-label="Previous result" disabled={!count} title="Previous">◀</button>
-      <button type="button" onClick={() => window.dispatchEvent(new Event('search-next'))} aria-label="Next result" disabled={!count} title="Next">▶</button>
       <input type="search" placeholder={ph} value={input} onChange={onInputChange} aria-label="Search text" />
+      <button type="button" onClick={() => window.dispatchEvent(new Event('search-prev'))} aria-label="Previous result" disabled={!count} title="Previous" style={{ marginLeft: 6 }}>◀</button>
+      <button type="button" onClick={() => window.dispatchEvent(new Event('search-next'))} aria-label="Next result" disabled={!count} title="Next" style={{ marginLeft: 4 }}>▶</button>
       {count > 0 ? (
         <span className="searchCount" aria-live="polite">{`${index} / ${count}`}</span>
       ) : submitted ? (
         <span className="searchCount" aria-live="polite">No results</span>
       ) : null}
-      <span className="exTag" aria-hidden title="Explanation navigation" style={{ marginLeft: 10, marginRight: 4, color: '#6b5f53' }}>💬</span>
-      <button type="button" onClick={() => window.dispatchEvent(new Event('ex-prev'))} disabled={!exCount} title="Previous explanation">◀</button>
-      <button type="button" onClick={() => window.dispatchEvent(new Event('ex-next'))} disabled={!exCount} title="Next explanation">▶</button>
-      <span className="exCount" aria-live="polite">{exCount ? `${exIndex} / ${exCount}` : ''}</span>
+      {/* Explanation navigation removed */}
     </form>
   );
 }

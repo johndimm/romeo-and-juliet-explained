@@ -46,7 +46,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showSettings, setShowSettings] = useState(false);
   // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
   // we normalize to 0–100 via a log scale.
-  const [noteThreshold, setNoteThreshold] = useState(70);
+  const [noteThreshold, setNoteThreshold] = useState(100);
   const suppressAutoExplainRef = useRef(false);
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
@@ -356,17 +356,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     setSelectionContext({ ...ctx, text: textForLLM, byteOffset });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
-  // Auto-request a brief explanation when a new selection context is ready
-  useEffect(() => {
-    if (!selectionContext) return;
-    if (suppressAutoExplainRef.current) { suppressAutoExplainRef.current = false; return; }
-    const id = `${selectionContext.byteOffset}-${new TextEncoder().encode(selectionContext.text || '').length}`;
-    const existing = conversations[id];
-    if (!existing || !existing.last) {
-      const t = setTimeout(() => { callLLM({ mode: 'brief' }); }, 50);
-      return () => clearTimeout(t);
-    }
-  }, [selectionContext]);
+  // Auto-request on selection disabled for now
+  useEffect(() => {}, [selectionContext]);
 
   // Deep-linking: update URL hash when selection changes
   useEffect(() => {
@@ -435,7 +426,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const opt = localStorage.getItem('llmOptions');
       if (opt) setLlmOptions(JSON.parse(opt));
       const nt = localStorage.getItem('noteThreshold');
-      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 70);
+      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 100);
     } catch {}
     setOptsHydrated(true);
   }, []);
@@ -489,7 +480,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     return allExplanations.findIndex((e) => e.id === selectionId);
   }, [allExplanations, selectionId]);
 
-  // Header search state sync (after allExplanations/currentExIdx are declared)
+  // Header search state sync (explanation navigation removed)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('search-state', {
@@ -497,52 +488,29 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           count: totalMatches,
           index: totalMatches ? currentIdx + 1 : 0,
           submitted: !!query,
-          exCount: allExplanations.length,
-          exIndex: currentExIdx >= 0 ? currentExIdx + 1 : 0,
         },
       }));
     }
-  }, [totalMatches, currentIdx, query, allExplanations, currentExIdx]);
+  }, [totalMatches, currentIdx, query]);
 
-  // Bridge header search and explanation navigation buttons (after declarations)
+  // Bridge header search buttons (explanation navigation removed)
   useEffect(() => {
     const onSubmit = (e) => setQuery((e.detail?.query || '').trim());
     const onPrev = () => handlePrev();
     const onNext = () => handleNext();
-    const onExPrev = () => navigateExplanation('prev');
-    const onExNext = () => navigateExplanation('next');
     if (typeof window !== 'undefined') {
       window.addEventListener('search-submit', onSubmit);
       window.addEventListener('search-prev', onPrev);
       window.addEventListener('search-next', onNext);
-      window.addEventListener('ex-prev', onExPrev);
-      window.addEventListener('ex-next', onExNext);
     }
     return () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('search-submit', onSubmit);
         window.removeEventListener('search-prev', onPrev);
         window.removeEventListener('search-next', onNext);
-        window.removeEventListener('ex-prev', onExPrev);
-        window.removeEventListener('ex-next', onExNext);
       }
     };
-  }, [totalMatches, currentIdx, allExplanations, currentExIdx]);
-
-  function navigateExplanation(direction) {
-    const n = allExplanations.length;
-    if (!n) return;
-    let idx = currentExIdx;
-    if (idx < 0) idx = 0;
-    idx = direction === 'prev' ? (idx - 1 + n) % n : (idx + 1) % n;
-    const ex = allExplanations[idx];
-    if (!ex || !ex.meta) return;
-    const { sectionIndex, start, end, byteOffset, text } = ex.meta;
-    setSelection({ sectionIndex, start, end });
-    const len = new TextEncoder().encode(text || '').length;
-    setHashForSelection(byteOffset, len);
-    setTimeout(() => scrollToSection(sectionIndex), 10);
-  }
+  }, [totalMatches, currentIdx]);
 
   function deleteExplanationById(id) {
     const next = { ...conversations };
@@ -936,6 +904,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Mini chat history per speech (keyed by startOffset)
   const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
   const [forceShow, setForceShow] = useState(false);
+  // When a note is expanded via "More", we replace the displayed text to avoid repetition
+  const [preNoteOverrides, setPreNoteOverrides] = useState({}); // key (startOffset) -> replaced content
 
   // No local perplexity normalizer needed now that placeholder is removed
 
@@ -981,133 +951,21 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     && !!currentForceVisible;
 
   const processSelection = () => {
-    const container = preRef.current;
-    if (!container) return;
-    const sel = window.getSelection && window.getSelection();
-    if (!sel || sel.rangeCount === 0) return;
-    const range = sel.getRangeAt(0);
-    if (!range) return;
-    // Case 1: selection fully within this section
-    if (container.contains(range.startContainer) && container.contains(range.endContainer)) {
-      const offsets = getOffsetsWithin(container, range);
-      if (!offsets) return;
-      let { start, end } = offsets;
-      if (start != null && end != null && end > start) {
-        onSelectRange({ start, end });
-      }
-      return;
-    }
-    // Case 2: selection spans multiple sections; anchor to the LAST section
-    if (container.contains(range.endContainer)) {
-      const r0 = document.createRange();
-      r0.selectNodeContents(container);
-      const beforeEnd = r0.cloneRange();
-      beforeEnd.setEnd(range.endContainer, range.endOffset);
-      const end = beforeEnd.toString().length;
-      if (end > 0) onSelectRange({ start: 0, end, fullText: sel.toString() });
-    }
+    // Disable LLM selection behavior; toggle note instead
+    try { window.getSelection()?.removeAllRanges?.(); } catch {}
+    suppressNextAutoExplain?.();
+    setForceShow((v) => !v);
   };
 
-  // Handle mouse up to detect user selection (click-drag) or single click (expand to sentence)
+  // Handle mouse up to simply toggle the note (no LLM selection)
   const handleMouseUp = (e) => {
-    const container = preRef.current;
-    if (!container) return;
-    const sel = window.getSelection();
-    if (!sel || sel.rangeCount === 0) return;
-    const range = sel.getRangeAt(0);
-    // Case 1: selection fully within this section
-    if (container.contains(range.startContainer) && container.contains(range.endContainer)) {
-      const offsets = getOffsetsWithin(container, range);
-      if (!offsets) return;
-      let { start, end } = offsets;
-      // Tap: collapsed selection -> expand to sentence
-      if (start === end && !(longPressRef.current || movedRef.current)) {
-        // If the caret is not on a text character (likely whitespace/gap), treat as a request
-        // to reveal the precomputed note instead of explaining.
-        let onChar = false;
-        try {
-          const node = range.startContainer;
-          if (node && node.nodeType === 3) { // text node
-            const s = node.textContent || '';
-            const ch = s[start] || '';
-            onChar = /\w/.test(ch);
-          }
-        } catch {}
-        if (!onChar) {
-          try { window.getSelection()?.removeAllRanges?.(); } catch {}
-          suppressNextAutoExplain?.();
-          setForceShow(true);
-          return;
-        }
-        const expanded = expandToSentence(text, start);
-        if (expanded) ({ start, end } = expanded);
-      }
-      if (start != null && end != null && end > start) {
-        onSelectRange({ start, end });
-      }
-      return;
-    }
-    // Case 2: selection spans multiple sections; anchor to the LAST section
-    if (container.contains(range.endContainer)) {
-      // Compute end offset inside this container; start at 0
-      const r0 = document.createRange();
-      r0.selectNodeContents(container);
-      const beforeEnd = r0.cloneRange();
-      beforeEnd.setEnd(range.endContainer, range.endOffset);
-      const end = beforeEnd.toString().length;
-      if (end > 0) {
-        onSelectRange({ start: 0, end, fullText: sel.toString() });
-      }
-    }
+    try { window.getSelection()?.removeAllRanges?.(); } catch {}
+    suppressNextAutoExplain?.();
+    setForceShow((v) => !v);
   };
 
-  // Selection handling: react to selectionchange and also finalize on touch/pointer end
-  useEffect(() => {
-    const onSelChange = () => {
-      selPendingRef.current = true;
-      // If a touch is active (user still dragging), don't process yet.
-      // Fallback only when there is no active touch (e.g., iOS context menu without touchend)
-      if (!touchActiveRef.current) {
-        clearTimeout(selDebounceRef.current);
-        selDebounceRef.current = setTimeout(() => {
-          if (selPendingRef.current && !touchActiveRef.current) {
-            selPendingRef.current = false;
-            processSelection();
-          }
-        }, 250);
-      }
-    };
-    const onFinalize = () => {
-      touchActiveRef.current = false;
-      if (!selPendingRef.current) return;
-      selPendingRef.current = false;
-      // small delay so browser settles selection bounds
-      clearTimeout(selDebounceRef.current);
-      setTimeout(processSelection, 30);
-    };
-    const onStart = (e) => {
-      // Only consider real touch interactions
-      if (e.pointerType && e.pointerType !== 'touch') return;
-      touchActiveRef.current = true;
-    };
-    document.addEventListener('selectionchange', onSelChange);
-    document.addEventListener('touchend', onFinalize);
-    document.addEventListener('touchcancel', onFinalize);
-    document.addEventListener('pointerup', onFinalize);
-    document.addEventListener('pointercancel', onFinalize);
-    document.addEventListener('touchstart', onStart, { passive: true });
-    document.addEventListener('pointerdown', onStart, { passive: true });
-    return () => {
-      document.removeEventListener('selectionchange', onSelChange);
-      document.removeEventListener('touchend', onFinalize);
-      document.removeEventListener('touchcancel', onFinalize);
-      document.removeEventListener('pointerup', onFinalize);
-      document.removeEventListener('pointercancel', onFinalize);
-      document.removeEventListener('touchstart', onStart);
-      document.removeEventListener('pointerdown', onStart);
-      clearTimeout(selDebounceRef.current);
-    };
-  }, []);
+  // Selection handling disabled for now
+  useEffect(() => { return () => { clearTimeout(selDebounceRef.current); }; }, []);
 
   // In-view observer using invisible anchors per speech start
   useEffect(() => {
@@ -1204,7 +1062,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             return <div key={`anch-${i}`} className="speechAnchor" data-idx={i} style={{ position: 'absolute', top: `${topPct}%`, left: 0, width: 1, height: 1, pointerEvents: 'none' }} />;
           });
         })()}
-        <pre ref={preRef} onMouseUp={handleMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={(e)=>{onTouchEnd(e); handleMouseUp(e);}} onPointerUp={handleMouseUp} style={{ cursor: canForceReveal ? 'pointer' : undefined }}>
+        <pre ref={preRef} onClick={handleMouseUp} style={{ cursor: 'pointer' }}>
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
       </div>
@@ -1213,6 +1071,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           className="explanations"
           aria-label="Explanations"
           ref={asideRef}
+          onClick={(e)=>{ if (e.target === e.currentTarget) setForceShow((v)=>!v); }}
         >
           {/* Aside is only rendered when it has content to show */}
           {selectedRange ? (
@@ -1266,16 +1125,73 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     setPreFollowLoading(false);
                   }
                 };
+                const requestLonger = async () => {
+                  const q = 'Please expand this into a longer explanation with more detail.';
+                  try {
+                    setPreFollowLoading(true);
+                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+                    const startC = bytesToCharOffset(text || '', startRelB);
+                    const endC = bytesToCharOffset(text || '', endRelB);
+                    const passage = (text || '').slice(startC, endC);
+                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+                    const res = await fetch('/api/explain', {
+                      method: 'POST', headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+                    const a = data?.content || '';
+                    const key = String(it.startOffset || 0);
+                    setPreFollowThreads((prev) => {
+                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+                      arr.push({ q: 'More detail', a });
+                      return { ...prev, [key]: arr };
+                    });
+                  } catch (e) {
+                    const key = String(it.startOffset || 0);
+                    setPreFollowThreads((prev) => {
+                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+                      arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}` });
+                      return { ...prev, [key]: arr };
+                    });
+                  } finally {
+                    setPreFollowLoading(false);
+                  }
+                };
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
-                    <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ suppressNextAutoExplain?.(); toggleFollow(); }} title="Ask a follow-up about this note">{it.content || ''}</div>
+                    {(() => { const key = String(it.startOffset || 0); const display = (preNoteOverrides[key] != null ? preNoteOverrides[key] : (it.content || '')); return (
+                      <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); suppressNextAutoExplain?.(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
+                    ); })()}
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {it.model ? `Model: ${it.model}` : ''}
                     </div>
                     {showPreFollow && (
                       <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                        <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>setPreFollowInput(e.target.value)} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
-                        <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={submitFollow}>Ask</button>
+                        <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
+                        <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
+                        <button type="button" disabled={preFollowLoading} onClick={(e)=>{ e.stopPropagation(); (async()=>{
+                          const q = 'Expand into a longer, more detailed explanation without repeating earlier sentences.';
+                          try {
+                            setPreFollowLoading(true);
+                            const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+                            const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+                            const startC = bytesToCharOffset(text || '', startRelB);
+                            const endC = bytesToCharOffset(text || '', endRelB);
+                            const passage = (text || '').slice(startC, endC);
+                            const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+                            const res = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q }) });
+                            const data = await res.json();
+                            if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+                            const a = data?.content || '';
+                            const key = String(it.startOffset || 0);
+                            setPreNoteOverrides((prev)=>({ ...prev, [key]: a }));
+                          } catch (e) {
+                            const key = String(it.startOffset || 0);
+                            setPreFollowThreads((prev) => { const arr = Array.isArray(prev[key]) ? prev[key].slice() : []; arr.push({ q: 'More', a: `Error: ${String(e.message || e)}` }); return { ...prev, [key]: arr }; });
+                          } finally { setPreFollowLoading(false); }
+                        })(); }} title="Get a longer response">More</button>
                       </div>
                     )}
                     {preFollowLoading && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
@@ -1571,7 +1487,7 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
         <span style={{ marginLeft: 'auto', color: '#6b5f53' }}>Provider/Model: {(options?.provider || 'openai')}/{options?.model || ''}</span>
         <button
           type="button"
-          onClick={() => { if (onDeleteCurrent && confirm('Delete this explanation?')) onDeleteCurrent(); }}
+          onClick={() => { if (onDeleteCurrent) onDeleteCurrent(); }}
           title="Delete this explanation"
         >
           Delete
