@@ -12,10 +12,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 110550,
+    "endOffset": 110600,
+    "content": "Capulet is instructing someone to invite exactly as many guests as are written on a list. 'Writ' means written down. He wants the guest list followed precisely without adding or removing anyone.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "SECOND SERVANT",
     "startOffset": 110668,
     "endOffset": 110762,
     "content": "The servant assures Capulet that none of the cooks are dishonest, promising to test them by seeing if they taste the food with their fingers. This is a practical check for greed or poor hygiene among the kitchen staff. His comment adds a moment of mundane, everyday detail that contrasts with the high-stakes secret plans unfolding around Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 110668,
+    "endOffset": 110762,
+    "content": "The servant humorously promises to only invite good guests by testing if they have proper table manners (licking fingers was considered crude). He means he'll ensure all guests are respectable people.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 110762,
+    "endOffset": 110942,
+    "content": "Capulet questions the servant's method of testing cooks. The servant explains using a proverb: a bad cook wouldn't lick his own fingers (taste his food), so he won't hire anyone who doesn't taste their cooking. 'Marry' is an mild oath (like 'indeed'), and 'goes not with me' means 'won't be hired by me'.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "SECOND SERVANT",
     "startOffset": 110800,
     "endOffset": 110942,
     "content": "This servant uses a proverb to say that a cook who won't taste his own food is a bad one. He applies this logic to hiring, stating he won't keep anyone who isn't willing to enjoy their own work, meaning he wants servants who are as self-indulgent as he is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 110800,
+    "endOffset": 110942,
+    "content": "This is a proverbial expression meaning a bad cook won't taste their own cooking; the servant is saying he won't hire any cook who doesn't taste their own food (implying they wouldn't know if it's good). 'Marry' is a mild oath (like 'indeed'), and 'ill' means bad.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 110942,
+    "endOffset": 110964,
+    "content": "Capulet abruptly dismisses the servant with a curt command to leave immediately, showing his impatience and authoritative nature.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "NURSE",
     "startOffset": 111083,
     "endOffset": 111105,
     "content": "The Nurse is politely agreeing with Juliet, using \"forsooth\" to mean \"indeed\" or \"truly.\" Her simple, respectful reply shows she is following Juliet's instructions without question, maintaining the appearance of normalcy as they prepare for the wedding that Juliet intends to avoid.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 111083,
+    "endOffset": 111105,
+    "content": "The Nurse simply agrees with Capulet's command; 'forsooth' means 'indeed' or 'truly'. She is saying 'Yes, indeed' to show her compliance.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 111105,
+    "endOffset": 111199,
+    "content": "Capulet believes Paris might improve Juliet's disposition. He calls her a stubborn, willful girl (harlotry here means a mischievous or troublesome woman, not a prostitute).",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "NURSE",
     "startOffset": 111215,
     "endOffset": 111272,
     "content": "The Nurse is telling the Capulets that Juliet is returning from confession looking cheerful. She believes this means Juliet has agreed to marry Paris, which is a ruse; Juliet is actually pretending to be obedient after secretly planning her fake death with Friar Laurence.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 111215,
+    "endOffset": 111272,
+    "content": "The Nurse observes Juliet returning from confession (shrift) looking happy. 'Shrift' means confession to a priest, and 'merry' means cheerful. She's noting Juliet appears content after supposedly making her confession.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 111272,
+    "endOffset": 111335,
+    "content": "Capulet addresses Juliet with the affectionate but controlling term 'my headstrong' (stubborn one) and asks where she has been wandering idly ('gadding'). He is responding to the Nurse's observation that Juliet appears cheerful after confession.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "JULIET",
     "startOffset": 111335,
     "endOffset": 111577,
     "content": "Juliet is pretending to apologize to her parents for refusing to marry Paris. She claims Friar Lawrence has instructed her to beg forgiveness and promises complete obedience going forward. This is a calculated performance to make her family believe she has surrendered, ensuring they won't suspect her plan to fake her death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 111335,
+    "endOffset": 111577,
+    "content": "Juliet claims she has learned to regret disobeying her father's commands. She says Friar Lawrence instructed her to kneel and ask forgiveness, promising to always obey Capulet from now on. (This is deception—she's actually following the friar's plan to fake her death.)",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 111577,
+    "endOffset": 111677,
+    "content": "Capulet orders someone to fetch Paris (the County) and inform him of Juliet's change of heart. He declares his intention to have the marriage finalized ('this knot knit up') the next morning.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "JULIET",
     "startOffset": 111677,
     "endOffset": 111814,
     "content": "Julet tells her father she met Paris at Friar Laurence's cell and behaved appropriately toward him, showing the modesty expected of a young woman. She is lying to convince Capulet she is now obedient and willing to marry Paris, ensuring her plan to fake her death can proceed without suspicion.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 111677,
+    "endOffset": 111814,
+    "content": "Juliet tells her father she met Paris at Friar Lawrence's room and showed him appropriate affection within proper limits of behavior. 'Becomed' means suitable or proper, and 'not stepping o'er the bounds of modesty' means she didn't act improperly. She's lying to make her family believe she's willing to marry Paris.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 111814,
+    "endOffset": 112046,
+    "content": "Capulet expresses approval of Juliet's supposed reconciliation with Paris. 'On't' means 'of it,' 'County' refers to Count Paris, 'marry' is an archaic interjection (like 'indeed'), and 'afore God' is an oath. He praises Friar Lawrence, saying the entire city is indebted ('bound') to him. Paraphrase: I'm glad about this. Everything is as it should be. Bring Paris here. By God, our whole city owes thanks to this holy friar.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "JULIET",
     "startOffset": 112046,
     "endOffset": 112178,
     "content": "Juliet asks the Nurse to help her choose clothes and accessories for her wedding to Paris the next day. She uses the word \"closet\" to mean a private room, and \"ornaments\" refers to her wedding attire. This is a ruse—Juliet is actually preparing to take the Friar's potion and feign death, not to get married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 112046,
+    "endOffset": 112178,
+    "content": "Juliet asks her nurse to accompany her to her bedroom to select appropriate clothing and accessories for her supposed wedding the next day. 'Closet' means private room or bedroom; 'sort such needful ornaments' means choose necessary decorative items like jewelry and fine clothes; 'furnish me' means provide or outfit her properly.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "LADY CAPULET",
+    "startOffset": 112178,
+    "endOffset": 112238,
+    "content": "Lady Capulet corrects Juliet's assumption about the wedding timing, stating it won't happen until Thursday and there's plenty of time to prepare. This creates dramatic irony since the audience knows Juliet has already taken the potion to avoid this marriage.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "CAPULET",
     "startOffset": 112238,
     "endOffset": 112300,
     "content": "Capulet is instructing the Nurse to accompany Juliet as she leaves to prepare for her wedding. He then announces that the ceremony will take place the very next day, showing his eagerness to proceed with the marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 112238,
+    "endOffset": 112300,
+    "content": "Capulet abruptly changes the wedding date from Thursday to tomorrow (Wednesday), showing his impulsive nature and disregard for Juliet's feelings. He orders the Nurse to accompany Juliet, indicating he expects obedience.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,10 +348,32 @@
   {
     "act": "IV",
     "scene": "II",
+    "speaker": "LADY CAPULET",
+    "startOffset": 112331,
+    "endOffset": 112405,
+    "content": "Lady Capulet worries they don't have enough food and supplies for the wedding feast, noting it's almost nighttime.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
     "speaker": "CAPULET",
     "startOffset": 112405,
     "endOffset": 112802,
     "content": "Capulet is reassuring his wife that he will take charge of the wedding preparations himself. He says he will stay up to oversee things and will personally visit Paris to finalize plans for the next day. His final line reveals he is overjoyed because he believes Juliet has obediently agreed to marry Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 112405,
+    "endOffset": 112802,
+    "content": "Capulet dismisses his wife's concerns about wedding preparations, saying he'll handle everything. He tells her to help Juliet get ready while he stays up all night organizing things. He'll personally visit Paris to prepare him for tomorrow's wedding, feeling relieved that Juliet has stopped resisting the marriage.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

@@ -44,6 +44,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
+  // we normalize to 0–100 via a log scale.
+  const [noteThreshold, setNoteThreshold] = useState(0);
   const suppressAutoExplainRef = useRef(false);
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
@@ -431,6 +434,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     try {
       const opt = localStorage.getItem('llmOptions');
       if (opt) setLlmOptions(JSON.parse(opt));
+      const nt = localStorage.getItem('noteThreshold');
+      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 0);
     } catch {}
     setOptsHydrated(true);
   }, []);
@@ -442,6 +447,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     if (!optsHydrated) return;
     try { localStorage.setItem('llmOptions', JSON.stringify(llmOptions)); } catch {}
   }, [optsHydrated, llmOptions]);
+  useEffect(() => {
+    try { localStorage.setItem('noteThreshold', String(noteThreshold || 0)); } catch {}
+  }, [noteThreshold]);
+
+  // Normalize perplexity for filtering (supports both 0–100 and raw LM PPL)
+  function normalizedPerplexity(it) {
+    let p = Number(it?.perplexity ?? it?.confusion ?? 0);
+    if (!Number.isFinite(p) || p < 0) p = 0;
+    const model = String(it?.perplexityModel || '').toLowerCase();
+    // If already in 0–100 (from LLM), just clamp
+    if (p <= 100 && model !== 'gpt2') return Math.max(0, Math.min(100, p));
+    // For true LM PPL (often > 100), map to 0–100 using log10 scale
+    // 10 -> 25, 100 -> 50, 1000 -> 75, 10000 -> 100
+    const val = Math.log10(Math.max(1, p));
+    return Math.max(0, Math.min(100, Math.round(25 * val)));
+  }
 
   const selectionId = useMemo(() => {
     if (!selectionContext) return null;
@@ -693,7 +714,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             text={section}
             query={query}
             matchRefs={matchRefs}
-            precomputedItems={preBySection.get(idx) || []}
+            precomputedItems={(preBySection.get(idx) || []).filter((it) => { const score = normalizedPerplexity(it); return !noteThreshold || score >= noteThreshold; })}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => setSelection(range ? { sectionIndex: idx, ...range } : null)}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
@@ -868,6 +889,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               <label>Age
                 <input type="number" min="10" max="100" value={llmOptions.age || ''} onChange={(e) => setLlmOptions({ ...llmOptions, age: e.target.value })} style={{ marginLeft: 6, width: 72 }} />
               </label>
+              {/* Notes density slider */}
+              <div style={{ width: '100%', marginTop: 8 }}>
+                <label style={{ display: 'block', marginBottom: 4 }}>Notes density (min perplexity): <b>{noteThreshold}</b></label>
+                <input type="range" min="0" max="100" value={noteThreshold} onChange={(e)=>setNoteThreshold(parseInt(e.target.value,10)||0)} style={{ width: '100%' }} />
+                <div style={{ display:'flex', gap:8, marginTop:6 }}>
+                  <button type="button" onClick={()=>setNoteThreshold(0)}>All</button>
+                  <button type="button" onClick={()=>setNoteThreshold(50)}>50</button>
+                  <button type="button" onClick={()=>setNoteThreshold(70)}>70</button>
+                  <button type="button" onClick={()=>setNoteThreshold(85)}>85</button>
+                </div>
+              </div>
             </div>
             <div style={{ marginTop: '0.75rem', textAlign: 'right' }}>
               <button type="button" onClick={() => setShowSettings(false)}>Close</button>
@@ -891,8 +923,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const [autoIdx, setAutoIdx] = useState(0);
   const [showPreFollow, setShowPreFollow] = useState(false);
   const [preFollowInput, setPreFollowInput] = useState('');
-  const [preFollowAnswer, setPreFollowAnswer] = useState(null);
   const [preFollowLoading, setPreFollowLoading] = useState(false);
+  // Mini chat history per speech (keyed by startOffset)
+  const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
 
   const processSelection = () => {
     const container = preRef.current;
@@ -1135,10 +1168,21 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     });
                     const data = await res.json();
                     if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                    setPreFollowAnswer(data?.content || '');
+                    const a = data?.content || '';
+                    const key = String(it.startOffset || 0);
+                    setPreFollowThreads((prev) => {
+                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+                      arr.push({ q, a });
+                      return { ...prev, [key]: arr };
+                    });
                     setPreFollowInput('');
                   } catch (e) {
-                    setPreFollowAnswer(`Error: ${String(e.message || e)}`);
+                    const key = String(it.startOffset || 0);
+                    setPreFollowThreads((prev) => {
+                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+                      arr.push({ q, a: `Error: ${String(e.message || e)}` });
+                      return { ...prev, [key]: arr };
+                    });
                   } finally {
                     setPreFollowLoading(false);
                   }
@@ -1156,12 +1200,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       </div>
                     )}
                     {preFollowLoading && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
-                    {preFollowAnswer && (
-                      <div style={{ marginTop: '0.5rem' }}>
-                        <div style={{ fontWeight:600, marginBottom:'0.25rem' }}>Follow‑up</div>
-                        <div style={{ whiteSpace: 'pre-wrap' }}>{preFollowAnswer}</div>
-                      </div>
-                    )}
+                    {(() => {
+                      const thread = preFollowThreads[String(it.startOffset || 0)] || [];
+                      if (!thread.length) return null;
+                      return (
+                        <div style={{ marginTop: '0.5rem' }}>
+                          {thread.map((m, idx) => (
+                            <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
+                              <div style={{ color:'#6b5f53', fontStyle:'italic' }}>You: {m.q}</div>
+                              <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })()}
                   </div>
                 );
               })()}

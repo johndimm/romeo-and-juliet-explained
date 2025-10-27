@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const out = { act: 'I', scene: 'I', out: null, rate: 600, model: 'deepseek-chat', concurrency: 2 };
+  const out = { act: 'I', scene: 'I', out: null, rate: 600, model: 'deepseek-chat', concurrency: 2, maxChars: 1800, prevMax: 400 };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === '--act' && args[i + 1]) { out.act = args[++i]; continue; }
@@ -28,6 +28,8 @@ function parseArgs() {
     if (a === '--model' && args[i + 1]) { out.model = args[++i]; continue; }
     if (a === '--rate' && args[i + 1]) { out.rate = parseInt(args[++i], 10) || out.rate; continue; }
     if (a === '--concurrency' && args[i + 1]) { out.concurrency = parseInt(args[++i], 10) || out.concurrency; continue; }
+    if (a === '--maxChars' && args[i + 1]) { out.maxChars = parseInt(args[++i], 10) || out.maxChars; continue; }
+    if (a === '--prevMax' && args[i + 1]) { out.prevMax = parseInt(args[++i], 10) || out.prevMax; continue; }
   }
   if (!out.out) out.out = path.join(process.cwd(), `data/explanations_act${out.act}_scene${out.scene}.json`);
   return out;
@@ -83,23 +85,43 @@ function sliceTextByOffsets(sectionsWithOffsets, start, end) {
   return parts.join('');
 }
 
+function splitIntoChunks(text, maxChars) {
+  if ((text || '').length <= maxChars) return [text];
+  const chunks = [];
+  let start = 0;
+  while (start < text.length) {
+    let end = Math.min(text.length, start + maxChars);
+    // try to cut at sentence boundary
+    const slice = text.slice(start, end);
+    let cut = slice.lastIndexOf('.')
+    if (cut < maxChars * 0.6) cut = slice.lastIndexOf('\n');
+    if (cut < maxChars * 0.6) cut = slice.lastIndexOf(' ');
+    if (cut <= 0) cut = slice.length;
+    chunks.push(text.slice(start, start + cut));
+    start = start + cut;
+    // skip leading spaces/newlines
+    while (start < text.length && /\s/.test(text[start])) start++;
+  }
+  return chunks;
+}
+
 function buildSystemPrompt() {
   return [
     'You are a helpful literature tutor who explains Romeo and Juliet clearly and accurately.',
     'Audience: high school level; Language: English.',
-    'Write the explanation directly: no prefaces like "In this quote". Do not repeat the quote and do not restate Act/Scene/Speaker.',
-    'Avoid boilerplate ("pivotal", "foreshadows") unless these lines themselves justify it; be concrete.',
-    'Clarify any archaic words/idioms or tricky syntax very briefly, then give a precise paraphrase.',
-    'Assume adjacent speeches/paragraphs may also have notes: do not repeat the same scene-level theme/plot point in every note; focus on what is new or specific to these exact lines and keep it short if it continues an already-explained idea.',
+    'Return ONLY compact JSON: {"explanation": "...", "perplexity": <0-100>}.',
+    'Explanation: direct (no "In this quote"), do not repeat the quote; briefly clarify archaic words or tricky syntax, then a concise paraphrase; avoid repeating scene-level themes already likely covered in adjacent notes; focus on what is new in these lines.',
+    'Perplexity: difficulty 0–100 for a typical HS reader based on archaic vocabulary density, syntactic complexity, compressed metaphors/allusions, and needed cultural context.',
   ].join('\n');
 }
 
-function buildUserPrompt({ act, scene, speaker, text }) {
+function buildUserPrompt({ act, scene, speaker, text, prevText }) {
   return [
     `Act ${act}, Scene ${scene}. Speaker: ${speaker || 'Unknown'}.`,
-    'Explain the following speech concisely (2–3 sentences if straightforward).',
-    'Text:',
+    prevText ? ('Previous speech (context):\n' + prevText) : '',
+    'Speech text:',
     text,
+    'Respond with JSON only.'
   ].join('\n');
 }
 
@@ -135,11 +157,29 @@ async function main() {
   console.log(`Output: ${out}`);
 
   const system = buildSystemPrompt();
-  const tasks = speeches.map((sp) => async () => {
+  const tasks = speeches.map((sp, idx) => async () => {
     const text = sliceTextByOffsets(sectionsWithOffsets, sp.startOffset, sp.endOffset).trim();
-    const user = buildUserPrompt({ act, scene, speaker: sp.speaker, text });
-    const content = await deepseekExplain({ model, apiKey, system, user });
-    return { act, scene, speaker: sp.speaker, startOffset: sp.startOffset, endOffset: sp.endOffset, content, provider: 'deepseek', model };
+    // Include previous speech (context) when available, truncated to keep prompt reasonable
+    let prevText = '';
+    if (idx > 0) {
+      const prev = speeches[idx - 1];
+      const rawPrev = sliceTextByOffsets(sectionsWithOffsets, prev.startOffset, prev.endOffset).trim();
+      prevText = rawPrev.length > prevMax ? rawPrev.slice(0, prevMax - 20) + '…' : rawPrev;
+    }
+    // Chunk long speeches and merge
+    const pieces = splitIntoChunks(text, maxChars);
+    let merged = '';
+    let maxP = 0;
+    for (let ci = 0; ci < pieces.length; ci++) {
+      const t = pieces[ci];
+      const user = buildUserPrompt({ act, scene, speaker: sp.speaker, text: t, prevText: ci === 0 ? prevText : '' });
+      const content = await deepseekExplain({ model, apiKey, system, user });
+      let explanation = content; let perplexity = 0;
+      try { const m = content.match(/\{[\s\S]*\}/); const j = JSON.parse(m ? m[0] : content); explanation = (j.explanation || '').toString().trim() || explanation; const s = parseInt(j.perplexity, 10); if (Number.isFinite(s)) perplexity = Math.max(0, Math.min(100, s)); } catch {}
+      merged += (ci ? '\n\n' : '') + explanation;
+      if (perplexity > maxP) maxP = perplexity;
+    }
+    return { act, scene, speaker: sp.speaker, startOffset: sp.startOffset, endOffset: sp.endOffset, content: merged, perplexity: maxP, provider: 'deepseek', model };
   });
 
   // Concurrency + rate limiter

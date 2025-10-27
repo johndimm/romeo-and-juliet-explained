@@ -12,10 +12,32 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 36787,
+    "endOffset": 36934,
+    "content": "Romeo questions how he can leave when his emotional focus (Juliet) remains at the Capulet house. 'Dull earth' refers to his body, which he commands to return to its 'centre' - Juliet, who represents his gravitational pull and emotional core. The physical action reinforces his determination to reunite with her despite the danger.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 36965,
     "endOffset": 37007,
     "content": "Benvolio is calling out for Romeo, who has just slipped away from his friends after the Capulet feast. He is concerned about Romeo's whereabouts and well-being, trying to locate him in the dark. This highlights Romeo's sudden isolation as he is now solely focused on his new love for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 36965,
+    "endOffset": 37007,
+    "content": "Benvolio is calling out repeatedly for Romeo, showing concern and trying to locate him after Romeo climbed over the wall. The repetition emphasizes his urgency and confusion about Romeo's sudden disappearance.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37007,
+    "endOffset": 37076,
+    "content": "Mercutio sarcastically suggests Romeo has sensibly gone home to bed, using 'wise' ironically since Romeo is actually risking danger for love. 'Stol'n him home' means sneaked away home secretly.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 37076,
     "endOffset": 37157,
     "content": "Benvolio is telling Mercutio that Romeo has escaped them by climbing over the wall of a private garden. He suggests Mercutio call out for him, hoping to lure Romeo back without having to follow him into the private property.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37076,
+    "endOffset": 37157,
+    "content": "Benvolio corrects Mercutio's assumption that Romeo went home to bed, stating he actually ran in this direction and jumped over this orchard wall. 'Orchard' means fruit garden or walled garden. Benvolio suggests Mercutio should call out for him.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37157,
+    "endOffset": 37843,
+    "content": "Mercutio mocks Romeo's lovesickness by pretending to summon him with a magical incantation. He calls out exaggerated romantic terms ('Humours', 'Passion', 'Lover') and demands Romeo appear as a lovesick sigh. He references Venus (goddess of love) and her 'purblind' (half-blind) son Cupid, joking that Cupid's nickname is 'Young Abraham' and alluding to the ballad of King Cophetua who fell for a beggar-maid. When Romeo doesn't respond, Mercutio sarcastically claims he's dead and tries another 'conjuration' - this time swearing by Rosaline's physical features (eyes, forehead, lip, foot, leg, thigh) and 'demesnes' (adjacent territories, implying her private areas). Paraphrase: I'll try magic too! Romeo, lovesick fool! Appear as a sigh, say something romantic, call out to Cupid - that blind archer who made King Cophetua love a beggar. He's not moving, he's dead! I summon you by Rosaline's beautiful body parts to appear before us.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 37843,
     "endOffset": 37895,
     "content": "Benvolio warns Mercutio that Romeo is nearby and will be upset by his mocking words. He cautions that Romeo, likely hiding in the darkness, will take offense to the jokes being made at his expense.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37843,
+    "endOffset": 37895,
+    "content": "Benvolio warns Mercutio that if Romeo hears him, he will become angry. 'An if' means 'if' in modern English. Benvolio is cautioning against Mercutio's mocking tone about Romeo's lovesick state.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37895,
+    "endOffset": 38209,
+    "content": "Mercutio says his teasing won't anger Romeo. He jokes that it would only anger Romeo if he were to conjure a supernatural spirit in Rosaline's intimate area ('circle' meaning female genitalia), letting it remain there until she had sex with it ('laid it') and then banished it - that would be truly malicious ('spite'). By contrast, Mercutio claims his calling ('invocation') is honorable and he's only trying to summon Romeo himself using Rosaline's name.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 38209,
     "endOffset": 38350,
     "content": "Benvolio suggests Romeo has hidden among the trees to keep company with the moody, damp night. He means Romeo's infatuation is irrational—\"blind\"—and therefore suited to darkness, where reason doesn't apply.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 38209,
+    "endOffset": 38350,
+    "content": "Benvolio suggests Romeo has hidden among the trees to join the moody night. 'Consorted with' means 'joined with' or 'accompanied by'; 'humorous' here refers to the night's changeable mood or temperament. He adds that Romeo's love is blind (unseeing or irrational) and better suited to darkness. Paraphrase: Romeo has hidden in the trees to be with the gloomy night; his irrational love fits the dark.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 38350,
+    "endOffset": 38719,
+    "content": "Mercutio mocks Romeo's lovesick state with sexual puns. 'Medlar' fruit was slang for female genitalia because it looks like an open vulva when ripe; 'open-arse' reinforces this crude image. 'Poperin pear' (from Poperinghe, Belgium) resembles male genitalia. 'Truckle-bed' is a small bed on wheels; 'field-bed' means sleeping outdoors. Mercutio suggests Romeo fantasizes about sexual intimacy with Juliet.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 38719,
     "endOffset": 38803,
     "content": "Benvolio is telling Mercutio to give up searching for Romeo, who has climbed over the orchard wall. He means that it's pointless to look for someone who is deliberately hiding and doesn't want to be found.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 38719,
+    "endOffset": 38803,
+    "content": "Benvolio agrees they should leave because it's pointless to keep searching for Romeo when he clearly doesn't want to be found. 'Means not' means 'does not intend to'.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

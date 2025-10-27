@@ -12,10 +12,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 23777,
+    "endOffset": 23866,
+    "content": "Romeo questions whether they should offer an explanation for their uninvited presence at the Capulet feast or simply proceed without justification. 'Spoke' means 'spoken' and 'on' means 'proceed forward'.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 23866,
     "endOffset": 24212,
     "content": "Benvolio dismisses the outdated, overly elaborate custom of masked ball attendees performing a rehearsed, theatrical entrance. He insists their group will skip such a showy preamble and instead go straight to dancing. His plan is to let others judge them as they wish, while they simply dance a measure and then leave.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 23866,
+    "endOffset": 24212,
+    "content": "Benvolio dismisses elaborate formal introductions as outdated. He rejects having someone disguised as Cupid (blindfolded with a scarf) carrying a cheap painted bow, frightening ladies like a scarecrow. He also refuses a memorized prologue delivered weakly. Instead, he suggests they let others judge them however they want, while they'll dance one dance and leave. 'Prolixity' means wordiness; 'hoodwink'd' means blindfolded; 'crow-keeper' means scarecrow; 'without-book' means memorized; 'measure them a measure' means dance a dance with them.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24212,
+    "endOffset": 24303,
+    "content": "Romeo asks for a torch instead of participating in the dancing. He plays on the double meaning of 'heavy' (both physically carrying something and emotionally sad) and 'light' (both illumination and carefree mood) - saying his sadness makes him unsuitable for festive dancing but he can carry the torch.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 24303,
     "endOffset": 24357,
     "content": "Mercutio is urging his friend Romeo to join the dancing and shake off his melancholy mood. He playfully insists that Romeo stop being a wallflower and participate in the festivities.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 24303,
+    "endOffset": 24357,
+    "content": "Mercutio insists that Romeo should join the dancing despite his reluctance. 'Nay' means 'no' or 'indeed not' - he's contradicting Romeo's refusal. 'Gentle' here means 'noble' or 'good' Romeo, showing friendly persuasion.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24357,
+    "endOffset": 24491,
+    "content": "Romeo uses wordplay contrasting 'soles' (shoe bottoms) with 'soul' (spirit). He says his friends have light dancing shoes while his own spirit feels heavy like lead, weighing him down so he can't dance. This expresses his emotional heaviness from lovesickness.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 24491,
     "endOffset": 24584,
     "content": "Mercutio is teasing Romeo for being a lovesick romantic, suggesting he should use the power of love to rise above ordinary limits. \"Borrow Cupid’s wings\" means to take on the god of love’s ability to fly, and \"soar... above a common bound\" is a challenge to exceed normal social or emotional constraints.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 24491,
+    "endOffset": 24584,
+    "content": "Mercutio tells Romeo that as a lover, he should use Cupid's wings to rise above ordinary limits. 'Borrow Cupid's wings' means take on the power of love; 'soar' suggests rising emotionally; 'common bound' refers to normal limitations. Paraphrase: Since you're in love, let that passion lift you beyond normal constraints.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24584,
+    "endOffset": 24756,
+    "content": "Romeo says he's too deeply wounded by Cupid's arrow to fly lightly like other lovers. He feels weighed down by love's pain rather than uplifted, unable to rise above his sadness. 'Sore enpierced' means painfully pierced; 'bound a pitch' means leap to a height; 'dull woe' refers to his heavy sadness.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 24756,
     "endOffset": 24852,
     "content": "Mercutio warns Romeo that taking love too seriously will only weigh it down and crush it. He personifies love as a delicate, fragile thing that cannot withstand such heavy pressure. This continues his earlier mockery of Romeo's intense, romantic melancholy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 24756,
+    "endOffset": 24852,
+    "content": "Mercutio plays on Romeo's metaphor of sinking under love's burden by reversing it: if you sink under love, you're actually burdening love itself. He suggests this is too much weight for something delicate like love to bear. Paraphrase: If you let love overwhelm you, you're actually crushing love itself, which is too heavy a load for something so fragile.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24852,
+    "endOffset": 24953,
+    "content": "Romeo questions whether love is gentle, then contradicts this by describing it as harsh, violent, and painful like being pricked by a thorn. This contrasts with the common romantic ideal of love.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 24953,
     "endOffset": 25239,
     "content": "Mercutio is advising Romeo to fight back against the pain of love rather than be defeated by it. He then shifts to putting on his mask, joking that his own face is so ugly it's like a mask already. He declares he doesn't care if people stare at his \"deformities,\" as the mask's bushy eyebrows will hide any embarrassment for him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 24953,
+    "endOffset": 25239,
+    "content": "Mercutio advises Romeo to fight back against love's pain rather than submit to it. He then shifts focus to the masquerade, requesting a mask ('case' or 'visor') to hide his face. He jokes that he doesn't care if people notice his mask's flaws ('quote deformities'), as the mask's exaggerated eyebrows ('beetle-brows') will express embarrassment for him. Paraphrase: Fight love with its own weapons; I'll wear this mask so its comical eyebrows can blush instead of me.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 25239,
+    "endOffset": 25328,
+    "content": "Benvolio tells the group to knock on the door and enter the party, and once inside, everyone should immediately start dancing. 'Betake him to his legs' means to begin dancing or moving rhythmically.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 25328,
     "endOffset": 25557,
     "content": "Romeo asks for a torch, saying he will hold the light while others, who are carefree and playful, dance. He is quoting an old saying to explain that he will just watch from the sidelines, because he feels the \"game\"—the party and its possibilities—is no longer appealing to him in his current lovesick state.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 25328,
+    "endOffset": 25557,
+    "content": "Romeo refuses to dance, saying others who are carefree can dance on the floor rushes while he'll just hold a torch and watch. He references an old saying ('proverb'd with a grandsire phrase') about being a spectator ('candle-holder'). He means the party looks appealing but he's not participating because he's emotionally finished ('done') - still depressed about Rosaline.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 25557,
+    "endOffset": 25764,
+    "content": "Mercutio dismisses Romeo's melancholy with playful wordplay. 'Dun's the mouse' means 'be quiet' (like a mouse in hiding). He jokes that if Romeo is stuck ('dun' also means a dull brown horse), they'll pull him from the mud of his lovesick misery. 'Save your reverence' is a polite apology for mentioning something crude. 'Burn daylight' means they're wasting time. Paraphrase: Stop moping about love—we're wasting time standing here.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 25764,
     "endOffset": 25794,
     "content": "Romeo is correcting Mercutio's earlier claim that dreams are meaningless. He insists that dreams can hold truth and significance, setting up his own sense of foreboding about the party. This shows his more serious, fatalistic nature in contrast to Mercutio's playful cynicism.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 25764,
+    "endOffset": 25794,
+    "content": "Romeo briefly contradicts Mercutio's claim that they are 'burning daylight' (wasting time). He's rejecting Mercutio's assertion that their delay is pointless.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 25794,
+    "endOffset": 25967,
+    "content": "Mercutio says delaying wastes our torches needlessly, like lighting lamps during daytime. He urges Romeo to understand his true meaning rather than literal words, claiming his deeper judgment is five times wiser than his ordinary senses.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 25967,
     "endOffset": 26040,
     "content": "Romeo is telling his friends that although their intentions in attending the Capulet party are good, it is still unwise to go. He is expressing his own sense of foreboding, as he feels this night will somehow set in motion a chain of tragic events that will end with his own death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 25967,
+    "endOffset": 26040,
+    "content": "Romeo acknowledges their good intentions in attending the masquerade ball but expresses doubt about the wisdom of going. 'Mean well' = have good intentions; 'no wit' = unwise/foolish. He's conflicted between social obligation and his premonition about the evening's events.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,10 +348,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 26040,
+    "endOffset": 26069,
+    "content": "Mercutio is asking Romeo to explain his reasoning, essentially saying 'Why do you say that? Please tell me.' The phrase 'may one ask' is a polite but slightly sarcastic way of requesting an explanation for Romeo's contradictory statement about their masked ball plans.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 26069,
     "endOffset": 26103,
     "content": "Romeo is telling his friends that he had a dream last night. He is feeling a sense of foreboding, as he believes this dream hints at some tragic future event that will begin at the party they are about to attend.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 26069,
+    "endOffset": 26103,
+    "content": "Romeo states he had a dream earlier that night. 'Tonight' in Shakespearean English means 'last night' or 'during the previous night.' This simple statement sets up Mercutio's famous Queen Mab speech that follows.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -192,10 +390,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 26103,
+    "endOffset": 26128,
+    "content": "Mercutio is simply agreeing with Romeo that he also had a dream, setting up his famous Queen Mab speech that follows. This brief response shows Mercutio's quick-witted nature and establishes the conversational flow.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 26128,
     "endOffset": 26157,
     "content": "Romeo is asking Mercutio to explain the dream he just mentioned. This question shifts the focus from Romeo's own ominous feelings to Mercutio's more fanciful imagination, setting up Mercutio's famous \"Queen Mab\" speech.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 26128,
+    "endOffset": 26157,
+    "content": "Romeo is asking Mercutio to share what dream he had, continuing their conversation about dreams from the previous lines.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -212,10 +432,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 26157,
+    "endOffset": 26193,
+    "content": "Mercutio makes a pun on 'lie' meaning both 'tell falsehoods' and 'recline in sleep' - suggesting dreamers' visions are unreliable fantasies. He's dismissing Romeo's belief in dreams as prophetic.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 26193,
     "endOffset": 26249,
     "content": "Romeo is describing how dreams can feel vividly real while one is asleep. He contrasts this with the deceptive nature of reality, suggesting that dreams can sometimes reveal truths that waking life obscures. This reflects his own troubled state of mind and foreshadows the tragic events that will unfold.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 26193,
+    "endOffset": 26249,
+    "content": "Romeo counters Mercutio's claim that dreams are false by asserting that people actually experience truthful visions while dreaming in their sleep. 'Lie' here means 'tell falsehoods' and 'dream things true' means experience genuine visions in dreams.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -232,10 +474,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 26249,
+    "endOffset": 28168,
+    "content": "Mercutio describes Queen Mab, a tiny fairy who delivers dreams to sleeping people. Her miniature chariot and accessories are made from natural elements like spider legs and hazelnuts. She causes different dreams based on the person: lovers dream of romance, courtiers of etiquette, lawyers of fees, ladies of kisses (but Mab punishes those with bad breath with blisters), soldiers of battle, and parsons of church income. Mab also tangles horse manes and matures young women. Mercutio mocks Romeo's belief in dream omens by attributing dreams to this mischievous fairy.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 28168,
     "endOffset": 28234,
     "content": "Romeo is trying to calm his friend Mercutio, who has been delivering a long, fanciful speech about Queen Mab. He tells Mercutio to be quiet, dismissing his wild talk as meaningless. This shows Romeo's more serious and melancholy mood, contrasting with Mercutio's playful energy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 28168,
+    "endOffset": 28234,
+    "content": "Romeo interrupts Mercutio's fanciful Queen Mab speech, dismissing it as meaningless chatter. 'Talk'st of nothing' means Mercutio is speaking nonsense or empty words. Romeo wants to end this digression and return to serious matters.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -252,10 +516,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 28234,
+    "endOffset": 28561,
+    "content": "Mercutio agrees he's talking about dreams, then dismisses them as meaningless products of an inactive mind, created only by empty imagination. He compares dreams to air in having little substance and to the wind in being changeable—first flirting with the cold north, then angrily turning toward the moist south when provoked. Paraphrase: Dreams are just pointless fantasies with no reality, as fleeting and fickle as the wind changing direction.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 28561,
     "endOffset": 28663,
     "content": "Benvolio is telling Romeo that their friends' urging to go to the party is distracting them from their original purpose. He then shifts to a practical concern, worrying that they will miss the festivities if they don't hurry.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 28561,
+    "endOffset": 28663,
+    "content": "Benvolio shifts from Mercutio's poetic speech about dreams to practical concerns. He suggests Mercutio's talk of wind is distracting them from their purpose. 'Blows us from ourselves' means it's making them forget their goal. He reminds everyone they've finished supper and need to hurry to avoid being late for the Capulet party.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -272,10 +558,32 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 28663,
+    "endOffset": 29001,
+    "content": "Romeo feels anxious about attending the party, believing something terrible will begin tonight that will lead to his premature death. He mentions a fate determined by the stars and ends by asking fate to guide him while urging his friends forward. 'Mind misgives' means he has a foreboding feeling; 'expire the term' means end the period; 'despised life' refers to his unhappy existence; 'steerage of my course' means control of his destiny.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 29001,
     "endOffset": 29026,
     "content": "Benvolio is giving a command to the drummer to begin playing, signaling their arrival at the Capulet feast. This brief line serves to transition the scene, moving the group of Montague boys from the street into the party.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 29001,
+    "endOffset": 29026,
+    "content": "Benvolio gives a simple command to the drummer to begin playing, signaling the start of their procession to the Capulet feast. This contrasts with Romeo's ominous premonitions in the previous speech.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

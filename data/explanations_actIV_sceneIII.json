@@ -12,10 +12,32 @@
   {
     "act": "IV",
     "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 112874,
+    "endOffset": 113100,
+    "content": "Juliet tells the Nurse she wants to be alone tonight because she needs to say many prayers (orisons) to ask God to bless her troubled situation, which she acknowledges is difficult (cross) and sinful.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 113122,
     "endOffset": 113179,
     "content": "Lady Capulet is checking on Juliet before her wedding to Paris, asking if she needs assistance with preparations. She uses \"ho\" as an attention-getting interjection, not unlike saying \"hey there.\" This shows her performing expected maternal duties, though their relationship remains formal and distant.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 113122,
+    "endOffset": 113179,
+    "content": "Lady Capulet is checking if Juliet is occupied and asking if she needs assistance. 'Ho' is an archaic interjection to get attention, similar to 'hey' or 'hello'.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,6 +54,17 @@
   {
     "act": "IV",
     "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 113179,
+    "endOffset": 113432,
+    "content": "Juliet tells her mother she has already selected the appropriate items needed for her wedding the next day. She politely asks to be left alone and suggests the nurse stay with Lady Capulet instead, acknowledging her mother must be very busy with the sudden wedding preparations. 'Cull'd' means selected or chosen; 'behoveful' means necessary or fitting; 'state' refers to her ceremonial occasion (wedding).",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 113432,
     "endOffset": 113505,
@@ -42,10 +75,32 @@
   {
     "act": "IV",
     "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 113432,
+    "endOffset": 113505,
+    "content": "Lady Capulet bids Juliet goodnight and tells her to go to bed and rest because she needs it, referring to Juliet's upcoming wedding preparations.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
     "speaker": "JULIET",
     "startOffset": 113542,
     "endOffset": 115532,
     "content": "Juliet is voicing her terror before drinking the potion, imagining every possible disaster: that it might be poison, that it won't work at all, or that she will wake up too early in the tomb and go mad from the horror of her surroundings. Her fears culminate in a hallucination of Tybalt's ghost, but she overcomes this panic, toasts Romeo, and drinks.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 113542,
+    "endOffset": 115532,
+    "content": "Juliet expresses terror about taking the sleeping potion. She fears it might not work (forcing her to marry Paris), might be poison, or might wear off too early in the tomb. She vividly imagines waking prematurely in the Capulet vault—a place filled with rotting corpses (including Tybalt's), ghosts, and maddening sounds. She worries the horror might drive her insane, causing her to desecrate bodies or kill herself with a bone. She briefly hallucinates Tybalt's ghost seeking Romeo before drinking the potion to escape her dilemma.",
+    "perplexity": 85,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

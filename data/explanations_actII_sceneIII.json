@@ -12,10 +12,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 47837,
+    "endOffset": 48861,
+    "content": "The friar describes dawn replacing night, then explains his task of gathering medicinal and poisonous plants. He observes that the earth is both the source of life and its final resting place, producing diverse plants with different properties. He reflects that everything in nature has value when used properly, but even good things can become harmful when misused, and vice versa.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 49239,
     "endOffset": 49268,
     "content": "Romeo greets Friar Laurence with a respectful \"Good morning.\" This polite address establishes their familiar relationship and sets a calm tone before Romeo reveals his sudden change of heart from Rosaline to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49239,
+    "endOffset": 49268,
+    "content": "Romeo greets Friar Lawrence with a formal morning salutation; 'Good morrow' means 'Good morning' and 'father' is a respectful term for a priest.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49268,
+    "endOffset": 49776,
+    "content": "The Friar greets Romeo with surprise at his early visit, suggesting that only someone with an unsettled mind would be awake so early. He contrasts old men, who stay awake due to worries, with youth who normally sleep soundly. He concludes that Romeo's early rising indicates either emotional distress or that he hasn't slept at all.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 49776,
     "endOffset": 49830,
     "content": "Romeo is agreeing with Friar Laurence's earlier comment that he was not in his own bed last night. He confirms he found a more pleasant rest elsewhere, hinting at his secret meeting with Juliet. This is his coy way of introducing the fact that he has a new love interest.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49776,
+    "endOffset": 49830,
+    "content": "Romeo agrees with Friar Lawrence's statement that young people sleep soundly, but ironically notes that his own sleep was 'sweeter' because he was with Juliet rather than sleeping alone. 'Sweeter rest' refers to the joy of being with his new love.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49830,
+    "endOffset": 49888,
+    "content": "The Friar expresses surprise that Romeo has moved on so quickly from Rosaline, whom he was desperately in love with just the night before. 'Wast thou with Rosaline?' means 'Were you with Rosaline?' - he's asking if Romeo was with his previous love interest, showing his disbelief at Romeo's sudden change of heart.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 49888,
     "endOffset": 49982,
     "content": "Romeo tells Friar Laurence that he has completely forgotten about Rosaline and the sadness he felt for her. He is emphasizing how quickly and thoroughly his affections have shifted to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 49888,
+    "endOffset": 49982,
+    "content": "Romeo denies being with Rosaline, calling Friar Lawrence his spiritual confessor. He claims to have completely forgotten both her name and the sorrow she caused him, showing how quickly he has transferred his affections to Juliet.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 49982,
+    "endOffset": 50052,
+    "content": "The Friar approves of Romeo moving on from Rosaline but asks where he's been. 'Hast thou been' means 'have you been'.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 50052,
     "endOffset": 50338,
     "content": "Romeo explains to Friar Laurence that he has fallen in love with Juliet, a Capulet—his family's enemy—and that she loves him in return. He asks the Friar to marry them, arguing that this union will end their families' feud, since he feels no hatred toward the Capulets and believes the marriage will benefit both houses.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 50052,
+    "endOffset": 50338,
+    "content": "Romeo explains he was dining with his family's enemies (the Capulets) where he fell in love with Juliet, who loves him back ('one hath wounded me / That's by me wounded'). He says their only cure ('remedies') lies in Friar Lawrence's holy medicine and help. Romeo bears no hatred and his plea for help will also benefit his enemy-turned-lover.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 50338,
+    "endOffset": 50447,
+    "content": "Friar Lawrence tells Romeo to speak clearly and directly; 'homely' means simple, 'drift' means meaning or purpose. 'Riddling confession finds but riddling shrift' means that if Romeo speaks in confusing riddles, he will receive only confusing advice or absolution in return. He is urging straightforward communication.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 50447,
     "endOffset": 50802,
     "content": "Romeo confesses to Friar Laurence that he has fallen in love with Juliet Capulet and that she returns his feelings. He explains that their love is already mutual and complete, lacking only the formal bond of marriage, and he urgently asks the Friar to perform the wedding ceremony for them that very day.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 50447,
+    "endOffset": 50802,
+    "content": "Romeo confesses he loves Juliet Capulet and she loves him back; they want to be married immediately by the Friar. 'Set' means fixed/placed; 'all combin'd' means everything is joined except the marriage ceremony itself; 'woo'd' means courted; 'made exchange of vow' means promised themselves to each other. Romeo is asking the Friar to perform their wedding today.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 50802,
+    "endOffset": 51537,
+    "content": "The Friar expresses shock at Romeo's sudden change of affection from Rosaline to Juliet. He criticizes Romeo's fickleness, suggesting young men love with their eyes rather than their hearts. He recalls Romeo's recent excessive weeping ('brine' and 'salt water' mean tears) for Rosaline, noting the tear stains still visible on his cheeks. The Friar concludes that if men are so weak and changeable, women cannot be expected to remain constant either.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 51537,
     "endOffset": 51589,
     "content": "Friar Laurence is pointing out that Romeo used to be scolded for his excessive, lovesick behavior over Rosaline. He is highlighting the sudden and complete shift in Romeo's affection to show how fickle and impulsive Romeo's love seems. This sets up the Friar's skepticism about Romeo's new claim of love for Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51537,
+    "endOffset": 51589,
+    "content": "Romeo acknowledges that Friar Lawrence frequently scolded him for his previous infatuation with Rosaline. 'Chidd'st' means 'scolded' or 'reproached'. He's pointing out the friar's past criticism to contrast with his current genuine love for Juliet.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51589,
+    "endOffset": 51646,
+    "content": "The Friar corrects Romeo, saying he scolded him for 'doting' (obsessive, foolish infatuation) rather than genuine 'loving'. This distinction highlights Romeo's previous immature attachment to Rosaline compared to his new feelings for Juliet.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 51646,
     "endOffset": 51681,
     "content": "Friar Laurence had previously advised Romeo to forget about Rosaline and move on from his infatuation. Romeo is now reminding the Friar of this advice, which he ignored, as he has immediately fallen in love with Juliet instead. This highlights Romeo's impulsive nature and sets up his request for the Friar to marry him to his new love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51646,
+    "endOffset": 51681,
+    "content": "Romeo is recalling Friar Lawrence's earlier instruction to suppress or abandon his romantic feelings. 'Bad'st' means 'told' or 'commanded' (archaic form of 'bid'). The Friar essentially told Romeo to bury/end his love.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51681,
+    "endOffset": 51749,
+    "content": "The Friar uses a burial metaphor to criticize Romeo's fickle affections. 'Another out to have' means to have another person (Rosaline) out of his heart while putting a new one (Juliet) in. He's saying Romeo shouldn't treat love like replacing one body in a grave with another.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 51749,
     "endOffset": 51866,
     "content": "Romeo is asking Friar Laurence not to scold him for his sudden shift in affection. He explains that his new love, Juliet, returns his feelings equally (\"grace for grace and love for love\"), unlike Rosaline, who did not reciprocate.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51749,
+    "endOffset": 51866,
+    "content": "Romeo asks Friar Lawrence not to scold him, explaining that his new love (Juliet) returns his affection equally ('grace for grace and love for love'), unlike Rosaline who didn't reciprocate.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,6 +348,17 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51866,
+    "endOffset": 52117,
+    "content": "The Friar says Rosaline recognized Romeo's love was memorized and insincere (like reciting without understanding), not genuine. He calls Romeo a 'young waverer' (indecisive youth) but agrees to help marry Juliet because their union might end the feud between their families.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 52117,
     "endOffset": 52166,
@@ -182,10 +369,32 @@
   {
     "act": "II",
     "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 52117,
+    "endOffset": 52166,
+    "content": "Romeo urgently wants to leave immediately. 'Stand on' means 'insist on' or 'demand' - he's emphasizing his impatience and rush to act quickly.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 52166,
     "endOffset": 52228,
     "content": "The Friar warns Romeo that acting too quickly leads to mistakes, while being deliberate and cautious leads to success. This advice directly responds to Romeo's sudden shift of affection from Rosaline to Juliet, cautioning him against the impulsiveness of his new love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 52166,
+    "endOffset": 52228,
+    "content": "Advises caution and deliberation, warning that rushing leads to mistakes.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

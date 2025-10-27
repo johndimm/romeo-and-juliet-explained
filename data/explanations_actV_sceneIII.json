@@ -12,10 +12,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 129428,
+    "endOffset": 129952,
+    "content": "Paris commands his page to extinguish the torch to avoid detection, then lie flat under a yew tree with his ear to the ground to listen for approaching footsteps on the loose soil of the graveyard. He instructs the page to whistle as a signal if anyone approaches. 'Aloof' means at a distance; 'yond' is archaic for 'that' or 'yonder'; 'lay thee all along' means lie flat. The aside reveals the page's fear of being alone in the churchyard but his decision to proceed anyway.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PAGE",
     "startOffset": 129839,
     "endOffset": 129952,
     "content": "The Page admits his fear of being alone in the graveyard but resolves to take the risk anyway. His brief moment of bravery is crucial, as he stays to witness the tragic events that follow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 129839,
+    "endOffset": 129952,
+    "content": "The page expresses fear about being alone in the cemetery but decides to take the risk anyway. 'Adventure' here means to take a chance or risk.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 129952,
+    "endOffset": 130452,
+    "content": "Paris addresses Juliet's tomb, calling her a \"sweet flower\" and promising to decorate her burial place with flowers nightly. He vows to water them with perfumed water or his own tears, keeping vigil through mourning rituals. When his page whistles a warning, Paris fears someone is interrupting his private grief ceremony and hides when he sees torchlight approaching.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 130507,
     "endOffset": 131279,
     "content": "Romeo orders Balthasar to hand over tools to break into the Capulet tomb, then gives him a letter for Montague. He commands Balthasar to leave and not return, threatening violent dismemberment if he disobeys, explaining his savage intent is driven by the need to see Juliet and retrieve a ring.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 130507,
+    "endOffset": 131279,
+    "content": "Romeo demands tools to break into Juliet's tomb, gives a letter to be delivered to his father, and orders his servant to stay away regardless of what he hears or sees. He explains he's entering the tomb primarily to retrieve a ring from Juliet's finger for important use. He threatens violent dismemberment if the servant disobeys, emphasizing his wild, desperate state as more dangerous than tigers or ocean storms.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 131279,
+    "endOffset": 131333,
+    "content": "Balthasar agrees to leave immediately and promises not to disturb Romeo further, showing obedience despite likely suspecting Romeo's dangerous intentions.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 131333,
     "endOffset": 131443,
     "content": "Romeo is speaking to Balthasar, his servant, whom he has just paid. He gives him money (\"Take thou that\") as a gesture of friendship and to ensure his loyalty. He then orders Balthasar to leave him alone at the tomb, wishing him a good life so that he will not interfere with Romeo's plan to kill himself.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 131333,
+    "endOffset": 131443,
+    "content": "Romeo gives Balthasar money ('that') as a gesture of friendship and tells him to leave, wishing him a good life and prosperity. 'Shalt' means 'shall', 'thou' means 'you', and 'farewell' is a formal goodbye.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 131443,
+    "endOffset": 131557,
+    "content": "Balthasar says he'll hide nearby despite Romeo's instructions because he fears Romeo's appearance and suspects his intentions. 'For all this same' means 'nevertheless' or 'despite what just happened.' 'Doubt' here means 'suspect' or 'fear' rather than uncertainty.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 131557,
     "endOffset": 131789,
     "content": "Romeo personifies the tomb as a monstrous, devouring stomach that has consumed Juliet. He forces open the tomb door, vowing to defy it by adding his own body as more \"food,\" meaning he will join Juliet in death. This violent imagery underscores his desperation and resolve to be with her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 131557,
+    "endOffset": 131789,
+    "content": "Romeo addresses the tomb as a monstrous stomach ('maw') and birthplace of death ('womb of death'), accusing it of having consumed Juliet ('dearest morsel of the earth'). He forces open the tomb door ('enforce thy rotten jaws to open') and vows to spitefully fill it with another body—his own ('cram thee with more food').",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 131789,
+    "endOffset": 132212,
+    "content": "Paris confronts Romeo at the Capulet tomb, mistakenly believing Juliet died from grief over Tybalt's death (whom Romeo killed). He accuses Romeo of returning to desecrate the bodies and attempts to arrest him. 'Unhallow'd toil' means unholy work; 'apprehend' means arrest. Paris sees Romeo as a condemned criminal who deserves execution.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 132212,
     "endOffset": 132636,
     "content": "Romeo is warning Balthasar to leave because he is dangerously desperate and armed against himself. He says that if Balthasar stays and provokes him further, it will only add to his sins. Romeo insists he loves Balthasar enough to spare him, urging him to flee and later tell others that a madman showed mercy by letting him escape.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132212,
+    "endOffset": 132636,
+    "content": "Romeo acknowledges he must die and came here for that purpose. He warns Paris not to provoke someone who is already desperate and suicidal. He urges Paris to flee and remember the dead bodies as a warning. Romeo pleads not to be pushed into committing another murder, revealing he came armed to kill himself. He claims he loves Paris more than himself by telling him to escape, and wants Paris to later say a madman showed mercy by letting him flee.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 132636,
+    "endOffset": 132708,
+    "content": "Paris rejects Romeo's plea ('conjuration' means solemn appeal) and declares he will arrest him as a criminal ('felon'). He refuses to leave despite Romeo's warnings.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "ROMEO",
     "startOffset": 132708,
     "endOffset": 132833,
     "content": "Romeo is challenging Paris, who is trying to arrest him at the Capulet tomb. His words are a direct threat, signaling his refusal to be stopped and his readiness for violence. The Page's reaction highlights the danger and illegality of the fight, as he runs to summon the authorities.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132708,
+    "endOffset": 132833,
+    "content": "Romeo challenges Paris to fight with 'have at thee' meaning 'I'm attacking you.' The page's reaction shows he's running to alert the city watch (police).",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 132780,
+    "endOffset": 132845,
+    "content": "The Page sees Romeo and Paris fighting and decides to alert the city guards (the watch) to intervene.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PARIS",
     "startOffset": 132845,
     "endOffset": 132947,
     "content": "Paris is fatally wounded by Romeo and makes a final plea. He asks his killer to show mercy by placing his body in the Capulet tomb next to Juliet, revealing his devotion to her even in death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PARIS",
+    "startOffset": 132845,
+    "endOffset": 132947,
+    "content": "Paris is dying after being fatally wounded. He asks his killer (Romeo) to show mercy by opening the Capulet tomb and placing his body beside Juliet's. 'Slain' means killed, and 'merciful' means compassionate.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 132947,
+    "endOffset": 135025,
+    "content": "Romeo recognizes Paris as Mercutio's relative and recalls hearing Paris was supposed to marry Juliet. He addresses Paris as a fellow victim of misfortune and promises him burial. Observing Juliet's preserved beauty, he notes death hasn't conquered her appearance yet. He sees Tybalt's body and offers to kill Paris (already dead) as further revenge. Fearing Death might desire Juliet as a lover, he resolves to stay forever in the tomb. He drinks poison after a final kiss, calling the apothecary's drugs fast-acting.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135120,
     "endOffset": 135276,
     "content": "The Friar is startled and uneasy, calling on his patron saint for protection after tripping near tombs in the dark. He hears someone and demands to know who would keep company with the dead at this late hour.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135120,
+    "endOffset": 135276,
+    "content": "The Friar calls on Saint Francis for help, noting how often he's stumbled at graves tonight. He hears someone with the dead and demands identification. 'Speed' means help/success; 'consorts' means keeps company with.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,10 +348,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135276,
+    "endOffset": 135341,
+    "content": "Balthasar identifies himself as a friend who recognizes Friar Lawrence. 'Consorts' means 'accompanies' or 'keeps company with.' Paraphrase: I'm a friend here, and I know who you are.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135341,
     "endOffset": 135530,
     "content": "The Friar notices a torch burning in the Capulet tomb and is confused, as it seems wasteful for a light to shine only on the dead. He is asking his companion to identify who would be there, revealing his surprise and growing suspicion about the activity at the vault.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135341,
+    "endOffset": 135530,
+    "content": "The Friar asks what torch is shining uselessly on worms and skulls in the Capulet tomb, noting it seems to be burning there.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -192,10 +390,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135530,
+    "endOffset": 135608,
+    "content": "Balthasar confirms the Friar's observation about the light coming from the Capulet tomb and reveals that Romeo (his master) is there - someone the Friar cares about.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135608,
     "endOffset": 135636,
     "content": "The Friar hears a noise and calls out to identify who is there. This creates immediate tension, as he is in the tomb where he expects to find only Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135608,
+    "endOffset": 135636,
+    "content": "The Friar asks for identification of the person mentioned, showing he doesn't yet know who Balthasar is referring to as 'my master'.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -212,10 +432,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135636,
+    "endOffset": 135655,
+    "content": "Balthasar identifies himself to Friar Lawrence. This is a simple identification response to the Friar's question.",
+    "perplexity": 0,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135655,
     "endOffset": 135701,
     "content": "The Friar is asking how long Romeo has been in the tomb. He needs this information to understand the situation, as he has just arrived and discovered the bodies of Paris and Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135655,
+    "endOffset": 135701,
+    "content": "The Friar is asking how much time has passed since Romeo arrived at the tomb. 'Hath' means 'has' in modern English. Paraphrase: How long has he been there?",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -232,10 +474,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135701,
+    "endOffset": 135732,
+    "content": "Balthasar states that Romeo has been in the tomb for exactly thirty minutes. 'Full' here means 'complete' or 'entire'.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135732,
     "endOffset": 135774,
     "content": "The Friar is urging someone to accompany him to the Capulet family tomb. He says this because he knows Juliet will soon awaken from her drugged sleep, and he wants to be there to help her escape and avoid her planned marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135732,
+    "endOffset": 135774,
+    "content": "The Friar commands Balthasar to accompany him to the burial chamber (vault) where Juliet lies, continuing his urgent plan to reunite with Juliet before she wakes from the sleeping potion.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -252,10 +516,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 135774,
+    "endOffset": 135921,
+    "content": "Balthasar refuses because Romeo doesn't know he's here and threatened to kill him if he stayed to watch what Romeo planned to do. 'Menace me with death' means threatened to kill him; 'look on his intents' means observe his plans.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 135921,
     "endOffset": 136025,
     "content": "The Friar is speaking to himself after Balthasar refuses to accompany him into the tomb. He feels a sudden sense of dread and foreboding, explicitly stating he is afraid that something terrible has happened. This line builds immediate tension, signaling to the audience that the tragic outcome is imminent.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 135921,
+    "endOffset": 136025,
+    "content": "The Friar decides to proceed alone because he feels sudden apprehension. 'Fear comes upon me' means he's overcome by dread, and 'some ill unlucky thing' refers to his premonition that something terrible has happened or will happen.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -272,10 +558,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 136025,
+    "endOffset": 136146,
+    "content": "Balthasar recounts dreaming that his master (Romeo) fought and killed someone while he slept under a yew tree. 'Slew' means killed. This foreshadows Paris's death at Romeo's hands.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 136146,
     "endOffset": 136557,
     "content": "The Friar arrives at the tomb and is immediately horrified to find bloodstains and abandoned swords at the entrance, a violent contrast to the peaceful burial site. Upon entering, he discovers the bodies of Romeo and Paris, realizing a terrible tragedy has occurred just before Juliet begins to wake from her sleep.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 136146,
+    "endOffset": 136557,
+    "content": "Friar Lawrence arrives at the tomb and sees bloodstains at the entrance, noticing abandoned bloody swords near a place meant for peace. He discovers both Romeo and Paris dead, blaming the unfortunate timing for this tragedy. Just then, Juliet begins to wake up.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -292,10 +600,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 136557,
+    "endOffset": 136698,
+    "content": "Juliet awakens from her drugged sleep and immediately asks the Friar for Romeo, calling him 'comfortable' (meaning comforting or consoling). She remembers she should be in the tomb and confirms she's there, but desperately asks again for Romeo's whereabouts. The noise within suggests approaching danger.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 136698,
     "endOffset": 137097,
     "content": "The Friar urgently tells Juliet to leave the tomb because he hears the watch approaching. He explains that their plan has failed by a divine power, revealing that both Romeo and Paris are dead. Fearing capture, he tries to persuade her to flee with him to a nunnery, insisting they have no time to delay.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 136698,
+    "endOffset": 137097,
+    "content": "The Friar hears approaching guards and urgently tells Juliet to leave the tomb, calling it a dangerous place of death and unnatural sleep. He says a higher power has ruined their plan, reveals Romeo and Paris are both dead, and offers to take her to a convent of nuns. He insists they must leave immediately because the watch is coming.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -312,10 +642,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 137097,
+    "endOffset": 137147,
+    "content": "Juliet defiantly tells the Friar to leave because she refuses to go with him. 'Get thee hence' means 'go away from here,' and 'I will not away' means 'I will not leave.' This shows her determination to stay with Romeo's body rather than escape to safety.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "FIRST WATCH",
     "startOffset": 137474,
     "endOffset": 137522,
     "content": "The First Watch is calling out from offstage, asking his guide to lead him toward the disturbance. The line establishes that the authorities are arriving at the churchyard, heightening the tension as they approach the tragic scene.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 137474,
+    "endOffset": 137522,
+    "content": "The First Watchman calls out from offstage, telling someone to lead the way and asking which direction to go. This shows the watchmen are approaching the tomb but haven't yet found the entrance.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -332,10 +684,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "JULIET",
+    "startOffset": 137522,
+    "endOffset": 137722,
+    "content": "Juliet hears approaching guards and decides to act quickly. She calls the dagger 'happy' because it will reunite her with Romeo in death. 'This is thy sheath' means her body will be the dagger's resting place. The final line expresses her wish to die and be at peace with Romeo.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PAGE",
     "startOffset": 137760,
     "endOffset": 137820,
     "content": "The Page points out the tomb where Juliet lies, indicating the burning torch as a landmark. He is guiding Paris to the location for his intended mourning visit, showing he has followed his master's instructions to lead him there.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 137760,
+    "endOffset": 137820,
+    "content": "The Page is pointing out the location where Paris asked him to keep watch, specifically indicating the burning torch as a landmark. 'Doth burn' means 'is burning' in archaic English. He's simply identifying the spot where they need to be.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -352,10 +726,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 137820,
+    "endOffset": 138384,
+    "content": "The First Watch discovers the bloody scene and orders his men to search the churchyard and arrest anyone they find. He sees Paris dead and Juliet bleeding but still warm, though supposedly buried for two days. He sends messengers to the Prince and both families. He notes they can see the physical evidence but need more information to understand the true causes of these tragic events.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "SECOND WATCH",
     "startOffset": 138384,
     "endOffset": 138455,
     "content": "The Second Watch is reporting to his superiors that they have found Balthasar, Romeo's servant, in the churchyard. This is significant because Balthasar's presence connects him to the scene of the recent deaths, making him a key witness or suspect in the tragic events that have just unfolded.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "SECOND WATCH",
+    "startOffset": 138384,
+    "endOffset": 138455,
+    "content": "Romeo's servant or companion has been discovered in the cemetery.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -373,9 +769,31 @@
     "act": "V",
     "scene": "III",
     "speaker": "FIRST WATCH",
+    "startOffset": 138455,
+    "endOffset": 138721,
+    "content": "The First Watch orders Romeo's servant Balthasar to be kept under guard until the Prince arrives. The Third Watch then brings in Friar Lawrence, who appears visibly distressed (trembling, sighing, weeping). They confiscated a mattock (a digging tool) and spade from him as he was leaving the churchyard area, suggesting he was involved in the tomb-related activities.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
     "startOffset": 138721,
     "endOffset": 138809,
     "content": "The First Watchman has just discovered the bodies of Romeo, Juliet, and Paris, so he orders his men to detain the Friar, who is present and acting suspiciously. This command immediately creates a suspect for the tragedy, setting the stage for the Prince's arrival and the subsequent investigation that will uncover the full story.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 138721,
+    "endOffset": 138809,
+    "content": "The First Watch expresses strong suspicion about Friar Lawrence's presence and actions near the churchyard with digging tools, ordering him to be detained along with the others until the Prince arrives to investigate.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -392,10 +810,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 138809,
+    "endOffset": 138943,
+    "content": "The Prince is asking what unfortunate event has happened so early in the morning that requires his presence and has disturbed his sleep. 'Misadventure' means misfortune or accident, and 'calls our person' means summons me.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "CAPULET",
     "startOffset": 138943,
     "endOffset": 138999,
     "content": "Capulet hears loud cries of distress from outside the tomb and is asking what could be causing the commotion. He is expressing confusion and alarm, wanting to know the reason for the shrieking he hears.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 138943,
+    "endOffset": 138999,
+    "content": "Capulet wonders what is causing the loud screaming he hears outside; 'shriek abroad' means people are crying out loudly in public.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -412,10 +852,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 138999,
+    "endOffset": 139498,
+    "content": "Lady Capulet hears chaotic street cries about Romeo, Juliet, and Paris, with people running toward the Capulet tomb. The First Watch reports finding Paris slain, Romeo dead, and Juliet recently deceased. They discover Friar Laurence and Romeo's servant Balthasar nearby with tools suitable for opening tombs.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 139131,
     "endOffset": 139186,
     "content": "The Prince arrives at the tomb and urgently asks what the alarming noise and commotion are all about. He is demanding an immediate explanation from the Watchmen for the disturbance that has drawn him to the scene.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139131,
+    "endOffset": 139186,
+    "content": "The Prince is asking what alarming news or frightening situation has suddenly reached his hearing. 'Startles' means suddenly surprises or shocks. He's reacting to the commotion and cries reported by Lady Capulet.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -432,10 +894,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 139186,
+    "endOffset": 139309,
+    "content": "The First Watch reports to the Prince that three nobles are dead: Paris, Romeo, and Juliet (who died earlier). 'County' means 'Count' (Paris's title). 'New kill'd' means recently killed, explaining why their bodies are still warm.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 139309,
     "endOffset": 139369,
     "content": "The Prince orders his guards to investigate the cause of the deaths he has just discovered. He uses the phrase \"foul murder\" to immediately assume a violent crime has occurred, setting in motion the official inquiry that will ultimately uncover the full tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139309,
+    "endOffset": 139369,
+    "content": "The Prince orders an immediate investigation to determine the cause of these deaths. 'Foul murder' means unlawful killing, and 'comes' here means 'originates' or 'happened'. He's commanding them to find out who committed this crime and how it occurred.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -452,10 +936,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "FIRST WATCH",
+    "startOffset": 139369,
+    "endOffset": 139498,
+    "content": "The First Watch reports finding a friar and Romeo's servant with tools suitable for opening tombs. 'Slaughter'd Romeo's man' means Romeo's dead servant (Balthasar), and 'instruments' refers to tools like crowbars or picks for breaking into burial vaults.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "CAPULET",
     "startOffset": 139498,
     "endOffset": 139683,
     "content": "Capulet cries out in horror at finding Juliet's body, mistakenly believing she has just died. He sees the dagger in her chest and wrongly assumes it belongs to Montague, thinking it was meant for him but accidentally stabbed her instead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 139498,
+    "endOffset": 139683,
+    "content": "Capulet exclaims in horror at discovering Juliet's body. 'Mista'en' means mistaken - the dagger missed its intended target (Romeo) and instead struck Juliet. 'His house is empty on the back of Montague' means the dagger's sheath (its 'house') is empty because Romeo (a Montague) has it. 'Mis-sheathed' means wrongly placed - the dagger ended up in Juliet's chest instead of its proper sheath.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -472,10 +978,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 139683,
+    "endOffset": 139775,
+    "content": "Lady Capulet compares seeing Juliet's dead body to a bell tolling, signaling that her own old age and death are approaching. 'Sepulchre' means tomb or burial vault. She means this tragic sight makes her feel her mortality and foreshadows her own demise.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 139804,
     "endOffset": 139893,
     "content": "The Prince addresses Lord Montague, noting that he has risen early only to find his son dead even sooner. This grim wordplay on \"early\" underscores the tragic irony of the situation, where a father's morning begins with the ultimate loss.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 139804,
+    "endOffset": 139893,
+    "content": "The Prince notes that Montague has risen early only to find his son Romeo dead even earlier. 'Early down' means dead/fallen, contrasting with 'early up' (awake early). The Prince uses wordplay to emphasize the tragedy of finding one's child deceased.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -492,10 +1020,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 139893,
+    "endOffset": 140078,
+    "content": "Montague reports his wife has just died from grief over Romeo's banishment; 'my liege' means 'my lord/ruler'; 'stopp'd her breath' means 'killed her'; he asks what other sorrow will attack his old age.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 140043,
     "endOffset": 140078,
     "content": "The Prince is directing someone—likely a bystander or one of his attendants—to observe the tragic scene before them. He is pointing out the dead bodies of Romeo, Juliet, and Paris, confirming the terrible outcome of the feud.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140043,
+    "endOffset": 140078,
+    "content": "The Prince commands Montague to look at the scene before them, implying that more tragedy is visible. 'Thou shalt see' means 'you will see' - he's directing attention to the dead bodies of Romeo, Juliet, and Paris lying in the tomb.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -512,10 +1062,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 140078,
+    "endOffset": 140478,
+    "content": "Montague scolds Romeo for dying before his father, calling him 'untaught' (ill-mannered) for predeceasing a parent, which reverses the natural order. The Prince then commands everyone to restrain their grief ('seal up the mouth of outrage') until the causes ('spring, head, true descent') of the tragedy are uncovered, promising to guide their mourning ('general of your woes') afterward while urging patience.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 140170,
     "endOffset": 140478,
     "content": "The Prince commands everyone to stop their loud grieving and hold back their anger until the true causes of the tragedy can be discovered. He promises to guide them through their sorrow and uncover the full story, but for now, they must be patient. He then orders the suspected individuals to be brought forward for questioning.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140170,
+    "endOffset": 140478,
+    "content": "The Prince commands everyone to stop expressing anger temporarily until they can resolve the uncertainties about what happened. He wants to discover the origin, source, and true cause of events. He promises to then guide their grief, even if it leads to severe consequences. Meanwhile, he urges restraint and patience over misfortune. Finally, he orders the suspected individuals to be brought forward.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -532,10 +1104,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 140478,
+    "endOffset": 140758,
+    "content": "The Friar means he has high religious authority but little practical power in this situation. He acknowledges he appears guilty because of being found at the crime scene. He stands ready to both accuse himself (since circumstances make him look responsible) and clear himself (since he knows he's innocent). 'Impeach' means to accuse, 'purge' means to cleanse from blame.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 140703,
     "endOffset": 140758,
     "content": "The Prince is demanding that Friar Laurence immediately tell everything he knows about the deaths of Romeo and Juliet. He is speaking with authority, cutting to the chase after the initial shock of discovering the bodies in the tomb.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 140703,
+    "endOffset": 140758,
+    "content": "The Prince commands Friar Lawrence to immediately reveal everything he knows about the situation. 'At once' means immediately, and 'what thou dost know in this' means what information he possesses about these events.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -552,10 +1146,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 140758,
+    "endOffset": 142625,
+    "content": "The Friar explains he'll be brief since he's near death. He reveals he married Romeo and Juliet secretly, and their wedding day was also when Tybalt died, leading to Romeo's banishment. Juliet grieved for Romeo, not Tybalt. To stop her forced marriage to Paris, the Friar gave her a sleeping potion to mimic death. He wrote to Romeo about the plan, but the messenger was delayed. When the Friar went to retrieve Juliet from the tomb, he found Paris and Romeo dead. Juliet woke but refused to leave and killed herself. The Nurse knew about the marriage, and the Friar accepts blame if he's at fault.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 142525,
     "endOffset": 142625,
     "content": "The Prince acknowledges Friar Laurence's reputation as a respected clergyman. He then immediately shifts focus to Balthasar, Romeo's servant, recognizing he may hold crucial information about the tragic events.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 142525,
+    "endOffset": 142625,
+    "content": "The Prince acknowledges Friar Lawrence's respected religious status, then asks for Romeo's servant (Balthasar) to provide additional testimony about the events.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -572,10 +1188,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "BALTHASAR",
+    "startOffset": 142625,
+    "endOffset": 143727,
+    "content": "Balthasar explains he informed Romeo of Juliet's death, prompting Romeo's urgent return from Mantua to the tomb. Romeo gave Balthasar a letter for his father and threatened him with death if he didn't leave. The Prince reads the letter confirming the Friar's account: Romeo bought poison from an apothecary to die beside Juliet. The Prince blames the families' feud for the tragedy, noting heaven has punished their hatred by killing their children with love, and he too has lost kinsmen (Mercutio and Paris) for tolerating their conflict.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 142899,
     "endOffset": 143046,
     "content": "The Prince asks for Friar Laurence's letter to understand the events, then seeks the servant who alerted the watchmen. He questions the servant about why Paris was at the tomb, showing his immediate focus on gathering facts to solve the mystery.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 142899,
+    "endOffset": 143046,
+    "content": "The Prince demands the letter from Balthasar to read it himself. He then asks where Paris's servant is, referring to him as 'County's Page' (County means Count, referring to Paris). 'Rais'd the watch' means the servant who alerted the city guards. 'Sirrah' is an archaic term for addressing a male servant or social inferior. The Prince asks what Paris was doing at the tomb.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -592,10 +1230,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "PAGE",
+    "startOffset": 143046,
+    "endOffset": 143260,
+    "content": "The Page explains that Paris came to scatter flowers on Juliet's grave, ordered him to keep his distance, which he did. Soon someone with a light arrived to open the tomb, Paris immediately drew his sword against that person, and the Page ran to alert the watchmen.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 143260,
     "endOffset": 143727,
     "content": "The Prince confirms that Romeo's letter supports Friar Laurence's account, detailing their secret marriage, Juliet's feigned death, and Romeo's purchase of poison to join her in the tomb. He then confronts the feuding families, declaring their hatred has caused heaven to punish them by destroying their children through love. Finally, the Prince admits his own fault in tolerating their feud, noting that he too has lost relatives and all are now punished.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 143260,
+    "endOffset": 143727,
+    "content": "The Prince confirms the Friar's account of events, stating the letter validates Romeo and Juliet's secret love and her supposed death. It reveals Romeo bought poison from a poor apothecary and came to the tomb to die beside Juliet. The Prince then confronts the feuding families, showing how their hatred has caused heaven to punish them by using love to destroy their happiness (their children). He admits his own fault in tolerating their conflict, which cost him two relatives (Mercutio and Paris), concluding all have suffered consequences.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -612,10 +1272,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 143727,
+    "endOffset": 143835,
+    "content": "Capulet addresses Montague as 'brother' to reconcile, offering his hand in peace. 'Jointure' means marriage settlement or inheritance; he's saying Juliet's death is the only inheritance she leaves, ending their feud.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "MONTAGUE",
     "startOffset": 143835,
     "endOffset": 144035,
     "content": "Montague promises to honor Juliet by building a golden statue of her, ensuring that as long as Verona exists, no monument will be as valued as hers. This vow acknowledges her loyalty and virtue, showing the Capulets that the Montagues now recognize Juliet's worth and seek to end the feud through shared grief and tribute.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "MONTAGUE",
+    "startOffset": 143835,
+    "endOffset": 144035,
+    "content": "Montague responds to Capulet's offer by promising something greater: he will commission a golden statue of Juliet. He declares that as long as Verona exists, no statue will be valued as highly as Juliet's, honoring her truthfulness and loyalty. 'Raise her statue' means to erect a statue in her honor; 'at such rate be set' means valued so highly.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -632,10 +1314,32 @@
   {
     "act": "V",
     "scene": "III",
+    "speaker": "CAPULET",
+    "startOffset": 144035,
+    "endOffset": 144382,
+    "content": "Capulet promises to match Montague's golden statue of Juliet with an equally rich statue of Romeo lying beside her, calling them 'poor sacrifices' who died because of their families' feud. The Prince then describes the peace as 'glooming' (gloomy/dark), says the sun won't appear due to sorrow, and concludes this is the most tragic story ever told of Juliet and Romeo.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
     "speaker": "PRINCE",
     "startOffset": 144121,
     "endOffset": 144395,
     "content": "The Prince announces a sorrowful peace has arrived, with the sun itself too grief-stricken to appear. He commands everyone to leave so they can discuss the tragic events further, promising that some will be pardoned while others will face punishment. He concludes by stating that no story has ever contained more misery than that of Romeo and Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "III",
+    "speaker": "PRINCE",
+    "startOffset": 144121,
+    "endOffset": 144395,
+    "content": "The Prince describes the peace as dark and sorrowful ('glooming'), noting even the sun won't appear due to grief. He orders everyone to leave and continue discussing these tragic events, promising some will be pardoned while others punished. He concludes that no story has ever contained more sadness than that of Juliet and Romeo.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

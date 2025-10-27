@@ -12,10 +12,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 52294,
+    "endOffset": 52369,
+    "content": "Mercutio wonders where Romeo is and asks if he returned home last night. 'Tonight' in Shakespearean English means 'last night'.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 52369,
     "endOffset": 52425,
     "content": "Benvolio reports that he has learned Romeo's whereabouts not from Lord Montague but from Romeo's servant. This detail confirms that Romeo is actively avoiding his own family, heightening the sense of his secretive new allegiance to Juliet and the Capulets.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 52369,
+    "endOffset": 52425,
+    "content": "Benvolio says Romeo didn't return to his father's house; he learned this by speaking with Romeo's servant ('man' means servant here). This shows Benvolio has been actively searching for Romeo and checking with household staff.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 52425,
+    "endOffset": 52534,
+    "content": "Mercutio suggests Rosaline's rejection is driving Romeo insane. 'Wench' means girl (not necessarily derogatory here), 'pale' suggests she's unresponsive, 'hard-hearted' means unfeeling. Paraphrase: Rosaline's cold rejection is tormenting Romeo so much he'll go crazy.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 52534,
     "endOffset": 52625,
     "content": "Benvolio informs Mercutio that Tybalt, a Capulet relative, has sent a formal challenge to Romeo's home. This news introduces the threat of a duel, escalating the tension between the feuding families and directly endangering Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 52534,
+    "endOffset": 52625,
+    "content": "Benvolio reports that Tybalt (Juliet's cousin) has sent a formal letter to Romeo's family home. 'Kinsman' means relative, and 'old Capulet' refers to Juliet's father. This foreshadows the coming conflict between Romeo and Tybalt.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 52625,
+    "endOffset": 52661,
+    "content": "Mercutio confidently asserts that Tybalt's letter must be a formal challenge to a duel. 'On my life' is an oath emphasizing his certainty.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 52661,
     "endOffset": 52694,
     "content": "Benvolio confidently states that Romeo will respond to Tybalt's challenge. This shows Benvolio's faith in his friend's honor and skill, while also creating tension as the audience knows Romeo is now married to Juliet and will be reluctant to fight her cousin.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 52661,
+    "endOffset": 52694,
+    "content": "Benvolio means Romeo will accept and respond to the challenge. 'Answer it' here means to respond to or accept a duel or fight, not just reply with words.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 52694,
+    "endOffset": 52749,
+    "content": "Mercutio makes a pun on 'answer' - while Benvolio meant Romeo would respond to Tybalt's challenge, Mercutio jokes that anyone who can write could technically 'answer' (respond to) a letter. This shows Mercutio's quick wit and tendency to make wordplay even in serious situations.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 52749,
     "endOffset": 52830,
     "content": "Benvolio is telling Mercutio that Tybalt has sent a formal challenge to Romeo, and he expects Romeo to accept it and fight. The phrase \"answer the letter’s master\" means Romeo will respond directly to Tybalt, the sender of the challenge, and \"being dared\" refers to the provocation itself.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 52749,
+    "endOffset": 52830,
+    "content": "Benvolio means that Romeo will confront the person who sent the letter (Tybalt) and show how boldly he responds to the challenge. 'Answer the letter's master' means confront the sender; 'how he dares, being dared' means show his courage when challenged.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 52830,
+    "endOffset": 53066,
+    "content": "Mercutio uses exaggerated metaphors to mock Romeo's lovesick state: 'white wench's black eye' means struck by a pale woman's gaze; 'run through the ear with a love song' means wounded by romantic poetry; 'blind bow-boy's butt-shaft' refers to Cupid's blunt arrow causing infatuation. He's saying Romeo is too lovesick to fight Tybalt effectively.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 53066,
     "endOffset": 53098,
     "content": "Benvolio asks this in response to Mercutio describing Tybalt as a formidable and fashionable duelist. He is prompting Mercutio to elaborate on Tybalt's character and fighting style, showing his concern about the potential for a violent confrontation. This question sets up Mercutio's famous speech about Tybalt being the \"Prince of Cats\" and a skilled, dangerous swordsman.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 53066,
+    "endOffset": 53098,
+    "content": "Benvolio asks who Tybalt is, showing he either doesn't know Tybalt or is questioning why Tybalt would be significant enough to challenge Romeo. This highlights Benvolio's more cautious, practical nature compared to Mercutio's dramatic exaggeration.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 53098,
+    "endOffset": 53501,
+    "content": "Mercutio mocks Tybalt's fencing skills as overly precise and theatrical. 'Prince of cats' refers to Tybalt's name (like Tybalt the Cat in fables). 'Captain of compliments' means master of formal manners. 'Prick-song' is singing from written music - here meaning Tybalt fights with calculated precision like reading sheet music. 'Minim rest' is a musical pause - he pauses rhythmically before striking. 'Butcher of a silk button' means he could slice a button off your clothes without touching you. 'First house' means best fencing school; 'first and second cause' refers to formal dueling rules. The Italian terms ('passado,' 'punto reverso,' 'hay') are fancy fencing moves. Paraphrase: Tybalt is an absurdly precise, rule-obsessed duelist who treats fighting like performance art.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 53501,
     "endOffset": 53522,
     "content": "Benvolio is asking for clarification or more details about something just mentioned by another character, likely Mercutio. His brief, questioning interjection shows he is engaged in the conversation and prompts the speaker to elaborate.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 53501,
+    "endOffset": 53522,
+    "content": "Benvolio's brief question shows he doesn't understand Mercutio's technical fencing terms (passado, punto reverso, hay) and wants clarification. This highlights the contrast between Mercutio's elaborate, knowledgeable speech and Benvolio's simpler understanding.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 53522,
+    "endOffset": 53938,
+    "content": "Mercutio expresses contempt for people who adopt affected foreign mannerisms and trendy speech. 'Pox' means a curse; 'antic lisping' refers to artificial speech; 'phantasies' are fanciful notions; 'tuners of accent' are those who modify their speech to sound fashionable. He sarcastically praises a sword, a man, and a prostitute to mock this trend. 'Strange flies' and 'fashion-mongers' are people obsessed with the latest fashions; 'pardon-me's' are those who use affected polite phrases. He complains they're so focused on new customs they can't appreciate traditional ways, and 'O their bones' may mock their delicate posture or physical affectations.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 53953,
     "endOffset": 54000,
     "content": "Benvolio is excitedly announcing Romeo's arrival to Mercutio, signaling a shift in the scene's focus. This alerts the audience and the other characters on stage that Romeo, who has been absent and lovesick, is about to join their conversation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 53953,
+    "endOffset": 54000,
+    "content": "Benvolio announces Romeo's arrival, interrupting Mercutio's rant about fashionable people who affect foreign accents and manners. This signals a shift in the conversation as Romeo enters the scene.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54000,
+    "endOffset": 54474,
+    "content": "Mercutio mocks Romeo's lovesick appearance by saying he's 'without his roe' (a pun on 'roe' as fish eggs and 'Romeo' without 'Ro' meaning just 'meo' - suggesting he's incomplete/lovesick). He compares Romeo to a dried herring (thin/withered) and says he's become 'fishified' (transformed into something fish-like/unappealing). Mercutio sarcastically claims Romeo now writes love poetry like Petrarch (Renaissance poet), but dismisses famous beauties from literature as inferior - Laura (Petrarch's muse) was just a kitchen maid, Dido (Queen of Carthage) was plain, Cleopatra was a gypsy (foreigner), Helen of Troy and Hero were worthless women and prostitutes, and Thisbe (from Pyramus and Thisbe) had nothing special. He greets Romeo in French to mock his fashionable French-style baggy trousers ('slop'). Finally, he accuses Romeo of giving them 'the counterfeit' (sneaking away/deceiving them) the previous night.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54474,
     "endOffset": 54540,
     "content": "Romeo is asking Mercutio and Benvolio what kind of excuse or false story he gave them the day before to explain his disappearance after the Capulet feast. He is playfully admitting that his previous excuse was a lie, as he had actually left to meet Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54474,
+    "endOffset": 54540,
+    "content": "Romeo is asking what false impression or deceptive appearance he gave them earlier. 'Counterfeit' here means a fake or imitation - he's essentially asking 'What false version of myself did I present to you?' This refers to his previous lovesick behavior that didn't reflect his true feelings.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,10 +348,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54540,
+    "endOffset": 54597,
+    "content": "Mercutio uses a pun on 'slip' meaning both a counterfeit coin and an escape. 'Conceive' means understand. He's saying Romeo gave them the slip (escaped) and asking if they don't understand this.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54597,
     "endOffset": 54705,
     "content": "Romeo apologizes to his friend Mercutio for his earlier abrupt departure. He claims his reason was important and that a man in his situation—meaning a man in love—can be excused for being slightly rude or for skipping social niceties.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54597,
+    "endOffset": 54705,
+    "content": "Romeo apologizes to Mercutio for his earlier abrupt departure, explaining that his personal matters were urgent and important enough to justify being somewhat rude or breaking social etiquette. 'Strain courtesy' means to bend or exceed the normal limits of polite behavior.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -192,10 +390,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54705,
+    "endOffset": 54802,
+    "content": "Mercutio sarcastically interprets Romeo's excuse about 'straining courtesy' as meaning his situation forces him to bend at the knees (bow in the hams). 'Hams' refers to the back of the thighs/buttocks. This is a crude sexual joke suggesting Romeo's 'business' was with a woman, making him bow or bend over during sex. Paraphrase: Your excuse means your situation made you bend over.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54802,
     "endOffset": 54830,
     "content": "Romeo is explaining that the word \"meaning\" here refers to the act of bowing or showing respect, as in a curtsy. He is clarifying this for his friends, who are teasing him about his recent disappearance and change in behavior.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54802,
+    "endOffset": 54830,
+    "content": "Romeo clarifies that Mercutio's phrase 'bow in the hams' means to curtsy (a polite gesture of bending the knees).",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -212,10 +432,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54830,
+    "endOffset": 54871,
+    "content": "Mercutio confirms Romeo's interpretation was correct - 'kindly hit it' means 'accurately guessed it' or 'got it exactly right'.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54871,
     "endOffset": 54908,
     "content": "Romeo is responding to Mercutio's witty, teasing speech about Rosaline. He sarcastically calls it a \"courteous exposition,\" meaning a polite and detailed explanation, to acknowledge his friend's cleverness while brushing off the mockery. This shows Romeo is in good spirits and no longer interested in discussing his past love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54871,
+    "endOffset": 54908,
+    "content": "Romeo is sarcastically praising Mercutio's previous speech as being very polite and well-explained, though Mercutio was actually making crude jokes about Rosaline. 'Courteous exposition' means 'polite explanation'.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -232,10 +474,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54908,
+    "endOffset": 54956,
+    "content": "Mercutio sarcastically claims to be the perfect example of politeness. 'Pink' here means the peak or finest example, not the color. He's mocking Romeo's comment about his 'courteous exposition' by ironically agreeing that he's the model of courtesy.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54956,
     "endOffset": 54981,
     "content": "\"Pink\" here refers to a type of flower, the carnation, not the color. Romeo is making a pun, suggesting that Mercutio's wit is as neat and stylish as a perfectly trimmed flower. This is a lighthearted, teasing reply to Mercutio's earlier jokes.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54956,
+    "endOffset": 54981,
+    "content": "Romeo puns on Mercutio's use of 'pink' - while Mercutio meant 'pink' as 'perfection' or 'best example', Romeo literally interprets it as the flower, mocking his friend's boastful claim of being perfectly courteous.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -252,10 +516,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 54981,
+    "endOffset": 54999,
+    "content": "Mercutio sarcastically agrees with Romeo's previous comment about 'pink for flower' - this is dismissive wordplay where 'pink' refers to the flower (carnation) and also means 'perfection' or 'the best' in Elizabethan slang. He's mocking Romeo's flowery romantic language with a curt, unimpressed response.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 54999,
     "endOffset": 55043,
     "content": "Romeo is making a pun on his shoe being \"pump well flowered,\" meaning it is decorated with patterns. He is humorously responding to Mercutio's earlier jokes about his fashion, suggesting that his shoe is as finely adorned as a flower. This continues their witty banter, showing Romeo has regained his high spirits after meeting Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 54999,
+    "endOffset": 55043,
+    "content": "Romeo uses a pun on 'pump' (meaning shoe) and 'flowered' (meaning decorated with patterns). He's humorously suggesting his shoe is well-adorned, playing on Mercutio's previous comment about 'pump' as a verb meaning to praise or compliment. Paraphrase: 'Well then, my shoe is nicely decorated' (implying he's been well complimented).",
+    "perplexity": 85,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -272,10 +558,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55043,
+    "endOffset": 55220,
+    "content": "Mercutio continues Romeo's shoe metaphor: 'wit' means cleverness; 'pump' is a type of shoe; he's saying Romeo should keep up this joke until his shoe wears out completely, so when only the sole remains, the joke will be the only thing left ('solely singular' plays on 'sole' as both shoe bottom and 'only'). Paraphrase: Keep joking until your shoe wears out, then the joke alone will remain.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 55220,
     "endOffset": 55285,
     "content": "Romeo mocks Mercutio's puns as cheap and shallow, calling them a \"single-soled jest\"—a weak joke as thin as the sole of a shoe. He twists the word \"sole\" into \"solely\" and \"singleness\" to humorously criticize the pun's simplicity and lack of substance.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 55220,
+    "endOffset": 55285,
+    "content": "Romeo mocks Mercutio's pun-filled speech by repeating the wordplay about 'single-soled' (meaning thin or poor quality) and 'solely singular' (meaning uniquely alone), suggesting the joke is as flimsy as a worn-out shoe sole.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -292,10 +600,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55285,
+    "endOffset": 55343,
+    "content": "Mercutio asks Benvolio to intervene in their verbal sparring because he's mentally exhausted from the witty exchange. 'Wits faint' means his mental energy is depleted from the battle of wits with Romeo.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 55343,
     "endOffset": 55408,
     "content": "Romeo is urging Mercutio to speed up their witty exchange, using the metaphor of a horse race: \"swits\" means quick movements and \"spurs\" urges faster action. He's saying he'll declare himself the winner if Mercutio can't keep up with their rapid banter. This shows Romeo's regained confidence and playful mood after meeting Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 55343,
+    "endOffset": 55408,
+    "content": "Romeo is urging Mercutio to keep up the witty banter or speed up the conversation, using horse-riding terms: 'swits' means quick movements or switches, 'spurs' means to urge forward. He's saying either keep this rapid exchange going or he'll declare himself the winner of their verbal contest.",
+    "perplexity": 85,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -312,10 +642,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55408,
+    "endOffset": 55607,
+    "content": "Mercutio responds to Romeo's competitive challenge by saying if Romeo's mind is racing unpredictably like a 'wild-goose chase' (a chaotic, pointless pursuit), he can't keep up. He jokes that one of Romeo's thoughts contains more foolishness ('wild-goose') than all five of his own senses combined. The final question mocks whether he was included in Romeo's absurd game.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 55607,
     "endOffset": 55693,
     "content": "Romeo is teasing Mercutio, suggesting that Mercutio was never truly a loyal friend unless he was acting like a fool (a \"goose\"). This is friendly banter, continuing their witty exchange and showing the playful nature of their relationship.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 55607,
+    "endOffset": 55693,
+    "content": "Romeo continues the pun on 'goose' (meaning fool or simpleton), saying Mercutio was never with him for any reason other than to act like a fool.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -332,10 +684,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55693,
+    "endOffset": 55747,
+    "content": "Mercutio threatens to playfully bite Romeo's ear as a mock punishment for his insulting joke. This is Elizabethan banter, not a real threat - biting the ear was a playful, teasing gesture among friends.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 55747,
     "endOffset": 55782,
     "content": "Romeo playfully tells Mercutio to stop teasing him, using \"good goose\" as a lighthearted, affectionate insult. He's asking his friend to ease up on the mockery about his sudden change in mood and disappearance the night before.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 55747,
+    "endOffset": 55782,
+    "content": "Romeo playfully calls Mercutio a 'goose' (fool or silly person) and tells him not to bite, continuing their banter.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -352,10 +726,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55782,
+    "endOffset": 55854,
+    "content": "Mercutio says Romeo's cleverness is like an apple that's both sweet and bitter - it seems pleasant but has a sharp, biting quality. 'Sweeting' was a type of sweet apple, and 'sharp sauce' means his wit is cutting or sarcastic. He's saying Romeo's humor is clever but has a nasty edge to it.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 55854,
     "endOffset": 55914,
     "content": "Romeo is making a pun on the word \"goose,\" which was slang for a foolish person. He's teasing Mercutio, implying that his friend's witty but silly banter is like a \"sweet goose\" being served up. This continues their lighthearted, competitive exchange of jokes.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 55854,
+    "endOffset": 55914,
+    "content": "Romeo plays on Mercutio's food metaphor - 'sweet goose' means foolish person (goose = silly); he jokes that his sharp wit is appropriately paired with a foolish target.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -372,10 +768,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 55914,
+    "endOffset": 56007,
+    "content": "Mercutio praises Romeo's quick-witted humor. 'Cheveril' means soft, stretchable kidskin leather - here describing flexible wit that can expand from small ('inch narrow') to large ('ell broad,' where an ell is about 45 inches). He's saying Romeo's cleverness can stretch to fit any situation.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 56007,
     "endOffset": 56119,
     "content": "Romeo is making a pun on the word \"broad,\" which here means both \"wide\" and \"vulgar\" or \"indecent.\" He twists Mercutio's earlier insult (\"goose\") to call him a foolish and vulgar person. This is part of their witty, teasing exchange, showing their friendship through clever wordplay.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 56007,
+    "endOffset": 56119,
+    "content": "Romeo plays on Mercutio's word 'broad' - 'cheveril' is kid leather that stretches, 'ell' is an old measurement (about 45 inches). Romeo says by adding 'broad' to 'goose' (fool), Mercutio becomes a 'broad goose' - a complete fool everywhere. Paraphrase: Your use of 'broad' combined with 'goose' shows you're a complete fool.",
+    "perplexity": 85,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -392,10 +810,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56119,
+    "endOffset": 56392,
+    "content": "Mercutio praises Romeo for returning to his witty self instead of lovesick moping. He says Romeo is now acting like his true self both naturally and through skillful behavior. Mercutio compares foolish love to a simple-minded person (natural) who foolishly runs around trying to hide his toy (bauble) in a hole - suggesting love makes people act ridiculously. Paraphrase: This is better than love-sickness - you're being your true witty self again. This foolish love makes people act like idiots chasing meaningless things.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 56392,
     "endOffset": 56427,
     "content": "Benvolio is urgently telling Mercutio to stop talking because Romeo is approaching. This interruption shifts the scene's focus from Mercutio's jesting to Romeo's arrival, allowing the conversation to move forward.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 56392,
+    "endOffset": 56427,
+    "content": "Benvolio interrupts Mercutio's crude metaphor about love. He wants to stop the increasingly vulgar description, showing his more restrained nature compared to Mercutio's bawdy humor. This is Benvolio trying to maintain decorum.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -412,10 +852,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56427,
+    "endOffset": 56492,
+    "content": "Mercutio uses the idiom \"against the hair\" meaning \"against the grain\" or \"contrary to what I want.\" He's saying Benvolio wants him to stop his story at an inconvenient or unnatural point. Paraphrase: You want me to stop my story at an awkward moment.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "BENVOLIO",
     "startOffset": 56492,
     "endOffset": 56547,
     "content": "Benvolio is teasing Mercutio, suggesting that if Romeo hadn't shown up just then, Mercutio would have continued to wildly exaggerate his story. The phrase \"made thy tale large\" means Mercutio would have embellished his account to make it more impressive or entertaining.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 56492,
+    "endOffset": 56547,
+    "content": "Benvolio tells Mercutio that if he hadn't interrupted, Mercutio would have exaggerated his story. 'Large' here means exaggerated or boastful. Benvolio is essentially saying Mercutio would have made his tale more elaborate and inflated.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -432,10 +894,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56547,
+    "endOffset": 56705,
+    "content": "Mercutio corrects Benvolio's assumption by saying he would have made his story brief, not lengthy, because he had already reached the main point and intended to end his argument. 'Occupy the argument' means 'continue the discussion'.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 56730,
     "endOffset": 56776,
     "content": "Romeo is excitedly announcing the arrival of the Nurse, whom he compares to a ship coming into view. He is making a humorous, slightly mocking comment about her large size and grand presence to his friend Mercutio.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 56730,
+    "endOffset": 56776,
+    "content": "Romeo exclaims 'Here's goodly gear!' meaning 'Here's fine stuff!' or 'What a sight!' - 'gear' here means 'matter' or 'business.' 'A sail, a sail!' is a nautical metaphor comparing someone's approach to a ship coming into view, likely referring to the Nurse's arrival. He's expressing amused anticipation at seeing the Nurse approach.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -452,10 +936,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56776,
+    "endOffset": 56833,
+    "content": "Mercutio responds to Romeo's nautical exclamation with a bawdy pun: 'a shirt and a smock' refers to male and female clothing, implying he sees both a man and woman approaching. This continues the sexual innuendo from the previous lines.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 56818,
     "endOffset": 56833,
     "content": "The Nurse is calling for her servant, Peter, who accompanies her. This brief summons establishes her authority and that she is not alone, setting up the subsequent comic scene where she will speak with Romeo's friends.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 56818,
+    "endOffset": 56833,
+    "content": "The Nurse is calling for her servant Peter, who accompanies her on errands. This brief interjection shows her reliance on her attendant and creates a moment of comic interruption in the scene.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -472,10 +978,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "PETER",
+    "startOffset": 56833,
+    "endOffset": 56870,
+    "content": "Peter responds 'Anon' meaning 'right away' or 'coming immediately' to the Nurse's call. This brief exchange shows Peter's role as a servant who must respond promptly to his mistress's demands.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 56847,
     "endOffset": 56870,
     "content": "The Nurse is bossing her servant Peter around, demanding he fetch her fan. This shows her self-important and demanding nature, establishing her character for the audience before her important conversation with Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 56847,
+    "endOffset": 56870,
+    "content": "The Nurse is asking her servant Peter to fetch her fan, a common accessory used for cooling oneself. This brief command shows her demanding nature and the informal power dynamic between them.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -492,10 +1020,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56870,
+    "endOffset": 56983,
+    "content": "Mercutio makes a cruel joke about the Nurse's appearance, suggesting Peter should use her fan to cover her face because the fan looks more attractive than she does. This continues his pattern of mocking the Nurse's age and looks.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 56944,
     "endOffset": 56983,
     "content": "The Nurse greets Romeo and Mercutio with a formal, slightly old-fashioned \"good morning.\" Her polite address contrasts with the crude, teasing banter that Mercutio has just been directing at Romeo, immediately establishing her as an outsider to their witty, masculine world.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 56944,
+    "endOffset": 56983,
+    "content": "The Nurse is saying 'God give you good morning' - a formal Elizabethan greeting. 'God ye' is a contraction of 'God give ye' (you). She's politely addressing the gentlemen she encounters.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -512,10 +1062,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 56983,
+    "endOffset": 57053,
+    "content": "Mercutio responds to the Nurse's greeting with mock formality. 'Good-den' means 'good evening' (archaic contraction of 'good even'). He's being sarcastically polite, calling her 'fair gentlewoman' while actually mocking her age and appearance. The Nurse's confused response shows she doesn't understand his sophisticated wordplay.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 57029,
     "endOffset": 57053,
     "content": "\"Good-den\" is an archaic contraction of \"good even,\" meaning \"good evening.\"\nThe Nurse is asking if it is late enough in the day to use this evening greeting.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 57029,
+    "endOffset": 57053,
+    "content": "The Nurse is confused by Mercutio's greeting 'good-den' (a contraction of 'good even' meaning 'good evening'). She repeats it questioningly, showing she doesn't understand this somewhat archaic or formal greeting, highlighting her more common background compared to the noble characters.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -532,10 +1104,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 57053,
+    "endOffset": 57195,
+    "content": "Mercutio uses a sexual pun: 'bawdy hand' means the lustful or lewd clock hand, 'dial' is the clock face, and 'prick of noon' refers to the mark indicating noon, with 'prick' being a double entendre for both the clock's marker and male anatomy. He's crudely saying it's exactly noon. The Nurse's shocked response shows she understands his vulgar implication.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 57153,
     "endOffset": 57195,
     "content": "The Nurse is scolding Peter, her servant, for not backing her up in her verbal sparring with Mercutio and Romeo. She is frustrated and taking it out on him, calling him out for being useless in the confrontation. This shows her fiery, domineering nature and provides comic relief after the witty exchange.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 57153,
+    "endOffset": 57195,
+    "content": "The Nurse expresses strong disapproval with 'Out upon you!' meaning 'Shame on you!' or 'How dare you!' Her question 'What a man are you?' challenges Mercutio's character, implying he's behaving improperly or ungentlemanly.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -552,10 +1146,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 57195,
+    "endOffset": 57395,
+    "content": "Romeo sarcastically responds to the Nurse's insult by saying he's a man God created only to ruin. 'Mar' means to spoil or damage. He's self-deprecatingly agreeing with her criticism. The Nurse then ironically praises his witty response while continuing to search for him.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 57260,
     "endOffset": 57395,
     "content": "The Nurse is asking where she can find Romeo, having been sent by Juliet. Her phrase \"for himself to mar\" means \"to spoil himself,\" a joking reference to Romeo's lovesick state. She is here to deliver Juliet's message arranging their secret marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 57260,
+    "endOffset": 57395,
+    "content": "The Nurse is saying she agrees with Romeo's witty remark about marriage being God's way of spoiling what He made. 'By my troth' means 'truly' or 'upon my word.' 'Quoth a' is archaic for 'said he' or 'says he.' She then asks the gentlemen present if they can direct her to Romeo.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -572,10 +1188,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 57395,
+    "endOffset": 57582,
+    "content": "Romeo plays with word meanings - 'young' refers both to age and being inexperienced. He jokes that by the time the Nurse finds him, he'll be older (both in age and experience). 'For fault of a worse' means he's the youngest Romeo only because there's no worse person with that name.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 57560,
     "endOffset": 57582,
     "content": "The Nurse agrees with Benvolio and Mercutio, who have just been teasing her. Her simple reply shows she is playing along with their bawdy humor, establishing a friendly rapport before she gets down to the serious business of finding Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 57560,
+    "endOffset": 57582,
+    "content": "The Nurse is simply agreeing with Romeo's witty reply. 'You say well' means 'You speak correctly' or 'Well said.'",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -592,10 +1230,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 57582,
+    "endOffset": 57722,
+    "content": "Mercutio sarcastically mocks the Nurse's use of 'well' - 'is the worst well?' means 'is even the worst situation considered good?' 'Well took' means 'well understood' or 'well received.' He's saying her statement is foolish but cleverly delivered. The Nurse then awkwardly asks for a 'confidence' (private conversation) with Romeo.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 57660,
     "endOffset": 57722,
     "content": "The Nurse means \"conference\" (private talk), not \"confidence.\" She is awkwardly asking Romeo to speak privately, confirming his identity first so she can deliver Juliet's message about their secret marriage plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 57660,
+    "endOffset": 57722,
+    "content": "The Nurse uses 'confidence' to mean 'private conversation' (archaic meaning). She's asking Romeo if he's the person she's looking for and wants to speak with him privately.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -612,10 +1272,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "BENVOLIO",
+    "startOffset": 57722,
+    "endOffset": 57769,
+    "content": "Benvolio jokes that the Nurse will invite Romeo to dinner, using 'endite' (archaic for 'invite') humorously since she just asked for a private conversation.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 57769,
     "endOffset": 57811,
     "content": "Mercutio is crudely joking that the Nurse is a pimp or madam, implying she is procuring sexual partners. His cry of \"So ho!\" is a hunting call used when a hare is spotted, mocking the Nurse as his bawdy quarry.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 57769,
+    "endOffset": 57811,
+    "content": "Mercutio mocks Benvolio's suggestion that the Nurse will invite Romeo to supper, calling her a 'bawd' (prostitute or madam) three times for emphasis. 'So ho!' is a hunting cry used when spotting prey, suggesting Mercutio sees the Nurse as someone hunting for sexual encounters. He implies the Nurse is arranging a sexual meeting rather than just a meal.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -632,10 +1314,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 57811,
+    "endOffset": 57841,
+    "content": "Romeo asks Mercutio what he has discovered. 'Hast thou' means 'have you' in modern English. The question responds to Mercutio's excited hunting cry ('So ho!') suggesting he's found something.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 57841,
     "endOffset": 58198,
     "content": "Mercutio is making a crude pun on \"hare\" and \"whore,\" suggesting that Romeo has been with a prostitute who is now \"stale\" or past her prime. He sings a mocking song about old, gray-haired (\"hoar\") meat being poor fare, implying Romeo's taste is questionable. He then abruptly shifts to inviting Romeo to his father's house for dinner, showing his characteristic quick wit and irreverent humor.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 57841,
+    "endOffset": 58198,
+    "content": "Mercutio makes a sexual pun: 'hare' was slang for prostitute, and 'lenten pie' refers to Lent when meat was forbidden, suggesting something stale or undesirable. 'Hoar' means moldy or gray with age. His song continues the metaphor - an old prostitute might be acceptable during abstinence (Lent), but one who's 'hoar' (diseased/aged) isn't worth paying for. He then abruptly changes topic to dinner plans.",
+    "perplexity": 85,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -652,10 +1356,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 58198,
+    "endOffset": 58225,
+    "content": "Romeo simply agrees to join Mercutio and the others for dinner at his father's house, saying he'll come along after them.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 58225,
     "endOffset": 58288,
     "content": "Mercutio is teasing the Nurse by calling her \"ancient lady\" and repeating \"lady\" mockingly, showing his irreverent and witty nature. He is poking fun at her age and social standing, demonstrating his tendency to jest even with those who are older or in a position of respect.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 58225,
+    "endOffset": 58288,
+    "content": "Mercutio mocks the Nurse with exaggerated, repetitive farewells, using 'ancient lady' as a sarcastic term for an old woman to insult her age and dignity.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -672,10 +1398,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 58324,
+    "endOffset": 58410,
+    "content": "The Nurse is asking about the rude man who just left, using 'saucy merchant' to mean impudent fellow and 'ropery' meaning roguery or trickery. She's essentially asking: 'Who was that disrespectful man who was so full of his rude behavior?'",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "ROMEO",
     "startOffset": 58410,
     "endOffset": 58855,
     "content": "Romeo is warning the Nurse that Mercutio is a witty, talkative man who enjoys hearing himself speak but doesn't follow through on his words. The Nurse reacts defensively, vowing to confront anyone who insults her—even if they are stronger—and angrily denies being one of Mercutio's loose companions (\"flirt-gills\" or \"skains-mates\"). She then scolds her servant Peter for failing to defend her honor against such disrespect.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 58410,
+    "endOffset": 58855,
+    "content": "Romeo describes Mercutio as someone who talks excessively but doesn't follow through on his words. The Nurse then threatens to confront anyone who insults her, claiming she could defeat even stronger men or find others to help. She angrily denies being one of Mercutio's loose women ('flirt-gills') or criminal companions ('skains-mates'), and scolds her companion for allowing such disrespect.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -692,10 +1440,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 58537,
+    "endOffset": 58855,
+    "content": "The Nurse is threatening that if anyone speaks against her, she'll defeat them even if they're stronger than Romeo and twenty other ordinary men. If she can't do it herself, she'll find others who will. She calls Romeo a contemptible rogue and insists she's not one of his loose women or criminal companions. She's angry that Juliet might stand by and let any man insult her freely.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "PETER",
     "startOffset": 58855,
     "endOffset": 59752,
     "content": "Peter is reassuring the Nurse that he would have defended her if anyone had bothered her, emphasizing his readiness to fight if the cause is just and lawful. The Nurse, flustered and angry, shifts to her mission from Juliet, warning Romeo not to mislead or deceive her young mistress, as that would be dishonorable. Romeo then politely asks the Nurse to give his greetings to Juliet, and she excitedly promises to do so, delighted at the prospect of delivering happy news.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "PETER",
+    "startOffset": 58855,
+    "endOffset": 59752,
+    "content": "Peter defends himself, saying he saw no one mistreating the Nurse and would have drawn his weapon if needed. The Nurse expresses anger but then shifts to her mission from Juliet, warning against misleading Juliet into false hopes ('fool's paradise') or being deceitful ('deal double'). Romeo interrupts to send his regards, which delights the Nurse.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -713,9 +1483,31 @@
     "act": "II",
     "scene": "IV",
     "speaker": "NURSE",
+    "startOffset": 59063,
+    "endOffset": 59653,
+    "content": "The Nurse expresses extreme anger ('vexed') and physical trembling. She calls someone a contemptible rogue ('scurvy knave'). She reveals Juliet sent her to find Romeo but will keep Juliet's specific message private. She warns Romeo not to deceive Juliet with false promises of happiness ('lead her in a fool's paradise') or be unfaithful ('deal double with her'), emphasizing this would be crude behavior ('gross kind of behaviour') and dishonest conduct ('weak dealing') toward a young noblewoman.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
     "startOffset": 59653,
     "endOffset": 59752,
     "content": "The Nurse is delighted to hear that Romeo still wants to marry Juliet. She exclaims that she will tell Juliet the good news immediately, knowing this will make her extremely happy. Her reaction shows her deep affection for Juliet and her eagerness to be the bearer of joyful news.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 59653,
+    "endOffset": 59752,
+    "content": "The Nurse says she'll relay Romeo's message to Juliet and predicts Juliet will be extremely happy. 'Good heart' expresses affection, 'i'faith' means 'in faith' (truly), and 'Lord, Lord' is an exclamation of amazement.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -732,10 +1524,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 59752,
+    "endOffset": 59913,
+    "content": "Romeo is confused because the Nurse misunderstood his previous words. 'Mark me' means 'pay attention to me.' The Nurse thinks Romeo made a formal declaration of love ('protest'), which she considers proper behavior for a gentleman.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 59815,
     "endOffset": 59913,
     "content": "The Nurse is telling Romeo she will inform Juliet that he has made a formal declaration of his honorable intentions. By calling it a \"gentlemanlike offer,\" she is assuring him that she views his proposal as respectful and appropriate, signaling her approval and willingness to act as their go-between.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 59815,
+    "endOffset": 59913,
+    "content": "The Nurse says she'll inform Juliet that Romeo has made a formal declaration of love ('protest' means to declare solemnly or vow). She considers this a proper, honorable gesture from a gentleman ('gentlemanlike offer'). Paraphrase: I'll tell her you've made a formal declaration of love, which seems like proper gentlemanly behavior.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -752,10 +1566,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 59913,
+    "endOffset": 60112,
+    "content": "Romeo instructs the Nurse to have Juliet find a way to attend confession (shrift) that afternoon at Friar Lawrence's cell, where she will be both confessed (shriv'd) and married. He offers payment for her help, which she refuses.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 60076,
     "endOffset": 60112,
     "content": "The Nurse is telling Romeo that she is not interested in his money. She is emphasizing her sincerity and that her business with him is not for financial gain but concerns Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 60076,
+    "endOffset": 60112,
+    "content": "The Nurse politely refuses Romeo's payment offer. 'Not a penny' means she won't accept any money for her services. This shows her genuine care for Juliet beyond financial reward.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -772,10 +1608,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 60112,
+    "endOffset": 60199,
+    "content": "Romeo's 'Go to' is an Elizabethan expression meaning 'come on' or 'enough of that' - he's insisting the Nurse accept payment for her help. His 'I say you shall' means 'I insist you take it.' The Nurse then confirms Juliet will be at confession that afternoon as planned.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 60144,
     "endOffset": 60199,
     "content": "The Nurse confirms to Romeo that Juliet will attend confession that afternoon. She is arranging their secret meeting so the two lovers can marry.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 60144,
+    "endOffset": 60199,
+    "content": "The Nurse confirms Juliet will attend the afternoon meeting. 'Shall' here indicates certainty rather than obligation.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -792,10 +1650,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 60199,
+    "endOffset": 60561,
+    "content": "Romeo asks the Nurse to wait behind the abbey wall where his servant will bring a rope ladder ('cords made like a tackled stair') within an hour. He metaphorically compares this ladder to a ship's highest sail ('topgallant') that will help him reach Juliet ('my joy') secretly at night. He promises to reward her efforts ('quit thy pains') and sends his regards to Juliet ('commend me to thy mistress').",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 60508,
     "endOffset": 60561,
     "content": "The Nurse blesses Romeo, showing her protective, motherly nature toward Juliet. She then gets his attention to deliver a serious, confidential message from her lady.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 60508,
+    "endOffset": 60561,
+    "content": "The Nurse asks for Romeo's attention after he finishes speaking. 'Hark you' means 'listen to me' or 'pay attention' - she's signaling she has something important to say following his instructions about the rope ladder and meeting arrangements.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -812,10 +1692,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 60561,
+    "endOffset": 60698,
+    "content": "The Nurse asks if Romeo's servant can keep secrets, then quotes a proverb meaning 'two people can keep a secret if one of them is dead' - implying secrets are only safe when shared with no one else.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 60604,
     "endOffset": 60698,
     "content": "The Nurse is asking Romeo if his servant is trustworthy, using a proverb to emphasize secrecy. She means that two people can keep a secret only if one of them is dead, stressing the need for absolute discretion about Juliet's plans. This shows her practical, cautious nature as she arranges the marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 60604,
+    "endOffset": 60698,
+    "content": "The Nurse is asking if Romeo's servant can be trusted with secrets. She references a proverb meaning that two people can keep a secret only if one of them is removed or dead - implying that secrets are safest when known by just one person.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -832,10 +1734,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 60698,
+    "endOffset": 61213,
+    "content": "Romeo assures the Nurse his servant is trustworthy. The Nurse praises Juliet's sweetness and reveals Juliet strongly dislikes Paris (the nobleman who wants to marry her), preferring to see a toad rather than him. When the Nurse teases that Paris is more handsome, Juliet turns pale. The Nurse playfully notes both 'rosemary' (a wedding flower) and 'Romeo' start with 'R'.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 60750,
     "endOffset": 61213,
     "content": "The Nurse is praising Juliet's sweetness while revealing her strong dislike for Paris, whom her parents want her to marry. She notes that mentioning Paris makes Juliet turn pale, showing her aversion. The Nurse then cleverly connects rosemary (a wedding flower) and Romeo through their shared initial letter, hinting at her support for Juliet's secret marriage to Romeo instead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 60750,
+    "endOffset": 61213,
+    "content": "The Nurse praises Juliet as wonderful, then recalls her as a chattering child. She mentions Count Paris wants to pursue Juliet ('lay knife aboard' means make advances), but Juliet would rather see a toad than him. When the Nurse says Paris is more handsome ('properer'), Juliet turns pale as a cloth ('clout') anywhere in the universe ('versal world'). Her final question about rosemary and Romeo sharing the same first letter shows her wandering thoughts connecting the herb (associated with weddings) to Romeo.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -852,10 +1776,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 61213,
+    "endOffset": 61474,
+    "content": "Romeo interrupts the Nurse's rambling with impatient sarcasm - 'Both with an R' mocks her repetitive 'R' sounds in 'are' and 'Nurse.' The Nurse calls him a 'mocker' and misunderstands his wordplay, thinking he's spelling 'dog' as 'R' (growl sound). She then recalls Juliet's clever sayings ('sententious' means pithy, wise remarks) about Romeo and rosemary (a symbol of remembrance and weddings), saying hearing them would delight him.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 61262,
     "endOffset": 61474,
     "content": "The Nurse playfully teases Romeo for mocking her, saying \"R\" is for the dog—meaning \"grr\" or growl—but she can't recall the letter for the clever saying Juliet made about him and rosemary. She hints that Juliet has composed a wise, witty phrase linking Romeo to the rosemary plant (a symbol of remembrance and weddings), suggesting it would delight him to hear it.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 61262,
+    "endOffset": 61474,
+    "content": "The Nurse playfully scolds Romeo for teasing her about the letter 'R' (which sounds like a dog's growl 'arr'). She struggles to recall that Romeo's name actually begins with 'R', then mentions Juliet has composed clever sayings ('sententious') about him and rosemary (a symbol of remembrance and weddings), suggesting hearing them would benefit him.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -872,10 +1818,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 61474,
+    "endOffset": 61543,
+    "content": "Romeo politely asks the Nurse to give his regards to Juliet. 'Commend me' means 'give my greetings' or 'send my respects'. The Nurse enthusiastically agrees ('Ay' = yes).",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 61506,
     "endOffset": 61561,
     "content": "Peter is the Nurse's servant, whom she calls to accompany her. Her exclamation \"Ay, a thousand times\" is her emphatic, good-natured reply to Romeo, confirming she will deliver his message to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 61506,
+    "endOffset": 61561,
+    "content": "The Nurse enthusiastically agrees to Romeo's request to convey his greetings to Juliet, emphasizing she'll do it repeatedly. She then calls for her servant Peter, who accompanies her. The archaic 'Ay' means 'yes'.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -892,10 +1860,32 @@
   {
     "act": "II",
     "scene": "IV",
+    "speaker": "PETER",
+    "startOffset": 61561,
+    "endOffset": 61601,
+    "content": "Peter responds 'Anon' meaning 'right away' or 'coming immediately.' The Nurse then urges him 'Before and apace' - 'Go ahead of me and quickly.' These are Elizabethan commands for servants to act promptly.",
+    "perplexity": 85,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 61575,
     "endOffset": 61614,
     "content": "The Nurse is urging Peter to hurry ahead of her to prepare for Juliet's arrival at Friar Laurence's cell for her secret wedding to Romeo. Her command \"Before and apace\" means \"Go ahead of me, and quickly.\" This brief line underscores the urgency and secrecy of the planned ceremony.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 61575,
+    "endOffset": 61614,
+    "content": "The Nurse is telling Peter to hurry ahead of her and move quickly. 'Before' means 'go ahead' or 'in front,' and 'apace' means 'quickly' or 'at a fast pace.' This is her urgent instruction to leave the scene promptly.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

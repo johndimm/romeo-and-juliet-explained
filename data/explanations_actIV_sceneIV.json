@@ -12,10 +12,32 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 115603,
+    "endOffset": 115725,
+    "content": "Lady Capulet gives keys to the Nurse to get additional spices for cooking. The Nurse reports that people are requesting dates and quinces (types of fruit) in the pastry kitchen. This shows the busy preparations for Juliet's wedding feast.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 115670,
     "endOffset": 115742,
     "content": "The Nurse is bustling about, giving orders for the wedding feast preparations. She mentions that the cooks are being called to bring \"dates and quinces\" (types of fruit) to the pastry kitchen, which shows the busy, festive atmosphere in the Capulet household as they prepare for Juliet's marriage to Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 115670,
+    "endOffset": 115742,
+    "content": "The Nurse is reporting that people in the kitchen (the pastry) are requesting dates (sweet fruits) and quinces (aromatic fruits used in preserves). This shows the busy preparations for Juliet's wedding feast.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 115742,
+    "endOffset": 116029,
+    "content": "Capulet urgently commands everyone to prepare for the wedding feast, noting it's 3 AM (second cock crow, curfew bell). He tells the Nurse to check the baked meats and not worry about expense. The Nurse mockingly calls him a 'cot-quean' (man doing women's work) and tells him to go to bed or he'll be sick from staying up all night.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "NURSE",
     "startOffset": 115920,
     "endOffset": 116029,
     "content": "The Nurse is scolding the Capulet servant for fussing like a housewife (\"cot-quean\") and staying up all night. She tells him to go to bed, warning that he will be sick tomorrow from staying awake so late.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 115920,
+    "endOffset": 116029,
+    "content": "The Nurse calls Capulet a 'cot-quean' (a man who meddles in women's household affairs) and tells him to go to bed. She says he'll be sick tomorrow from staying up all night ('this night's watching'). This shows their familiar relationship where she can scold him directly.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116029,
+    "endOffset": 116137,
+    "content": "Capulet dismisses the Nurse's concern, saying he hasn't been affected at all. He argues that he has stayed awake all night before for less important reasons and never gotten sick from it. 'Whit' means 'bit' or 'amount', 'watch'd' means 'stayed awake', and 'lesser cause' refers to less significant matters.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "LADY CAPULET",
     "startOffset": 116137,
     "endOffset": 116242,
     "content": "Lady Capulet is accusing her husband of having been a womanizer in his youth, calling him a \"mouse-hunt,\" an old term for a cat that hunts mice, here meaning a pursuer of women. She declares that she will now keep a close watch on him to prevent him from such behavior. This sharp remark reveals her bitterness and distrust, adding tension to their interaction on what is supposed to be their daughter's wedding day.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 116137,
+    "endOffset": 116242,
+    "content": "Lady Capulet accuses her husband of having been a womanizer in his youth ('mouse-hunt' means pursuer of women, like a cat hunting mice). She says she'll now monitor him to prevent such nighttime activities. This reveals marital tension and suggests Capulet's past infidelities.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116279,
+    "endOffset": 116321,
+    "content": "Capulet is teasingly calling his wife a jealous person. 'Jealous-hood' is an archaic term meaning jealousy or a jealous nature, with '-hood' forming an abstract noun like 'childhood' or 'brotherhood'. He's playfully acknowledging her suspicion that he might be unfaithful.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "FIRST SERVANT",
     "startOffset": 116399,
     "endOffset": 116462,
     "content": "The servant is telling Capulet that he has brought items for the cook, but he doesn't know the specifics of what they are. This line highlights the frantic, disorganized preparations for Juliet's wedding, creating a sense of bustling activity that contrasts sharply with the tragic reality of the situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 116399,
+    "endOffset": 116462,
+    "content": "The servant is telling Capulet that he has brought items for the cook, but he doesn't know specifically what they are. 'Things' refers to unspecified food supplies or kitchen items.",
+    "perplexity": 15,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,6 +180,17 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116462,
+    "endOffset": 116496,
+    "content": "Capulet urgently commands the servants to hurry with wedding preparations. 'Make haste' means 'hurry up' - he's repeating it for emphasis.",
+    "perplexity": 5,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "SECOND SERVANT",
     "startOffset": 116598,
     "endOffset": 116711,
@@ -102,10 +201,32 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 116598,
+    "endOffset": 116711,
+    "content": "The servant claims he can figure out where to find firewood on his own without needing to ask Peter (another servant) for help. 'Find out logs' means locate firewood; 'never trouble Peter' means not bother asking another servant for assistance.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "CAPULET",
     "startOffset": 116711,
     "endOffset": 117133,
     "content": "Capulet is cheerfully ordering the household to prepare for Juliet's wedding to Paris. He hears music signaling Paris's arrival and urgently calls for the Nurse to wake and dress the bride, showing his excitement and haste as the wedding day begins.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116711,
+    "endOffset": 117133,
+    "content": "Capulet praises the servant's cleverness ('Mass' is an oath like 'by the Mass', 'whoreson' is rough but affectionate here meaning 'rascal'). He jokes the servant will be a 'loggerhead' (blockhead) for his wood-finding skill. Noting dawn, he expects Paris' arrival with musicians ('County' means Count Paris). He urgently commands the Nurse to wake and dress Juliet, while he'll greet Paris, emphasizing the bridegroom's early arrival with repeated haste commands.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

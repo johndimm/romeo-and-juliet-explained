@@ -87,15 +87,19 @@ function sysPrompt(){
   return [
     'You are a helpful literature tutor who explains Romeo and Juliet clearly and accurately.',
     'Audience: high school; Language: English.',
-    'Write the explanation directly; do not repeat the quote or restate Act/Scene/Speaker.',
-    'Avoid boilerplate; prefer precise paraphrase and immediate dramatic function (who, to whom, why).',
-    'Briefly clarify archaic words or tricky syntax; then give a concise paraphrase.',
-    'Assume adjacent speeches may also be explained: do not repeat scene-level themes/plot in every note; focus on what is new to these lines and keep it short if continuing an already-explained idea.',
+    'Return ONLY compact JSON: {"explanation": "...", "perplexity": <0-100>}.',
+    'Explanation: direct; do not repeat the quote or restate Act/Scene/Speaker; clarify archaic words/idioms or tricky syntax briefly; give a concise paraphrase; avoid repeating scene-level themes in every note – focus on what is new in these lines.',
+    'Perplexity: difficulty 0–100 for a typical HS reader based on archaic vocabulary density, syntactic complexity, metaphors/allusions compression, and required cultural context.',
   ].join('\n');
 }
 
-function userPrompt({ act, scene, speaker, text }){
-  return [`Act ${act}, Scene ${scene}. Speaker: ${speaker||'Unknown'}.`, 'Explain concisely (about 2–3 sentences if straightforward).','Text:', text].join('\n');
+function userPrompt({ act, scene, speaker, text, prevText }){
+  return [
+    `Act ${act}, Scene ${scene}. Speaker: ${speaker||'Unknown'}.`,
+    prevText ? ('Previous speech (context):\n' + prevText) : '',
+    'Speech text:', text,
+    'Respond with JSON only.'
+  ].join('\n');
 }
 
 async function deepseekExplain({ apiKey, model, system, user }){
@@ -110,7 +114,7 @@ async function deepseekExplain({ apiKey, model, system, user }){
 
 async function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
-async function generateScene({ act, scene, model, apiKey, sectionsWithOffsets, meta, mode, minlen, concurrency, rate }){
+async function generateScene({ act, scene, model, apiKey, sectionsWithOffsets, meta, mode, minlen, concurrency, rate, maxChars=1800, prevMax=400 }){
   const range = meta.scenes.find(x=>String(x.act)===String(act)&&String(x.scene)===String(scene));
   if (!range) { console.log(`Skip missing scene ${act}-${scene}`); return []; }
   const speechesMeta = collectSpeeches(meta, range);
@@ -127,7 +131,7 @@ async function generateScene({ act, scene, model, apiKey, sectionsWithOffsets, m
   const byStart = new Map(); existing.forEach(e=>{ if (e && typeof e.startOffset==='number') byStart.set(e.startOffset, e); });
   const system = sysPrompt();
 
-  const tasks = speeches.map(sp => async () => {
+  const tasks = speeches.map((sp, idx) => async () => {
     if (mode === 'missing') {
       const ex = byStart.get(sp.startOffset);
       const len = ex ? (ex.content||'').trim().length : 0;
@@ -144,9 +148,31 @@ async function generateScene({ act, scene, model, apiKey, sectionsWithOffsets, m
     }
     const text = parts.join('').trim();
     if (!text) return null;
-    const user = userPrompt({ act, scene, speaker: sp.speaker, text });
-    const content = await deepseekExplain({ apiKey, model, system, user });
-    return { act, scene, speaker: sp.speaker, startOffset: sp.startOffset, endOffset: sp.endOffset, content, provider: 'deepseek', model };
+    let prevText = '';
+    if (idx > 0) {
+      const prev = speeches[idx-1];
+      const prevParts=[];
+      for (const sec of sectionsWithOffsets){
+        const b0=sec.startOffset, b1=b0+enc.encode(sec.text||'').length;
+        if (b1<=prev.startOffset) continue; if (b0>=prev.endOffset) break;
+        const sub=enc.encode(sec.text||'').slice(Math.max(0,prev.startOffset-b0), Math.min(b1-prev.startOffset, prev.endOffset-b0));
+        prevParts.push(dec.decode(sub));
+      }
+      const rawPrev = prevParts.join('').trim();
+      prevText = rawPrev.length > prevMax ? rawPrev.slice(0, prevMax-20) + '…' : rawPrev;
+    }
+    // Chunk long speeches and merge
+    function split(text, max){ if (text.length<=max) return [text]; const out=[]; let st=0; while(st<text.length){ let ed=Math.min(text.length, st+max); const slice=text.slice(st,ed); let cut=slice.lastIndexOf('.'); if(cut<max*0.6) cut=slice.lastIndexOf('\n'); if(cut<max*0.6) cut=slice.lastIndexOf(' '); if(cut<=0) cut=slice.length; out.push(text.slice(st, st+cut)); st=st+cut; while(st<text.length && /\s/.test(text[st])) st++; } return out; }
+    const chunks = split(text, maxChars);
+    let merged=''; let maxP=0;
+    for (let ci=0; ci<chunks.length; ci++){
+      const t = chunks[ci];
+      const user = userPrompt({ act, scene, speaker: sp.speaker, text: t, prevText: ci===0?prevText:'' });
+      const content = await deepseekExplain({ apiKey, model, system, user });
+      let explanation = content; let px=0; try { const m=content.match(/\{[\s\S]*\}/); const j=JSON.parse(m?m[0]:content); explanation=(j.explanation||'').toString().trim()||explanation; const s=parseInt(j.perplexity,10); if(Number.isFinite(s)) px=Math.max(0,Math.min(100,s)); } catch {}
+      merged += (ci?'\n\n':'') + explanation; if (px>maxP) maxP=px;
+    }
+    return { act, scene, speaker: sp.speaker, startOffset: sp.startOffset, endOffset: sp.endOffset, content: merged, perplexity: maxP, provider: 'deepseek', model };
   });
 
   const results = existing.slice();
@@ -199,4 +225,3 @@ async function main(){
 }
 
 main().catch(e=>{ console.error(e); process.exit(1); });
-

@@ -12,10 +12,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 61661,
+    "endOffset": 62410,
+    "content": "Juliet anxiously waits for the Nurse's return with news from Romeo. She criticizes the Nurse's slowness, imagining that if the Nurse were young and passionate, she would move quickly like a ball in a game. Juliet contrasts this with older people, whom she describes as sluggish and lifeless. 'Perchance' means perhaps; 'lame' means slow or crippled; 'heralds' are messengers; 'nimble-pinion'd doves' refers to swift-winged doves; 'bandy' means to hit back and forth like in a game.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 62523,
     "endOffset": 62574,
     "content": "Peter is the Nurse's servant, and she orders him to wait for her at the gate to ensure they are not interrupted. This creates a moment of privacy, heightening the suspense as she is about to deliver Romeo's crucial message to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62523,
+    "endOffset": 62574,
+    "content": "The Nurse tells her servant Peter to wait by the gate while she speaks privately with Juliet. This shows her awareness of social hierarchy and her intention to share confidential news about Romeo.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 62574,
+    "endOffset": 62864,
+    "content": "Juliet urges the Nurse to deliver her news cheerfully, even if it's bad, because a gloomy expression ruins good news. The Nurse complains of exhaustion and aches from her journey.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 62772,
     "endOffset": 62864,
     "content": "The Nurse complains of exhaustion and body aches to emphasize the effort she has just expended running Juliet's errand to Romeo. She exaggerates her physical state to delay giving Juliet the news, building suspense and teasing the impatient girl.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62772,
+    "endOffset": 62864,
+    "content": "The Nurse complains of exhaustion and asks to rest, expressing frustration about her aching bones and the long, tiring journey she just completed. 'Aweary' means weary/tired; 'give me leave' means let me rest; 'Fie' is an exclamation of annoyance; 'jaunt' refers to a tiring trip.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 62864,
+    "endOffset": 63064,
+    "content": "Juliet expresses impatience by saying she'd gladly exchange her physical comfort for the news. 'I would thou hadst my bones, and I thy news' means she'd trade places so the Nurse could rest while she gets the information. She then urgently pleads multiple times for the Nurse to speak immediately, showing her anxiety about Romeo's response.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 62972,
     "endOffset": 63064,
     "content": "The Nurse is complaining that Juliet is rushing her to deliver news about Romeo. She dramatically emphasizes her physical exhaustion to make Juliet wait and appreciate her effort.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62972,
+    "endOffset": 63064,
+    "content": "The Nurse expresses frustration at Juliet's impatience, using 'Jesu' as an exclamation (like 'Jesus!'). She asks why Juliet is in such a hurry ('what haste?') and tells her to wait ('stay a while'), pointing out she's physically exhausted ('out of breath'). Paraphrase: 'Why are you rushing me? Can't you wait? I'm exhausted!'",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 63064,
+    "endOffset": 63795,
+    "content": "Juliet points out the Nurse's contradiction - claiming to be breathless while speaking at length about being breathless. She notes the Nurse's excuse for delay is longer than the actual news she's supposed to deliver. Juliet urgently demands to know whether the news about Romeo is good or bad, insisting she'll wait for details later. The Nurse responds with teasing praise of Romeo's physical attributes - his face, legs, hands, feet, and body are all excellent, though she says he's not perfectly courteous but gentle. She then abruptly changes subject to ask if Juliet has eaten.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 63380,
     "endOffset": 63795,
     "content": "The Nurse is teasing Juliet by pretending to criticize Romeo before listing his physical perfections in exaggerated detail. She playfully suggests he lacks polished manners but assures he's gentle, then abruptly changes the subject to ask if Juliet has eaten—showing her fondness for dramatic delays while withholding the news Juliet desperately awaits.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63380,
+    "endOffset": 63795,
+    "content": "The Nurse criticizes Juliet's choice of Romeo, saying she lacks judgment in selecting men. She gives a mixed physical description: his face is handsome, his legs are excellent, and his other features are beyond comparison. Though not perfectly polite, she guarantees he's gentle. She abruptly shifts to asking if Juliet has eaten.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 63795,
+    "endOffset": 64121,
+    "content": "Juliet impatiently interrupts the Nurse's physical descriptions of Romeo, already knowing those details. She urgently wants to hear about the marriage arrangements. The Nurse deflects by complaining about her aches from running errands, using exaggerated language about her head and back pain. 'Beshrew your heart' means 'curse you,' and 'jauncing' means jolting or bouncing during travel.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 63888,
     "endOffset": 64121,
     "content": "The Nurse is complaining about her physical pains to delay giving Juliet the news from Romeo, heightening Juliet's frustration. She exaggerates her aches and blames Juliet for sending her on the errand, using \"beshrew your heart\" as a mild curse. This means: \"A curse on you for making me run around until I die from exhaustion.\"",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63888,
+    "endOffset": 64121,
+    "content": "The Nurse complains about physical pain from her errand - her head throbs intensely and her back aches. She curses Juliet for making her run around so much that she might die from exhaustion. 'Beshrew your heart' means 'curse you,' 'o' t'other side' means 'on the other side,' and 'jauncing' means 'jolting or bouncing around.' Paraphrase: My head aches terribly and might split apart; my back hurts too - curse you for sending me on this exhausting errand that might kill me.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64121,
+    "endOffset": 64375,
+    "content": "Juliet impatiently apologizes briefly for the Nurse's complaints and urgently asks for Romeo's message. The Nurse praises Romeo's character but abruptly changes the subject to ask about Juliet's mother, creating suspense.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 64231,
     "endOffset": 64375,
     "content": "The Nurse praises Romeo's character to Juliet, listing his admirable qualities to reassure her of his worthiness. She abruptly changes the subject by asking about Juliet's mother, creating a moment of suspense and shifting the focus back to the practical matter of their secret plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64231,
+    "endOffset": 64375,
+    "content": "The Nurse describes Romeo as an honest, courteous, kind, handsome gentleman and guarantees he's virtuous. 'Warrant' means guarantee or assure. She then abruptly changes subject to ask about Juliet's mother. Paraphrase: Romeo speaks like a respectable gentleman who's polite, kind, good-looking, and I guarantee he's morally good—but where's your mother?",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,10 +264,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64375,
+    "endOffset": 64694,
+    "content": "Juliet is impatient with the Nurse's roundabout way of delivering Romeo's message. She repeats the Nurse's words mockingly, showing frustration at the delay. The Nurse responds with mild exasperation ('Are you so hot?' meaning 'Are you so impatient?'), using the oath 'God's lady dear' and the expression 'Marry, come up, I trow' (roughly 'Well, really! I declare!'). She sarcastically asks if this is supposed to be medicine for her aching bones, then threatens to stop being their messenger. Paraphrase: Juliet complains about the Nurse's indirect response, and the Nurse gets annoyed at her impatience.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 64543,
     "endOffset": 64694,
     "content": "The Nurse is annoyed that Juliet is impatient for news of Romeo. She sarcastically asks if Juliet's eagerness is supposed to be a cure for her own tiredness from the errand. In frustration, she declares she won't run any more messages for her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64543,
+    "endOffset": 64694,
+    "content": "The Nurse expresses frustration with Juliet's impatience. 'O God's lady dear' is an exclamation of surprise. 'Are you so hot?' means 'Are you so impatient/angry?' 'Marry, come up, I trow' roughly translates to 'Indeed, calm down, I believe.' She sarcastically asks if this errand is supposed to be medicine for her aching bones, then declares she'll no longer run messages for Juliet.",
+    "perplexity": 75,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -152,10 +306,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64694,
+    "endOffset": 64798,
+    "content": "Juliet impatiently dismisses the Nurse's complaining as unnecessary fuss and urgently asks for Romeo's response. The Nurse ignores her question and instead asks if Juliet has permission to go to confession, hinting at their secret wedding plans.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 64748,
     "endOffset": 64798,
     "content": "The Nurse is asking Juliet if she has permission to go to confession. This is a pretext for Juliet to leave the house and meet Romeo so they can be married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64748,
+    "endOffset": 64798,
+    "content": "The Nurse asks if Juliet has permission to go to confession today. 'Shrift' means confession to a priest, which was a common religious practice. This is actually a coded reference to Juliet's planned secret meeting with Romeo at Friar Laurence's cell, using the excuse of going to confession as cover.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -172,6 +348,17 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64798,
+    "endOffset": 65263,
+    "content": "The Nurse tells Juliet to hurry to Friar Lawrence's cell where Romeo is waiting to marry her. She notices Juliet blushing at the news. The Nurse will fetch a rope ladder so Romeo can climb to Juliet's room after dark for their wedding night. She complains about doing all the work while Juliet will enjoy the pleasure, then tells Juliet to go to the church while she goes to dinner.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "NURSE",
     "startOffset": 64815,
     "endOffset": 65263,
@@ -182,10 +369,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64815,
+    "endOffset": 65263,
+    "content": "The Nurse tells Juliet to hurry to Friar Lawrence's cell where Romeo is waiting to marry her. She notes Juliet is blushing with excitement. The Nurse will fetch a rope ladder so Romeo can climb to Juliet's room after dark for their wedding night. She calls herself their servant doing the hard work while Juliet will soon have the 'burden' of sexual intimacy. She ends by saying she'll go eat while Juliet goes to the friar.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "JULIET",
     "startOffset": 65263,
     "endOffset": 65317,
     "content": "Julet is urging the Nurse to hurry to Romeo and bring back news of their marriage plans, wishing her good luck on this important mission. She affectionately calls the Nurse \"honest\" to show trust and respect before sending her off.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 65263,
+    "endOffset": 65317,
+    "content": "Juliet enthusiastically tells the Nurse to hurry toward their fortunate situation (her secret marriage) and bids her farewell with appreciation. 'Hie' means hurry; 'high fortune' refers to the promising outcome of their plan.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

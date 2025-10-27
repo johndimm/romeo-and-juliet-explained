@@ -12,10 +12,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 123937,
+    "endOffset": 124449,
+    "content": "Romeo believes his dreams predict good news because he feels unusually happy and lighthearted. He dreamed Juliet found him dead and revived him with kisses, making him feel like an emperor. He reflects that even dreams about love bring immense joy, let alone real love.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "BALTHASAR",
     "startOffset": 124669,
     "endOffset": 124972,
     "content": "Balthasar mistakenly believes Juliet is dead and tells Romeo her body rests in the Capulet tomb while her soul is in heaven. He explains he witnessed her burial and rode quickly to bring this news, apologizing for delivering it since Romeo assigned him this duty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 124669,
+    "endOffset": 124972,
+    "content": "Balthasar mistakenly believes Juliet is dead and in the Capulet tomb, with her soul in heaven. He saw her placed in the family vault and rode quickly to inform Romeo. He apologizes for delivering this bad news, noting Romeo assigned him this duty.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 124972,
+    "endOffset": 125112,
+    "content": "Romeo defiantly rejects fate ('stars' meaning destiny) upon hearing Juliet is dead. He commands Balthasar to fetch writing materials and fast horses ('post-horses') so he can leave immediately for Verona.",
+    "perplexity": 45,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "BALTHASAR",
     "startOffset": 125112,
     "endOffset": 125224,
     "content": "Balthasar urges Romeo to calm down because his pale, frantic appearance suggests something terrible has happened. \"Import/Some misadventure\" means his expression indicates a disastrous event—Balthasar knows Juliet is \"dead\" but hasn't yet revealed this news directly.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 125112,
+    "endOffset": 125224,
+    "content": "Balthasar urges Romeo to calm down, observing that his pale and frantic appearance suggests something terrible has happened. 'Import' means 'indicate' or 'suggest,' and 'misadventure' refers to a misfortune or disaster.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 125224,
+    "endOffset": 125344,
+    "content": "Romeo dismisses Balthasar's concern with 'Tush' (an archaic interjection meaning 'nonsense'), insists he's mistaken about his emotional state, repeats his command to leave, and asks if Friar Laurence sent any letters.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "BALTHASAR",
     "startOffset": 125344,
     "endOffset": 125374,
     "content": "Balthasar is respectfully telling Romeo that he will not leave him alone in Mantua. He feels loyalty and concern for his master, especially since Romeo appears distressed. This sets up Balthasar’s presence for the crucial news he is about to deliver.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 125344,
+    "endOffset": 125374,
+    "content": "Balthasar simply confirms he has no letters from Friar Laurence for Romeo. 'My good lord' is a respectful address to Romeo.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 125374,
+    "endOffset": 125461,
+    "content": "'Get thee gone' means 'go away' or 'leave immediately.' 'Hire those horses' means 'rent horses' for travel. 'I'll be with thee straight' means 'I'll join you right away.' Romeo is dismissing Balthasar while instructing him to prepare horses for departure, indicating he plans to follow shortly.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "APOTHECARY",
     "startOffset": 126498,
     "endOffset": 126530,
     "content": "The Apothecary responds to Romeo's loud knocking at his door, establishing the setting and introducing the character. This brief line immediately creates tension and sets up the illegal transaction that follows.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126498,
+    "endOffset": 126530,
+    "content": "The apothecary asks who is shouting so loudly. This is a simple question showing he's been startled by Romeo's urgent call.",
+    "perplexity": 5,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -92,10 +180,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 126530,
+    "endOffset": 126977,
+    "content": "Romeo offers money to the poor apothecary for fast-acting poison that will quickly kill someone tired of living, comparing its speed to gunpowder exploding from a cannon. The apothecary has lethal drugs but says Mantua's law imposes death penalty for selling them.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "APOTHECARY",
     "startOffset": 126882,
     "endOffset": 126977,
     "content": "The Apothecary is telling Romeo that he does possess deadly poisons, but selling them is a capital offense under Mantua's law. This hesitation establishes the stakes for the transaction, making Romeo's subsequent bribe more urgent and morally significant.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126882,
+    "endOffset": 126977,
+    "content": "The apothecary confirms he possesses deadly poisons but explains that Mantua's law imposes the death penalty on anyone who sells or distributes them. 'Mortal drugs' means lethal poisons; 'utters' here means sells or dispenses.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -112,10 +222,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 126977,
+    "endOffset": 127354,
+    "content": "Romeo observes the apothecary's extreme poverty—hollow cheeks from hunger, desperate eyes from need, and visible signs of beggary. He argues that since the world offers no legal way for the man to escape poverty, he should break the law (selling poison) and accept payment. The apothecary's reply means his desperate financial situation forces him to agree, though his conscience objects.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "APOTHECARY",
     "startOffset": 127303,
     "endOffset": 127354,
     "content": "The Apothecary is stating that his desperate financial situation forces him to sell Romeo the illegal poison, even though his conscience objects to the transaction. This highlights the moral conflict between his ethical will and his physical need, making him a reluctant accomplice in the tragedy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127303,
+    "endOffset": 127354,
+    "content": "The apothecary means his desperate financial situation forces him to agree, but he does so unwillingly and against his moral judgment. 'Poverty' refers to his extreme need, while 'will' means his personal desire or conscience. He's saying economic necessity overrides his ethical objections to selling poison.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -132,6 +264,17 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 127354,
+    "endOffset": 127544,
+    "content": "Romeo acknowledges he's exploiting the Apothecary's financial need rather than his moral approval. The Apothecary then instructs Romeo to dissolve the poison in any liquid and drink it, warning that even with the strength of twenty men, it would kill him immediately. 'Despatch' means kill, 'straight' means immediately.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "APOTHECARY",
     "startOffset": 127399,
     "endOffset": 127544,
@@ -142,10 +285,32 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127399,
+    "endOffset": 127544,
+    "content": "The apothecary instructs Romeo to dissolve the poison in any beverage and drink it all at once. He emphasizes the poison's extreme potency by stating it would kill someone instantly, even if they possessed the combined strength of twenty men. 'Despatch' means 'kill' or 'finish off,' and 'straight' means 'immediately.'",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "ROMEO",
     "startOffset": 127544,
     "endOffset": 127875,
     "content": "Romeo is paying the Apothecary for poison, but he claims that money itself is a more destructive poison in society than the actual toxic compounds. He tells the Apothecary to use the gold to buy food and improve his health. Finally, Romeo renames the poison a \"cordial,\" or restorative drink, because he intends to use it to join Juliet in death, which he sees as a welcome release.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 127544,
+    "endOffset": 127875,
+    "content": "Romeo claims gold is a more harmful poison than the actual poison he's buying, corrupting people and causing more deaths. He ironically says he's selling poison (by giving gold) while the apothecary sold him none. He tells the apothecary to buy food and gain weight, then calls the poison a 'cordial' (medicine) since it will reunite him with Juliet in death.",
+    "perplexity": 65,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

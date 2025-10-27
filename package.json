@@ -14,7 +14,11 @@
     "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json",
     "merge:explanations": "node scripts/merge-explanations.mjs",
     "gen:all": "node scripts/gen-all-deepseek.mjs --mode=all",
-    "gen:prologue": "node scripts/gen-prologue-deepseek.mjs"
+    "gen:prologue": "node scripts/gen-prologue-deepseek.mjs",
+    "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json",
+    "score:llm": "node scripts/score-perplexity-deepseek.mjs --in=data/explanations.json",
+    "score:gpt2": "python3 scripts/score-perplexity-gpt2.py --in data/explanations.json --out data/explanations.json",
+    "hist:perplexity": "node scripts/hist-perplexity.mjs --in data/explanations.json --bins 10"
   },
   "dependencies": {
     "next": "14.2.5",

@@ -12,10 +12,32 @@
   {
     "act": "III",
     "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 91542,
+    "endOffset": 91854,
+    "content": "Capulet explains that unfortunate events (Tybalt's death) prevented him from discussing marriage with Juliet. He notes Juliet's deep affection for Tybalt and his own, then fatalistically comments 'we were born to die.' He says it's too late for Juliet to come down tonight, and politely adds that only the visitor's presence kept him from going to bed earlier. Paraphrase: Due to today's tragedy, I haven't spoken to Juliet about marriage. She loved Tybalt deeply, as did I - but death comes to us all. It's too late for her to join us now; I'd be asleep already if not for your visit.",
+    "perplexity": 35,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
     "speaker": "PARIS",
     "startOffset": 91854,
     "endOffset": 91952,
     "content": "Paris is telling Lady Capulet that the recent death of Tybalt makes this a sorrowful time, not a suitable one for courtship. He politely ends the conversation and asks her to pass his regards to Juliet.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 91854,
+    "endOffset": 91952,
+    "content": "Paris acknowledges that the current period of grief (after Tybalt's death) is not appropriate for courtship. He bids Lady Capulet goodnight and asks her to give his regards to Juliet.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "III",
     "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 91952,
+    "endOffset": 92054,
+    "content": "'Mew'd up' means confined or shut away, like a bird in a cage; 'heaviness' refers to her deep grief or sorrow. Lady Capulet is saying Juliet is currently shut in her room, overwhelmed by sadness (over Tybalt's death), but she'll find out Juliet's feelings about marrying Paris in the morning.",
+    "perplexity": 65,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
     "speaker": "CAPULET",
     "startOffset": 92054,
     "endOffset": 92361,
     "content": "Capulet is promising Paris that he will offer Juliet's hand in marriage, confidently asserting that she will obey his decision. He then instructs his wife to inform Juliet about the planned wedding this coming Wednesday, but he pauses to check what day it currently is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92054,
+    "endOffset": 92361,
+    "content": "Capulet rashly promises Juliet's love to Paris, assuming she'll obey him completely. He tells his wife to inform Juliet about Paris's proposal and prepare for a Wednesday wedding, then pauses to check the current date.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "III",
     "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 92361,
+    "endOffset": 92386,
+    "content": "Paris simply answers Capulet's question about the current day of the week. This brief response shows Paris's attentiveness and eagerness to move forward with the wedding plans.",
+    "perplexity": 0,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
     "speaker": "CAPULET",
     "startOffset": 92386,
     "endOffset": 92835,
     "content": "Capulet is hastily arranging Juliet's marriage to Paris, settling on Thursday. He wants a small, quiet ceremony because Tybalt has just died; a large celebration would seem disrespectful to their slain kinsman. He asks Paris if he approves of the quick date and modest plans.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92386,
+    "endOffset": 92835,
+    "content": "Capulet abruptly changes the wedding date from Monday to Thursday, telling Paris that Juliet will marry him then. He asks if Paris approves of the quick timing and explains they'll have a small ceremony with only a few guests because Tybalt's recent death makes large celebrations inappropriate—it might seem they didn't care about their relative.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "III",
     "scene": "IV",
+    "speaker": "PARIS",
+    "startOffset": 92835,
+    "endOffset": 92889,
+    "content": "Paris expresses eagerness for the wedding, wishing Thursday would come immediately. 'Would that' is an archaic way of saying 'I wish that'.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
     "speaker": "CAPULET",
     "startOffset": 92889,
     "endOffset": 93152,
     "content": "Capulet tells his wife to inform Juliet that her marriage to Paris is set for Thursday. He then calls for a servant to light his way to bed, noting how late it has become—so late it will soon be morning. This hasty decision, made without Juliet's consent, sets up the tragic conflict to follow.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "III",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 92889,
+    "endOffset": 93152,
+    "content": "Capulet tells Paris to leave and confirms Thursday as the wedding day. He instructs his wife to prepare Juliet for the wedding before bedtime. 'Light to my chamber' means bring a candle/lamp to his room. 'Afore me' is an exclamation like 'upon my soul'. He notes how late it is, saying it will soon be considered early morning. Paraphrase: Go now - we'll have the wedding Thursday. Wife, tell Juliet to get ready before bed. Bring light to my room - it's so late it'll soon be early. Good night.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }

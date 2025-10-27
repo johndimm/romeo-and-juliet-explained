@@ -12,10 +12,32 @@
   {
     "act": "V",
     "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 127945,
+    "endOffset": 127994,
+    "content": "This is a simple call for attention - the speaker is identifying himself as a Franciscan friar and calling out 'Brother' to get someone's attention. 'Ho' is an archaic exclamation meaning 'hey' or 'listen here'.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128018,
     "endOffset": 128163,
     "content": "Friar Lawrence recognizes Friar John's voice and immediately asks for news from Romeo in Mantua. He urgently wants to know Romeo's response to his letter explaining Juliet's fake death, or to read the letter itself if Romeo wrote one. This shows his anxiety about whether his plan has been successfully communicated.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128018,
+    "endOffset": 128163,
+    "content": "Friar Lawrence recognizes Friar John's voice and immediately asks for news from Romeo in Mantua. 'If his mind be writ' means 'if he wrote down his thoughts' - he's asking for a letter from Romeo. He's anxiously expecting Romeo's response about the plan to fake Juliet's death.",
+    "perplexity": 25,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -32,10 +54,32 @@
   {
     "act": "V",
     "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128163,
+    "endOffset": 128511,
+    "content": "Friar John explains he was delayed because he went to find another friar to accompany him to Mantua. While searching for this fellow monk in Verona, health inspectors found them in a house under quarantine for plague, locked them inside, and prevented his journey.",
+    "perplexity": 75,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128511,
     "endOffset": 128562,
     "content": "Friar Lawrence is urgently asking who delivered his letter to Romeo, since Romeo should have known about Juliet's fake death but instead came to the tomb believing she was truly dead. This question reveals that the letter never reached Romeo, creating the tragic misunderstanding that will lead to both lovers' deaths.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128511,
+    "endOffset": 128562,
+    "content": "Friar Lawrence asks who delivered his letter to Romeo if Friar John couldn't. 'Bare' means 'carried' or 'bore' (archaic past tense of 'bear'). He's realizing his message about Juliet's fake death never reached Romeo.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -52,10 +96,32 @@
   {
     "act": "V",
     "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128562,
+    "endOffset": 128692,
+    "content": "Friar John explains he couldn't deliver the letter to Romeo or find anyone to bring it back to Friar Lawrence because people were too afraid of catching the plague (infection). The letter remains undelivered, which will have tragic consequences.",
+    "perplexity": 25,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128692,
     "endOffset": 128926,
     "content": "Friar Lawrence realizes with alarm that the undelivered letter was critically important, not trivial, and its failure to reach Romeo could lead to disastrous consequences. He urgently sends Friar John to fetch a crowbar so he can personally retrieve Juliet from the tomb before she wakes, hoping to prevent the tragedy he now fears is imminent.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128692,
+    "endOffset": 128926,
+    "content": "Friar Lawrence expresses dismay that the undelivered letter was not trivial ('not nice') but critically important ('full of charge'), containing vital information ('dear import'). He fears serious consequences ('much danger') from this neglect. He urgently orders Friar John to fetch an iron crowbar ('iron crow') and bring it immediately ('straight') to his quarters ('cell'), suggesting he plans to take direct action, likely to retrieve Juliet from the tomb.",
+    "perplexity": 45,
     "provider": "deepseek",
     "model": "deepseek-chat"
   },
@@ -72,10 +138,32 @@
   {
     "act": "V",
     "scene": "II",
+    "speaker": "FRIAR JOHN",
+    "startOffset": 128926,
+    "endOffset": 128977,
+    "content": "Friar John agrees to fetch an iron crowbar immediately for Friar Lawrence. 'Iron crow' means a crowbar, a tool for prying things open. The simple statement shows his willingness to help without questioning the urgency.",
+    "perplexity": 15,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128989,
     "endOffset": 129289,
     "content": "Friar Lawrence must go alone to the Capulet tomb because Juliet will awaken soon. He worries she will be angry that Romeo was not informed of their plan, so he intends to hide her in his cell while sending another letter to Mantua. The final line vividly describes Juliet as a living person trapped in a burial vault meant for the dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "V",
+    "scene": "II",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 128989,
+    "endOffset": 129289,
+    "content": "Friar Lawrence must go alone to the tomb where Juliet lies. She will wake within three hours and will be angry with him because Romeo hasn't been informed about their plan (the fake death). He intends to write another letter to Romeo in Mantua and hide Juliet in his cell until Romeo arrives. He describes Juliet as a 'poor living corse' (living body) confined in a tomb meant for the dead.",
+    "perplexity": 35,
     "provider": "deepseek",
     "model": "deepseek-chat"
   }
