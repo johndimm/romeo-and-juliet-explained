@@ -44,6 +44,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const suppressAutoExplainRef = useRef(false);
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
   matchRefs.current = [];
@@ -355,6 +356,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // Auto-request a brief explanation when a new selection context is ready
   useEffect(() => {
     if (!selectionContext) return;
+    if (suppressAutoExplainRef.current) { suppressAutoExplainRef.current = false; return; }
     const id = `${selectionContext.byteOffset}-${new TextEncoder().encode(selectionContext.text || '').length}`;
     const existing = conversations[id];
     if (!existing || !existing.last) {
@@ -698,12 +700,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             contextInfo={selection && selection.sectionIndex === idx ? selectionContext : null}
             sectionIndex={idx}
             sectionStartOffset={sectionStartOffset}
+            suppressNextAutoExplain={() => { suppressAutoExplainRef.current = true; }}
+            metadata={metadata}
             llm={{
               options: llmOptions,
               setOptions: setLlmOptions,
               loading: loadingLLM,
               conversation: selectionId ? conversations[selectionId] : null,
               onLength: (len) => callLLM({ mode: len === 'brief' ? 'brief' : 'more', length: len }),
+              onFollowup: (text) => callLLM({ mode: 'followup', followup: text }),
               onDeleteCurrent: () => {
                 if (selectionId) {
                   deleteExplanationById(selectionId);
@@ -874,7 +879,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata }) {
   const preRef = useRef(null);
   const selPendingRef = useRef(false);
   const longPressRef = useRef(false);
@@ -884,6 +889,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
   const [autoIdx, setAutoIdx] = useState(0);
+  const [showPreFollow, setShowPreFollow] = useState(false);
+  const [preFollowInput, setPreFollowInput] = useState('');
+  const [preFollowAnswer, setPreFollowAnswer] = useState(null);
+  const [preFollowLoading, setPreFollowLoading] = useState(false);
 
   const processSelection = () => {
     const container = preRef.current;
@@ -1108,12 +1117,51 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               {(() => {
                 const it = precomputedItems[Math.min(autoIdx, precomputedItems.length - 1)];
                 if (!it) return null;
+                const toggleFollow = () => setShowPreFollow((v)=>!v);
+                const submitFollow = async () => {
+                  const q = (preFollowInput || '').trim();
+                  if (!q) return;
+                  try {
+                    setPreFollowLoading(true);
+                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+                    const startC = bytesToCharOffset(text || '', startRelB);
+                    const endC = bytesToCharOffset(text || '', endRelB);
+                    const passage = (text || '').slice(startC, endC);
+                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+                    const res = await fetch('/api/explain', {
+                      method: 'POST', headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+                    setPreFollowAnswer(data?.content || '');
+                    setPreFollowInput('');
+                  } catch (e) {
+                    setPreFollowAnswer(`Error: ${String(e.message || e)}`);
+                  } finally {
+                    setPreFollowLoading(false);
+                  }
+                };
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
-                    <div style={{ whiteSpace: 'pre-wrap' }}>{it.content || ''}</div>
+                    <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }} onClick={toggleFollow} title="Ask a follow-up about this note">{it.content || ''}</div>
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {it.model ? `Model: ${it.model}` : ''}
                     </div>
+                    {showPreFollow && (
+                      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>setPreFollowInput(e.target.value)} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
+                        <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={submitFollow}>Ask</button>
+                      </div>
+                    )}
+                    {preFollowLoading && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
+                    {preFollowAnswer && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <div style={{ fontWeight:600, marginBottom:'0.25rem' }}>Follow‑up</div>
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{preFollowAnswer}</div>
+                      </div>
+                    )}
                   </div>
                 );
               })()}
@@ -1366,7 +1414,14 @@ function expandToSentence(text, index) {
 }
 
 function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
-  const { options, loading, conversation, onDeleteCurrent, onLength } = llm || {};
+  const { options, loading, conversation, onDeleteCurrent, onLength, onFollowup } = llm || {};
+  const [q, setQ] = useState('');
+  const submitFollowup = () => {
+    const v = (q || '').trim();
+    if (!v) return;
+    onFollowup?.(v);
+    setQ('');
+  };
   return (
     <div>
       {conversation?.last ? (
@@ -1389,6 +1444,18 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
         >
           Delete
         </button>
+      </div>
+      {/* Follow-up question */}
+      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+        <input
+          type="text"
+          value={q}
+          onChange={(e)=>setQ(e.target.value)}
+          placeholder="Ask a follow‑up…"
+          onKeyDown={(e)=>{ if (e.key==='Enter') { e.preventDefault(); submitFollowup(); } }}
+          style={{ flex: 1, minWidth: 0 }}
+        />
+        <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup}>Ask</button>
       </div>
       {loading && (
         <div style={{ marginTop: '0.5rem', color: '#6b5f53' }}>Thinking…</div>

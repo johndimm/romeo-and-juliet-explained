@@ -1,0 +1,12 @@
+[
+  {
+    "act": "Prologue",
+    "scene": "",
+    "speaker": "CHORUS",
+    "startOffset": 2027,
+    "endOffset": 2736,
+    "content": "\"Dignity\" means high social standing, and \"mutiny\" refers to violent conflict. The Chorus explains that two equally noble families in Verona are locked in a bitter feud, causing citizens to harm each other. Their children, two unlucky lovers, will die tragically, and only through their deaths will the families' conflict end. This entire story of doomed love and long-standing rage will be presented in the play you are about to watch.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  }
+]

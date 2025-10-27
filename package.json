@@ -13,7 +13,8 @@
     "gen:scene": "node scripts/gen-scene-deepseek.mjs --act=I --scene=I",
     "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json",
     "merge:explanations": "node scripts/merge-explanations.mjs",
-    "gen:all": "node scripts/gen-all-deepseek.mjs --mode=all"
+    "gen:all": "node scripts/gen-all-deepseek.mjs --mode=all",
+    "gen:prologue": "node scripts/gen-prologue-deepseek.mjs"
   },
   "dependencies": {
     "next": "14.2.5",
