@@ -13,19 +13,25 @@ export async function getStaticProps() {
   });
   const sections = filtered.map((s) => s.text);
   let metadata = null;
+  let precomputed = [];
   try {
     const p = path.join(process.cwd(), 'data', 'metadata.json');
     metadata = JSON.parse(fs.readFileSync(p, 'utf8'));
   } catch {}
-  return { props: { sections, sectionsWithOffsets: filtered, metadata } };
+  try {
+    const p2 = path.join(process.cwd(), 'data', 'explanations.json');
+    precomputed = JSON.parse(fs.readFileSync(p2, 'utf8')) || [];
+    if (!Array.isArray(precomputed)) precomputed = [];
+  } catch {}
+  return { props: { sections, sectionsWithOffsets: filtered, metadata, precomputed } };
 }
 
-export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
+export default function PrintView({ sections, sectionsWithOffsets, metadata, precomputed }) {
   const [bySection, setBySection] = useState({});
+  const [bySectionForced, setBySectionForced] = useState({});
   const [dateStr, setDateStr] = useState('');
   const [selectedAct, setSelectedAct] = useState(''); // empty = all
   const [selectedScene, setSelectedScene] = useState(''); // empty = all
-  const [onlyWithExplanations, setOnlyWithExplanations] = useState(false);
 
   useEffect(() => {
     const d = new Date();
@@ -47,18 +53,41 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
       });
       setBySection(grouped);
     } catch {}
+    // Also include currently visible precomputed notes (forced speech keys)
+    try {
+      const f = localStorage.getItem('forcedNotes');
+      let forced = [];
+      if (f) { const arr = JSON.parse(f); if (Array.isArray(arr)) forced = arr.map(String); }
+      if (forced.length && Array.isArray(precomputed) && precomputed.length) {
+        // Build speech mapping (same as app)
+        const scenes = Array.isArray(metadata?.scenes)?metadata.scenes:[];
+        const mapActScene = (off)=>{ for(const sc of scenes){ if(off>=sc.startOffset && off<=sc.endOffset) return {act:sc.act,scene:sc.scene}; } return {act:'Prologue',scene:''}; };
+        const speeches = Array.isArray(metadata?.speeches)?metadata.speeches:[];
+        const perScene=new Map(); const speechList=[];
+        for(const sp of speeches){ const {act,scene}=mapActScene(sp.offset||0); const key=act+'#'+scene; const arr=perScene.get(key)||[]; const speechIndex=arr.length+1; const obj={offset:sp.offset||0, act, scene, speechIndex}; arr.push(obj); perScene.set(key,arr); speechList.push(obj); }
+        const noteBySpeechKey=new Map();
+        for(const it of precomputed){ const act=it.act||it.Act||''; const scene=(it.scene!=null?String(it.scene):''); const key=act+'#'+scene; const arr=perScene.get(key)||[]; if(!arr.length) continue; const off=Number(it.startOffset||0); let chosen=arr[0]; for(let i=0;i<arr.length;i++){ if(off<=arr[i].offset){ chosen=arr[i]; break; } } const spKey=`${chosen.act}|${chosen.scene}|${chosen.speechIndex}`; if(!noteBySpeechKey.has(spKey)) noteBySpeechKey.set(spKey,it); }
+        // Group forced notes by section
+        const enc=new TextEncoder(); const secRanges=sectionsWithOffsets.map(s=>{const start=s.startOffset||0; const end=start+enc.encode(s.text||'').length; return {start,end};});
+        const groupedF={};
+        for(const sk of forced){ const it=noteBySpeechKey.get(String(sk)); if(!it) continue; const so=Number(it.startOffset||0); let idx=0; for(let i=0;i<secRanges.length;i++){ const {start,end}=secRanges[i]; if(so>=start && so<end){ idx=i; break; } if(secRanges[i].start<=so) idx=i; else break; } if(!groupedF[idx]) groupedF[idx]=[]; groupedF[idx].push({ last: it.content||'', meta:{ sectionIndex: idx, byteOffset: so } }); }
+        setBySectionForced(groupedF);
+      }
+    } catch {}
   }, []);
 
-  // Initialize filters from URL (e.g., /print?act=I&scene=V)
+  // Initialize filters from URL or localStorage (e.g., /print?act=I&scene=V)
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      const act = params.get('act') || '';
-      const scene = params.get('scene') || '';
-      const only = params.get('only') === '1';
+      let act = params.get('act') || '';
+      let scene = params.get('scene') || '';
+      if (!act) act = (localStorage.getItem('printAct') || '');
+      if (!scene) scene = (localStorage.getItem('printScene') || '');
+      act = (act || '').toString().trim().toUpperCase();
+      scene = (scene || '').toString().trim().toUpperCase();
       setSelectedAct(act);
       setSelectedScene(scene);
-      setOnlyWithExplanations(!!only);
     } catch {}
   }, []);
 
@@ -68,10 +97,9 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
       const url = new URL(window.location.href);
       if (selectedAct) url.searchParams.set('act', selectedAct); else url.searchParams.delete('act');
       if (selectedScene) url.searchParams.set('scene', selectedScene); else url.searchParams.delete('scene');
-      if (onlyWithExplanations) url.searchParams.set('only', '1'); else url.searchParams.delete('only');
       window.history.replaceState(null, '', url.toString());
     } catch {}
-  }, [selectedAct, selectedScene, onlyWithExplanations]);
+  }, [selectedAct, selectedScene]);
 
   // Map each section to its scene/act using metadata scene ranges
   const sectionInfo = useMemo(() => {
@@ -104,10 +132,9 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
       const inf = sectionInfo[i];
       if (selectedAct && inf.act !== selectedAct) return false;
       if (selectedScene && inf.scene !== selectedScene) return false;
-      if (onlyWithExplanations && !(Array.isArray(bySection[i]) && bySection[i].length > 0)) return false;
       return true;
     });
-  }, [sectionsWithOffsets, sectionInfo, selectedAct, selectedScene, onlyWithExplanations, bySection]);
+  }, [sectionsWithOffsets, sectionInfo, selectedAct, selectedScene, bySection]);
 
   const title = 'Romeo and Juliet — Explanations';
 
@@ -139,14 +166,7 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
                   ))}
                 </select>
               </label>
-              <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <input
-                  type="checkbox"
-                  checked={onlyWithExplanations}
-                  onChange={(e) => setOnlyWithExplanations(e.target.checked)}
-                />
-                Only sections with explanations
-              </label>
+              {/* Removed: only-with-explanations checkbox */}
             </div>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -163,10 +183,10 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata }) {
             <div className="playText">
               <pre>{sections[idx]}</pre>
             </div>
-            {Array.isArray(bySection[idx]) && bySection[idx].length > 0 ? (
+            {((Array.isArray(bySection[idx]) && bySection[idx].length > 0) || (Array.isArray(bySectionForced[idx]) && bySectionForced[idx].length > 0)) ? (
               <aside className="explanations" aria-label="Explanations">
                 <div>
-                  {bySection[idx].map((ex, i) => (
+                  {[...(bySectionForced[idx]||[]), ...(bySection[idx]||[])].map((ex, i) => (
                     <div key={`p-${i}-${ex?.meta?.byteOffset || i}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
                       <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
                       <div style={{ whiteSpace: 'pre-wrap' }}>{ex?.last || ''}</div>

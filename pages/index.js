@@ -48,6 +48,63 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // we normalize to 0–100 via a log scale.
   const [noteThreshold, setNoteThreshold] = useState(100);
   const suppressAutoExplainRef = useRef(false);
+  // Persist force-shown notes (by speech key act|scene|speechIndex)
+  const [forcedNotes, setForcedNotes] = useState([]);
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('forcedNotes');
+      if (!raw) return;
+      const arr = JSON.parse(raw);
+      if (!Array.isArray(arr)) return;
+      const out = [];
+      for (const v of arr) {
+        const s = String(v || '');
+        if (s.includes('|')) { out.push(s); continue; }
+        // MIGRATION: old numeric offsets -> map to nearest speech key
+        const off = parseInt(s, 10);
+        if (Number.isFinite(off) && metadata && Array.isArray(metadata.speeches)) {
+          // find speech with last offset <= off
+          let speech = null;
+          for (const sp of metadata.speeches) { if ((sp.offset||0) <= off) speech = sp; else break; }
+          // find its act/scene
+          let act = 'Prologue', scene = '';
+          if (Array.isArray(metadata.scenes)) {
+            for (const sc of metadata.scenes) { if (off >= sc.startOffset && off <= sc.endOffset) { act = sc.act; scene = sc.scene; break; } }
+          }
+          // compute speechIndex in that scene
+          if (speech) {
+            let idx = 1;
+            if (Array.isArray(metadata.speeches)) {
+              for (const sp of metadata.speeches) {
+                const inScene = (() => { if (!Array.isArray(metadata.scenes)) return false; for (const sc of metadata.scenes) { if (sp.offset>=sc.startOffset && sp.offset<=sc.endOffset) return (sc.act===act && sc.scene===scene); } return (act==='Prologue'); })();
+                if (!inScene) continue;
+                if (sp.offset === speech.offset) break;
+                idx++;
+              }
+            }
+            out.push(`${act}|${scene}|${idx}`);
+          }
+        }
+      }
+      if (out.length) setForcedNotes(out);
+    } catch {}
+  }, [metadata]);
+  useEffect(() => { try { localStorage.setItem('forcedNotes', JSON.stringify(forcedNotes||[])); } catch {} }, [forcedNotes]);
+  const toggleForcedNote = (speechKey, sectionIdx) => {
+    setForcedNotes((prev) => {
+      const arr = Array.isArray(prev) ? prev.slice() : [];
+      const key = String(speechKey);
+      const idx = arr.indexOf(key);
+      if (idx >= 0) arr.splice(idx, 1); else arr.push(key);
+      return arr;
+    });
+    try {
+      if (typeof window !== 'undefined' && Array.isArray(sectionsWithOffsets)) {
+        const off = sectionsWithOffsets?.[sectionIdx]?.startOffset;
+        if (typeof off === 'number') localStorage.setItem('last-pos', String(off));
+      }
+    } catch {}
+  };
 
   // Reset the refs array before rendering highlights so it doesn't accumulate
   matchRefs.current = [];
@@ -159,6 +216,45 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     return result;
   }, [metadata, sectionsWithOffsets, markers]);
 
+  // Build speeches by section and note mapped by speech key (act|scene|speechIndex)
+  const speechMaps = useMemo(() => {
+    const meta = metadata || {};
+    const scenes = Array.isArray(meta.scenes) ? meta.scenes : [];
+    const speeches = Array.isArray(meta.speeches) ? meta.speeches : [];
+    const byScene = new Map(); // key -> list of speeches
+    const speechList = [];
+    const mapActScene = (off) => {
+      for (const sc of scenes) { if (off >= sc.startOffset && off <= sc.endOffset) return { act: sc.act, scene: sc.scene }; }
+      return { act: 'Prologue', scene: '' };
+    };
+    for (const sp of speeches) {
+      const { act, scene } = mapActScene(sp.offset||0);
+      const key = `${act}#${scene}`;
+      const arr = byScene.get(key) || [];
+      const speechIndex = arr.length + 1;
+      const obj = { offset: sp.offset||0, speaker: sp.speaker||'', act, scene, speechIndex };
+      arr.push(obj); byScene.set(key, arr); speechList.push(obj);
+    }
+    const noteBySpeechKey = new Map();
+    const items = Array.isArray(precomputed)?precomputed:[];
+    for (const it of items) {
+      const act = it.act || (it.Act)||''; const scene = (it.scene!=null?String(it.scene):'');
+      const key = `${act}#${scene}`; const arr = byScene.get(key)||[];
+      if (!arr.length) continue;
+      const off = Number(it.startOffset||0);
+      let chosen = arr[0];
+      for (let i=0;i<arr.length;i++){ if (off <= arr[i].offset){ chosen = arr[i]; break; } }
+      const spKey = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
+      if (!noteBySpeechKey.has(spKey)) noteBySpeechKey.set(spKey, it);
+    }
+    // speeches per section
+    const enc = new TextEncoder();
+    const secRanges = sectionsWithOffsets.map((s)=>{ const start=s.startOffset||0; const end=start+enc.encode(s.text||'').length; return {start,end}; });
+    const speechesBySection = new Map(); for (let i=0;i<secRanges.length;i++) speechesBySection.set(i,[]);
+    for (const sp of speechList){ for (let i=0;i<secRanges.length;i++){ const {start,end}=secRanges[i]; if (sp.offset>=start && sp.offset<end){ speechesBySection.get(i).push(sp); break; } } }
+    return { noteBySpeechKey, speechesBySection };
+  }, [metadata, sectionsWithOffsets, precomputed]);
+
   // Index precomputed explanations by section for quick access
   const preBySection = useMemo(() => {
     if (!Array.isArray(precomputed) || !precomputed.length) return new Map();
@@ -185,7 +281,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         map.get(idx).push(item);
         continue;
       }
-      // Attach to all sections the item overlaps so long speeches render wherever they appear
+      // Attach to all sections the item overlaps (robust anchoring)
       for (let i = 0; i < secRanges.length; i++) {
         const { start, end } = secRanges[i];
         if (overlaps(a0, a1, start, end)) {
@@ -263,6 +359,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       }
       const key = current ? `${current.act}-${current.scene}` : null;
       setActiveScene(key);
+      // Persist current act/scene for Print view to pre-select
+      try {
+        if (current && current.act) localStorage.setItem('printAct', String(current.act || ''));
+        if (current && (current.scene || current.scene === '')) localStorage.setItem('printScene', String(current.scene || ''));
+      } catch {}
     };
     if (scroller) scroller.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
@@ -280,16 +381,41 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       if (!sectionsWithOffsets || !sectionsWithOffsets.length) return;
       if (typeof window === 'undefined') return;
       if (/^#sel=/.test(window.location.hash || '')) return; // selection link takes precedence
+      let off = NaN;
       const raw = localStorage.getItem('last-pos');
-      if (!raw) return;
-      const off = parseInt(raw, 10);
-      if (!isNaN(off)) {
-        let idx = 0;
-        for (let i = 0; i < sectionsWithOffsets.length; i++) {
-          if (sectionsWithOffsets[i].startOffset <= off) idx = i; else break;
-        }
-        setTimeout(() => scrollToSection(idx), 50);
+      if (raw) off = parseInt(raw, 10);
+      // Fallback: if last-pos is missing/invalid, use last forced speech key
+      if (isNaN(off)) {
+        try {
+          const f = localStorage.getItem('forcedNotes');
+          if (f && metadata && Array.isArray(metadata.speeches)) {
+            const arr = JSON.parse(f);
+            if (Array.isArray(arr) && arr.length) {
+              const last = String(arr[arr.length - 1] || '');
+              const parts = last.split('|');
+              if (parts.length === 3) {
+                const [act, scene, sIdxStr] = parts; const sIdx = parseInt(sIdxStr, 10);
+                // find the sIdx-th speech within that act/scene
+                let count = 0; let foundOff = NaN;
+                if (Array.isArray(metadata.scenes)) {
+                  const sceneRanges = metadata.scenes.filter((sc)=>sc.act===act && String(sc.scene)===String(scene));
+                  const inScene = (o)=>{ if(!sceneRanges.length) return (act==='Prologue'); for(const sc of sceneRanges){ if(o>=sc.startOffset && o<=sc.endOffset) return true; } return false; };
+                  for (const sp of metadata.speeches) {
+                    if (inScene(sp.offset||0)) { count++; if (count === sIdx) { foundOff = sp.offset||NaN; break; } }
+                  }
+                }
+                if (!isNaN(foundOff)) off = foundOff;
+              }
+            }
+          }
+        } catch {}
       }
+      if (isNaN(off)) return;
+      let idx = 0;
+      for (let i = 0; i < sectionsWithOffsets.length; i++) {
+        if (sectionsWithOffsets[i].startOffset <= off) idx = i; else break;
+      }
+      setTimeout(() => scrollToSection(idx), 50);
     } catch {}
   }, [sectionsWithOffsets]);
 
@@ -681,14 +807,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               return ba - bb;
             });
           const sectionStartOffset = sectionsWithOffsets[idx]?.startOffset || 0;
+          const speechesInSec = (speechMaps.speechesBySection.get(idx) || []);
+          const itemsAllSec = speechesInSec
+            .map((sp) => speechMaps.noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`))
+            .filter(Boolean);
+          const itemsFilteredSec = itemsAllSec.filter((it) => { const score = normalizedPerplexity(it); return !noteThreshold || score >= noteThreshold; });
           return (
           <Section
             key={idx}
             text={section}
             query={query}
             matchRefs={matchRefs}
-            precomputedItems={(preBySection.get(idx) || []).filter((it) => { const score = normalizedPerplexity(it); return !noteThreshold || score >= noteThreshold; })}
-            precomputedAllItems={(preBySection.get(idx) || [])}
+            precomputedItems={itemsFilteredSec}
+            precomputedAllItems={itemsAllSec}
+            speeches={(speechMaps.speechesBySection.get(idx) || [])}
+            noteBySpeechKey={speechMaps.noteBySpeechKey}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => setSelection(range ? { sectionIndex: idx, ...range } : null)}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
@@ -697,6 +830,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             sectionStartOffset={sectionStartOffset}
             suppressNextAutoExplain={() => { suppressAutoExplainRef.current = true; }}
             metadata={metadata}
+            forcedNotes={forcedNotes}
+            onToggleForced={toggleForcedNote}
             noteThreshold={noteThreshold}
             setNoteThreshold={setNoteThreshold}
             llm={{
@@ -887,7 +1022,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold, forcedNotes = [], onToggleForced }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -927,6 +1062,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     } catch { return false; }
   }
   // Determine if the extracted snippet is stage/title; build visibility-aware lists
+  // Also, to avoid duplicate notes across adjacent sections, only consider items
+  // whose startOffset falls within this section's byte range.
+  // Use speech anchors instead of item offsets
   const visiblePreItems = (precomputedItems || []).filter((it) => !isStageOrTitle(it));
   const visibleAllItems = (precomputedAllItems || []).filter((it) => !isStageOrTitle(it));
   function pickVisibleItem(list, startIdx) {
@@ -939,16 +1077,31 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   }
   const currentVisible = pickVisibleItem(visiblePreItems, autoIdx);
   const currentForceVisible = pickVisibleItem(visibleAllItems, autoIdx);
+  const forcedSet = new Set((Array.isArray(forcedNotes)?forcedNotes:[]).map(String));
+  const currentSpeech = (speeches && speeches.length) ? speeches[Math.min(autoIdx, speeches.length - 1)] : null;
+  const speechKey = currentSpeech ? `${currentSpeech.act}|${currentSpeech.scene}|${currentSpeech.speechIndex}` : null;
+  // If any forced speech exists in this section, prefer it immediately (even before IO sets autoIdx)
+  const sectionForcedSpeech = (speeches || []).find((sp) => forcedSet.has(`${sp.act}|${sp.scene}|${sp.speechIndex}`));
+  const forcedKey = sectionForcedSpeech ? `${sectionForcedSpeech.act}|${sectionForcedSpeech.scene}|${sectionForcedSpeech.speechIndex}` : null;
+  const chosenItem = (forcedKey ? noteBySpeechKey.get(forcedKey) : (currentVisible || (forceShow ? currentForceVisible : null)));
   // Show the aside only when there is something to show
   const hasAside = !!selectedRange
     || (savedExplanations && savedExplanations.length > 0)
-    || (!!currentVisible)
-    || (forceShow && !!currentForceVisible);
+    || (!!chosenItem);
   // Indicate clickability in the text area when a suppressed note exists for the current speech
   const canForceReveal = !selectedRange
     && (!savedExplanations || savedExplanations.length === 0)
     && !currentVisible
     && !!currentForceVisible;
+
+  // Keep forceShow in sync with persisted preference for current speech
+  useEffect(() => {
+    const it = currentVisible || currentForceVisible;
+    const key = it && typeof it.startOffset === 'number' ? it.startOffset : null;
+    if (key == null) { setForceShow(false); return; }
+    const isForced = Array.isArray(forcedNotes) && forcedNotes.indexOf(key) >= 0;
+    setForceShow(isForced);
+  }, [autoIdx, currentVisible, currentForceVisible, forcedNotes]);
 
   const processSelection = () => {
     // Disable LLM selection behavior; toggle note instead
@@ -959,9 +1112,18 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // Handle mouse up to simply toggle the note (no LLM selection)
   const handleMouseUp = (e) => {
+    try { console.log('click:handleMouseUp', { sectionIndex }); } catch {}
     try { window.getSelection()?.removeAllRanges?.(); } catch {}
     suppressNextAutoExplain?.();
-    setForceShow((v) => !v);
+    const sk = speechKey;
+    try { console.debug('toggle-note-speech', { sectionIndex, speechKey: sk }); } catch {}
+    if (!sk) return;
+    if (onToggleForced) onToggleForced(sk, sectionIndex);
+  };
+
+  const onSectionClick = (e) => {
+    try { console.log('sectionClick', { sectionIndex }); } catch {}
+    handleMouseUp(e);
   };
 
   // Selection handling disabled for now
@@ -969,7 +1131,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // In-view observer using invisible anchors per speech start
   useEffect(() => {
-    const list = precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : precomputedItems;
+    const list = (precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : (precomputedItems && precomputedItems.length ? precomputedItems : []))
     if (!list || !list.length) return;
     const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
     if (!anchors.length) return;
@@ -1049,12 +1211,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
-    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
-      <div className="playText" style={{ position: 'relative' }}>
+    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef} onClick={onSectionClick}>
+      <div className="playText" style={{ position: 'relative' }} onClick={handleMouseUp}>
         {/* Invisible anchors at speech starts for IntersectionObserver */}
         {(() => {
           const secChars = (text || '').length || 1;
-          const list = precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : precomputedItems || [];
+    const list = (precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : (precomputedItems && precomputedItems.length ? precomputedItems : []))
           return list.map((it, i) => {
             const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
             const startC = bytesToCharOffset(text || '', startRelB);
@@ -1071,7 +1233,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           className="explanations"
           aria-label="Explanations"
           ref={asideRef}
-          onClick={(e)=>{ if (e.target === e.currentTarget) setForceShow((v)=>!v); }}
+          onClick={(e)=>{ e.stopPropagation(); if (e.target === e.currentTarget) { const it = currentVisible || currentForceVisible; const key = it && typeof it.startOffset === 'number' ? it.startOffset : null; if (key != null && onToggleForced) onToggleForced(key); } }}
         >
           {/* Aside is only rendered when it has content to show */}
           {selectedRange ? (
@@ -1083,10 +1245,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               onCopyLink={onCopyLink}
             />
           ) : null}
-          {( !!currentVisible || (forceShow && !!currentForceVisible) ) ? (
+          {chosenItem ? (
             <div>
               {(() => {
-                const it = (currentVisible || (forceShow ? currentForceVisible : null));
+                const it = chosenItem;
                 if (!it) return null; // safety
                 const toggleFollow = () => setShowPreFollow((v)=>!v);
                 const submitFollow = async () => {

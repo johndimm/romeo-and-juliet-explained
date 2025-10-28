@@ -1,10 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
+  const isPrintRoute = router && router.pathname === '/print';
   const headerRef = React.useRef(null);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  // Add a class on <html> when on the print route so CSS can adjust layout/scrolling
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const html = document.documentElement;
+    if (!html) return;
+    if (isPrintRoute) html.classList.add('isPrintRoute'); else html.classList.remove('isPrintRoute');
+    return () => { html.classList.remove('isPrintRoute'); };
+  }, [isPrintRoute]);
   // Measure header height on mobile and expose as CSS var for page padding
   React.useEffect(() => {
     const setVar = () => {
@@ -31,6 +42,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      {!isPrintRoute && (
       <header className="appHeader">
         <div className="appHeaderInner" ref={headerRef}>
           <div className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap' }}>Romeo and Juliet — Explained</div>
@@ -49,7 +61,27 @@ export default function App({ Component, pageProps }) {
               <span className="icon" aria-hidden>📑</span>
               <span className="lbl">Contents</span>
             </a>
-            <Link href="/print" className="lnk-print"><span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span></Link>
+            <a
+              href="#"
+              className="lnk-print"
+              onClick={(e) => {
+                e.preventDefault();
+                try {
+                  const act = localStorage.getItem('printAct') || '';
+                  const scene = localStorage.getItem('printScene') || '';
+                  let dest = '/print';
+                  const params = [];
+                  if (act) params.push(`act=${encodeURIComponent(act)}`);
+                  if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
+                  if (params.length) dest += `?${params.join('&')}`;
+                  if (location.pathname !== dest) location.assign(dest); else location.href = dest;
+                } catch {
+                  location.assign('/print');
+                }
+              }}
+            >
+              <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
+            </a>
             <Link href="/user-guide" className="lnk-guide" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
             <Link href="/about" className="lnk-about" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
             <a
@@ -73,11 +105,12 @@ export default function App({ Component, pageProps }) {
           </nav>
         </div>
       </header>
+      )}
       {showMobileMenu && (
         <div className="mobileMenu" role="dialog" aria-label="Menu" onClick={() => setShowMobileMenu(false)}>
           <div className="panel" onClick={(e) => e.stopPropagation()}>
             <button className="menuItem" onClick={() => { setShowMobileMenu(false); if (typeof window !== 'undefined') { const dest = '/#action=toc'; if (location.pathname !== '/') location.assign(dest); else { location.hash = 'action=toc'; } } }}>📑 Contents</button>
-            <Link className="menuItem" href="/print" onClick={() => setShowMobileMenu(false)}>🖨️ Print</Link>
+            <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
             <Link className="menuItem" href="/user-guide" onClick={() => setShowMobileMenu(false)}>📖 User Guide</Link>
             <Link className="menuItem" href="/about" onClick={() => setShowMobileMenu(false)}>ℹ️ About</Link>
             <button className="menuItem" onClick={() => { setShowMobileMenu(false); if (typeof window !== 'undefined') { const dest = '/#action=settings'; if (location.pathname !== '/') location.assign(dest); else { location.hash = 'action=settings'; } } }}>⚙️ Settings</button>
