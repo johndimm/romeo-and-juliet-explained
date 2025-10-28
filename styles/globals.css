@@ -118,6 +118,15 @@ html.isPrintRoute .container { left: 0; }
 .tocDrawer.open .panel { transform: translateX(0); }
 .tocDrawer .drawerHeader { font-weight: 600; color: #53483e; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
 .tocDrawer .closeBtn { border: 1px solid #cfc7bb; background: #fff; border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+/* Generic close button used in notes/explanations */
+.closeBtn {
+  border: 1px solid #cfc7bb;
+  background: #fff;
+  border-radius: 6px;
+  padding: 2px 6px;
+  line-height: 1;
+  cursor: pointer;
+}
 
 /* Close handle attached to the open drawer's edge */
 .tocCloseHandle {
@@ -683,6 +692,15 @@ html.isPrintRoute .container { left: 0; }
   color: #6b5f53;
   margin: 0;
   line-height: 1.5;
+}
+
+/* Simple diagrams used in the User Guide */
+.diagram {
+  border: 1px dashed #d8d5d0;
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px;
+  margin: 8px 0;
 }
 
 /* Mobile responsiveness for About and User Guide pages */

@@ -482,8 +482,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     setSelectionContext({ ...ctx, text: textForLLM, byteOffset });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
-  // Auto-request on selection disabled for now
-  useEffect(() => {}, [selectionContext]);
+  // Auto-request on selection when a new passage is selected
+  useEffect(() => {
+    if (!selectionContext) return;
+    // Optionally suppress one auto call when explicitly toggling UI elements
+    if (suppressAutoExplainRef.current) { suppressAutoExplainRef.current = false; return; }
+    // Avoid duplicate calls if we already have an explanation for this selection
+    const len = new TextEncoder().encode(selectionContext.text || '').length;
+    const id = `${selectionContext.byteOffset}-${len}`;
+    if (conversations && conversations[id] && conversations[id].last) return;
+    // Use preferred length from options; default to brief
+    const pref = (llmOptions?.length === 'medium' ? 'more' : (llmOptions?.length === 'large' ? 'more' : 'brief'));
+    callLLM({ mode: pref, length: llmOptions?.length || 'brief' });
+  }, [selectionContext]);
 
   // Deep-linking: update URL hash when selection changes
   useEffect(() => {
@@ -649,6 +660,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     setLoadingLLM(true);
     try {
       const conv = conversations[selectionId] || { messages: [] };
+      // Eager placeholder so a card appears immediately
+      const thinkingText = 'AI is thinking…';
+      const meta = {
+        sectionIndex: selection.sectionIndex,
+        start: selection.start,
+        end: selection.end,
+        text: selectionContext.text,
+        act: selectionContext.act,
+        scene: selectionContext.scene,
+        speaker: selectionContext.speaker,
+        onStage: selectionContext.onStage,
+        byteOffset: selectionContext.byteOffset,
+      };
+      if (!conversations[selectionId] || !conversations[selectionId].last) {
+        setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
+      }
       const res = await fetch('/api/explain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -670,7 +697,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         { role: 'user', content: buildUserPrompt(selectionContext, mode, followup, reqLen) },
         assistantMsg,
       ].slice(-12);
-      // attach metadata so we can render persistent cards per section
+      setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta } });
+    } catch (e) {
       const meta = {
         sectionIndex: selection.sectionIndex,
         start: selection.start,
@@ -682,9 +710,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         onStage: selectionContext.onStage,
         byteOffset: selectionContext.byteOffset,
       };
-      setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta } });
-    } catch (e) {
-      setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}` } });
+      setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta } });
     } finally {
       setLoadingLLM(false);
     }
@@ -796,7 +822,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         <main className="container">
         {sections.map((section, idx) => {
           const savedExplanations = Object.entries(conversations || {})
-            .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last && id !== selectionId)
+            .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last)
             .map(([, c]) => c)
             .sort((a, b) => {
               const sa = (a.meta?.start ?? 0);
@@ -834,6 +860,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             onToggleForced={toggleForcedNote}
             noteThreshold={noteThreshold}
             setNoteThreshold={setNoteThreshold}
+            onRequestFocus={(pf) => setPendingFocus(pf)}
             llm={{
               options: llmOptions,
               setOptions: setLlmOptions,
@@ -1022,7 +1049,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold, forcedNotes = [], onToggleForced }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold, forcedNotes = [], onToggleForced, onRequestFocus }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -1103,30 +1130,44 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     setForceShow(isForced);
   }, [autoIdx, currentVisible, currentForceVisible, forcedNotes]);
 
-  const processSelection = () => {
-    // Disable LLM selection behavior; toggle note instead
-    try { window.getSelection()?.removeAllRanges?.(); } catch {}
-    suppressNextAutoExplain?.();
-    setForceShow((v) => !v);
-  };
-
-  // Handle mouse up to simply toggle the note (no LLM selection)
-  const handleMouseUp = (e) => {
-    try { console.log('click:handleMouseUp', { sectionIndex }); } catch {}
-    try { window.getSelection()?.removeAllRanges?.(); } catch {}
-    suppressNextAutoExplain?.();
+  const revealNoteForCurrentSpeech = () => {
     const sk = speechKey;
-    try { console.debug('toggle-note-speech', { sectionIndex, speechKey: sk }); } catch {}
     if (!sk) return;
     if (onToggleForced) onToggleForced(sk, sectionIndex);
   };
 
-  const onSectionClick = (e) => {
-    try { console.log('sectionClick', { sectionIndex }); } catch {}
-    handleMouseUp(e);
+  // Handle selection or reveal note on mouse up
+  const handleTextMouseUp = (e) => {
+    try { console.log('mouseUp:text', { sectionIndex }); } catch {}
+    // If the note is not visible yet and a note exists for this speech, a click brings it up
+    const noteVisible = !!chosenItem;
+    const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
+    if (!noteVisible && hasRevealableNote) {
+      suppressNextAutoExplain?.(); // do not auto-explain on reveal-only click
+      revealNoteForCurrentSpeech();
+      return;
+    }
+    // If the note is visible, a click selects the sentence; click-drag selects a custom range
+    const container = preRef.current;
+    if (!container || typeof window === 'undefined' || !window.getSelection) return;
+    const sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return;
+    const range = sel.getRangeAt(0);
+    // Only process selections within this section's text container
+    if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
+    const { start, end } = getOffsetsWithin(container, range);
+    // If user dragged, honor the exact selection
+    if (end > start) {
+      onSelectRange?.({ start, end });
+      return;
+    }
+    // Otherwise, expand single-click caret to the surrounding sentence
+    const idx = start;
+    const sent = expandToSentence(text || '', idx);
+    if (sent) onSelectRange?.({ start: sent.start, end: sent.end });
   };
 
-  // Selection handling disabled for now
+  // Clean up any pending timers on unmount
   useEffect(() => { return () => { clearTimeout(selDebounceRef.current); }; }, []);
 
   // In-view observer using invisible anchors per speech start
@@ -1211,8 +1252,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
-    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef} onClick={onSectionClick}>
-      <div className="playText" style={{ position: 'relative' }} onClick={handleMouseUp}>
+    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
+      <div className="playText" style={{ position: 'relative' }}>
         {/* Invisible anchors at speech starts for IntersectionObserver */}
         {(() => {
           const secChars = (text || '').length || 1;
@@ -1224,7 +1265,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             return <div key={`anch-${i}`} className="speechAnchor" data-idx={i} style={{ position: 'absolute', top: `${topPct}%`, left: 0, width: 1, height: 1, pointerEvents: 'none' }} />;
           });
         })()}
-        <pre ref={preRef} onClick={handleMouseUp} style={{ cursor: 'pointer' }}>
+        <pre ref={preRef} onMouseUp={handleTextMouseUp} style={{ cursor: 'pointer' }}>
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
       </div>
@@ -1233,23 +1274,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           className="explanations"
           aria-label="Explanations"
           ref={asideRef}
-          onClick={(e)=>{ e.stopPropagation(); if (e.target === e.currentTarget) { const it = currentVisible || currentForceVisible; const key = it && typeof it.startOffset === 'number' ? it.startOffset : null; if (key != null && onToggleForced) onToggleForced(key); } }}
+          // No click-to-close; use the X button in the panel header
         >
           {/* Aside is only rendered when it has content to show */}
-          {selectedRange ? (
-            <LlmPanel
-              passage={text.slice(selectedRange.start, selectedRange.end)}
-              contextInfo={contextInfo}
-              llm={llm}
-              onFocusSource={() => focusSelected(selectedId)}
-              onCopyLink={onCopyLink}
-            />
-          ) : null}
+          {/* New explanations appear as separate cards below; no inline panel */}
           {chosenItem ? (
             <div>
               {(() => {
                 const it = chosenItem;
                 if (!it) return null; // safety
+                const handleCloseNote = (e) => {
+                  e.stopPropagation();
+                  if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex);
+                  else if (forceShow) setForceShow(false);
+                };
                 const toggleFollow = () => setShowPreFollow((v)=>!v);
                 const submitFollow = async () => {
                   const q = (preFollowInput || '').trim();
@@ -1322,7 +1360,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   }
                 };
                 return (
-                  <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', borderBottom: '1px solid #eee' }}>
+                  <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
+                    <button type="button" className="closeBtn" onClick={handleCloseNote} aria-label="Close note" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
                     {(() => { const key = String(it.startOffset || 0); const display = (preNoteOverrides[key] != null ? preNoteOverrides[key] : (it.content || '')); return (
                       <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); suppressNextAutoExplain?.(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
                     ); })()}
@@ -1389,7 +1428,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     onSelectRange({ start: ex.meta.start, end: ex.meta.end });
                     const len = new TextEncoder().encode(ex.meta.text || '').length;
                     const id = `${ex.meta.byteOffset}-${len}`;
-                    setPendingFocus({ sectionIndex, id });
+                    onRequestFocus?.({ sectionIndex, id });
                   }
                 }}
                   onCopy={() => {
@@ -1676,21 +1715,11 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
 
 function ExplanationCard({ passage, content, onLocate, onCopy, onDelete }) {
   return (
-    <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', borderTop: '1px solid #eee' }}>
+    <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
+      <button type="button" className="closeBtn" onClick={onDelete} aria-label="Close explanation" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
       <div style={{ marginTop: '0.25rem' }} onClick={onLocate} title="Click to highlight source in the text">
         <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
-      </div>
-      <div style={{ marginTop: '0.25rem' }}>
-        <button type="button" onClick={onLocate}>
-          Locate Source
-        </button>
-        <button type="button" onClick={onCopy} style={{ marginLeft: '0.5rem' }}>
-          Copy Link
-        </button>
-        <button type="button" onClick={onDelete} style={{ marginLeft: '0.5rem' }}>
-          Delete
-        </button>
       </div>
     </div>
   );

@@ -33,37 +33,34 @@ export default function UserGuide() {
             </p>
           </div>
           
-          <div className="step">
-            <h3>2. Selecting Text for Explanations</h3>
-            <p>
-              To get explanations for any part of the text:
-            </p>
+          <div className="step" id="notes-explanations">
+            <h3>2. Notes and Explanations</h3>
+            <p>Here’s how clicking in the text works:</p>
             <ul className="instruction-list">
-              <li><strong>Single word:</strong> Click on any word to select its entire sentence</li>
-              <li><strong>Custom range:</strong> Click and drag to select a specific passage</li>
-              <li><strong>Multiple sentences:</strong> Hold Shift and click to extend your selection</li>
+              <li><strong>Reveal a note:</strong> If a prewritten note exists for the current speech but isn’t visible, a single click on the text reveals it. Use the <strong>✕</strong> in the note’s top‑right to close it. Clicking the text again does not close the note.</li>
+              <li><strong>Select a sentence:</strong> When a note is visible, clicking the text selects the entire sentence around your cursor.</li>
+              <li><strong>Select a custom range:</strong> Click‑drag to select any passage (longer or shorter than a sentence).</li>
+              <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you select, showing “AI is thinking…” until the response is ready.</li>
             </ul>
-            <p>
-              Once selected, the text will be highlighted in blue, and an explanation will appear 
-              in the right column.
-            </p>
+            <p>Selected text is highlighted in blue.</p>
           </div>
         </div>
 
         <div className="guide-section">
           <h2>Understanding Explanations</h2>
-          <div className="step">
+          <div className="step" id="what-youll-see">
             <h3>What You'll See</h3>
-            <p>
-              Each explanation provides:
-            </p>
             <ul className="feature-list">
-              <li><strong>Vocabulary definitions</strong> - Meanings of archaic or difficult words</li>
-              <li><strong>Syntax breakdown</strong> - How the sentence structure works</li>
-              <li><strong>Cultural context</strong> - Historical background and references</li>
-              <li><strong>Literary devices</strong> - Metaphors, allusions, and poetic techniques</li>
-              <li><strong>Character insights</strong> - What the passage reveals about the characters</li>
+              <li><strong>Immediate card:</strong> New explanation cards appear right away with a “thinking…” placeholder, then update with the final text.</li>
+              <li><strong>Click to locate:</strong> Click any explanation card to highlight its source in the play.</li>
+              <li><strong>Close with ✕:</strong> Both notes and explanation cards use the <strong>✕</strong> in the top‑right to close.</li>
+              <li><strong>Contents:</strong> short vocabulary help, any tricky syntax, and a clear paraphrase focused on your selection.</li>
             </ul>
+          </div>
+
+          <div className="step" id="demo-video">
+            <h3>Video Demonstration</h3>
+            <p>A short video walkthrough of notes and selections will be embedded here.</p>
           </div>
 
           <div className="step">
@@ -107,8 +104,8 @@ export default function UserGuide() {
             <ul className="instruction-list">
               <li><strong>Auto-save:</strong> Explanations are automatically saved in your browser</li>
               <li><strong>Persistent storage:</strong> Your saved explanations persist between visits</li>
-              <li><strong>Navigation:</strong> Use "Prev Ex" and "Next Ex" buttons to cycle through saved explanations</li>
-              <li><strong>Sharing:</strong> Use "Copy Link" to share direct links to specific passages</li>
+              <li><strong>Navigation:</strong> Use the explanation arrows in the header to step through saved explanations</li>
+              <li><strong>Remove:</strong> Close an explanation with the <strong>✕</strong> in its corner</li>
             </ul>
           </div>
 
@@ -180,4 +177,3 @@ export default function UserGuide() {
     </div>
   );
 }
-
