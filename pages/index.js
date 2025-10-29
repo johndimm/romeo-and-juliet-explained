@@ -1336,7 +1336,32 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             return <div key={`anch-${i}`} className="speechAnchor" data-idx={i} style={{ position: 'absolute', top: `${topPct}%`, left: 0, width: 1, height: 1, pointerEvents: 'none' }} />;
           });
         })()}
-        <pre ref={preRef} onMouseUp={handleTextMouseUp} style={{ cursor: 'pointer' }}>
+        <pre
+          ref={preRef}
+          onMouseUp={handleTextMouseUp}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={(e)=>{
+            // Mobile: treat a quick tap as reveal; long-press/drag as selection
+            const noteVisible = !!chosenItem;
+            const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
+            if (!noteVisible && !longPressRef.current && !movedRef.current && hasRevealableNote) {
+              suppressNextAutoExplain?.();
+              revealNoteForCurrentSpeech();
+              return;
+            }
+            const container = preRef.current;
+            if (!container || typeof window === 'undefined' || !window.getSelection) return;
+            const sel = window.getSelection();
+            if (!sel || sel.rangeCount === 0) return;
+            const range = sel.getRangeAt(0);
+            if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
+            const { start, end } = getOffsetsWithin(container, range);
+            if (end > start) { onSelectRange?.({ start, end }); }
+            else { const sent = expandToSentence(text || '', start); if (sent) onSelectRange?.({ start: sent.start, end: sent.end }); }
+          }}
+          style={{ cursor: 'pointer' }}
+        >
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
       </div>
