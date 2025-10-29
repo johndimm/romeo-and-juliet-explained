@@ -11,7 +11,18 @@ import fs from 'fs';
 import path from 'path';
 import { parseSectionsWithOffsets } from '../lib/parseText.js';
 
-function args(){ const out={ act:'I', scene:'I', model:'deepseek-chat' }; const a=process.argv.slice(2); for(let i=0;i<a.length;i++){ const k=a[i]; if(k==='--act'&&a[i+1]) out.act=a[++i]; else if(k==='--scene'&&a[i+1]) out.scene=a[++i]; else if(k==='--model'&&a[i+1]) out.model=a[++i]; } return out; }
+function args(){
+  const out={ act:'I', scene:'I', model:'deepseek-chat', mergeOnly:false };
+  const a=process.argv.slice(2);
+  for(let i=0;i<a.length;i++){
+    const k=a[i];
+    if(k==='--act'&&a[i+1]) out.act=a[++i];
+    else if(k==='--scene'&&a[i+1]) out.scene=a[++i];
+    else if(k==='--model'&&a[i+1]) out.model=a[++i];
+    else if(k==='--merge-only') out.mergeOnly=true;
+  }
+  return out;
+}
 
 function load(metaPath){ return JSON.parse(fs.readFileSync(metaPath,'utf8')); }
 
@@ -31,18 +42,29 @@ function replaceInMerged({ mergedPath, newItems, range }){
   const out = merged.filter(it => !((it.startOffset||0) >= range.start && (it.startOffset||0) < range.end));
   for (const it of newItems) out.push(it);
   out.sort((a,b)=> (a.startOffset||0)-(b.startOffset||0));
-  fs.writeFileSync(mergedPath, JSON.stringify(out, null, 2));
+  // Write atomically: temp then rename
+  const tmp = mergedPath + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(out, null, 2));
+  fs.renameSync(tmp, mergedPath);
   return out.length;
 }
 
 async function main(){
-  const { act, scene, model } = args();
+  const { act, scene, model, mergeOnly } = args();
   const apiKey = process.env.DEEPSEEK_API_KEY || process.env.deepseek_api_key;
-  if (!apiKey) { console.error('Missing DEEPSEEK_API_KEY'); process.exit(1); }
+  if (!mergeOnly && !apiKey) { console.error('Missing DEEPSEEK_API_KEY'); process.exit(1); }
   parseSectionsWithOffsets('romeo-and-juliet.txt'); // presence check
   const meta = load(path.join(process.cwd(),'data','metadata.json'));
   const range = sceneRange(meta, act, scene);
-  const sceneFile = await runSceneGen({ act, scene, model });
+  let sceneFile = path.join(process.cwd(),`data/explanations_act${act}_scene${scene}.json`);
+  if (!mergeOnly) {
+    sceneFile = await runSceneGen({ act, scene, model });
+  } else {
+    if (!fs.existsSync(sceneFile)) {
+      console.error(`Scene file not found: ${sceneFile}. Run gen-scene-batch first or omit --merge-only.`);
+      process.exit(1);
+    }
+  }
   const arr = load(sceneFile);
   const mergedPath = path.join(process.cwd(),'data','explanations.json');
   const count = replaceInMerged({ mergedPath, newItems: arr, range });
@@ -50,4 +72,3 @@ async function main(){
 }
 
 main().catch((e)=>{ console.error(e); process.exit(1); });
-

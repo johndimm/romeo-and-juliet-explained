@@ -5,7 +5,7 @@
     "speaker": "SAMPSON",
     "startOffset": 2823,
     "endOffset": 2879,
-    "content": "He declares they will not endure insults, using the idiom 'carry coals' to mean suffer humiliation.",
+    "content": "Sampson declares they will not endure insults, as 'carry coals' means to tolerate abuse.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -16,10 +16,10 @@
     "speaker": "GREGORY",
     "startOffset": 2879,
     "endOffset": 2925,
-    "content": "He agrees, punning that carrying coals would make them colliers (coal-carriers), a dirty and lowly job.",
+    "content": "Gregory agrees, adding that if they did, they would be coal-carriers, a lowly job.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -27,10 +27,10 @@
     "speaker": "SAMPSON",
     "startOffset": 2925,
     "endOffset": 2977,
-    "content": "He says if they become angry (in choler), they will draw their swords.",
+    "content": "He clarifies that if they become angry ('in choler'), they will draw their swords.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -38,7 +38,7 @@
     "speaker": "GREGORY",
     "startOffset": 2977,
     "endOffset": 3043,
-    "content": "He puns on 'draw', suggesting Sampson should draw his neck out of a hangman's collar instead of drawing a sword.",
+    "content": "Gregory puns on 'draw', suggesting Sampson should draw his neck out of a hangman's collar instead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -49,7 +49,7 @@
     "speaker": "SAMPSON",
     "startOffset": 3043,
     "endOffset": 3084,
-    "content": "He boasts that he strikes swiftly when provoked.",
+    "content": "Sampson boasts that he strikes swiftly when provoked.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -60,7 +60,7 @@
     "speaker": "GREGORY",
     "startOffset": 3084,
     "endOffset": 3136,
-    "content": "He mocks Sampson by saying he is not easily provoked to actually fight.",
+    "content": "Gregory retorts that Sampson is not easily provoked to actually fight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -71,7 +71,7 @@
     "speaker": "SAMPSON",
     "startOffset": 3136,
     "endOffset": 3187,
-    "content": "He claims a Montague servant (a dog) provokes him.",
+    "content": "He claims a Montague dog would provoke him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -82,7 +82,7 @@
     "speaker": "GREGORY",
     "startOffset": 3187,
     "endOffset": 3299,
-    "content": "He twists Sampson's words, saying to be moved is to run away, but to be valiant is to stand firm.",
+    "content": "Gregory twists his words: to be 'moved' means to run away, while true courage means standing firm.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -93,7 +93,7 @@
     "speaker": "SAMPSON",
     "startOffset": 3299,
     "endOffset": 3410,
-    "content": "He insists a Montague will provoke him to stand and fight, and he will take the wall (the cleaner, safer path) from any Montague.",
+    "content": "He insists a Montague dog would make him stand his ground, and he will take the wall (the cleaner, safer path) from any Montague.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -104,10 +104,10 @@
     "speaker": "GREGORY",
     "startOffset": 3410,
     "endOffset": 3484,
-    "content": "He says taking the wall shows weakness, since the weakest are forced to the wall.",
+    "content": "Gregory says that taking the wall shows weakness, since the weakest are forced to the wall.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -115,7 +115,7 @@
     "speaker": "SAMPSON",
     "startOffset": 3484,
     "endOffset": 3664,
-    "content": "He twists Gregory's logic, saying women as weaker vessels are thrust against the wall, so he will push Montague men from the wall and thrust Montague maids to it, with sexual implication.",
+    "content": "He twists this, saying women as 'weaker vessels' are pushed against the wall, so he will push Montague men from the wall and thrust Montague maids to it, with sexual implication.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -126,7 +126,7 @@
     "speaker": "GREGORY",
     "startOffset": 3664,
     "endOffset": 3727,
-    "content": "He reminds Sampson the quarrel is between their masters and the men, not the women.",
+    "content": "Gregory reminds him the feud is between the masters and their servants, not the maids.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -137,7 +137,7 @@
     "speaker": "SAMPSON",
     "startOffset": 3727,
     "endOffset": 3874,
-    "content": "He ignores this, vowing to be a tyrant: cruel to the men and 'civil' to the maids by cutting off their heads.",
+    "content": "He dismisses that, vowing to be a tyrant: after fighting the men, he will be 'civil' with the maids by cutting off their heads.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -148,10 +148,10 @@
     "speaker": "GREGORY",
     "startOffset": 3874,
     "endOffset": 3908,
-    "content": "He asks for clarification, shocked at the mention of cutting off maids' heads.",
+    "content": "Gregory asks for clarification: 'The heads of the maids?'",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -159,10 +159,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3908,
     "endOffset": 4001,
-    "content": "He makes a crude pun, saying he means either their literal heads or their maidenheads (virginity), leaving the interpretation open.",
+    "content": "He makes a crude pun: he means either their literal heads or their maidenheads (virginity), leaving the interpretation open.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -170,10 +170,10 @@
     "speaker": "GREGORY",
     "startOffset": 4001,
     "endOffset": 4052,
-    "content": "He replies with a sexual innuendo, saying those who feel it will understand the meaning.",
+    "content": "Gregory concludes that those who feel it will understand the meaning well enough.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -195,7 +195,7 @@
     "content": "Gregory jokes that if Sampson were fish, he would be poor John, a cheap dried fish, then tells him to draw his sword because Montagues approach.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 40
   },
   {
     "act": "I",
@@ -203,10 +203,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4319,
     "endOffset": 4380,
-    "content": "Sampson says his sword is drawn and he will support Gregory in a fight.",
+    "content": "Sampson says his sword is drawn and he will support Gregory if they quarrel.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -225,7 +225,7 @@
     "speaker": "SAMPSON",
     "startOffset": 4418,
     "endOffset": 4441,
-    "content": "Sampson reassures Gregory not to be afraid of him.",
+    "content": "Sampson tells Gregory not to be afraid of him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -236,10 +236,10 @@
     "speaker": "GREGORY",
     "startOffset": 4441,
     "endOffset": 4475,
-    "content": "Gregory replies that indeed he does not fear Sampson, using 'marry' as a mild oath.",
+    "content": "Gregory replies that he certainly does not fear Sampson, using 'marry' as a mild oath.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -247,7 +247,7 @@
     "speaker": "SAMPSON",
     "startOffset": 4475,
     "endOffset": 4535,
-    "content": "Sampson suggests they keep the law on their side by letting the Montagues start the quarrel.",
+    "content": "Sampson suggests they keep the law on their side by letting the Montagues start the fight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -258,7 +258,7 @@
     "speaker": "GREGORY",
     "startOffset": 4535,
     "endOffset": 4607,
-    "content": "Gregory says he will scowl as he passes, letting the Montagues interpret it as they please.",
+    "content": "Gregory says he will scowl as he passes, letting the Montagues respond as they please.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -269,10 +269,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4607,
     "endOffset": 4709,
-    "content": "Sampson insists they should act as the Montagues dare, and he will insult them by biting his thumb, a gesture of disrespect if they tolerate it.",
+    "content": "Sampson corrects him, saying they should respond as they dare, and he will insult them by biting his thumb, a gesture of disrespect if they tolerate it.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -280,7 +280,7 @@
     "speaker": "ABRAM",
     "startOffset": 4709,
     "endOffset": 4752,
-    "content": "Abram directly challenges Sampson, asking if he is insulting them by biting his thumb.",
+    "content": "Abram directly challenges Sampson, asking if he is insulting them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -291,7 +291,7 @@
     "speaker": "SAMPSON",
     "startOffset": 4752,
     "endOffset": 4787,
-    "content": "Sampson admits he is biting his thumb but avoids saying it is directed at Abram.",
+    "content": "Sampson admits he is biting his thumb but avoids saying it is at them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -302,7 +302,7 @@
     "speaker": "ABRAM",
     "startOffset": 4787,
     "endOffset": 4830,
-    "content": "Abram repeats his question more insistently, demanding to know if the insult is aimed at them.",
+    "content": "Abram repeats his question to force a clear answer.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -313,7 +313,7 @@
     "speaker": "SAMPSON",
     "startOffset": 4830,
     "endOffset": 4876,
-    "content": "Sampson checks with Gregory whether the law would support them if he admits the insult.",
+    "content": "Sampson checks with Gregory if the law is on their side if he says yes.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -324,10 +324,10 @@
     "speaker": "GREGORY",
     "startOffset": 4876,
     "endOffset": 4890,
-    "content": "Gregory bluntly says no.",
+    "content": "Gregory simply says no.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 0
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -335,10 +335,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4890,
     "endOffset": 4970,
-    "content": "Sampson backtracks, saying he is not biting his thumb at Abram but merely biting his thumb.",
+    "content": "Sampson tells Abram he is not biting his thumb at them, but continues the gesture ambiguously.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -346,7 +346,7 @@
     "speaker": "GREGORY",
     "startOffset": 4970,
     "endOffset": 5001,
-    "content": "Gregory escalates the confrontation by asking Abram if he wants to quarrel.",
+    "content": "Gregory escalates by asking Abram if he wants to fight, moving the exchange toward open conflict.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -357,7 +357,7 @@
     "speaker": "ABRAM",
     "startOffset": 5001,
     "endOffset": 5032,
-    "content": "He denies wanting to quarrel, saying 'No, sir' to Sampson's challenge.",
+    "content": "Abram denies wanting to quarrel, addressing Sampson with formal 'sir' to show disdain.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -368,10 +368,10 @@
     "speaker": "SAMPSON",
     "startOffset": 5032,
     "endOffset": 5106,
-    "content": "He accepts the challenge, claiming he serves a man as good as Abram's master.",
+    "content": "Sampson says he will fight if Abram does, claiming his master is as good as Abram's, escalating the confrontation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -379,7 +379,7 @@
     "speaker": "ABRAM",
     "startOffset": 5106,
     "endOffset": 5125,
-    "content": "He dismissively replies 'No better,' refusing to acknowledge any superiority.",
+    "content": "Abram dismissively replies 'No better,' challenging Sampson's claim of equal status.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -390,7 +390,7 @@
     "speaker": "SAMPSON",
     "startOffset": 5125,
     "endOffset": 5146,
-    "content": "He says 'Well, sir' as a noncommittal response, noticing Benvolio's arrival.",
+    "content": "Sampson responds with 'Well, sir,' a noncommittal but provocative pause before Gregory intervenes.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -401,7 +401,7 @@
     "speaker": "GREGORY",
     "startOffset": 5164,
     "endOffset": 5227,
-    "content": "He urges Sampson to say 'better' now that a kinsman of their master approaches, escalating the confrontation.",
+    "content": "Gregory urges Sampson to say 'better' because Benvolio, a kinsman of their master, approaches, suggesting backup is near.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -412,7 +412,7 @@
     "speaker": "SAMPSON",
     "startOffset": 5227,
     "endOffset": 5255,
-    "content": "He defiantly repeats 'Yes, better, sir,' directly challenging Abram.",
+    "content": "Emboldened, Sampson now claims his master is 'better,' directly defying Abram.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -423,7 +423,7 @@
     "speaker": "ABRAM",
     "startOffset": 5255,
     "endOffset": 5272,
-    "content": "He accuses Sampson of lying, a grave insult meant to provoke a fight.",
+    "content": "Abram accuses Sampson of lying, a grave insult that demands a fight in this honor culture.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 5
@@ -434,7 +434,7 @@
     "speaker": "SAMPSON",
     "startOffset": 5272,
     "endOffset": 5357,
-    "content": "He calls them to draw their swords and reminds Gregory of his 'washing blow'—a slashing strike—as they begin fighting.",
+    "content": "Sampson calls them to draw swords if they are men and reminds Gregory of his 'washing blow'—a slashing strike—prompting the brawl.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -445,7 +445,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 5357,
     "endOffset": 5458,
-    "content": "He tries to stop the fight, calling them fools and telling them they don't understand the consequences of their violence.",
+    "content": "Benvolio calls them fools and orders them to sheathe their swords, saying they don't understand the consequences, showing his peacekeeping role.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -456,7 +456,7 @@
     "speaker": "TYBALT",
     "startOffset": 5474,
     "endOffset": 5574,
-    "content": "He insults Benvolio for fighting with lowly servants ('heartless hinds') and threatens him with death, showing his quick temper and hatred for the Montagues.",
+    "content": "Tybalt insults Benvolio as drawn among 'heartless hinds'—cowardly servants—and threatens him with death, revealing his aggressive nature.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -467,7 +467,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 5574,
     "endOffset": 5668,
-    "content": "He explains he is only trying to keep peace and urges Tybalt to help separate the fighters or put away his sword.",
+    "content": "Benvolio explains he is only keeping peace and urges Tybalt to put away his sword or help separate the fighters.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 30
@@ -478,7 +478,29 @@
     "speaker": "TYBALT",
     "startOffset": 5668,
     "endOffset": 5806,
-    "content": "He mocks Benvolio for talking of peace while armed, declaring his hatred for peace, hell, all Montagues, and Benvolio, then attacks him as a coward.",
+    "content": "Tybalt scorns the idea of talking peace while armed, declaring he hates peace as much as hell, all Montagues, and Benvolio, then attacks him as a coward.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "I",
+    "scene": "I",
+    "speaker": "CAPULET",
+    "startOffset": 6013,
+    "endOffset": 6070,
+    "content": "Hearing the noise, Capulet calls for his long sword, eager to join the fray despite his age.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 35
+  },
+  {
+    "act": "I",
+    "scene": "I",
+    "speaker": "LADY CAPULET",
+    "startOffset": 6070,
+    "endOffset": 6131,
+    "content": "Lady Capulet mocks his call for a sword, suggesting he needs a crutch instead, highlighting his unsuitability for combat.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -487,31 +509,9 @@
     "act": "I",
     "scene": "I",
     "speaker": "CAPULET",
-    "startOffset": 6013,
-    "endOffset": 6070,
-    "content": "He demands his long sword upon hearing the noise, eager to join the fray.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 25
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY CAPULET",
-    "startOffset": 6070,
-    "endOffset": 6131,
-    "content": "She sarcastically suggests he needs a crutch, not a sword, mocking his age and impulsiveness.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 40
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "CAPULET",
     "startOffset": 6131,
     "endOffset": 6221,
-    "content": "He insists on his sword, claiming Old Montague has arrived and is waving his blade to provoke him.",
+    "content": "Capulet insists on his sword, claiming Old Montague has arrived and is waving his blade to provoke him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -522,7 +522,7 @@
     "speaker": "MONTAGUE",
     "startOffset": 6261,
     "endOffset": 6318,
-    "content": "He calls Capulet a villain and struggles against restraint, wanting to confront him directly.",
+    "content": "Montague insults Capulet as a villain and demands to be released to fight, showing the mutual hatred between the families.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -533,7 +533,7 @@
     "speaker": "LADY MONTAGUE",
     "startOffset": 6318,
     "endOffset": 6378,
-    "content": "She commands her husband not to move a step to look for an enemy, showing her desire to prevent further conflict.",
+    "content": "She commands her husband not to move a step to look for an enemy, showing her desire to avoid further conflict.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -544,7 +544,7 @@
     "speaker": "MONTAGUE",
     "startOffset": 7519,
     "endOffset": 7614,
-    "content": "He asks who restarted this old feud and questions his nephew Benvolio about witnessing the start of the fight.",
+    "content": "He asks who reignited this old feud and questions his nephew Benvolio about whether he witnessed the start of the fight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -566,7 +566,7 @@
     "speaker": "LADY MONTAGUE",
     "startOffset": 8076,
     "endOffset": 8170,
-    "content": "She asks where Romeo is and expresses relief he was not in the brawl, showing her concern for his safety.",
+    "content": "She asks where Romeo is and expresses relief that he was not involved in the brawl, showing her concern for his safety.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -577,7 +577,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 8170,
     "endOffset": 8727,
-    "content": "He tells Lady Montague that early in the morning he saw Romeo walking, but Romeo noticed him and hid in the woods; Benvolio, feeling similarly troubled, respected Romeo’s wish to be alone and avoided him.",
+    "content": "He recounts seeing Romeo early in the morning, walking troubled; Romeo noticed him and hid in the woods, and Benvolio, respecting his mood, avoided him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -588,7 +588,7 @@
     "speaker": "MONTAGUE",
     "startOffset": 8727,
     "endOffset": 9254,
-    "content": "He describes Romeo’s recent behavior: seen weeping and sighing at dawn, then locking himself in his room to avoid daylight, suggesting a dark mood that worries him.",
+    "content": "He describes Romeo’s recent behavior: adding tears to the morning dew and sighing heavily, then locking himself away from daylight as soon as the sun rises, creating his own darkness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -599,7 +599,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 9254,
     "endOffset": 9304,
-    "content": "He asks Montague if he knows the reason for Romeo’s sadness.",
+    "content": "He asks Montague if he knows the cause of Romeo’s sadness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -643,10 +643,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 9842,
     "endOffset": 9945,
-    "content": "He notices Romeo approaching and suggests Montague step aside so he can try to learn Romeo’s trouble.",
+    "content": "He notices Romeo approaching and suggests that Montague and Lady Montague leave so he can try to learn Romeo’s problem.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -654,7 +654,7 @@
     "speaker": "MONTAGUE",
     "startOffset": 9945,
     "endOffset": 10043,
-    "content": "He hopes Benvolio will hear a true confession and leaves with Lady Montague.",
+    "content": "He hopes Benvolio will succeed in hearing Romeo’s true confession and leaves with Lady Montague.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -687,7 +687,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 10145,
     "endOffset": 10177,
-    "content": "He confirms that it has only just struck nine o’clock.",
+    "content": "He tells Romeo that it has only just struck nine o’clock.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -698,7 +698,7 @@
     "speaker": "ROMEO",
     "startOffset": 10177,
     "endOffset": 10257,
-    "content": "He laments that sad hours feel long and asks if that was his father leaving so quickly.",
+    "content": "He laments that sad hours feel long and asks if that was his father who left quickly.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -709,7 +709,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 10257,
     "endOffset": 10316,
-    "content": "Benvolio asks what sorrow is making Romeo's time pass so slowly.",
+    "content": "Benvolio asks what sorrow is making Romeo’s time pass slowly.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -742,7 +742,7 @@
     "speaker": "ROMEO",
     "startOffset": 10393,
     "endOffset": 10406,
-    "content": "Romeo confirms he is out—meaning out of favor.",
+    "content": "Romeo says he is out—meaning out of love’s favor.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -753,10 +753,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10406,
     "endOffset": 10426,
-    "content": "Benvolio clarifies: out of love?",
+    "content": "Benvolio asks if he is out of love.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 40
   },
   {
     "act": "I",
@@ -764,7 +764,7 @@
     "speaker": "ROMEO",
     "startOffset": 10426,
     "endOffset": 10472,
-    "content": "Romeo explains he is out of favor with the woman he loves.",
+    "content": "Romeo clarifies he is out of favor with the woman he loves.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -778,7 +778,7 @@
     "content": "Benvolio laments that love seems gentle but proves harsh and cruel in experience.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -786,7 +786,7 @@
     "speaker": "ROMEO",
     "startOffset": 10564,
     "endOffset": 11124,
-    "content": "Romeo agrees, saying blind love still finds ways to get what it wants. He abruptly asks where to eat, then reflects on the brawl, linking it to love and hate. He then lists contradictory oxymorons to express his confused feelings, ending by asking if Benvolio is laughing.",
+    "content": "Romeo agrees, saying blind love still finds its way. He abruptly asks where to eat, then reflects on the brawl, linking it to love’s contradictions—brawling love, loving hate, and oxymorons like heavy lightness and bright smoke. He feels this confusing love but no joy in it, and asks if Benvolio laughs.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -797,7 +797,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 11124,
     "endOffset": 11158,
-    "content": "Benvolio says no, cousin, he would rather weep.",
+    "content": "Benvolio says no, he would rather weep.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -808,7 +808,7 @@
     "speaker": "ROMEO",
     "startOffset": 11158,
     "endOffset": 11187,
-    "content": "Romeo asks why he weeps.",
+    "content": "Romeo asks why.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -819,7 +819,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 11187,
     "endOffset": 11232,
-    "content": "Benvolio says he weeps for Romeo's suffering.",
+    "content": "Benvolio says he weeps at Romeo’s emotional suffering.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -830,7 +830,7 @@
     "speaker": "ROMEO",
     "startOffset": 11232,
     "endOffset": 11723,
-    "content": "Romeo says that is how love wrongs us. His own grief is heavy, and Benvolio's sympathy adds to it. He describes love as a smoke from sighs, a fire in lovers' eyes when cleared, and a sea fed by tears—a discreet madness, a bitter poison, and a preserving sweetness.",
+    "content": "Romeo says that is love’s fault. His own grief weighs on him, and Benvolio’s sympathy adds to it. He describes love as a smoke from sighs, a fire in lovers’ eyes when cleared, and a sea fed by tears—a discreet madness, a bitter poison, and a preserving sweetness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -841,7 +841,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 11723,
     "endOffset": 11798,
-    "content": "Benvolio stops him, saying he will go along and Romeo wrongs him by leaving like this.",
+    "content": "Benvolio stops him, saying he will go along and that Romeo wrongs him by leaving like this.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -852,7 +852,7 @@
     "speaker": "ROMEO",
     "startOffset": 11798,
     "endOffset": 11890,
-    "content": "Romeo dismisses this, saying he has lost himself and is not truly here.",
+    "content": "Romeo dismisses this, saying he has lost himself and is not truly present.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -863,7 +863,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 11890,
     "endOffset": 11942,
-    "content": "Benvolio asks him seriously to say who he loves.",
+    "content": "Benvolio asks him seriously to name the one he loves.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -885,10 +885,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11985,
     "endOffset": 12035,
-    "content": "He asks Romeo to stop groaning and seriously tell him who he loves.",
+    "content": "He asks Romeo to stop groaning and just tell him who is causing his sadness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -896,7 +896,7 @@
     "speaker": "ROMEO",
     "startOffset": 12035,
     "endOffset": 12165,
-    "content": "He compares his lovesickness to asking a sick man to make a will, then admits he loves a woman.",
+    "content": "He compares his lovesickness to a dying man being asked to make a will, then admits he loves a woman.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -918,10 +918,10 @@
     "speaker": "ROMEO",
     "startOffset": 12225,
     "endOffset": 12280,
-    "content": "He calls Benvolio a good marksman and says the woman he loves is beautiful.",
+    "content": "He calls Benvolio a good guesser and says the woman he loves is beautiful.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 85
   },
   {
     "act": "I",
@@ -929,10 +929,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 12280,
     "endOffset": 12336,
-    "content": "He jokes that a beautiful target is easiest to hit.",
+    "content": "He jokes that a beautiful target is easiest to hit, meaning she should be easy to win over.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -940,7 +940,7 @@
     "speaker": "ROMEO",
     "startOffset": 12336,
     "endOffset": 12749,
-    "content": "He says Benvolio is wrong: she is immune to love, like the chaste goddess Diana, and will not be won by words, looks, or riches. Her beauty will die with her, leaving no legacy.",
+    "content": "He says Benvolio is wrong: she is immune to love like the chaste goddess Diana, armed with chastity and unmoved by romantic words, gazes, or riches. Her beauty will die with her, leaving no legacy.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
@@ -962,7 +962,7 @@
     "speaker": "ROMEO",
     "startOffset": 12813,
     "endOffset": 13111,
-    "content": "He confirms her vow, saying that by denying love she wastes her beauty and prevents it from being passed on. Her perfection causes his despair, and her vow makes him feel dead inside.",
+    "content": "He confirms she has, saying her abstinence wastes her beauty by denying it to future generations. Her perfection causes his despair, and her vow makes him feel dead while alive.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -976,7 +976,7 @@
     "content": "He advises Romeo to forget her.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -984,10 +984,10 @@
     "speaker": "ROMEO",
     "startOffset": 13164,
     "endOffset": 13213,
-    "content": "He asks how he can possibly stop thinking of her.",
+    "content": "He asks how he can possibly stop thinking about her.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -995,7 +995,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 13213,
     "endOffset": 13283,
-    "content": "He suggests Romeo look at other beautiful women.",
+    "content": "He suggests looking at other beautiful women.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -1006,7 +1006,7 @@
     "speaker": "ROMEO",
     "startOffset": 13283,
     "endOffset": 13708,
-    "content": "He argues that comparing others to her only makes her seem more exquisite. He compares it to a blind man never forgetting his lost sight, and says any beautiful woman would only remind him of her. He rejects Benvolio's advice.",
+    "content": "He argues that comparing others to her would only make her seem more exquisite, like a blind man never forgetting lost sight. Another beauty would just remind him of her, so he cannot be taught to forget.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
@@ -1017,7 +1017,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 13708,
     "endOffset": 13766,
-    "content": "He vows to prove his advice works or die trying.",
+    "content": "He vows to prove his advice works or die trying, showing his determination to help.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
