@@ -79,8 +79,9 @@ function systemPrompt(){
     'You are a careful Shakespeare tutor. Given a full scene of Romeo and Juliet and the list of speeches (speaker + byte offsets),',
     'write an explanation for each speech that is precise, non-repetitive across the scene, and helpful to a student reader.',
     'Prioritize: (a) brief glosses for archaic words/idioms where needed; (b) a clear explanation of the meaning that connects the clauses; (c) a brief note of dramatic purpose when relevant.',
+    'Also include a difficulty rating per speech as "perplexity" on a 0–100 scale (0 easy – 100 very difficult) for a typical high‑school reader, based on archaic vocabulary, inverted/elliptical syntax, dense metaphor, and needed cultural context.',
     'Do NOT restate act/scene/speaker, do NOT re-quote the lines, and do NOT prefix with labels like "Paraphrase:", "Summary:", or similar. The content should be plain sentences only.',
-    'Your output MUST be a strict JSON array ONLY, no extra prose, no Markdown fences, no comments. Each item exactly: {"speaker":"…","startOffset":123,"endOffset":456,"content":"…"}',
+    'Your output MUST be a strict JSON array ONLY, no extra prose, no Markdown fences, no comments. Each item exactly: {"speaker":"…","startOffset":123,"endOffset":456,"content":"…","perplexity":42}',
     'Use double quotes for all JSON strings. No trailing commas. The array length must equal the number of provided speeches.'
   ].join('\n');
 }
@@ -201,17 +202,19 @@ async function main(){
     arr = arr.concat(piece);
   }
   // Normalize fields & attach act/scene/model/provider
+  const clamp = (n)=>{ const v = parseInt(n,10); return Number.isFinite(v) ? Math.max(0, Math.min(100, v)) : 0; };
   arr = arr.map((x) => ({
     act, scene,
     speaker: String(x.speaker || '').trim(),
     startOffset: Number(x.startOffset || x.start || 0),
     endOffset: Number(x.endOffset || x.end || 0),
     content: String(x.content || x.explanation || '').trim(),
-    provider: 'deepseek', model
+    provider: 'deepseek', model,
+    perplexity: clamp(x.perplexity)
   })).filter((x) => x.content && Number.isFinite(x.startOffset) && Number.isFinite(x.endOffset));
   // Sort and write
   arr.sort((a,b)=> (a.startOffset||0) - (b.startOffset||0));
-  // Score perplexity (0–100) per speech using DeepSeek
+  // Score perplexity (0–100) per speech using DeepSeek (fallback only if missing)
   async function scorePerplexity(it){
     const sys = [
       'You are rating how difficult a Romeo and Juliet speech is for a typical high-school reader.',
@@ -225,6 +228,7 @@ async function main(){
     try { const m = out.match(/\{[\s\S]*\}/); const j = JSON.parse(m?m[0]:out); const s=parseInt(j.score,10); return Number.isFinite(s)?Math.max(0,Math.min(100,s)):0; } catch { return 0; }
   }
   for (let i=0;i<arr.length;i++){
+    if (typeof arr[i].perplexity === 'number' && Number.isFinite(arr[i].perplexity) && arr[i].perplexity>0) continue;
     try { arr[i].perplexity = await scorePerplexity(arr[i]); } catch { arr[i].perplexity = 0; }
   }
   fs.mkdirSync(path.dirname(out), { recursive: true });

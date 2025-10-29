@@ -1474,7 +1474,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                         <div style={{ marginTop: '0.5rem' }}>
                           {thread.map((m, idx) => (
                             <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
-                              <div style={{ color:'#6b5f53', fontStyle:'italic' }}>You: {m.q}</div>
                               <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
                             </div>
                           ))}
@@ -1494,6 +1493,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   key={`ex-${i}-${ex?.meta?.byteOffset || i}`}
                   passage={ex?.meta?.text || ''}
                   content={ex?.last || ''}
+                  meta={ex?.meta}
+                  options={llm?.options}
                 onLocate={() => {
                   if (ex?.meta) {
                     onSelectRange({ start: ex.meta.start, end: ex.meta.end });
@@ -1784,14 +1785,65 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
   );
 }
 
-function ExplanationCard({ passage, content, onLocate, onCopy, onDelete }) {
+function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options }) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [thread, setThread] = useState([]); // [{q,a}]
+  const ask = async (followupText) => {
+    const v = (followupText || q || '').trim();
+    if (!v) return;
+    try {
+      setLoading(true);
+      const res = await fetch('/api/explain', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          selectionText: meta?.text || passage || '',
+          context: { act: meta?.act, scene: meta?.scene, speaker: meta?.speaker, onStage: meta?.onStage },
+          options: options || {},
+          messages: [],
+          mode: 'followup',
+          followup: v,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+      setThread((t) => t.concat({ q: v, a: data?.content || '' }));
+      setQ('');
+    } catch (e) {
+      setThread((t) => t.concat({ q: v, a: `Error: ${String(e.message || e)}` }));
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       <button type="button" className="closeBtn" onClick={onDelete} aria-label="Close explanation" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
-      <div style={{ marginTop: '0.25rem' }} onClick={onLocate} title="Click to highlight source in the text">
+      <div style={{ marginTop: '0.25rem' }} onClick={() => { onLocate?.(); setOpen((v)=>!v); }} title="Click to highlight source and toggle follow‑up">
         <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
+        <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
+          {options?.model ? `Model: ${options.model}` : ''}
+        </div>
       </div>
+      {open && (
+        <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <input type="text" placeholder="Ask a follow‑up…" value={q} onChange={(e)=>setQ(e.target.value)} onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); ask(); } }} style={{ flex:1, minWidth:0 }} />
+          <button type="button" disabled={loading || !q.trim()} onClick={()=>ask()}>Ask</button>
+          <button type="button" disabled={loading} onClick={()=>ask('Expand into a longer, more detailed explanation without repeating earlier sentences.')}>More</button>
+          {loading && <span style={{ color:'#6b5f53' }}>Thinking…</span>}
+        </div>
+      )}
+      {open && thread.length > 0 && (
+        <div style={{ marginTop: '0.5rem' }}>
+          {thread.map((m, i) => (
+            <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
+              <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
