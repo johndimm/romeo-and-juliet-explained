@@ -307,6 +307,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showTocButton, setShowTocButton] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const lastPosSaveRef = useRef(0);
+  // Check immediately if we have a saved position to restore (before scroll handler can overwrite it)
+  const restoreAttemptedRef = useRef((() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const rawScroll = localStorage.getItem('last-scroll');
+      const savedScroll = rawScroll ? parseFloat(rawScroll) : NaN;
+      // If we have a valid saved scroll position that's significant (> 500px), prevent saving until restore completes
+      // Ignore small positions that might be from old boilerplate
+      const hasValidPosition = !isNaN(savedScroll) && savedScroll > 500;
+      console.log('[init] Checking saved scroll position:', { scrollTop: savedScroll, hasValidPosition });
+      return hasValidPosition;
+    } catch {
+      return false;
+    }
+  })());
   // Helper to choose the active scroll container (desktop: .container, narrow: .page, or window/body)
   function getScroller() {
     if (typeof document === 'undefined') return null;
@@ -343,32 +358,61 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         const top = getElementTopWithin(el, s);
         if (top <= y + threshold) bestIndex = i; else break;
       }
-      // Persist reading position occasionally
-      try {
-        const now = Date.now();
-        if (now - (lastPosSaveRef.current || 0) > 500) {
-          const off = sectionsWithOffsets[bestIndex]?.startOffset;
-          if (typeof off === 'number') localStorage.setItem('last-pos', String(off));
-          lastPosSaveRef.current = now;
-        }
-      } catch {}
+      
+      // Always update active scene for TOC tracking (don't skip this during restore)
       const startOffset = sectionsWithOffsets[bestIndex]?.startOffset;
-      if (startOffset == null || !metadata?.scenes) return;
-      let current = null;
-      for (const s of metadata.scenes) {
-        if (s.startOffset != null && s.endOffset != null) {
-          if (startOffset >= s.startOffset && startOffset <= s.endOffset) {
-            current = { act: s.act, scene: s.scene };
-            break;
+      if (startOffset != null && metadata?.scenes) {
+        let current = null;
+        for (const scene of metadata.scenes) {
+          if (scene.startOffset != null && scene.endOffset != null) {
+            if (startOffset >= scene.startOffset && startOffset <= scene.endOffset) {
+              current = { act: scene.act, scene: scene.scene };
+              break;
+            }
           }
         }
+        const key = current ? `${current.act}-${current.scene}` : null;
+        setActiveScene(key);
+        // Persist current act/scene for Print view to pre-select
+        try {
+          if (current && current.act) localStorage.setItem('printAct', String(current.act || ''));
+          if (current && (current.scene || current.scene === '')) localStorage.setItem('printScene', String(current.scene || ''));
+        } catch {}
       }
-      const key = current ? `${current.act}-${current.scene}` : null;
-      setActiveScene(key);
-      // Persist current act/scene for Print view to pre-select
+      
+      // Persist reading position occasionally (but not during initial restore)
       try {
-        if (current && current.act) localStorage.setItem('printAct', String(current.act || ''));
-        if (current && (current.scene || current.scene === '')) localStorage.setItem('printScene', String(current.scene || ''));
+        // Don't save if restore is in progress (prevents overwriting saved position on reload)
+        if (restoreAttemptedRef.current) {
+          // Check if restore has been running for a while (more than 3 seconds)
+          // This allows saving to resume if restore somehow gets stuck
+          const timeSinceLoad = Date.now() - (typeof performance !== 'undefined' && performance.timing ? performance.timing.navigationStart : 0);
+          if (timeSinceLoad < 3000) {
+            // Restore is still in progress, don't overwrite - but continue to allow TOC tracking
+            console.log('[scroll] Skipping save - restore in progress (timeSinceLoad:', timeSinceLoad, ')');
+            return;
+          }
+          // After 3 seconds, restore should be done, allow saving again
+          // Reset the flag so normal saving can continue
+          restoreAttemptedRef.current = false;
+          console.log('[scroll] Restore timeout reached, enabling saves');
+        }
+        
+        const now = Date.now();
+        if (now - (lastPosSaveRef.current || 0) > 500) {
+          const scrollTop = s === window ? window.scrollY : s.scrollTop;
+          const scrollHeight = s === window ? document.documentElement.scrollHeight : s.scrollHeight;
+          // Don't save position if we're at the top - this is likely from page load, not intentional scrolling
+          // Only save if we've actually scrolled away from the top
+          if (scrollTop > 100) {
+            localStorage.setItem('last-scroll', String(scrollTop));
+            localStorage.setItem('last-scrollHeight', String(scrollHeight));
+            console.log('[scroll] Saving scroll position:', { scrollTop, scrollHeight });
+          } else {
+            console.log('[scroll] Skipping save - at top position (scrollTop:', scrollTop, ')');
+          }
+          lastPosSaveRef.current = now;
+        }
       } catch {}
     };
     if (scroller) scroller.addEventListener('scroll', onScroll, { passive: true });
@@ -384,46 +428,164 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // Restore reading position on load (when there is no deep-link selection)
   useEffect(() => {
     try {
-      if (!sectionsWithOffsets || !sectionsWithOffsets.length) return;
-      if (typeof window === 'undefined') return;
-      if (/^#sel=/.test(window.location.hash || '')) return; // selection link takes precedence
-      let off = NaN;
-      const raw = localStorage.getItem('last-pos');
-      if (raw) off = parseInt(raw, 10);
-      // Fallback: if last-pos is missing/invalid, use last forced speech key
-      if (isNaN(off)) {
+      if (!sectionsWithOffsets || !sectionsWithOffsets.length) {
+        console.log('[restore] No sections available');
+        return;
+      }
+      if (typeof window === 'undefined') {
+        console.log('[restore] Window undefined');
+        return;
+      }
+      if (/^#sel=/.test(window.location.hash || '')) {
+        console.log('[restore] Selection link in hash, skipping restore');
+        return; // selection link takes precedence
+      }
+      let savedScroll = NaN;
+      let savedScrollHeight = NaN;
+      const rawScroll = localStorage.getItem('last-scroll');
+      if (rawScroll) savedScroll = parseFloat(rawScroll);
+      const rawScrollHeight = localStorage.getItem('last-scrollHeight');
+      if (rawScrollHeight) savedScrollHeight = parseFloat(rawScrollHeight);
+      console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight });
+      
+      // Check if we have a valid scroll position to restore
+      // Ignore small scroll positions (likely from old boilerplate or near-top positions)
+      // Only restore if scroll position is significant (> 500px)
+      const hasValidScroll = !isNaN(savedScroll) && savedScroll > 500;
+      
+      if (!hasValidScroll) {
+        console.log('[restore] No valid scroll position to restore (savedScroll:', savedScroll, '), starting at top');
+        // Clear any old small saved positions
         try {
-          const f = localStorage.getItem('forcedNotes');
-          if (f && metadata && Array.isArray(metadata.speeches)) {
-            const arr = JSON.parse(f);
-            if (Array.isArray(arr) && arr.length) {
-              const last = String(arr[arr.length - 1] || '');
-              const parts = last.split('|');
-              if (parts.length === 3) {
-                const [act, scene, sIdxStr] = parts; const sIdx = parseInt(sIdxStr, 10);
-                // find the sIdx-th speech within that act/scene
-                let count = 0; let foundOff = NaN;
-                if (Array.isArray(metadata.scenes)) {
-                  const sceneRanges = metadata.scenes.filter((sc)=>sc.act===act && String(sc.scene)===String(scene));
-                  const inScene = (o)=>{ if(!sceneRanges.length) return (act==='Prologue'); for(const sc of sceneRanges){ if(o>=sc.startOffset && o<=sc.endOffset) return true; } return false; };
-                  for (const sp of metadata.speeches) {
-                    if (inScene(sp.offset||0)) { count++; if (count === sIdx) { foundOff = sp.offset||NaN; break; } }
-                  }
-                }
-                if (!isNaN(foundOff)) off = foundOff;
-              }
-            }
+          if (!isNaN(savedScroll) && savedScroll > 0 && savedScroll <= 500) {
+            localStorage.removeItem('last-scroll');
+            localStorage.removeItem('last-scrollHeight');
+            console.log('[restore] Cleared old small saved position');
           }
         } catch {}
+        restoreAttemptedRef.current = false; // No restore needed, allow saving
+        return;
       }
-      if (isNaN(off)) return;
-      let idx = 0;
-      for (let i = 0; i < sectionsWithOffsets.length; i++) {
-        if (sectionsWithOffsets[i].startOffset <= off) idx = i; else break;
-      }
-      setTimeout(() => scrollToSection(idx), 50);
+      
+      // Flag should already be set from initialization, but ensure it's set here too
+      restoreAttemptedRef.current = true; // Prevent saving while restoring
+      
+      console.log('[restore] Will restore scroll position:', savedScroll);
+      
+      let attempts = 0;
+      const maxAttempts = 20; // Try for up to 2 seconds
+      const savedScrollValue = savedScroll; // Capture for closure
+      const savedScrollHeightValue = savedScrollHeight; // Capture for closure
+      
+      // Wait for DOM to be ready, then restore position
+      const restorePosition = () => {
+        attempts++;
+        const scroller = getScroller();
+        
+        // Check if scroller exists and has scrollable content
+        if (!scroller) {
+          if (attempts < maxAttempts) {
+            requestAnimationFrame(restorePosition);
+          } else {
+            console.log('[restore] Failed: no scroller after', attempts, 'attempts');
+          }
+          return;
+        }
+        
+        // Check if sections are rendered (at least first section)
+        const hasSections = sectionElsRef.current && sectionElsRef.current.length > 0 && sectionElsRef.current[0];
+        if (!hasSections) {
+          if (attempts < maxAttempts) {
+            requestAnimationFrame(restorePosition);
+          } else {
+            console.log('[restore] Failed: sections not rendered after', attempts, 'attempts');
+          }
+          return;
+        }
+        
+        // Check if scroller has scrollable content (scrollHeight > clientHeight)
+        if (scroller.scrollHeight <= scroller.clientHeight) {
+          if (attempts < maxAttempts) {
+            requestAnimationFrame(restorePosition);
+          } else {
+            console.log('[restore] Failed: scroller not ready (scrollHeight:', scroller.scrollHeight, 'clientHeight:', scroller.clientHeight, ')');
+          }
+          return;
+        }
+        
+        console.log('[restore] Attempting restore at attempt', attempts, {
+          scroller: scroller === window ? 'window' : scroller.className,
+          scrollHeight: scroller.scrollHeight,
+          clientHeight: scroller.clientHeight,
+          savedScroll: savedScrollValue
+        });
+        
+        // Calculate target scroll position - adjust for layout changes if scrollHeight changed
+        let targetScroll = savedScrollValue;
+        const currentScrollHeight = scroller === window ? document.documentElement.scrollHeight : scroller.scrollHeight;
+        
+        // If layout changed significantly, adjust scroll position proportionally
+        if (!isNaN(savedScrollHeightValue) && savedScrollHeightValue > 0 && currentScrollHeight !== savedScrollHeightValue) {
+          const ratio = savedScrollValue / savedScrollHeightValue;
+          targetScroll = currentScrollHeight * ratio;
+          console.log('[restore] Layout changed - adjusting scroll:', { 
+            oldScroll: savedScrollValue, 
+            oldHeight: savedScrollHeightValue, 
+            newHeight: currentScrollHeight,
+            adjustedScroll: targetScroll,
+            ratio 
+          });
+        }
+        
+        // Apply scroll position immediately
+        if (scroller === window) {
+          window.scrollTo({ top: targetScroll, behavior: 'auto' });
+          console.log('[restore] Set window.scrollY to', targetScroll, '(original:', savedScrollValue, ')');
+        } else {
+          scroller.scrollTop = targetScroll;
+          console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ')');
+        }
+        
+        // After initial scroll, wait a bit then verify
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const actualScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+              const diff = Math.abs(actualScroll - targetScroll);
+              console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff });
+              
+              if (diff <= 50) {
+                // Close enough - restore succeeded
+                console.log('[restore] Successfully restored scroll position (diff:', diff, 'px)');
+              } else {
+                // Try one more adjustment
+                console.log('[restore] Adjusting scroll position (diff was', diff, 'px)');
+                if (scroller === window) {
+                  window.scrollTo({ top: targetScroll, behavior: 'auto' });
+                } else {
+                  scroller.scrollTop = targetScroll;
+                }
+              }
+              
+              // Restore completed, allow saving again after a short delay
+              setTimeout(() => {
+                restoreAttemptedRef.current = false;
+                console.log('[restore] Restore complete, saving enabled');
+              }, 500);
+            });
+          });
+        }, 200);
+      };
+      
+      // Wait for layout and fonts to settle, then restore
+      // Use multiple timeouts to handle different loading scenarios
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          setTimeout(restorePosition, 50);
+        });
+      }, 200);
     } catch {}
-  }, [sectionsWithOffsets]);
+  }, [sectionsWithOffsets, metadata]);
 
   const scrollToSection = (index) => {
     const el = sectionElsRef.current[index];
@@ -1519,8 +1681,23 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 if (!it) return null; // safety
                 const handleCloseNote = (e) => {
                   e.stopPropagation();
-                  if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex);
-                  else if (forceShow) setForceShow(false);
+                  // First, try to remove from forced list using forcedKey (most reliable)
+                  if (forcedKey && onToggleForced) {
+                    onToggleForced(forcedKey, sectionIndex);
+                    return;
+                  }
+                  // If forcedKey isn't set but speechKey exists, check if it's in forced list
+                  if (speechKey && onToggleForced) {
+                    const isForced = Array.isArray(forcedNotes) && forcedNotes.indexOf(speechKey) >= 0;
+                    if (isForced) {
+                      onToggleForced(speechKey, sectionIndex);
+                      return;
+                    }
+                  }
+                  // If not in forced list, just hide locally visible notes
+                  if (forceShow) {
+                    setForceShow(false);
+                  }
                 };
                 const toggleFollow = () => setShowPreFollow((v)=>!v);
                 const submitFollow = async () => {

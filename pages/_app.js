@@ -6,6 +6,7 @@ import '../styles/globals.css';
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const isPrintRoute = router && router.pathname === '/print';
+  const isPlayPage = router && router.pathname === '/';
   const headerRef = React.useRef(null);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   // Add a class on <html> when on the print route so CSS can adjust layout/scrolling
@@ -45,63 +46,35 @@ export default function App({ Component, pageProps }) {
       {!isPrintRoute && (
       <header className="appHeader">
         <div className="appHeaderInner" ref={headerRef}>
-          <div className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap' }}>Romeo and Juliet — Explained</div>
-          <HeaderSearch />
+          <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet — Explained</Link>
+          {isPlayPage && <HeaderSearch />}
           <nav className="headerLinks">
-            <a className="lnk-contents"
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (typeof window !== 'undefined') window.dispatchEvent(new Event('toggle-toc'));
-              }}
-              style={{ marginRight: 12 }}
-              title="Contents"
-              aria-label="Open contents"
-            >
-              <span className="icon" aria-hidden>📑</span>
-              <span className="lbl">Contents</span>
-            </a>
-            <a
-              href="#"
-              className="lnk-print"
-              onClick={(e) => {
-                e.preventDefault();
-                try {
-                  const act = localStorage.getItem('printAct') || '';
-                  const scene = localStorage.getItem('printScene') || '';
-                  let dest = '/print';
-                  const params = [];
-                  if (act) params.push(`act=${encodeURIComponent(act)}`);
-                  if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
-                  if (params.length) dest += `?${params.join('&')}`;
-                  if (location.pathname !== dest) location.assign(dest); else location.href = dest;
-                } catch {
-                  location.assign('/print');
-                }
-              }}
-            >
-              <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
-            </a>
-            <Link href="/user-guide" className="lnk-guide" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
+            {isPlayPage && (
+              <a
+                href="#"
+                className="lnk-print"
+                onClick={(e) => {
+                  e.preventDefault();
+                  try {
+                    const act = localStorage.getItem('printAct') || '';
+                    const scene = localStorage.getItem('printScene') || '';
+                    let dest = '/print';
+                    const params = [];
+                    if (act) params.push(`act=${encodeURIComponent(act)}`);
+                    if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
+                    if (params.length) dest += `?${params.join('&')}`;
+                    if (location.pathname !== dest) location.assign(dest); else location.href = dest;
+                  } catch {
+                    location.assign('/print');
+                  }
+                }}
+              >
+                <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
+              </a>
+            )}
+            <Link href="/user-guide" className="lnk-guide" style={isPlayPage ? { marginLeft: 12 } : { marginLeft: 0 }}><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
             <Link href="/about" className="lnk-about" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
-            <a
-              className="lnk-settings"
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (typeof window !== 'undefined') {
-                  const isMobile = window.innerWidth <= 820;
-                  if (isMobile) setShowMobileMenu((v) => !v);
-                  else window.dispatchEvent(new CustomEvent('open-settings'));
-                }
-              }}
-              title="Settings"
-              aria-label="Open settings"
-              style={{ marginLeft: 12 }}
-            >
-              <span className="icon" aria-hidden>⚙️</span>
-              <span className="lbl">Settings</span>
-            </a>
+            <Link href="/settings" className="lnk-settings" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
           </nav>
         </div>
       </header>
@@ -109,11 +82,12 @@ export default function App({ Component, pageProps }) {
       {showMobileMenu && (
         <div className="mobileMenu" role="dialog" aria-label="Menu" onClick={() => setShowMobileMenu(false)}>
           <div className="panel" onClick={(e) => e.stopPropagation()}>
-            <button className="menuItem" onClick={() => { setShowMobileMenu(false); if (typeof window !== 'undefined') { const dest = '/#action=toc'; if (location.pathname !== '/') location.assign(dest); else { location.hash = 'action=toc'; } } }}>📑 Contents</button>
-            <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
+            {isPlayPage && (
+              <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
+            )}
             <Link className="menuItem" href="/user-guide" onClick={() => setShowMobileMenu(false)}>📖 User Guide</Link>
             <Link className="menuItem" href="/about" onClick={() => setShowMobileMenu(false)}>ℹ️ About</Link>
-            <button className="menuItem" onClick={() => { setShowMobileMenu(false); if (typeof window !== 'undefined') { const dest = '/#action=settings'; if (location.pathname !== '/') location.assign(dest); else { location.hash = 'action=settings'; } } }}>⚙️ Settings</button>
+            <Link className="menuItem" href="/settings" onClick={() => setShowMobileMenu(false)}>⚙️ Settings</Link>
           </div>
         </div>
       )}
