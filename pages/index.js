@@ -46,7 +46,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showSettings, setShowSettings] = useState(false);
   // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
   // we normalize to 0–100 via a log scale.
-  const [noteThreshold, setNoteThreshold] = useState(100);
+  const [noteThreshold, setNoteThreshold] = useState(0);
   const suppressAutoExplainRef = useRef(false);
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
@@ -238,12 +238,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     const noteBySpeechKey = new Map();
     const items = Array.isArray(precomputed)?precomputed:[];
     for (const it of items) {
-      const act = it.act || (it.Act)||''; const scene = (it.scene!=null?String(it.scene):'');
-      const key = `${act}#${scene}`; const arr = byScene.get(key)||[];
+      const act = it.act || (it.Act) || '';
+      const scene = (it.scene != null ? String(it.scene) : '');
+      const key = `${act}#${scene}`;
+      const arr = byScene.get(key) || [];
       if (!arr.length) continue;
-      const off = Number(it.startOffset||0);
+      const off = Number(it.startOffset || 0);
+      // Choose the last speech whose start offset is <= the note's start
       let chosen = arr[0];
-      for (let i=0;i<arr.length;i++){ if (off <= arr[i].offset){ chosen = arr[i]; break; } }
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].offset <= off) chosen = arr[i]; else break;
+      }
       const spKey = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
       if (!noteBySpeechKey.has(spKey)) noteBySpeechKey.set(spKey, it);
     }
@@ -563,7 +568,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const opt = localStorage.getItem('llmOptions');
       if (opt) setLlmOptions(JSON.parse(opt));
       const nt = localStorage.getItem('noteThreshold');
-      if (nt != null) setNoteThreshold(parseInt(nt, 10) || 100);
+      if (nt != null) {
+        const v = parseInt(nt, 10);
+        setNoteThreshold(Number.isFinite(v) ? v : 0);
+      }
     } catch {}
     setOptsHydrated(true);
   }, []);
