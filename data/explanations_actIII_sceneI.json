@@ -5,20 +5,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 67202,
     "endOffset": 67389,
-    "content": "Benvolio urges Mercutio to leave the public square because the hot weather has put everyone on edge, and he knows the Capulets are out looking for trouble. He fears that if the two groups meet, a fight is unavoidable, as the heat makes people's tempers flare and \"mad blood stirring\" means people are quick to anger.",
+    "content": "Benvolio urges Mercutio to leave because the hot weather makes people irritable and the Capulets are out, so a fight is likely if they meet.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 67202,
-    "endOffset": 67389,
-    "content": "Benvolio urges Mercutio to leave because the hot weather makes people irritable and the Capulets are out, increasing the risk of a fight. 'Scape' means escape, 'abroad' means out in public, and 'mad blood stirring' refers to people becoming easily angered.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -26,20 +16,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67389,
     "endOffset": 67655,
-    "content": "Mercutio is mocking Tybalt's aggressive posturing, comparing him to a drunkard who theatrically brandishes his sword in a tavern to seem tough but has no real reason to fight. He's accusing Tybalt of being a hot-headed braggart who picks fights for show rather than necessity. This insult escalates the tension, leading directly to their duel.",
+    "content": "Mercutio compares Benvolio to a man who brags about his sword in a tavern but picks fights over nothing after a drink, implying Benvolio is quick to quarrel.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 67389,
-    "endOffset": 67655,
-    "content": "Mercutio describes someone who acts aggressively without cause - a person who enters a tavern, dramatically places his sword on the table while saying 'I hope I don't need to use this,' then after drinking just two cups of wine, draws his sword against the bartender when there's no actual threat. This illustrates pointless bravado and looking for fights where none exist.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -47,20 +27,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 67655,
     "endOffset": 67691,
-    "content": "Benvolio is responding to Mercutio, who has just teased him for being quick to pick a fight. He is asking, with genuine surprise, if his friend truly sees him as a quarrelsome person. This highlights Benvolio's peaceful nature in contrast to the hot-headedness of others.",
+    "content": "Benvolio asks if he really seems like such a person.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 67655,
-    "endOffset": 67691,
-    "content": "Benvolio asks if he resembles the type of person Mercutio just described—someone who belligerently brandishes a sword in taverns but has no real need for it. He's questioning whether Mercutio's insult applies to him.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -68,20 +38,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67691,
     "endOffset": 67828,
-    "content": "Mercutio is teasing Benvolio, claiming he's just as quick-tempered and quarrelsome as anyone in Italy. He uses wordplay to say Benvolio gets angry easily and is just as quick to start a fight as to get upset. This ironic accusation highlights the tension in the scene, as Mercutio himself is actually the one looking for a confrontation.",
+    "content": "Mercutio insists Benvolio is as hot-tempered as anyone in Italy and easily provoked into a bad mood.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 67691,
-    "endOffset": 67828,
-    "content": "Mercutio says Benvolio is as quick-tempered as anyone in Italy, easily provoked into anger and quick to become angry when provoked. 'Hot a Jack' means hot-headed man; 'moved to be moody' means provoked to anger; 'moody to be moved' means angry when provoked.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -89,20 +49,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 67828,
     "endOffset": 67852,
-    "content": "Benvolio is asking Mercutio to clarify what he means after Mercutio has been complaining about the heat and the Capulets. He is prompting his friend to finish his thought, showing his role as a reasonable and attentive listener in the scene. This simple question helps escalate the tension by forcing Mercutio to elaborate on his agitated state.",
+    "content": "Benvolio asks what he would quarrel about.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 67828,
-    "endOffset": 67852,
-    "content": "Benvolio asks Mercutio to clarify what specific situation or behavior he's referring to, essentially saying \"And what are you talking about?\" or \"What specifically makes him moody?\" This shows Benvolio's more measured, questioning nature compared to Mercutio's fiery temperament.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -110,20 +60,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67852,
     "endOffset": 68655,
-    "content": "Mercutio is mocking Benvolio's claim to be peace-loving by sarcastically listing all the absurd reasons Benvolio has picked fights in the past. He uses hyperbole to paint Benvolio as someone who will quarrel over the most trivial things, like a man's beard, nut-cracking, or a tailor's fashion choices. This highlights the irony of Benvolio now advising *against* fighting and underscores the scene's tense, volatile mood.",
+    "content": "Mercutio humorously claims Benvolio would fight over trivial things like a man’s beard, nut-cracking, or a tailor’s fashion choices, accusing him of being obsessed with quarrels despite having been beaten for it.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 67852,
-    "endOffset": 68655,
-    "content": "Mercutio mocks Benvolio's hypocrisy by claiming Benvolio is actually quick to fight over trivial matters. He uses exaggerated examples: fighting someone over beard hair differences, nut-cracking (because Benvolio has hazel eyes), being awakened by a cough, and criticizing a tailor's fashion choices. The 'egg' metaphor means Benvolio's head is full of fight ideas but has been scrambled from previous brawls. Mercutio concludes that Benvolio has no right to lecture him about avoiding fights.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -131,20 +71,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 68655,
     "endOffset": 68780,
-    "content": "Benvolio is telling Mercutio that if he were as quick-tempered as Mercutio, anyone could purchase the permanent ownership (\"fee simple\") of his life for the price of a short fight. He means that Mercutio's hot-headedness would get him killed in no time, since he picks fights so easily.",
+    "content": "Benvolio retorts that if he were as quarrelsome as Mercutio, anyone could buy the permanent right to his life for a short time, meaning he’d be killed quickly.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 68655,
-    "endOffset": 68780,
-    "content": "Benvolio says that if he were as quick to fight as Mercutio, anyone could purchase permanent ownership of his life for just over an hour (meaning he'd be killed quickly in a duel). 'Fee simple' is a legal term meaning absolute ownership of property without conditions.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "III",
@@ -152,20 +82,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 68780,
     "endOffset": 68817,
-    "content": "Mercutio mocks Benvolio's use of the legal term \"fee simple\" (absolute ownership), twisting it to call him simple-minded. This continues their banter but also shows Mercutio's agitated, confrontational mood, which escalates the scene's tension right before Tybalt arrives.",
+    "content": "Mercutio mocks Benvolio’s legal term ‘fee simple’ as simple-minded, then notices Tybalt approaching.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 68780,
-    "endOffset": 68817,
-    "content": "Mocks Benvolio's legal term 'fee simple' (complete ownership of property) by twisting it to mean 'foolishly simple' - suggesting Benvolio's comment was stupid rather than clever. Paraphrase: 'Complete ownership? What foolish nonsense!'",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -173,20 +93,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 68844,
     "endOffset": 68892,
-    "content": "Benvolio is warning Mercutio that members of the Capulet family are approaching. His exclamation, \"By my head,\" is a mild oath expressing his alarm, and his statement serves to heighten the tension, immediately setting the stage for the impending and fatal confrontation.",
+    "content": "Benvolio warns that the Capulets are coming.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 68844,
-    "endOffset": 68892,
-    "content": "Benvolio warns that members of the Capulet family are approaching. 'By my head' is a mild oath swearing by his own head. This creates immediate tension as the Montagues and Capulets are feuding families.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -194,20 +104,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 68892,
     "endOffset": 68927,
-    "content": "Mercutio dismisses any concern for the consequences with a flippant oath, \"By my heel.\" This shows his reckless and defiant mood, setting the stage for his upcoming fatal confrontation with Tybalt.",
+    "content": "Mercutio dismisses the danger, saying he doesn’t care.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 68892,
-    "endOffset": 68927,
-    "content": "Mercutio responds to Benvolio's warning about approaching Capulets with defiant indifference. 'By my heel' is a dismissive oath contrasting with Benvolio's more serious 'By my head,' showing Mercutio's casual bravado. He's saying he doesn't care about the danger.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -215,20 +115,10 @@
     "speaker": "TYBALT",
     "startOffset": 68927,
     "endOffset": 69024,
-    "content": "Tybalt instructs his companions to stay near him as he intends to confront Romeo and his friends. He then addresses the group with a polite but formal greeting, \"good-den\" meaning \"good evening,\" and requests a private word with one of them, specifically targeting Romeo for a duel.",
+    "content": "Tybalt tells his companions to stay close because he intends to confront them, then greets the group and asks to speak with one of them.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 68927,
-    "endOffset": 69024,
-    "content": "Tyalt tells his companions to stay near him as he approaches the Montagues. 'Good-den' means 'good evening' - a greeting. He politely requests a private conversation with one of them, specifically targeting Romeo.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "III",
@@ -236,20 +126,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69024,
     "endOffset": 69121,
-    "content": "Mercutio is challenging Tybalt, who has just asked to have a word with them. He's deliberately misinterpreting Tybalt's polite request as a prelude to a fight, sarcastically suggesting they combine a word with a physical blow. This shows Mercutio's aggressive, confrontational mood and immediately escalates the tension in the scene.",
+    "content": "Mercutio挑衅地回应，要求提伯尔特把一句话和一击搭配起来，暗示他准备打架。",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 69024,
-    "endOffset": 69121,
-    "content": "Mercutio responds sarcastically to Tybalt's request for 'a word' by suggesting he should combine his words with violence ('couple it with something; make it a word and a blow'). This shows Mercutio's quick-witted, confrontational nature and anticipates the physical conflict that follows. 'Couple it' means join or combine it.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -257,20 +137,10 @@
     "speaker": "TYBALT",
     "startOffset": 69121,
     "endOffset": 69204,
-    "content": "Tybalt is responding to a challenge, declaring he is ready and willing to fight if given a reason. He uses \"apt enough to that\" to mean \"ready for that action\" and \"occasion\" to mean \"a cause or reason.\" Essentially, he is telling his opponent that he is eager for a fight and only needs the slightest provocation to begin.",
+    "content": "Tybalt says he is ready to fight if Mercutio gives him a reason.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 69121,
-    "endOffset": 69204,
-    "content": "Tybalt is saying he's very willing to fight and will do so if given a reason. 'Apt enough' means ready and willing; 'occasion' means opportunity or reason. He's essentially telling Mercutio he's prepared to fight at the slightest provocation.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -278,20 +148,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69204,
     "endOffset": 69264,
-    "content": "Mercutio is angrily asking Benvolio why he couldn't find a reason to start a fight without being provoked first. He is criticizing Benvolio's supposedly peaceful nature as hypocritical, suggesting he is actually quick-tempered. This sarcastic challenge escalates the tense mood, directly leading to the fatal confrontation with Tybalt.",
+    "content": "Mercutio sarcastically asks if Tybalt can’t find a reason without being given one.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 69204,
-    "endOffset": 69264,
-    "content": "Mercutio mocks Tybalt's need for an excuse to fight, suggesting he should be able to find his own reason rather than waiting for someone to provoke him. 'Occasion' means opportunity or excuse. Paraphrase: 'Can't you find your own reason to fight without someone giving you one?'",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -299,20 +159,10 @@
     "speaker": "TYBALT",
     "startOffset": 69264,
     "endOffset": 69311,
-    "content": "Tybalt is insulting Mercutio by using the word \"consortest,\" which here means to associate with, but it carried the derogatory implication of being in a low-class troupe of musicians. He is provoking Mercutio by linking him to Romeo, the man Tybalt is actually seeking to fight, in order to goad him into a confrontation.",
+    "content": "Tybalt ignores Mercutio and says he associates with Romeo, using ‘consortest’ to mean keeping company.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 69264,
-    "endOffset": 69311,
-    "content": "Tybalt accuses Mercutio of being Romeo's companion or associate, using the archaic verb 'consortest' (meaning 'associate with' or 'keep company with'). This is an insult suggesting Mercutio is lowering himself by associating with Romeo, whom Tybalt despises.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -320,20 +170,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69311,
     "endOffset": 69510,
-    "content": "Mercutio reacts with fury to Tybalt's use of the word \"consort,\" which can mean to accompany someone but also refers to a group of musicians. He deliberately twists the word to mean \"minstrels\" as a grave insult, implying Tybalt is treating them as lowly entertainers. By drawing his sword (\"fiddlestick\"), he transforms the musical metaphor into a threat of violence, declaring he will make Tybalt \"dance\" to the unpleasant tune of a fight.",
+    "content": "Mercutio deliberately misunderstands ‘consort’ as meaning a band of minstrels, threatens discord, and brandishes his sword as a ‘fiddlestick’ to make Tybalt dance, escalating the confrontation.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 69311,
-    "endOffset": 69510,
-    "content": "Mercutio angrily interprets 'consort' as meaning 'musician' (minstrel) rather than 'associate,' taking it as an insult. He threatens violence with his sword (fiddlestick), saying he'll make Tybalt 'dance' (fight) to 'discords' (clashing sounds, here meaning fighting). 'Zounds' is an oath (short for 'God's wounds'). Paraphrase: Are you calling us musicians? If so, you'll hear only fighting sounds. Here's my sword—it will make you move violently!",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -341,20 +181,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 69510,
     "endOffset": 69683,
-    "content": "Benvolio is urging Mercutio and Tybalt to move their argument away from the public street to avoid a scene. He warns that their heated exchange is attracting unwanted attention, which could lead to trouble with the Prince, who has forbidden public brawls. This highlights Benvolio's role as the voice of caution, trying to prevent the very violence that is about to erupt.",
+    "content": "Benvolio warns that they are in a public place where everyone can see them, so they should either go somewhere private to discuss their grievances calmly or leave to avoid attention.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 69510,
-    "endOffset": 69683,
-    "content": "Benvolio warns they're in a public place where everyone can see them. He suggests either moving to a private spot to calmly discuss their issues or leaving entirely to avoid attracting attention and potential trouble.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -362,20 +192,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69683,
     "endOffset": 69790,
-    "content": "Mercutio defiantly states that he was born with eyes to see and will therefore look wherever he wishes. He declares he will not move to accommodate anyone else's comfort, establishing his stubborn and confrontational mood. This sets the stage for his refusal to back down from the approaching Capulets, directly leading to the fatal duel.",
+    "content": "Mercutio defiantly says that eyes are meant to look, so let them stare; he refuses to move for anyone's convenience.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 69683,
-    "endOffset": 69790,
-    "content": "Mercutio defiantly rejects Benvolio's suggestion to move their conflict somewhere private. He states that eyes exist to look at things, so he doesn't care if people watch. The double negative 'not...for no man's pleasure' emphasizes his stubborn refusal to move for anyone's benefit.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -383,20 +203,10 @@
     "speaker": "TYBALT",
     "startOffset": 69805,
     "endOffset": 69863,
-    "content": "Tybalt says this to Mercutio, pretending to make peace. However, his words are deeply sarcastic and insincere, as he is actually spotting Romeo—the \"man\" he refers to—and is preparing to confront and fight him. This line is a deliberate, provocative signal that the tense confrontation is about to escalate.",
+    "content": "Tybalt dismisses Mercutio, saying peace be with him, and notes that Romeo, the person he is looking for, has arrived.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 69805,
-    "endOffset": 69863,
-    "content": "Tybalt sarcastically dismisses Mercutio with a polite farewell ('peace be with you') while signaling that Romeo—the person he's actually looking for—has arrived ('here comes my man'). 'My man' here means 'the person I'm seeking' rather than a servant.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -404,20 +214,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69863,
     "endOffset": 70023,
-    "content": "Mercutio is defiantly telling Tybalt that Romeo will not submit to him or wear his servant's uniform. He sarcastically suggests that if Tybalt goes to the dueling field, Romeo will indeed \"follow\" him there—but as an opponent, not a servant. The phrase \"call him man\" mocks Tybalt by implying Romeo will act as his equal in combat, not as his subordinate.",
+    "content": "Mercutio sarcastically remarks that Tybalt is mistaken if he thinks Romeo serves him; he suggests Tybalt go to the dueling field and Romeo will follow, so in that sense Tybalt can call him his 'man'.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 69863,
-    "endOffset": 70023,
-    "content": "Mercutio mocks Tybalt's claim that Romeo is 'his man' (servant). He sarcastically says Romeo won't wear Tybalt's uniform (livery) as a servant would, but will follow him to the dueling field. The archaic 'Marry' is a mild oath (like 'indeed'), and 'your worship' mocks Tybalt's self-importance. Paraphrase: Romeo isn't your servant, but he'll follow you to fight.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -425,20 +225,10 @@
     "speaker": "TYBALT",
     "startOffset": 70023,
     "endOffset": 70117,
-    "content": "Tybalt is insulting Romeo by calling him a \"villain,\" a serious accusation of dishonor. He claims that this is the kindest term his affection allows, sarcastically twisting the idea of love into a threat. This is meant to provoke Romeo into the duel Tybalt has been seeking.",
+    "content": "Tybalt addresses Romeo, saying the affection he has for him allows no kinder word than 'villain', directly insulting him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 70023,
-    "endOffset": 70117,
-    "content": "Tybalt claims his affection for Romeo allows only one description: that Romeo is a villain. 'Bear thee' means 'feel toward you'; 'afford' here means 'permit' or 'allow.' Paraphrase: My feelings for you are so limited that I can only call you a villain.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 40
   },
   {
     "act": "III",
@@ -446,20 +236,10 @@
     "speaker": "ROMEO",
     "startOffset": 70117,
     "endOffset": 70296,
-    "content": "Romeo is telling Tybalt that he has a secret reason to love him—he is now married to Juliet, Tybalt's cousin—which excuses the anger Tybalt's insult would normally provoke. He insists he is no villain and bids Tybalt farewell, suggesting that if Tybalt truly knew him, he would understand why Romeo refuses to fight.",
+    "content": "Romeo responds that his reason for loving Tybalt excuses the anger such an insult would normally provoke; he denies being a villain and bids farewell, implying Tybalt does not truly know him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 70117,
-    "endOffset": 70296,
-    "content": "Romeo explains he has reasons to love Tybalt (being newly married to Juliet, Tybalt's cousin), which excuses the anger that would normally follow such an insult. He denies being a villain and says goodbye, suggesting Tybalt doesn't truly know him.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -467,20 +247,10 @@
     "speaker": "TYBALT",
     "startOffset": 70296,
     "endOffset": 70394,
-    "content": "Tybalt is addressing Romeo, refusing to accept Romeo's earlier attempts at peace as an apology for the perceived insult of attending the Capulet party. He commands Romeo to stop avoiding the fight and to pull out his sword to duel.",
+    "content": "Tybalt rejects Romeo's excuse for the offenses he believes Romeo has committed and demands that he turn and draw his sword.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 70296,
-    "endOffset": 70394,
-    "content": "Tybalt dismisses Romeo's attempt to avoid fighting, saying Romeo's explanation doesn't justify the insults he believes he's received. He commands Romeo to face him and pull out his sword to duel. 'Boy' is a disrespectful term, 'injuries' means insults or offenses, and 'turn and draw' means turn around and unsheathe your weapon.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 40
   },
   {
     "act": "III",
@@ -488,20 +258,10 @@
     "speaker": "ROMEO",
     "startOffset": 70394,
     "endOffset": 70605,
-    "content": "Romeo is trying to calm the furious Tybalt, who has just challenged him to a duel. He insists he has no quarrel with Tybalt and holds a secret, profound affection for him because he is now secretly married to Juliet, a Capulet. By addressing him as \"good Capulet\" and saying he values that name as his own, Romeo is subtly revealing his new familial bond and pleading for peace.",
+    "content": "Romeo insists he has never harmed Tybalt and loves him more than Tybalt can understand until he learns the reason; he urges Tybalt, whose Capulet name he values as his own, to be content and avoid conflict.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 70394,
-    "endOffset": 70605,
-    "content": "Romeo insists he never harmed Tybalt and loves him more than Tybalt can understand, promising to explain his love later. He addresses Tybalt as 'good Capulet,' saying he values that name as much as his own, urging him to be content with this for now. 'Devise' means 'imagine' or 'understand'; 'tender' means 'value' or 'hold dear.' Paraphrase: I swear I never hurt you, and I love you more than you realize—you'll learn why later. Since I respect the Capulet name as much as my own, please accept this.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -509,20 +269,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 70605,
     "endOffset": 70738,
-    "content": "Mercutio angrily rejects Romeo's peaceful surrender to Tybalt as shameful cowardice. Drawing his sword, he uses the Italian fencing term \"Alla stoccata\" (meaning \"at the thrust\") to declare that fighting skill will triumph over submission. He then insults Tybalt by calling him \"rat-catcher\" (referring to Tybalt being king of cats) and challenges him to duel.",
+    "content": "Mercutio exclaims in disgust at Romeo's calm, dishonorable surrender, declaring that a thrust in fencing wins the day; he insults Tybalt as a 'rat-catcher' and challenges him to fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 70605,
-    "endOffset": 70738,
-    "content": "Mercutio angrily rejects Romeo's peaceful approach as shameful cowardice. 'Alla stoccata' means 'at the thrust' (fencing term) - he's saying fighting skill wins the day. 'Rat-catcher' insults Tybalt (referencing his name meaning 'cat'), and 'will you walk?' challenges him to duel. Mercutio sees Romeo's refusal to fight as dishonorable and intervenes violently.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "III",
@@ -530,20 +280,10 @@
     "speaker": "TYBALT",
     "startOffset": 70738,
     "endOffset": 70779,
-    "content": "Tybalt is responding to Mercutio's challenge with a confrontational and dismissive tone. He is essentially asking, \"What do you want from me?\" but the phrasing is aggressive, showing he is ready for a fight and views Mercutio as an instigator.",
+    "content": "Tybalt asks what Mercutio wants with him, prompting the confrontation.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 70738,
-    "endOffset": 70779,
-    "content": "Tybalt responds to Mercutio's challenge by asking what he wants. 'Wouldst thou' means 'do you want' - this is a direct confrontation questioning Mercutio's intentions in challenging him to fight.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -551,20 +291,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 70779,
     "endOffset": 71060,
-    "content": "Mercutio mocks Tybalt by calling him \"King of Cats,\" referencing his quick temper and agility. He threatens to take one of Tybalt’s \"nine lives\" and \"dry-beat\" (thrash without drawing blood) the rest unless Tybalt draws his sword quickly. This insult escalates their confrontation, showing Mercutio’s reckless bravery and setting up their fatal duel.",
+    "content": "Mercutio mocks Tybalt as the 'King of Cats' and says he intends to take one of his nine lives, thrash the rest, and dares him to draw his sword quickly or risk being struck first.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 70779,
-    "endOffset": 71060,
-    "content": "Mercutio mocks Tybalt's name (Tybalt was a cat name in folklore) by calling him 'King of Cats' and threatens to take one of his 'nine lives.' 'Dry-beat' means to thrash soundly without drawing blood. A 'pilcher' is a scabbard. He's telling Tybalt to draw his sword quickly or he'll attack before it's fully unsheathed. Paraphrase: I'm going to take one of your nine lives and beat you thoroughly with the rest. Draw your sword now or I'll strike before you're ready.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "III",
@@ -572,20 +302,10 @@
     "speaker": "TYBALT",
     "startOffset": 71060,
     "endOffset": 71096,
-    "content": "Tybalt draws his sword to fight, signaling he is ready for combat. This is a direct challenge, escalating the tension into physical violence. His words are a formal declaration of his intent to engage his opponent.",
+    "content": "Tybalt accepts the challenge, stating he is ready to fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 71060,
-    "endOffset": 71096,
-    "content": "Tybalt draws his sword while saying he's ready to fight. 'I am for you' means 'I accept your challenge' or 'I'm ready to fight you.' This is his direct response to Mercutio's taunts and challenge to duel.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -593,20 +313,10 @@
     "speaker": "ROMEO",
     "startOffset": 71096,
     "endOffset": 71140,
-    "content": "Romeo is urgently telling his friend Mercutio to put his sword away, trying to prevent a fight. He calls him \"gentle\" to soothe his temper, as Mercutio is about to duel the aggressive Tybalt. This plea shows Romeo's desperate attempt to keep the peace, as he is now secretly married to Tybalt's cousin, Juliet.",
+    "content": "Romeo urges Mercutio to put away his rapier, trying to prevent the duel.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 71096,
-    "endOffset": 71140,
-    "content": "Romeo is urgently telling Mercutio to put away his sword ('rapier') to prevent a duel with Tybalt, showing his attempt to keep peace despite the tension.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -614,20 +324,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71140,
     "endOffset": 71194,
-    "content": "Mercutio is challenging Tybalt to a duel, using the fencing term \"passado\" to mockingly demand his attack. This escalates the verbal confrontation into physical violence, showing Mercutio's loyalty to Romeo and his hot-headed nature.",
+    "content": "Mercutio ignores Romeo and calls for Tybalt to make his fencing attack, initiating their fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 71140,
-    "endOffset": 71194,
-    "content": "Mercutio challenges Tybalt to a duel, using the fencing term 'passado' (a forward thrust or lunge) to demand his attack.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -635,20 +335,10 @@
     "speaker": "ROMEO",
     "startOffset": 71194,
     "endOffset": 71400,
-    "content": "Romeo urgently tries to stop the fight, commanding Benvolio to help him physically separate the duelists. He reminds everyone that the Prince has outlawed public brawling, directly appealing to Tybalt and Mercutio's honor and fear of punishment to de-escalate the situation.",
+    "content": "Romeo calls on Benvolio to help disarm them, chastising the men for this shameful brawl and reminding them the Prince has forbidden fighting in Verona's streets; he pleads with both to stop.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 71194,
-    "endOffset": 71400,
-    "content": "Romeo urgently commands Benvolio to intervene physically in the fight. He appeals to their honor ('for shame') and reminds them that Prince Escalus has explicitly prohibited public fighting in Verona. His repeated cries to 'hold' show desperate attempts to stop the violence between Tybalt and Mercutio. Paraphrase: Stop fighting immediately - the prince has banned street brawls here!",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -656,20 +346,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71440,
     "endOffset": 71535,
-    "content": "Mercutio curses both the Montagues and Capulets for their feud, which has led to his fatal wound. \"A plague o' both your houses\" expresses his dying rage at the pointless conflict, while \"I am sped\" means he is finished or dying. He then asks if Tybalt escaped unharmed, showing bitterness that his own death seems to have accomplished nothing.",
+    "content": "Mercutio announces he is wounded, curses both the Montague and Capulet houses, and says he is finished; he asks if Tybalt got away unharmed.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 71440,
-    "endOffset": 71535,
-    "content": "Mercutio announces his fatal wound. 'A plague o' both your houses' curses both the Montague and Capulet families for their feud that caused his death. 'I am sped' means 'I am finished/done for.' His final question expresses disbelief that Tybalt escaped unharmed.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -677,20 +357,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 71535,
     "endOffset": 71567,
-    "content": "Benvolio is asking if Mercutio has been physically wounded after Tybalt stabbed him under Romeo's arm. This urgent question highlights the sudden shift from a verbal quarrel to a violent, fatal injury, showing Benvolio's immediate concern for his friend's well-being.",
+    "content": "He asks if Mercutio is injured.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 71535,
-    "endOffset": 71567,
-    "content": "Benvolio expresses shock and concern, asking if Mercutio is injured. 'Art thou' means 'are you' in modern English. He's responding to Mercutio's declaration of being wounded.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -698,20 +368,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71567,
     "endOffset": 71677,
-    "content": "Mercutio is downplaying his fatal wound as \"a scratch\" to maintain his witty bravado even while dying. He calls for his page and a surgeon, but his light tone masks the seriousness of his injury, showing his characteristic humor in the face of death.",
+    "content": "He dismisses his wound as a scratch but immediately calls for a surgeon, showing he knows it is serious. 'Marry' is a mild oath.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 71567,
-    "endOffset": 71677,
-    "content": "Mercutio downplays his fatal wound as 'a scratch' using ironic understatement. 'Marry' is an archaic mild oath (like 'indeed'). He calls for his page to fetch a surgeon, though he knows it's too late. This shows his characteristic wit even while dying.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -719,20 +379,10 @@
     "speaker": "ROMEO",
     "startOffset": 71694,
     "endOffset": 71741,
-    "content": "Romeo is trying to reassure his friend Mercutio, who has just been wounded by Tybalt. He downplays the severity of the injury, hoping it is only a minor scratch. This shows Romeo's desperate, naive hope to avoid the tragic consequences of the duel that has just taken place.",
+    "content": "He tries to reassure Mercutio, saying the injury cannot be too bad.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 71694,
-    "endOffset": 71741,
-    "content": "Romeo is trying to comfort Mercutio, telling him to be brave because the wound doesn't seem serious. 'Courage, man' means 'be brave' and 'the hurt cannot be much' means 'the injury can't be too bad'.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -740,20 +390,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71741,
     "endOffset": 72181,
-    "content": "Mercutio is dying from Tybalt's stab wound and uses grim humor to downplay its severity, saying it's \"enough\" to kill him. His pun on \"grave\" means both serious and dead, and he curses both the Montagues and Capulets for their feud. He blames Romeo for intervening in the duel, which allowed Tybalt to strike the fatal blow under Romeo's arm.",
+    "content": "He jokes grimly that the wound is not large but will be fatal, punning on 'grave' meaning serious and a burial place. 'Peppered' means finished; he curses both the Montagues and Capulets and blames Romeo for intervening, which allowed Tybalt to strike under Romeo's arm.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 71741,
-    "endOffset": 72181,
-    "content": "Mercutio uses sarcasm to downplay his fatal wound, saying it's not large but sufficient to kill him. 'Grave man' is a pun meaning both serious and dead in a grave. 'Peppered' means finished or done for. He curses both the Montagues and Capulets ('a plague o' both your houses'), then angrily lists small animals to emphasize the dishonor of being killed by Tybalt's precise, technical fighting style ('by the book of arithmetic'). He blames Romeo for intervening, which allowed Tybalt to strike under Romeo's arm.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -761,20 +401,10 @@
     "speaker": "ROMEO",
     "startOffset": 72181,
     "endOffset": 72217,
-    "content": "Romeo is trying to justify his actions to Mercutio, who is dying from a wound Romeo inadvertently caused. He means that he intervened in the fight with Tybalt with peaceful intentions, hoping to prevent bloodshed. Tragically, his attempt at peace led directly to the fatal duel.",
+    "content": "He explains that he meant well by trying to stop the fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72181,
-    "endOffset": 72217,
-    "content": "Romeo expresses that he believed his actions were well-intentioned, referring to his attempt to prevent the duel between Mercutio and Tybalt. This reveals his naive optimism and the tragic irony that his intervention led to Mercutio's death.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -782,20 +412,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 72217,
     "endOffset": 72390,
-    "content": "Mercutio, mortally wounded, asks Benvolio to help him indoors before he collapses. His famous curse—\"a plague o' both your houses\"—blames the Montague and Capulet feud for his death, bitterly noting they've turned him into \"worms' meat\" (food for maggots). This dying condemnation marks the play's shift from romance to tragedy.",
+    "content": "He asks to be taken indoors before fainting, repeats his curse on both houses, and says they have killed him ('worms' meat' means a corpse).",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 72217,
-    "endOffset": 72390,
-    "content": "Mercutio asks Benvolio to help him get inside a building before he loses consciousness. He curses both the Montague and Capulet families with a plague, blaming them for his fatal wound. 'Worms' meat' means dead flesh that will be eaten by worms after burial. He emphasizes he's been seriously wounded and repeats his curse on their households.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -803,20 +423,10 @@
     "speaker": "ROMEO",
     "startOffset": 72426,
     "endOffset": 72742,
-    "content": "Romeo is explaining that Tybalt, who is now his cousin by marriage, has just killed his friend Mercutio—a close ally of the Prince—and slandered him in the process. He blames his own softened, \"effeminate\" courage on Juliet's beauty, suggesting it made him avoid fighting Tybalt earlier, which led to Mercutio stepping in and dying.",
+    "content": "He reflects that Mercutio, a friend and the Prince's relative, was mortally wounded defending him, and that Tybalt—now his cousin by marriage—has slandered him. He blames Juliet's beauty for making him soft and less brave.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72426,
-    "endOffset": 72742,
-    "content": "Romeo laments that Mercutio, a close friend of the Prince and himself, was fatally wounded defending Romeo's honor after Tybalt insulted him. He notes the irony that Tybalt, now his cousin by marriage to Juliet, caused this. Romeo blames Juliet's beauty for making him less aggressive and weakening his courage, which he believes led to Mercutio stepping in and getting killed.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -824,20 +434,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 72742,
     "endOffset": 72886,
-    "content": "Benvolio urgently tells Romeo that Mercutio has been killed. He poetically says Mercutio's noble spirit has ascended to the clouds, having left the earth too soon in a scornful manner, referring to his defiant death in the duel. This is the pivotal moment that shatters Romeo's restraint and directly leads to his vengeful fight with Tybalt.",
+    "content": "He announces Mercutio's death, saying his noble spirit has ascended to the sky too soon.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 72742,
-    "endOffset": 72886,
-    "content": "Benvolio announces Mercutio's death, describing his spirit as having risen to the clouds (aspired = risen to) and saying he scorned the earth too soon (untimely = prematurely). He means Mercutio's bold spirit has left earth for heaven after dying young.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -845,20 +445,10 @@
     "speaker": "ROMEO",
     "startOffset": 72886,
     "endOffset": 73002,
-    "content": "Romeo is saying that the tragic events of this day will determine the sorrow of many days to come. He means that the fight with Tybalt is only the start of the suffering, and others will have to resolve the grief it causes.",
+    "content": "He declares that this day's tragic fate will affect many future days, and this is only the beginning of sorrows that others will finish.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72886,
-    "endOffset": 73002,
-    "content": "'This day's black fate' means the tragic events of today will influence future days ('on mo days doth depend' - 'mo' means 'more'). Romeo is saying this tragedy is just the beginning of sorrows that others will have to resolve. He's foreshadowing that Tybalt's killing of Mercutio will lead to further violence and consequences.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -866,20 +456,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 73002,
     "endOffset": 73055,
-    "content": "Benvolio warns that Tybalt is returning, still enraged from his earlier confrontation with Mercutio and Romeo. His line heightens the tension, signaling that the conflict is far from over and more violence is imminent.",
+    "content": "He warns that Tybalt is returning angrily.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73002,
-    "endOffset": 73055,
-    "content": "Benvolio warns that Tybalt is returning angrily after Romeo's ominous prediction about the day's fate. 'Furious' means extremely angry or enraged. Paraphrase: Tybalt is coming back in a rage.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -887,20 +467,10 @@
     "speaker": "ROMEO",
     "startOffset": 73055,
     "endOffset": 73393,
-    "content": "Romeo reacts with horror and rage to Mercutio's death, immediately renouncing his previous peaceful nature. He commands his own \"fire-ey'd fury\" to take over, directly challenging Tybalt. He declares that one or both of them must die to accompany Mercutio's soul, which he imagines is still nearby.",
+    "content": "He resolves to abandon gentle restraint and let fury guide him. He tells Tybalt to take back the insult 'villain,' saying Mercutio's soul is waiting for Tybalt's to join it, so one or both of them must die.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73055,
-    "endOffset": 73393,
-    "content": "Romeo expresses shock that Tybalt returns victorious after killing Mercutio. He rejects gentle restraint ('respective lenity') and embraces rage ('fire-ey'd fury') as his guide. He demands Tybalt retract the insult 'villain' given earlier, declaring Mercutio's soul waits nearby for Tybalt's company in death. Romeo vows one or both of them must join Mercutio. Paraphrase: Mercutio is dead? I'll abandon mercy and let rage guide me. Tybalt, take back your insult—Mercutio's soul waits for yours to join him. One or both of us will die with him.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -908,20 +478,10 @@
     "speaker": "TYBALT",
     "startOffset": 73393,
     "endOffset": 73472,
-    "content": "Tybalt is addressing Romeo, calling him a \"wretched boy\" for associating with Mercutio. He declares that Romeo will now leave with Mercutio, meaning he intends to kill him and send him to the grave alongside his friend.",
+    "content": "He calls Romeo a wretched boy who kept company with Mercutio and says he will join him in death.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 73393,
-    "endOffset": 73472,
-    "content": "Tybalt calls Romeo a 'wretched boy' who 'didst consort him here' (kept company with Mercutio in this place). 'Shalt with him hence' means Romeo will die and join Mercutio in death. Tybalt is declaring he will kill Romeo to send him after the dead Mercutio.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -929,20 +489,10 @@
     "speaker": "ROMEO",
     "startOffset": 73472,
     "endOffset": 73539,
-    "content": "Romeo declares that their fight will settle their dispute, and he fatally wounds Tybalt. This is a turning point, as Romeo, who just married into the Capulet family, has now killed his new wife's cousin, sealing his tragic fate.",
+    "content": "He says their fight will decide the matter.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73472,
-    "endOffset": 73539,
-    "content": "Romeo declares that their fight will settle the matter. 'Determine' means 'decide' or 'settle'. He's saying their combat will resolve their conflict.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 40
   },
   {
     "act": "III",
@@ -950,20 +500,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 73539,
     "endOffset": 73704,
-    "content": "Benvolio urgently warns Romeo to flee immediately because Tybalt is dead and the townspeople are roused. He tells Romeo not to stand there in shock, as the Prince will sentence him to death if he is captured. This is a desperate plea for Romeo to escape the immediate legal consequences of the fatal duel.",
+    "content": "He urges Romeo to flee because the citizens are alerted and Tybalt is dead; he warns that the Prince will sentence Romeo to death if caught.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73539,
-    "endOffset": 73704,
-    "content": "Urgently telling Romeo to flee because people are gathering after Tybalt's death and the Prince will sentence him to execution if captured; 'amaz'd' means stunned/paralyzed with shock; 'doom thee death' means condemn you to death.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -971,20 +511,10 @@
     "speaker": "ROMEO",
     "startOffset": 73704,
     "endOffset": 73738,
-    "content": "Romeo exclaims this after killing Tybalt, realizing he has been manipulated by fate into a disastrous act. \"Fortune's fool\" means he sees himself as a plaything of destiny, now trapped by the consequences of his impulsive violence. This marks his sudden understanding that his actions have destroyed any chance of happiness with Juliet.",
+    "content": "He laments that he is the plaything of cruel fate.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73704,
-    "endOffset": 73738,
-    "content": "Romeo expresses that he is a victim of fate's cruel joke. 'Fortune' refers to fate or destiny, and 'fool' means a plaything or dupe. He realizes his actions have tragic consequences beyond his control, especially since he just killed Tybalt (Juliet's cousin) moments after marrying Juliet.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "III",
@@ -992,41 +522,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 73738,
     "endOffset": 73769,
-    "content": "Benvolio is urgently asking why his friend is lingering in a dangerous public place after a violent confrontation. This line highlights his cautious, peace-seeking nature and builds tension, as he fears further conflict if they do not leave immediately.",
+    "content": "He asks why Romeo is still lingering.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73738,
-    "endOffset": 73769,
-    "content": "Benvolio urgently asks Romeo why he remains at the scene after killing Tybalt, warning that staying will lead to death under the Prince's recent decree. 'Dost thou stay' means 'are you remaining here.' Paraphrase: 'Why are you still here? If you're caught, the Prince will execute you. Run away immediately!'",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 73805,
-    "endOffset": 73903,
-    "content": "The First Citizen is urgently asking the crowd for information about Tybalt's escape route after he killed Mercutio. The repetition of the question emphasizes the public's shock and their desire for justice, showing how the private feud is now spilling into the streets and involving the whole community.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 73805,
-    "endOffset": 73903,
-    "content": "The citizen is asking for the direction in which Tybalt fled after killing Mercutio. 'Which way ran he' means 'which direction did he run'. The repetition emphasizes the urgency to locate Tybalt, who is called a murderer for killing Mercutio.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -1034,62 +533,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 73903,
     "endOffset": 74018,
-    "content": "Benvolio is pointing out Tybalt’s dead body to the Prince and the arriving citizens, identifying him as the slain man. The First Citizen then commands Benvolio to come with him, invoking the Prince’s authority to ensure his compliance with the investigation.",
+    "content": "Benvolio points out Tybalt's body, identifying him as the one slain by Romeo, who in turn had killed the Prince's relative Mercutio.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73903,
-    "endOffset": 74018,
-    "content": "Benvolio points out Tybalt's dead body. The First Citizen orders him to come along, invoking the Prince's authority to compel obedience.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 73938,
-    "endOffset": 74087,
-    "content": "The First Citizen commands Tybalt's killer to come with him, invoking the Prince's authority to ensure immediate compliance. This line marks the arrival of civic order after the chaotic street brawl, as ordinary citizens step in to detain the perpetrator until the Prince arrives to deliver judgment.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 73938,
-    "endOffset": 74087,
-    "content": "The First Citizen commands someone (likely Benvolio) to stand up and accompany him, using the Prince's authority to enforce compliance. 'Charge' means 'command' or 'order' here. The stage direction shows the Prince and other key characters arriving at the scene.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 74087,
-    "endOffset": 74139,
-    "content": "The Prince is demanding to know who started the violent fight. He is addressing the gathered crowd, seeking to identify the instigators so he can enforce the law and assign blame for the public disorder.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 74087,
-    "endOffset": 74139,
-    "content": "The Prince is asking for the people who started this violent fight. 'Vile' means wicked or contemptible, 'beginners' refers to those who initiated the conflict, and 'fray' means a noisy fight or brawl.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -1097,20 +544,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 74139,
     "endOffset": 74306,
-    "content": "Benvolio is explaining to Prince Escalus how the fight unfolded. He states that Tybalt, who killed Mercutio, now lies dead, slain by Romeo in retaliation.",
+    "content": "He offers to reveal the unfortunate course of the deadly fight, again noting Tybalt's death at Romeo's hands and Tybalt's own slaying of Mercutio.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 74139,
-    "endOffset": 74306,
-    "content": "Benvolio tells the Prince he can explain everything about the unfortunate events of the deadly fight. He points out Tybalt's body, killed by Romeo, who had earlier killed the Prince's relative Mercutio. 'Discover' means reveal, 'manage' means course of events, and 'fatal brawl' means deadly fight.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -1118,41 +555,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 74306,
     "endOffset": 74564,
-    "content": "Lady Capulet is hysterically mourning Tybalt's death, calling out to the Prince and her husband. She demands justice, insisting that the Prince, in his duty, must have a Montague executed in retaliation for Tybalt's murder. Her speech establishes her as a figure of vengeful grief, directly calling for Romeo's life.",
+    "content": "She laments Tybalt's death as her cousin and nephew, appealing to the Prince for justice by demanding a Montague life in return, heightening the tension with her grief and call for revenge.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "LADY CAPULET",
-    "startOffset": 74306,
-    "endOffset": 74564,
-    "content": "Lady Capulet expresses intense grief over Tybalt's death, calling him both 'cousin' and 'brother's child' (nephew). She demands revenge, urging the Prince to honor his duty by having a Montague killed in return. The repetition shows her emotional distress and insistence on retaliation.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 74517,
-    "endOffset": 74564,
-    "content": "The Prince is asking Benvolio to identify who started the violent fight that has just occurred. He is seeking a reliable witness to understand the cause of the brawl and assign responsibility. This inquiry initiates the official investigation into the deaths of Mercutio and Tybalt.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 74517,
-    "endOffset": 74564,
-    "content": "The Prince is asking Benvolio to identify who started the violent fight. 'Fray' means fight or brawl, and 'bloody' emphasizes its violent nature.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -1160,20 +566,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 74564,
     "endOffset": 75638,
-    "content": "Benvolio is explaining to the Prince and the assembled families how Tybalt was killed. He emphasizes that Romeo tried to de-escalate the conflict, speaking calmly and respectfully, but Tybalt, filled with uncontrollable anger (\"unruly spleen\"), ignored this and instead attacked Mercutio. When Romeo physically intervened to stop the duel, Tybalt fatally stabbed Mercutio under Romeo's arm, leading Romeo to kill Tybalt in a swift, heated retaliation.",
+    "content": "He recounts the fight: Romeo tried to calm Tybalt and reminded him how trivial the quarrel was, but Tybalt, filled with unruly anger, instead fought Mercutio. Romeo intervened, but Tybalt fatally stabbed Mercutio under Romeo's arm, fled, returned, and was then slain by a vengeful Romeo in a swift duel. Benvolio swears this is true.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 74564,
-    "endOffset": 75638,
-    "content": "Benvolio explains that Romeo tried to calm Tybalt by pointing out how trivial their argument was and reminding him of the Prince's anger about fighting, but Tybalt remained violently angry and attacked Mercutio instead. Mercutio fought back fiercely, and when Romeo tried to stop them, Tybalt fatally stabbed Mercutio under Romeo's arm. Tybalt fled but returned to fight Romeo, who quickly killed him in revenge before fleeing himself. Benvolio swears this account is true.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "III",
@@ -1181,41 +577,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 75638,
     "endOffset": 76007,
-    "content": "Lady Capulet is telling the Prince that Benvolio is a Montague and therefore biased, lying out of family loyalty. She argues that since twenty Montagues fought and only Tybalt died, Romeo alone is responsible and must be executed for his murder. The Prince counters by reminding her that Tybalt killed Mercutio first, creating a debt of blood and complicating the question of who truly owes a penalty.",
+    "content": "She dismisses Benvolio's account as biased because he is a Montague relative, falsely claims many Montagues fought, and insists Romeo must be executed for killing Tybalt, pressing the Prince for severe punishment.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "LADY CAPULET",
-    "startOffset": 75638,
-    "endOffset": 76007,
-    "content": "Lady Capulet claims Benvolio is biased because he's related to the Montagues and lying about the fight. She exaggerates that twenty Montagues fought against Tybalt but only managed to kill him. She demands the Prince execute Romeo as justice for Tybalt's death. The Prince counters that Tybalt killed Mercutio first, so Romeo's action was retaliatory.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 75918,
-    "endOffset": 76007,
-    "content": "The Prince is stating the sequence of killings: Romeo killed Tybalt, who had earlier killed Mercutio. He then asks who is now responsible for paying the price—the \"dear blood\"—for Mercutio's death, meaning he is demanding who should be punished for this murder.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 75918,
-    "endOffset": 76007,
-    "content": "The Prince is stating that while Romeo killed Tybalt, Tybalt had earlier killed Mercutio. The rhetorical question asks who should pay for Mercutio's death. 'Doth owe' means 'must pay' and 'dear blood' refers to Mercutio's precious life. Paraphrase: Since Tybalt killed Mercutio first, who should be held responsible for that murder?",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -1223,40 +588,9 @@
     "speaker": "MONTAGUE",
     "startOffset": 76007,
     "endOffset": 76657,
-    "content": "Montague argues that Romeo only carried out the legal punishment Tybalt deserved for killing Mercutio, implying his son's action was justified. The Prince responds that despite his personal grief—his relative Mercutio is dead—he will not execute Romeo but exiles him instead, imposing a heavy fine on the families and warning that any plea for mercy will be ignored. He concludes that showing mercy to killers only leads to more death, justifying his harsh stance.",
+    "content": "He defends Romeo, arguing that Romeo was Mercutio's friend and that his killing of Tybalt merely carried out what the law would have done—executed Tybalt for Mercutio's murder—thus pleading for leniency.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 76007,
-    "endOffset": 76657,
-    "content": "Montague argues that Romeo shouldn't be punished for killing Tybalt because Tybalt had already killed Mercutio, and Romeo was merely carrying out what the law should have done - executing Tybalt for murder. The Prince responds that he's exiling Romeo immediately. 'Amerce' means to punish with a fine; 'purchase out abuses' means to buy forgiveness for wrongdoings. The Prince declares he'll impose such a heavy fine that everyone will regret the death of his relative (Mercutio). He warns he'll be unmoved by tears or pleas, and if Romeo doesn't leave quickly, he'll be executed if found. The final line means that showing mercy to killers only leads to more murder.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 76134,
-    "endOffset": 76670,
-    "content": "The Prince declares Romeo's punishment for killing Tybalt: immediate exile from Verona. He admits personal grief, as both families' feud has cost his own relative's life, and imposes a heavy fine to make them regret their conflict. He warns he will show no mercy to pleas or excuses, stating that Romeo must leave quickly or face execution if found.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 76134,
-    "endOffset": 76670,
-    "content": "The Prince declares Romeo's punishment for killing Tybalt: immediate exile from Verona. He states he has personal stake in their feud since his own relative (Mercutio) died in their fights. He will impose a heavy fine on both families and will not listen to any appeals for mercy. Romeo must leave quickly or face execution if found. The final line means that showing mercy to killers only encourages more murder.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   }
 ]

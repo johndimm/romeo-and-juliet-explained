@@ -5,20 +5,10 @@
     "speaker": "CAPULET",
     "startOffset": 13837,
     "endOffset": 13971,
-    "content": "Capulet is reassuring Paris that the Prince's threat of execution applies equally to both himself and Montague. He believes that as elderly men, they should find it easy to maintain the peace and avoid further conflict.",
+    "content": "Capulet says that Montague is under the same penalty to keep the peace, and he thinks it should be easy for men as old as them to do so.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "CAPULET",
-    "startOffset": 13837,
-    "endOffset": 13971,
-    "content": "Capulet acknowledges that both he and Montague face the same punishment if they break the peace, and suggests it should be easy for elderly men like them to avoid conflict.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -26,20 +16,10 @@
     "speaker": "PARIS",
     "startOffset": 13971,
     "endOffset": 14104,
-    "content": "Paris is flattering Capulet by acknowledging his and Montague's respected status, then immediately shifts to his main purpose: asking for a decision about marrying Juliet. \"Suit\" here means his formal request or proposal for her hand in marriage.",
+    "content": "Paris compliments Capulet as being of honorable reputation and regrets the long feud, then asks again for his answer about marrying Juliet.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "PARIS",
-    "startOffset": 13971,
-    "endOffset": 14104,
-    "content": "'Of honourable reckoning' means having good reputation; 'pity 'tis you liv'd at odds so long' expresses regret they've been enemies for so long; 'my suit' refers to Paris's marriage proposal to Juliet. Paris acknowledges both families' honorable status, regrets their long feud, and returns to his main purpose - asking for Capulet's answer about marrying Juliet.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -47,20 +27,10 @@
     "speaker": "CAPULET",
     "startOffset": 14104,
     "endOffset": 14330,
-    "content": "Capulet is telling Paris that Juliet is too young for marriage, as she's not yet fourteen. He suggests waiting two more years before considering her ready to be a bride, emphasizing her youth and inexperience.",
+    "content": "Capulet repeats his earlier position: Juliet is not yet fourteen, and he wants to wait two more years before she marries.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "CAPULET",
-    "startOffset": 14104,
-    "endOffset": 14330,
-    "content": "Capulet is repeating his earlier position: Juliet is too young for marriage at not yet fourteen. He wants to wait two more years before considering her ready for marriage. 'Wither in their pride' means for two more summers to pass (for their peak beauty to fade).",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -68,20 +38,10 @@
     "speaker": "PARIS",
     "startOffset": 14330,
     "endOffset": 14379,
-    "content": "Paris is arguing that girls even younger than Juliet are already married and have become mothers, implying there is no reason for Capulet to delay the marriage. He uses this point to gently pressure Juliet's father, suggesting that her youth should not be an obstacle to their union.",
+    "content": "Paris counters that girls younger than Juliet have become happy mothers.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "PARIS",
-    "startOffset": 14330,
-    "endOffset": 14379,
-    "content": "Paris counters Capulet's concern about Juliet's youth by noting that girls even younger than fourteen have successfully become mothers, suggesting Juliet is old enough for marriage by contemporary standards.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -89,41 +49,10 @@
     "speaker": "CAPULET",
     "startOffset": 14379,
     "endOffset": 15492,
-    "content": "Capulet tells Paris that his daughter Juliet is his only surviving child and sole heir. He gives Paris permission to court her but insists Juliet must also agree to the match, showing he respects her choice despite his own approval.\n\nHe then invites Paris to a feast at his home that evening, promising he'll see many beautiful young women there. Capulet poetically compares these women to stars brightening the night and to spring flowers replacing winter, suggesting Paris might find someone he likes even more than Juliet.\n\nFinally, Capulet instructs his servant to deliver invitations throughout Verona, extending welcome to all on the list.",
+    "content": "Capulet argues that early marriage ruins young girls. Juliet is his only surviving child and his hope. He tells Paris to woo her and win her heart, because his consent depends on her agreement. He invites Paris to a feast that night where he will see many beautiful young women, including Juliet, and can compare them. He then instructs a servant to deliver invitations.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "CAPULET",
-    "startOffset": 14379,
-    "endOffset": 15492,
-    "content": "Capulet warns that girls married too young are ruined early. Juliet is his only surviving child and heir. He gives Paris permission to court her but emphasizes Juliet must choose him willingly. Capulet invites Paris to a traditional feast where he'll see many beautiful young women like \"earth-treading stars\" that brighten the night. He compares the joy of seeing these young women to the delight of spring replacing winter. Paris should observe all the women and favor the most deserving one—who might be Juliet, though Capulet modestly says she may not stand out. Capulet then orders a servant to deliver invitations throughout Verona.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 15524,
-    "endOffset": 15921,
-    "content": "The servant is complaining that he's been given a list of names to find, but he can't read it himself. He humorously mixes up tradesmen's tools—saying shoemakers should stick to their yards (measuring sticks) and tailors to their lasts (shoe molds)—to highlight how he's being asked to do something beyond his skills. He's relieved to see Romeo and Benvolio approach, hoping they can read the list for him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 15524,
-    "endOffset": 15921,
-    "content": "The servant complains he can't read the guest list he's been given, using a mixed-up proverb about people doing the wrong jobs (shoemakers using tailors' tools, etc.) to show his frustration. He says he needs someone educated to help him read the names, then spots Benvolio and Romeo arriving at just the right moment.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -131,20 +60,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 15921,
     "endOffset": 16209,
-    "content": "Benvolio advises Romeo to get over his infatuation with Rosaline by finding a new romantic interest. He uses metaphors of fire and poison to argue that a new emotional \"infection\" will cure the old one, essentially suggesting that Romeo should distract himself by pursuing another woman.",
+    "content": "Benvolio advises Romeo to cure his lovesickness for Rosaline by looking at other beautiful women, using metaphors about one fire or pain displacing another.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 15921,
-    "endOffset": 16209,
-    "content": "Benvolio uses medical metaphors to suggest replacing one emotional pain with another. 'Tut' dismisses Romeo's lovesickness. 'One fire burns out another's burning' means a new passion can extinguish an old one. 'Turn giddy, and be holp by backward turning' suggests dizziness can be cured by spinning the opposite way. 'Holp' means helped. 'Take thou some new infection to thy eye' advises finding a new romantic interest. 'Rank poison' refers to the intense pain of Romeo's current unrequited love. Paraphrase: Replace your current heartache by falling for someone new.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -152,20 +71,10 @@
     "speaker": "ROMEO",
     "startOffset": 16209,
     "endOffset": 16259,
-    "content": "Romeo is sarcastically dismissing Benvolio's suggestion that another woman could cure his lovesickness. \"Plantain leaf\" was a common folk remedy for minor cuts and bruises, so Romeo is mockingly implying that Benvolio's advice is as useless as a basic bandage for his deep emotional wound. He means that no simple remedy can fix his profound heartache over Rosaline.",
+    "content": "Romeo sarcastically replies that a plantain leaf is good for a broken shin, mocking Benvolio’s simplistic cure.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16209,
-    "endOffset": 16259,
-    "content": "Romeo sarcastically dismisses Benvolio's advice about finding a new love to cure his heartbreak. 'Plantain leaf' was a common herbal remedy for minor wounds, implying Benvolio's solution is too simplistic for his deep emotional pain.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -173,20 +82,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 16259,
     "endOffset": 16293,
-    "content": "Benvolio is asking Romeo to explain the reason for his deep sadness. He's gently prompting his cousin to open up about what's troubling him, showing his concern as a friend trying to understand Romeo's melancholy mood.",
+    "content": "Benvolio asks what Romeo means by 'that'.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 16259,
-    "endOffset": 16293,
-    "content": "Benvolio asks Romeo to clarify what he means by 'that' - he's seeking specific information about what the plantain leaf is good for treating. This shows Benvolio's confusion and his attempt to understand Romeo's cryptic comment.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -194,20 +93,10 @@
     "speaker": "ROMEO",
     "startOffset": 16293,
     "endOffset": 16323,
-    "content": "Romeo is making a sarcastic joke in response to a servant's request for help reading a list. He suggests the servant's \"broken shin\" is a reason for his inability to read, but this is a flimsy excuse, as a leg injury doesn't affect one's eyesight. This shows Romeo's witty, melancholic mood as he mocks the idea of finding a logical cause for his own lovesick misery.",
+    "content": "Romeo clarifies he means for a broken shin, continuing his ironic tone.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16293,
-    "endOffset": 16323,
-    "content": "Romeo sarcastically suggests Benvolio broke his shin while trying to break up a fight, mocking Benvolio's earlier peacemaking efforts. 'Shin' refers to the front part of the leg between knee and ankle. This is Romeo's witty, dismissive reply to Benvolio asking why he's sad.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -215,20 +104,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 16323,
     "endOffset": 16360,
-    "content": "Benvolio is concerned and surprised by Romeo's extreme distress, asking if he has lost his sanity. This shows Benvolio's role as a caring, level-headed friend trying to understand Romeo's intense emotional state.",
+    "content": "Benvolio questions if Romeo is mad.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 16323,
-    "endOffset": 16360,
-    "content": "Benvolio uses the archaic form 'art thou' meaning 'are you' - he's asking if Romeo has gone crazy, expressing concern about his friend's irrational behavior.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -236,41 +115,10 @@
     "speaker": "ROMEO",
     "startOffset": 16360,
     "endOffset": 16558,
-    "content": "Romeo is describing his lovesick misery as a form of imprisonment and torture, worse than that of a madman. His speech is cut off when he notices the servant approaching and offers a casual greeting, \"God-den\" (good evening). The servant's immediate question about reading is crucial, as it will lead Romeo to the Capulet's feast and his meeting with Juliet.",
+    "content": "Romeo says he is not mad but more confined than a madman—tormented and deprived—then breaks off to greet the servant.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16360,
-    "endOffset": 16558,
-    "content": "Romeo uses metaphorical imprisonment to describe his lovesick state—bound more tightly than an insane person, deprived of nourishment (emotional/spiritual), and tormented by unrequited love. 'God-den' is an archaic contraction of 'God give you good evening,' a common Elizabethan greeting.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16503,
-    "endOffset": 16558,
-    "content": "The servant greets Romeo politely, saying \"God give you good evening.\" He then asks if Romeo can read because he has been given a list of party guests to invite but is illiterate himself and needs help.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16503,
-    "endOffset": 16558,
-    "content": "The servant greets Romeo with 'God give you good evening' and asks if he can read. This is important because the servant cannot read the guest list for Capulet's feast and needs help identifying the invited names.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -278,41 +126,10 @@
     "speaker": "ROMEO",
     "startOffset": 16558,
     "endOffset": 16696,
-    "content": "Romeo sarcastically says his misfortune is his only possession. The servant misunderstands, thinking \"learned without book\" means memorized, and asks if Romeo can read. This exchange allows the servant to unknowingly invite Romeo to the Capulet feast where he'll meet Juliet.",
+    "content": "When the servant asks if he can read, Romeo answers bitterly that he can read his own miserable fortune.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16558,
-    "endOffset": 16696,
-    "content": "Romeo responds sarcastically that he's experiencing his own 'fortune' (fate/luck) through his current misery (unrequited love for Rosaline). The servant misunderstands, thinking Romeo means he's memorized ('learned without book') some text. 'Without book' means from memory.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16601,
-    "endOffset": 16696,
-    "content": "The servant is asking if the person can read anything at all, not just something memorized. He needs help reading a list of party guests because he himself is illiterate. This exchange introduces the crucial plot point that will allow Romeo to learn about the Capulet feast.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16601,
-    "endOffset": 16696,
-    "content": "The servant is asking if Romeo has memorized something (without book = by heart), then inquires if he can read any text he encounters. This reveals the servant is illiterate and needs help reading a guest list.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -320,41 +137,10 @@
     "speaker": "ROMEO",
     "startOffset": 16696,
     "endOffset": 16791,
-    "content": "Romeo confirms he can read, which is crucial because the illiterate servant has just asked for help reading the guest list for the Capulets' party. This chance encounter directly leads Romeo to the party where he will meet Juliet, setting the entire plot in motion.",
+    "content": "Romeo says he can read if he knows the letters and language.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16696,
-    "endOffset": 16791,
-    "content": "Romeo confirms he can read if he understands the alphabet and language. The servant's response 'rest you merry' means 'stay happy' or 'goodbye' - an Elizabethan farewell.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16748,
-    "endOffset": 16791,
-    "content": "The servant politely dismisses the person he was speaking to, wishing them well. He says \"rest you merry,\" which is an archaic way of saying \"stay happy\" or \"good day to you.\" This signals the end of their conversation and his departure.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 16748,
-    "endOffset": 16791,
-    "content": "The servant politely dismisses Romeo, saying 'You speak truthfully' and 'May you remain happy' - a common Elizabethan farewell wishing someone continued joy and peace.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -362,41 +148,10 @@
     "speaker": "ROMEO",
     "startOffset": 16791,
     "endOffset": 17278,
-    "content": "Romeo reads the guest list for Capulet's feast, demonstrating his literacy to the servant. He notes Rosaline's name, which is his real interest, and asks where the party is being held. The servant's one-word reply, \"Up,\" means \"to the house,\" directing Romeo to the party location.",
+    "content": "Romeo reads the invitation list aloud, which includes Rosaline and other Capulets, then asks where these people are going.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16791,
-    "endOffset": 17278,
-    "content": "Romeo reads aloud a guest list for a party, showing it includes Rosaline (the woman he loves) and many Capulets (his family's enemies). 'County' means Count, 'beauteous' means beautiful, 'lively' means full of life. He's essentially reading a formal invitation list and then asks where the party is.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17264,
-    "endOffset": 17278,
-    "content": "The servant is calling out to someone, likely another servant or a group of people, to get up or to rise. This is a simple, direct command to prompt immediate action, probably to begin their duties for the day.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17264,
-    "endOffset": 17278,
-    "content": "The servant is commanding Romeo to stand up or rise, likely because Romeo has been kneeling or sitting while reading the letter. This single word functions as a stage direction through dialogue.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -404,41 +159,10 @@
     "speaker": "ROMEO",
     "startOffset": 17278,
     "endOffset": 17329,
-    "content": "Romeo asks where the servant is going to supper, and the servant replies that he is going to his master's house. This brief exchange is crucial because the servant then reveals he is carrying the guest list for the Capulet feast, which Romeo will read, leading him to decide to attend and meet Juliet.",
+    "content": "Romeo asks if they are going to supper.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17278,
-    "endOffset": 17329,
-    "content": "Romeo asks 'Where to supper?' using the archaic 'whither' meaning 'to where'. The servant responds 'To our house' - meaning they're going to his master's house for the meal. This brief exchange shows Romeo encountering the servant who is delivering invitations to Capulet's feast.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17305,
-    "endOffset": 17329,
-    "content": "The servant is telling the guests that they are invited to his master's house. This is part of his duty to deliver the invitations to the party where Romeo and Juliet will first meet.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17305,
-    "endOffset": 17329,
-    "content": "The servant is telling Romeo that the supper will be at his master's house (Capulet's house). This brief response directly answers Romeo's question about where they're going to eat.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -446,41 +170,10 @@
     "speaker": "ROMEO",
     "startOffset": 17329,
     "endOffset": 17375,
-    "content": "Romeo asks which family the servant belongs to, seeking to identify the hosts of the party. The servant's vague reply—\"my master's\"—fails to provide the specific name Romeo needs, creating a moment of dramatic irony since the audience knows this is the Capulet house.",
+    "content": "Romeo asks whose house it is.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17329,
-    "endOffset": 17375,
-    "content": "Romeo asks whose house the servant means, and the servant clarifies it's his master's house. This brief exchange establishes that Romeo doesn't know whose invitation he's reading, creating dramatic irony since the audience knows it's the Capulets' house.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17350,
-    "endOffset": 17375,
-    "content": "The servant is clarifying that the list of guests he holds belongs to his master, Capulet. This establishes his role as a household servant tasked with delivering invitations. His brief statement underscores his obedience and the social hierarchy at play.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17350,
-    "endOffset": 17375,
-    "content": "The servant confirms that the house mentioned belongs to his master, referring to the Capulet household where the party will occur. This brief exchange establishes that the servant works for the Capulets and is inviting guests to their feast.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -488,41 +181,10 @@
     "speaker": "ROMEO",
     "startOffset": 17375,
     "endOffset": 17610,
-    "content": "Romeo has just asked the servant who is giving the feast, so his line is a self-deprecating acknowledgment that he spoke out of turn. The servant, unable to read the guest list, casually invites him to the party, using the idiom \"crush a cup of wine\" to mean \"have a drink.\" His only condition is that Romeo not be a Montague, which is deeply ironic given that Romeo is indeed from the rival house.",
+    "content": "Romeo admits he should have asked the servant who the party host was earlier.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17375,
-    "endOffset": 17610,
-    "content": "Romeo realizes he should have asked who the servant's master was earlier. The servant then says his master is Capulet, a wealthy man, and invites Romeo to drink wine if he is not a Montague, ending with a farewell wish.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17429,
-    "endOffset": 17622,
-    "content": "The servant is inviting strangers to a party at his master Capulet's house, provided they are not Montagues. He uses the phrase \"crush a cup of wine\" to mean \"have a drink\" in a casual, friendly way. This invitation sets up Romeo's chance encounter with Juliet at the feast.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "SERVANT",
-    "startOffset": 17429,
-    "endOffset": 17622,
-    "content": "The servant reveals his employer is the wealthy Capulet family and invites Romeo to a party, provided he's not a Montague. 'Crush a cup of wine' means to drink together, and 'Rest you merry' is a farewell wishing him happiness.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -530,20 +192,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 17622,
     "endOffset": 17889,
-    "content": "Benvolio is advising Romeo to attend the Capulet feast to see Rosaline, the woman he loves, alongside other beautiful women of Verona. He urges Romeo to look objectively (\"with unattainted eye\") and compare Rosaline to others, promising this will make Romeo reconsider his infatuation by showing him someone who outshines her.",
+    "content": "Benvolio tells Romeo that Rosaline, whom he loves, will be at the Capulet feast, and urges him to go and compare her to other beauties so he will realize she is not as special as he thinks. 'Unattainted' means unbiased; 'thy swan a crow' means his beloved will seem ordinary by comparison.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 17622,
-    "endOffset": 17889,
-    "content": "Benvolio tells Romeo that Rosaline will be at the Capulet's traditional party along with other beautiful women of Verona. He urges Romeo to go and objectively compare Rosaline's appearance to other women there, promising this will make Romeo reconsider his high opinion of her (seeing his 'swan' as merely a 'crow'). 'Unattainted' means unbiased; 'swan a crow' contrasts something graceful with something common.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -551,20 +203,10 @@
     "speaker": "ROMEO",
     "startOffset": 17889,
     "endOffset": 18171,
-    "content": "Romeo swears that if his eyes, which he treats with religious devotion, ever lie to him by seeing someone more beautiful than Rosaline, they should be punished. He uses the metaphor of his tears turning to fire to burn his own \"transparent\" (easily seen through) eyes as heretics for such a falsehood. He then declares this impossible, insisting that the sun has never seen anyone to match Rosaline since the world began.",
+    "content": "Romeo insists his eyes are devoted to Rosaline like a religion, and if they are wrong, they should be punished as heretics. He claims the sun has never seen anyone as beautiful as her since the world began, showing his stubborn infatuation.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17889,
-    "endOffset": 18171,
-    "content": "Romeo vows that if his eyes (which he treats with religious devotion) ever see a woman more beautiful than Rosaline, they should be punished severely. He uses religious imagery: his tears should turn to fire and burn his eyes as punishment for heresy. He declares it impossible that the sun has ever seen anyone equal to Rosaline since creation began.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "I",
@@ -572,20 +214,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 18171,
     "endOffset": 18458,
-    "content": "Benvolio is trying to convince Romeo to move on from Rosaline by challenging his perspective. He argues that Romeo only thinks Rosaline is beautiful because he hasn't compared her to anyone else. Benvolio promises to show him other beautiful women at the feast, claiming that even Rosaline will seem less impressive in comparison.",
+    "content": "Benvolio argues that Romeo only saw Rosaline as fair because there was no one else to compare her to, and if he weighs her against another girl at the feast, his current favorite will hardly seem the best. 'Scant show well' means she will barely appear attractive.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 18171,
-    "endOffset": 18458,
-    "content": "Benvolio dismisses Romeo's exclusive admiration for Rosaline, arguing that Romeo only thinks she's beautiful because he hasn't compared her to anyone else. He suggests putting Rosaline's beauty in 'crystal scales' (metaphor for fair comparison) against another girl at the feast, predicting that Rosaline will seem less impressive when compared to others. Essentially: 'You only think she's the best because you haven't seen alternatives - once you compare her to others, she won't seem so special.'",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -593,19 +225,9 @@
     "speaker": "ROMEO",
     "startOffset": 18458,
     "endOffset": 18549,
-    "content": "Romeo has just agreed to attend the Capulet feast, but he clarifies his reason for going. He states he will not be looking at the other women there; instead, his only purpose is to enjoy the sight of his own beloved, Rosaline, and take delight in her beauty.",
+    "content": "Romeo agrees to go, but only to enjoy the sight of Rosaline, not to see any other woman Benvolio might show him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 18458,
-    "endOffset": 18549,
-    "content": "Romeo agrees to attend the feast, but not to see other women Benvolio might show him. He states he will go only to enjoy the beauty of his own beloved (Rosaline). 'Splendour of my own' means the radiance of the woman he already loves.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   }
 ]

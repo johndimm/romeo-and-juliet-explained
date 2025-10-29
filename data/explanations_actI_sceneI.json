@@ -5,28 +5,10 @@
     "speaker": "SAMPSON",
     "startOffset": 2823,
     "endOffset": 2879,
-    "content": "Sampson declares that he and Gregory will not endure insults or mistreatment. \"Carry coals\" was an idiom meaning to put up with abuse or humiliation. He is asserting that they will defend their pride and not be disrespected."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 2823,
-    "endOffset": 2879,
-    "content": "Sampson declares to his fellow servant Gregory that they will not endure insults or humiliation from the Montagues. The phrase \"carry coals\" is an old expression meaning to put up with abuse. He is establishing their aggressive stance and loyalty to the Capulet house right from the start of the play.",
+    "content": "He declares they will not endure insults, as 'carry coals' means to tolerate abuse.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 2823,
-    "endOffset": 2879,
-    "content": "Sampson means they will not tolerate insults or humiliation. 'Carry coals' was an idiom for enduring disgrace or doing degrading work.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -34,28 +16,10 @@
     "speaker": "GREGORY",
     "startOffset": 2879,
     "endOffset": 2925,
-    "content": "Gregory is punning on the word \"colliers,\" which means coal miners. He jokes that if they were moved to anger by an insult, they would be \"colliers\"—a dirty, low-class profession—playing on the idea of being \"collared\" or controlled. He means they should remain calm and not let the Montagues provoke them."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 2879,
-    "endOffset": 2925,
-    "content": "Gregory is joking that if they were to turn and run from a fight, they would be considered \"colliers\"—coal miners—a profession seen as dirty and cowardly. He's using this insult to imply that only lowly, dishonorable men would avoid a confrontation, thereby reinforcing his commitment to the feud with the Montagues.",
+    "content": "He agrees, joking that if they did, they would be coal-carriers, which was a lowly job.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 2879,
-    "endOffset": 2925,
-    "content": "Gregory puns on 'carry coals' (endure insults) by saying they'd be 'colliers' (coal miners/people of low status), implying they won't tolerate disrespect.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -63,28 +27,10 @@
     "speaker": "SAMPSON",
     "startOffset": 2925,
     "endOffset": 2977,
-    "content": "Sampson says that if they become angry (\"in choler\"), they will draw their swords. This shows his readiness to fight and his aggressive loyalty to the Capulet household."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 2925,
-    "endOffset": 2977,
-    "content": "Sampson is boasting to Gregory that if the Montagues provoke their anger (\"choler\"), they will draw their swords to fight. This shows his eagerness for violence and establishes the aggressive, confrontational mood between the feuding servants.",
+    "content": "He says if they become angry ('in choler'), they will draw their swords.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 2925,
-    "endOffset": 2977,
-    "content": "Sampson says that if they become angry (in choler), they will draw their swords. 'Choler' is an old term for anger, and 'draw' means to pull out weapons.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -92,28 +38,10 @@
     "speaker": "GREGORY",
     "startOffset": 2977,
     "endOffset": 3043,
-    "content": "Gregory is telling Sampson to avoid trouble or responsibility—\"draw your neck out o’ the collar\" means to pull your head out of a yoke, like an ox avoiding work. He is essentially saying: stay out of trouble while you can."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 2977,
-    "endOffset": 3043,
-    "content": "Gregory is sarcastically telling Sampson to avoid getting himself hanged for their brawl. \"Draw your neck out o’ the collar\" means to keep his head out of the hangman's noose. He's mocking Sampson's earlier bravado by warning him to stay out of trouble if he wants to stay alive.",
+    "content": "He puns on 'draw', suggesting Sampson should draw his neck out of a hangman's collar instead.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 2977,
-    "endOffset": 3043,
-    "content": "Gregory makes a pun on 'draw' - while Sampson means 'draw swords,' Gregory jokes about drawing one's neck out of a hangman's noose. 'Choler' means anger; 'o' the collar' is archaic for 'of the collar,' referring to the hangman's rope. Paraphrase: 'Yes, while you're still alive, save your neck from execution.'",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -121,28 +49,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3043,
     "endOffset": 3084,
-    "content": "Sampson claims he is quick to fight when provoked. He is boasting about his aggressive nature and readiness to respond to any insult."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3043,
-    "endOffset": 3084,
-    "content": "Sampson boasts to Gregory about his quick temper and readiness to fight. He means that when he is provoked (\"moved\"), he retaliates instantly. This line establishes his aggressive nature and the volatile atmosphere between the feuding Montagues and Capulets.",
+    "content": "He boasts that he strikes swiftly when provoked.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3043,
-    "endOffset": 3084,
-    "content": "Sampson boasts that he acts swiftly when provoked. 'Moved' means angered or provoked to fight. He's claiming he doesn't hesitate to attack when someone challenges him.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -150,28 +60,10 @@
     "speaker": "GREGORY",
     "startOffset": 3084,
     "endOffset": 3136,
-    "content": "Gregory is teasing Sampson by saying he is slow to start a fight. He implies that Sampson is reluctant or cowardly when it comes to drawing his sword."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3084,
-    "endOffset": 3136,
-    "content": "Gregory is mocking Sampson, suggesting he is slow to anger and reluctant to fight. He implies that Sampson is all talk and no action, which continues their earlier bawdy joking about taking a \"maidenhead\" and provoking the Montague men.",
+    "content": "He retorts that Sampson is not easily provoked to fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3084,
-    "endOffset": 3136,
-    "content": "Gregory is saying that Sampson is slow to act or fight, even when provoked. 'Moved' means provoked or angered; 'strike' means to fight or attack.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -179,28 +71,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3136,
     "endOffset": 3187,
-    "content": "Sampson means that a Montague servant is provoking him. He uses \"dog\" as an insult to show contempt for his enemy."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3136,
-    "endOffset": 3187,
-    "content": "Sampson is a Capulet servant, and he's boasting to his fellow servant Gregory. He means that a Montague servant makes him angry or provokes him to fight. This line immediately establishes the deep-seated animosity between the two households at the street level.",
+    "content": "He claims a Montague dog would provoke him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3136,
-    "endOffset": 3187,
-    "content": "Sampson means that any male servant from the Montague household would provoke him to fight. 'Dog' here is an insult meaning a lowly man or servant, not an actual animal.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -208,28 +82,10 @@
     "speaker": "GREGORY",
     "startOffset": 3187,
     "endOffset": 3299,
-    "content": "Gregory plays with the double meaning of \"moved\"—both physically stirred and emotionally provoked. He jokes that if Sampson is \"moved\" (angered), he will run away, twisting the idea of valor into cowardice."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3187,
-    "endOffset": 3299,
-    "content": "Gregory is mocking Sampson by twisting the meaning of \"moved\" and \"valiant.\" He claims that true courage means standing your ground, so if Sampson gets \"moved\" (angered or provoked), he must be running away instead of fighting. This is a sarcastic joke meant to question Sampson's bravery and provoke him further.",
+    "content": "He twists Sampson's words, saying to be moved is to run away, but to be brave is to stand firm.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3187,
-    "endOffset": 3299,
-    "content": "Gregory plays with the word 'moved' - Sampson meant 'angered' but Gregory twists it to mean 'physically moved from one's position'. He creates a pun: true bravery means standing firm, so if you're 'moved' (physically displaced), you're actually running away. Paraphrase: If you claim to be angered but actually retreat, you're not brave but cowardly.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -237,28 +93,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3299,
     "endOffset": 3410,
-    "content": "Sampson claims that even a dog from the Montague household would provoke him to stand his ground. He insists he will force any Montague, man or woman, to walk in the gutter while he takes the better, cleaner path near the wall."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3299,
-    "endOffset": 3410,
-    "content": "Sampson is boasting that he will not yield to any Montague. \"Take the wall\" means to walk on the cleaner, inner side of the sidewalk, forcing others into the gutter. He is asserting his dominance and provoking a fight with the rival house.",
+    "content": "He insists a Montague dog would make him stand and fight, and he will take the better path ('take the wall') from any Montague.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3299,
-    "endOffset": 3410,
-    "content": "Sampson uses wordplay on 'move' and 'stand' from Gregory's previous speech. 'A dog of that house' means any member of the Montague family (insulting them as dogs). 'Move me to stand' means provoke me to fight rather than flee. 'Take the wall' refers to claiming the cleaner, higher side of the street (forcing others into the gutter) - a deliberate insult showing dominance.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -266,28 +104,10 @@
     "speaker": "GREGORY",
     "startOffset": 3410,
     "endOffset": 3484,
-    "content": "Gregory is insulting Sampson by calling him a weak servant. The phrase \"the weakest goes to the wall\" means that the weakest person is pushed aside or defeated."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3410,
-    "endOffset": 3484,
-    "content": "Gregory insults Sampson by calling him a weak servant, implying he would be pushed aside in a fight. The phrase \"the weakest goes to the wall\" means the least capable person is forced to yield or is defeated.",
+    "content": "He says that taking the wall shows weakness, since the weakest are forced aside.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3410,
-    "endOffset": 3484,
-    "content": "Gregory mocks Sampson's logic, saying that only the weakest person gets pushed aside ('goes to the wall') in a conflict, implying Sampson's willingness to yield shows cowardice rather than strength.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -295,28 +115,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3484,
     "endOffset": 3664,
-    "content": "Sampson claims that women are physically weaker (\"weaker vessels\") and thus always pushed aside or dominated. He then applies this crude logic to his feud with the Montagues, boasting that he will push their men aside in a fight and sexually assault their women."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3484,
-    "endOffset": 3664,
-    "content": "Sampson is boasting about his aggressive masculinity, claiming that women are physically weaker (\"weaker vessels\") and should be overpowered. He then applies this crude logic to the feud, vowing to violently shove Montague's men aside and sexually assault their women (\"thrust his maids to the wall\"). This establishes his character as a belligerent and vulgar instigator of the conflict.",
+    "content": "He twists this to say women, as weaker vessels, are pushed against the wall, so he will push Montague men away and thrust their women to the wall, with sexual implication.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3484,
-    "endOffset": 3664,
-    "content": "Sampson twists Gregory's metaphor about weakness to make a crude sexual boast. 'Weaker vessels' refers to women as physically or morally weaker beings. 'Thrust to the wall' means both physically pushed aside and sexually assaulted against a wall. He brags about attacking Montague's men and sexually violating their women.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -324,28 +126,10 @@
     "speaker": "GREGORY",
     "startOffset": 3664,
     "endOffset": 3727,
-    "content": "Gregory says the feud is between their masters, the Capulets and Montagues, but it extends to their servants as well. This means the servants are also expected to fight and take sides in the conflict."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3664,
-    "endOffset": 3727,
-    "content": "Gregory clarifies that the feud involves not only the heads of the Montague and Capulet households but also extends to their servants. He is explaining to his fellow servant, Sampson, that they are expected to fight the opposing family's men as part of their duty. This establishes the pervasive nature of the conflict, showing it engulfs all levels of the households.",
+    "content": "He reminds Sampson the quarrel is between the masters and their servants, not with the women.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3664,
-    "endOffset": 3727,
-    "content": "Gregory corrects Sampson's boastful claim about fighting Montague's men, clarifying that the actual feud is between their noble masters (the Capulets) and the Montagues, with servants like themselves merely involved as their representatives. Paraphrase: The real conflict is between our noble employers and us as their servants.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -353,28 +137,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3727,
     "endOffset": 3874,
-    "content": "Sampson is boasting that he will act like a tyrant by fighting the men of the rival Montague house. His threat to \"be civil with the maids\" and \"cut off their heads\" is a crude sexual pun, meaning he will take the women's virginity."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3727,
-    "endOffset": 3874,
-    "content": "Sampson is boasting to his fellow servant Gregory about how he will violently assert his dominance over the Montagues. His crude joke about being \"civil with the maids\" by \"cut[ting] off their heads\" is a lewd pun, as \"maids\" refers to the women and \"heads\" is slang for their virginity. He is crudely claiming he will kill the men and sexually conquer the women.",
+    "content": "He says it is all the same, and he will act like a tyrant: after fighting the men, he will be 'civil' with the maids by cutting off their heads.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3727,
-    "endOffset": 3874,
-    "content": "Sampson boasts he'll act like a tyrant—violent toward men but 'civil' (here meaning polite or courteous) toward women, though his crude joke about 'cutting off their heads' is a sexual pun (referring to taking their virginity, not literal decapitation). Paraphrase: I'll be ruthless with men but charming with women—I'll take their maidenheads.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -382,28 +148,10 @@
     "speaker": "GREGORY",
     "startOffset": 3874,
     "endOffset": 3908,
-    "content": "Gregory is twisting Sampson's crude joke about taking the \"maidenheads\" (virginity) of Montague women.  \nHe deliberately misinterprets \"maidenheads\" as literal heads, making a dark pun about violence against women."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3874,
-    "endOffset": 3908,
-    "content": "Gregory is crudely twisting Sampson's earlier boast about raping Montague women. He suggests they will \"take\" the women's virginity (\"maidenheads\") instead of literally beheading them. This exchange establishes the servants' vulgar bravado and the sexual undertones of the feud's violence.",
+    "content": "He asks for clarification, shocked at the idea of cutting off the maids' heads.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 3874,
-    "endOffset": 3908,
-    "content": "Gregory questions Sampson's meaning with sarcastic disbelief, highlighting the absurdity of Sampson's violent boast about \"cutting off heads\" of women. This reveals their crude humor and establishes the play's tone of masculine bravado and casual violence between the feuding families.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -411,28 +159,10 @@
     "speaker": "SAMPSON",
     "startOffset": 3908,
     "endOffset": 4001,
-    "content": "Sampson makes a crude pun on \"heads,\" suggesting he will either cut off the heads of the Montague women or take their virginity (\"maidenheads\"). He is boasting about violence and sexual aggression, leaving the interpretation deliberately provocative."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3908,
-    "endOffset": 4001,
-    "content": "Sampson is making a crude pun, suggesting he will either cut off the heads of the Montague women or take their virginity (\"maidenheads\"). He says this to Gregory to boast about his aggression and sexual dominance, showing the coarseness and bravado typical of the Capulet servants.",
+    "content": "He makes a crude pun, saying he means either their literal heads or their virginity ('maidenheads'), leaving the interpretation open.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 3908,
-    "endOffset": 4001,
-    "content": "Sampson makes a crude pun: 'maidenheads' means both 'heads of the maids' and 'virginity.' He's saying Gregory can interpret his violent boast either literally (cutting off heads) or sexually (taking virginity), showing his crude humor and aggressive masculinity.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -440,28 +170,10 @@
     "speaker": "GREGORY",
     "startOffset": 4001,
     "endOffset": 4052,
-    "content": "Gregory means that only those who are physically struck will understand the insult. In other words, the pain of the blow will make the meaning clear to them."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4001,
-    "endOffset": 4052,
-    "content": "Gregory is saying that only those who are directly affected by an insult will truly understand its meaning. He implies that the Montagues must \"take it\"—that is, interpret and react to the affront—based on their own feelings. This cynical remark justifies picking a fight, suggesting that if the Montagues feel provoked, they are responsible for their own reaction.",
+    "content": "He replies that those who feel it will understand the meaning, continuing the sexual jest.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4001,
-    "endOffset": 4052,
-    "content": "Gregory continues the crude punning by saying only those who experience something ('feel it') truly understand its meaning ('take it in sense'). This plays on 'sense' as both meaning and physical sensation, suggesting the maids will physically understand the sexual innuendo.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -469,28 +181,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4052,
     "endOffset": 4154,
-    "content": "Sampson boasts that he will fight anyone as long as he is physically able to stand. He adds that he is well-known for being a strong and capable man."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4052,
-    "endOffset": 4154,
-    "content": "Sampson is boasting about his physical strength and readiness to fight any Montague men. He claims he will remain a formidable opponent as long as he can stand on his feet. This line reinforces his aggressive, swaggering character and the volatile, honor-driven nature of the feud.",
+    "content": "Sampson boasts that his enemies will feel his strength while he can stand, and he is known to be a sturdy man.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4052,
-    "endOffset": 4154,
-    "content": "Sampson boasts that his enemies will feel his presence as long as he can stand upright, adding that he's known to be a physically impressive man. 'Pretty piece of flesh' means handsome/well-built man.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -498,28 +192,10 @@
     "speaker": "GREGORY",
     "startOffset": 4154,
     "endOffset": 4290,
-    "content": "Gregory is insulting Sampson by saying if he were a fish, he would be a \"poor John\"—a cheap, dried fish considered low-quality. He then tells Sampson to draw his sword because members of the rival Montague family are approaching."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4154,
-    "endOffset": 4290,
-    "content": "Gregory is insulting Sampson by calling him a dried, cheap fish—\"poor John\"—implying he is witless and worthless. He then urgently tells Sampson to draw his sword because members of the rival Montague family are approaching, signaling the start of a fight.",
+    "content": "Gregory jokes that it's good Sampson isn't a fish, or he'd be poor John—a cheap dried fish—then tells him to draw his sword because Montagues approach.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4154,
-    "endOffset": 4290,
-    "content": "Gregory jokes that if Sampson were a fish, he'd be 'poor John' (dried salted fish, cheap and tough), mocking his claim of being 'a pretty piece of flesh'. He then urgently tells Sampson to draw his sword because Montagues are approaching.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -527,28 +203,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4319,
     "endOffset": 4380,
-    "content": "Sampson is telling Gregory he has drawn his sword — \"naked weapon\" — and is ready for a fight. He promises to support Gregory if he starts a quarrel."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4319,
-    "endOffset": 4380,
-    "content": "Sampson is telling his fellow servant Gregory that he has drawn his sword (\"naked weapon\") and is ready to fight. He is boasting that he will support Gregory if a quarrel with the Montagues breaks out, showing his eagerness for violence and establishing the servants' role in perpetuating the feud.",
+    "content": "Sampson says his sword is drawn and he will support Gregory if they quarrel.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4319,
-    "endOffset": 4380,
-    "content": "Sampson announces his sword is drawn ('naked weapon') and promises to support Gregory in any fight ('back thee'). This shows their readiness for violence and loyalty to each other in the feud.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -556,28 +214,10 @@
     "speaker": "GREGORY",
     "startOffset": 4380,
     "endOffset": 4418,
-    "content": "Gregory is mocking the idea of cowardice. He sarcastically suggests that the only way to \"turn\" and \"run\" would be if a Montague man provoked him by showing disrespect."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4380,
-    "endOffset": 4418,
-    "content": "Gregory is mocking Sampson's earlier suggestion that they might flee from the Montagues. He is questioning Sampson's courage, sarcastically asking if his plan is to turn and run away from a fight. This exchange establishes their bravado and the aggressive, taunting mood between the servants of the two feuding houses.",
+    "content": "Gregory pretends to misunderstand, asking if Sampson means to turn his back and run.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4380,
-    "endOffset": 4418,
-    "content": "Gregory is mocking Sampson's previous statement by deliberately misunderstanding 'back thee' (meaning 'support you') as 'turn your back and run away' - this is wordplay highlighting their aggressive banter.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -585,28 +225,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4418,
     "endOffset": 4441,
-    "content": "Sampson is assuring his companion Gregory that he can be trusted to be bold and not back down in a fight. This shows his eagerness to prove his courage and loyalty to the Capulet household."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4418,
-    "endOffset": 4441,
-    "content": "Sampson is reassuring his fellow servant Gregory that he can be trusted to be bold and not back down from a fight. He is boasting about his own courage and loyalty to the House of Capulet, setting the stage for the immediate street brawl that follows.",
+    "content": "Sampson reassures him not to be afraid.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4418,
-    "endOffset": 4441,
-    "content": "Sampson is telling Gregory not to worry about him - he's confident and won't back down from a fight. 'Fear me not' means 'Don't be concerned about me' or 'Trust me to handle this.'",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -614,28 +236,10 @@
     "speaker": "GREGORY",
     "startOffset": 4441,
     "endOffset": 4475,
-    "content": "Gregory sarcastically says \"No, truly\" (\"marry\" is a mild oath) and pretends to be afraid of his friend Sampson. This is playful banter between the two Capulet servants, showing their camaraderie as they provoke the Montagues."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4441,
-    "endOffset": 4475,
-    "content": "Gregory is sarcastically telling Sampson he's afraid of him, using \"marry\" as a mild oath (like \"indeed\"). This is part of their playful banter as they boast about their fighting skills and loyalty to the Capulet house.",
+    "content": "Gregory replies, 'No, indeed; I'm afraid of you!'—a sarcastic jab.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4441,
-    "endOffset": 4475,
-    "content": "'Marry' is an archaic mild oath (from 'by Mary') meaning 'indeed' or 'to be sure.' Gregory sarcastically says 'No, indeed; I'm afraid of you!' - mocking Sampson's earlier boast that he shouldn't be feared.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -643,28 +247,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4475,
     "endOffset": 4535,
-    "content": "Sampson suggests that he and Gregory should wait for the Montagues to strike first so that they can claim self-defense under the law. This way, they can fight without being held legally responsible for starting the brawl."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4475,
-    "endOffset": 4535,
-    "content": "Sampson is telling his companion Gregory that they should avoid starting the fight themselves. By saying \"let them begin,\" he means they should wait for the Montagues to strike first, so the Capulets can claim they were merely defending themselves under the law.",
+    "content": "Sampson suggests they keep the law on their side by letting the Montagues start the fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4475,
-    "endOffset": 4535,
-    "content": "Sampson suggests they should ensure they are legally justified by letting the Montagues start the fight first. 'Take the law of our sides' means to have the law on their side or act within legal rights. This shows the servants' awareness of street-fighting tactics and legal consequences.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -672,28 +258,10 @@
     "speaker": "GREGORY",
     "startOffset": 4535,
     "endOffset": 4607,
-    "content": "Gregory says he will scowl at the Montague servants as he walks past, and they can interpret his expression however they wish. This shows his readiness to provoke a fight while pretending innocence."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4535,
-    "endOffset": 4607,
-    "content": "Gregory tells his fellow servant Sampson that he will scowl at their Montague rivals as they pass, leaving it up to them to interpret the insult and decide how to react. This is a deliberate provocation, intended to start a fight without Gregory having to throw the first punch, thus putting the blame on the Montagues.",
+    "content": "Gregory says he will scowl as he passes, letting the Montagues interpret it as they please.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4535,
-    "endOffset": 4607,
-    "content": "Gregory will scowl as he walks past the Montagues, letting them interpret his expression however they choose. 'List' means 'please' or 'wish' - he's giving them the freedom to react as they want to his挑衅 expression.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -701,28 +269,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4607,
     "endOffset": 4709,
-    "content": "Biting one's thumb is an insulting gesture, like flipping someone off today. Sampson is saying he will provoke the Montague servants, and it will be shameful for them if they do not respond to the insult."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4607,
-    "endOffset": 4709,
-    "content": "Biting one's thumb was an insulting gesture, similar to flipping someone off today. Sampson is boasting that he will provoke the Montague servants, confident they will be dishonored if they do not respond to the challenge. This immediately establishes the play's central theme of violent, honor-driven feuding.",
+    "content": "Sampson escalates, saying he will bite his thumb at them—a rude gesture—which would disgrace them if they tolerate it.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4607,
-    "endOffset": 4709,
-    "content": "Sampson escalates the challenge by saying he'll 'bite my thumb' - an insulting gesture similar to flipping someone off today. He's testing whether the Montagues will tolerate this public humiliation or respond with violence.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -730,28 +280,10 @@
     "speaker": "ABRAM",
     "startOffset": 4709,
     "endOffset": 4752,
-    "content": "Abram is asking if the other man is making an insulting gesture at him and his companions. To \"bite your thumb\" was a rude and provocative sign of disrespect, similar to a modern obscene gesture."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 4709,
-    "endOffset": 4752,
-    "content": "Abram is challenging Sampson, a servant from the rival Montague house, because he believes Sampson has just made a rude and insulting gesture towards him. Biting one's thumb was a provocation, similar to an offensive hand gesture today. Abram is essentially asking for a confrontation, questioning if the insult was intentional.",
+    "content": "Abram confronts them, asking if the thumb-biting is directed at them.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 4709,
-    "endOffset": 4752,
-    "content": "Abram confronts Sampson about an insulting gesture. 'Bite my thumb' was a rude hand signal similar to flipping someone off today. Abram is essentially asking, 'Are you insulting us?'",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -759,28 +291,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4752,
     "endOffset": 4787,
-    "content": "Biting one's thumb was a rude, insulting gesture, similar to flipping someone off today. Sampson is deliberately provoking the Montague servants to start a fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4752,
-    "endOffset": 4787,
-    "content": "Sampson is deliberately insulting a Montague servant by biting his thumb at him, a rude and provocative gesture. He is trying to start a fight to demonstrate his loyalty and toughness to his Capulet masters.",
+    "content": "Sampson admits he is biting his thumb but avoids saying it's at Abram.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4752,
-    "endOffset": 4787,
-    "content": "Biting one's thumb was an insulting gesture in Elizabethan England, similar to giving someone the middle finger today. Sampson is deliberately provoking Abram by confirming he's making this rude gesture.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -788,28 +302,10 @@
     "speaker": "ABRAM",
     "startOffset": 4787,
     "endOffset": 4830,
-    "content": "Biting your thumb was a rude, insulting gesture, similar to flipping someone off today. Abram is directly challenging the other man, asking if he is intentionally disrespecting him and his companions."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 4787,
-    "endOffset": 4830,
-    "content": "Abram is challenging Sampson, a servant from the rival Montague house, because he believes Sampson has just made a rude and insulting gesture—biting his thumb—at him and his companion, Balthasar. This question is a direct and confrontational way of demanding whether the gesture was intended as a deliberate insult, which would be grounds for a fight.",
+    "content": "Abram repeats the question more insistently.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 4787,
-    "endOffset": 4830,
-    "content": "Biting one's thumb was a rude, insulting gesture in Shakespeare's time, similar to flipping someone off today. Abram is asking if Sampson is deliberately insulting him and his companions.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -817,28 +313,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4830,
     "endOffset": 4876,
-    "content": "Sampson is asking Gregory whether the law will support them if he starts a fight. He wants to know if he can claim self-defense and be legally justified."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4830,
-    "endOffset": 4876,
-    "content": "Sampson is asking his fellow servant Gregory whether the law would support them if they start a fight with the Montagues. He wants to confirm that they can claim self-defense if they provoke the conflict but the Montagues retaliate first. This shows the servants' eagerness to instigate violence while seeking legal justification for their actions.",
+    "content": "Sampson checks with Gregory if the law supports them if he says yes.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4830,
-    "endOffset": 4876,
-    "content": "Sampson asks if the law will support him if he admits to insulting Abram. 'Ay' means 'yes.' He's checking whether he'd face legal consequences for his provocative gesture.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -846,28 +324,10 @@
     "speaker": "GREGORY",
     "startOffset": 4876,
     "endOffset": 4890,
-    "content": "Gregory is bluntly refusing to do something, likely continuing a quarrelsome exchange with his fellow servant Sampson. This single word reinforces the scene's aggressive, confrontational mood and the servants' eagerness to provoke a fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4876,
-    "endOffset": 4890,
-    "content": "Gregory is bluntly refusing to carry out a command or suggestion from his companion, Sampson. This immediate, one-word denial establishes their dynamic and shows Gregory is the more cautious or defiant of the two.",
+    "content": "Gregory simply says no.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4876,
-    "endOffset": 4890,
-    "content": "Gregory bluntly contradicts Sampson's assumption that the law would support them if they initiated a fight. This single-word response establishes their provocative stance while showing Gregory as more cautious than the hot-headed Sampson.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 0
   },
   {
     "act": "I",
@@ -875,28 +335,10 @@
     "speaker": "SAMPSON",
     "startOffset": 4890,
     "endOffset": 4970,
-    "content": "Sampson is pretending to be polite while deliberately insulting the Montague servants. To \"bite the thumb\" was a rude,挑衅ing gesture, and by doing it while denying it was aimed at them, he is trying to provoke a fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4890,
-    "endOffset": 4970,
-    "content": "Sampson is deliberately provoking the Montague servants by performing a rude gesture (biting his thumb) while pretending innocence. His coy wordplay escalates the tension, showing how casual insults between the feuding households can quickly turn violent.",
+    "content": "Sampson backtracks, saying he bites his thumb but not specifically at Abram, trying to avoid legal blame.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 4890,
-    "endOffset": 4970,
-    "content": "Sampson denies disrespecting the other person while actually doing so. 'Bite my thumb' was an insulting gesture (like flipping someone off today). He's pretending innocence while provoking a fight.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -904,28 +346,10 @@
     "speaker": "GREGORY",
     "startOffset": 4970,
     "endOffset": 5001,
-    "content": "Gregory is asking the man if he is looking for a fight. This question is a direct challenge, meant to provoke the other party and continue the public bickering between the Capulets and Montagues."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4970,
-    "endOffset": 5001,
-    "content": "Gregory is taunting Abraham, a servant of the rival Montague house, by pretending to be polite and innocent. He asks if Abraham is looking for a fight, which is a deliberate provocation meant to start the brawl that opens the play.",
+    "content": "Gregory directly asks Abram if he wants to quarrel, pushing the confrontation further.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 4970,
-    "endOffset": 5001,
-    "content": "Gregory asks if the other man wants to fight. 'Quarrel' here means to argue or engage in physical conflict. This continues the tense exchange between the Capulet and Montague servants.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -933,28 +357,10 @@
     "speaker": "ABRAM",
     "startOffset": 5001,
     "endOffset": 5032,
-    "content": "Abram denies wanting to fight. His polite but firm repetition of \"sir\" shows he is being respectful to the speaker, yet he is also standing his ground."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5001,
-    "endOffset": 5032,
-    "content": "Abram is a servant of the Montague household, responding to Sampson, a servant of the rival Capulets, who has just asked if Abram is picking a fight. By saying \"Quarrel, sir? No, sir,\" Abram is cautiously denying any aggressive intent, but his formal and slightly confrontational tone shows the tension between the two feuding families. This exchange of words quickly escalates into the public brawl that opens the play.",
+    "content": "Abram denies wanting to quarrel, using 'sir' as a formal but potentially sarcastic address.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5001,
-    "endOffset": 5032,
-    "content": "Abram responds with surprise and denial to Gregory's accusation, using repetition for emphasis. He's saying 'Me? Start a fight? Absolutely not.' The double 'sir' shows he's being polite while rejecting the accusation.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -962,28 +368,10 @@
     "speaker": "SAMPSON",
     "startOffset": 5032,
     "endOffset": 5106,
-    "content": "Sampson is saying that if the Montague servant wants to fight, he is ready. He claims his master, the Capulet, is just as noble as the Montague's master, establishing the feud's basis in family honor."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5032,
-    "endOffset": 5106,
-    "content": "Sampson is defiantly telling Abram that if he starts a fight, he's ready to respond. He's asserting that his master, from the Capulet house, is just as noble and powerful as Abram's master from the rival Montague house, establishing the feud's basis in family honor.",
+    "content": "Sampson says he will fight if Abram does, and boasts that his master is as good as Abram's, escalating the confrontation.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5032,
-    "endOffset": 5106,
-    "content": "Sampson is saying that if Abram wants to fight, he is ready. He claims to serve a master equal in status to Abram's, implying neither has social superiority.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -991,28 +379,10 @@
     "speaker": "ABRAM",
     "startOffset": 5106,
     "endOffset": 5125,
-    "content": "Abram is saying he is not better than Sampson—meaning he is of equal status and will not yield or show deference. This defiant reply continues the servants' quarrel and shows their readiness to fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5106,
-    "endOffset": 5125,
-    "content": "Abram is responding to Sampson's question about whether he will draw his sword in the street fight. By saying \"No better,\" Abram means he will do no less than Sampson—he is just as ready to fight. This brief reply escalates the tension, showing the servants' mutual eagerness to defend their masters' honor and provoke the opposing house.",
+    "content": "Abram dismissively replies 'No better,' challenging Sampson's claim and further provoking him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5106,
-    "endOffset": 5125,
-    "content": "Abram is saying that his master is not better than Sampson's master. He is contradicting Sampson's claim that he serves 'as good a man as you.'",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1020,28 +390,10 @@
     "speaker": "SAMPSON",
     "startOffset": 5125,
     "endOffset": 5146,
-    "content": "Sampson is responding to his fellow servant Gregory, who has just spoken. His words show he is ready to follow his companion's lead in the conversation or the impending confrontation with the Montagues."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5125,
-    "endOffset": 5146,
-    "content": "Sampson is responding to his fellow servant Gregory, who has just spoken. His brief, deferential \"Well, sir\" signals he is ready to listen or is prompting Gregory to continue their conversation, establishing their casual, conspiratorial tone as they begin to boast and provoke a fight.",
+    "content": "Sampson responds with 'Well, sir,' a noncommittal but tense acknowledgment, as Benvolio enters.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5125,
-    "endOffset": 5146,
-    "content": "Sampson's brief reply 'Well, sir' is a dismissive acknowledgment of Abram's previous comment 'No better.' It functions as a conversational filler showing he's heard Abram but isn't particularly interested in continuing the argument. In Elizabethan English, 'well' often served as a transitional word to move conversations along.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1049,28 +401,10 @@
     "speaker": "GREGORY",
     "startOffset": 5164,
     "endOffset": 5227,
-    "content": "Gregory corrects Sampson's crude remark, telling him to \"say better\" or speak more appropriately. He then alerts Sampson that a relative of their master, the Capulets, is approaching, signaling they should be more careful with their words."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 5164,
-    "endOffset": 5227,
-    "content": "Gregory is telling his fellow servant Sampson to stop their crude joking because he sees Tybalt approaching. Tybalt is a Capulet, their master's relative, known for his fiery temper. This is a warning to be careful and change their behavior before they are overheard.",
+    "content": "Gregory urges Sampson to say 'better' now that a kinsman of their master is approaching, encouraging defiance.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "GREGORY",
-    "startOffset": 5164,
-    "endOffset": 5227,
-    "content": "Gregory tells Sampson to speak more carefully because a relative of their master (Lord Capulet) is approaching.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1078,28 +412,10 @@
     "speaker": "SAMPSON",
     "startOffset": 5227,
     "endOffset": 5255,
-    "content": "Sampson is saying he will do better than just \"draw\" his sword — he will actually use it against the Montague men.  \nHe is boasting to his companion Gregory, showing his eagerness to fight and prove his loyalty to the Capulets."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5227,
-    "endOffset": 5255,
-    "content": "Sampson is responding to his fellow servant Gregory, who has just asked if Sampson would back down from a fight with the Montagues. By saying \"better,\" Sampson means he would do more than just stand his ground; he intends to be the aggressor and start the fight. This immediately establishes his aggressive, boastful character and the volatile, confrontational atmosphere between the two households.",
+    "content": "Sampson boldly repeats 'Yes, better, sir,' directly challenging Abram with the kinsman present.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5227,
-    "endOffset": 5255,
-    "content": "Sampson sarcastically agrees with Gregory's suggestion to 'say better' (speak more respectfully) because a Capulet relative is approaching, but his tone is mocking, not sincere.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1107,28 +423,10 @@
     "speaker": "ABRAM",
     "startOffset": 5255,
     "endOffset": 5272,
-    "content": "Abram bluntly accuses Sampson of lying to his face. This direct challenge escalates their verbal confrontation into a physical brawl, immediately establishing the violent tension between the Montague and Capulet households."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5255,
-    "endOffset": 5272,
-    "content": "Abram is a servant of the Montague household, and he is responding to a servant of the rival Capulet family. His sharp accusation, \"You lie,\" is a direct insult meant to provoke a fight, immediately establishing the violent and honor-driven nature of the feud between the two households.",
+    "content": "Abram accuses Sampson of lying, a direct insult that demands a violent response in this code of honor.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ABRAM",
-    "startOffset": 5255,
-    "endOffset": 5272,
-    "content": "Abram directly accuses Sampson of lying, showing escalating tension between the feuding families. 'Lie' here means telling an untruth, not reclining. This is a serious insult in Elizabethan context, often leading to duels.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -1136,28 +434,10 @@
     "speaker": "SAMPSON",
     "startOffset": 5272,
     "endOffset": 5357,
-    "content": "Sampson challenges the Montagues to fight, telling them to draw their swords if they are truly brave men. He then reminds his companion Gregory to strike hard with his sword, calling it his \"washing blow\"—a metaphor for a forceful, sweeping strike meant to cleanly cut down his opponent."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5272,
-    "endOffset": 5357,
-    "content": "Sampson is taunting the Montague servants, daring them to fight to prove their manhood. He specifically tells his companion Gregory to use his \"washing blow,\" a slang term for a slashing strike meant to draw blood. This command escalates the verbal quarrel into a physical brawl.",
+    "content": "Sampson calls them to draw swords if they are men, and reminds Gregory of his 'washing blow'—a slashing strike—as they fight.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "SAMPSON",
-    "startOffset": 5272,
-    "endOffset": 5357,
-    "content": "Sampson challenges Abram to fight with swords ('Draw') and taunts him by questioning his manhood ('if you be men'). He tells his companion Gregory to use his powerful, slashing strike ('washing blow' - a sweeping sword stroke). The stage direction confirms they begin fighting immediately.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1165,28 +445,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 5357,
     "endOffset": 5458,
-    "content": "Benvolio is trying to stop the fight between the servants, calling them \"fools\" for their reckless violence. His command, \"you know not what you do,\" suggests their brawl is senseless and dangerous, with consequences they fail to understand."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 5357,
-    "endOffset": 5458,
-    "content": "Benvolio is trying to stop the brawl between the Capulet and Montague servants. His command, \"you know not what you do,\" is a plea for them to realize the foolishness and danger of their public street fight, which violates the Prince's decree and risks severe punishment. By physically beating down their swords, he attempts to de-escalate the violence before it spirals further out of control.",
+    "content": "Benvolio calls them fools and orders them to put away their swords, saying they don't understand the consequences, and beats down their weapons.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 5357,
-    "endOffset": 5458,
-    "content": "Benvolio commands the servants to stop fighting, calling them fools for not understanding the consequences of their violent actions. He physically intervenes by knocking their swords down. 'Part' means 'separate' or 'break it up,' and 'put up' means 'put away.' The phrase 'you know not what you do' foreshadows the play's theme of impulsive actions leading to tragic outcomes.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1194,28 +456,10 @@
     "speaker": "TYBALT",
     "startOffset": 5474,
     "endOffset": 5574,
-    "content": "Tybalt insults Benvolio's companions as cowardly peasants, or \"heartless hinds.\" He then commands Benvolio to face him, threatening that by doing so, Benvolio will be looking at the person who is about to kill him."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 5474,
-    "endOffset": 5574,
-    "content": "Tybalt is confronting Benvolio, who has drawn his sword to stop the brawl between the servants. He insults Benvolio by calling the servants \"heartless hinds,\" meaning cowardly lowlifes, and then directly challenges Benvolio to a fight, telling him to face his own death. This establishes Tybalt as aggressive and eager for violence, immediately escalating the conflict.",
+    "content": "Tybalt insults Benvolio as drawn among 'heartless hinds'—cowardly servants—and tells him to face his death, showing immediate aggression.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 5474,
-    "endOffset": 5574,
-    "content": "Tyalt insults the servants as cowardly peasants ('heartless hinds') and challenges Benvolio directly, telling him to face him in a fight to the death. He's escalating the conflict despite Benvolio's attempt to stop the fighting.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -1223,28 +467,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 5574,
     "endOffset": 5668,
-    "content": "Benvolio is telling Tybalt that he is only trying to stop the fight, not join it. He commands Tybalt to put his sword away or, if he must use it, to help him separate the brawling men."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 5574,
-    "endOffset": 5668,
-    "content": "Benvolio is urging Tybalt to either sheath his weapon or help him separate the brawling servants. He clarifies that his only intention is to stop the fight, not to join it. This establishes Benvolio as a peacemaker in contrast to the hot-headed Tybalt.",
+    "content": "Benvolio explains he is only trying to keep peace and urges Tybalt to put up his sword or help separate the fighters.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 5574,
-    "endOffset": 5668,
-    "content": "Benvolio declares he's trying to maintain peace and tells Tybalt to either sheath his weapon or help him separate the fighting men. 'Put up thy sword' means 'put away your sword'; 'manage it to part these men' means 'use it to separate these fighters'.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1252,59 +478,10 @@
     "speaker": "TYBALT",
     "startOffset": 5668,
     "endOffset": 5806,
-    "content": "Tybalt expresses his contempt for peace, declaring he hates the word as intensely as he hates hell, all Montagues, and the person he is addressing. He then immediately challenges his opponent to fight, calling him a coward."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 5668,
-    "endOffset": 5806,
-    "content": "Tybalt is outraged to see Benvolio with his sword drawn while speaking of peace, which he finds hypocritical. He declares his hatred for peace as intensely as he hates hell and all Montagues, then immediately attacks Benvolio, calling him a coward to provoke the fight.",
+    "content": "Tybalt scorns the idea of peace while armed, declaring he hates peace as much as hell, all Montagues, and Benvolio, then attacks him as a coward.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 5668,
-    "endOffset": 5806,
-    "content": "Tybald expresses contempt for peace when weapons are drawn, declaring his hatred for peace equals his hatred for hell, all Montagues, and Benvolio. 'Drawn' means sword is unsheathed; 'Have at thee' is a challenge to fight. Paraphrase: You have your sword out but talk about peace? I hate peace as much as I hate hell, all Montagues, and you. Let's fight, coward.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 5849,
-    "endOffset": 6013,
-    "content": "The First Citizen is rallying the townspeople to join the brawl, calling for them to arm themselves with clubs and spears to attack the feuding families. His cries to \"beat them down\" and target both houses show the public's frustration and how the noble families' quarrel has violently disrupted the entire city.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 5849,
-    "endOffset": 6013,
-    "content": "The First Citizen is rallying other townspeople to join the brawl, urging them to arm themselves with clubs and spears to attack the servants of both feuding families. This shows how the conflict has escalated beyond the nobles to engulf the entire community, inciting chaos in the streets of Verona.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "FIRST CITIZEN",
-    "startOffset": 5849,
-    "endOffset": 6013,
-    "content": "The First Citizen calls for weapons—clubs, bills (polearms with hooks), and partisans (long spears)—to attack the brawlers. He urges the crowd to strike and subdue both the Capulets and Montagues, showing the public's frustration with the feud.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1312,28 +489,10 @@
     "speaker": "CAPULET",
     "startOffset": 6013,
     "endOffset": 6070,
-    "content": "Capulet is demanding his long sword, a heavy two-handed weapon used by older men. He is calling for it to join the brawl, showing he is just as quick-tempered and eager to fight as the younger men."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "CAPULET",
-    "startOffset": 6013,
-    "endOffset": 6070,
-    "content": "Capulet is calling for his long sword, a weapon for an older man, showing he's eager to join the brawl despite his age. His immediate demand for a weapon reveals his hot-headedness and the readiness of the older generation to escalate the family feud.",
+    "content": "Capulet demands to know what the noise is and calls for his long sword, ready to join the fray.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "CAPULET",
-    "startOffset": 6013,
-    "endOffset": 6070,
-    "content": "Capulet hears the street brawl and immediately calls for his weapon. 'Long sword' refers to a two-handed Renaissance-era sword, showing he's ready to join the fight despite being in his nightgown ('gown' from previous stage direction). Paraphrase: What's all this commotion? Hand me my sword!",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1341,28 +500,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 6070,
     "endOffset": 6131,
-    "content": "She is mocking her elderly husband for calling for a sword, implying he is too old and feeble to fight and should instead be using a crutch. Her words highlight the absurdity of the old men's feud and the generational divide in the conflict."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY CAPULET",
-    "startOffset": 6070,
-    "endOffset": 6131,
-    "content": "Lady Capulet is mocking her elderly husband for calling for a sword to join the brawl, implying he is too old and feeble for a fight and would be better suited to a crutch. Her sarcastic tone highlights the absurdity of his aggression and underscores his impotent rage.",
+    "content": "Lady Capulet mocks his call for a sword by saying he needs a crutch instead, highlighting his age and unfitness for fighting.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY CAPULET",
-    "startOffset": 6070,
-    "endOffset": 6131,
-    "content": "Lady Capulet mocks her husband's demand for a sword by sarcastically suggesting he needs a crutch instead, implying he's too old and feeble for fighting. This highlights the tension between the older generation's posturing and their actual physical limitations.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -1370,28 +511,10 @@
     "speaker": "CAPULET",
     "startOffset": 6131,
     "endOffset": 6221,
-    "content": "Capulet is calling for his sword because he sees his enemy Montague approaching. Montague is waving his sword in a show of defiance, which Capulet interprets as a personal insult."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "CAPULET",
-    "startOffset": 6131,
-    "endOffset": 6221,
-    "content": "Capulet is calling for his weapon because he sees his rival, Montague, approaching and brandishing his sword as a deliberate act of defiance. He interprets this as a personal insult and a challenge to fight.",
+    "content": "Capulet insists on his sword, claiming Old Montague has arrived and is waving his blade to insult him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "CAPULET",
-    "startOffset": 6131,
-    "endOffset": 6221,
-    "content": "Capulet demands his sword because he sees his enemy Montague approaching while waving his weapon defiantly. 'Flourishes his blade' means Montague is waving his sword in a showy, threatening manner, and 'in spite of me' means he's doing it to provoke or insult Capulet.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -1399,28 +522,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 6261,
     "endOffset": 6318,
-    "content": "Montague is addressing Lord Capulet directly, calling him a villain to insult him. He is being physically restrained, likely by his allies, and demands to be released so he can fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 6261,
-    "endOffset": 6318,
-    "content": "Montague is shouting at Lord Capulet, calling him a villain and demanding to be released from restraint. He wants to break free so he can join the fight and confront his family's rival directly.",
+    "content": "Montague calls Capulet a villain and demands to be released so he can fight, showing the family rage is mutual.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 6261,
-    "endOffset": 6318,
-    "content": "Montague angrily calls Capulet a villain and demands to be released from restraint so he can fight. 'Villain' here means a wicked person or scoundrel, not necessarily a criminal. The line shows the intense hatred between the two families.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1428,59 +533,10 @@
     "speaker": "LADY MONTAGUE",
     "startOffset": 6318,
     "endOffset": 6378,
-    "content": "Lady Montague is ordering her husband to stay where he is and not go looking for a fight with the Capulets. She is trying to prevent further violence from erupting in the streets."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY MONTAGUE",
-    "startOffset": 6318,
-    "endOffset": 6378,
-    "content": "Lady Montague is ordering her husband to stay put and not go looking for a fight with the Capulets. She is trying to prevent further violence and keep him safe from the brawl that has just broken out in the streets.",
+    "content": "She orders her husband not to go looking for a fight, showing her concern for his safety and desire to avoid further conflict.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY MONTAGUE",
-    "startOffset": 6318,
-    "endOffset": 6378,
-    "content": "Lady Montague commands her husband not to move even one step to look for an enemy (the Capulets). 'Stir' means move, and 'foe' means enemy. She's physically restraining him from joining the street fight.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 6419,
-    "endOffset": 7519,
-    "content": "The Prince angrily commands the brawling men to drop their weapons, calling them beasts for fighting until they bleed. He reveals this is the third recent street fight caused by the Capulet and Montague feud, which has even forced elderly citizens to take up arms. He issues an ultimatum: further public violence will be punished by death, then orders the crowds to disperse while summoning the feuding lords for a formal hearing.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 6419,
-    "endOffset": 7519,
-    "content": "The Prince angrily scolds the feuding families for turning Verona's streets violent with their pointless quarrels. He declares that any further public fighting will be punishable by death, showing his authority and desperation to end the conflict. He then commands the crowd to disperse and summons the patriarchs to a formal hearing to decide their punishment.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "PRINCE",
-    "startOffset": 6419,
-    "endOffset": 7519,
-    "content": "The Prince angrily addresses the feuding families as rebels who disrupt peace with their swords stained by neighbors' blood. He calls them beasts who satisfy their violent rage by making each other bleed. He orders them to drop their weapons and listen to his judgment, noting three recent street fights started by trivial insults from Capulet and Montague. These brawls forced elderly citizens to abandon their dignified appearance and take up rusty weapons to separate the hate-filled families. He threatens death if fighting recurs and summons the patriarchs to court for further judgment.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1488,28 +544,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 7519,
     "endOffset": 7614,
-    "content": "Montague asks who has revived this long-standing feud. He then addresses his nephew Benvolio directly, asking if he was present when the latest fight broke out."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 7519,
-    "endOffset": 7614,
-    "content": "Montague is asking who reignited the long-standing feud between the Montagues and Capulets. He specifically asks his nephew, Benvolio, if he was present when the latest street brawl started.",
+    "content": "He asks who reignited the old feud and questions his nephew Benvolio about whether he witnessed the start of the brawl.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 7519,
-    "endOffset": 7614,
-    "content": "Montague asks who reignited this long-standing feud and questions his nephew Benvolio about whether he witnessed the fight's beginning. 'Ancient quarrel' refers to the long conflict between Montagues and Capulets; 'new abroach' means newly started up again; 'by' means present/nearby.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -1517,28 +555,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 7614,
     "endOffset": 8076,
-    "content": "Benvolio explains that he tried to break up a fight between the Montague and Capulet servants, but Tybalt arrived and immediately challenged him. Tybalt swung his sword aggressively but harmlessly—\"cut the winds\"—showing his hot-headedness. The brawl then escalated as more people joined until the Prince arrived to stop everyone."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 7614,
-    "endOffset": 8076,
-    "content": "Benvolio is explaining to the Montagues how the street brawl began. He describes arriving to find servants fighting and trying to break them up, only for the hot-headed Tybalt to attack him. The fight then escalated as more citizens joined in, forcing the Prince to intervene and restore order.",
+    "content": "He explains that servants from both houses were already fighting when he arrived, and when he tried to intervene, Tybalt appeared and swung his sword harmlessly, provoking more fighting until the Prince stopped it.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 7614,
-    "endOffset": 8076,
-    "content": "Benvolio describes arriving as Montague and Capulet servants were already fighting. He tried to break them up, but Tybalt arrived ready to fight, swinging his sword dramatically but hitting only air. More people joined the brawl on both sides until the Prince arrived and stopped everyone.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -1546,28 +566,10 @@
     "speaker": "LADY MONTAGUE",
     "startOffset": 8076,
     "endOffset": 8170,
-    "content": "Lady Montague is asking if anyone has seen her son Romeo today. She is relieved that he was not present during the recent street brawl between the Montagues and Capulets."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY MONTAGUE",
-    "startOffset": 8076,
-    "endOffset": 8170,
-    "content": "Lady Montague is asking if anyone has seen her son Romeo today. She's relieved he wasn't involved in the recent street brawl between the Montagues and Capulets, showing her concern for his safety and perhaps awareness of his tendency to avoid such conflicts.",
+    "content": "She asks where Romeo is and expresses relief that he was not involved in the fight, showing her maternal concern.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "LADY MONTAGUE",
-    "startOffset": 8076,
-    "endOffset": 8170,
-    "content": "Lady Montague asks where Romeo is and expresses relief that he was not present during the recent fight. 'Fray' means a fight or brawl.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1575,28 +577,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 8170,
     "endOffset": 8727,
-    "content": "Benvolio tells Lady Montague that he saw her son Romeo at dawn, walking alone under a sycamore grove outside the city. When Romeo noticed Benvolio, he slipped away into the woods; Benvolio, recognizing that Romeo wanted solitude just as he himself sometimes did, respected his wish and did not follow."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 8170,
-    "endOffset": 8727,
-    "content": "Benvolio tells Lady Montague that he saw her son Romeo early in the morning, but Romeo, noticing Benvolio, hid in the woods. Benvolio, feeling similarly troubled and wanting solitude himself, understood Romeo's desire to be alone and chose not to follow him, respecting his wish to avoid company.",
+    "content": "He recounts seeing Romeo early in the morning walking alone, but Romeo avoided him by hiding in the woods; Benvolio respected his wish for solitude and did not pursue him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 8170,
-    "endOffset": 8727,
-    "content": "Benvolio tells Lady Montague he saw Romeo an hour before sunrise walking alone in a sycamore grove west of the city. When Romeo noticed Benvolio approaching, he hid in the woods. Benvolio, recognizing Romeo wanted solitude (since he himself was seeking to be alone), respected this and didn't follow him.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -1604,28 +588,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 8727,
     "endOffset": 9254,
-    "content": "Montague describes his son Romeo’s recent behavior: he has been seen crying and sighing heavily in the early morning, but as soon as the sun rises, he retreats to his room, shutting out daylight to create a self-imposed darkness. Montague worries this gloomy mood is a bad omen unless someone can find out what is troubling him and offer helpful advice."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 8727,
-    "endOffset": 9254,
-    "content": "Montague describes his son Romeo’s recent behavior: he’s been seen weeping and sighing at dawn, then retreating to his room to shut out daylight as soon as the sun rises. Montague worries this gloomy mood is a bad omen unless someone can find out what’s troubling him and offer helpful advice.",
+    "content": "He describes Romeo’s recent behavior: crying at dawn and locking himself away in darkness once the sun rises, suggesting a deep, troubling melancholy that worries him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 8727,
-    "endOffset": 9254,
-    "content": "Montague describes how Romeo has been seen crying at dawn, adding his tears to the morning dew and sighing heavily. As soon as the sun rises, he retreats to his room, closing the curtains to create darkness. Montague fears this mood indicates serious trouble unless someone can help resolve its cause. 'Aurora's bed' refers to the dawn (Aurora is the Roman goddess of dawn); 'humour' means mood or temperament; 'portentous' suggests ominous or threatening.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -1633,28 +599,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 9254,
     "endOffset": 9304,
-    "content": "Benvolio asks his uncle, Lord Montague, if he knows what started the recent street brawl between the Montague and Capulet servants. This question establishes Benvolio as a peace-seeking character trying to understand the conflict rather than escalate it."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9254,
-    "endOffset": 9304,
-    "content": "Benvolio asks his uncle, Lord Montague, if he knows what started the recent street brawl between the Montague and Capulet servants. This question establishes Benvolio's role as a reasonable character seeking information to understand and de-escalate the conflict.",
+    "content": "He asks Montague if he knows the cause of Romeo’s sadness.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9254,
-    "endOffset": 9304,
-    "content": "Benvolio asks his uncle (Montague) if he knows why Romeo has been behaving so strangely and withdrawn. This shows Benvolio's concern for his cousin and his attempt to understand Romeo's melancholy.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1662,28 +610,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 9304,
     "endOffset": 9355,
-    "content": "Montague is saying he does not know the reason for his son Romeo’s recent sadness, and he has been unable to find out from Romeo himself. This highlights Romeo’s withdrawn behavior and his father’s concern."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9304,
-    "endOffset": 9355,
-    "content": "Montague is telling Benvolio that he doesn't know why his son, Romeo, is so depressed and that Romeo refuses to tell him the reason. He is expressing his frustration and concern as a father who is being shut out from his son's troubles.",
+    "content": "He replies that he does not know the cause and has not been able to learn it from Romeo.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9304,
-    "endOffset": 9355,
-    "content": "Montague states he doesn't know the reason for Romeo's melancholy and cannot get Romeo to reveal it. 'Learn of him' means 'find out from him' or 'get him to tell me.' Paraphrase: I don't know the cause, and I can't get him to tell me.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1691,28 +621,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 9355,
     "endOffset": 9406,
-    "content": "Benvolio asks whether Romeo's friends have tried every possible way to urge him to explain his sadness. \"Importun'd\" means persistently asked or urged, and \"by any means\" suggests they should have tried all methods."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9355,
-    "endOffset": 9406,
-    "content": "Benvolio is asking if Romeo's parents have tried persistently questioning him to discover the cause of his recent sadness. The word \"importun'd\" means to have pestered or urged someone repeatedly. He is seeking information to understand his friend's melancholy so he can help.",
+    "content": "He asks whether Montague has pressed Romeo for an explanation.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9355,
-    "endOffset": 9406,
-    "content": "Benvolio asks if Montague has persistently questioned Romeo about what's troubling him. 'Importun'd' means persistently asked or urged; 'by any means' suggests using various methods. He's suggesting more aggressive questioning to uncover Romeo's melancholy.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1720,28 +632,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 9406,
     "endOffset": 9827,
-    "content": "Montague says that Romeo keeps his feelings to himself and is so secretive that no one can figure out what is wrong. He compares Romeo to a flower bud eaten by a worm before it can bloom, suggesting his sadness is destroying him from within. Montague wishes he could find the cause of Romeo’s sorrow so he could help him."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9406,
-    "endOffset": 9827,
-    "content": "Montague is telling his friends that Romeo keeps his feelings entirely to himself, refusing to share his troubles. He compares Romeo to a flower bud destroyed by a worm before it can even bloom, suggesting his son's hidden sorrow is consuming him from within. Montague desperately wishes to understand the cause so he can help.",
+    "content": "He says that he and others have tried, but Romeo keeps his feelings secret like a bud damaged by a worm before it can bloom, and they wish they could discover and cure his sorrow.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9406,
-    "endOffset": 9827,
-    "content": "Montague says he and others have tried to understand Romeo's sadness, but Romeo keeps his feelings private and guarded. He compares Romeo to a flower bud damaged by a worm before it can bloom, suggesting his potential is being destroyed by hidden sorrow. Montague wishes they could find the cause so they could help him.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -1749,28 +643,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 9842,
     "endOffset": 9945,
-    "content": "Benvolio is telling Montague and Lady Montague to step away so he can speak to Romeo alone. He will either learn what is troubling Romeo or be firmly refused."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9842,
-    "endOffset": 9945,
-    "content": "Benvolio is telling Montague and Lady Montague to step away so he can speak with Romeo privately. He aims to discover the cause of Romeo’s recent sadness, confident that Romeo will confide in him.",
+    "content": "He notices Romeo approaching and suggests that Montague and Lady Montague leave so he can try to learn Romeo’s troubles privately.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 9842,
-    "endOffset": 9945,
-    "content": "Benvolio spots Romeo approaching and suggests they move aside so he can privately question him about his troubles. He confidently states he will either uncover Romeo's problem or be strongly refused. 'Grievance' means complaint or distress; 'be much denied' means face strong resistance.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1778,28 +654,10 @@
     "speaker": "MONTAGUE",
     "startOffset": 9945,
     "endOffset": 10043,
-    "content": "Montague is telling Benvolio he hopes he will be fortunate enough to hear a truthful confession from Romeo. He then tells his wife they should leave, allowing Benvolio to speak with Romeo privately."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9945,
-    "endOffset": 10043,
-    "content": "Montague is telling his wife they should leave so their son Romeo might feel comfortable enough to confide in Benvolio. \"True shrift\" means an honest confession. He hopes Romeo will open up if they are not present.",
+    "content": "He hopes Benvolio will succeed in hearing Romeo’s true confession and leaves with Lady Montague.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "MONTAGUE",
-    "startOffset": 9945,
-    "endOffset": 10043,
-    "content": "Montague says he wishes Benvolio would be fortunate enough to hear Romeo's honest confession during his conversation. He then tells his wife they should leave. 'Happy' means fortunate, 'shrift' means confession, and 'away' means to depart.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1807,28 +665,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10084,
     "endOffset": 10116,
-    "content": "Benvolio is greeting his cousin Romeo with \"Good morrow,\" which simply means \"Good morning.\" This polite, peaceful address contrasts with the violent public brawl that has just occurred, immediately establishing Benvolio's character as a calm and courteous figure."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10084,
-    "endOffset": 10116,
-    "content": "Benvolio greets his cousin, Romeo, with a friendly \"Good morning.\" This establishes their close relationship and sets a calm, conversational tone before Benvolio inquires about Romeo's obvious melancholy.",
+    "content": "He greets Romeo with 'Good morning, cousin.'",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10084,
-    "endOffset": 10116,
-    "content": "Benvolio greets Romeo with 'Good morrow, cousin' - 'Good morrow' means 'Good morning' and 'cousin' was commonly used for any close relative or friend, not necessarily a blood cousin. This is a simple, friendly morning greeting between the two characters.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -1836,28 +676,10 @@
     "speaker": "ROMEO",
     "startOffset": 10116,
     "endOffset": 10145,
-    "content": "Romeo is surprised that it is still morning. He feels that time is passing slowly because he is so miserable."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10116,
-    "endOffset": 10145,
-    "content": "Romeo is surprised to learn it is still morning, as his personal misery has made the time feel much longer. He is speaking to his cousin Benvolio, expressing how his unrequited love for Rosaline has distorted his perception of the day.",
+    "content": "He expresses surprise that it is still so early in the day, showing his distorted sense of time due to sadness.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10116,
-    "endOffset": 10145,
-    "content": "Romeo expresses surprise that it's still early in the day, suggesting time feels slow because he's unhappy. 'So young' means 'so early' or 'still morning.' He's essentially saying, 'Is it really still morning?'",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1865,28 +687,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10145,
     "endOffset": 10177,
-    "content": "Benvolio says it has just struck nine o'clock in the morning. This detail emphasizes how early in the day the street brawl is taking place, showing the Capulets and Montagues are quick to fight."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10145,
-    "endOffset": 10177,
-    "content": "Benvolio is telling his uncle and aunt, Lord and Lady Montague, that he saw their son Romeo just a short time ago, at nine o'clock in the morning. He mentions the specific time to emphasize how early and unusual it was for Romeo to be out wandering alone, which is the main concern of his parents.",
+    "content": "He confirms that it is only nine o’clock.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10145,
-    "endOffset": 10177,
-    "content": "BENVOLIO confirms that it's only 9 o'clock in the morning. 'New struck' means 'just struck' or 'recently struck' - the clock has just chimed nine times. This emphasizes how early it is in the day, surprising Romeo who thought more time had passed.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -1894,28 +698,10 @@
     "speaker": "ROMEO",
     "startOffset": 10177,
     "endOffset": 10257,
-    "content": "Romeo is complaining that time passes slowly when he is unhappy. He then asks if the person who just hurried away was his father."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10177,
-    "endOffset": 10257,
-    "content": "Romeo is lamenting how slowly time passes when one is unhappy. He then notices someone leaving quickly and wonders if it was his father, showing his distracted state of mind.",
+    "content": "He laments that sad hours feel long and asks if that was his father who left quickly, showing his self-absorption and distraction.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10177,
-    "endOffset": 10257,
-    "content": "Romeo expresses that time feels slow when one is unhappy. He then asks if the person who just left quickly was his father. 'Ay me' is an archaic expression of sorrow, similar to 'alas' or 'oh dear.' 'Hence' means 'from here.' Paraphrase: 'When I'm sad, time drags. Was that my father who just rushed away?'",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -1923,28 +709,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10257,
     "endOffset": 10316,
-    "content": "Benvolio confirms that he saw Romeo earlier. He asks why Romeo's time seems to be dragging—meaning he wants to know the cause of his friend's obvious melancholy and unhappiness."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10257,
-    "endOffset": 10316,
-    "content": "Benvolio is asking why Romeo seems so downcast and why his days feel so long and tedious. He's concerned about his cousin's melancholy mood and wants to understand the cause of his unhappiness.",
+    "content": "Benvolio asks what sorrow is making Romeo’s time pass slowly.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10257,
-    "endOffset": 10316,
-    "content": "Benvolio confirms it was Romeo's father who left quickly, then asks why Romeo's sadness makes time feel slow. 'Lengthens hours' means makes time drag on. Paraphrase: Yes, it was. Why is your sadness making time pass so slowly for you?",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -1952,28 +720,10 @@
     "speaker": "ROMEO",
     "startOffset": 10316,
     "endOffset": 10373,
-    "content": "Romeo means that without the thing that would make time pass quickly, his hours feel long and tedious. He is referring to love—specifically, being in love—which makes time fly."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10316,
-    "endOffset": 10373,
-    "content": "Romeo is saying that time feels long and tedious because he lacks the one thing—love—that would make it pass quickly. He is complaining to Benvolio about his lovesick melancholy, using \"them\" to refer to the hours of the day.",
+    "content": "Romeo says he lacks the thing that, if he had it, would make time fly.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10316,
-    "endOffset": 10373,
-    "content": "Romeo uses paradoxical wordplay: he lacks the thing (love/relationship) that would make his hours feel short and enjoyable. Without love, time drags painfully. 'Them' refers back to 'hours' from Benvolio's question.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 85
   },
   {
     "act": "I",
@@ -1981,28 +731,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10373,
     "endOffset": 10393,
-    "content": "Benvolio is asking whether Romeo is suffering from the pangs of love. This question introduces the central theme of Romeo's romantic melancholy and his infatuation with Rosaline at the start of the play."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10373,
-    "endOffset": 10393,
-    "content": "Benvolio is asking Romeo if he is in love, suspecting this is the cause of his recent sadness and withdrawn behavior. This direct question is meant to draw out the truth from his melancholy friend and kickstart their conversation about the nature of Romeo's troubles.",
+    "content": "Benvolio guesses he is in love.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10373,
-    "endOffset": 10393,
-    "content": "Benvolio is asking if Romeo is in love, responding to Romeo's cryptic comment about time feeling long when lacking something that would make it short. This single question reveals Benvolio's understanding that Romeo's melancholy stems from romantic feelings.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -2010,28 +742,10 @@
     "speaker": "ROMEO",
     "startOffset": 10393,
     "endOffset": 10406,
-    "content": "Romeo is responding to Benvolio's question about who he loves. He simply says \"Out\" to mean \"Out of her favor\" — she does not return his affection. This one word captures his despair over Rosaline's rejection."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10393,
-    "endOffset": 10406,
-    "content": "Romeo is responding to Benvolio's question about whether he has been in a fight. He means he is not physically present in the quarrel but is emotionally distraught over his unrequited love for Rosaline. This sets up his role as the melancholy lover, contrasting with the public brawl.",
+    "content": "Romeo says he is out—meaning out of love’s favor.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10393,
-    "endOffset": 10406,
-    "content": "Romeo's one-word response 'Out' means he is completely out of love or finished with love, expressing his despair after Rosaline rejected him. This contrasts with Benvolio's assumption he was 'in love'.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2039,28 +753,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10406,
     "endOffset": 10426,
-    "content": "Benvolio is asking if Romeo’s sadness is caused by love. This question introduces the central theme of love and sets up Romeo’s forthcoming confession about his unrequited feelings for Rosaline."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10406,
-    "endOffset": 10426,
-    "content": "Benvolio is responding to Romeo's sigh, asking if his friend's melancholy is caused by love. This question immediately identifies the central theme of Romeo's distress and shifts the conversation from general sadness to the specific problem of unrequited affection.",
+    "content": "Benvolio asks if he is out of love.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10406,
-    "endOffset": 10426,
-    "content": "Benvolio is asking if Romeo's distress is about love, showing he's trying to understand Romeo's melancholy by suggesting a possible cause.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2068,28 +764,10 @@
     "speaker": "ROMEO",
     "startOffset": 10426,
     "endOffset": 10472,
-    "content": "Romeo is saying that the woman he loves does not return his affection. He is \"out of her favour,\" meaning she does not approve of or accept his love."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10426,
-    "endOffset": 10472,
-    "content": "Romeo is complaining that the woman he loves does not return his affection. He is pining for Rosaline, who has sworn to remain chaste, and this unrequited love is the source of his deep melancholy.",
+    "content": "Romeo clarifies he is out of favor with the woman he loves.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10426,
-    "endOffset": 10472,
-    "content": "Romeo is saying he loves someone who doesn't love him back - he's experiencing unrequited love. 'Out of her favour' means she doesn't return his affection despite his being 'in love' with her.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2097,28 +775,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 10472,
     "endOffset": 10564,
-    "content": "Benvolio is saying that love appears gentle and appealing when you first see it, but in reality it proves to be harsh and oppressive. He contrasts the idealized view of love with its painful actual experience."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10472,
-    "endOffset": 10564,
-    "content": "Benvolio laments that love appears gentle and appealing at first glance but proves harsh and oppressive in reality. He's reflecting on Romeo's lovesick misery, using \"proof\" to mean actual experience. This contrast highlights the painful difference between love's idealized image and its often difficult reality.",
+    "content": "Benvolio laments that love seems gentle but proves harsh and cruel in experience.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 10472,
-    "endOffset": 10564,
-    "content": "Benvolio contrasts love's gentle appearance with its harsh reality. 'View' means appearance or outward look; 'proof' means experience or reality. He's saying love seems gentle and appealing from the outside but proves to be cruel and harsh when actually experienced.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2126,28 +786,10 @@
     "speaker": "ROMEO",
     "startOffset": 10564,
     "endOffset": 11124,
-    "content": "Romeo complains that Cupid, who is traditionally blindfolded, still manages to find ways to make people fall in love against their will. He then expresses his own conflicted feelings about love through a series of paradoxes—such as \"heavy lightness\" and \"cold fire\"—to show how love feels both painful and unreal to him, leaving him emotionally confused."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10564,
-    "endOffset": 11124,
-    "content": "Romeo is complaining that Cupid, the blind god of love, somehow finds ways to make people fall in love against their will. He then immediately shifts to asking about dinner, showing his distracted, lovesick state.\n\nHe contrasts the street brawl he just missed with his own inner turmoil, using a series of paradoxes (\"loving hate,\" \"heavy lightness\") to describe the confusing, contradictory feelings of his own unrequited love for Rosaline. He concludes by saying this is the kind of love he feels—one full of misery and emptiness, not joy.",
+    "content": "Romeo complains that blind love still finds ways to get what it wants. He abruptly asks where to eat, then reflects on the earlier brawl, saying it relates to hate but more to love. He exclaims over love’s contradictions—brawling yet loving, created from nothing, heavy yet light, serious yet vain, chaos in pleasing shapes, leaden feather, bright smoke, cold fire, sick health, and waking sleep that is not what it seems. He says he feels this kind of love but no joy in it, and asks if Benvolio is laughing.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 10564,
-    "endOffset": 11124,
-    "content": "Romeo describes love as blind yet still finding ways to achieve its desires. He then shifts to noticing signs of a recent fight but dismisses hearing about it. He launches into oxymorons expressing love's contradictions: 'brawling love/loving hate' (love causing conflict), 'heavy lightness' (emotional weight), 'serious vanity' (meaningless intensity), 'feather of lead' (light yet burdensome), 'bright smoke' (visible but insubstantial), 'cold fire' (passion without warmth), 'sick health' (unhealthy obsession), and 'still-waking sleep' (restless consciousness). He concludes that he experiences this contradictory love but finds no actual love in the situation, asking Benvolio if he finds this amusing.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2155,28 +797,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11124,
     "endOffset": 11158,
-    "content": "Benvolio is saying he feels more like crying than smiling. He is responding to Romeo's earlier question about whether he is laughing, and his sorrowful mood contrasts with Romeo's lovesick melancholy."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11124,
-    "endOffset": 11158,
-    "content": "Benvolio is telling his cousin Romeo that he would prefer to cry. He says this in response to Romeo noticing he has been sad, showing that Benvolio is genuinely upset rather than just seeking attention.",
+    "content": "Benvolio says no, cousin, he would rather weep.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11124,
-    "endOffset": 11158,
-    "content": "Benvolio responds to Romeo's emotional outburst by saying he's not weeping over the situation but rather for Romeo's distress. 'Coz' is Elizabethan slang for 'cousin' (a term of familiarity). He's expressing sympathy for Romeo's emotional state rather than sharing his dramatic despair.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2184,28 +808,10 @@
     "speaker": "ROMEO",
     "startOffset": 11158,
     "endOffset": 11187,
-    "content": "Romeo is asking his friend Benvolio to clarify what he means by \"good heart.\" He wants to know what specific situation or action Benvolio is referring to with that phrase."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11158,
-    "endOffset": 11187,
-    "content": "Romeo is asking his friend Benvolio to clarify what he means by \"good heart.\" He's prompting Benvolio to finish his thought, showing he is distracted and not fully engaged in the conversation.",
+    "content": "Romeo asks why, addressing Benvolio affectionately as 'Good heart'.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11158,
-    "endOffset": 11187,
-    "content": "Romeo asks Benvolio what he's weeping about. 'Good heart' is an affectionate term for his cousin. Paraphrase: 'My dear cousin, what are you crying about?'",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2213,28 +819,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11187,
     "endOffset": 11232,
-    "content": "Benvolio is expressing sympathy for Romeo's emotional distress. He says he is grieving because of the suffering of Romeo's good heart."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11187,
-    "endOffset": 11232,
-    "content": "Benvolio is gently urging his cousin Romeo to confide in him, expressing sympathy for the emotional burden Romeo is carrying. He's assuring Romeo that he is a trusted friend who will keep his troubles confidential and help if he can.",
+    "content": "Benvolio says he weeps at the suffering of Romeo’s good heart.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11187,
-    "endOffset": 11232,
-    "content": "Benvolio is saying he was referring to the sadness weighing on Romeo's heart. 'Oppression' here means burden or distress. He's responding to Romeo's question about what he meant by 'good heart' - essentially saying he meant Romeo's emotional suffering.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2242,28 +830,10 @@
     "speaker": "ROMEO",
     "startOffset": 11232,
     "endOffset": 11723,
-    "content": "Romeo is saying that his own sorrows already weigh on him, and Benvolio's sympathy will only add more grief to his burden. He then describes love as a contradictory force: it begins as smoky sighs, then becomes a bright fire in lovers' eyes, but when troubled, it turns into a sea of tears. Ultimately, he calls love a form of discreet madness—both bitter poison and life-giving sweetness."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11232,
-    "endOffset": 11723,
-    "content": "Romeo is telling Benvolio that his own sorrows are already overwhelming, and Benvolio's sympathy will only add to them. He then describes love as a contradictory force: it begins as smoky sighs, then becomes a fire in lovers' eyes, and when troubled, it swells like a sea of tears. Ultimately, he calls love a form of madness—both bitter and sweet—before taking his leave.",
+    "content": "Romeo says that is how love wrongs us. His own grief weighs on him, and Benvolio’s sympathy will only add more sorrow to his burden. He describes love as a smoke made from sighs; when cleared, a fire in lovers’ eyes; when troubled, a sea fed by lovers’ tears. It is also a wise madness, a bitter poison, and a preserving sweetness. He says farewell and starts to leave.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11232,
-    "endOffset": 11723,
-    "content": "Romeo describes love as contradictory: it causes pain that multiplies when shared. He uses three metaphors: love as smoke from sighs, fire in lovers' eyes when purified, and a sea fed by tears when troubled. He concludes love is a discreet madness, both bitter poison and preserving sweetness.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2271,28 +841,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11723,
     "endOffset": 11798,
-    "content": "Benvolio is telling Romeo to wait for him — \"Soft!\" means \"Wait a moment!\" — and insists that if Romeo leaves him behind, it would be treating him unfairly. This shows Benvolio’s loyalty and his determination to stay with his troubled friend."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11723,
-    "endOffset": 11798,
-    "content": "Benvolio is telling Romeo he'll accompany him, but insists that Romeo must confide in him rather than leaving him in the dark. He's gently pressuring his friend to share what's troubling him, showing his concern and desire to help.",
+    "content": "Benvolio says wait, he will go with Romeo, and it would be wrong to leave him like this.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11723,
-    "endOffset": 11798,
-    "content": "Benvolio agrees to accompany Romeo but warns that abandoning him would be unfair. 'Soft' means 'wait' or 'hold on' - he's interrupting Romeo's poetic lament. He's essentially saying: 'Wait, I'll come with you, but don't ditch me.'",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -2300,28 +852,10 @@
     "speaker": "ROMEO",
     "startOffset": 11798,
     "endOffset": 11890,
-    "content": "Romeo feels so emotionally distraught that he no longer recognizes himself. He is saying that his true self is absent, and the person speaking is a stranger."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11798,
-    "endOffset": 11890,
-    "content": "Romeo is telling Benvolio that his deep sadness over Rosaline's rejection has made him feel like a different person, disconnected from his own identity. He means he is so consumed by his misery that he no longer feels like himself.",
+    "content": "Romeo dismisses this, saying he has lost himself and is not really here; Romeo is somewhere else.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11798,
-    "endOffset": 11890,
-    "content": "Romeo expresses deep emotional turmoil, feeling disconnected from his own identity. 'Tut' is an interjection showing impatience or dismissal. He means he feels so changed by his emotions (likely lovesickness for Rosaline) that he doesn't recognize himself - his true self feels absent or transformed.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2329,28 +863,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11890,
     "endOffset": 11942,
-    "content": "\"Sadness\" here means seriously or in earnest. Benvolio is asking Romeo to tell him honestly who he is in love with."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11890,
-    "endOffset": 11942,
-    "content": "Benvolio asks Romeo to speak seriously about who has captured his heart. The word \"sadness\" here means \"seriously\" or \"in earnest,\" not sorrow. He is trying to get his lovesick friend to confide in him so he can understand and help.",
+    "content": "Benvolio asks him seriously to say who he loves.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11890,
-    "endOffset": 11942,
-    "content": "Benvolio asks Romeo to seriously tell him who he loves. 'In sadness' means 'seriously' or 'in earnest' - not referring to emotional sadness. He's urging Romeo to be straightforward about his romantic feelings.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2358,28 +874,10 @@
     "speaker": "ROMEO",
     "startOffset": 11942,
     "endOffset": 11985,
-    "content": "Romeo is sarcastically asking if he should moan dramatically and then explain his feelings. He is mocking the conventional way lovers complain about their sorrows."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11942,
-    "endOffset": 11985,
-    "content": "Romeo is responding to his friend Benvolio's question about what is troubling him. He sarcastically suggests that the only way to express his lovesick misery would be to physically groan. This line establishes Romeo's mood as melodramatic and overwhelmed by his unrequited love for Rosaline.",
+    "content": "Romeo replies sarcastically, asking if he should groan while telling him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 11942,
-    "endOffset": 11985,
-    "content": "Romeo responds sarcastically to Benvolio's question about his love interest. He's saying: 'Do you really expect me to moan dramatically while telling you?' This shows his exaggerated, melodramatic attitude about his unrequited love for Rosaline.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -2387,28 +885,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 11985,
     "endOffset": 12035,
-    "content": "Benvolio is asking Romeo to stop sighing and instead tell him plainly who is upsetting him. He wants a straightforward answer rather than more emotional expressions."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11985,
-    "endOffset": 12035,
-    "content": "Benvolio is responding to Romeo's exaggerated sighing, asking him to simply name the person he's upset about rather than moaning dramatically. He's trying to cut through Romeo's performative melancholy to get a straightforward answer about the source of his distress. This shows Benvolio's practical nature as he attempts to address his cousin's lovesick behavior directly.",
+    "content": "He asks Romeo to tell him seriously who he loves, since Romeo is groaning.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 11985,
-    "endOffset": 12035,
-    "content": "Benvolio clarifies he doesn't want Romeo to dramatically groan, but rather to simply and seriously identify the person causing his distress. 'Sadly' here means 'seriously' or 'soberly' rather than 'unhappily'.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -2416,28 +896,10 @@
     "speaker": "ROMEO",
     "startOffset": 12035,
     "endOffset": 12165,
-    "content": "Romeo is saying that asking a sick man to make his will is a cruel and poorly timed request. He then clarifies that he is using \"sadness\" to mean \"seriously,\" and confesses that he is truly in love with a woman."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12035,
-    "endOffset": 12165,
-    "content": "Romeo is telling Benvolio that urging a lovesick man to talk about his will is like asking a sick man to make his will—it's a poorly timed and painful suggestion. He then clarifies that he is genuinely (\"in sadness\") in love with a woman, revealing the true cause of his melancholy.",
+    "content": "He compares his lovesickness to a sick man making a will, then admits he loves a woman.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12035,
-    "endOffset": 12165,
-    "content": "Romeo uses wordplay: 'sadness' means both 'seriously' and 'sorrowfully'. He compares being asked to name his love to asking a sick person to make a will - both are painful requests. He then confirms he seriously loves a woman. Paraphrase: Asking me to name my love is like asking a dying person to make a will - it's painful. But yes, I truly love a woman.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2445,28 +907,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 12165,
     "endOffset": 12225,
-    "content": "Benvolio says he was close to guessing correctly when he thought Romeo was in love. He is responding to Romeo’s admission that he is lovesick, confirming Benvolio’s earlier suspicion."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12165,
-    "endOffset": 12225,
-    "content": "Benvolio is telling Romeo he was close to guessing the truth: that Romeo is in love. He uses the metaphor of aiming an arrow to suggest his earlier suspicion was accurate. This prompts Romeo to confess his feelings for Rosaline.",
+    "content": "He says he guessed correctly that Romeo was in love.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12165,
-    "endOffset": 12225,
-    "content": "Benvolio means he was close to guessing correctly when he suspected Romeo was in love. 'Aim'd so near' is an archery metaphor for being almost correct.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2474,28 +918,10 @@
     "speaker": "ROMEO",
     "startOffset": 12225,
     "endOffset": 12280,
-    "content": "Romeo is saying that Rosaline is a perfect target for Cupid's arrow, and she is beautiful. He is expressing that he loves her, but she has rejected him."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12225,
-    "endOffset": 12280,
-    "content": "Romeo is sarcastically agreeing that Rosaline is a beautiful target for Cupid's arrow. He means that while she is indeed beautiful (\"fair\"), he is miserable because she has sworn to remain chaste, so his love is unrequited and painful.",
+    "content": "He confirms Benvolio’s guess and says the woman he loves is beautiful.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12225,
-    "endOffset": 12280,
-    "content": "Romeo sarcastically acknowledges Benvolio's accuracy in guessing he's in love, then adds that the woman he loves is beautiful. 'Markman' means marksman or archer; 'fair' means beautiful. Paraphrase: You guessed correctly - and the woman I love is beautiful.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2503,28 +929,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 12280,
     "endOffset": 12336,
-    "content": "Benvolio is telling Romeo that the easiest target to strike is a beautiful one. He means that a woman who is clearly attractive is the simplest to pursue and win over."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12280,
-    "endOffset": 12336,
-    "content": "Benvolio is telling Romeo that the easiest target to strike is one that is clearly visible and beautiful. He uses this metaphor to suggest that Romeo should pursue a woman who is obviously available rather than one who is difficult to win over. This is part of his attempt to cheer up his lovesick cousin by encouraging him to look elsewhere for love.",
+    "content": "He jokes that a beautiful target is easiest to hit with love’s arrow.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12280,
-    "endOffset": 12336,
-    "content": "Benvolio plays on Romeo's words, turning 'fair I love' into 'fair mark' (target) and suggesting that an attractive target is easiest to hit. 'Fair coz' means 'dear cousin'. He's implying that beautiful women are more approachable and receptive to love.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2532,28 +940,10 @@
     "speaker": "ROMEO",
     "startOffset": 12336,
     "endOffset": 12749,
-    "content": "Romeo says Rosaline is immune to love because she has vowed to remain chaste like Diana, the goddess of virginity. She cannot be won over by romantic words, flirtatious looks, or expensive gifts. Her beauty is her only wealth, but since she refuses to marry and have children, that beauty will die with her and leave no legacy."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12336,
-    "endOffset": 12749,
-    "content": "Romeo explains that Rosaline is immune to love's advances because she has vowed to remain chaste like Diana, the goddess of virginity. He says she cannot be won by flattery, admiring looks, or riches, and concludes that her beauty is wasted because she will die without passing it on to children.",
+    "content": "He says she cannot be won by love: she is chaste like Diana, immune to flattery, gazes, or riches, and her beauty will die with her.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12336,
-    "endOffset": 12749,
-    "content": "Romeo corrects Benvolio by saying his target (Rosaline) cannot be struck by Cupid's arrow because she has the wisdom of Diana (virgin goddess of chastity) and is strongly protected against love. She won't endure romantic persuasion, withstand admiring looks, or be bribed with gold. Though beautiful, her beauty will die with her since she remains unmarried and childless.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "I",
@@ -2561,28 +951,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 12749,
     "endOffset": 12813,
-    "content": "She has vowed to remain a virgin and never marry.  \nThis means she is rejecting all romantic advances and will not return Romeo's affection."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12749,
-    "endOffset": 12813,
-    "content": "Benvolio is confirming that Rosaline has vowed to remain celibate and unmarried. This explains why Romeo is so lovesick and despairing, as her vow makes his love for her hopeless and unrequited.",
+    "content": "He asks if she has sworn to remain chaste.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 12749,
-    "endOffset": 12813,
-    "content": "Benvolio asks for confirmation that the woman has vowed to remain celibate forever. 'Sworn' means made a solemn promise; 'still' means always/forever; 'live chaste' means remain sexually pure. He's clarifying Romeo's description of her rejecting all romantic advances.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -2590,28 +962,10 @@
     "speaker": "ROMEO",
     "startOffset": 12813,
     "endOffset": 13111,
-    "content": "Romeo complains that Rosaline’s vow of chastity is wasteful because her refusal to have children means her beauty will die with her. He says she is too beautiful and virtuous for her own good, since her decision to reject love causes him misery while she remains untouched."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12813,
-    "endOffset": 13111,
-    "content": "Romeo complains that Rosaline's vow of chastity wastes her beauty, since she won't have children to pass it on. He then laments that her very virtues—being too beautiful and wise—are what cause his misery, as she has sworn off love entirely. This leaves him feeling alive only to report his own emotional death.",
+    "content": "He confirms her vow wastes her beauty by leaving no heirs, and her perfection causes his despair, making him feel dead while alive.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 12813,
-    "endOffset": 13111,
-    "content": "Romeo uses paradox to express that Rosaline's vow of chastity wastes her beauty by preventing her from having children who would inherit it. Her extreme virtue ('severity') starves beauty of its future. He claims her excessive fairness and wisdom ironically cause his despair, and her vow against love makes him feel alive yet dead inside while confessing this pain.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -2619,28 +973,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 13111,
     "endOffset": 13164,
-    "content": "Benvolio advises Romeo to stop thinking about Rosaline and move on. He is telling Romeo to follow his advice and let go of his unrequited love."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13111,
-    "endOffset": 13164,
-    "content": "Benvolio advises Romeo to stop dwelling on Rosaline and move on from his unrequited love. He urges his friend to follow his guidance and let go of his obsessive thoughts about her.",
+    "content": "He advises Romeo to forget her.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13111,
-    "endOffset": 13164,
-    "content": "Benvolio advises Romeo to stop thinking about Rosaline. 'Be rul'd by me' means 'take my advice' or 'listen to me.' He's telling Romeo to move on from his unrequited love.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -2648,28 +984,10 @@
     "speaker": "ROMEO",
     "startOffset": 13164,
     "endOffset": 13213,
-    "content": "Romeo is asking for a way to stop his own thoughts, which are consumed by his unrequited love for Rosaline. He feels tormented by his constant brooding and desperately wants to learn how to erase these painful thoughts from his mind."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 13164,
-    "endOffset": 13213,
-    "content": "Romeo is pleading with his cousin Benvolio for a way to stop his obsessive, lovesick brooding over Rosaline. He is asking to be taught how to stop thinking entirely, as his unrequited love has made him miserable and he sees no other escape from his sorrow.",
+    "content": "He asks how he can possibly stop thinking of her.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 13164,
-    "endOffset": 13213,
-    "content": "Romeo sarcastically rejects Benvolio's advice to stop thinking about Rosaline, implying it's impossible to consciously forget someone by trying not to think about them. The line uses paradoxical phrasing - asking how to 'forget to think' highlights the contradiction in Benvolio's suggestion.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -2677,28 +995,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 13213,
     "endOffset": 13283,
-    "content": "Benvolio advises Romeo to free his gaze and look at other beautiful women. He means Romeo should stop fixating on Rosaline and consider other potential romantic interests."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13213,
-    "endOffset": 13283,
-    "content": "Benvolio advises Romeo to stop fixating on Rosaline by looking at other attractive women. He suggests that freely observing others will help him overcome his current infatuation. This practical advice introduces the theme of love's fickleness versus constancy.",
+    "content": "He suggests looking at other beautiful women.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13213,
-    "endOffset": 13283,
-    "content": "Benvolio suggests Romeo should stop fixating on one person by allowing himself to look at other attractive women. 'Liberty unto thine eyes' means freedom to look around; 'examine other beauties' means observe other beautiful women. Paraphrase: Look at other attractive women instead of focusing only on one.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -2706,28 +1006,10 @@
     "speaker": "ROMEO",
     "startOffset": 13283,
     "endOffset": 13708,
-    "content": "Romeo says that seeing other beautiful women only reminds him of Rosaline's superior beauty, just as a black mask makes one think of the fair skin it conceals. He claims that once you have lost something precious—like his love—you cannot forget it, and any new beauty merely serves as a reminder of what you have lost. Therefore, he insists that no one can make him forget Rosaline."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 13283,
-    "endOffset": 13708,
-    "content": "Romeo is explaining to Benvolio why he cannot forget Rosaline. He argues that focusing on her beauty only makes him more aware of her absence, comparing it to a blind man who can't forget the sight he has lost. He concludes that seeing another beautiful woman would only serve as a reminder of Rosaline, so Benvolio's advice to look at others is useless.",
+    "content": "He argues that comparing others to her only makes him remember her more, like a blind man cannot forget lost sight, and any beauty just reminds him of her.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 13283,
-    "endOffset": 13708,
-    "content": "Romeo argues that looking at other women only makes him appreciate Rosaline's beauty more. He compares beautiful women to masks that remind us of the beauty they conceal, just as a blind person never forgets lost eyesight. He claims any beautiful woman merely serves as a reminder of Rosaline's superior beauty, concluding that Benvolio cannot make him forget her.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "I",
@@ -2735,27 +1017,9 @@
     "speaker": "BENVOLIO",
     "startOffset": 13708,
     "endOffset": 13766,
-    "content": "Benvolio is saying he will prove the truth of his advice—that Romeo should examine other beauties to forget Rosaline—or consider himself indebted for failing. The phrase \"die in debt\" means he would owe Romeo a moral debt if his counsel proves wrong."
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13708,
-    "endOffset": 13766,
-    "content": "Benvolio is telling Romeo he will prove his point—that looking at other beautiful women will cure his lovesickness for Rosaline—or consider himself a failure. The phrase \"pay that doctrine\" means to fulfill or prove this teaching, and \"die in debt\" is a metaphor for failing to keep his word.",
+    "content": "He vows to prove his advice works or die trying, showing his determination to help.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 13708,
-    "endOffset": 13766,
-    "content": "Benvolio uses financial metaphor to mean he'll either prove Romeo's philosophy wrong or fail completely. 'Pay that doctrine' means disprove Romeo's belief that beautiful women only remind him of Rosaline; 'die in debt' means remain forever obligated to this unfulfilled effort.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   }
 ]

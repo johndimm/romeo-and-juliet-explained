@@ -4,6 +4,8 @@ export default async function handler(req, res) {
   const {
     selectionText,
     context, // { act, scene, speaker, onStage }
+    contextText, // optional scene excerpt up to selection
+    noteText, // optional prewritten note for the current speech
     options, // { model, language, educationLevel, age }
     messages, // optional prior conversation [{role, content}]
     mode, // 'brief' | 'more' | 'followup'
@@ -73,6 +75,16 @@ export default async function handler(req, res) {
     selectionText,
     '"""',
     '',
+    (contextText && contextText.trim().length ? 'Scene context excerpt (up to these lines; do not quote it):' : null),
+    (contextText && contextText.trim().length ? '"""' : null),
+    (contextText && contextText.trim().length ? contextText : null),
+    (contextText && contextText.trim().length ? '"""' : null),
+    (contextText && contextText.trim().length ? '' : null),
+    (noteText && noteText.trim().length ? 'Prewritten note for these lines (use only as grounding; do not repeat or paraphrase it):' : null),
+    (noteText && noteText.trim().length ? '"""' : null),
+    (noteText && noteText.trim().length ? noteText : null),
+    (noteText && noteText.trim().length ? '"""' : null),
+    (noteText && noteText.trim().length ? '' : null),
     'Context for grounding (do not restate it):',
     ctxLines.join('\n') || 'N/A',
     '',

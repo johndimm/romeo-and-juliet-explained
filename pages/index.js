@@ -676,12 +676,75 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       if (!conversations[selectionId] || !conversations[selectionId].last) {
         setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
       }
+
+      // Build a compact excerpt: previous speech only, to ground who was speaking
+      let contextText = '';
+      try {
+        const byte = selectionContext.byteOffset || 0;
+        const enc = new TextEncoder();
+        // Find current scene range
+        const scn = (Array.isArray(metadata?.scenes) ? metadata.scenes : []).find((s) => byte >= (s.startOffset||0) && byte <= (s.endOffset||0));
+        const sceneStart = scn?.startOffset ?? 0;
+        const sceneEnd = scn?.endOffset ?? byte;
+        // Find speeches in scene and identify the one immediately before the selection
+        const speeches = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+        let prevStart = null; let nextStart = null;
+        for (let i = 0; i < speeches.length; i++) {
+          const off = speeches[i]?.offset || 0;
+          if (off >= sceneStart && off < byte) prevStart = off;
+          if (off > byte && off <= sceneEnd) { nextStart = off; break; }
+        }
+        if (prevStart != null) {
+          const endB = Math.min(nextStart != null ? nextStart : sceneEnd, byte);
+          // Stitch previous speech text only
+          let out = '';
+          for (let i = 0; i < sectionsWithOffsets.length; i++) {
+            const sec = sectionsWithOffsets[i];
+            const secStart = sec.startOffset || 0;
+            const secText = sections[i] || '';
+            const secEnd = secStart + enc.encode(secText).length;
+            if (secEnd <= prevStart) continue; if (secStart >= endB) break;
+            const a = Math.max(prevStart, secStart);
+            const b = Math.min(endB, secEnd);
+            if (b > a) {
+              const startC = bytesToCharOffset(secText, a - secStart);
+              const endC = bytesToCharOffset(secText, b - secStart);
+              out += secText.slice(startC, endC);
+            }
+          }
+          contextText = out;
+        }
+      } catch {}
+      // Derive current speech's prewritten note (if any) for stronger context
+      let noteText = '';
+      try {
+        const act = selectionContext.act;
+        const scene = selectionContext.scene;
+        const byte = selectionContext.byteOffset || 0;
+        const scenes = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+        const targetScene = scenes.find((s) => s.act === act && String(s.scene) === String(scene));
+        if (targetScene && Array.isArray(metadata?.speeches)) {
+          let count = 0;
+          for (const sp of metadata.speeches) {
+            const off = sp?.offset || 0;
+            if (off >= (targetScene.startOffset||0) && off <= byte) count++;
+          }
+          if (count > 0 && speechMaps && speechMaps.noteBySpeechKey) {
+            const spKey = `${act}|${scene}|${count}`;
+            const it = speechMaps.noteBySpeechKey.get(spKey);
+            if (it && it.content) noteText = String(it.content);
+          }
+        }
+      } catch {}
+
       const res = await fetch('/api/explain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           selectionText: selectionContext.text,
           context: { act: selectionContext.act, scene: selectionContext.scene, speaker: selectionContext.speaker, onStage: selectionContext.onStage },
+          contextText,
+          noteText,
           options: llmOptions,
           messages: conv.messages,
           mode,

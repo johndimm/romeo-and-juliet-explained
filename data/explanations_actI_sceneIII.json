@@ -5,41 +5,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 18634,
     "endOffset": 18843,
-    "content": "Lady Capulet is calling for her daughter Juliet to come speak with her. The Nurse responds with a comic oath about her own virginity at age twelve, then affectionately calls for Juliet using pet names like \"lamb\" and \"ladybird.\"",
+    "content": "She asks the Nurse to fetch Juliet, then changes her mind and asks her to stay, noting that Juliet is at a suitable age for marriage.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 18634,
-    "endOffset": 18843,
-    "content": "Lady Capulet urgently asks the Nurse to summon Juliet. The Nurse swears by her virginity (maidenhead) that she already called Juliet when she was twelve. 'Lamb' and 'ladybird' are affectionate nicknames for Juliet. 'God forbid!' expresses mild exasperation at Juliet's delay.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 18701,
-    "endOffset": 18859,
-    "content": "The Nurse swears on her virginity—a humorous and ironic oath for an old nurse—that she called for Juliet when she was twelve. Her exclamations (\"lamb,\" \"ladybird\") are affectionate nicknames, showing her deep, motherly fondness for Juliet as she impatiently calls her to appear.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 18701,
-    "endOffset": 18859,
-    "content": "The Nurse swears by her virginity (\"maidenhead\") that she called Juliet when she was twelve years old. \"Bade\" means commanded or asked. \"Lamb\" and \"ladybird\" are affectionate nicknames for Juliet. \"God forbid!\" expresses mild exasperation at Juliet's delay. She's calling for Juliet with increasing urgency.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -47,41 +16,10 @@
     "speaker": "JULIET",
     "startOffset": 18859,
     "endOffset": 18909,
-    "content": "Juliet is responding to being summoned, showing her readiness to attend to her mother. The Nurse immediately identifies Lady Capulet as the caller, establishing the domestic setting and Juliet's obedient role within her family.",
+    "content": "She responds to the call, asking who is summoning her.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 18859,
-    "endOffset": 18909,
-    "content": "Juliet responds to being called with a simple question asking who wants her. The Nurse immediately identifies the caller as Juliet's mother. 'How now' is an Elizabethan greeting meaning 'What's happening?' or 'What is it?'",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 18888,
-    "endOffset": 18909,
-    "content": "The Nurse is answering Juliet's question about who is calling for her. She clarifies that it is Lady Capulet, Juliet's mother, who wants to speak with her. This simple reply establishes the immediate situation and the person Juliet must now attend to.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 18888,
-    "endOffset": 18909,
-    "content": "The Nurse is simply identifying who called for Juliet - her mother Lady Capulet. This straightforward response serves as a transition to the upcoming conversation between Juliet and her mother.",
-    "perplexity": 0,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -89,20 +27,10 @@
     "speaker": "JULIET",
     "startOffset": 18909,
     "endOffset": 18955,
-    "content": "Julet is responding to her mother's summons with formal obedience. Her question shows she is ready to listen to Lady Capulet's instructions, establishing their relationship as proper but distant. This polite deference sets the stage for the significant request about marriage that follows.",
+    "content": "She politely addresses her mother and asks what she wants.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 18909,
-    "endOffset": 18955,
-    "content": "Juliet formally addresses her mother as 'Madam' and politely asks what she wants, showing respect and obedience typical of a noble daughter in this society.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -110,41 +38,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 18955,
     "endOffset": 19209,
-    "content": "Lady Capulet initially dismisses the Nurse so she can speak privately with Juliet about marriage, but immediately calls her back, acknowledging the Nurse's close relationship with her daughter. The Nurse eagerly confirms her intimate knowledge of Juliet's life, establishing her as a trusted confidante in this discussion. This shows Lady Capulet's indecisiveness about the Nurse's role and highlights the Nurse's deep involvement in Juliet's upbringing.",
+    "content": "She first dismisses the Nurse for privacy, then recalls her, acknowledging the Nurse’s familiarity with Juliet’s upbringing.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 18955,
-    "endOffset": 19209,
-    "content": "Lady Capulet first dismisses the Nurse for privacy, then immediately recalls her, acknowledging her role in Juliet's upbringing. 'Give leave awhile' means 'leave us alone for a moment.' 'Thou's' is a contraction of 'thou shalt' (you shall). The Nurse proudly claims she knows Juliet's exact age, showing her intimate knowledge of the family.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19161,
-    "endOffset": 19209,
-    "content": "The Nurse boasts to Lady Capulet that she knows Juliet's exact age down to the hour. This emphasizes her long, intimate history with the family and her role as a mother figure, establishing her as a key source of information about Juliet.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19161,
-    "endOffset": 19209,
-    "content": "\"Faith\" means \"in faith\" or \"truly\"; \"unto an hour\" means \"to the exact hour.\" The Nurse is emphasizing she knows Juliet's precise age.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -152,41 +49,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 19209,
     "endOffset": 19394,
-    "content": "Lady Capulet is correcting the Nurse, emphasizing that Juliet is not yet fourteen years old. The Nurse humorously agrees, swearing by her few remaining teeth, and asks how long it is until Lammas-tide (August 1st), which is Juliet’s birthday. This exchange highlights Juliet’s youth and the Nurse’s fond, familiar manner.",
+    "content": "She states that Juliet is not yet fourteen, prompting the Nurse to recall the exact timing.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 19209,
-    "endOffset": 19394,
-    "content": "'Lay fourteen of my teeth' means 'bet fourteen teeth' (though she only has four left), emphasizing certainty. 'To my teen be it spoken' means 'to my sorrow I admit'. 'Lammas-tide' is August 1st harvest festival. The Nurse is swearing Juliet isn't fourteen yet and asking how long until Lammas-day, when Juliet turns fourteen.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19246,
-    "endOffset": 19394,
-    "content": "The Nurse is humorously emphasizing that Juliet is not yet fourteen by offering a ridiculous wager—she'd bet fourteen teeth, even though she only has four left. She then asks Lady Capulet to confirm the exact time until Lammas-tide (August 1st), which is Juliet's birthday, showing her affectionate, familiar role in the household.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19246,
-    "endOffset": 19394,
-    "content": "The Nurse humorously bets 'fourteen of my teeth' (though she only has four left) to emphasize Juliet's age. 'To my teen' means 'to my sorrow' or 'regretfully.' She then asks how long until Lammas-tide (August 1st), a harvest festival, to calculate Juliet's upcoming birthday.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 45
   },
   {
     "act": "I",
@@ -194,41 +60,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 19394,
     "endOffset": 20914,
-    "content": "The Nurse is correcting Lady Capulet's estimate of Juliet's age, insisting she will be fourteen on Lammas Eve (August 1st). She then launches into a rambling, sentimental memory of weaning Juliet, using bitter wormwood on her breast, and recalls her late husband's joking prophecy that Juliet would \"fall backward\" (a sexual innuendo about lying down for a man) when she grew wiser. This long-winded, earthy speech characterizes the Nurse as a garrulous, lower-class figure who views love in physical terms, contrasting sharply with Lady Capulet's more formal and distant relationship with her daughter.",
+    "content": "She confirms the Nurse’s calculation, noting it is a fortnight and some days until Lammas-tide.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 19394,
-    "endOffset": 20914,
-    "content": "The Nurse confirms Juliet will be fourteen on Lammas Eve (August 1st). She recalls Juliet's weaning: applying bitter wormwood to her breast to discourage nursing, causing the baby to react irritably. She remembers her husband joking that Juliet would \"fall backward\" (a sexual innuendo about lying down for intimacy) when older, and baby Juliet stopped crying and said \"Ay.\" The Nurse emphasizes her sharp memory despite the anecdote's rambling nature.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19435,
-    "endOffset": 20914,
-    "content": "The Nurse is telling Lady Capulet that Juliet will turn fourteen on Lammas Eve (July 31st), but she gets sidetracked into a long, rambling story about Juliet as a baby. She recalls weaning Juliet with bitter wormwood, an earthquake that happened at the same time, and her late husband's crude joke that Juliet would one day \"fall backward\"—a sexual innuendo meaning she would lie down for a man. This digression reveals the Nurse's earthy, affectionate nature and her long, intimate history with the family.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 19435,
-    "endOffset": 20914,
-    "content": "The Nurse recalls Juliet's infancy with vivid detail. 'Lammas Eve' is August 1st eve. 'Wormwood' is a bitter herb she put on her breast to wean Juliet. 'Tetchy' means irritable. 'By th'rood' means by the cross (swearing). 'Holidame' is holy dame (another oath). She remembers Juliet's father joking that she'd 'fall backward' (have sex) when older, and baby Juliet stopped crying and said 'Yes.' The Nurse's rambling shows her maternal affection and crude humor.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 75
   },
   {
     "act": "I",
@@ -236,41 +71,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 20914,
     "endOffset": 21360,
-    "content": "Lady Capulet is impatiently telling the Nurse to stop talking. The Nurse, however, ignores this and continues reminiscing about a humorous memory from Juliet's childhood. She recalls a time when the toddler Juliet fell and had a bump on her head, and her husband joked that Juliet would \"fall backward\" (a euphemism for having sex) when she was older, to which the young Juliet innocently agreed.",
+    "content": "She interrupts the Nurse’s rambling story, asking her to be quiet.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 20914,
-    "endOffset": 21360,
-    "content": "Lady Capulet tells the Nurse to stop talking. The Nurse continues, recalling when baby Juliet stopped crying and said 'Yes' after falling and getting a large forehead bump. Her husband joked that Juliet would 'fall backward' (sexual innuendo for lying down for sex) when older, and Juliet said 'Yes' again.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 20973,
-    "endOffset": 21360,
-    "content": "The Nurse is recalling a humorous memory of Juliet as a toddler, who stopped crying and said \"Yes\" after a bad fall. Her husband joked that if Juliet fell forward now, she'd fall backward (a sexual innuendo about lying down for a man) when she grew older—and young Juliet innocently agreed again. This shows the Nurse's earthy, familiar relationship with Juliet and foreshadows Juliet's future romantic experiences.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 20973,
-    "endOffset": 21360,
-    "content": "The Nurse recalls a childhood incident where young Juliet fell and got a large bruise on her forehead. Her husband joked that since she fell forward as a child, she would fall backward (a sexual innuendo meaning lie down for sex) when older. When he asked 'Won't you, Jule?' she stopped crying and said 'Yes.' 'Warrant' means guarantee, 'cockerel's stone' means rooster's testicle, 'perilous' means dangerous, 'fall'st' means fall, 'stinted' means stopped.",
-    "perplexity": 85,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -278,41 +82,10 @@
     "speaker": "JULIET",
     "startOffset": 21360,
     "endOffset": 21583,
-    "content": "Juliet is impatiently telling her Nurse to stop talking. The Nurse responds by blessing Juliet, recalling her as the most beautiful baby she ever cared for, and expressing her wish to see Juliet married someday.",
+    "content": "She echoes her mother’s request, telling the Nurse to stop talking as well.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 21360,
-    "endOffset": 21583,
-    "content": "Juliet tells the Nurse to stop talking (\"stint\" means cease), embarrassed by the childhood story. The Nurse agrees to stop, blesses Juliet (\"God mark thee to his grace\"), praises her as the most beautiful baby she ever cared for, and says her only wish is to see Juliet married someday.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 21416,
-    "endOffset": 21583,
-    "content": "The Nurse is telling Juliet to be quiet because she's finished speaking. She affectionately recalls that Juliet was the most beautiful baby she ever cared for and says her only wish is to live long enough to see Juliet get married.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 21416,
-    "endOffset": 21583,
-    "content": "The Nurse stops talking and blesses Juliet, saying 'God mark thee to his grace' means 'May God bless you.' She recalls Juliet was the most beautiful baby she ever cared for and expresses her heartfelt wish to see Juliet married someday.",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -320,20 +93,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 21583,
     "endOffset": 21722,
-    "content": "\"Marry\" here is an archaic interjection meaning \"indeed\" or \"by the Virgin Mary.\" Lady Capulet is telling Juliet that marriage is exactly the subject she came to discuss. She then directly asks her daughter how she feels about the prospect of getting married.",
+    "content": "She shifts the conversation to the topic of marriage, directly asking Juliet her feelings about it.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 21583,
-    "endOffset": 21722,
-    "content": "'Marry' here means 'indeed' or 'by Mary' (a mild oath). Lady Capulet is saying the Nurse's mention of marriage is exactly what she came to discuss. She asks Juliet directly about her willingness to consider marriage. Paraphrase: 'Indeed, marriage is exactly what I came to discuss. Tell me, Juliet, how do you feel about getting married?'",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -341,41 +104,10 @@
     "speaker": "JULIET",
     "startOffset": 21722,
     "endOffset": 21870,
-    "content": "Juliet is politely deflecting her mother's suggestion of marriage, saying she hasn't even considered it yet. The Nurse, in her earthy way, finds this response so unexpectedly wise that she jokes Juliet must have gained wisdom directly from breastfeeding.",
+    "content": "She replies that marriage is an honor she has not yet considered.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 21722,
-    "endOffset": 21870,
-    "content": "Juliet says she hasn't even thought about marriage. The Nurse responds with affectionate exaggeration: if she weren't Juliet's only nurse, she'd say Juliet gained wisdom from breastfeeding. 'Suck'd wisdom from thy teat' means gained intelligence from nursing.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 21768,
-    "endOffset": 21870,
-    "content": "The Nurse is telling Juliet that it's an honor to be her only nurse, and she playfully suggests that if she weren't, she would say Juliet got her wisdom from breastfeeding. This affectionate exaggeration highlights the Nurse's deep bond with Juliet and her pride in having raised her.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 21768,
-    "endOffset": 21870,
-    "content": "The Nurse exclaims 'An honour!' sarcastically, then says if she weren't Juliet's only nurse, she'd claim Juliet got wisdom from nursing. 'Suck'd wisdom from thy teat' means Juliet would have gained intelligence from breastfeeding. The Nurse is humorously suggesting Juliet's clever response came from her nursing.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -383,41 +115,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 21870,
     "endOffset": 22221,
-    "content": "Lady Capulet is urging Juliet to consider marrying Paris, pointing out that many respected young women in Verona are already mothers at her age. She emphasizes her own early motherhood to strengthen her argument.\n\nThe Nurse enthusiastically agrees, calling Paris a perfect man—\"a man of wax\" means he's as handsome as a statue. She is reinforcing Lady Capulet's matchmaking efforts with her characteristic earthy praise.",
+    "content": "She argues that many respected Veronese ladies younger than Juliet are already mothers, and she herself was a mother at Juliet’s age.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 21870,
-    "endOffset": 22221,
-    "content": "Lady Capulet urges Juliet to consider marriage, noting that respected girls younger than her in Verona are already mothers. She reveals she was Juliet's mother at Juliet's current age. She then introduces Paris as a brave suitor. The Nurse enthusiastically agrees, calling Paris a perfect man—'man of wax' means he is as handsome as a wax statue, i.e., flawless.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 22133,
-    "endOffset": 22221,
-    "content": "The Nurse is enthusiastically praising Paris to Juliet, calling him a perfect specimen of a man, as if he were a flawless wax statue. She means he is handsome, ideal, and admired by everyone.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 22133,
-    "endOffset": 22221,
-    "content": "The Nurse enthusiastically praises Paris as an ideal man. 'Man of wax' means he's perfectly formed, like a wax sculpture - handsome and flawless. She's saying he's so exceptional that he seems like he belongs to the whole world.",
-    "perplexity": 45,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -425,41 +126,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 22221,
     "endOffset": 22332,
-    "content": "Lady Capulet is telling Juliet that Paris is the finest young man in Verona, comparing his qualities to the most beautiful summer flower. The Nurse enthusiastically agrees, reinforcing the compliment to emphasize that Paris is an exceptionally handsome and worthy suitor.",
+    "content": "She announces that the noble Paris wishes to court Juliet.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 22221,
-    "endOffset": 22332,
-    "content": "Lady Capulet uses a metaphor comparing Paris to a beautiful flower that surpasses even the finest summer blooms in Verona, emphasizing his exceptional qualities. The Nurse enthusiastically agrees, reinforcing the floral imagery to praise Paris's attractiveness.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 22278,
-    "endOffset": 22332,
-    "content": "The Nurse is praising Paris, calling him a perfect example of a fine young man, comparing him to a beautiful flower. She is enthusiastically agreeing with Lady Capulet, who has just been describing Paris as a worthy suitor for Juliet.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 22278,
-    "endOffset": 22332,
-    "content": "The Nurse emphatically agrees with Lady Capulet's comparison of Paris to a flower, repeating 'flower' twice for emphasis. 'In faith' means 'truly' or 'indeed.' She's saying Paris is truly an exceptional young man, using the flower metaphor to emphasize his beauty and desirability.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -467,41 +137,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 22332,
     "endOffset": 23095,
-    "content": "Lady Capulet is urging Juliet to consider marrying Paris, using an extended metaphor comparing him to a beautiful book. She tells Juliet to study Paris's face and features at the feast that night, suggesting his inner qualities are visible in his eyes. The metaphor continues as she claims Paris, like an unbound book, only needs a wife—the \"cover\"—to be complete, implying that marriage to him will elevate Juliet's status.",
+    "content": "She urges Juliet to observe Paris at the feast, using an extended metaphor of reading a beautiful book to suggest she will find delight and completeness in him.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 22332,
-    "endOffset": 23095,
-    "content": "Lady Capulet uses an extended metaphor comparing Paris to a beautiful book. She tells Juliet to study Paris's face like reading a book, find pleasure in his features, and understand his hidden qualities through his eyes. She suggests Paris is like an unbound book that needs a cover (marriage) to be complete, and that by marrying him, Juliet will share his status and wealth without diminishing her own worth. The Nurse adds that women actually grow (in status/pregnancy) through marriage.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 23047,
-    "endOffset": 23095,
-    "content": "The Nurse crudely jokes that women grow physically larger during pregnancy. She is telling Lady Capulet that Juliet is mature enough for marriage and motherhood.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 23047,
-    "endOffset": 23095,
-    "content": "The Nurse interrupts Lady Capulet's metaphor about Paris being a \"book of love\" to make a crude joke. \"No less, nay bigger\" means \"not just equal, but larger\" - referring to pregnancy. \"Women grow by men\" means women physically expand (get pregnant) through sexual relations with men. The Nurse is crudely suggesting that marriage leads to pregnancy and childbirth.",
-    "perplexity": 75,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -509,20 +148,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 23095,
     "endOffset": 23156,
-    "content": "Lady Capulet is asking Juliet if she could develop romantic feelings for Paris. She wants a quick, direct answer because she is eager to arrange a marriage. This question pressures Juliet to consider a suitor she has not yet met.",
+    "content": "She asks Juliet directly if she can love Paris.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 23095,
-    "endOffset": 23156,
-    "content": "Lady Capulet is telling the Nurse to be concise and asking Juliet directly if she could accept Paris as a suitor. 'Like of' means 'approve of' or 'be favorably disposed toward' in this context.",
-    "perplexity": 25,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -530,41 +159,10 @@
     "speaker": "JULIET",
     "startOffset": 23156,
     "endOffset": 23299,
-    "content": "Julet tells her mother she will consider Paris as a potential suitor, but promises not to let her feelings develop any further than her mother's permission allows. The phrase \"looking liking move\" means she'll try to like him if simply seeing him can inspire affection. She uses the metaphor of a dart to represent her gaze, vowing not to let it fly deeper than her mother approves.",
+    "content": "She agrees to consider Paris if her looking leads to liking, but will not let her feelings go deeper than her mother approves.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 23156,
-    "endOffset": 23299,
-    "content": "Juliet agrees to consider Paris as a potential husband but promises to go no further in her affections than her mother approves. 'Look to like' means she'll try to like him; 'looking liking move' suggests if merely seeing him can inspire affection; 'endart mine eye' is a metaphor meaning to let her gaze penetrate deeply (like a dart); she'll only let her interest develop as far as her mother permits.",
-    "perplexity": 65,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "SERVANT",
-    "startOffset": 23318,
-    "endOffset": 23525,
-    "content": "The servant breathlessly reports that the Capulet feast is in full chaotic swing: guests have arrived, dinner is ready, Juliet is being summoned, and the Nurse is being scolded in the pantry. He urgently asks Lady Capulet to follow him immediately because he must return to his duties.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "SERVANT",
-    "startOffset": 23318,
-    "endOffset": 23525,
-    "content": "The servant reports multiple urgent situations: guests have arrived, dinner is ready, Juliet is being requested, the Nurse is being scolded in the kitchen, and everything is chaotic ('in extremity'). He must leave immediately ('hence to wait') and urgently asks them to follow right away ('follow straight').",
-    "perplexity": 35,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -572,40 +170,9 @@
     "speaker": "LADY CAPULET",
     "startOffset": 23525,
     "endOffset": 23556,
-    "content": "Lady Capulet is telling the Nurse to lead the way, showing she defers to the Nurse's familiarity with Juliet's daily life. This brief line establishes the Nurse's intimate, guiding role within the household as they go to speak with Juliet about marriage.",
+    "content": "She tells the servant they will follow him to the feast.",
     "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 23525,
-    "endOffset": 23556,
-    "content": "Lady Capulet simply states they will follow the servant immediately. 'Thee' is the informal/older form of 'you' used when addressing someone of lower status. This is a straightforward response indicating compliance with the servant's request.",
-    "perplexity": 5,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 23603,
-    "endOffset": 23667,
-    "content": "The Nurse is encouraging Juliet to go enjoy herself at the Capulet feast, hoping she will find romantic happiness there. Her blessing suggests she is more concerned with Juliet's immediate pleasure and potential marriage than with the formalities of courtship.",
-    "provider": "deepseek",
-    "model": "deepseek-chat"
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "NURSE",
-    "startOffset": 23603,
-    "endOffset": 23667,
-    "content": "The Nurse is telling Juliet to go find romantic happiness that will bring joyful nights to match her happy days. This is essentially encouragement for Juliet to pursue love and marriage.",
-    "perplexity": 15,
-    "provider": "deepseek",
-    "model": "deepseek-chat"
+    "model": "deepseek-chat",
+    "perplexity": 35
   }
 ]
