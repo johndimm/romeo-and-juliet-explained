@@ -46,7 +46,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showSettings, setShowSettings] = useState(false);
   // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
   // we normalize to 0–100 via a log scale.
-  const [noteThreshold, setNoteThreshold] = useState(0);
+  // Default to "Some" notes by default
+  const [noteThreshold, setNoteThreshold] = useState(50);
   const suppressAutoExplainRef = useRef(false);
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
@@ -490,6 +491,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // Auto-request on selection when a new passage is selected
   useEffect(() => {
     if (!selectionContext) return;
+    if (!String(selectionContext.text || '').trim()) return;
     // Optionally suppress one auto call when explicitly toggling UI elements
     if (suppressAutoExplainRef.current) { suppressAutoExplainRef.current = false; return; }
     // Avoid duplicate calls if we already have an explanation for this selection
@@ -501,12 +503,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     callLLM({ mode: pref, length: llmOptions?.length || 'brief' });
   }, [selectionContext]);
 
-  // Deep-linking: update URL hash when selection changes
-  useEffect(() => {
-    if (!selectionContext) return;
-    const len = new TextEncoder().encode(selectionContext.text || '').length;
-    setHashForSelection(selectionContext.byteOffset, len);
-  }, [selectionContext]);
+  // Deep-linking disabled: do not update URL on selection (prevents auto-explanations on reload)
 
   // Initialize selection from URL hash (if present), and respond to hash changes
   useEffect(() => {
@@ -570,7 +567,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const nt = localStorage.getItem('noteThreshold');
       if (nt != null) {
         const v = parseInt(nt, 10);
-        setNoteThreshold(Number.isFinite(v) ? v : 0);
+        setNoteThreshold(Number.isFinite(v) ? v : 50);
       }
     } catch {}
     setOptsHydrated(true);
@@ -908,7 +905,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           const itemsAllSec = speechesInSec
             .map((sp) => speechMaps.noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`))
             .filter(Boolean);
-          const itemsFilteredSec = itemsAllSec.filter((it) => { const score = normalizedPerplexity(it); return !noteThreshold || score >= noteThreshold; });
+          const itemsFilteredSec = itemsAllSec.filter((it) => { const score = normalizedPerplexity(it); return (typeof noteThreshold === 'number') ? (score > noteThreshold) : true; });
           return (
           <Section
             key={idx}
@@ -1111,6 +1108,25 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               </div>
             </div>
             <div style={{ marginTop: '0.75rem', textAlign: 'right' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  try {
+                    const ok = typeof window === 'undefined' ? true : window.confirm('Remove all saved explanations? This cannot be undone.');
+                    if (!ok) return;
+                  } catch {}
+                  setConversations({});
+                  try { localStorage.setItem('explanations', JSON.stringify({})); } catch {}
+                  // Also hide all notes: clear forced list and set density to hide
+                  try { setForcedNotes?.([]); } catch {}
+                  try { localStorage.setItem('forcedNotes', JSON.stringify([])); } catch {}
+                  try { setNoteThreshold?.(100); localStorage.setItem('noteThreshold', String(100)); } catch {}
+                }}
+                style={{ marginRight: 8 }}
+                title="Remove all saved explanations"
+              >
+                Remove All Explanations
+              </button>
               <button type="button" onClick={() => setShowSettings(false)}>Close</button>
             </div>
           </div>
@@ -1127,13 +1143,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const longPressRef = useRef(false);
   const movedRef = useRef(false);
   const pressTimerRef = useRef(null);
+  const revealTimerRef = useRef(null);
+  const revealedDuringPressRef = useRef(false);
   const startXYRef = useRef({ x: 0, y: 0 });
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
+  const scrollerStartRef = useRef(0);
   const [autoIdx, setAutoIdx] = useState(0);
   const [showPreFollow, setShowPreFollow] = useState(false);
   const [preFollowInput, setPreFollowInput] = useState('');
   const [preFollowLoading, setPreFollowLoading] = useState(false);
+  const skipNextMouseUpRef = useRef(false);
   // Mini chat history per speech (keyed by startOffset)
   const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
   const [forceShow, setForceShow] = useState(false);
@@ -1207,14 +1227,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     if (onToggleForced) onToggleForced(sk, sectionIndex);
   };
 
+  const scrollAsideIntoView = () => {
+    try {
+      const el = asideRef?.current;
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      try { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 900); } catch {}
+    } catch {}
+  };
+
   // Handle selection or reveal note on mouse up
   const handleTextMouseUp = (e) => {
     try { console.log('mouseUp:text', { sectionIndex }); } catch {}
+    // On touch devices, ignore mouseup completely (handled by touch handlers)
+    try {
+      const touchEnv = (('ontouchstart' in window) || (navigator?.maxTouchPoints > 0));
+      if (touchEnv) return;
+    } catch {}
+    if (skipNextMouseUpRef.current) { skipNextMouseUpRef.current = false; return; }
     // If the note is not visible yet and a note exists for this speech, a click brings it up
     const noteVisible = !!chosenItem;
     const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
     if (!noteVisible && hasRevealableNote) {
-      suppressNextAutoExplain?.(); // do not auto-explain on reveal-only click
+      // Reveal-only click: just show the note; do not suppress future auto-explain
       revealNoteForCurrentSpeech();
       return;
     }
@@ -1280,22 +1315,66 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     touchActiveRef.current = true;
     clearTimeout(pressTimerRef.current);
     pressTimerRef.current = setTimeout(() => { longPressRef.current = true; }, 350);
+    // record scroll position to distinguish scroll vs. selection
+    try {
+      const s = (function(){
+        const cont = document.querySelector('.container');
+        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+        const pg = document.querySelector('.page');
+        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+        return window;
+      })();
+      scrollerStartRef.current = (s === window) ? window.scrollY : s.scrollTop;
+    } catch { scrollerStartRef.current = 0; }
+    // delayed reveal if held long enough
+    try { clearTimeout(revealTimerRef.current); } catch {}
+    revealedDuringPressRef.current = false;
+    // Proactive reveal after sustained hold (~0.7–1.0s feel)
+    revealTimerRef.current = setTimeout(() => {
+      try {
+        if (!longPressRef.current) return;
+        const noteVisible = !!chosenItem;
+        const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
+        if (!noteVisible && hasRevealableNote && !movedRef.current) {
+          revealNoteForCurrentSpeech();
+          scrollAsideIntoView();
+          revealedDuringPressRef.current = true;
+        }
+      } catch {}
+    }, 700);
   };
   const onTouchMove = (e) => {
     const t = e.touches && e.touches[0];
     if (!t) return;
     const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
     const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
-    if (dx + dy > 8) {
+    if (dx + dy > 4) {
       movedRef.current = true;
       longPressRef.current = true; // treat as drag-selection
       clearTimeout(pressTimerRef.current);
+      clearTimeout(revealTimerRef.current);
     }
   };
   const onTouchEnd = () => {
     clearTimeout(pressTimerRef.current);
+    // If the user scrolled, do nothing and swallow the synthetic mouseup
+    try {
+      const s = (function(){
+        const cont = document.querySelector('.container');
+        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+        const pg = document.querySelector('.page');
+        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+        return window;
+      })();
+      const now = (s === window) ? window.scrollY : s.scrollTop;
+      if (Math.abs(now - (scrollerStartRef.current || 0)) > 10) {
+        skipNextMouseUpRef.current = true;
+        touchActiveRef.current = false;
+        setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+        return;
+      }
+    } catch {}
     touchActiveRef.current = false;
-    // handleMouseUp will run and decide tap vs. long-press based on flags
     setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
   };
 
@@ -1342,23 +1421,82 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={(e)=>{
-            // Mobile: treat a quick tap as reveal; long-press/drag as selection
-            const noteVisible = !!chosenItem;
-            const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
-            if (!noteVisible && !longPressRef.current && !movedRef.current && hasRevealableNote) {
-              suppressNextAutoExplain?.();
-              revealNoteForCurrentSpeech();
+            // Long-press to reveal note only (no selection yet)
+            clearTimeout(pressTimerRef.current);
+            // If user scrolled, ignore and swallow synthetic mouseup
+            try {
+              const s = (function(){
+                const cont = document.querySelector('.container');
+                if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+                const pg = document.querySelector('.page');
+                if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+                return window;
+              })();
+              const now = (s === window) ? window.scrollY : s.scrollTop;
+              if (Math.abs(now - (scrollerStartRef.current || 0)) > 10) {
+                skipNextMouseUpRef.current = true;
+                touchActiveRef.current = false;
+                setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+                return;
+              }
+            } catch {}
+            // Require long press
+            if (!longPressRef.current) {
+              skipNextMouseUpRef.current = true;
+              touchActiveRef.current = false;
+              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
               return;
             }
-            const container = preRef.current;
-            if (!container || typeof window === 'undefined' || !window.getSelection) return;
-            const sel = window.getSelection();
-            if (!sel || sel.rangeCount === 0) return;
-            const range = sel.getRangeAt(0);
-            if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
-            const { start, end } = getOffsetsWithin(container, range);
-            if (end > start) { onSelectRange?.({ start, end }); }
-            else { const sent = expandToSentence(text || '', start); if (sent) onSelectRange?.({ start: sent.start, end: sent.end }); }
+            const noteVisible = !!chosenItem;
+            const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
+            if (!noteVisible && hasRevealableNote) {
+              revealNoteForCurrentSpeech();
+              // After reveal, scroll the note into view
+              setTimeout(() => scrollAsideIntoView(), 80);
+              // Swallow and exit
+              skipNextMouseUpRef.current = true;
+              touchActiveRef.current = false;
+              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+              return;
+            }
+            // If we revealed during this same press, do not also select; just focus the note
+            if (noteVisible && revealedDuringPressRef.current) {
+              scrollAsideIntoView();
+              revealedDuringPressRef.current = false;
+              skipNextMouseUpRef.current = true;
+              touchActiveRef.current = false;
+              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+              return;
+            }
+            // If a note is already visible, long-press selects the sentence at press point
+            if (noteVisible) {
+              const container = preRef.current;
+              if (container && typeof window !== 'undefined' && window.getSelection) {
+                const sel = window.getSelection();
+                try { sel?.removeAllRanges?.(); } catch {}
+                const x = startXYRef.current?.x || (e.changedTouches && e.changedTouches[0]?.clientX) || 0;
+                const y = startXYRef.current?.y || (e.changedTouches && e.changedTouches[0]?.clientY) || 0;
+                const caretFromPoint = (cx, cy) => {
+                  if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx, cy);
+                  const pos = document.caretPositionFromPoint?.(cx, cy);
+                  if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
+                  return null;
+                };
+                const r = caretFromPoint(x, y);
+                if (r) {
+                  const r0 = document.createRange(); r0.selectNodeContents(container);
+                  const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
+                  const idx = before.toString().length;
+                  const sent = expandToSentence(text || '', idx);
+                  if (sent) { onSelectRange?.({ start: sent.start, end: sent.end }); }
+                }
+              }
+              scrollAsideIntoView();
+            }
+            // Swallow synthetic mouseup
+            skipNextMouseUpRef.current = true;
+            touchActiveRef.current = false;
+            setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
           }}
           style={{ cursor: 'pointer' }}
         >
@@ -1406,7 +1544,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a });
+                      arr.push({ q, a, model: (llm?.options?.model || '') });
                       return { ...prev, [key]: arr };
                     });
                     setPreFollowInput('');
@@ -1414,7 +1552,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a: `Error: ${String(e.message || e)}` });
+                      arr.push({ q, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || '') });
                       return { ...prev, [key]: arr };
                     });
                   } finally {
@@ -1459,37 +1597,47 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
                     <button type="button" className="closeBtn" onClick={handleCloseNote} aria-label="Close note" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
                     {(() => { const key = String(it.startOffset || 0); const display = (preNoteOverrides[key] != null ? preNoteOverrides[key] : (it.content || '')); return (
-                      <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); suppressNextAutoExplain?.(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
+                      <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
                     ); })()}
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
-                      {it.model ? `Model: ${it.model}` : ''}
+                      {(llm?.options?.model || it.model) ? `Model: ${llm?.options?.model || it.model}` : ''}
                     </div>
                     {showPreFollow && (
-                      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                        <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
-                        <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
-                        <button type="button" disabled={preFollowLoading} onClick={(e)=>{ e.stopPropagation(); (async()=>{
-                          const q = 'Expand into a longer, more detailed explanation without repeating earlier sentences.';
-                          try {
-                            setPreFollowLoading(true);
-                            const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                            const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                            const startC = bytesToCharOffset(text || '', startRelB);
-                            const endC = bytesToCharOffset(text || '', endRelB);
-                            const passage = (text || '').slice(startC, endC);
-                            const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                            const res = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q }) });
-                            const data = await res.json();
-                            if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                            const a = data?.content || '';
-                            const key = String(it.startOffset || 0);
-                            setPreNoteOverrides((prev)=>({ ...prev, [key]: a }));
-                          } catch (e) {
-                            const key = String(it.startOffset || 0);
-                            setPreFollowThreads((prev) => { const arr = Array.isArray(prev[key]) ? prev[key].slice() : []; arr.push({ q: 'More', a: `Error: ${String(e.message || e)}` }); return { ...prev, [key]: arr }; });
-                          } finally { setPreFollowLoading(false); }
+                      <>
+                        <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                          <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
+                          <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
+                          <button type="button" disabled={preFollowLoading} onClick={(e)=>{ e.stopPropagation(); (async()=>{
+                           const q = 'Expand into a longer, more detailed explanation without repeating earlier sentences.';
+                           try {
+                             setPreFollowLoading(true);
+                             const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+                             const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+                             const startC = bytesToCharOffset(text || '', startRelB);
+                             const endC = bytesToCharOffset(text || '', endRelB);
+                             const passage = (text || '').slice(startC, endC);
+                             const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+                             const res = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q }) });
+                             const data = await res.json();
+                             if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+                             const a = data?.content || '';
+                             const key = String(it.startOffset || 0);
+                             setPreNoteOverrides((prev)=>({ ...prev, [key]: a }));
+                           } catch (e) {
+                             const key = String(it.startOffset || 0);
+                             setPreFollowThreads((prev) => { const arr = Array.isArray(prev[key]) ? prev[key].slice() : []; arr.push({ q: 'More', a: `Error: ${String(e.message || e)}` }); return { ...prev, [key]: arr }; });
+                           } finally { setPreFollowLoading(false); }
                         })(); }} title="Get a longer response">More</button>
-                      </div>
+                        </div>
+                        {/* Quick note density controls (shown only when chat is open), on a new row below */}
+                        <div style={{ marginTop: '0.35rem', display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }} onClick={(e)=>e.stopPropagation()}>
+                          <span style={{ color: '#6b5f53', fontSize: '0.9em' }}>Notes:</span>
+                          <button type="button" onClick={()=>{ setNoteThreshold?.(100); try { if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex); } catch {} setForceShow(false); }} title="Hide all notes">None</button>
+                          <button type="button" onClick={()=>setNoteThreshold?.(50)} title="Show some notes">Some</button>
+                          <button type="button" onClick={()=>setNoteThreshold?.(70)} title="Show more notes">More</button>
+                          <button type="button" onClick={()=>setNoteThreshold?.(0)} title="Show all notes">All</button>
+                        </div>
+                      </>
                     )}
                     {preFollowLoading && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
                     {(() => {
@@ -1500,6 +1648,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                           {thread.map((m, idx) => (
                             <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
                               <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+                              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{m?.model ? `Model: ${m.model}` : (llm?.options?.model ? `Model: ${llm.options.model}` : '')}</div>
                             </div>
                           ))}
                         </div>
@@ -1533,7 +1682,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       const len = new TextEncoder().encode(ex.meta.text || '').length;
                       const url = buildSelectionLink(ex.meta.byteOffset, len);
                       navigator.clipboard?.writeText(url);
-                      setHashForSelection(ex.meta.byteOffset, len);
                     }
                   }}
                   onDelete={() => {
@@ -1865,6 +2013,7 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           {thread.map((m, i) => (
             <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
               <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
             </div>
           ))}
         </div>
