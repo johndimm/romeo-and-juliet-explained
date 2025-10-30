@@ -9,6 +9,19 @@ export default function App({ Component, pageProps }) {
   const isPlayPage = router && router.pathname === '/';
   const headerRef = React.useRef(null);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+  
+  // Detect mobile screen size (matching CSS breakpoint at 820px)
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 820);
+    };
+    checkMobile();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+  }, []);
   // Add a class on <html> when on the print route so CSS can adjust layout/scrolling
   React.useEffect(() => {
     if (typeof document === 'undefined') return;
@@ -74,7 +87,21 @@ export default function App({ Component, pageProps }) {
             )}
             <Link href="/user-guide" className="lnk-guide" style={isPlayPage ? { marginLeft: 12 } : { marginLeft: 0 }}><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
             <Link href="/about" className="lnk-about" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
-            <Link href="/settings" className="lnk-settings" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
+            {isMobile ? (
+              <a 
+                href="#" 
+                className="lnk-settings" 
+                style={{ marginLeft: 12 }} 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowMobileMenu(!showMobileMenu);
+                }}
+              >
+                <span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span>
+              </a>
+            ) : (
+              <Link href="/settings" className="lnk-settings" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
+            )}
           </nav>
         </div>
       </header>

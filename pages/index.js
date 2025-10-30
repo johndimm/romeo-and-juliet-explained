@@ -307,15 +307,16 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [showTocButton, setShowTocButton] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const lastPosSaveRef = useRef(0);
+  const restoreCompletedRef = useRef(false); // Track if restore has completed to prevent multiple restores
   // Check immediately if we have a saved position to restore (before scroll handler can overwrite it)
   const restoreAttemptedRef = useRef((() => {
     if (typeof window === 'undefined') return false;
     try {
       const rawScroll = localStorage.getItem('last-scroll');
       const savedScroll = rawScroll ? parseFloat(rawScroll) : NaN;
-      // If we have a valid saved scroll position that's significant (> 500px), prevent saving until restore completes
-      // Ignore small positions that might be from old boilerplate
-      const hasValidPosition = !isNaN(savedScroll) && savedScroll > 500;
+      // If we have a valid saved scroll position that's not at the very top (> 50px), prevent saving until restore completes
+      // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
+      const hasValidPosition = !isNaN(savedScroll) && savedScroll > 50;
       console.log('[init] Checking saved scroll position:', { scrollTop: savedScroll, hasValidPosition });
       return hasValidPosition;
     } catch {
@@ -405,9 +406,25 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           // Don't save position if we're at the top - this is likely from page load, not intentional scrolling
           // Only save if we've actually scrolled away from the top
           if (scrollTop > 100) {
+            // Save which container type we're using so we can restore to the same one
+            // More reliably detect container: check if it's .container, .page, or window
+            let containerType = 'window';
+            if (s !== window) {
+              if (s.classList && s.classList.contains('container')) {
+                containerType = 'container';
+              } else if (s.classList && s.classList.contains('page')) {
+                containerType = 'page';
+              } else {
+                // Fallback: check if it matches selectors
+                const isContainer = document.querySelector('.container') === s;
+                const isPage = document.querySelector('.page') === s;
+                containerType = isContainer ? 'container' : (isPage ? 'page' : 'unknown');
+              }
+            }
             localStorage.setItem('last-scroll', String(scrollTop));
             localStorage.setItem('last-scrollHeight', String(scrollHeight));
-            console.log('[scroll] Saving scroll position:', { scrollTop, scrollHeight });
+            localStorage.setItem('last-scroll-container', containerType);
+            console.log('[scroll] Saving scroll position:', { scrollTop, scrollHeight, containerType, element: s === window ? 'window' : s.className });
           } else {
             console.log('[scroll] Skipping save - at top position (scrollTop:', scrollTop, ')');
           }
@@ -428,6 +445,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // Restore reading position on load (when there is no deep-link selection)
   useEffect(() => {
     try {
+      // Prevent multiple restores if already completed
+      if (restoreCompletedRef.current) {
+        console.log('[restore] Already completed, skipping');
+        return;
+      }
       if (!sectionsWithOffsets || !sectionsWithOffsets.length) {
         console.log('[restore] No sections available');
         return;
@@ -442,25 +464,29 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       }
       let savedScroll = NaN;
       let savedScrollHeight = NaN;
+      let savedContainerType = null;
       const rawScroll = localStorage.getItem('last-scroll');
       if (rawScroll) savedScroll = parseFloat(rawScroll);
       const rawScrollHeight = localStorage.getItem('last-scrollHeight');
       if (rawScrollHeight) savedScrollHeight = parseFloat(rawScrollHeight);
-      console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight });
+      const rawContainerType = localStorage.getItem('last-scroll-container');
+      if (rawContainerType) savedContainerType = rawContainerType;
+      console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
       
       // Check if we have a valid scroll position to restore
-      // Ignore small scroll positions (likely from old boilerplate or near-top positions)
-      // Only restore if scroll position is significant (> 500px)
-      const hasValidScroll = !isNaN(savedScroll) && savedScroll > 500;
+      // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
+      // Allow restoring positions > 50px (including near-top positions like Prologue)
+      const hasValidScroll = !isNaN(savedScroll) && savedScroll > 50;
       
       if (!hasValidScroll) {
         console.log('[restore] No valid scroll position to restore (savedScroll:', savedScroll, '), starting at top');
-        // Clear any old small saved positions
+        // Only clear positions that are exactly 0 or very close (likely from page load, not intentional scrolling)
         try {
-          if (!isNaN(savedScroll) && savedScroll > 0 && savedScroll <= 500) {
+          if (!isNaN(savedScroll) && savedScroll <= 50) {
             localStorage.removeItem('last-scroll');
             localStorage.removeItem('last-scrollHeight');
-            console.log('[restore] Cleared old small saved position');
+            localStorage.removeItem('last-scroll-container');
+            console.log('[restore] Cleared very small saved position (likely from page load)');
           }
         } catch {}
         restoreAttemptedRef.current = false; // No restore needed, allow saving
@@ -476,11 +502,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const maxAttempts = 20; // Try for up to 2 seconds
       const savedScrollValue = savedScroll; // Capture for closure
       const savedScrollHeightValue = savedScrollHeight; // Capture for closure
+      const savedContainerTypeValue = savedContainerType; // Capture for closure
       
       // Wait for DOM to be ready, then restore position
       const restorePosition = () => {
         attempts++;
-        const scroller = getScroller();
+        let scroller = getScroller();
         
         // Check if scroller exists and has scrollable content
         if (!scroller) {
@@ -491,6 +518,36 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           }
           return;
         }
+        
+        // Check if the container type matches what we saved
+        // More reliably detect current container
+        let currentContainerType = 'window';
+        if (scroller !== window) {
+          if (scroller.classList && scroller.classList.contains('container')) {
+            currentContainerType = 'container';
+          } else if (scroller.classList && scroller.classList.contains('page')) {
+            currentContainerType = 'page';
+          } else {
+            const isContainer = document.querySelector('.container') === scroller;
+            const isPage = document.querySelector('.page') === scroller;
+            currentContainerType = isContainer ? 'container' : (isPage ? 'page' : 'unknown');
+          }
+        }
+        const containerMismatch = savedContainerTypeValue && savedContainerTypeValue !== currentContainerType;
+        
+        // On mobile, .page is the scroll container; on desktop it might be .container or window
+        // If we're restoring on mobile but saved on desktop (or vice versa), we might need to adjust
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
+        const wasMobile = savedContainerTypeValue === 'page';
+        
+        console.log('[restore] Container check:', {
+          current: currentContainerType,
+          saved: savedContainerTypeValue,
+          mismatch: containerMismatch,
+          isMobile,
+          wasMobile,
+          element: scroller === window ? 'window' : scroller.className
+        });
         
         // Check if sections are rendered (at least first section)
         const hasSections = sectionElsRef.current && sectionElsRef.current.length > 0 && sectionElsRef.current[0];
@@ -514,27 +571,61 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         }
         
         console.log('[restore] Attempting restore at attempt', attempts, {
-          scroller: scroller === window ? 'window' : scroller.className,
+          scroller: currentContainerType,
           scrollHeight: scroller.scrollHeight,
           clientHeight: scroller.clientHeight,
-          savedScroll: savedScrollValue
+          savedScroll: savedScrollValue,
+          savedHeight: savedScrollHeightValue,
+          containerMismatch
         });
         
         // Calculate target scroll position - adjust for layout changes if scrollHeight changed
         let targetScroll = savedScrollValue;
         const currentScrollHeight = scroller === window ? document.documentElement.scrollHeight : scroller.scrollHeight;
         
-        // If layout changed significantly, adjust scroll position proportionally
-        if (!isNaN(savedScrollHeightValue) && savedScrollHeightValue > 0 && currentScrollHeight !== savedScrollHeightValue) {
+        // On mobile, .page container has different scroll context (starts after header)
+        // Be more careful with proportional adjustment on mobile
+        // (isMobile already defined above in this function scope)
+        
+        // Only adjust proportionally if:
+        // 1. We have both old and new scrollHeight values
+        // 2. The change is significant (> 10% difference) to avoid tiny adjustments that make things worse
+        // 3. AND the saved scroll position is far enough from top (> 1000px) that proportional adjustment makes sense
+        // 4. AND we're NOT on mobile with a container mismatch (too unreliable)
+        const shouldAdjust = !isNaN(savedScrollHeightValue) && savedScrollHeightValue > 0 && currentScrollHeight > 0;
+        const heightDiff = Math.abs(currentScrollHeight - savedScrollHeightValue);
+        const heightDiffPercent = savedScrollHeightValue > 0 ? (heightDiff / savedScrollHeightValue) * 100 : 0;
+        const significantChange = heightDiffPercent > 10; // More than 10% change
+        const isFarFromTop = savedScrollValue > 1000; // Only do proportional adjustment for positions far from top
+        const skipMobileAdjust = isMobile && containerMismatch; // Skip adjustment on mobile if container changed
+        
+        if (shouldAdjust && !skipMobileAdjust && ((significantChange && isFarFromTop) || (containerMismatch && isFarFromTop && !isMobile))) {
           const ratio = savedScrollValue / savedScrollHeightValue;
           targetScroll = currentScrollHeight * ratio;
           console.log('[restore] Layout changed - adjusting scroll:', { 
             oldScroll: savedScrollValue, 
             oldHeight: savedScrollHeightValue, 
             newHeight: currentScrollHeight,
+            heightDiff,
+            heightDiffPercent: heightDiffPercent.toFixed(1) + '%',
             adjustedScroll: targetScroll,
-            ratio 
+            ratio: ratio.toFixed(4),
+            reason: containerMismatch ? 'container mismatch' : 'significant height change'
           });
+        } else if (skipMobileAdjust) {
+          // On mobile with container mismatch, use saved position directly (adjustment too unreliable)
+          console.log('[restore] Mobile + container mismatch - using saved position directly (adjustment skipped)');
+          // Keep targetScroll as savedScrollValue (no adjustment)
+        } else if (shouldAdjust && (!significantChange || !isFarFromTop)) {
+          // Small change or near top, use saved position directly (proportional adjustment unreliable for small positions)
+          console.log('[restore] Using saved position directly (small change:', heightDiffPercent.toFixed(1), '% or near top:', savedScrollValue, 'px)');
+          // Keep targetScroll as savedScrollValue (no adjustment)
+        } else if (containerMismatch && !shouldAdjust) {
+          // Container changed but no height info, log warning
+          console.log('[restore] Container type mismatch but no saved height - using saved position directly');
+        } else {
+          // Default: use saved position directly
+          console.log('[restore] Using saved position directly (no adjustment needed)');
         }
         
         // Apply scroll position immediately
@@ -543,47 +634,71 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           console.log('[restore] Set window.scrollY to', targetScroll, '(original:', savedScrollValue, ')');
         } else {
           scroller.scrollTop = targetScroll;
-          console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ')');
+          console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ', isMobile:', isMobile, ')');
         }
         
-        // After initial scroll, wait a bit then verify
+        // On mobile, wait longer for layout to stabilize (header height calculation, font loading, etc.)
+        const waitTime = isMobile ? 600 : 400;
+        
+        // After initial scroll, wait for layout to settle, then verify (single check, no multiple adjustments)
         setTimeout(() => {
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
               const actualScroll = scroller === window ? window.scrollY : scroller.scrollTop;
               const diff = Math.abs(actualScroll - targetScroll);
-              console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff });
+              console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff, isMobile });
               
-              if (diff <= 50) {
-                // Close enough - restore succeeded
-                console.log('[restore] Successfully restored scroll position (diff:', diff, 'px)');
-              } else {
-                // Try one more adjustment
-                console.log('[restore] Adjusting scroll position (diff was', diff, 'px)');
+              // For mobile, be very conservative - only adjust if extremely off and it's a significant position
+              // The "scrolls down a few lines" issue suggests the initial restore is slightly off
+              const threshold = isMobile ? 300 : 100; // Much higher threshold on mobile
+              
+              if (diff > threshold && savedScrollValue > 1000) {
+                // Only refine if way off and position is far enough from top that adjustment makes sense
+                console.log('[restore] Large offset detected (', diff, 'px), attempting single refinement');
+                
+                // Use the saved position directly (avoid recalculation which can cause more issues)
+                const refinedTarget = savedScrollValue;
+                
+                // Apply refined position once
                 if (scroller === window) {
-                  window.scrollTo({ top: targetScroll, behavior: 'auto' });
+                  window.scrollTo({ top: refinedTarget, behavior: 'auto' });
                 } else {
-                  scroller.scrollTop = targetScroll;
+                  scroller.scrollTop = refinedTarget;
                 }
+                
+                console.log('[restore] Applied refinement to saved position:', refinedTarget);
+                
+                // Wait a bit more on mobile before marking complete
+                setTimeout(() => {
+                  restoreCompletedRef.current = true;
+                  restoreAttemptedRef.current = false;
+                  console.log('[restore] Restore complete, saving enabled');
+                }, isMobile ? 400 : 300);
+              } else {
+                console.log('[restore] Position acceptable (diff:', diff, 'px, threshold:', threshold, ')');
+                
+                // Mark restore as completed and enable saving after a short delay
+                restoreCompletedRef.current = true;
+                setTimeout(() => {
+                  restoreAttemptedRef.current = false;
+                  console.log('[restore] Restore complete, saving enabled');
+                }, isMobile ? 400 : 300);
               }
-              
-              // Restore completed, allow saving again after a short delay
-              setTimeout(() => {
-                restoreAttemptedRef.current = false;
-                console.log('[restore] Restore complete, saving enabled');
-              }, 500);
             });
           });
-        }, 200);
+        }, waitTime);
       };
       
       // Wait for layout and fonts to settle, then restore
       // Use multiple timeouts to handle different loading scenarios
+      // Wait longer on first attempt to ensure layout is stable
       setTimeout(() => {
         requestAnimationFrame(() => {
-          setTimeout(restorePosition, 50);
+          setTimeout(() => {
+            requestAnimationFrame(restorePosition);
+          }, 100);
         });
-      }, 200);
+      }, 300);
     } catch {}
   }, [sectionsWithOffsets, metadata]);
 
@@ -1411,8 +1526,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const noteVisible = !!chosenItem;
     const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
     if (!noteVisible && hasRevealableNote) {
-      // Reveal-only click: just show the note; do not suppress future auto-explain
+      // Reveal-only click: just show the note; do not trigger selection or LLM query
       revealNoteForCurrentSpeech();
+      // Clear any selection to prevent triggering LLM query
+      if (typeof window !== 'undefined' && window.getSelection) {
+        try {
+          const sel = window.getSelection();
+          if (sel) sel.removeAllRanges();
+        } catch {}
+      }
+      // Suppress auto-explain for this reveal click
+      if (suppressNextAutoExplain) suppressNextAutoExplain.current = true;
       return;
     }
     // If the note is visible, a click selects the sentence; click-drag selects a custom range
@@ -1670,7 +1794,33 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           className="explanations"
           aria-label="Explanations"
           ref={asideRef}
-          // No click-to-close; use the X button in the panel header
+          onClick={(e) => {
+            // If clicking on empty aside area and note is hidden but available, reveal it
+            // Check if click is directly on the aside element or on empty space (not on a child element with content)
+            const clickedEmptySpace = !chosenItem && canForceReveal && (
+              e.target === asideRef.current || 
+              (e.target === asideRef.current?.firstChild && !asideRef.current.firstChild?.textContent?.trim())
+            );
+            if (clickedEmptySpace) {
+              e.stopPropagation();
+              revealNoteForCurrentSpeech();
+              scrollAsideIntoView();
+              return;
+            }
+            // Also check if clicking on the aside itself when it's empty (no saved explanations, no chosen item)
+            if (!chosenItem && !savedExplanations?.length && canForceReveal && asideRef.current?.contains(e.target)) {
+              const hasVisibleContent = Array.from(asideRef.current?.children || []).some(
+                child => child.textContent?.trim() && !child.classList?.contains('placeholder')
+              );
+              if (!hasVisibleContent) {
+                e.stopPropagation();
+                revealNoteForCurrentSpeech();
+                scrollAsideIntoView();
+                return;
+              }
+            }
+          }}
+          style={{ cursor: canForceReveal && !chosenItem ? 'pointer' : 'default' }}
         >
           {/* Aside is only rendered when it has content to show */}
           {/* New explanations appear as separate cards below; no inline panel */}
@@ -1809,10 +1959,55 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                         {/* Quick note density controls (shown only when chat is open), on a new row below */}
                         <div style={{ marginTop: '0.35rem', display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }} onClick={(e)=>e.stopPropagation()}>
                           <span style={{ color: '#6b5f53', fontSize: '0.9em' }}>Notes:</span>
-                          <button type="button" onClick={()=>{ setNoteThreshold?.(100); try { if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex); } catch {} setForceShow(false); }} title="Hide all notes">None</button>
-                          <button type="button" onClick={()=>setNoteThreshold?.(50)} title="Show some notes">Some</button>
-                          <button type="button" onClick={()=>setNoteThreshold?.(70)} title="Show more notes">More</button>
-                          <button type="button" onClick={()=>setNoteThreshold?.(0)} title="Show all notes">All</button>
+                          {(() => {
+                            // Helper to get label from threshold (matching settings.js logic)
+                            const getNotesLabel = (threshold) => {
+                              if (threshold >= 100) return 'none';
+                              if (threshold >= 70) return 'some';
+                              if (threshold >= 30) return 'more';
+                              return 'all';
+                            };
+                            const currentLabel = getNotesLabel(noteThreshold || 50);
+                            const buttons = [
+                              { label: 'none', value: 100 },
+                              { label: 'some', value: 70 },
+                              { label: 'more', value: 30 },
+                              { label: 'all', value: 0 }
+                            ];
+                            return buttons.map(({ label, value }) => {
+                              const isSelected = currentLabel === label;
+                              return (
+                                <button
+                                  key={label}
+                                  type="button"
+                                  onClick={() => {
+                                    setNoteThreshold?.(value);
+                                    try {
+                                      if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex);
+                                    } catch {}
+                                    if (value === 100) setForceShow(false);
+                                  }}
+                                  title={label === 'none' ? 'Hide all notes' : label === 'all' ? 'Show all notes' : `Show ${label} notes`}
+                                  style={{
+                                    padding: '0.25rem 0.5rem',
+                                    border: '2px solid',
+                                    borderRadius: '4px',
+                                    background: isSelected ? '#e7d7b8' : '#f8f6f3',
+                                    borderColor: isSelected ? '#c9b99a' : '#d8d5d0',
+                                    color: '#3b3228',
+                                    fontWeight: isSelected ? 600 : 500,
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease',
+                                    fontSize: '0.85rem',
+                                    textTransform: 'capitalize',
+                                    boxShadow: isSelected ? 'inset 0 2px 4px rgba(0,0,0,0.1)' : 'none'
+                                  }}
+                                >
+                                  {label}
+                                </button>
+                              );
+                            });
+                          })()}
                         </div>
                       </>
                     )}

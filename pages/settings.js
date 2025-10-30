@@ -256,34 +256,53 @@ export default function Settings() {
               style={{ width: '100%' }}
             />
             <div className="button-group" style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <button 
-                type="button" 
-                onClick={() => handleNoteThresholdChange(getNotesValue('none'))}
-                style={getNotesLabel(noteThreshold) === 'none' ? { background: '#e7d7b8', borderColor: '#c9b99a' } : {}}
-              >
-                None
-              </button>
-              <button 
-                type="button" 
-                onClick={() => handleNoteThresholdChange(getNotesValue('some'))}
-                style={getNotesLabel(noteThreshold) === 'some' ? { background: '#e7d7b8', borderColor: '#c9b99a' } : {}}
-              >
-                Some
-              </button>
-              <button 
-                type="button" 
-                onClick={() => handleNoteThresholdChange(getNotesValue('more'))}
-                style={getNotesLabel(noteThreshold) === 'more' ? { background: '#e7d7b8', borderColor: '#c9b99a' } : {}}
-              >
-                More
-              </button>
-              <button 
-                type="button" 
-                onClick={() => handleNoteThresholdChange(getNotesValue('all'))}
-                style={getNotesLabel(noteThreshold) === 'all' ? { background: '#e7d7b8', borderColor: '#c9b99a' } : {}}
-              >
-                All
-              </button>
+              {['none', 'some', 'more', 'all'].map((label) => {
+                const value = getNotesValue(label);
+                const isSelected = getNotesLabel(noteThreshold) === label;
+                return (
+                  <label
+                    key={label}
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.5rem 1rem',
+                      border: '2px solid',
+                      borderRadius: '6px',
+                      background: isSelected ? '#e7d7b8' : '#f8f6f3',
+                      borderColor: isSelected ? '#c9b99a' : '#d8d5d0',
+                      color: '#3b3228',
+                      fontWeight: isSelected ? 600 : 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      fontSize: '0.95rem',
+                      textTransform: 'capitalize',
+                      boxShadow: isSelected ? 'inset 0 2px 4px rgba(0,0,0,0.1)' : 'none',
+                      transform: isSelected ? 'none' : 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.background = '#e7d7b8';
+                        e.currentTarget.style.borderColor = '#c9b99a';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.background = '#f8f6f3';
+                        e.currentTarget.style.borderColor = '#d8d5d0';
+                      }
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="notesDensity"
+                      value={value}
+                      checked={isSelected}
+                      onChange={() => handleNoteThresholdChange(value)}
+                      style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
+                    />
+                    {label}
+                  </label>
+                );
+              })}
             </div>
           </div>
         </div>
