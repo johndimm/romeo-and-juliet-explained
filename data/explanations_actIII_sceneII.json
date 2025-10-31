@@ -5,7 +5,7 @@
     "speaker": "JULIET",
     "startOffset": 76727,
     "endOffset": 78181,
-    "content": "She urgently calls for night to come so she can be with Romeo, imagining lovers can see by their own beauty or love’s blindness suits the dark. She asks night to teach her to lose her virginity modestly and hide her blushing cheeks until love grows bold. She envisions Romeo as a bright star in the night, making heaven so beautiful that the world would prefer night to day. She feels she has bought love’s mansion but not possessed it, comparing her impatience to a child with new clothes before a festival.",
+    "content": "Juliet implores the sun's horses to hurry toward sunset so night can come, allowing Romeo to visit her secretly. She imagines lovers can see by their own beauty or love's blindness fits night. She asks night to teach her to lose her virginity modestly and hide her blushing cheeks until love grows bold. She calls Romeo her day within night, whiter than snow on a raven, and fantasizes that after death he will become stars making night so beautiful the world ignores the sun. She feels she has bought love's mansion but not possessed it, and this day is as tedious as a child waiting to wear new robes. She sees the Nurse coming with news, and any word of Romeo is heavenly.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 85
@@ -13,54 +13,164 @@
   {
     "act": "III",
     "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 78342,
-    "endOffset": 78557,
-    "content": "She asks the Nurse for news and if she has brought the ropes Romeo requested.",
+    "speaker": "NURSE",
+    "startOffset": 78291,
+    "endOffset": 78342,
+    "content": "The Nurse confirms she has the ropes Romeo asked for, throwing them down in distress.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 78342,
+    "endOffset": 78400,
+    "content": "Juliet asks why the Nurse is wringing her hands and what news she brings.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 78400,
+    "endOffset": 78557,
+    "content": "The Nurse exclaims repeatedly that Romeo is dead and they are ruined, using old-fashioned expressions of grief like 'well-a-day' and 'alack the day'.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 78557,
-    "endOffset": 78688,
-    "content": "She expresses distress at the Nurse’s anguish and asks why she is wringing her hands.",
+    "endOffset": 78592,
+    "content": "Juliet asks if heaven could be so envious as to cause this.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 78592,
+    "endOffset": 78688,
+    "content": "The Nurse says Romeo can do this, though heaven cannot, and expresses shock that anyone would have thought it of him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
   },
   {
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 78688,
-    "endOffset": 79306,
-    "content": "She asks if heaven could be so envious, then demands whether Romeo has killed himself, saying a simple 'Ay' would poison her. She insists brief sounds will decide her joy or misery.",
+    "endOffset": 79078,
+    "content": "Juliet calls the Nurse a devil tormenting her, saying this torture belongs in hell. She asks if Romeo killed himself, saying a mere 'Ay' would poison her more than a cockatrice's deadly gaze. She says she would not be herself if he were dead, and that brief sounds will decide her happiness or misery.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 70
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79078,
+    "endOffset": 79306,
+    "content": "The Nurse says she saw the wound on his breast—God save the mark—and describes him as a pitiful corpse, pale as ashes and covered in blood, making her swoon at the sight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
   },
   {
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 79306,
-    "endOffset": 79622,
-    "content": "She wishes her heart to break and her eyes never to see freedom again, telling her body to return to earth and lie with Romeo in death.",
+    "endOffset": 79493,
+    "content": "Juliet tells her heart to break at once, calls herself a bankrupt, and tells her eyes to go to prison and never see freedom again. She tells her body to return to earth and end life, so she and Romeo can share one funeral bier.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79493,
+    "endOffset": 79622,
+    "content": "The Nurse mourns Tybalt as her best friend, a courteous and honest gentleman, and laments having lived to see him dead.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
   },
   {
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 79622,
+    "endOffset": 79844,
+    "content": "Juliet asks what storm blows so contrary—is Romeo slaughtered and Tybalt dead? She calls Tybalt her dearest cousin and Romeo her dearer husband, then says the final trumpet of Judgment Day should sound, for who is left alive if those two are gone?",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79844,
     "endOffset": 79929,
-    "content": "She questions the contradictory news, asking if Romeo is slain and Tybalt dead—her dear cousin and dearer husband. She says if both are gone, it is like the end of the world.",
+    "content": "The Nurse clarifies that Tybalt is gone and Romeo, who killed him, is banished.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 79929,
+    "endOffset": 79987,
+    "content": "Juliet asks in horror if Romeo's hand shed Tybalt's blood.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 79987,
+    "endOffset": 80033,
+    "content": "The Nurse confirms it did, alas the day.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 80033,
+    "endOffset": 80564,
+    "content": "Juliet erupts in oxymorons, calling Romeo a serpent heart hidden by a flowering face, a dragon in a fair cave, a beautiful tyrant, angelic fiend, raven with dove feathers, wolf-like lamb. She says he is the opposite of what he seems—a damned saint, honorable villain. She asks why nature placed a fiend's spirit in such sweet flesh, like a book with vile matter beautifully bound, and that deceit lives in a gorgeous palace.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 80
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 80564,
+    "endOffset": 80801,
+    "content": "The Nurse says there is no trust, faith, or honesty in men; all are perjured, forsworn, worthless, and dissemblers. She calls for her man and some aqua vitae (alcohol) because these griefs make her old, and she wishes shame upon Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -69,9 +179,9 @@
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
-    "startOffset": 79929,
-    "endOffset": 80033,
-    "content": "She asks in horror if Romeo’s hand shed Tybalt’s blood.",
+    "startOffset": 80801,
+    "endOffset": 81046,
+    "content": "Juliet curses the Nurse’s tongue for wishing shame on Romeo, saying shame itself would be ashamed to touch his brow, which is a throne for honor. She then regrets having criticized him earlier.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -79,10 +189,21 @@
   {
     "act": "III",
     "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 81046,
+    "endOffset": 81108,
+    "content": "The Nurse asks if Juliet will praise the man who killed her cousin Tybalt.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "II",
     "speaker": "JULIET",
-    "startOffset": 80033,
-    "endOffset": 80801,
-    "content": "She condemns Romeo’s deceptive appearance, calling him a serpent heart with a flowering face, a beautiful tyrant, and a damned saint. She wonders how a fiend could dwell in such sweet flesh, like a vile book in a gorgeous binding.",
+    "startOffset": 81108,
+    "endOffset": 82517,
+    "content": "Juliet defends Romeo as her husband and laments that she, his wife of only three hours, has spoken ill of him. She reasons that Tybalt would have killed Romeo, so Romeo’s survival is a comfort, yet she weeps because Romeo’s banishment is worse than Tybalt’s death—it feels like endless, boundless sorrow, as if all her family and love are dead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
@@ -90,35 +211,35 @@
   {
     "act": "III",
     "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 80801,
-    "endOffset": 81108,
-    "content": "She curses the Nurse for wishing shame on Romeo, saying shame is ashamed to sit on his brow, which is a throne for honor. She regrets chiding him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "III",
-    "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 81108,
+    "speaker": "NURSE",
+    "startOffset": 82517,
     "endOffset": 82615,
-    "content": "She defends Romeo as her husband and reasons that Tybalt would have killed him. She calls back her tears, realizing her husband lives and Tybalt is dead, which is comfort—but then remembers Romeo’s banishment, which is worse than ten thousand Tybalts’ deaths. She says that word means all—father, mother, Tybalt, Romeo, Juliet—are dead, with no limit to that woe.",
+    "content": "The Nurse says Juliet’s parents are weeping over Tybalt’s body and offers to take Juliet to them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 15
   },
   {
     "act": "III",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 82615,
-    "endOffset": 83157,
-    "content": "She says her parents can weep for Tybalt, but her tears will be for Romeo’s exile. She laments that the ropes meant to bring Romeo to her bed are useless, and she will die a maiden widow, with death taking her virginity.",
+    "endOffset": 82981,
+    "content": "Juliet says her parents can weep for Tybalt, but her tears will be for Romeo’s banishment. She addresses the bed cords, saying they were meant to lead Romeo to her bed, but now she will die a virgin widow, with death taking her maidenhead instead of Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 70
+  },
+  {
+    "act": "III",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 82981,
+    "endOffset": 83157,
+    "content": "The Nurse tells Juliet to go to her room and says she knows where Romeo is hiding—at Friar Lawrence’s cell—and will bring him to comfort her tonight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -126,9 +247,9 @@
     "speaker": "JULIET",
     "startOffset": 83157,
     "endOffset": 83256,
-    "content": "She asks the Nurse to find Romeo, give him a ring, and bid him come for a last farewell.",
+    "content": "Juliet asks the Nurse to give Romeo a ring and tell him to come for a final farewell.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   }
 ]

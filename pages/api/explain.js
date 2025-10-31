@@ -25,7 +25,7 @@ export default async function handler(req, res) {
       return m;
     }
     if (p === 'anthropic') {
-      if (!m || !/^claude/.test(m)) return 'claude-3-5-sonnet-20240620';
+      if (!m || !/^claude/.test(m)) return 'claude-3-sonnet-20240229';
       return m;
     }
     if (p === 'deepseek') {

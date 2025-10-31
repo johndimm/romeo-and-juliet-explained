@@ -8,7 +8,7 @@
     "content": "Romeo asks how he can leave when his heart remains with Juliet. He tells his body to turn back and find its center, meaning his heart, then climbs the wall into the Capulet orchard.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -16,7 +16,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 36965,
     "endOffset": 37007,
-    "content": "Benvolio calls out for Romeo, showing his concern and confusion about his cousin's disappearance.",
+    "content": "Benvolio calls for Romeo, using 'cousin' here to mean kinsman or close friend.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 10
@@ -27,40 +27,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 37007,
     "endOffset": 37076,
-    "content": "Mercutio jokes that Romeo has wisely gone home to bed, using sarcasm to dismiss Benvolio's worry.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "II",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 37076,
-    "endOffset": 37157,
-    "content": "Benvolio insists Romeo ran this way and jumped the wall, urging Mercutio to call for him again.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 25
-  },
-  {
-    "act": "II",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 37157,
-    "endOffset": 37843,
-    "content": "Mercutio mockingly summons Romeo as if by magic, calling him by exaggerated lover's traits and invoking Rosaline's features. He references Cupid and King Cophetua to satirize romantic idealism, concluding that Romeo must be 'dead' to the world and needs conjuring.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "II",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 37843,
-    "endOffset": 37895,
-    "content": "Benvolio warns that if Romeo hears this mockery, it will anger him, showing his more cautious nature.",
+    "content": "Mercutio jokes that Romeo has sensibly stolen away home to bed.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -68,13 +35,46 @@
   {
     "act": "II",
     "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37076,
+    "endOffset": 37157,
+    "content": "Benvolio insists Romeo came this way and jumped the orchard wall, urging Mercutio to call for him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "I",
     "speaker": "MERCUTIO",
-    "startOffset": 37895,
-    "endOffset": 38209,
-    "content": "Mercutio claims his conjuring won't anger Romeo, but conjuring a spirit in his mistress's 'circle' (a sexual pun) would. He insists his invocation is honest and meant only to summon Romeo himself.",
+    "startOffset": 37157,
+    "endOffset": 37843,
+    "content": "Mercutio mockingly summons Romeo as if by magic, calling him by lover's traits and invoking Rosaline's features. He references Cupid and the tale of King Cophetua loving a beggar-maid, then declares Romeo must be dead to the world.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 37843,
+    "endOffset": 37895,
+    "content": "Benvolio warns that if Romeo hears this mocking, he will be angered.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "II",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 37895,
+    "endOffset": 38209,
+    "content": "Mercutio claims his conjuring won't anger Romeo, but summoning a spirit in his mistress's magical circle until she dismisses it would be an insult. He insists his own invocation is honest and meant only to call Romeo forth.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 65
   },
   {
     "act": "II",
@@ -93,7 +93,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 38350,
     "endOffset": 38719,
-    "content": "Mercutio quips that if love is blind, it can't hit its target. He then makes a series of crude puns about medlar fruit (open-arse) and poperin pear, implying sexual desire. He gives up, saying he'll go to his trundle bed, finding the field too cold.",
+    "content": "Mercutio puns that if love is blind, it cannot hit its target. He then makes a series of crude sexual jokes about medlar fruit, which was slang for female genitalia, and 'poperin pear' for the male, wishing Romeo and his mistress were such fruits. He concludes he is going to his trundle bed, finding the field too cold.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 85
@@ -104,9 +104,9 @@
     "speaker": "BENVOLIO",
     "startOffset": 38719,
     "endOffset": 38803,
-    "content": "Benvolio agrees they should leave, recognizing it's pointless to search for someone who doesn't want to be found.",
+    "content": "Benvolio agrees they should leave, since it is pointless to search for someone who does not wish to be found.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   }
 ]

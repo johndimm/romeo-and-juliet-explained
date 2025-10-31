@@ -5,10 +5,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 104632,
     "endOffset": 104691,
-    "content": "He expresses surprise that the wedding is scheduled for Thursday, noting the short timeframe.",
+    "content": "He expresses surprise that the wedding is set for Thursday, noting the short time frame.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "IV",
@@ -16,10 +16,10 @@
     "speaker": "PARIS",
     "startOffset": 104691,
     "endOffset": 104776,
-    "content": "He explains that Capulet insists on this haste, and he himself is not reluctant to delay it.",
+    "content": "He explains that Capulet wants it this way, and he is not reluctant to slow down his haste.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   },
   {
     "act": "IV",
@@ -27,10 +27,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 104776,
     "endOffset": 104873,
-    "content": "He points out that Paris doesn't know Juliet's feelings and calls the situation irregular and troubling.",
+    "content": "He points out that Paris does not know Juliet's feelings and calls the situation irregular and troubling.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "IV",
@@ -38,7 +38,7 @@
     "speaker": "PARIS",
     "startOffset": 104873,
     "endOffset": 105289,
-    "content": "He says Juliet is grieving excessively for Tybalt, so he hasn't pressed his suit, as love doesn't flourish amid sorrow. Capulet believes letting her mourn alone is dangerous, so he arranges the marriage to distract her with company.",
+    "content": "He says Juliet weeps excessively for Tybalt, so he has avoided speaking of love, since love (Venus) does not belong in a grieving house. Capulet thinks her deep sorrow is dangerous and arranges the marriage to stop her tears by giving her company.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -49,10 +49,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 105289,
     "endOffset": 105413,
-    "content": "In an aside, he wishes he didn't know the real reason to delay the wedding, then announces Juliet's arrival.",
+    "content": "In an aside, he wishes he did not know why the marriage should be delayed, then announces Juliet's arrival.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 30
   },
   {
     "act": "IV",
@@ -60,10 +60,10 @@
     "speaker": "PARIS",
     "startOffset": 105429,
     "endOffset": 105471,
-    "content": "He greets Juliet warmly as his future wife.",
+    "content": "He greets Juliet warmly as his wife-to-be.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "IV",
@@ -71,10 +71,10 @@
     "speaker": "JULIET",
     "startOffset": 105471,
     "endOffset": 105520,
-    "content": "She replies with cautious ambiguity, saying she might be his wife if she ever becomes one.",
+    "content": "She replies cautiously that she may be his wife only if she becomes one.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "IV",
@@ -82,10 +82,10 @@
     "speaker": "PARIS",
     "startOffset": 105520,
     "endOffset": 105574,
-    "content": "He insists it is certain and will happen on Thursday.",
+    "content": "He insists that it will and must happen this Thursday.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "IV",
@@ -93,7 +93,7 @@
     "speaker": "JULIET",
     "startOffset": 105574,
     "endOffset": 105606,
-    "content": "She responds with resigned fatalism, accepting what is destined.",
+    "content": "She resignedly accepts that what must happen will happen.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 10
@@ -107,7 +107,7 @@
     "content": "He dryly comments that her statement is an undeniable truth.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 15
   },
   {
     "act": "IV",
@@ -118,7 +118,7 @@
     "content": "He asks if she has come to confess to the Friar.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "IV",
@@ -126,10 +126,10 @@
     "speaker": "JULIET",
     "startOffset": 105700,
     "endOffset": 105750,
-    "content": "She evades by saying that to answer she would have to confess her feelings to Paris.",
+    "content": "She evasively replies that answering would mean confessing to Paris.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 20
   },
   {
     "act": "IV",
@@ -140,7 +140,7 @@
     "content": "He urges her not to deny to the Friar that she loves him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "IV",
@@ -148,7 +148,51 @@
     "speaker": "JULIET",
     "startOffset": 105795,
     "endOffset": 105843,
-    "content": "She twists his words, saying she will confess she loves the Friar.",
+    "content": "She ambiguously says she will confess she loves the Friar, playing on words.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105843,
+    "endOffset": 105892,
+    "content": "He insists she will say she loves him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 105892,
+    "endOffset": 105987,
+    "content": "She says if she says she loves him, it would be more valuable said behind his back than to his face, implying insincerity or reluctance.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 35
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 105987,
+    "endOffset": 106044,
+    "content": "Paris remarks that Juliet's face is disfigured by her tears, suggesting her grief is visible and excessive.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106044,
+    "endOffset": 106137,
+    "content": "Juliet replies that her tears have not worsened her appearance, since it was already bad enough before they fell, implying her sorrow is justified.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -157,56 +201,12 @@
     "act": "IV",
     "scene": "I",
     "speaker": "PARIS",
-    "startOffset": 105843,
-    "endOffset": 105892,
-    "content": "He insists she will surely confess her love for him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "JULIET",
-    "startOffset": 105892,
-    "endOffset": 105987,
-    "content": "She says if she does confess love for Paris, it would be more valuable said behind his back than to his face, implying insincerity or reluctance.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "PARIS",
-    "startOffset": 105987,
-    "endOffset": 106044,
-    "content": "Paris observes that Juliet's face is disfigured by her tears.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "JULIET",
-    "startOffset": 106044,
-    "endOffset": 106137,
-    "content": "Juliet replies that her tears have not worsened her appearance, since it was already bad before they fell.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "PARIS",
     "startOffset": 106137,
     "endOffset": 106198,
-    "content": "Paris says her words insult her face more than her tears do.",
+    "content": "Paris claims her words insult her face more than her tears do, accusing her of self-slander.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 20
   },
   {
     "act": "IV",
@@ -214,29 +214,7 @@
     "speaker": "JULIET",
     "startOffset": 106198,
     "endOffset": 106291,
-    "content": "Juliet argues that truth cannot be slander, and she was speaking about her own face.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "PARIS",
-    "startOffset": 106291,
-    "endOffset": 106347,
-    "content": "Paris claims her face belongs to him now, so she has slandered it.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "JULIET",
-    "startOffset": 106347,
-    "endOffset": 106472,
-    "content": "Juliet concedes he may be right, since her face is no longer her own, then asks Friar Lawrence if he is free to speak.",
+    "content": "Juliet defends herself by saying truth cannot be slander, and she spoke only about her own face.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -244,13 +222,35 @@
   {
     "act": "IV",
     "scene": "I",
+    "speaker": "PARIS",
+    "startOffset": 106291,
+    "endOffset": 106347,
+    "content": "Paris asserts that her face belongs to him (as her betrothed), so she has slandered it by speaking ill of it.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 106347,
+    "endOffset": 106472,
+    "content": "Juliet ambiguously agrees, saying her face may not be her own, then abruptly asks Friar Lawrence if he is free to speak now or later at mass.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 35
+  },
+  {
+    "act": "IV",
+    "scene": "I",
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 106472,
     "endOffset": 106578,
-    "content": "Friar Lawrence says he is available and asks Paris to leave them alone.",
+    "content": "The Friar says he is available for his sorrowful daughter and asks Paris to leave them alone.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 15
   },
   {
     "act": "IV",
@@ -261,7 +261,7 @@
     "content": "Paris agrees not to interrupt, reminds Juliet he will wake her early on Thursday for their wedding, and bids farewell with a kiss.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 20
   },
   {
     "act": "IV",
@@ -269,10 +269,10 @@
     "speaker": "JULIET",
     "startOffset": 106725,
     "endOffset": 106831,
-    "content": "Juliet urgently asks the Friar to shut the door and join her in despair, feeling beyond hope or remedy.",
+    "content": "Once Paris leaves, Juliet urgently asks the Friar to shut the door and join her in weeping, feeling hopeless and beyond help.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "IV",
@@ -280,7 +280,29 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 106831,
     "endOffset": 107018,
-    "content": "Friar Lawrence says he already knows her distress about being forced to marry Paris on Thursday, and it overwhelms his ability to think.",
+    "content": "The Friar says he already knows her distress about the forced marriage to Paris, which overwhelms his ability to think of a solution.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "JULIET",
+    "startOffset": 107018,
+    "endOffset": 107808,
+    "content": "Juliet demands a way to prevent the marriage, threatening suicide with a knife if the Friar cannot help. She vows death before betraying Romeo, and insists the Friar advise her immediately or she will kill herself.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
+  },
+  {
+    "act": "IV",
+    "scene": "I",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 107808,
+    "endOffset": 108217,
+    "content": "The Friar stops her and proposes a desperate plan: if she is willing to die, she might risk a death-like state to avoid shame and escape the wedding.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -289,34 +311,12 @@
     "act": "IV",
     "scene": "I",
     "speaker": "JULIET",
-    "startOffset": 107018,
-    "endOffset": 107808,
-    "content": "Juliet demands a solution, threatening to kill herself with a knife if he cannot help. She vows death before betraying Romeo, insisting the Friar advise her immediately or watch her die.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 75
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "FRIAR LAWRENCE",
-    "startOffset": 107808,
-    "endOffset": 108217,
-    "content": "Friar Lawrence stops her and proposes a desperate hope: if she is willing to die, she might instead undergo a death-like trance to escape the marriage.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "IV",
-    "scene": "I",
-    "speaker": "JULIET",
     "startOffset": 108217,
     "endOffset": 108760,
-    "content": "Juliet passionately declares she would face any terrifying ordeal—leaping from towers, hiding with serpents or corpses—rather than marry Paris, to remain faithful to Romeo.",
+    "content": "Juliet eagerly agrees to any terrifying alternative—jumping from a tower, walking among thieves, hiding with serpents or bears, or lying among corpses—to remain faithful to Romeo without fear.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 55
   },
   {
     "act": "IV",
@@ -324,10 +324,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 108760,
     "endOffset": 110160,
-    "content": "He instructs her to agree to the wedding, then drink a potion that will mimic death for 42 hours. She will be laid in the Capulet tomb, where Romeo will rescue her upon waking.",
+    "content": "He instructs her to consent to the wedding, then drink a potion that will make her appear dead for 42 hours. She will be laid in the Capulet tomb, where Romeo will rescue her upon waking. He warns her not to let fear weaken her resolve.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
   },
   {
     "act": "IV",
@@ -335,10 +335,10 @@
     "speaker": "JULIET",
     "startOffset": 110160,
     "endOffset": 110210,
-    "content": "Juliet eagerly asks for the potion, dismissing any fear.",
+    "content": "Juliet eagerly demands the potion, dismissing any talk of fear.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 10
   },
   {
     "act": "IV",
@@ -346,10 +346,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 110210,
     "endOffset": 110360,
-    "content": "He urges her to be strong, promises to send word to Romeo, and bids her farewell.",
+    "content": "He urges her to be strong in her decision and promises to send a friar quickly to Mantua with letters for Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "IV",
@@ -357,9 +357,9 @@
     "speaker": "JULIET",
     "startOffset": 110360,
     "endOffset": 110447,
-    "content": "She prays for love to give her courage, and that courage will provide the means to endure. She bids a final farewell to her father, knowing she may not see him again, which heightens the emotional stakes of her impending risky action.",
+    "content": "She prays for love to give her courage, and that courage will provide the means to endure. She bids a final goodbye to her father, knowing she may not see him again.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
   }
 ]

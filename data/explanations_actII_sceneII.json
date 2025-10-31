@@ -5,10 +5,10 @@
     "speaker": "ROMEO",
     "startOffset": 38863,
     "endOffset": 39969,
-    "content": "Romeo mocks those who joke about pain without experiencing it, then sees Juliet at her window and compares her to the sun, urging her to outshine the moon, which is pale with envy. He tells her to reject the moon's chaste service, symbolized by its sickly green color, and declares his love. He imagines her eyes as stars and her beauty so radiant it would make birds sing at night. He wishes he could touch her cheek like a glove.",
+    "content": "Romeo says that only someone who has never been hurt can mock the pain of others. He sees Juliet at her window and compares her to the sun rising in the east, urging her to outshine the pale, envious moon. He tells her not to remain a virgin servant of the moon, whose greenish garb is worn only by fools. He wishes she knew he was there, and though she is silent, her eyes speak. He imagines her eyes are like stars that have swapped places with the real stars, and her cheek is so bright it would outshine them. He longs to be the glove on her hand so he could touch her cheek.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 75
   },
   {
     "act": "II",
@@ -16,10 +16,10 @@
     "speaker": "JULIET",
     "startOffset": 39969,
     "endOffset": 39985,
-    "content": "Juliet sighs, expressing her inner turmoil.",
+    "content": "Juliet sighs, expressing sadness or longing.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -27,7 +27,7 @@
     "speaker": "ROMEO",
     "startOffset": 39985,
     "endOffset": 40289,
-    "content": "Romeo hears her and implores her to speak again, comparing her to an angel whose glory amazes mortals gazing up from below.",
+    "content": "Romeo urges her to speak again, calling her a bright angel as glorious as a heavenly messenger appears to mortals gazing upward.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -38,10 +38,10 @@
     "speaker": "JULIET",
     "startOffset": 40289,
     "endOffset": 40455,
-    "content": "Juliet wonders why Romeo must be a Montague, asking him to renounce his name or swear his love so she can cease being a Capulet.",
+    "content": "Juliet wonders why Romeo must be Romeo, a Montague. She asks him to deny his family name, or swear his love so she can stop being a Capulet.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 40
   },
   {
     "act": "II",
@@ -49,10 +49,10 @@
     "speaker": "ROMEO",
     "startOffset": 40455,
     "endOffset": 40519,
-    "content": "Romeo debates whether to listen further or speak now.",
+    "content": "Romeo asks himself whether he should keep listening or speak now.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -60,10 +60,10 @@
     "speaker": "JULIET",
     "startOffset": 40519,
     "endOffset": 41006,
-    "content": "Juliet reflects that only his name is her enemy, not Romeo himself. She argues a name is arbitrary, using the rose as an example: it would smell as sweet by any other name. She urges him to discard his name and take her in exchange.",
+    "content": "Juliet says only his name is her enemy; he would still be himself without it. A name is just a convention—a rose by any other name would smell as sweet, and Romeo without his title would still be perfect. She asks him to give up his name and take her in exchange.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 50
   },
   {
     "act": "II",
@@ -71,10 +71,10 @@
     "speaker": "ROMEO",
     "startOffset": 41006,
     "endOffset": 41121,
-    "content": "Romeo agrees to abandon his name and be newly baptized if she calls him her love.",
+    "content": "Romeo agrees to her offer: if she calls him her love, he will abandon his name and be newly baptized.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -85,7 +85,7 @@
     "content": "Startled, Juliet asks who is hidden in the dark and has overheard her private thoughts.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 35
   },
   {
     "act": "II",
@@ -93,7 +93,7 @@
     "speaker": "ROMEO",
     "startOffset": 41209,
     "endOffset": 41381,
-    "content": "Romeo says he cannot identify himself by his hated name, which is an enemy to her, and wishes he could destroy it if written.",
+    "content": "Romeo says he doesn’t know how to identify himself because his name is hateful to him since it is an enemy to her; he wishes he could destroy it if it were written.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -104,10 +104,10 @@
     "speaker": "JULIET",
     "startOffset": 41381,
     "endOffset": 41520,
-    "content": "Juliet recognizes his voice and asks if he is Romeo the Montague.",
+    "content": "Juliet recognizes his voice after only a few words and asks if he is Romeo, a Montague.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "II",
@@ -115,40 +115,7 @@
     "speaker": "ROMEO",
     "startOffset": 41520,
     "endOffset": 41572,
-    "content": "Romeo says he is neither if either displeases her.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "II",
-    "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 41572,
-    "endOffset": 41761,
-    "content": "Juliet asks how and why he came, noting the high walls and danger of death if her kinsmen find him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "II",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 41761,
-    "endOffset": 41953,
-    "content": "Romeo says love gave him wings to scale the walls, since stone barriers cannot keep love out, and love dares anything, so her relatives are no obstacle.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "II",
-    "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 41953,
-    "endOffset": 42006,
-    "content": "Juliet warns that if they see him, they will kill him.",
+    "content": "Romeo says he is neither if she dislikes either.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -156,13 +123,46 @@
   {
     "act": "II",
     "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41572,
+    "endOffset": 41761,
+    "content": "Juliet asks how and why he came, noting the high orchard walls and the danger of death if her relatives find him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 41761,
+    "endOffset": 41953,
+    "content": "Romeo says love gave him wings to fly over the walls; stone barriers can’t keep love out, and love dares to do anything, so her kinsmen are no obstacle.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 41953,
+    "endOffset": 42006,
+    "content": "Juliet warns that if her family sees him, they will kill him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "II",
+    "scene": "II",
     "speaker": "ROMEO",
     "startOffset": 42006,
     "endOffset": 42143,
-    "content": "Romeo replies that more danger lies in her angry look than in twenty of their swords; if she looks kindly, he is safe from their hatred.",
+    "content": "Romeo replies that more danger lies in her angry look than in twenty of their swords; if she looks kindly on him, he is protected from their hatred.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 50
   },
   {
     "act": "II",
@@ -170,10 +170,10 @@
     "speaker": "JULIET",
     "startOffset": 42143,
     "endOffset": 42198,
-    "content": "Juliet says she would not want them to see him here for anything in the world.",
+    "content": "Juliet says she would not want them to see him there for anything in the world.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -181,18 +181,7 @@
     "speaker": "ROMEO",
     "startOffset": 42198,
     "endOffset": 42385,
-    "content": "He says the darkness conceals him, and he would rather die from his enemies' hatred than live without her love. This shows his reckless devotion.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "II",
-    "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 42385,
-    "endOffset": 42445,
-    "content": "She asks how he discovered her location, expressing surprise and perhaps suspicion.",
+    "content": "He says the darkness conceals him from his enemies, and unless she loves him, he would rather they find and kill him than live without her love. 'Prorogued' means postponed, and 'wanting' means lacking. This shows his reckless passion and willingness to die for love.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -200,13 +189,24 @@
   {
     "act": "II",
     "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 42385,
+    "endOffset": 42445,
+    "content": "She asks how he discovered her location, showing surprise and caution.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "II",
+    "scene": "II",
     "speaker": "ROMEO",
     "startOffset": 42445,
     "endOffset": 42668,
-    "content": "He claims love guided him, and he would travel to the farthest shore for her. This metaphor emphasizes his willingness to take risks.",
+    "content": "He claims love guided him, giving advice while he provided sight. Though not a sailor, he would travel to the farthest shore for her, comparing her to precious 'merchandise.' This uses metaphor to express his devotion.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 40
   },
   {
     "act": "II",
@@ -214,7 +214,7 @@
     "speaker": "JULIET",
     "startOffset": 42668,
     "endOffset": 43680,
-    "content": "She admits the night hides her blush, and though she wishes she could be more formal, she abandons pretense. She worries she seems too easily won but insists her love is genuine, asking him to speak truthfully. She explains her openness is due to him overhearing her private feelings.",
+    "content": "She is glad the night hides her blush, since she has spoken so openly. She would prefer to be formal and deny her words, but abandons etiquette. She worries that if he swears love, he might be lying, as lovers' false oaths were said to amuse Jove. She admits she has been too forward but promises to be truer than those who play hard to get. She asks pardon, saying her passion was revealed unintentionally and should not be seen as shallow. 'Fain' means gladly, 'compliment' means formal manners, 'perjuries' are false oaths, 'light' means promiscuous, and 'discovered' means revealed. This speech reveals her internal conflict between passion and propriety.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -225,10 +225,10 @@
     "speaker": "ROMEO",
     "startOffset": 43680,
     "endOffset": 43776,
-    "content": "He begins to swear his love by the moon, showing his eagerness to pledge himself.",
+    "content": "He begins to swear his love by the moon, a traditional romantic oath.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -236,10 +236,10 @@
     "speaker": "JULIET",
     "startOffset": 43776,
     "endOffset": 43917,
-    "content": "She rejects swearing by the changeable moon, fearing his love might be equally unstable.",
+    "content": "She interrupts, warning him not to swear by the inconstant moon, lest his love prove equally changeable.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -247,10 +247,10 @@
     "speaker": "ROMEO",
     "startOffset": 43917,
     "endOffset": 43948,
-    "content": "He asks what he should swear by instead, showing his willingness to comply.",
+    "content": "He asks what he should swear by instead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -258,10 +258,10 @@
     "speaker": "JULIET",
     "startOffset": 43948,
     "endOffset": 44081,
-    "content": "She tells him not to swear at all, or to swear by himself, whom she worships like a god.",
+    "content": "She tells him not to swear at all, or if he must, to swear by himself, whom she worships like a god. 'Idolatry' means worship of an idol. This elevates him to a divine status in her eyes.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -269,10 +269,10 @@
     "speaker": "ROMEO",
     "startOffset": 44081,
     "endOffset": 44119,
-    "content": "He starts to speak of his heart's love, but she interrupts.",
+    "content": "He starts to swear by his heart's love, but she cuts him off.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -280,7 +280,7 @@
     "speaker": "JULIET",
     "startOffset": 44119,
     "endOffset": 44548,
-    "content": "She says not to swear, expressing joy but also concern that their vows are too hasty. She compares their love to a bud that needs time to bloom, and bids him good night with a wish for peaceful rest.",
+    "content": "She stops him, saying though she delights in him, their vows feel too hasty and sudden, like lightning that vanishes instantly. She hopes their love will grow like a bud into a flower with time. She bids good night, wishing him as much peace as she feels. 'Unadvis'd' means ill-considered. This shows her practical fear that their rush may endanger their love's future.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -291,10 +291,10 @@
     "speaker": "ROMEO",
     "startOffset": 44548,
     "endOffset": 44593,
-    "content": "He protests, feeling unsatisfied without a formal exchange of vows.",
+    "content": "He asks if she will leave him without fulfillment.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -302,10 +302,10 @@
     "speaker": "JULIET",
     "startOffset": 44593,
     "endOffset": 44645,
-    "content": "She asks what satisfaction he wants, prompting him to clarify.",
+    "content": "She asks what fulfillment he could possibly have tonight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -313,10 +313,10 @@
     "speaker": "ROMEO",
     "startOffset": 44645,
     "endOffset": 44706,
-    "content": "He desires the exchange of faithful vows of love.",
+    "content": "He wants the exchange of their faithful vows of love.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -327,7 +327,7 @@
     "content": "She says she already gave her love before he asked, yet wishes she could give it again.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 20
   },
   {
     "act": "II",
@@ -335,10 +335,10 @@
     "speaker": "ROMEO",
     "startOffset": 44801,
     "endOffset": 44862,
-    "content": "He questions if she would take it back, concerned about her meaning.",
+    "content": "He asks if she would take it back, and for what reason.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -346,10 +346,10 @@
     "speaker": "JULIET",
     "startOffset": 44862,
     "endOffset": 45222,
-    "content": "She explains she only wishes to give it again freely. Her love is infinite and grows the more she gives. Hearing the Nurse, she hastily promises to return and asks him to be true.",
+    "content": "She explains she only wants to be generous and give it again. Her love is as limitless as the sea; the more she gives, the more she has. Hearing the Nurse call, she hastily says she will return and asks him to be true. 'Frank' means generous, and 'bounty' means generosity. This expresses the infinite, reciprocal nature of her love amid practical interruption.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "II",
@@ -357,18 +357,40 @@
     "speaker": "ROMEO",
     "startOffset": 45234,
     "endOffset": 45362,
-    "content": "Romeo fears this perfect night is only a dream, too wonderful to be real, showing his disbelief at his sudden happiness.",
+    "content": "He fears this perfect night is only a dream, too wonderful to be real. This shows his disbelief at his sudden happiness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
   },
   {
     "act": "II",
     "scene": "II",
     "speaker": "JULIET",
     "startOffset": 45384,
+    "endOffset": 45707,
+    "content": "She says if his love is honorable and intends marriage, he should send word tomorrow about when and where the ceremony will be; she will then entrust her entire life to him and follow him anywhere. This speech advances the plot by proposing a secret marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "NURSE",
+    "startOffset": 45707,
     "endOffset": 45734,
-    "content": "Juliet says if Romeo’s love is honorable and his intent is marriage, he should send word tomorrow about when and where the ceremony will be, and she will entrust her life and fortune to him.",
+    "content": "The Nurse calls from offstage, interrupting the lovers.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "II",
+    "scene": "II",
+    "speaker": "JULIET",
+    "startOffset": 45734,
+    "endOffset": 45812,
+    "content": "She says she will come soon, but warns him that if his intentions are not good, he should stop pursuing her and let her grieve.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -376,13 +398,13 @@
   {
     "act": "II",
     "scene": "II",
-    "speaker": "JULIET",
-    "startOffset": 45734,
+    "speaker": "NURSE",
+    "startOffset": 45812,
     "endOffset": 45839,
-    "content": "Interrupted by the Nurse, she quickly adds that if his intentions are not good, he should stop pursuing her and let her grieve.",
+    "content": "The Nurse calls again, increasing the urgency.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -390,10 +412,10 @@
     "speaker": "JULIET",
     "startOffset": 45839,
     "endOffset": 45936,
-    "content": "She promises to send someone to him tomorrow, reinforcing her commitment despite the interruption.",
+    "content": "She says she is coming right away and tells him to end his effort and leave her to her sorrow, promising to send a message tomorrow.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -401,10 +423,10 @@
     "speaker": "ROMEO",
     "startOffset": 45936,
     "endOffset": 45966,
-    "content": "Romeo begins an oath, 'So thrive my soul,' expressing his sincerity, but is cut off.",
+    "content": "He swears by his soul’s welfare, an expression of his sincere devotion.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "II",
@@ -412,10 +434,10 @@
     "speaker": "JULIET",
     "startOffset": 45966,
     "endOffset": 46004,
-    "content": "She bids him good night again, emphasizing her reluctance to part.",
+    "content": "She bids him good night a thousand times as she exits.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -423,7 +445,7 @@
     "speaker": "ROMEO",
     "startOffset": 46016,
     "endOffset": 46227,
-    "content": "He laments that parting makes things worse, comparing lovers meeting to schoolboys leaving school joyfully, but parting to schoolboys returning sadly.",
+    "content": "He says it is worse to be without her light. Lovers going to each other are as eager as schoolboys leaving books, but parting from each other is as sad as going to school. This metaphor contrasts the joy of union with the sorrow of separation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -434,10 +456,10 @@
     "speaker": "JULIET",
     "startOffset": 46227,
     "endOffset": 46493,
-    "content": "Juliet calls Romeo back quietly, wishing she had a falconer’s voice to call him like a trained hawk. She explains her restraint is due to her situation ('bondage is hoarse'), or else she would loudly call his name until Echo grew hoarse.",
+    "content": "She quietly calls him back, wishing for a falconer’s voice to call her 'tassel-gentle' (male falcon, meaning Romeo) back. She says her situation makes her speak softly, or else she would shout his name until Echo’s voice grew hoarse. This shows her longing and the constraints of their secrecy.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 70
   },
   {
     "act": "II",
@@ -445,10 +467,10 @@
     "speaker": "ROMEO",
     "startOffset": 46493,
     "endOffset": 46629,
-    "content": "He says his soul is calling his name, and lovers' voices at night sound sweet and musical to listening ears.",
+    "content": "He says his soul is calling his name, and lovers’ voices at night sound sweet and musical.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -456,10 +478,10 @@
     "speaker": "JULIET",
     "startOffset": 46629,
     "endOffset": 46645,
-    "content": "She says his name tenderly, showing her affection.",
+    "content": "She says his name.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -467,10 +489,10 @@
     "speaker": "ROMEO",
     "startOffset": 46645,
     "endOffset": 46662,
-    "content": "He responds affectionately with 'My dear?'",
+    "content": "He responds affectionately.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -481,7 +503,7 @@
     "content": "She asks what time tomorrow she should send someone to him.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -489,10 +511,10 @@
     "speaker": "ROMEO",
     "startOffset": 46717,
     "endOffset": 46746,
-    "content": "He replies 'By the hour of nine,' giving a specific time.",
+    "content": "He says by nine o’clock.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -500,10 +522,10 @@
     "speaker": "JULIET",
     "startOffset": 46746,
     "endOffset": 46843,
-    "content": "She says she will not fail and that the wait feels like twenty years, then admits she has forgotten why she called him back.",
+    "content": "She promises not to fail and says the wait will feel like twenty years; then she admits she has forgotten why she called him back, showing her distracted, lovesick state.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -511,10 +533,10 @@
     "speaker": "ROMEO",
     "startOffset": 46843,
     "endOffset": 46892,
-    "content": "He offers to stay until she remembers, showing his unwillingness to leave.",
+    "content": "Romeo says he will remain there until she recalls her love for him, showing his reluctance to leave.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -522,10 +544,10 @@
     "speaker": "JULIET",
     "startOffset": 46892,
     "endOffset": 46985,
-    "content": "She says she would forget on purpose just to keep him there, remembering how much she loves his company, revealing her desire to prolong their time together.",
+    "content": "Juliet playfully replies that she would keep forgetting, just so he would stay, because she loves his presence so much.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "II",
@@ -533,10 +555,10 @@
     "speaker": "ROMEO",
     "startOffset": 46985,
     "endOffset": 47079,
-    "content": "He says he will remain here so that she will keep forgetting any other home but this place with him, showing his desire to stay in her presence and be the only thing she remembers.",
+    "content": "Romeo continues the playful exchange, saying he would stay so she keeps forgetting, and he would forget any home but hers.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -544,7 +566,7 @@
     "speaker": "JULIET",
     "startOffset": 47079,
     "endOffset": 47341,
-    "content": "She notes it is nearly morning and wants him to leave, but only as far as a spoiled child’s pet bird—letting it hop away briefly, then pulling it back with a silk thread, jealous of its freedom. This captures her conflicted feelings between caution and affection.",
+    "content": "Juliet notes it is nearly morning and wants him to leave, but only as far as a spoiled child’s pet bird—letting it go a little but pulling it back with a silk thread, jealous of its freedom. 'Wanton' means playful or spoiled; 'gyves' are shackles.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -555,10 +577,10 @@
     "speaker": "ROMEO",
     "startOffset": 47341,
     "endOffset": 47374,
-    "content": "He wishes he were her bird so he could be close to her and under her control, expressing his longing to stay near her.",
+    "content": "Romeo wishes he were that bird, showing his desire to be close to her even if restrained.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -566,10 +588,10 @@
     "speaker": "JULIET",
     "startOffset": 47374,
     "endOffset": 47547,
-    "content": "She says she would also like that, but fears she would kill him with too much affection. She bids good night, calling their parting a sweet sorrow, and says she will keep saying good night until morning comes.",
+    "content": "Juliet says she wishes the same, but fears she would kill him with too much affection. She bids good night, calling their parting a sweet sorrow, and says she will keep saying good night until morning.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -577,9 +599,9 @@
     "speaker": "ROMEO",
     "startOffset": 47559,
     "endOffset": 47750,
-    "content": "He wishes sleep and peace upon her, then wishes he himself were sleep and peace so he could rest sweetly with her. He then says he will go to his confessor Friar Laurence’s cell to seek his help and tell him of his good fortune.",
+    "content": "Romeo wishes sleep and peace for her, then says he wishes he were sleep and peace to rest with her. He will go to his confessor Friar Laurence for help and to tell of his good fortune. 'Ghostly Sire' means spiritual father; 'hap' means luck or fortune.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 55
   }
 ]

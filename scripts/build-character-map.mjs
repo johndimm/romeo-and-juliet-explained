@@ -34,7 +34,14 @@ function parseDramatisPersonae(lines) {
     if (!line.trim()) continue;
     if (/^SCENE\./i.test(line)) break; // end of list
     // Extract ALL CAPS leading token(s) up to comma or period
-    const m = normalizeQuotes(line).match(/^([A-Z][A-Z\s'\-]+)[\.,]/);
+    // Match leading uppercase words (with spaces, apostrophes, hyphens) before lowercase or punctuation
+    // Special case: "NURSE to Juliet." - extract just "NURSE"
+    // First try to match uppercase words followed by "to" and lowercase
+    let m = normalizeQuotes(line).match(/^([A-Z]+(?:\s+[A-Z]+)*)\s+to\s+[A-Z][a-z]+[\.,]/);
+    if (!m) {
+      // Otherwise match uppercase words ending with uppercase before comma/period
+      m = normalizeQuotes(line).match(/^([A-Z][A-Z\s'\-]*[A-Z])\s*[\.,]/);
+    }
     if (m) {
       const raw = m[1].trim();
       // Filter out generic group names if they slipped in (no lowercase present anyway)
@@ -107,9 +114,11 @@ function matchCharactersIn(text, charList) {
 
 function isSpeakerHeader(line, charSetCaps) {
   // A speaker header is exactly an ALL-CAPS name followed by a period, possibly with trailing spaces
-  const m = normalizeQuotes(line).match(/^([A-Z][A-Z\s'\-]+)\.$/);
+  const lineNorm = normalizeQuotes(line.trim());
+  const m = lineNorm.match(/^([A-Z][A-Z\s'\-]+)\.$/);
   if (!m) return null;
   const raw = m[1].trim();
+  // Since we now include all found speakers in charSetCaps, we should match all valid speaker headers
   return charSetCaps.has(raw) ? raw : null;
 }
 
@@ -144,12 +153,57 @@ function build() {
     }
   }
 
+  // First pass: Extract all speaker headers from the text itself
+  // Any line that is ALL-CAPS followed by a period (entire line) is a speaker header
+  const foundSpeakers = new Set();
+  for (const { line, lineNumber, offset } of iterateLinesWithOffsets(text)) {
+    if (offset < bodyStartOffset) continue;
+    const lineNorm = normalizeQuotes(line.trim());
+    // Match lines that are entirely ALL-CAPS (with spaces, apostrophes, hyphens) followed by period
+    const speakerMatch = lineNorm.match(/^([A-Z][A-Z\s'\-]+)\.$/);
+    if (speakerMatch) {
+      const speaker = speakerMatch[1].trim();
+      if (speaker && speaker.length > 0) {
+        foundSpeakers.add(speaker);
+      }
+    }
+  }
+  // Add all found speakers to charCaps
+  for (const speaker of foundSpeakers) {
+    charCaps.add(speaker);
+  }
+
   for (const { line, lineNumber, offset } of iterateLinesWithOffsets(text)) {
     if (offset < bodyStartOffset) continue; // skip Contents + Dramatis sections
     const lineNorm = normalizeQuotes(line);
+    // Check for THE PROLOGUE header
+    if (/^THE PROLOGUE\s*$/i.test(lineNorm.trim())) {
+      // Close previous scene if exists
+      if (sceneStartOffset !== null) {
+        const last = scenes[scenes.length - 1];
+        if (last && last.endOffset == null) last.endOffset = offset - 1;
+      }
+      // Start Prologue scene
+      act = 'Prologue';
+      scene = '';
+      onStage = new Set();
+      currentSpeaker = null;
+      sceneStartOffset = offset;
+      scenes.push({ act: 'Prologue', scene: '', title: 'THE PROLOGUE', startOffset: offset, endOffset: null });
+      continue;
+    }
     const newAct = detectAct(lineNorm);
     if (newAct) {
+      // Close previous scene (including Prologue if it was active)
+      if (sceneStartOffset !== null) {
+        const last = scenes[scenes.length - 1];
+        if (last && last.endOffset == null) last.endOffset = offset - 1;
+      }
       act = newAct;
+      scene = null;
+      onStage = new Set();
+      currentSpeaker = null;
+      sceneStartOffset = null; // Will be set when we hit a scene
       continue;
     }
     const newScene = detectScene(lineNorm);

@@ -5,10 +5,10 @@
     "speaker": "CAPULET",
     "startOffset": 13837,
     "endOffset": 13971,
-    "content": "Capulet says that Montague is under the same penalty to keep the peace, and he thinks it should be easy for men as old as them to do so.",
+    "content": "Capulet says he and Montague are equally bound by the same penalty to keep the peace, and he thinks it should be easy for men as old as them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -16,10 +16,10 @@
     "speaker": "PARIS",
     "startOffset": 13971,
     "endOffset": 14104,
-    "content": "Paris compliments Capulet as being of honorable reputation and regrets the long feud, then asks again for his answer about marrying Juliet.",
+    "content": "Paris says both Capulet and Montague are of honorable reputation, and it is a pity they have been enemies so long. He then asks again for Capulet's answer to his marriage proposal.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -27,161 +27,7 @@
     "speaker": "CAPULET",
     "startOffset": 14104,
     "endOffset": 14330,
-    "content": "Capulet repeats his earlier position: Juliet is not yet fourteen, and he wants to wait two more years before she marries.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "PARIS",
-    "startOffset": 14330,
-    "endOffset": 14379,
-    "content": "Paris counters that girls younger than Juliet have become happy mothers.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 30
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "CAPULET",
-    "startOffset": 14379,
-    "endOffset": 15492,
-    "content": "Capulet argues that early marriage ruins young girls. Juliet is his only surviving child and his hope. He tells Paris to woo her and win her heart, because his consent depends on her agreement. He invites Paris to a feast that night where he will see many beautiful young women, including Juliet, and can compare them. He then instructs a servant to deliver invitations.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 15921,
-    "endOffset": 16209,
-    "content": "Benvolio advises Romeo to cure his lovesickness for Rosaline by looking at other beautiful women, using metaphors about one fire or pain displacing another.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16209,
-    "endOffset": 16259,
-    "content": "Romeo sarcastically replies that a plantain leaf is good for a broken shin, mocking Benvolio’s simplistic cure.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 16259,
-    "endOffset": 16293,
-    "content": "Benvolio asks what Romeo means by 'that'.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16293,
-    "endOffset": 16323,
-    "content": "Romeo clarifies he means for a broken shin, continuing his ironic tone.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "BENVOLIO",
-    "startOffset": 16323,
-    "endOffset": 16360,
-    "content": "Benvolio questions if Romeo is mad.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16360,
-    "endOffset": 16558,
-    "content": "Romeo says he is not mad but more confined than a madman—tormented and deprived—then breaks off to greet the servant.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16558,
-    "endOffset": 16696,
-    "content": "When the servant asks if he can read, Romeo answers bitterly that he can read his own miserable fortune.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16696,
-    "endOffset": 16791,
-    "content": "Romeo says he can read if he knows the letters and language.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 16791,
-    "endOffset": 17278,
-    "content": "Romeo reads the invitation list aloud, which includes Rosaline and other Capulets, then asks where these people are going.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17278,
-    "endOffset": 17329,
-    "content": "Romeo asks if they are going to supper.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17329,
-    "endOffset": 17375,
-    "content": "Romeo asks whose house it is.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "I",
-    "scene": "II",
-    "speaker": "ROMEO",
-    "startOffset": 17375,
-    "endOffset": 17610,
-    "content": "Romeo admits he should have asked the servant who the party host was earlier.",
+    "content": "Capulet repeats his earlier answer: his daughter is still young, not yet fourteen, and he wants to wait two more years before considering her ready for marriage.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -189,10 +35,43 @@
   {
     "act": "I",
     "scene": "II",
+    "speaker": "PARIS",
+    "startOffset": 14330,
+    "endOffset": 14379,
+    "content": "Paris argues that girls younger than Juliet have become happy mothers.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "CAPULET",
+    "startOffset": 14379,
+    "endOffset": 15492,
+    "content": "Capulet replies that those who marry too young are often ruined. Juliet is his only surviving child and his hope. He encourages Paris to woo her and win her heart, saying his own approval is only part of the matter—if she agrees, he will consent. He invites Paris to a feast that night where he will see many lovely young women, and Juliet, though one among them, may not stand out. He tells a servant to go invite the people on a list.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 15524,
+    "endOffset": 15893,
+    "content": "The servant complains that he has been given a list of names to find but cannot read it. He humorously mixes up trades and tools (like a shoemaker with a yard, tailor with a last) to show he is out of his element, and says he must find someone educated to help.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 70
+  },
+  {
+    "act": "I",
+    "scene": "II",
     "speaker": "BENVOLIO",
-    "startOffset": 17622,
-    "endOffset": 17889,
-    "content": "Benvolio tells Romeo that Rosaline, whom he loves, will be at the Capulet feast, and urges him to go and compare her to other beauties so he will realize she is not as special as he thinks. 'Unattainted' means unbiased; 'thy swan a crow' means his beloved will seem ordinary by comparison.",
+    "startOffset": 15921,
+    "endOffset": 16209,
+    "content": "Benvolio advises Romeo that one strong emotion can displace another—like one fire putting out another, or a new pain lessening an old one. He suggests Romeo find a new love to cure his current heartache.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 45
@@ -201,12 +80,221 @@
     "act": "I",
     "scene": "II",
     "speaker": "ROMEO",
-    "startOffset": 17889,
-    "endOffset": 18171,
-    "content": "Romeo insists his eyes are devoted to Rosaline like a religion, and if they are wrong, they should be punished as heretics. He claims the sun has never seen anyone as beautiful as her since the world began, showing his stubborn infatuation.",
+    "startOffset": 16209,
+    "endOffset": 16259,
+    "content": "Romeo responds sarcastically, suggesting a plantain leaf (a folk remedy) is good for a broken shin, mocking Benvolio's advice as simplistic.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 40
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "BENVOLIO",
+    "startOffset": 16259,
+    "endOffset": 16293,
+    "content": "Benvolio asks what Romeo means by 'that.'",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 16293,
+    "endOffset": 16323,
+    "content": "Romeo says, 'For your broken shin,' continuing his sarcastic deflection.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "BENVOLIO",
+    "startOffset": 16323,
+    "endOffset": 16360,
+    "content": "Benvolio exclaims, 'Why, Romeo, are you mad?'",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 16360,
+    "endOffset": 16503,
+    "content": "Romeo says he is not mad but more confined than a madman—imprisoned, starved, whipped, and tormented (metaphorically by love). He then breaks off to greet the servant.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 16503,
+    "endOffset": 16558,
+    "content": "The servant returns the greeting and asks if Romeo can read.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 16558,
+    "endOffset": 16601,
+    "content": "Romeo replies yes, he can read his own unfortunate fate in his misery—a pun on 'reading' as interpreting his situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 35
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 16601,
+    "endOffset": 16696,
+    "content": "The servant says maybe Romeo learned that by heart, but asks if he can actually read text he sees.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 16696,
+    "endOffset": 16748,
+    "content": "Romeo says yes, if he knows the letters and the language.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 16748,
+    "endOffset": 16791,
+    "content": "The servant politely bids Romeo farewell, using the phrase 'rest you merry' to mean 'stay happy'.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 16791,
+    "endOffset": 17264,
+    "content": "Romeo stops the servant and reads aloud the invitation list, which includes Rosaline, then asks where the party is being held.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 17264,
+    "endOffset": 17278,
+    "content": "The servant replies 'Up', meaning 'up there' or 'at the location'.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 17278,
+    "endOffset": 17305,
+    "content": "Romeo clarifies whether the gathering is for supper.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 17305,
+    "endOffset": 17329,
+    "content": "The servant confirms it is at his master's house.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 17329,
+    "endOffset": 17350,
+    "content": "Romeo asks whose house it is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 17350,
+    "endOffset": 17375,
+    "content": "The servant says it is his master's house.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 17375,
+    "endOffset": 17429,
+    "content": "Romeo realizes he should have asked whose house it was earlier.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "SERVANT",
+    "startOffset": 17429,
+    "endOffset": 17610,
+    "content": "The servant reveals his master is Capulet and invites Romeo to 'crush a cup of wine' (drink wine) if he is not a Montague, then bids him farewell again.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "BENVOLIO",
+    "startOffset": 17622,
+    "endOffset": 17889,
+    "content": "Benvolio notes that Rosaline will be at the feast and urges Romeo to go and compare her with other beauties using an 'unattainted eye' (unbiased view), promising Romeo will then think his beloved swan is a crow by contrast.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "I",
+    "scene": "II",
+    "speaker": "ROMEO",
+    "startOffset": 17889,
+    "endOffset": 18171,
+    "content": "Romeo responds with a religious metaphor: if his eyes are so devoted they see falsely, then let them burn like heretics; he claims the sun has never seen anyone as fair as Rosaline since the world began.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 70
   },
   {
     "act": "I",
@@ -214,10 +302,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 18171,
     "endOffset": 18458,
-    "content": "Benvolio argues that Romeo only saw Rosaline as fair because there was no one else to compare her to, and if he weighs her against another girl at the feast, his current favorite will hardly seem the best. 'Scant show well' means she will barely appear attractive.",
+    "content": "Benvolio dismisses this, saying Romeo only saw Rosaline alone, not compared to others; he insists that if Romeo weighs Rosaline against another girl at the feast, even the best will seem inferior.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 50
   },
   {
     "act": "I",
@@ -225,9 +313,9 @@
     "speaker": "ROMEO",
     "startOffset": 18458,
     "endOffset": 18549,
-    "content": "Romeo agrees to go, but only to enjoy the sight of Rosaline, not to see any other woman Benvolio might show him.",
+    "content": "Romeo agrees to go, but only to enjoy the sight of his own love, not to see anyone better.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   }
 ]

@@ -57,6 +57,10 @@
       "display": "Capulet's Cousin"
     },
     {
+      "canonical": "NURSE",
+      "display": "Nurse"
+    },
+    {
       "canonical": "PETER",
       "display": "Peter"
     },
@@ -82,6 +86,13 @@
     }
   ],
   "scenes": [
+    {
+      "act": "Prologue",
+      "scene": "",
+      "title": "THE PROLOGUE",
+      "startOffset": 2027,
+      "endOffset": 2728
+    },
     {
       "act": "I",
       "scene": "I",
@@ -115,7 +126,7 @@
       "scene": "V",
       "title": "SCENE V. A Hall in Capulet’s House.",
       "startOffset": 29040,
-      "endOffset": 36717
+      "endOffset": 36051
     },
     {
       "act": "II",
@@ -157,7 +168,7 @@
       "scene": "VI",
       "title": "SCENE VI. Friar Lawrence’s Cell.",
       "startOffset": 65331,
-      "endOffset": 67127
+      "endOffset": 67118
     },
     {
       "act": "III",
@@ -192,7 +203,7 @@
       "scene": "V",
       "title": "SCENE V. An open Gallery to Juliet’s Chamber, overlooking the Garden.",
       "startOffset": 93166,
-      "endOffset": 104561
+      "endOffset": 104553
     },
     {
       "act": "IV",
@@ -227,7 +238,7 @@
       "scene": "V",
       "title": "SCENE V. Juliet’s Chamber; Juliet on the bed.",
       "startOffset": 117147,
-      "endOffset": 123892
+      "endOffset": 123885
     },
     {
       "act": "V",
@@ -255,8 +266,8 @@
     {
       "offset": 2042,
       "line": 91,
-      "act": null,
-      "scene": null,
+      "act": "Prologue",
+      "scene": "",
       "kind": "enter",
       "names": [
         "CHORUS"
@@ -269,8 +280,8 @@
     {
       "offset": 2714,
       "line": 109,
-      "act": null,
-      "scene": null,
+      "act": "Prologue",
+      "scene": "",
       "kind": "exit",
       "names": [
         "CHORUS"
@@ -564,11 +575,12 @@
       "scene": "II",
       "kind": "exit",
       "names": [
-        "ROMEO"
+        "SERVANT"
       ],
       "text": " [_Exit._]",
       "onStage": [
-        "BENVOLIO"
+        "BENVOLIO",
+        "ROMEO"
       ]
     },
     {
@@ -589,12 +601,14 @@
       "kind": "enter",
       "names": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ],
       "text": " Enter Lady Capulet and Nurse.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -610,7 +624,8 @@
       "onStage": [
         "CAPULET",
         "JULIET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -624,7 +639,8 @@
       "onStage": [
         "CAPULET",
         "JULIET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -639,7 +655,8 @@
       "text": " [_Exit Servant._]",
       "onStage": [
         "CAPULET",
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ]
     },
     {
@@ -735,11 +752,13 @@
       "scene": "V",
       "kind": "exeunt",
       "names": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ],
       "text": " [_Exeunt all but Juliet and Nurse._]",
       "onStage": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ]
     },
     {
@@ -756,7 +775,7 @@
       "offset": 36061,
       "line": 1395,
       "act": "II",
-      "scene": "V",
+      "scene": null,
       "kind": "enter",
       "names": [
         "CHORUS"
@@ -770,7 +789,7 @@
       "offset": 36706,
       "line": 1413,
       "act": "II",
-      "scene": "V",
+      "scene": null,
       "kind": "exit",
       "names": [
         "CHORUS"
@@ -980,12 +999,14 @@
       "scene": "IV",
       "kind": "enter",
       "names": [
+        "NURSE",
         "PETER"
       ],
       "text": " Enter Nurse and Peter.",
       "onStage": [
         "BENVOLIO",
         "MERCUTIO",
+        "NURSE",
         "PETER",
         "ROMEO"
       ]
@@ -1002,6 +1023,7 @@
       ],
       "text": " [_Exeunt Mercutio and Benvolio._]",
       "onStage": [
+        "NURSE",
         "PETER",
         "ROMEO"
       ]
@@ -1017,6 +1039,7 @@
       ],
       "text": " [_Exit Romeo._]",
       "onStage": [
+        "NURSE",
         "PETER"
       ]
     },
@@ -1051,11 +1074,13 @@
       "scene": "V",
       "kind": "enter",
       "names": [
+        "NURSE",
         "PETER"
       ],
       "text": " Enter Nurse and Peter.",
       "onStage": [
         "JULIET",
+        "NURSE",
         "PETER"
       ]
     },
@@ -1070,7 +1095,8 @@
       ],
       "text": " [_Exit Peter._]",
       "onStage": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ]
     },
     {
@@ -1288,10 +1314,13 @@
       "act": "III",
       "scene": "II",
       "kind": "enter",
-      "names": [],
+      "names": [
+        "NURSE"
+      ],
       "text": " Enter Nurse, with cords.",
       "onStage": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ]
     },
     {
@@ -1339,10 +1368,13 @@
       "act": "III",
       "scene": "III",
       "kind": "enter",
-      "names": [],
+      "names": [
+        "NURSE"
+      ],
       "text": " Enter Nurse.",
       "onStage": [
         "FRIAR LAWRENCE",
+        "NURSE",
         "ROMEO"
       ]
     },
@@ -1353,11 +1385,12 @@
       "scene": "III",
       "kind": "exit",
       "names": [
-        "ROMEO"
+        "NURSE"
       ],
       "text": " [_Exit._]",
       "onStage": [
-        "FRIAR LAWRENCE"
+        "FRIAR LAWRENCE",
+        "ROMEO"
       ]
     },
     {
@@ -1420,10 +1453,13 @@
       "act": "III",
       "scene": "V",
       "kind": "enter",
-      "names": [],
+      "names": [
+        "NURSE"
+      ],
       "text": " Enter Nurse.",
       "onStage": [
         "JULIET",
+        "NURSE",
         "ROMEO"
       ]
     },
@@ -1434,10 +1470,11 @@
       "scene": "V",
       "kind": "exit",
       "names": [
-        "JULIET"
+        "NURSE"
       ],
       "text": " [_Exit._]",
       "onStage": [
+        "JULIET",
         "ROMEO"
       ]
     },
@@ -1451,7 +1488,9 @@
         "ROMEO"
       ],
       "text": " [_Exit below._]",
-      "onStage": []
+      "onStage": [
+        "JULIET"
+      ]
     },
     {
       "offset": 96325,
@@ -1466,6 +1505,7 @@
       "text": " Enter Lady Capulet.",
       "onStage": [
         "CAPULET",
+        "JULIET",
         "LADY CAPULET"
       ]
     },
@@ -1476,12 +1516,15 @@
       "scene": "V",
       "kind": "enter",
       "names": [
-        "CAPULET"
+        "CAPULET",
+        "NURSE"
       ],
       "text": " Enter Capulet and Nurse.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1495,7 +1538,9 @@
       ],
       "text": " [_Exit._]",
       "onStage": [
-        "LADY CAPULET"
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1508,7 +1553,10 @@
         "LADY CAPULET"
       ],
       "text": " [_Exit._]",
-      "onStage": []
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
     },
     {
       "offset": 104174,
@@ -1517,10 +1565,12 @@
       "scene": "V",
       "kind": "exit",
       "names": [
-        "JULIET"
+        "NURSE"
       ],
       "text": " [_Exit._]",
-      "onStage": []
+      "onStage": [
+        "JULIET"
+      ]
     },
     {
       "offset": 104539,
@@ -1599,12 +1649,14 @@
       "kind": "enter",
       "names": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ],
       "text": " Enter Capulet, Lady Capulet, Nurse and Servants.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1618,7 +1670,8 @@
       ],
       "text": " [_Exit first Servant._]",
       "onStage": [
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1632,7 +1685,8 @@
       ],
       "text": " [_Exit second Servant._]",
       "onStage": [
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1647,7 +1701,8 @@
       "text": " Enter Juliet.",
       "onStage": [
         "JULIET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1657,7 +1712,8 @@
       "scene": "II",
       "kind": "exeunt",
       "names": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ],
       "text": " [_Exeunt Juliet and Nurse._]",
       "onStage": [
@@ -1681,11 +1737,13 @@
       "scene": "III",
       "kind": "enter",
       "names": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ],
       "text": " Enter Juliet and Nurse.",
       "onStage": [
-        "JULIET"
+        "JULIET",
+        "NURSE"
       ]
     },
     {
@@ -1702,7 +1760,8 @@
       "onStage": [
         "CAPULET",
         "JULIET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1713,7 +1772,8 @@
       "kind": "exeunt",
       "names": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ],
       "text": " [_Exeunt Lady Capulet and Nurse._]",
       "onStage": [
@@ -1728,12 +1788,14 @@
       "kind": "enter",
       "names": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ],
       "text": " Enter Lady Capulet and Nurse.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1748,7 +1810,8 @@
       "text": " Enter Capulet.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1759,7 +1822,8 @@
       "kind": "exeunt",
       "names": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ],
       "text": " [_Exeunt Lady Capulet and Nurse._]",
       "onStage": []
@@ -1793,7 +1857,7 @@
       "scene": "IV",
       "kind": "exit",
       "names": [
-        "CAPULET"
+        "SECOND SERVANT"
       ],
       "text": " [_Exit._]",
       "onStage": []
@@ -1814,9 +1878,13 @@
       "act": "IV",
       "scene": "V",
       "kind": "enter",
-      "names": [],
+      "names": [
+        "NURSE"
+      ],
       "text": " Enter Nurse.",
-      "onStage": []
+      "onStage": [
+        "NURSE"
+      ]
     },
     {
       "offset": 117942,
@@ -1831,7 +1899,8 @@
       "text": " Enter Lady Capulet.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1846,7 +1915,8 @@
       "text": " Enter Capulet.",
       "onStage": [
         "CAPULET",
-        "LADY CAPULET"
+        "LADY CAPULET",
+        "NURSE"
       ]
     },
     {
@@ -1864,6 +1934,7 @@
         "CAPULET",
         "FRIAR LAWRENCE",
         "LADY CAPULET",
+        "NURSE",
         "PARIS"
       ]
     },
@@ -1880,7 +1951,8 @@
       ],
       "text": " [_Exeunt Capulet, Lady Capulet, Paris and Friar._]",
       "onStage": [
-        "FRIAR LAWRENCE"
+        "FRIAR LAWRENCE",
+        "NURSE"
       ]
     },
     {
@@ -1890,10 +1962,12 @@
       "scene": "V",
       "kind": "exit",
       "names": [
-        "FRIAR LAWRENCE"
+        "NURSE"
       ],
       "text": " [_Exit Nurse._]",
-      "onStage": []
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
     },
     {
       "offset": 121931,
@@ -1906,6 +1980,7 @@
       ],
       "text": " Enter Peter.",
       "onStage": [
+        "FRIAR LAWRENCE",
         "PETER"
       ]
     },
@@ -1919,7 +1994,9 @@
         "PETER"
       ],
       "text": " [_Exit._]",
-      "onStage": []
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
     },
     {
       "offset": 123869,
@@ -2089,12 +2166,13 @@
       "scene": "III",
       "kind": "exit",
       "names": [
-        "ROMEO"
+        "PAGE"
       ],
       "text": " [_Exit._]",
       "onStage": [
         "BALTHASAR",
-        "PARIS"
+        "PARIS",
+        "ROMEO"
       ]
     },
     {
@@ -2110,7 +2188,8 @@
       "onStage": [
         "BALTHASAR",
         "FRIAR LAWRENCE",
-        "PARIS"
+        "PARIS",
+        "ROMEO"
       ]
     },
     {
@@ -2125,7 +2204,8 @@
       "text": " [_Exit Friar Lawrence._]",
       "onStage": [
         "BALTHASAR",
-        "PARIS"
+        "PARIS",
+        "ROMEO"
       ]
     },
     {
@@ -2140,7 +2220,8 @@
       "text": " Enter Watch with the Page of Paris.",
       "onStage": [
         "BALTHASAR",
-        "PARIS"
+        "PARIS",
+        "ROMEO"
       ]
     },
     {
@@ -2443,6 +2524,11 @@
       "speaker": "TYBALT"
     },
     {
+      "offset": 5849,
+      "line": 280,
+      "speaker": "FIRST CITIZEN"
+    },
+    {
       "offset": 6013,
       "line": 286,
       "speaker": "CAPULET"
@@ -2466,6 +2552,11 @@
       "offset": 6318,
       "line": 301,
       "speaker": "LADY MONTAGUE"
+    },
+    {
+      "offset": 6419,
+      "line": 306,
+      "speaker": "PRINCE"
     },
     {
       "offset": 7519,
@@ -2713,6 +2804,11 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 15524,
+      "line": 624,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 15921,
       "line": 634,
       "speaker": "BENVOLIO"
@@ -2743,9 +2839,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 16503,
+      "line": 659,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 16558,
       "line": 662,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 16601,
+      "line": 665,
+      "speaker": "SERVANT"
     },
     {
       "offset": 16696,
@@ -2753,9 +2859,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 16748,
+      "line": 672,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 16791,
       "line": 675,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 17264,
+      "line": 693,
+      "speaker": "SERVANT"
     },
     {
       "offset": 17278,
@@ -2763,14 +2879,29 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 17305,
+      "line": 699,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 17329,
       "line": 702,
       "speaker": "ROMEO"
     },
     {
+      "offset": 17350,
+      "line": 705,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 17375,
       "line": 708,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 17429,
+      "line": 711,
+      "speaker": "SERVANT"
     },
     {
       "offset": 17622,
@@ -2798,9 +2929,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 18701,
+      "line": 755,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 18859,
       "line": 762,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 18888,
+      "line": 765,
+      "speaker": "NURSE"
     },
     {
       "offset": 18909,
@@ -2813,9 +2954,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 19161,
+      "line": 777,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 19209,
       "line": 780,
       "speaker": "LADY CAPULET"
+    },
+    {
+      "offset": 19246,
+      "line": 783,
+      "speaker": "NURSE"
     },
     {
       "offset": 19394,
@@ -2823,14 +2974,29 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 19435,
+      "line": 792,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 20914,
       "line": 827,
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 20973,
+      "line": 830,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 21360,
       "line": 840,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 21416,
+      "line": 843,
+      "speaker": "NURSE"
     },
     {
       "offset": 21583,
@@ -2843,9 +3009,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 21768,
+      "line": 856,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 21870,
       "line": 860,
       "speaker": "LADY CAPULET"
+    },
+    {
+      "offset": 22133,
+      "line": 868,
+      "speaker": "NURSE"
     },
     {
       "offset": 22221,
@@ -2853,9 +3029,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 22278,
+      "line": 875,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 22332,
       "line": 878,
       "speaker": "LADY CAPULET"
+    },
+    {
+      "offset": 23047,
+      "line": 896,
+      "speaker": "NURSE"
     },
     {
       "offset": 23095,
@@ -2868,9 +3054,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 23318,
+      "line": 909,
+      "speaker": "SERVANT"
+    },
+    {
       "offset": 23525,
       "line": 914,
       "speaker": "LADY CAPULET"
+    },
+    {
+      "offset": 23603,
+      "line": 921,
+      "speaker": "NURSE"
     },
     {
       "offset": 23777,
@@ -3013,6 +3209,36 @@
       "speaker": "BENVOLIO"
     },
     {
+      "offset": 29116,
+      "line": 1113,
+      "speaker": "FIRST SERVANT"
+    },
+    {
+      "offset": 29225,
+      "line": 1117,
+      "speaker": "SECOND SERVANT"
+    },
+    {
+      "offset": 29349,
+      "line": 1121,
+      "speaker": "FIRST SERVANT"
+    },
+    {
+      "offset": 29569,
+      "line": 1126,
+      "speaker": "SECOND SERVANT"
+    },
+    {
+      "offset": 29602,
+      "line": 1129,
+      "speaker": "FIRST SERVANT"
+    },
+    {
+      "offset": 29701,
+      "line": 1133,
+      "speaker": "SECOND SERVANT"
+    },
+    {
       "offset": 29897,
       "line": 1141,
       "speaker": "CAPULET"
@@ -3041,6 +3267,11 @@
       "offset": 31139,
       "line": 1181,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 31211,
+      "line": 1185,
+      "speaker": "SERVANT"
     },
     {
       "offset": 31238,
@@ -3153,9 +3384,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 34438,
+      "line": 1307,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 34489,
       "line": 1310,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 34517,
+      "line": 1313,
+      "speaker": "NURSE"
     },
     {
       "offset": 34734,
@@ -3183,9 +3424,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 35281,
+      "line": 1345,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 35322,
       "line": 1348,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 35374,
+      "line": 1351,
+      "speaker": "NURSE"
     },
     {
       "offset": 35422,
@@ -3193,9 +3444,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 35484,
+      "line": 1357,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 35504,
       "line": 1360,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 35587,
+      "line": 1364,
+      "speaker": "NURSE"
     },
     {
       "offset": 35664,
@@ -3203,9 +3464,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 35828,
+      "line": 1374,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 35866,
       "line": 1377,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 35968,
+      "line": 1383,
+      "speaker": "NURSE"
     },
     {
       "offset": 36077,
@@ -3433,9 +3704,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 45707,
+      "line": 1724,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 45734,
       "line": 1727,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 45812,
+      "line": 1731,
+      "speaker": "NURSE"
     },
     {
       "offset": 45839,
@@ -3848,9 +4129,19 @@
       "speaker": "MERCUTIO"
     },
     {
+      "offset": 56818,
+      "line": 2147,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 56833,
       "line": 2150,
       "speaker": "PETER"
+    },
+    {
+      "offset": 56847,
+      "line": 2153,
+      "speaker": "NURSE"
     },
     {
       "offset": 56870,
@@ -3858,9 +4149,19 @@
       "speaker": "MERCUTIO"
     },
     {
+      "offset": 56944,
+      "line": 2159,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 56983,
       "line": 2162,
       "speaker": "MERCUTIO"
+    },
+    {
+      "offset": 57029,
+      "line": 2165,
+      "speaker": "NURSE"
     },
     {
       "offset": 57053,
@@ -3868,9 +4169,19 @@
       "speaker": "MERCUTIO"
     },
     {
+      "offset": 57153,
+      "line": 2172,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 57195,
       "line": 2175,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 57260,
+      "line": 2178,
+      "speaker": "NURSE"
     },
     {
       "offset": 57395,
@@ -3878,9 +4189,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 57560,
+      "line": 2187,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 57582,
       "line": 2190,
       "speaker": "MERCUTIO"
+    },
+    {
+      "offset": 57660,
+      "line": 2193,
+      "speaker": "NURSE"
     },
     {
       "offset": 57722,
@@ -3913,9 +4234,19 @@
       "speaker": "MERCUTIO"
     },
     {
+      "offset": 58324,
+      "line": 2225,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 58410,
       "line": 2229,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 58537,
+      "line": 2233,
+      "speaker": "NURSE"
     },
     {
       "offset": 58855,
@@ -3923,9 +4254,24 @@
       "speaker": "PETER"
     },
     {
+      "offset": 59063,
+      "line": 2245,
+      "speaker": "NURSE"
+    },
+    {
+      "offset": 59653,
+      "line": 2258,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 59752,
       "line": 2262,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 59815,
+      "line": 2265,
+      "speaker": "NURSE"
     },
     {
       "offset": 59913,
@@ -3933,9 +4279,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 60076,
+      "line": 2275,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 60112,
       "line": 2278,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 60144,
+      "line": 2281,
+      "speaker": "NURSE"
     },
     {
       "offset": 60199,
@@ -3943,9 +4299,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 60508,
+      "line": 2293,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 60561,
       "line": 2296,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 60604,
+      "line": 2299,
+      "speaker": "NURSE"
     },
     {
       "offset": 60698,
@@ -3953,9 +4319,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 60750,
+      "line": 2306,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 61213,
       "line": 2315,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 61262,
+      "line": 2318,
+      "speaker": "NURSE"
     },
     {
       "offset": 61474,
@@ -3963,9 +4339,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 61506,
+      "line": 2326,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 61561,
       "line": 2331,
       "speaker": "PETER"
+    },
+    {
+      "offset": 61575,
+      "line": 2334,
+      "speaker": "NURSE"
     },
     {
       "offset": 61661,
@@ -3973,9 +4359,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 62523,
+      "line": 2367,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 62574,
       "line": 2372,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 62772,
+      "line": 2378,
+      "speaker": "NURSE"
     },
     {
       "offset": 62864,
@@ -3983,9 +4379,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 62972,
+      "line": 2386,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 63064,
       "line": 2390,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 63380,
+      "line": 2399,
+      "speaker": "NURSE"
     },
     {
       "offset": 63795,
@@ -3993,9 +4399,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 63888,
+      "line": 2411,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 64121,
       "line": 2418,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 64231,
+      "line": 2422,
+      "speaker": "NURSE"
     },
     {
       "offset": 64375,
@@ -4003,14 +4419,29 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 64543,
+      "line": 2433,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 64694,
       "line": 2439,
       "speaker": "JULIET"
     },
     {
+      "offset": 64748,
+      "line": 2442,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 64798,
       "line": 2445,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 64815,
+      "line": 2448,
+      "speaker": "NURSE"
     },
     {
       "offset": 65263,
@@ -4303,9 +4734,24 @@
       "speaker": "BENVOLIO"
     },
     {
+      "offset": 73805,
+      "line": 2785,
+      "speaker": "FIRST CITIZEN"
+    },
+    {
       "offset": 73903,
       "line": 2789,
       "speaker": "BENVOLIO"
+    },
+    {
+      "offset": 73938,
+      "line": 2792,
+      "speaker": "FIRST CITIZEN"
+    },
+    {
+      "offset": 74087,
+      "line": 2798,
+      "speaker": "PRINCE"
     },
     {
       "offset": 74139,
@@ -4318,6 +4764,11 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 74517,
+      "line": 2814,
+      "speaker": "PRINCE"
+    },
+    {
       "offset": 74564,
       "line": 2817,
       "speaker": "BENVOLIO"
@@ -4328,9 +4779,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 75918,
+      "line": 2851,
+      "speaker": "PRINCE"
+    },
+    {
       "offset": 76007,
       "line": 2855,
       "speaker": "MONTAGUE"
+    },
+    {
+      "offset": 76134,
+      "line": 2860,
+      "speaker": "PRINCE"
     },
     {
       "offset": 76727,
@@ -4338,9 +4799,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 78291,
+      "line": 2920,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 78342,
       "line": 2925,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 78400,
+      "line": 2928,
+      "speaker": "NURSE"
     },
     {
       "offset": 78557,
@@ -4348,9 +4819,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 78592,
+      "line": 2936,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 78688,
       "line": 2941,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 79078,
+      "line": 2952,
+      "speaker": "NURSE"
     },
     {
       "offset": 79306,
@@ -4358,9 +4839,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 79493,
+      "line": 2965,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 79622,
       "line": 2970,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 79844,
+      "line": 2977,
+      "speaker": "NURSE"
     },
     {
       "offset": 79929,
@@ -4368,9 +4859,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 79987,
+      "line": 2984,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 80033,
       "line": 2987,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 80564,
+      "line": 3002,
+      "speaker": "NURSE"
     },
     {
       "offset": 80801,
@@ -4378,14 +4879,29 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 81046,
+      "line": 3018,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 81108,
       "line": 3021,
       "speaker": "JULIET"
     },
     {
+      "offset": 82517,
+      "line": 3054,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 82615,
       "line": 3058,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 82981,
+      "line": 3068,
+      "speaker": "NURSE"
     },
     {
       "offset": 83157,
@@ -4498,9 +5014,19 @@
       "speaker": "FRIAR LAWRENCE"
     },
     {
+      "offset": 87057,
+      "line": 3217,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 87148,
       "line": 3221,
       "speaker": "FRIAR LAWRENCE"
+    },
+    {
+      "offset": 87194,
+      "line": 3226,
+      "speaker": "NURSE"
     },
     {
       "offset": 87284,
@@ -4508,14 +5034,29 @@
       "speaker": "FRIAR LAWRENCE"
     },
     {
+      "offset": 87353,
+      "line": 3233,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 87658,
       "line": 3242,
       "speaker": "ROMEO"
     },
     {
+      "offset": 87673,
+      "line": 3245,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 87723,
       "line": 3248,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 87997,
+      "line": 3256,
+      "speaker": "NURSE"
     },
     {
       "offset": 88168,
@@ -4528,9 +5069,19 @@
       "speaker": "FRIAR LAWRENCE"
     },
     {
+      "offset": 90656,
+      "line": 3326,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 90800,
       "line": 3331,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 90850,
+      "line": 3334,
+      "speaker": "NURSE"
     },
     {
       "offset": 90958,
@@ -4618,9 +5169,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 94922,
+      "line": 3471,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 94937,
       "line": 3474,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 94953,
+      "line": 3477,
+      "speaker": "NURSE"
     },
     {
       "offset": 95056,
@@ -4823,14 +5384,29 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 101113,
+      "line": 3704,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 101189,
       "line": 3708,
       "speaker": "CAPULET"
     },
     {
+      "offset": 101288,
+      "line": 3712,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 101316,
       "line": 3715,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 101344,
+      "line": 3718,
+      "speaker": "NURSE"
     },
     {
       "offset": 101371,
@@ -4863,9 +5439,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 103225,
+      "line": 3779,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 103818,
       "line": 3795,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 103857,
+      "line": 3798,
+      "speaker": "NURSE"
     },
     {
       "offset": 103914,
@@ -4873,9 +5459,19 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 103929,
+      "line": 3805,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 103943,
       "line": 3808,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 104126,
+      "line": 3814,
+      "speaker": "NURSE"
     },
     {
       "offset": 104186,
@@ -5053,9 +5649,19 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 110668,
+      "line": 4051,
+      "speaker": "SECOND SERVANT"
+    },
+    {
       "offset": 110762,
       "line": 4055,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 110800,
+      "line": 4058,
+      "speaker": "SECOND SERVANT"
     },
     {
       "offset": 110942,
@@ -5063,9 +5669,19 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 111083,
+      "line": 4070,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 111105,
       "line": 4073,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 111215,
+      "line": 4079,
+      "speaker": "NURSE"
     },
     {
       "offset": 111272,
@@ -5148,9 +5764,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 115670,
+      "line": 4228,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 115742,
       "line": 4233,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 115920,
+      "line": 4239,
+      "speaker": "NURSE"
     },
     {
       "offset": 116029,
@@ -5168,9 +5794,19 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 116399,
+      "line": 4261,
+      "speaker": "FIRST SERVANT"
+    },
+    {
       "offset": 116462,
       "line": 4264,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 116598,
+      "line": 4272,
+      "speaker": "SECOND SERVANT"
     },
     {
       "offset": 116711,
@@ -5178,14 +5814,29 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 117211,
+      "line": 4301,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 117964,
       "line": 4321,
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 117999,
+      "line": 4324,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 118025,
       "line": 4327,
       "speaker": "LADY CAPULET"
+    },
+    {
+      "offset": 118060,
+      "line": 4330,
+      "speaker": "NURSE"
     },
     {
       "offset": 118093,
@@ -5198,6 +5849,11 @@
       "speaker": "CAPULET"
     },
     {
+      "offset": 118285,
+      "line": 4343,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 118348,
       "line": 4346,
       "speaker": "LADY CAPULET"
@@ -5206,6 +5862,11 @@
       "offset": 118420,
       "line": 4349,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 118651,
+      "line": 4356,
+      "speaker": "NURSE"
     },
     {
       "offset": 118677,
@@ -5238,6 +5899,11 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 119595,
+      "line": 4392,
+      "speaker": "NURSE"
+    },
+    {
       "offset": 119815,
       "line": 4400,
       "speaker": "PARIS"
@@ -5263,9 +5929,29 @@
       "speaker": "FRIAR LAWRENCE"
     },
     {
+      "offset": 121702,
+      "line": 4453,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
+      "offset": 121763,
+      "line": 4456,
+      "speaker": "NURSE"
+    },
+    {
+      "offset": 121854,
+      "line": 4460,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
       "offset": 121946,
       "line": 4467,
       "speaker": "PETER"
+    },
+    {
+      "offset": 122080,
+      "line": 4471,
+      "speaker": "FIRST MUSICIAN"
     },
     {
       "offset": 122123,
@@ -5273,9 +5959,19 @@
       "speaker": "PETER"
     },
     {
+      "offset": 122239,
+      "line": 4478,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
       "offset": 122299,
       "line": 4481,
       "speaker": "PETER"
+    },
+    {
+      "offset": 122326,
+      "line": 4484,
+      "speaker": "FIRST MUSICIAN"
     },
     {
       "offset": 122347,
@@ -5283,9 +5979,19 @@
       "speaker": "PETER"
     },
     {
+      "offset": 122388,
+      "line": 4490,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
       "offset": 122428,
       "line": 4493,
       "speaker": "PETER"
+    },
+    {
+      "offset": 122504,
+      "line": 4496,
+      "speaker": "FIRST MUSICIAN"
     },
     {
       "offset": 122564,
@@ -5293,9 +5999,24 @@
       "speaker": "PETER"
     },
     {
+      "offset": 122707,
+      "line": 4503,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
+      "offset": 122762,
+      "line": 4506,
+      "speaker": "SECOND MUSICIAN"
+    },
+    {
       "offset": 122831,
       "line": 4509,
       "speaker": "PETER"
+    },
+    {
+      "offset": 123180,
+      "line": 4518,
+      "speaker": "FIRST MUSICIAN"
     },
     {
       "offset": 123244,
@@ -5303,14 +6024,34 @@
       "speaker": "PETER"
     },
     {
+      "offset": 123287,
+      "line": 4524,
+      "speaker": "SECOND MUSICIAN"
+    },
+    {
       "offset": 123366,
       "line": 4527,
       "speaker": "PETER"
     },
     {
+      "offset": 123417,
+      "line": 4530,
+      "speaker": "THIRD MUSICIAN"
+    },
+    {
       "offset": 123465,
       "line": 4533,
       "speaker": "PETER"
+    },
+    {
+      "offset": 123717,
+      "line": 4542,
+      "speaker": "FIRST MUSICIAN"
+    },
+    {
+      "offset": 123771,
+      "line": 4545,
+      "speaker": "SECOND MUSICIAN"
     },
     {
       "offset": 123937,
@@ -5348,9 +6089,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 126498,
+      "line": 4642,
+      "speaker": "APOTHECARY"
+    },
+    {
       "offset": 126530,
       "line": 4645,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 126882,
+      "line": 4655,
+      "speaker": "APOTHECARY"
     },
     {
       "offset": 126977,
@@ -5358,9 +6109,19 @@
       "speaker": "ROMEO"
     },
     {
+      "offset": 127303,
+      "line": 4668,
+      "speaker": "APOTHECARY"
+    },
+    {
       "offset": 127354,
       "line": 4671,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 127399,
+      "line": 4674,
+      "speaker": "APOTHECARY"
     },
     {
       "offset": 127544,
@@ -5413,6 +6174,11 @@
       "speaker": "PARIS"
     },
     {
+      "offset": 129839,
+      "line": 4761,
+      "speaker": "PAGE"
+    },
+    {
       "offset": 129952,
       "line": 4767,
       "speaker": "PARIS"
@@ -5461,6 +6227,11 @@
       "offset": 132708,
       "line": 4858,
       "speaker": "ROMEO"
+    },
+    {
+      "offset": 132780,
+      "line": 4863,
+      "speaker": "PAGE"
     },
     {
       "offset": 132845,
@@ -5553,9 +6324,44 @@
       "speaker": "JULIET"
     },
     {
+      "offset": 137474,
+      "line": 5029,
+      "speaker": "FIRST WATCH"
+    },
+    {
       "offset": 137522,
       "line": 5032,
       "speaker": "JULIET"
+    },
+    {
+      "offset": 137760,
+      "line": 5043,
+      "speaker": "PAGE"
+    },
+    {
+      "offset": 137820,
+      "line": 5046,
+      "speaker": "FIRST WATCH"
+    },
+    {
+      "offset": 138384,
+      "line": 5066,
+      "speaker": "SECOND WATCH"
+    },
+    {
+      "offset": 138455,
+      "line": 5069,
+      "speaker": "FIRST WATCH"
+    },
+    {
+      "offset": 138721,
+      "line": 5078,
+      "speaker": "FIRST WATCH"
+    },
+    {
+      "offset": 138809,
+      "line": 5083,
+      "speaker": "PRINCE"
     },
     {
       "offset": 138943,
@@ -5568,6 +6374,26 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 139131,
+      "line": 5097,
+      "speaker": "PRINCE"
+    },
+    {
+      "offset": 139186,
+      "line": 5100,
+      "speaker": "FIRST WATCH"
+    },
+    {
+      "offset": 139309,
+      "line": 5105,
+      "speaker": "PRINCE"
+    },
+    {
+      "offset": 139369,
+      "line": 5108,
+      "speaker": "FIRST WATCH"
+    },
+    {
       "offset": 139498,
       "line": 5113,
       "speaker": "CAPULET"
@@ -5578,9 +6404,19 @@
       "speaker": "LADY CAPULET"
     },
     {
+      "offset": 139804,
+      "line": 5125,
+      "speaker": "PRINCE"
+    },
+    {
       "offset": 139893,
       "line": 5129,
       "speaker": "MONTAGUE"
+    },
+    {
+      "offset": 140043,
+      "line": 5134,
+      "speaker": "PRINCE"
     },
     {
       "offset": 140078,
@@ -5588,9 +6424,19 @@
       "speaker": "MONTAGUE"
     },
     {
+      "offset": 140170,
+      "line": 5141,
+      "speaker": "PRINCE"
+    },
+    {
       "offset": 140478,
       "line": 5150,
       "speaker": "FRIAR LAWRENCE"
+    },
+    {
+      "offset": 140703,
+      "line": 5157,
+      "speaker": "PRINCE"
     },
     {
       "offset": 140758,
@@ -5598,9 +6444,29 @@
       "speaker": "FRIAR LAWRENCE"
     },
     {
+      "offset": 142525,
+      "line": 5203,
+      "speaker": "PRINCE"
+    },
+    {
       "offset": 142625,
       "line": 5207,
       "speaker": "BALTHASAR"
+    },
+    {
+      "offset": 142899,
+      "line": 5215,
+      "speaker": "PRINCE"
+    },
+    {
+      "offset": 143046,
+      "line": 5220,
+      "speaker": "PAGE"
+    },
+    {
+      "offset": 143260,
+      "line": 5227,
+      "speaker": "PRINCE"
     },
     {
       "offset": 143727,
@@ -5616,6 +6482,11 @@
       "offset": 144035,
       "line": 5251,
       "speaker": "CAPULET"
+    },
+    {
+      "offset": 144121,
+      "line": 5255,
+      "speaker": "PRINCE"
     }
   ]
 }

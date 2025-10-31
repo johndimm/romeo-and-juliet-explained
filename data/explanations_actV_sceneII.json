@@ -5,10 +5,10 @@
     "speaker": "FRIAR JOHN",
     "startOffset": 127945,
     "endOffset": 127994,
-    "content": "Friar John calls out for Friar Lawrence, announcing his arrival.",
+    "content": "Friar John calls out for Friar Lawrence, addressing him as a fellow Franciscan friar.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 5
   },
   {
     "act": "V",
@@ -16,10 +16,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128018,
     "endOffset": 128163,
-    "content": "Friar Lawrence recognizes Friar John’s voice and immediately asks for news from Romeo or a letter from him.",
+    "content": "Friar Lawrence recognizes Friar John's voice and asks for news from Romeo in Mantua, or for a letter if Romeo wrote down his thoughts.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "V",
@@ -27,10 +27,10 @@
     "speaker": "FRIAR JOHN",
     "startOffset": 128163,
     "endOffset": 128511,
-    "content": "He explains that while searching for another friar to accompany him, the city health inspectors sealed them in a house under quarantine for plague, preventing his journey to Mantua.",
+    "content": "He explains that while searching for another friar to accompany him, the town health inspectors quarantined them in a house suspected of plague, preventing his journey to Mantua.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "V",
@@ -38,10 +38,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128511,
     "endOffset": 128562,
-    "content": "He urgently asks who delivered the letter to Romeo if Friar John could not.",
+    "content": "He urgently asks who then delivered his letter to Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "V",
@@ -49,7 +49,7 @@
     "speaker": "FRIAR JOHN",
     "startOffset": 128562,
     "endOffset": 128692,
-    "content": "He replies that he could not send the letter or find a messenger because everyone was too afraid of infection.",
+    "content": "He replies that he could not send the letter or find a messenger because everyone was too afraid of catching the plague.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -60,10 +60,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128692,
     "endOffset": 128926,
-    "content": "He laments this unlucky event, stressing that the letter was not trivial but vitally important, and its neglect may cause great harm. He orders Friar John to fetch an iron crowbar immediately.",
+    "content": "He exclaims at the unlucky event, noting the letter was not trivial but urgent and important; neglecting it may cause great harm. He orders Friar John to fetch an iron crowbar immediately.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 30
   },
   {
     "act": "V",
@@ -82,9 +82,9 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 128989,
     "endOffset": 129289,
-    "content": "Alone, he resolves to go to the tomb where Juliet will awaken in three hours. He fears she will blame him because Romeo was not informed, but he plans to write again and shelter her until Romeo arrives, calling her a poor living corpse enclosed in a dead man’s tomb.",
+    "content": "He resolves to go alone to the tomb where Juliet will wake in three hours; she will be angry Romeo wasn't informed, so he'll write again and shelter her until Romeo arrives—a living body enclosed in a dead man's tomb.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   }
 ]

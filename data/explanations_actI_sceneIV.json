@@ -5,10 +5,10 @@
     "speaker": "ROMEO",
     "startOffset": 23777,
     "endOffset": 23866,
-    "content": "Romeo asks whether they should offer a formal excuse for attending the party or just go in without any explanation.",
+    "content": "Romeo asks whether they should offer a formal excuse for arriving at the party, or just enter without any apology.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -16,7 +16,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 23866,
     "endOffset": 24212,
-    "content": "Benvolio says elaborate introductions are out of fashion; they will not perform a rehearsed prologue but let the hosts judge them as they please, then dance a measure and leave.",
+    "content": "Benvolio says elaborate introductions are out of fashion; they will not perform a masked Cupid act or a memorized prologue. He says they will let others judge them as they wish, but they will dance a measure (a dance) and then leave.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -27,10 +27,10 @@
     "speaker": "ROMEO",
     "startOffset": 24212,
     "endOffset": 24303,
-    "content": "Romeo asks for a torch because he feels heavy-hearted and prefers to carry light rather than dance.",
+    "content": "Romeo asks for a torch because he does not want to dance; feeling heavy-hearted, he will carry the light instead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -41,7 +41,7 @@
     "content": "Mercutio insists that Romeo must dance.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -49,10 +49,10 @@
     "speaker": "ROMEO",
     "startOffset": 24357,
     "endOffset": 24491,
-    "content": "Romeo says he has a soul of lead, weighing him down so he cannot move, unlike his nimble-footed friends.",
+    "content": "Romeo says he will not dance; while Mercutio has nimble dancing shoes, his own soul is like lead, pinning him to the ground.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 40
   },
   {
     "act": "I",
@@ -60,40 +60,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 24491,
     "endOffset": 24584,
-    "content": "Mercutio tells Romeo, as a lover, to borrow Cupid’s wings and rise above ordinary limits.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "I",
-    "scene": "IV",
-    "speaker": "ROMEO",
-    "startOffset": 24584,
-    "endOffset": 24756,
-    "content": "Romeo replies that he is too deeply wounded by love’s arrow to fly; he is bound by sorrow and sinks under love’s weight.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 75
-  },
-  {
-    "act": "I",
-    "scene": "IV",
-    "speaker": "MERCUTIO",
-    "startOffset": 24756,
-    "endOffset": 24852,
-    "content": "Mercutio quips that if Romeo sinks under love’s burden, he is oppressing love, which is too tender for such weight.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "I",
-    "scene": "IV",
-    "speaker": "ROMEO",
-    "startOffset": 24852,
-    "endOffset": 24953,
-    "content": "Romeo questions whether love is tender, calling it rough, rude, boisterous, and painful like a thorn.",
+    "content": "Mercutio tells Romeo that, as a lover, he should borrow Cupid’s wings and rise above ordinary limits.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -101,13 +68,46 @@
   {
     "act": "I",
     "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24584,
+    "endOffset": 24756,
+    "content": "Romeo says he is too deeply wounded by Cupid’s arrow to fly with his light feathers; he is so weighed down that he cannot leap above his sadness and sinks under love’s burden.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "MERCUTIO",
+    "startOffset": 24756,
+    "endOffset": 24852,
+    "content": "Mercutio replies that if Romeo sinks under love’s burden, he is burdening love in return, which is too heavy for something so tender.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "I",
+    "scene": "IV",
+    "speaker": "ROMEO",
+    "startOffset": 24852,
+    "endOffset": 24953,
+    "content": "Romeo questions whether love is tender; he finds it rough, rude, boisterous, and painful like a thorn.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "I",
+    "scene": "IV",
     "speaker": "MERCUTIO",
     "startOffset": 24953,
     "endOffset": 25239,
-    "content": "Mercutio advises Romeo to fight back against love’s roughness. He then puts on a mask, joking that he doesn’t care if people notice his odd looks—let the frowning onlookers blush instead.",
+    "content": "Mercutio advises Romeo to fight back if love is rough—prick love back and defeat it. He then asks for a mask to hide his face, saying he does not care if anyone notices his odd looks; let the frowning ladies blush instead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
   },
   {
     "act": "I",
@@ -118,7 +118,7 @@
     "content": "Benvolio urges everyone to enter and start dancing immediately.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -126,10 +126,10 @@
     "speaker": "ROMEO",
     "startOffset": 25328,
     "endOffset": 25557,
-    "content": "Romeo again asks for a torch, saying let the carefree dance; he will follow an old saying and be a spectator, since the fun is not for him.",
+    "content": "Romeo again asks for a torch; let the carefree ones dance on the rushes (floor covering). He says he will follow an old saying and be a candle-holder, watching others play a game he is finished with.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 55
   },
   {
     "act": "I",
@@ -137,10 +137,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 25557,
     "endOffset": 25764,
-    "content": "Mercutio plays on words: 'dun’s the mouse' means keep still, but if Romeo is stuck (dun) in love’s mire, they’ll pull him out. He says they are wasting time.",
+    "content": "Mercutio uses wordplay: 'dun’s the mouse' means 'keep still,' but if Romeo is stuck (dun) in the mire of love, they will pull him out. He says they are wasting daylight (time) by delaying.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 70
   },
   {
     "act": "I",
@@ -151,7 +151,7 @@
     "content": "Romeo objects that they are not actually burning daylight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -159,10 +159,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 25794,
     "endOffset": 25967,
-    "content": "Mercutio clarifies that by delaying they waste their torchlight needlessly, like lighting lamps by day; he says his true meaning is wiser than it may seem.",
+    "content": "Mercutio clarifies that by delaying they waste their torchlight needlessly, like lighting lamps by day. He says his intended meaning is wiser than mere cleverness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 50
   },
   {
     "act": "I",
@@ -170,10 +170,10 @@
     "speaker": "ROMEO",
     "startOffset": 25967,
     "endOffset": 26040,
-    "content": "Romeo concedes their intention in going to the masque is good, but he still thinks it is unwise.",
+    "content": "Romeo agrees their intention in going to the masque is good, but it is not wise to go.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -181,10 +181,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 26040,
     "endOffset": 26069,
-    "content": "He asks Romeo why he is reluctant to attend the party, prompting an explanation.",
+    "content": "Mercutio asks Romeo why he is reluctant to attend the feast, prompting him to explain his mood.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -192,10 +192,10 @@
     "speaker": "ROMEO",
     "startOffset": 26069,
     "endOffset": 26103,
-    "content": "He reveals he had a dream last night, hinting at his troubled state of mind.",
+    "content": "Romeo says he had a dream last night, hinting at his troubled state of mind.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -203,10 +203,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 26103,
     "endOffset": 26128,
-    "content": "He claims he also dreamed, setting up a playful exchange about dreams.",
+    "content": "Mercutio replies that he also dreamed, setting up a playful exchange.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -214,10 +214,10 @@
     "speaker": "ROMEO",
     "startOffset": 26128,
     "endOffset": 26157,
-    "content": "He asks what Mercutio dreamed, continuing their banter.",
+    "content": "Romeo asks what Mercutio dreamed, continuing their banter.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -225,10 +225,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 26157,
     "endOffset": 26193,
-    "content": "He puns that dreamers often lie, meaning both tell falsehoods and recline in bed.",
+    "content": "Mercutio puns that dreamers often lie, meaning both tell falsehoods and recline in bed.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -236,10 +236,10 @@
     "speaker": "ROMEO",
     "startOffset": 26193,
     "endOffset": 26249,
-    "content": "He counters that dreams can be true, showing his belief in their significance.",
+    "content": "Romeo counters that dreams can be true, but only while asleep in bed.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -247,7 +247,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 26249,
     "endOffset": 28168,
-    "content": "He launches into a fanciful speech about Queen Mab, the fairy who causes dreams by riding in a tiny chariot over sleeping people, making lovers dream of love, courtiers of etiquette, lawyers of fees, ladies of kisses (sometimes punished with blisters for sweet breath), courtiers of favors, parsons of church incomes, and soldiers of battle before they wake frightened. He adds she tangles horses’ manes and maids’ hair, and teaches maids to bear weight, making them women. This speech mocks Romeo’s belief in dreams as mere fantasies.",
+    "content": "Mercutio launches into his Queen Mab speech, describing the tiny fairy who causes people’s dreams by riding over them as they sleep. He details her miniature chariot and how she makes lovers dream of love, courtiers of etiquette, lawyers of fees, ladies of kisses (sometimes punished with blisters), courtiers of favors, parsons of extra income, and soldiers of battle—before they wake frightened. He adds that Mab tangles horses’ manes and maids’ hair, and teaches maids to bear weight, making them women. This extravagant speech mocks Romeo’s belief in dreams.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 85
@@ -258,10 +258,10 @@
     "speaker": "ROMEO",
     "startOffset": 28168,
     "endOffset": 28234,
-    "content": "He interrupts, telling Mercutio to stop talking nonsense, showing his irritation and preoccupation.",
+    "content": "Romeo interrupts, telling Mercutio to stop because he is talking nonsense.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -269,10 +269,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 28234,
     "endOffset": 28561,
-    "content": "He agrees he talks of dreams, which he calls idle brainchildren of vain fantasy, as insubstantial as air and as changeable as the wind that shifts from north to south. This reinforces his view that dreams are meaningless.",
+    "content": "Mercutio agrees that he talks of dreams, which are the products of a lazy mind, made of empty fantasy—as insubstantial as air and more changeable than the wind, which now flatters the cold north but may turn angrily toward the south.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 40
   },
   {
     "act": "I",
@@ -280,10 +280,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 28561,
     "endOffset": 28663,
-    "content": "He says this talk of wind distracts them, and they will be late for the party, urging them to move on.",
+    "content": "Benvolio says this talk of wind is distracting them; supper is over and they will be late for the party.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -291,10 +291,10 @@
     "speaker": "ROMEO",
     "startOffset": 28663,
     "endOffset": 29001,
-    "content": "He fears they are too early, as he dreads some fateful event starting tonight that will end his life by untimely death, but he resigns to whatever guides his course and urges them forward. This reveals his foreboding about the party.",
+    "content": "Romeo fears they are too early, because he dreads that some fateful event beginning tonight will end his despised life by an untimely death. But he resigns himself to whatever power guides his course and urges them onward.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 50
   },
   {
     "act": "I",
@@ -302,9 +302,9 @@
     "speaker": "BENVOLIO",
     "startOffset": 29001,
     "endOffset": 29026,
-    "content": "He calls for the drum to sound, signaling their departure to the Capulet feast.",
+    "content": "Benvolio orders the drum to sound, signaling their departure for the Capulet feast.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 10
+    "perplexity": 5
   }
 ]

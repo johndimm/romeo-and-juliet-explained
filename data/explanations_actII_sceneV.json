@@ -5,18 +5,29 @@
     "speaker": "JULIET",
     "startOffset": 61661,
     "endOffset": 62410,
-    "content": "Juliet anxiously waits for the Nurse, who was supposed to return in half an hour. She worries the Nurse might not have met Romeo, then dismisses that idea, blaming her slowness on age. She reflects that love’s messengers should be as fast as thoughts or doves, but the Nurse is slow like old people, who seem heavy and lifeless. This builds tension and contrasts youthful passion with age’s sluggishness.",
+    "content": "Juliet anxiously waits for the Nurse, who was supposed to return in half an hour. She worries the Nurse might be delayed, then imagines that love’s messengers should be as fast as thoughts, which move ten times quicker than sunlight, or like doves and Cupid that swiftly carry love. She notes three hours have passed since nine o’clock, and if the Nurse were young and passionate, she would move as quickly as a ball in a game. But old people act slow and lifeless like lead.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 65
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62523,
+    "endOffset": 62556,
+    "content": "The Nurse tells Peter to wait at the gate.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "II",
     "scene": "V",
     "speaker": "JULIET",
     "startOffset": 62574,
-    "endOffset": 62864,
-    "content": "Juliet notices the Nurse looks sad and advises her to deliver bad news cheerfully or good news without a sour face, since her expression ruins the message. This shows Juliet’s impatience and her focus on the Nurse’s demeanor as a clue to the news.",
+    "endOffset": 62772,
+    "content": "Juliet notices the Nurse looks sad and urges her to deliver any news cheerfully; if the news is good, she should not spoil it with a gloomy expression.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -24,10 +35,32 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62772,
+    "endOffset": 62864,
+    "content": "The Nurse says she is tired and needs a rest, complaining that her bones ache from the trip.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "JULIET",
     "startOffset": 62864,
+    "endOffset": 62972,
+    "content": "Juliet impatiently says she wishes they could trade places—her bones for the Nurse’s news—and begs her to speak.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 62972,
     "endOffset": 63064,
-    "content": "Juliet impatiently says she wishes she had the Nurse’s news instead of her own bones, and urgently begs her to speak. This highlights her desperation and the comic contrast between Juliet’s emotional urgency and the Nurse’s physical complaints.",
+    "content": "The Nurse exclaims at Juliet’s impatience, asking if she cannot wait a moment since she is out of breath.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -37,52 +70,30 @@
     "scene": "V",
     "speaker": "JULIET",
     "startOffset": 63064,
-    "endOffset": 63795,
-    "content": "Juliet points out the irony that the Nurse claims to be out of breath but has enough breath to say so. She complains that this excuse takes longer than the actual news would, and demands simply whether the news is good or bad, promising to wait for details. This underscores Juliet’s frustration with the Nurse’s delaying tactics.",
+    "endOffset": 63380,
+    "content": "Juliet cleverly points out that if the Nurse has enough breath to say she’s out of breath, her excuse is longer than the actual news would be. She demands simply whether the news is good or bad, promising to wait for details after that.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 40
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63380,
+    "endOffset": 63795,
+    "content": "The Nurse teasingly criticizes Juliet’s choice of Romeo, saying she doesn’t know how to pick a man. She praises his looks, legs, hands, feet, and body as beyond compare, and though he may not be the peak of courtesy, she guarantees he is gentle. She then oddly asks if Juliet has eaten at home.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
   },
   {
     "act": "II",
     "scene": "V",
     "speaker": "JULIET",
     "startOffset": 63795,
-    "endOffset": 64121,
-    "content": "Juliet dismisses the Nurse’s rambling praise of Romeo’s looks, saying she already knows all that, and urgently asks what he said about their marriage. This shows her single-minded focus on the marriage plans amid the Nurse’s digressions.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "II",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 64121,
-    "endOffset": 64375,
-    "content": "Juliet apologizes insincerely for the Nurse’s aches, then insistently asks what her love said. Her quick return to the subject reveals her priorities and the humorous impatience with the Nurse’s dramatics.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 15
-  },
-  {
-    "act": "II",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 64375,
-    "endOffset": 64694,
-    "content": "Juliet is confused by the Nurse’s odd reply asking where her mother is, and repeats the Nurse’s own words back to her in disbelief. This highlights the Nurse’s evasiveness and Juliet’s growing irritation.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "II",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 64694,
-    "endOffset": 64798,
-    "content": "Juliet complains about all this fuss and directly asks what Romeo said. Her blunt question cuts through the Nurse’s distractions, showing her determination to get an answer.",
+    "endOffset": 63888,
+    "content": "Juliet dismisses this, saying she already knew all that, and urgently asks what Romeo said about their marriage.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 10
@@ -90,10 +101,98 @@
   {
     "act": "II",
     "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 63888,
+    "endOffset": 64121,
+    "content": "The Nurse complains again of her aching head and back, blaming Juliet for sending her out and risking her health by running around.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64121,
+    "endOffset": 64231,
+    "content": "Juliet politely says she is sorry the Nurse is unwell, but persists in asking what her love said.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64231,
+    "endOffset": 64375,
+    "content": "The Nurse says Romeo spoke like an honest, courteous, kind, handsome, and virtuous gentleman, then abruptly asks where Juliet’s mother is.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64375,
+    "endOffset": 64543,
+    "content": "Juliet is confused by the odd reply, repeating the Nurse’s own words: ‘Your love says, like an honest gentleman, “Where is your mother?”’",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64543,
+    "endOffset": 64694,
+    "content": "The Nurse exclaims in mild exasperation: ‘Are you so impatient? Indeed, I suppose you are. Is this the remedy for my aching bones? From now on, deliver your own messages.’",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 64694,
+    "endOffset": 64748,
+    "content": "Juliet says all this fuss is unnecessary and again asks what Romeo said.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64748,
+    "endOffset": 64798,
+    "content": "The Nurse finally gets to the point, asking if Juliet has permission to go to confession today.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "V",
     "speaker": "JULIET",
     "startOffset": 64798,
+    "endOffset": 64815,
+    "content": "Juliet is anxiously waiting for the Nurse to return with news from Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "II",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 64815,
     "endOffset": 65263,
-    "content": "Juliet confirms she has permission to go to confession, and after hearing the Nurse’s instructions, she excitedly says she’ll hurry to good fortune and bids the Nurse farewell. Her eagerness contrasts with the earlier tension, showing her joy at the news.",
+    "content": "She tells Juliet to hurry to Friar Lawrence’s cell where Romeo is waiting to marry her. The Nurse notes Juliet’s cheeks are blushing at the news. She will go fetch a rope ladder so Romeo can climb to Juliet’s room that night. The Nurse calls herself a drudge doing the hard work for Juliet’s pleasure, but Juliet will soon bear the 'burden' of marriage. She urges Juliet to go to the church while she goes to dinner.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -104,9 +203,9 @@
     "speaker": "JULIET",
     "startOffset": 65263,
     "endOffset": 65317,
-    "content": "Juliet’s final line expresses her exhilaration and gratitude, reinforcing her swift shift from anxiety to happy anticipation as she prepares to go to the friar.",
+    "content": "Juliet joyfully exclaims she is hurrying to her great fortune and bids a warm farewell to the trustworthy Nurse.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 10
   }
 ]

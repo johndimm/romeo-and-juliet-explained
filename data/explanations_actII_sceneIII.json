@@ -5,10 +5,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 47837,
     "endOffset": 48861,
-    "content": "The Friar describes dawn overcoming night, then explains he must gather both poisonous and medicinal plants. He reflects on nature's dual role as womb and tomb, noting everything on earth has some virtue, but even good things can become harmful when misused. This introduces the theme of duality that parallels Romeo's situation.",
+    "content": "The dawn is replacing night, and I must fill my willow basket with both poisonous and medicinal plants. The earth is both a womb and a tomb, producing many different plants, each with its own virtues. Nothing is so evil that it does not give some good to the earth, and nothing so good that it cannot be abused. Virtue becomes vice if misused, and vice can be dignified by proper use. This flower contains both poison and medicine: smelling it revives, tasting it kills. Similarly, humans have grace and base desire; if the worse prevails, death destroys them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 85
   },
   {
     "act": "II",
@@ -16,7 +16,7 @@
     "speaker": "ROMEO",
     "startOffset": 49239,
     "endOffset": 49268,
-    "content": "Romeo greets the Friar with 'Good morning'.",
+    "content": "Good morning, father.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -27,10 +27,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 49268,
     "endOffset": 49776,
-    "content": "The Friar responds with a blessing ('Benedicite') and expresses surprise at Romeo's early arrival. He suggests that only distress or sleeplessness would bring a young person out so early, unlike older men who naturally wake early due to worries.",
+    "content": "Bless you! Who greets me so sweetly so early? Young man, it suggests a troubled mind to say good morning so early instead of sleeping. Old men have care in their eyes and cannot sleep, but youth with clear minds should sleep soundly. Your early rising tells me you are disturbed, or else you haven't been to bed tonight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 45
   },
   {
     "act": "II",
@@ -38,10 +38,10 @@
     "speaker": "ROMEO",
     "startOffset": 49776,
     "endOffset": 49830,
-    "content": "Romeo confirms he hasn't slept, calling his rest 'sweeter'—hinting at his joyful night.",
+    "content": "The last part is true; I had a sweeter rest.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -49,10 +49,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 49830,
     "endOffset": 49888,
-    "content": "The Friar asks if Romeo was with Rosaline, assuming his distress is over his previous love.",
+    "content": "God forgive sin. Were you with Rosaline?",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -60,10 +60,10 @@
     "speaker": "ROMEO",
     "startOffset": 49888,
     "endOffset": 49982,
-    "content": "Romeo denies this, saying he has forgotten Rosaline and the sorrow she caused him.",
+    "content": "With Rosaline, my spiritual father? No, I have forgotten that name and its sorrow.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -71,10 +71,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 49982,
     "endOffset": 50052,
-    "content": "Pleased, the Friar asks where Romeo has been instead.",
+    "content": "That's my good son. But where have you been then?",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "II",
@@ -82,10 +82,10 @@
     "speaker": "ROMEO",
     "startOffset": 50052,
     "endOffset": 50338,
-    "content": "Romeo says he's been feasting with his enemy (the Capulets) and that he and Juliet have wounded each other with love. He asks for the Friar's help to heal them both, as he bears no hatred toward his foe.",
+    "content": "I'll tell you before you ask again. I have been feasting with my enemy, where suddenly someone wounded me who is also wounded by me. Our cures lie in your help and holy medicine. I bear no hatred, for my plea also helps my foe.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 55
   },
   {
     "act": "II",
@@ -93,10 +93,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 50338,
     "endOffset": 50447,
-    "content": "The Friar urges Romeo to speak plainly, warning that confusing confessions will receive confusing absolution.",
+    "content": "Be plain, good son, and straightforward in your meaning; a puzzling confession gets only a puzzling absolution.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 40
   },
   {
     "act": "II",
@@ -104,10 +104,10 @@
     "speaker": "ROMEO",
     "startOffset": 50447,
     "endOffset": 50802,
-    "content": "Romeo directly states he loves Juliet Capulet and she loves him. He asks the Friar to marry them today, promising to explain how they met later.",
+    "content": "Then know plainly that my heart's dear love is set on the fair daughter of rich Capulet. She loves me as I love her, and all is settled except what you must join in holy marriage. I'll tell you the details later, but I beg you to consent to marry us today.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -115,10 +115,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 50802,
     "endOffset": 51537,
-    "content": "The Friar is shocked at Romeo's sudden change of affection from Rosaline. He criticizes young men's fickle love based on appearance rather than true feeling. He recalls Romeo's recent tears for Rosaline and concludes that women may fall when men are so inconstant.",
+    "content": "Holy Saint Francis! What a change is this! Is Rosaline, whom you loved so dearly, so quickly abandoned? Young men's love lies not in their hearts but in their eyes. Jesus Mary, how much salt water washed your pale cheeks for Rosaline! How much salt water wasted to season a love that had no taste. The sun hasn't yet cleared your sighs from heaven, your old groans still ring in my old ears. Here on your cheek sits the stain of an old tear not yet washed off. If you were ever yourself, these woes were all for Rosaline, and are you changed? Pronounce this verdict then: women may fall when men are weak.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 70
   },
   {
     "act": "II",
@@ -126,10 +126,10 @@
     "speaker": "ROMEO",
     "startOffset": 51537,
     "endOffset": 51589,
-    "content": "Romeo reminds the Friar that he often scolded him for loving Rosaline.",
+    "content": "You often scolded me for loving Rosaline.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -137,7 +137,51 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 51589,
     "endOffset": 51646,
-    "content": "The Friar clarifies he scolded Romeo for obsessive infatuation ('doting'), not for genuine love.",
+    "content": "For infatuation, not for loving, my pupil.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51646,
+    "endOffset": 51681,
+    "content": "And you told me to bury love.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51681,
+    "endOffset": 51749,
+    "content": "Not in a grave to put one love in and take another out.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "ROMEO",
+    "startOffset": 51749,
+    "endOffset": 51866,
+    "content": "I pray you, do not scold me; the one I love now returns grace for grace and love for love. The other did not.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "II",
+    "scene": "III",
+    "speaker": "FRIAR LAWRENCE",
+    "startOffset": 51866,
+    "endOffset": 52117,
+    "content": "He says that Juliet knew Romeo’s love was just memorized and recited without true understanding, like someone who can recite words but not actually spell them. Then he calls Romeo a young waverer and tells him to come along, promising to help him in one way: this marriage might turn out so happily that it transforms the hatred between their families into pure love.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -146,56 +190,12 @@
     "act": "II",
     "scene": "III",
     "speaker": "ROMEO",
-    "startOffset": 51646,
-    "endOffset": 51681,
-    "content": "Romeo adds that the Friar told him to 'bury' his love.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "II",
-    "scene": "III",
-    "speaker": "FRIAR LAWRENCE",
-    "startOffset": 51681,
-    "endOffset": 51749,
-    "content": "The Friar explains he meant to bury one love, not to replace it immediately with another.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 85
-  },
-  {
-    "act": "II",
-    "scene": "III",
-    "speaker": "ROMEO",
-    "startOffset": 51749,
-    "endOffset": 51866,
-    "content": "Romeo asks not to be scolded, saying Juliet returns his love equally, unlike Rosaline who did not.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "II",
-    "scene": "III",
-    "speaker": "FRIAR LAWRENCE",
-    "startOffset": 51866,
-    "endOffset": 52117,
-    "content": "He says that Rosaline knew Romeo’s love was memorized and insincere, unlike true understanding. He calls Romeo a waverer in affection and agrees to help him, hoping this marriage might end the feud between their families.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "II",
-    "scene": "III",
-    "speaker": "ROMEO",
     "startOffset": 52117,
     "endOffset": 52166,
-    "content": "Romeo urges them to leave immediately, saying he is in a hurry.",
+    "content": "Romeo urges them to leave immediately, saying he feels a sense of urgent hurry.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -203,9 +203,9 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 52166,
     "endOffset": 52228,
-    "content": "He advises caution, warning that rushing leads to mistakes.",
+    "content": "The Friar advises moving wisely and slowly, because those who run fast are prone to stumbling. This serves as a warning against Romeo’s impulsiveness.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 30
   }
 ]

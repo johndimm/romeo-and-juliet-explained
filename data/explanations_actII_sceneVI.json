@@ -5,10 +5,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 65401,
     "endOffset": 65501,
-    "content": "He prays that heaven will bless this marriage so that future sorrows do not reproach them for it.",
+    "content": "He prays that heaven will bless this marriage so that later times do not reproach them with sorrow. This sets a solemn tone for the secret wedding.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 30
   },
   {
     "act": "II",
@@ -16,10 +16,10 @@
     "speaker": "ROMEO",
     "startOffset": 65501,
     "endOffset": 65760,
-    "content": "He agrees but says no sorrow can outweigh the joy of seeing Juliet; if the Friar marries them, death can do its worst—it's enough that he can call her his.",
+    "content": "He agrees but says any future sorrow cannot outweigh the joy he gets from seeing Juliet even briefly; he asks the Friar to marry them, and then even death can do its worst, since having her as his own is enough.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 45
   },
   {
     "act": "II",
@@ -27,7 +27,7 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 65760,
     "endOffset": 66080,
-    "content": "He warns that intense pleasures end violently, like fire and gunpowder exploding when they meet; even honey can sicken if overindulged. He advises loving moderately, since rushing or delaying love both lead to failure.",
+    "content": "He warns that intense joys end violently, like fire and gunpowder exploding when they meet; even sweet things can become sickening if overindulged, so he advises loving moderately because rushing can be as bad as going too slowly.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -41,7 +41,7 @@
     "content": "She greets the Friar respectfully as her spiritual advisor.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "II",
@@ -49,10 +49,10 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 66335,
     "endOffset": 66399,
-    "content": "He says Romeo will thank her on behalf of both of them.",
+    "content": "He says Romeo will thank her on behalf of both of them, acknowledging their shared gratitude.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
   },
   {
     "act": "II",
@@ -60,10 +60,10 @@
     "speaker": "JULIET",
     "startOffset": 66399,
     "endOffset": 66453,
-    "content": "She replies that she owes Romeo equal thanks, otherwise his thanks would be excessive.",
+    "content": "She replies that she owes Romeo just as much thanks, otherwise his thanks would be excessive.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 85
+    "perplexity": 25
   },
   {
     "act": "II",
@@ -71,10 +71,10 @@
     "speaker": "ROMEO",
     "startOffset": 66453,
     "endOffset": 66726,
-    "content": "He tells Juliet that if her joy equals his and she is more skilled at expressing it, she should speak and let her words describe the happiness they both feel in this meeting.",
+    "content": "He tells Juliet that if her joy is as great as his and she is better at expressing it, she should use her voice to describe the happiness they both feel in seeing each other.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 55
   },
   {
     "act": "II",
@@ -82,10 +82,10 @@
     "speaker": "JULIET",
     "startOffset": 66726,
     "endOffset": 66949,
-    "content": "She responds that true feeling is richer in substance than in showy words; only poor people count their wealth, but her love is so great she cannot tally half its worth.",
+    "content": "She responds that true feeling is richer in substance than in showy words; those who can count their worth are poor, but her love is so immense she cannot tally half its value.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 50
   },
   {
     "act": "II",
@@ -93,9 +93,9 @@
     "speaker": "FRIAR LAWRENCE",
     "startOffset": 66949,
     "endOffset": 67102,
-    "content": "He urges them to come with him to be married quickly, since they must not be alone together until the church has united them.",
+    "content": "He urges them to come with him to be married quickly, saying they cannot be left alone until the church has united them as one.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   }
 ]

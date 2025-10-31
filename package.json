@@ -25,7 +25,9 @@
     "build:characters": "node scripts/build-character-map.mjs", 
     "hist:perplexity": "node scripts/hist-perplexity.mjs --in data/explanations.json --bins 10", 
     "merge:explanations": "node scripts/merge-explanations.mjs", 
-    "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json"
+    "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json",
+    "fill:notes": "node scripts/fill_missing_explanations.mjs",
+    "gen:missing:deepseek": "node scripts/gen-missing-notes-deepseek.mjs"
   }, 
   "type": "module", 
   "name": "romeo-and-juliet-explained"

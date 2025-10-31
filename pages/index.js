@@ -842,9 +842,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const opt = localStorage.getItem('llmOptions');
       if (opt) setLlmOptions(JSON.parse(opt));
       const nt = localStorage.getItem('noteThreshold');
-      if (nt != null) {
+      if (nt != null && nt !== '') {
         const v = parseInt(nt, 10);
-        setNoteThreshold(Number.isFinite(v) ? v : 50);
+        if (Number.isFinite(v) && v >= 0 && v <= 100) {
+          setNoteThreshold(v);
+        }
       }
     } catch {}
     setOptsHydrated(true);
@@ -858,8 +860,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     try { localStorage.setItem('llmOptions', JSON.stringify(llmOptions)); } catch {}
   }, [optsHydrated, llmOptions]);
   useEffect(() => {
-    try { localStorage.setItem('noteThreshold', String(noteThreshold || 0)); } catch {}
-  }, [noteThreshold]);
+    if (!optsHydrated) return; // Don't save until we've loaded from localStorage
+    if (typeof noteThreshold === 'number') {
+      try { localStorage.setItem('noteThreshold', String(noteThreshold)); } catch {}
+    }
+  }, [optsHydrated, noteThreshold]);
 
   // Normalize perplexity for filtering (supports both 0–100 and raw LM PPL)
   function normalizedPerplexity(it) {
@@ -1182,7 +1187,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           const itemsAllSec = speechesInSec
             .map((sp) => speechMaps.noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`))
             .filter(Boolean);
-          const itemsFilteredSec = itemsAllSec.filter((it) => { const score = normalizedPerplexity(it); return (typeof noteThreshold === 'number') ? (score > noteThreshold) : true; });
+          // Show all notes when threshold is 0; otherwise include notes with score >= threshold
+          const itemsFilteredSec = itemsAllSec.filter((it) => {
+            const score = normalizedPerplexity(it);
+            if (typeof noteThreshold !== 'number') return true;
+            if (noteThreshold <= 0) return true;
+            return score >= noteThreshold;
+          });
           return (
           <Section
             key={idx}
@@ -1434,6 +1445,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Mini chat history per speech (keyed by startOffset)
   const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
   const [forceShow, setForceShow] = useState(false);
+  // Track suppressed notes (by speech key) that should be hidden even if they meet threshold
+  const [suppressedNotes, setSuppressedNotes] = useState(new Set());
   // When a note is expanded via "More", we replace the displayed text to avoid repetition
   const [preNoteOverrides, setPreNoteOverrides] = useState({}); // key (startOffset) -> replaced content
 
@@ -1462,6 +1475,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Use speech anchors instead of item offsets
   const visiblePreItems = (precomputedItems || []).filter((it) => !isStageOrTitle(it));
   const visibleAllItems = (precomputedAllItems || []).filter((it) => !isStageOrTitle(it));
+  // Helper to get speech key for an item (items are notes themselves)
+  const getSpeechKeyForItem = (item) => {
+    if (!item || !speeches || !speeches.length) return null;
+    // Items are the notes themselves, so find which speech key maps to this exact item
+    for (const sp of speeches) {
+      const spKey = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+      const note = noteBySpeechKey.get(spKey);
+      // Check if this note matches the item (compare by startOffset as identifier)
+      if (note && note.startOffset === (item.startOffset || 0)) {
+        return spKey;
+      }
+    }
+    return null;
+  };
+  // Filter out suppressed notes from the visible lists
+  const visiblePreItemsFiltered = visiblePreItems.filter((it) => {
+    const sk = getSpeechKeyForItem(it);
+    return !sk || !suppressedNotes.has(sk);
+  });
+  const visibleAllItemsFiltered = visibleAllItems.filter((it) => {
+    const sk = getSpeechKeyForItem(it);
+    return !sk || !suppressedNotes.has(sk);
+  });
   function pickVisibleItem(list, startIdx) {
     if (!list || !list.length) return null;
     const n = list.length;
@@ -1470,19 +1506,23 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     for (let i = s - 1; i >= 0; i--) if (list[i]) return list[i];
     return null;
   }
-  const currentVisible = pickVisibleItem(visiblePreItems, autoIdx);
-  const currentForceVisible = pickVisibleItem(visibleAllItems, autoIdx);
+  const currentVisible = pickVisibleItem(visiblePreItemsFiltered, autoIdx);
+  const currentForceVisible = pickVisibleItem(visibleAllItemsFiltered, autoIdx);
   const forcedSet = new Set((Array.isArray(forcedNotes)?forcedNotes:[]).map(String));
   const currentSpeech = (speeches && speeches.length) ? speeches[Math.min(autoIdx, speeches.length - 1)] : null;
   const speechKey = currentSpeech ? `${currentSpeech.act}|${currentSpeech.scene}|${currentSpeech.speechIndex}` : null;
   // If any forced speech exists in this section, prefer it immediately (even before IO sets autoIdx)
   const sectionForcedSpeech = (speeches || []).find((sp) => forcedSet.has(`${sp.act}|${sp.scene}|${sp.speechIndex}`));
   const forcedKey = sectionForcedSpeech ? `${sectionForcedSpeech.act}|${sectionForcedSpeech.scene}|${sectionForcedSpeech.speechIndex}` : null;
-  const chosenItem = (forcedKey ? noteBySpeechKey.get(forcedKey) : (currentVisible || (forceShow ? currentForceVisible : null)));
-  // Show the aside only when there is something to show
-  const hasAside = !!selectedRange
+  // Check if current note is suppressed (hidden even if it meets threshold)
+  const isSuppressed = speechKey && suppressedNotes.has(speechKey);
+  const chosenItem = (forcedKey ? noteBySpeechKey.get(forcedKey) : (isSuppressed ? null : (currentVisible || (forceShow ? currentForceVisible : null))));
+  // Show the aside only when there is actual content to show
+  // Check if there's a chosenItem, savedExplanations, or a valid LLM conversation for selectedRange
+  const hasLLMContent = selectedRange && llm?.conversation?.last;
+  const hasAside = !!chosenItem
     || (savedExplanations && savedExplanations.length > 0)
-    || (!!chosenItem);
+    || hasLLMContent;
   // Indicate clickability in the text area when a suppressed note exists for the current speech
   const canForceReveal = !selectedRange
     && (!savedExplanations || savedExplanations.length === 0)
@@ -1501,6 +1541,15 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const revealNoteForCurrentSpeech = () => {
     const sk = speechKey;
     if (!sk) return;
+    // If note is suppressed, remove from suppressed list first
+    if (suppressedNotes.has(sk)) {
+      setSuppressedNotes((prev) => {
+        const next = new Set(prev);
+        next.delete(sk);
+        return next;
+      });
+    }
+    // Then toggle forced state if handler exists
     if (onToggleForced) onToggleForced(sk, sectionIndex);
   };
 
@@ -1592,16 +1641,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     return () => io.disconnect();
   }, [precomputedAllItems, precomputedItems, sectionRef]);
 
-  // Long-press detection to distinguish tap vs. drag-selection
+  // Simplified mobile interaction: single tap toggles the note for current speech
   const onTouchStart = (e) => {
+    // Record start to detect scroll; do not preventDefault to preserve smooth scrolling
     const t = e.touches && e.touches[0];
     startXYRef.current = { x: t ? t.clientX : 0, y: t ? t.clientY : 0 };
     movedRef.current = false;
-    longPressRef.current = false;
     touchActiveRef.current = true;
-    clearTimeout(pressTimerRef.current);
-    pressTimerRef.current = setTimeout(() => { longPressRef.current = true; }, 350);
-    // record scroll position to distinguish scroll vs. selection
     try {
       const s = (function(){
         const cont = document.querySelector('.container');
@@ -1612,37 +1658,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       })();
       scrollerStartRef.current = (s === window) ? window.scrollY : s.scrollTop;
     } catch { scrollerStartRef.current = 0; }
-    // delayed reveal if held long enough
-    try { clearTimeout(revealTimerRef.current); } catch {}
-    revealedDuringPressRef.current = false;
-    // Proactive reveal after sustained hold (~0.7–1.0s feel)
-    revealTimerRef.current = setTimeout(() => {
-      try {
-        if (!longPressRef.current) return;
-        const noteVisible = !!chosenItem;
-        const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
-        if (!noteVisible && hasRevealableNote && !movedRef.current) {
-          revealNoteForCurrentSpeech();
-          scrollAsideIntoView();
-          revealedDuringPressRef.current = true;
-        }
-      } catch {}
-    }, 700);
   };
   const onTouchMove = (e) => {
     const t = e.touches && e.touches[0];
     if (!t) return;
     const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
     const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
-    if (dx + dy > 4) {
-      movedRef.current = true;
-      longPressRef.current = true; // treat as drag-selection
-      clearTimeout(pressTimerRef.current);
-      clearTimeout(revealTimerRef.current);
-    }
+    if (dx + dy > 6) movedRef.current = true;
   };
-  const onTouchEnd = () => {
-    clearTimeout(pressTimerRef.current);
+  const onTouchEnd = (e) => {
+    // Prevent synthetic click delays and bubbling to desktop handlers
+    try { e.preventDefault(); e.stopPropagation(); } catch {}
     // If the user scrolled, do nothing and swallow the synthetic mouseup
     try {
       const s = (function(){
@@ -1653,15 +1679,92 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         return window;
       })();
       const now = (s === window) ? window.scrollY : s.scrollTop;
-      if (Math.abs(now - (scrollerStartRef.current || 0)) > 10) {
+      // Treat small rubber-band or inertia movement as a tap; only swallow for larger moves
+      if (Math.abs(now - (scrollerStartRef.current || 0)) > 30 || movedRef.current) {
         skipNextMouseUpRef.current = true;
         touchActiveRef.current = false;
-        setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+        setTimeout(() => { movedRef.current = false; }, 80);
         return;
       }
     } catch {}
+    // Single tap: toggle note visibility (reveal/hide)
+    let keyToToggle = speechKey;
+    let hasNote = !!(keyToToggle && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
+    // Fallback 1: if current autoIdx didn't resolve, pick the nearest speech by tap Y using hidden anchors
+    if (!hasNote) {
+      try {
+        const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
+        if (anchors.length) {
+          let best = { idx: 0, d: Infinity };
+          const y = (e.changedTouches && e.changedTouches[0]?.clientY) || startXYRef.current?.y || 0;
+          anchors.forEach((el) => {
+            const r = el.getBoundingClientRect();
+            const d = Math.abs((r.top || 0) - y);
+            const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
+            if (d < best.d) best = { idx: i, d };
+          });
+          const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
+          if (sp) {
+            keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+            hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
+          }
+        }
+      } catch {}
+    }
+    // Fallback 2: use caret position under the finger to map to the exact speech
+    if (!hasNote) {
+      try {
+        const container = preRef.current;
+        const touch = e.changedTouches && e.changedTouches[0];
+        const cx = touch?.clientX || 0;
+        const cy = touch?.clientY || 0;
+        const caretFromPoint = (cx2, cy2) => {
+          if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
+          const pos = document.caretPositionFromPoint?.(cx2, cy2);
+          if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
+          return null;
+        };
+        const r = caretFromPoint(cx, cy);
+        if (container && r) {
+          const r0 = document.createRange(); r0.selectNodeContents(container);
+          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
+          const idxChar = before.toString().length;
+          // Convert character index to byte offset within full doc
+          const startRelB = new TextEncoder().encode((text || '').slice(0, idxChar)).length;
+          const absOffset = (sectionStartOffset || 0) + startRelB;
+          // Find speech containing this absolute offset
+          let speech = null;
+          for (const sp of (speeches || [])) {
+            const it = speechMaps?.noteBySpeechKey?.get?.(`${sp.act}|${sp.scene}|${sp.speechIndex}`);
+            if (!it) continue;
+            if ((absOffset >= (it.startOffset || 0)) && (absOffset <= (it.endOffset || (it.startOffset || 0)))) { speech = sp; break; }
+          }
+          if (speech) {
+            keyToToggle = `${speech.act}|${speech.scene}|${speech.speechIndex}`;
+            hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
+          }
+        }
+      } catch {}
+    }
+    if (hasNote && keyToToggle) {
+      // If note is suppressed, remove from suppressed list first
+      if (suppressedNotes.has(keyToToggle)) {
+        setSuppressedNotes((prev) => {
+          const next = new Set(prev);
+          next.delete(keyToToggle);
+          return next;
+        });
+      }
+      // Optimistic local toggle for instant UI response
+      setForceShow((prev) => !prev);
+      if (onToggleForced) onToggleForced(keyToToggle, sectionIndex);
+      // Immediately bring the aside into view; no delay
+      scrollAsideIntoView();
+    }
+    // Swallow the synthetic mouseup to avoid desktop selection logic
+    skipNextMouseUpRef.current = true;
     touchActiveRef.current = false;
-    setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
+    setTimeout(() => { movedRef.current = false; }, 80);
   };
 
   const focusSelected = (targetId) => {
@@ -1706,84 +1809,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           onMouseUp={handleTextMouseUp}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
-          onTouchEnd={(e)=>{
-            // Long-press to reveal note only (no selection yet)
-            clearTimeout(pressTimerRef.current);
-            // If user scrolled, ignore and swallow synthetic mouseup
-            try {
-              const s = (function(){
-                const cont = document.querySelector('.container');
-                if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
-                const pg = document.querySelector('.page');
-                if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
-                return window;
-              })();
-              const now = (s === window) ? window.scrollY : s.scrollTop;
-              if (Math.abs(now - (scrollerStartRef.current || 0)) > 10) {
-                skipNextMouseUpRef.current = true;
-                touchActiveRef.current = false;
-                setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
-                return;
-              }
-            } catch {}
-            // Require long press
-            if (!longPressRef.current) {
-              skipNextMouseUpRef.current = true;
-              touchActiveRef.current = false;
-              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
-              return;
-            }
-            const noteVisible = !!chosenItem;
-            const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
-            if (!noteVisible && hasRevealableNote) {
-              revealNoteForCurrentSpeech();
-              // After reveal, scroll the note into view
-              setTimeout(() => scrollAsideIntoView(), 80);
-              // Swallow and exit
-              skipNextMouseUpRef.current = true;
-              touchActiveRef.current = false;
-              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
-              return;
-            }
-            // If we revealed during this same press, do not also select; just focus the note
-            if (noteVisible && revealedDuringPressRef.current) {
-              scrollAsideIntoView();
-              revealedDuringPressRef.current = false;
-              skipNextMouseUpRef.current = true;
-              touchActiveRef.current = false;
-              setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
-              return;
-            }
-            // If a note is already visible, long-press selects the sentence at press point
-            if (noteVisible) {
-              const container = preRef.current;
-              if (container && typeof window !== 'undefined' && window.getSelection) {
-                const sel = window.getSelection();
-                try { sel?.removeAllRanges?.(); } catch {}
-                const x = startXYRef.current?.x || (e.changedTouches && e.changedTouches[0]?.clientX) || 0;
-                const y = startXYRef.current?.y || (e.changedTouches && e.changedTouches[0]?.clientY) || 0;
-                const caretFromPoint = (cx, cy) => {
-                  if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx, cy);
-                  const pos = document.caretPositionFromPoint?.(cx, cy);
-                  if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
-                  return null;
-                };
-                const r = caretFromPoint(x, y);
-                if (r) {
-                  const r0 = document.createRange(); r0.selectNodeContents(container);
-                  const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
-                  const idx = before.toString().length;
-                  const sent = expandToSentence(text || '', idx);
-                  if (sent) { onSelectRange?.({ start: sent.start, end: sent.end }); }
-                }
-              }
-              scrollAsideIntoView();
-            }
-            // Swallow synthetic mouseup
-            skipNextMouseUpRef.current = true;
-            touchActiveRef.current = false;
-            setTimeout(() => { longPressRef.current = false; movedRef.current = false; }, 80);
-          }}
+          onTouchEnd={onTouchEnd}
           style={{ cursor: 'pointer' }}
         >
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
@@ -1844,7 +1870,19 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       return;
                     }
                   }
-                  // If not in forced list, just hide locally visible notes
+                  // If not in forced list but note is showing due to threshold, suppress it
+                  // by adding it to suppressedNotes state (local to this component)
+                  if (speechKey && chosenItem && !forcedKey) {
+                    setSuppressedNotes((prev) => {
+                      const next = new Set(prev);
+                      next.add(speechKey);
+                      return next;
+                    });
+                    // Also hide locally visible notes
+                    setForceShow(false);
+                    return;
+                  }
+                  // Fallback: hide locally visible notes
                   if (forceShow) {
                     setForceShow(false);
                   }
@@ -1927,7 +1965,33 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
                     ); })()}
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
-                      {(llm?.options?.model || it.model) ? `Model: ${llm?.options?.model || it.model}` : ''}
+                      {(() => {
+                        // Show provider/model attribution for precomputed notes
+                        if (it.provider || it.model) {
+                          const provider = it.provider || '';
+                          const model = it.model || '';
+                          if (provider && model) {
+                            // Format provider names nicely
+                            const providerNames = {
+                              'deepseek': 'DeepSeek',
+                              'openai': 'OpenAI',
+                              'anthropic': 'Anthropic',
+                              'gemini': 'Gemini'
+                            };
+                            const providerName = providerNames[provider.toLowerCase()] || (provider.charAt(0).toUpperCase() + provider.slice(1));
+                            
+                            if (model.toLowerCase().includes(provider.toLowerCase())) {
+                              return providerName;
+                            }
+                            return `${model} (via ${providerName})`;
+                          }
+                          if (model) return `Model: ${model}`;
+                          if (provider) return `Provider: ${provider}`;
+                        }
+                        // For LLM-generated notes, show current model
+                        if (llm?.options?.model) return `Model: ${llm.options.model}`;
+                        return '';
+                      })()}
                     </div>
                     {showPreFollow && (
                       <>
@@ -1967,7 +2031,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                               if (threshold >= 30) return 'more';
                               return 'all';
                             };
-                            const currentLabel = getNotesLabel(noteThreshold || 50);
+                            const currentLabel = getNotesLabel(noteThreshold ?? 50);
                             const buttons = [
                               { label: 'none', value: 100 },
                               { label: 'some', value: 70 },
@@ -1982,6 +2046,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                                   type="button"
                                   onClick={() => {
                                     setNoteThreshold?.(value);
+                                    // Save to localStorage immediately
+                                    try { 
+                                      if (typeof window !== 'undefined') {
+                                        localStorage.setItem('noteThreshold', String(value));
+                                      }
+                                    } catch {}
                                     try {
                                       if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex);
                                     } catch {}

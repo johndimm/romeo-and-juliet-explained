@@ -4,19 +4,19 @@
     "scene": "IV",
     "speaker": "LADY CAPULET",
     "startOffset": 115603,
-    "endOffset": 115725,
-    "content": "She instructs the Nurse to take keys and fetch more spices, showing the busy preparations for the wedding feast.",
+    "endOffset": 115670,
+    "content": "Lady Capulet tells the Nurse to take keys and get more spices for the wedding preparations.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "IV",
     "scene": "IV",
-    "speaker": "CAPULET",
-    "startOffset": 115742,
-    "endOffset": 116029,
-    "content": "He urges everyone to hurry, noting the rooster has crowed and it is three in the morning; he tells Angelica (the Nurse) to prepare the baked meats and not worry about expense.",
+    "speaker": "NURSE",
+    "startOffset": 115670,
+    "endOffset": 115725,
+    "content": "The Nurse says the kitchen staff are asking for dates and quinces, which are fruits used in pastries.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -25,42 +25,31 @@
     "act": "IV",
     "scene": "IV",
     "speaker": "CAPULET",
+    "startOffset": 115742,
+    "endOffset": 115920,
+    "content": "Capulet urges everyone to hurry, noting it is 3 a.m. and telling the Nurse to check the baked meats and not worry about expense.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "NURSE",
+    "startOffset": 115920,
+    "endOffset": 116029,
+    "content": "The Nurse tells Capulet to go to bed, calling him a cot-quean (a man who does housework) and warning he will be sick from staying up all night.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
     "startOffset": 116029,
     "endOffset": 116137,
-    "content": "He dismisses his wife’s concern, saying he has stayed up all night before for smaller reasons and never gotten sick.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "IV",
-    "scene": "IV",
-    "speaker": "LADY CAPULET",
-    "startOffset": 116137,
-    "endOffset": 116242,
-    "content": "She teases that he used to chase women (mouse-hunt) but she will prevent him from staying out late like that now.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "IV",
-    "scene": "IV",
-    "speaker": "CAPULET",
-    "startOffset": 116279,
-    "endOffset": 116321,
-    "content": "He calls his wife a jealous woman (jealous-hood) as servants enter with cooking supplies.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "IV",
-    "scene": "IV",
-    "speaker": "CAPULET",
-    "startOffset": 116462,
-    "endOffset": 116496,
-    "content": "He tells the servant to hurry and fetch drier logs, and to ask Peter for their location.",
+    "content": "Capulet dismisses her concern, saying he has stayed up all night for lesser reasons and never gotten sick.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -68,12 +57,67 @@
   {
     "act": "IV",
     "scene": "IV",
+    "speaker": "LADY CAPULET",
+    "startOffset": 116137,
+    "endOffset": 116242,
+    "content": "Lady Capulet teases that he used to chase women (a mouse-hunt) but she will prevent him from such late nights now.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
     "speaker": "CAPULET",
-    "startOffset": 116711,
-    "endOffset": 117133,
-    "content": "He praises the servant’s wit, then notes it is daybreak and Paris will arrive soon with music; he calls the Nurse to wake and dress Juliet, saying he will talk to Paris and urging haste.",
+    "startOffset": 116279,
+    "endOffset": 116321,
+    "content": "Capulet mutters jealous-hood, meaning jealousy, as the servants enter with kitchen supplies.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 116399,
+    "endOffset": 116462,
+    "content": "The servant says he has things for the cook but does not know exactly what they are.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116462,
+    "endOffset": 116496,
+    "content": "Capulet tells him to hurry and fetch drier logs, and to ask Peter for their location.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 116598,
+    "endOffset": 116699,
+    "content": "The servant jokes that he has a head (intelligence) to find logs without bothering Peter.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "IV",
+    "scene": "IV",
+    "speaker": "CAPULET",
+    "startOffset": 116711,
+    "endOffset": 117133,
+    "content": "Capulet praises the servant as a merry whoreson (jovial fellow) and says he will be a loggerhead (blockhead). He notes it is day and Paris will arrive with music, then calls the Nurse to wake and dress Juliet while he greets Paris.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
   }
 ]

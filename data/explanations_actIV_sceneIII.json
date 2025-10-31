@@ -5,10 +5,10 @@
     "speaker": "JULIET",
     "startOffset": 112874,
     "endOffset": 113100,
-    "content": "She agrees the wedding clothes are fine but asks the Nurse to leave her alone tonight, explaining she needs to pray to heaven for help because her situation is troubled and sinful.",
+    "content": "She agrees the wedding clothes are fine but asks the Nurse to leave her alone tonight, explaining she needs to say prayers to ask heaven to bless her troubled, sinful situation. This shows her using piety as a pretext to be alone for the potion plan.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "IV",
@@ -16,10 +16,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 113122,
     "endOffset": 113179,
-    "content": "She interrupts to ask if Juliet is busy and if she needs any assistance.",
+    "content": "She interrupts to ask if Juliet is busy and if she needs help, showing her mother’s brisk, practical manner but little warmth.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 5
   },
   {
     "act": "IV",
@@ -27,10 +27,10 @@
     "speaker": "JULIET",
     "startOffset": 113179,
     "endOffset": 113432,
-    "content": "She says they have already gathered what is needed for tomorrow and asks to be left alone, suggesting the Nurse help her mother with the sudden wedding preparations.",
+    "content": "Juliet says they have already gathered what is needed for tomorrow and asks to be left alone, suggesting the Nurse stay with her mother since she must be busy with the sudden wedding preparations. This reinforces her isolation strategy.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "IV",
@@ -38,10 +38,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 113432,
     "endOffset": 113505,
-    "content": "She bids Juliet good night and tells her to go to bed and rest because she needs it.",
+    "content": "She bids Juliet good night and tells her to go to bed and rest because she needs it, then exits with the Nurse.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 5
   },
   {
     "act": "IV",
@@ -49,7 +49,7 @@
     "speaker": "JULIET",
     "startOffset": 113542,
     "endOffset": 115532,
-    "content": "Alone, she expresses terror about taking the potion, fearing it might not work, be poison, or cause her to wake too early in the tomb and go mad from the horror, smells, and ghosts—especially Tybalt’s—before resolving to drink for Romeo.",
+    "content": "Alone, she expresses dread that they may not meet again. A chilling fear runs through her, nearly stopping her life’s warmth. She considers calling the Nurse back but decides she must face this grim situation alone. Taking the vial, she worries: if the potion fails, she’ll have to marry Paris—but her dagger will prevent that. She fears the Friar may have given her poison to avoid dishonor from her previous marriage to Romeo, but she trusts his holy reputation. She then imagines waking too early in the tomb, suffocating in the airless vault, or going mad from the horror—the stench, shrieks like mandrakes (whose roots were said to drive hearers insane), and the presence of Tybalt’s rotting corpse and ancestors’ bones. In frenzy, she might play with their bones or use one to smash her own skull. She hallucinates Tybalt’s ghost seeking Romeo, then toasts Romeo and drinks the potion. This soliloquy reveals her terror and resolve, heightening suspense before she takes the drug.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75

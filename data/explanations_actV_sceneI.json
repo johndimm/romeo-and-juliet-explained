@@ -5,10 +5,10 @@
     "speaker": "ROMEO",
     "startOffset": 123937,
     "endOffset": 124449,
-    "content": "Romeo feels optimistic because his dreams suggest good news is coming; his heart feels light and his mood is elevated. He dreamed Juliet kissed him back to life, making him feel like an emperor, and reflects that even dreams of love are joyful compared to real love. This hopeful mood sharply contrasts with the tragic news to come.",
+    "content": "Romeo begins hopeful, saying his dreams suggest good news is coming, and he feels unusually cheerful. He dreamed Juliet kissed him back to life, making him feel like an emperor. He reflects that even love's mere shadows bring joy, but then Balthasar arrives. He eagerly asks for letters from Friar Laurence and about Juliet's well-being, insisting nothing can be wrong if she is fine.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 35
   },
   {
     "act": "V",
@@ -16,40 +16,7 @@
     "speaker": "BALTHASAR",
     "startOffset": 124669,
     "endOffset": 124972,
-    "content": "Balthasar says Juliet is well in spirit but her body lies in the Capulet tomb; he saw her buried and rode quickly to tell Romeo, apologizing for the bad news since Romeo asked him to report.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "V",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 124972,
-    "endOffset": 125112,
-    "content": "Romeo immediately resolves to defy fate, asking for ink, paper, and post-horses to leave for Verona tonight, showing his rash decision to join Juliet in death.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "V",
-    "scene": "I",
-    "speaker": "BALTHASAR",
-    "startOffset": 125112,
-    "endOffset": 125224,
-    "content": "Balthasar urges patience, noting Romeo’s pale and wild appearance suggests some disaster is imminent.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "V",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 125224,
-    "endOffset": 125344,
-    "content": "Romeo dismisses Balthasar’s concern, insists he is mistaken, and repeats his order to get horses, asking again about letters from the Friar.",
+    "content": "Balthasar says Juliet is well in the sense that her soul is with angels, but her body lies in the Capulet tomb. He explains he saw her placed there and rode quickly to bring the news, apologizing for the bad tidings since Romeo tasked him with this duty.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -57,10 +24,21 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 124972,
+    "endOffset": 125112,
+    "content": "Romeo immediately accepts this as truth and defiantly challenges fate itself. He orders Balthasar to get ink, paper, and post-horses for his departure tonight, showing his rash decision to return to Verona.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "BALTHASAR",
-    "startOffset": 125344,
-    "endOffset": 125374,
-    "content": "Balthasar simply says he has no letters from the Friar.",
+    "startOffset": 125112,
+    "endOffset": 125224,
+    "content": "Balthasar urges patience, noting Romeo's pale and wild appearance suggests some disaster is imminent.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -69,42 +47,53 @@
     "act": "V",
     "scene": "I",
     "speaker": "ROMEO",
-    "startOffset": 125374,
-    "endOffset": 125461,
-    "content": "Romeo says it doesn’t matter and sends Balthasar to hire horses, saying he will follow soon.",
+    "startOffset": 125224,
+    "endOffset": 125344,
+    "content": "Romeo dismisses Balthasar's concern as mistaken and repeats his command to leave and fetch the horses, asking again if there is a letter from the Friar.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 10
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "BALTHASAR",
+    "startOffset": 125344,
+    "endOffset": 125374,
+    "content": "Balthasar simply replies there is no letter.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 125374,
+    "endOffset": 125461,
+    "content": "Romeo says it does not matter and sends Balthasar to hire the horses, saying he will follow shortly. Alone, he resolves to join Juliet in death tonight and begins to scheme.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126498,
+    "endOffset": 126530,
+    "content": "The Apothecary responds to Romeo's call, asking who is shouting for him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "V",
     "scene": "I",
     "speaker": "ROMEO",
     "startOffset": 126530,
-    "endOffset": 126977,
-    "content": "Romeo declares he will kill himself to lie with Juliet tonight, then recalls an apothecary he saw recently who looked poor and desperate, with a shop full of strange items, and thought then that such a man would sell poison despite the law.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "V",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 126977,
-    "endOffset": 127354,
-    "content": "Romeo notes that his earlier observation foreshadowed his current need, and he identifies the apothecary’s shut shop, calling out to him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "V",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 127354,
-    "endOffset": 127544,
-    "content": "Romeo offers forty ducats for a fast-acting poison that will spread through the veins and kill as quickly as a cannon firing.",
+    "endOffset": 126882,
+    "content": "Romeo beckons the Apothecary, noting his poverty and offering forty ducats for a fast-acting poison that will spread through the veins and kill as quickly as gunpowder fired from a cannon.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 40
@@ -112,12 +101,67 @@
   {
     "act": "V",
     "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 126882,
+    "endOffset": 126977,
+    "content": "The Apothecary admits he has such deadly drugs, but says Mantuan law imposes the death penalty for anyone who sells them.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 126977,
+    "endOffset": 127303,
+    "content": "Romeo argues that the Apothecary is already wretched, with hunger in his cheeks and despair in his eyes, and that the world and its laws are no friend to him. He urges him to break the law and accept the money, since the world offers no lawful way to become rich.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127303,
+    "endOffset": 127354,
+    "content": "The Apothecary consents, saying his poverty agrees, but not his will.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 127354,
+    "endOffset": 127399,
+    "content": "Romeo replies that he is paying the Apothecary's poverty, not his will.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "V",
+    "scene": "I",
+    "speaker": "APOTHECARY",
+    "startOffset": 127399,
+    "endOffset": 127544,
+    "content": "The Apothecary instructs him to dissolve the poison in any liquid and drink it; even with the strength of twenty men, it would kill him immediately.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "V",
+    "scene": "I",
     "speaker": "ROMEO",
     "startOffset": 127544,
     "endOffset": 127875,
-    "content": "Romeo tells the apothecary that since he is already suffering and the world’s laws don’t help him, he should break the law and take the money.",
+    "content": "Romeo hands over the gold, calling it a worse poison to men's souls, causing more harm in the world than the Apothecary's banned drugs. He says he sells poison (the gold), while the Apothecary sold none. He tells him to buy food and gain weight, then calls the poison a cordial (a restorative) rather than a poison, as he will use it at Juliet's grave.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 50
   }
 ]

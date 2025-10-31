@@ -2,13 +2,79 @@
   {
     "act": "I",
     "scene": "V",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 29116,
+    "endOffset": 29225,
+    "content": "He complains that Potpan is not helping clear the tables, sarcastically noting that carrying or scraping a trencher (wooden plate) is too much for him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 29225,
+    "endOffset": 29349,
+    "content": "He remarks that when only one or two men do all the work, and they are unwashed, it is a disgusting situation.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 35
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 29349,
+    "endOffset": 29569,
+    "content": "He orders the removal of join-stools (simple stools) and the court-cupboard (sideboard), asks someone to save him a piece of marchpane (marzipan), and to let in Susan Grindstone and Nell, calling for Antony and Potpan.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 29569,
+    "endOffset": 29602,
+    "content": "He simply replies 'Yes, boy, ready.'",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "FIRST SERVANT",
+    "startOffset": 29602,
+    "endOffset": 29701,
+    "content": "He tells them they are being asked for in the great chamber.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "SECOND SERVANT",
+    "startOffset": 29701,
+    "endOffset": 29814,
+    "content": "He says they cannot be in two places at once, urges everyone to be cheerful and brisk, and uses the proverb 'the longer liver take all' (the survivor gets everything).",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "I",
+    "scene": "V",
     "speaker": "CAPULET",
     "startOffset": 29897,
     "endOffset": 30744,
-    "content": "He welcomes the guests and urges the ladies to dance, joking that any who refuse must have corns on their feet. He nostalgically recalls his own youthful dancing days, then calls for music, more light, and cooler air, noting the unexpected fun.",
+    "content": "He welcomes the guests, teasing that ladies without corns should dance, and those who hesitate (make dainty) must have corns. He nostalgically recalls his own masked dancing days, now gone, and calls for music and dancing. He then orders more light, tables put away, and the fire quenched because the room is hot, expressing pleasure at the unexpected fun.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 60
   },
   {
     "act": "I",
@@ -16,10 +82,10 @@
     "speaker": "CAPULET'S COUSIN",
     "startOffset": 30744,
     "endOffset": 30792,
-    "content": "He responds to Capulet's question about how long it has been since they last wore masks, saying it was thirty years ago.",
+    "content": "He swears by the Virgin Mary (By’r Lady) that it has been thirty years.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -27,10 +93,10 @@
     "speaker": "CAPULET",
     "startOffset": 30792,
     "endOffset": 30979,
-    "content": "He corrects his cousin, insisting it was only twenty-five years ago, at the wedding of Lucentio near Pentecost.",
+    "content": "He disagrees, saying it was only twenty-five years ago at Lucentio’s wedding, and they wore masks then.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -38,7 +104,7 @@
     "speaker": "CAPULET'S COUSIN",
     "startOffset": 30979,
     "endOffset": 31068,
-    "content": "He insists it was longer, pointing out that Lucentio's son is now thirty years old.",
+    "content": "He insists it was longer, since Lucentio’s son is now thirty.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -49,7 +115,7 @@
     "speaker": "CAPULET",
     "startOffset": 31068,
     "endOffset": 31139,
-    "content": "He disputes this, claiming the son was only a ward—a minor under guardianship—two years ago.",
+    "content": "He refuses to believe it, saying the son was only a ward (minor under guardianship) two years ago.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -59,11 +125,22 @@
     "scene": "V",
     "speaker": "ROMEO",
     "startOffset": 31139,
-    "endOffset": 31238,
-    "content": "He asks a servant to identify the lady across the room who is touching a knight's hand.",
+    "endOffset": 31211,
+    "content": "He asks who the lady is that the knight is holding hands with.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "SERVANT",
+    "startOffset": 31211,
+    "endOffset": 31238,
+    "content": "He replies that he does not know.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -71,10 +148,10 @@
     "speaker": "ROMEO",
     "startOffset": 31238,
     "endOffset": 31693,
-    "content": "He marvels at Juliet's beauty, saying she outshines the torches and appears like a jewel in dark night or a dove among crows. He resolves to touch her hand after the dance and renounces any past loves, declaring this his first sight of true beauty.",
+    "content": "He exclaims that her beauty outshines the torches, comparing her to a jewel in an Ethiopian’s ear and a dove among crows. He vows to touch her hand after the dance and renounces his past loves, declaring this his first sight of true beauty. This speech marks his instant infatuation with Juliet.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 70
   },
   {
     "act": "I",
@@ -82,10 +159,10 @@
     "speaker": "TYBALT",
     "startOffset": 31693,
     "endOffset": 31949,
-    "content": "Recognizing Romeo's voice as a Montague, he calls for his rapier, accusing Romeo of coming in disguise to mock their feast. He swears by his family's honor that killing him would be justified.",
+    "content": "Recognizing Romeo’s voice as a Montague, he calls for his rapier, accusing Romeo of coming masked (antic face) to mock (fleer) their celebration. He swears by his family’s honor that killing him would be justified. This shows the immediate threat of violence.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 65
   },
   {
     "act": "I",
@@ -93,10 +170,10 @@
     "speaker": "CAPULET",
     "startOffset": 31949,
     "endOffset": 32005,
-    "content": "He asks Tybalt why he is so angry.",
+    "content": "He questions why Tybalt is so enraged.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -104,10 +181,10 @@
     "speaker": "TYBALT",
     "startOffset": 32005,
     "endOffset": 32128,
-    "content": "He explains that Romeo, their enemy, has come to spite them and scorn their celebration.",
+    "content": "Tybalt alerts his uncle Capulet that Romeo, a Montague enemy, has come to their feast out of spite to mock their celebration. This establishes the immediate threat of violence and Tybalt's hot-headed nature.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "I",
@@ -115,10 +192,10 @@
     "speaker": "CAPULET",
     "startOffset": 32128,
     "endOffset": 32158,
-    "content": "He confirms it is young Romeo.",
+    "content": "Capulet asks for confirmation that the intruder is young Romeo, showing he recognizes the name and perhaps knows Romeo's reputation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -126,10 +203,10 @@
     "speaker": "TYBALT",
     "startOffset": 32158,
     "endOffset": 32198,
-    "content": "He affirms it is Romeo and calls him a villain.",
+    "content": "Tybalt confirms it is indeed Romeo, whom he calls a villain, reinforcing his anger and desire for confrontation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -137,10 +214,10 @@
     "speaker": "CAPULET",
     "startOffset": 32198,
     "endOffset": 32623,
-    "content": "He urges Tybalt to calm down and leave Romeo alone, praising Romeo as a well-behaved youth of good reputation in Verona. He forbids any insult to a guest in his house and demands Tybalt drop his angry appearance.",
+    "content": "Capulet tells Tybalt to calm down and leave Romeo alone, noting he behaves like a dignified gentleman and that Verona considers him virtuous. He insists that as host he won't allow any insult to a guest in his house, demanding Tybalt show a pleasant face instead of scowling. This reveals Capulet's authority and unexpected tolerance toward Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 40
   },
   {
     "act": "I",
@@ -148,10 +225,10 @@
     "speaker": "TYBALT",
     "startOffset": 32623,
     "endOffset": 32695,
-    "content": "He argues that such anger is fitting when a villain is present and says he will not tolerate Romeo.",
+    "content": "Tybalt insists such a villain deserves a hostile reception and declares he will not tolerate Romeo's presence, defying Capulet's order.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -159,10 +236,10 @@
     "speaker": "CAPULET",
     "startOffset": 32695,
     "endOffset": 32943,
-    "content": "He angrily insists Romeo will be tolerated, asserting his authority as host. He accuses Tybalt of trying to cause a mutiny and act recklessly—'set cock-a-hoop' means to behave arrogantly or disruptively.",
+    "content": "Enraged, Capulet asserts his authority, calling Tybalt 'goodman boy' (a belittling term) and insisting Romeo will be tolerated. He accuses Tybalt of trying to start a mutiny and 'set cock-a-hoop' (cause disorder) among the guests. This outburst shows Capulet's temper and determination to keep peace at his feast.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 55
   },
   {
     "act": "I",
@@ -170,10 +247,10 @@
     "speaker": "TYBALT",
     "startOffset": 32943,
     "endOffset": 32980,
-    "content": "He protests that it is a disgrace to allow Romeo to remain.",
+    "content": "Tybalt protests that it is shameful to allow Romeo to remain, still resisting his uncle's command.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 15
   },
   {
     "act": "I",
@@ -181,10 +258,10 @@
     "speaker": "CAPULET",
     "startOffset": 32980,
     "endOffset": 33284,
-    "content": "Capulet scolds Tybalt for being insolent and warns that his defiant behavior will bring trouble. He calls him a saucy boy and princox (an impertinent youth), ordering him to be quiet or face consequences, then shifts to cheerful hosting, showing his volatile temper and desire to maintain party decorum.",
+    "content": "Capulet escalates his rebuke, calling Tybalt a saucy (insolent) boy and warning that his defiance may scathe (harm) him. He calls Tybalt a princox (an impertinent youth) and orders him to be quiet, while also calling for more light and cheer to restore the festive mood, showing he's trying to manage both Tybalt and the party.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 60
   },
   {
     "act": "I",
@@ -192,7 +269,7 @@
     "speaker": "TYBALT",
     "startOffset": 33284,
     "endOffset": 33476,
-    "content": "Tybalt expresses his rage at being forced to tolerate Romeo's presence, saying enforced patience clashes with his anger, making him tremble. He vows to withdraw now but promises this intrusion will turn from sweet to bitter revenge later, establishing his vengeful character and foreshadowing future conflict.",
+    "content": "Tybalt says being forced to be patient while filled with anger makes him tremble. He will withdraw now, but predicts this intrusion that seems harmless will turn bitterly poisonous later. This foreshadows future conflict and Tybalt's vengeful plans.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 65
@@ -203,10 +280,10 @@
     "speaker": "ROMEO",
     "startOffset": 33488,
     "endOffset": 33682,
-    "content": "Romeo addresses Juliet with religious metaphor, calling her hand's touch a profanation of a holy shrine and offering his lips as two blushing pilgrims to smooth the rough touch with a kiss. This begins their flirtatious sonnet exchange, showing his instant infatuation and poetic courtship style.",
+    "content": "Romeo addresses Juliet with a metaphor comparing her to a holy shrine and himself to a pilgrim. He says if his hand profanes her, his lips are like two blushing pilgrims ready to atone with a gentle kiss. This begins their poetic, religiously-inflected courtship.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 70
   },
   {
     "act": "I",
@@ -214,10 +291,10 @@
     "speaker": "JULIET",
     "startOffset": 33682,
     "endOffset": 33874,
-    "content": "Juliet playfully counters Romeo's metaphor, saying he undervalues his hand, which shows polite devotion, and notes that saints and pilgrims touch hands, with palm-to-palm contact being a holy palmers' (pilgrims') kiss. She matches his wit while maintaining modesty, extending the religious imagery.",
+    "content": "Juliet plays along with the metaphor, saying he undervalues his hand, which shows polite devotion. She notes that saints allow pilgrims to touch their hands, and that palm-to-palm contact is the holy kiss of pilgrims (palmers). She cleverly deflects the kiss while continuing the religious wordplay.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 75
   },
   {
     "act": "I",
@@ -225,10 +302,10 @@
     "speaker": "ROMEO",
     "startOffset": 33874,
     "endOffset": 33926,
-    "content": "Romeo asks if saints and holy palmers have lips too, cleverly shifting the metaphor to justify kissing.",
+    "content": "Romeo asks if saints and pilgrims don't also have lips, pushing his argument for a kiss.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -236,10 +313,10 @@
     "speaker": "JULIET",
     "startOffset": 33926,
     "endOffset": 33983,
-    "content": "Juliet replies that pilgrims use lips for prayer, not kissing, continuing the metaphor but setting a pious boundary.",
+    "content": "Juliet replies that yes, pilgrims and saints have lips—but for prayer, subtly maintaining her resistance while staying within the metaphor.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -247,10 +324,10 @@
     "speaker": "ROMEO",
     "startOffset": 33983,
     "endOffset": 34090,
-    "content": "Romeo pleads, 'Then let lips do what hands do'—they pray, so she should grant the prayer lest his faith turns to despair. He uses her religious framework to request a kiss.",
+    "content": "Romeo pleads that just as hands pray, so should lips; he asks her to grant his prayer (a kiss) so his faith doesn't turn to despair. This cleverly turns religious devotion into romantic pursuit.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
   },
   {
     "act": "I",
@@ -258,10 +335,10 @@
     "speaker": "JULIET",
     "startOffset": 34090,
     "endOffset": 34153,
-    "content": "Juliet says saints do not move, though they grant prayers, meaning she'll stay still but permit the prayer (kiss). This is a coy acceptance within their metaphor.",
+    "content": "Juliet says saints do not move, though they grant prayers, giving a coy permission for him to kiss her while she remains still.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 85
+    "perplexity": 50
   },
   {
     "act": "I",
@@ -269,10 +346,10 @@
     "speaker": "ROMEO",
     "startOffset": 34153,
     "endOffset": 34275,
-    "content": "Romeo says then she should not move while he takes the effect of his prayer (kisses her), and claims his sin is purged by her lips. He acts on her permission, completing their sonnet.",
+    "content": "Romeo says then she should not move while he receives the effect of his prayer, and claims that by kissing her, his sin is purged. This completes their witty exchange and leads to their first kiss.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 55
   },
   {
     "act": "I",
@@ -280,10 +357,10 @@
     "speaker": "JULIET",
     "startOffset": 34275,
     "endOffset": 34331,
-    "content": "After the kiss, Juliet remarks that then her lips have the sin they took from him, playfully suggesting the sin transferred to her.",
+    "content": "Juliet playfully suggests that if Romeo has taken a sin from her lips by kissing her, then her own lips must now possess that sin. This continues their flirtatious exchange about their first kiss.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 35
   },
   {
     "act": "I",
@@ -291,18 +368,29 @@
     "speaker": "ROMEO",
     "startOffset": 34331,
     "endOffset": 34407,
-    "content": "Romeo exclaims at her sweet accusation and asks her to give his sin back (i.e., kiss again), continuing their flirtatious banter.",
+    "content": "Romeo delights in her witty framing of their kiss as a sin, calling it a sweetly presented offense, and asks her to return his 'sin' by kissing him again.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 40
   },
   {
     "act": "I",
     "scene": "V",
     "speaker": "JULIET",
     "startOffset": 34407,
+    "endOffset": 34438,
+    "content": "Juliet remarks that Romeo kisses according to the rules, meaning expertly or conventionally, possibly with a hint of teasing.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 34438,
     "endOffset": 34489,
-    "content": "Juliet says 'You kiss by the book,' meaning he kisses expertly, as if following a manual—a compliment with a hint of teasing about his practiced style.",
+    "content": "The Nurse interrupts to say Juliet's mother wants to speak with her, moving the plot and separating the lovers.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 10
@@ -312,11 +400,22 @@
     "scene": "V",
     "speaker": "ROMEO",
     "startOffset": 34489,
-    "endOffset": 34734,
-    "content": "Romeo asks the Nurse who Juliet's mother is, showing his sudden concern about her family identity.",
+    "endOffset": 34517,
+    "content": "Romeo asks who Juliet's mother is, showing his sudden concern about her family identity.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 34517,
+    "endOffset": 34734,
+    "content": "The Nurse explains that her mother is the lady of the house, a good and virtuous woman, and that she herself nursed Juliet. She adds that whoever marries Juliet will have plenty of money ('the chinks').",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
   },
   {
     "act": "I",
@@ -324,10 +423,10 @@
     "speaker": "ROMEO",
     "startOffset": 34734,
     "endOffset": 34804,
-    "content": "Learning she is a Capulet, Romeo exclaims in despair that his life is his enemy's debt—his existence now belongs to his foe, revealing the tragic irony of their love.",
+    "content": "Horrified, Romeo realizes Juliet is a Capulet, his family's enemy. He exclaims that his life is now owed to his foe, meaning his love binds him to an enemy.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 50
   },
   {
     "act": "I",
@@ -335,95 +434,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 34804,
     "endOffset": 34856,
-    "content": "Benvolio urges Romeo to leave because the party is at its peak and they should go, trying to avert trouble.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 25
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "ROMEO",
-    "startOffset": 34856,
-    "endOffset": 34902,
-    "content": "Romeo agrees but says his fear makes him more uneasy, meaning his dread about Juliet being a Capulet increases his inner turmoil.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "CAPULET",
-    "startOffset": 34902,
-    "endOffset": 35189,
-    "content": "Capulet insists his guests stay for a light meal, then thanks them as they leave. He calls for more light and announces he is going to bed, noting how late it has grown. This speech marks the party's end and clears the stage for Juliet's private conversation.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35228,
-    "endOffset": 35322,
-    "content": "Juliet asks the Nurse to identify a gentleman across the room, showing her immediate interest in Romeo.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35322,
-    "endOffset": 35422,
-    "content": "She asks about another man leaving, trying to narrow down who caught her attention.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35422,
-    "endOffset": 35504,
-    "content": "She inquires about the man who refused to dance, further pinpointing Romeo.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35504,
-    "endOffset": 35664,
-    "content": "Juliet urgently tells the Nurse to learn his name, adding that if he is married, she will die unmarried—her grave will be her wedding bed. This reveals the depth of her instant attachment.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35664,
-    "endOffset": 35866,
-    "content": "Upon learning he is Romeo Montague, her family's enemy, she exclaims that her only love comes from her only hate. She saw him too early without knowing his identity, and now knows too late. This is a monstrous birth of love, that she must love a despised enemy.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "V",
-    "speaker": "JULIET",
-    "startOffset": 35866,
-    "endOffset": 36035,
-    "content": "When the Nurse questions her words, Juliet dismisses it as a rhyme she learned from her dance partner, hiding her true feelings as they are called away.",
+    "content": "Benvolio urges Romeo to leave because the party is at its peak and it's time to go.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -431,12 +442,155 @@
   {
     "act": "I",
     "scene": "V",
-    "speaker": "CHORUS",
-    "startOffset": 36077,
-    "endOffset": 36706,
-    "content": "The Chorus explains that Romeo's old infatuation with Rosaline is dead, replaced by new love for Juliet. Both are enchanted by appearances, but Romeo must woo his supposed enemy, and Juliet has even fewer chances to meet him. Yet passion gives them power and time provides means to meet, sweetening their extreme difficulties with extreme sweetness.",
+    "speaker": "ROMEO",
+    "startOffset": 34856,
+    "endOffset": 34902,
+    "content": "Romeo agrees but says his anxiety only grows, as he now knows Juliet's identity.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 20
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "CAPULET",
+    "startOffset": 34902,
+    "endOffset": 35189,
+    "content": "Capulet insists the guests stay for a light meal ('banquet'), but when they leave, he thanks them and calls for torches, noting by his faith ('by my fay') that it's getting late and he'll go to bed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35228,
+    "endOffset": 35281,
+    "content": "Juliet asks the Nurse to identify a gentleman across the room, beginning her inquiry about Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35281,
+    "endOffset": 35322,
+    "content": "The Nurse mistakenly identifies him as the son and heir of old Tiberio (likely a misremembrance or error for another guest).",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35322,
+    "endOffset": 35374,
+    "content": "Juliet asks about another man leaving, trying to pinpoint Romeo without naming him.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35374,
+    "endOffset": 35422,
+    "content": "The Nurse says that one is probably young Petruchio, again giving a wrong name.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35422,
+    "endOffset": 35484,
+    "content": "Juliet asks about the one who followed and wouldn't dance, clearly describing Romeo.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35484,
+    "endOffset": 35504,
+    "content": "The Nurse says she doesn't know, leaving Juliet without the answer she seeks and increasing dramatic tension.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35504,
+    "endOffset": 35587,
+    "content": "She tells the Nurse to find out his name, and says that if he is married, her grave will be her wedding bed—meaning she will die unmarried.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 45
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35587,
+    "endOffset": 35664,
+    "content": "The Nurse reports that his name is Romeo, a Montague, the only son of their great enemy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35664,
+    "endOffset": 35828,
+    "content": "She laments that her only love comes from her only hate; she saw him too early without knowing who he was, and now knows too late. This is a monstrous or unnatural birth of love to her, that she must love a hated enemy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 65
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35828,
+    "endOffset": 35866,
+    "content": "She repeats 'What’s this?' in surprise, asking what Juliet is saying.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "JULIET",
+    "startOffset": 35866,
+    "endOffset": 35968,
+    "content": "She dismisses her outburst as a rhyme she just learned from someone she danced with, hiding her true feelings.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "I",
+    "scene": "V",
+    "speaker": "NURSE",
+    "startOffset": 35968,
+    "endOffset": 36035,
+    "content": "She calls back 'Right away!' to someone offstage, then tells Juliet they should leave because all the guests have gone.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
   }
 ]

@@ -14,6 +14,22 @@ import fs from 'fs';
 import path from 'path';
 import { parseSectionsWithOffsets } from '../lib/parseText.js';
 
+// Load .env.local if it exists
+try {
+  const envLocal = path.join(process.cwd(), '.env.local');
+  if (fs.existsSync(envLocal)) {
+    const content = fs.readFileSync(envLocal, 'utf8');
+    for (const line of content.split('\n')) {
+      const match = line.match(/^([^=:#]+)=(.*)$/);
+      if (match) {
+        const key = match[1].trim();
+        const value = match[2].trim().replace(/^["']|["']$/g, '');
+        if (!process.env[key]) process.env[key] = value;
+      }
+    }
+  }
+} catch {}
+
 function args() {
   const out = { act: 'I', scene: 'I', model: 'deepseek-chat', out: null };
   const a = process.argv.slice(2);
@@ -24,7 +40,14 @@ function args() {
     else if (k === '--model' && a[i + 1]) out.model = a[++i];
     else if (k === '--out' && a[i + 1]) out.out = a[++i];
   }
-  if (!out.out) out.out = path.join(process.cwd(), `data/explanations_act${out.act}_scene${out.scene}.json`);
+  if (!out.out) {
+    // Handle Prologue with special filename
+    if (String(out.act || '').trim().toUpperCase() === 'PROLOGUE') {
+      out.out = path.join(process.cwd(), 'data/explanations_prologue.json');
+    } else {
+      out.out = path.join(process.cwd(), `data/explanations_act${out.act}_scene${out.scene}.json`);
+    }
+  }
   return out;
 }
 
@@ -35,6 +58,13 @@ function loadMetadata() {
 function romanEq(a, b) { return String(a || '').trim().toUpperCase() === String(b || '').trim().toUpperCase(); }
 
 function findScene(meta, act, scene) {
+  // Handle Prologue specially (act="Prologue", scene="")
+  const actUpper = String(act || '').trim().toUpperCase();
+  if (actUpper === 'PROLOGUE') {
+    const s = (meta.scenes || []).find((x) => String(x.act || '').trim().toUpperCase() === 'PROLOGUE');
+    if (!s) throw new Error(`Prologue not found in metadata`);
+    return s;
+  }
   const s = (meta.scenes || []).find((x) => romanEq(x.act, act) && romanEq(x.scene, scene));
   if (!s) throw new Error(`Scene not found: ${act} ${scene}`);
   return s;
@@ -87,8 +117,10 @@ function systemPrompt(){
 }
 
 function userPrompt({ act, scene, sceneText, speeches }){
+  const isPrologue = String(act || '').trim().toUpperCase() === 'PROLOGUE';
+  const header = isPrologue ? 'The Prologue' : `Act ${act}, Scene ${scene}`;
   return [
-    `Act ${act}, Scene ${scene}`,
+    header,
     '',
     'Scene text (UTF-8; byte offsets refer to this same edition):',
     '"""',
@@ -202,9 +234,13 @@ async function main(){
     arr = arr.concat(piece);
   }
   // Normalize fields & attach act/scene/model/provider
+  // For Prologue, use act='Prologue' and scene=''
+  const isPrologue = String(act || '').trim().toUpperCase() === 'PROLOGUE';
+  const finalAct = isPrologue ? 'Prologue' : act;
+  const finalScene = isPrologue ? '' : scene;
   const clamp = (n)=>{ const v = parseInt(n,10); return Number.isFinite(v) ? Math.max(0, Math.min(100, v)) : 0; };
   arr = arr.map((x) => ({
-    act, scene,
+    act: finalAct, scene: finalScene,
     speaker: String(x.speaker || '').trim(),
     startOffset: Number(x.startOffset || x.start || 0),
     endOffset: Number(x.endOffset || x.end || 0),
@@ -223,7 +259,9 @@ async function main(){
     ].join('\n');
     const speechText = sliceByBytes(sectionsWithOffsets, it.startOffset||0, it.endOffset||((it.startOffset||0)+1)).trim();
     if (!speechText) return 0;
-    const usr = [`Act ${act}, Scene ${scene} — Speaker: ${it.speaker||'Unknown'}`, 'Speech text:', speechText, 'Rate difficulty now. JSON only.'].join('\n');
+    const isPrologue = String(act || '').trim().toUpperCase() === 'PROLOGUE';
+    const header = isPrologue ? 'The Prologue' : `Act ${act}, Scene ${scene}`;
+    const usr = [`${header} — Speaker: ${it.speaker||'Unknown'}`, 'Speech text:', speechText, 'Rate difficulty now. JSON only.'].join('\n');
     const out = await callDeepseek({ apiKey, model, system: sys, user: usr });
     try { const m = out.match(/\{[\s\S]*\}/); const j = JSON.parse(m?m[0]:out); const s=parseInt(j.score,10); return Number.isFinite(s)?Math.max(0,Math.min(100,s)):0; } catch { return 0; }
   }

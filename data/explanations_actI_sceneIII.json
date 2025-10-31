@@ -4,8 +4,19 @@
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 18634,
+    "endOffset": 18701,
+    "content": "She asks the Nurse to call her daughter Juliet to come to her.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 18701,
     "endOffset": 18843,
-    "content": "She asks the Nurse to fetch Juliet, then changes her mind and asks her to stay, noting that Juliet is at a suitable age for marriage.",
+    "content": "Swearing by her virginity at age twelve, she says she already told Juliet to come, then affectionately calls for her with pet names like lamb and ladybird, and worries aloud where she is.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -15,11 +26,22 @@
     "scene": "III",
     "speaker": "JULIET",
     "startOffset": 18859,
-    "endOffset": 18909,
-    "content": "She responds to the call, asking who is summoning her.",
+    "endOffset": 18888,
+    "content": "She asks who is calling for her.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 18888,
+    "endOffset": 18909,
+    "content": "She tells Juliet it is her mother.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "I",
@@ -27,7 +49,7 @@
     "speaker": "JULIET",
     "startOffset": 18909,
     "endOffset": 18955,
-    "content": "She politely addresses her mother and asks what she wants.",
+    "content": "She politely presents herself and asks what her mother wants.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 10
@@ -37,30 +59,63 @@
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 18955,
-    "endOffset": 19209,
-    "content": "She first dismisses the Nurse for privacy, then recalls her, acknowledging the Nurse’s familiarity with Juliet’s upbringing.",
+    "endOffset": 19161,
+    "content": "She first tells the Nurse to leave so they can speak privately, but then reconsiders and asks her to stay because she remembers the Nurse should hear their discussion, noting that Juliet is at a fitting age for marriage.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 20
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19161,
+    "endOffset": 19209,
+    "content": "She claims she knows Juliet’s exact age down to the hour.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
   },
   {
     "act": "I",
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 19209,
-    "endOffset": 19394,
-    "content": "She states that Juliet is not yet fourteen, prompting the Nurse to recall the exact timing.",
+    "endOffset": 19246,
+    "content": "She states that Juliet is not yet fourteen.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19246,
+    "endOffset": 19394,
+    "content": "She insists she would bet fourteen of her teeth—though she only has four—that Juliet is not yet fourteen, then asks how long it is until Lammas-tide.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 19394,
+    "endOffset": 19435,
+    "content": "She replies it is a fortnight and a few extra days.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 19435,
     "endOffset": 20914,
-    "content": "She confirms the Nurse’s calculation, noting it is a fortnight and some days until Lammas-tide.",
+    "content": "She says that on Lammas Eve at night Juliet will be fourteen, then recalls that her own daughter Susan was the same age but is now dead. She vividly remembers weaning Juliet on that day eleven years earlier during an earthquake, applying bitter wormwood to her breast so the baby would reject it, and tells how Juliet became fussy and the dovehouse shook. She adds that Juliet could stand and run by then, and recounts a time Juliet fell and got a bump, after which the Nurse’s husband joked that she would fall backward when older—meaning sexually—and Juliet stopped crying and said yes.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
@@ -70,22 +125,44 @@
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 20914,
-    "endOffset": 21360,
-    "content": "She interrupts the Nurse’s rambling story, asking her to be quiet.",
+    "endOffset": 20973,
+    "content": "She tells the Nurse to stop talking.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 20973,
+    "endOffset": 21360,
+    "content": "She agrees but still laughs at the memory of Juliet stopping crying to say yes, despite having a large bump on her forehead from the fall, and repeats the husband’s jest about falling backward when older.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
   },
   {
     "act": "I",
     "scene": "III",
     "speaker": "JULIET",
     "startOffset": 21360,
-    "endOffset": 21583,
-    "content": "She echoes her mother’s request, telling the Nurse to stop talking as well.",
+    "endOffset": 21416,
+    "content": "She asks the Nurse to stop talking as well.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 21416,
+    "endOffset": 21583,
+    "content": "She says she is done, blesses Juliet as the prettiest baby she ever nursed, and wishes to live to see her married.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -93,18 +170,7 @@
     "speaker": "LADY CAPULET",
     "startOffset": 21583,
     "endOffset": 21722,
-    "content": "She shifts the conversation to the topic of marriage, directly asking Juliet her feelings about it.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "I",
-    "scene": "III",
-    "speaker": "JULIET",
-    "startOffset": 21722,
-    "endOffset": 21870,
-    "content": "She replies that marriage is an honor she has not yet considered.",
+    "content": "She says that marriage is exactly what she came to discuss, and asks Juliet how she feels about getting married.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -112,10 +178,21 @@
   {
     "act": "I",
     "scene": "III",
-    "speaker": "LADY CAPULET",
-    "startOffset": 21870,
-    "endOffset": 22221,
-    "content": "She argues that many respected Veronese ladies younger than Juliet are already mothers, and she herself was a mother at Juliet’s age.",
+    "speaker": "JULIET",
+    "startOffset": 21722,
+    "endOffset": 21768,
+    "content": "Juliet says marriage is an honor she has not even considered dreaming about, showing her youth and lack of interest in the topic.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 21768,
+    "endOffset": 21870,
+    "content": "The Nurse exclaims 'An honor!' and jokes that if she were not Juliet's only nurse, she would say Juliet had sucked wisdom from her breast, meaning she is clever beyond her years.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 25
@@ -124,23 +201,67 @@
     "act": "I",
     "scene": "III",
     "speaker": "LADY CAPULET",
-    "startOffset": 22221,
-    "endOffset": 22332,
-    "content": "She announces that the noble Paris wishes to court Juliet.",
+    "startOffset": 21870,
+    "endOffset": 22133,
+    "content": "Lady Capulet urges Juliet to think of marriage, noting that in Verona, respected ladies younger than her are already mothers. She recalls she was Juliet's mother at about Juliet's current age, then reveals that the noble Paris wants to be her suitor.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 15
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 22133,
+    "endOffset": 22221,
+    "content": "The Nurse enthusiastically describes Paris as a man of wax, meaning he is as handsome and perfect as a waxwork model.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "LADY CAPULET",
+    "startOffset": 22221,
+    "endOffset": 22278,
+    "content": "Lady Capulet adds that Verona's summer does not have a flower as fine as Paris, using a metaphor for his beauty.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 22278,
+    "endOffset": 22332,
+    "content": "The Nurse emphatically agrees, calling Paris a true flower indeed.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
   },
   {
     "act": "I",
     "scene": "III",
     "speaker": "LADY CAPULET",
     "startOffset": 22332,
-    "endOffset": 23095,
-    "content": "She urges Juliet to observe Paris at the feast, using an extended metaphor of reading a beautiful book to suggest she will find delight and completeness in him.",
+    "endOffset": 23047,
+    "content": "Lady Capulet asks if Juliet can love Paris and tells her she will see him at the feast. She uses an extended metaphor of reading a book: Juliet should study Paris's face like a volume, find delight in his beauty, examine his features, and see how they harmonize. What is unclear in this book she can find explained in the margins of his eyes. She calls Paris a precious but unbound book that only needs a cover—a wife—to be complete. Just as a fish belongs in the sea, it is fitting for external beauty to hide inner worth. This book is admired by many, like a golden-clasped volume containing a golden story; by having him, Juliet will share all he possesses without losing anything.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 70
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 23047,
+    "endOffset": 23095,
+    "content": "The Nurse interrupts to say women do not become less by marrying, but bigger—meaning they gain status and often pregnancy.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
   },
   {
     "act": "I",
@@ -148,10 +269,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 23095,
     "endOffset": 23156,
-    "content": "She asks Juliet directly if she can love Paris.",
+    "content": "Lady Capulet presses Juliet for a quick answer: can she accept Paris's love?",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "I",
@@ -159,10 +280,21 @@
     "speaker": "JULIET",
     "startOffset": 23156,
     "endOffset": 23299,
-    "content": "She agrees to consider Paris if her looking leads to liking, but will not let her feelings go deeper than her mother approves.",
+    "content": "Juliet cautiously agrees to look at Paris to see if looking inspires liking, but she will not let her gaze penetrate deeper than her mother's permission allows, showing her obedient but reserved attitude.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 40
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "SERVANT",
+    "startOffset": 23318,
+    "endOffset": 23525,
+    "content": "The servant announces the guests have arrived, supper is served, Lady Capulet is called for, Juliet is asked for, the Nurse is being cursed in the pantry, and everything is in chaos. He must go to serve and urges them to come immediately.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
   },
   {
     "act": "I",
@@ -170,9 +302,20 @@
     "speaker": "LADY CAPULET",
     "startOffset": 23525,
     "endOffset": 23556,
-    "content": "She tells the servant they will follow him to the feast.",
+    "content": "Lady Capulet says they will follow, then tells Juliet that Paris is waiting.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
+  },
+  {
+    "act": "I",
+    "scene": "III",
+    "speaker": "NURSE",
+    "startOffset": 23603,
+    "endOffset": 23654,
+    "content": "The Nurse tells Juliet to go and seek happy nights to go with happy days, a rhyming couplet wishing her joy in love and marriage.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
   }
 ]

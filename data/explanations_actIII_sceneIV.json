@@ -5,7 +5,7 @@
     "speaker": "CAPULET",
     "startOffset": 91542,
     "endOffset": 91854,
-    "content": "Capulet explains that unfortunate events have prevented him from discussing Paris's proposal with Juliet. He notes her deep grief for Tybalt, whom they both loved, and accepts death as inevitable. He says it's too late for her to come down tonight, and he would have gone to bed earlier if not for Paris's visit.",
+    "content": "Capulet explains that unfortunate events have prevented him from discussing Paris's proposal with Juliet. He notes that she and he both loved Tybalt dearly, and he fatalistically adds that everyone is born to die. He says it is too late for Juliet to come down tonight, and he would have gone to bed an hour ago if not for Paris's visit.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 35
@@ -16,10 +16,10 @@
     "speaker": "PARIS",
     "startOffset": 91854,
     "endOffset": 91952,
-    "content": "Paris acknowledges that this sorrowful time is not right for courtship. He bids Lady Capulet good night and asks her to give his regards to Juliet.",
+    "content": "Paris remarks that this time of grief is not suitable for courtship. He bids Lady Capulet good night and asks her to give his regards to Juliet.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -27,10 +27,10 @@
     "speaker": "LADY CAPULET",
     "startOffset": 91952,
     "endOffset": 92054,
-    "content": "She promises to find out Juliet's feelings tomorrow, explaining that Juliet is currently shut away with her grief.",
+    "content": "Lady Capulet says she will convey Paris's message to Juliet tomorrow morning, but tonight Juliet is shut away with her sorrow. 'Mew'd up' means confined or enclosed, emphasizing her isolation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 40
   },
   {
     "act": "III",
@@ -38,10 +38,10 @@
     "speaker": "CAPULET",
     "startOffset": 92054,
     "endOffset": 92361,
-    "content": "Capulet boldly offers Juliet's love to Paris, confident she will obey him. He tells his wife to inform Juliet of Paris's love before bed and to prepare her for marriage next Wednesday, then pauses to check the current day.",
+    "content": "Capulet tells Paris he will make a bold offer of Juliet's love, confident she will obey him in all matters. He instructs his wife to visit Juliet before bed and inform her of Paris's love, and to tell her she will marry him next Wednesday—then he pauses to ask what day it is.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 30
   },
   {
     "act": "III",
@@ -49,7 +49,7 @@
     "speaker": "PARIS",
     "startOffset": 92361,
     "endOffset": 92386,
-    "content": "Paris replies that it is Monday.",
+    "content": "Paris answers that it is Monday.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -60,10 +60,10 @@
     "speaker": "CAPULET",
     "startOffset": 92386,
     "endOffset": 92835,
-    "content": "Amused by the short timeline, Capulet changes the wedding to Thursday. He asks if Paris approves of the haste and plans a small celebration to avoid seeming disrespectful after Tybalt's recent death, then confirms Thursday as the date.",
+    "content": "Capulet decides Wednesday is too soon and changes the wedding to Thursday. He asks Paris if he approves of the haste and says they will have only a small celebration with a few friends, since holding a large feast so soon after Tybalt's death might make them seem indifferent to his loss. He confirms Thursday as the date.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -71,10 +71,10 @@
     "speaker": "PARIS",
     "startOffset": 92835,
     "endOffset": 92889,
-    "content": "Paris eagerly wishes Thursday were tomorrow, showing his strong desire to marry Juliet quickly.",
+    "content": "Paris eagerly says he wishes Thursday were tomorrow, showing his enthusiasm for the marriage.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -82,9 +82,9 @@
     "speaker": "CAPULET",
     "startOffset": 92889,
     "endOffset": 93152,
-    "content": "Capulet finalizes Thursday for the wedding and instructs his wife to prepare Juliet. He bids Paris farewell, calls for light, and humorously notes how late it is, saying they might soon call it early. This hasty planning contrasts with Juliet's secret marriage to Romeo, heightening dramatic tension.",
+    "content": "Capulet finalizes Thursday as the wedding day and tells his wife to prepare Juliet. He bids Paris farewell and calls for a light to his chamber, joking that it is so late it will soon be early. 'Afore me' is a mild oath meaning 'upon my soul.'",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 50
   }
 ]

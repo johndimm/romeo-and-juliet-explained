@@ -8,7 +8,7 @@
     "content": "Benvolio urges Mercutio to leave because the hot weather makes people irritable and the Capulets are out, so a fight is likely if they meet.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -16,10 +16,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67389,
     "endOffset": 67655,
-    "content": "Mercutio compares Benvolio to a man who brags about his sword in a tavern but picks fights over nothing after a drink, implying Benvolio is quick to quarrel.",
+    "content": "Mercutio compares Benvolio to a man who brags about his sword in a tavern but picks fights over nothing after a drink. 'Claps me' means 'slaps down,' 'drawer' is a bartender.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 55
   },
   {
     "act": "III",
@@ -30,7 +30,7 @@
     "content": "Benvolio asks if he really seems like such a person.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -38,10 +38,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67691,
     "endOffset": 67828,
-    "content": "Mercutio insists Benvolio is as hot-tempered as anyone in Italy and easily provoked into a bad mood.",
+    "content": "Mercutio insists Benvolio is as quick-tempered as anyone in Italy, easily provoked and quick to anger.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -52,7 +52,7 @@
     "content": "Benvolio asks what he would quarrel about.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -60,10 +60,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 67852,
     "endOffset": 68655,
-    "content": "Mercutio humorously claims Benvolio would fight over trivial things like a man’s beard, nut-cracking, or a tailor’s fashion choices, accusing him of being obsessed with quarrels despite having been beaten for it.",
+    "content": "Mercutio lists absurd reasons Benvolio would fight: over beard hair, nut-cracking (mocking his hazel eyes), coughing, or a tailor’s fashion choices. 'Doublet' is a jacket, 'riband' a ribbon. He concludes Benvolio’s head is as full of quarrels and as addled (confused) as an egg is full of meat (yolk).",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
   },
   {
     "act": "III",
@@ -71,10 +71,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 68655,
     "endOffset": 68780,
-    "content": "Benvolio retorts that if he were as quarrelsome as Mercutio, anyone could buy the permanent right to his life for a short time, meaning he’d be killed quickly.",
+    "content": "Benvolio jokes that if he were as quarrelsome as Mercutio, anyone could buy permanent ownership of his life for a short time—meaning he’d be killed quickly. 'Fee simple' means absolute ownership.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -82,10 +82,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 68780,
     "endOffset": 68817,
-    "content": "Mercutio mocks Benvolio’s legal term ‘fee simple’ as simple-minded, then notices Tybalt approaching.",
+    "content": "Mercutio mocks Benvolio’s legal term 'fee simple' as silly, then Tybalt enters.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 30
   },
   {
     "act": "III",
@@ -93,10 +93,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 68844,
     "endOffset": 68892,
-    "content": "Benvolio warns that the Capulets are coming.",
+    "content": "Benvolio warns that the Capulets are approaching.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -107,7 +107,7 @@
     "content": "Mercutio dismisses the danger, saying he doesn’t care.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -115,10 +115,10 @@
     "speaker": "TYBALT",
     "startOffset": 68927,
     "endOffset": 69024,
-    "content": "Tybalt tells his companions to stay close because he intends to confront them, then greets the group and asks to speak with one of them.",
+    "content": "Tybalt tells his companions to stay near, then greets the others with 'good-den' (good evening) and asks to speak with one of them.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 30
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -126,10 +126,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69024,
     "endOffset": 69121,
-    "content": "Mercutio挑衅地回应，要求提伯尔特把一句话和一击搭配起来，暗示他准备打架。",
+    "content": "Mercutio挑衅地回应，说如果只跟一个人说一句话，那就再加点别的，比如一句话加一拳。",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "III",
@@ -137,10 +137,10 @@
     "speaker": "TYBALT",
     "startOffset": 69121,
     "endOffset": 69204,
-    "content": "Tybalt says he is ready to fight if Mercutio gives him a reason.",
+    "content": "Tybalt says he’s ready to fight if given a reason.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -151,7 +151,7 @@
     "content": "Mercutio sarcastically asks if Tybalt can’t find a reason without being given one.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -159,10 +159,10 @@
     "speaker": "TYBALT",
     "startOffset": 69264,
     "endOffset": 69311,
-    "content": "Tybalt ignores Mercutio and says he associates with Romeo, using ‘consortest’ to mean keeping company.",
+    "content": "Tybalt says Mercutio associates with Romeo, using 'consortest' which can mean 'keep company with.'",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "III",
@@ -170,10 +170,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69311,
     "endOffset": 69510,
-    "content": "Mercutio deliberately misunderstands ‘consort’ as meaning a band of minstrels, threatens discord, and brandishes his sword as a ‘fiddlestick’ to make Tybalt dance, escalating the confrontation.",
+    "content": "Mercutio pretends to take 'consort' as meaning a group of musicians, threatens discord, and brandishes his sword ('fiddlestick'), saying it will make Tybalt dance. 'Zounds' is a mild oath.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 50
   },
   {
     "act": "III",
@@ -181,10 +181,10 @@
     "speaker": "BENVOLIO",
     "startOffset": 69510,
     "endOffset": 69683,
-    "content": "Benvolio warns that they are in a public place where everyone can see them, so they should either go somewhere private to discuss their grievances calmly or leave to avoid attention.",
+    "content": "Benvolio urges them to move to a private place to discuss their grievances calmly or to leave, since they are in a public space where everyone is watching. This sets the scene for the coming conflict and shows his role as a peacemaker.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 25
+    "perplexity": 15
   },
   {
     "act": "III",
@@ -192,10 +192,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69683,
     "endOffset": 69790,
-    "content": "Mercutio defiantly says that eyes are meant to look, so let them stare; he refuses to move for anyone's convenience.",
+    "content": "Mercutio defiantly says that eyes are meant to look, so let them stare; he refuses to move for anyone's convenience. His stubbornness highlights his hot-headed nature and disregard for public opinion.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "III",
@@ -203,10 +203,10 @@
     "speaker": "TYBALT",
     "startOffset": 69805,
     "endOffset": 69863,
-    "content": "Tybalt dismisses Mercutio, saying peace be with him, and notes that Romeo, the person he is looking for, has arrived.",
+    "content": "Tybalt sarcastically wishes peace upon Mercutio and then notes that Romeo, the person he is looking for, has arrived.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -214,10 +214,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 69863,
     "endOffset": 70023,
-    "content": "Mercutio sarcastically remarks that Tybalt is mistaken if he thinks Romeo serves him; he suggests Tybalt go to the dueling field and Romeo will follow, so in that sense Tybalt can call him his 'man'.",
+    "content": "Mercutio mocks Tybalt, saying he would be hanged if Romeo wears Tybalt's livery (uniform), meaning Romeo is not his servant. He sarcastically suggests Tybalt go to a dueling field and Romeo will follow as his 'man' in that sense. This insults Tybalt's pride and challenges his claim over Romeo.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 55
   },
   {
     "act": "III",
@@ -225,10 +225,10 @@
     "speaker": "TYBALT",
     "startOffset": 70023,
     "endOffset": 70117,
-    "content": "Tybalt addresses Romeo, saying the affection he has for him allows no kinder word than 'villain', directly insulting him.",
+    "content": "Tybalt tells Romeo that the only term his love for him allows is 'villain,' a deep insult questioning Romeo's honor. This directly provokes a duel.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 40
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -236,18 +236,7 @@
     "speaker": "ROMEO",
     "startOffset": 70117,
     "endOffset": 70296,
-    "content": "Romeo responds that his reason for loving Tybalt excuses the anger such an insult would normally provoke; he denies being a villain and bids farewell, implying Tybalt does not truly know him.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 70296,
-    "endOffset": 70394,
-    "content": "Tybalt rejects Romeo's excuse for the offenses he believes Romeo has committed and demands that he turn and draw his sword.",
+    "content": "Romeo responds that he has reasons to love Tybalt which excuse the anger such a greeting would normally provoke; he says he is no villain and bids farewell, implying Tybalt does not truly know him. This reflects Romeo's secret marriage to Juliet making Tybalt his kinsman.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 40
@@ -255,13 +244,24 @@
   {
     "act": "III",
     "scene": "I",
+    "speaker": "TYBALT",
+    "startOffset": 70296,
+    "endOffset": 70394,
+    "content": "Tybalt dismisses Romeo's words as no excuse for the offenses he believes Romeo has committed, and commands him to turn and draw his sword.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "III",
+    "scene": "I",
     "speaker": "ROMEO",
     "startOffset": 70394,
     "endOffset": 70605,
-    "content": "Romeo insists he has never harmed Tybalt and loves him more than Tybalt can understand until he learns the reason; he urges Tybalt, whose Capulet name he values as his own, to be content and avoid conflict.",
+    "content": "Romeo insists he never harmed Tybalt and loves him more than Tybalt can understand until he knows the reason; he says he values the Capulet name as dearly as his own and urges Tybalt to be satisfied. This further hints at his secret marriage without revealing it.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 45
   },
   {
     "act": "III",
@@ -269,10 +269,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 70605,
     "endOffset": 70738,
-    "content": "Mercutio exclaims in disgust at Romeo's calm, dishonorable surrender, declaring that a thrust in fencing wins the day; he insults Tybalt as a 'rat-catcher' and challenges him to fight.",
+    "content": "Mercutio exclaims in disgust at Romeo's calm, dishonorable submission. He draws his sword, saying 'Alla stoccata' (a fencing thrust) wins the day, and calls Tybalt a rat-catcher (mocking his name) and challenges him to fight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 75
+    "perplexity": 60
   },
   {
     "act": "III",
@@ -280,10 +280,10 @@
     "speaker": "TYBALT",
     "startOffset": 70738,
     "endOffset": 70779,
-    "content": "Tybalt asks what Mercutio wants with him, prompting the confrontation.",
+    "content": "Tybalt asks what Mercutio wants with him, playing along with the confrontation.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -291,7 +291,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 70779,
     "endOffset": 71060,
-    "content": "Mercutio mocks Tybalt as the 'King of Cats' and says he intends to take one of his nine lives, thrash the rest, and dares him to draw his sword quickly or risk being struck first.",
+    "content": "Mercutio, calling Tybalt 'Good King of Cats' (mocking 'Tybalt' from a cat in folklore), says he wants one of his nine lives, which he will boldly take, and depending on how Tybalt treats him later, he will dry-beat (beat without drawing blood) the other eight. He dares Tybalt to draw his sword quickly or he will strike him before it is out.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 75
@@ -302,10 +302,10 @@
     "speaker": "TYBALT",
     "startOffset": 71060,
     "endOffset": 71096,
-    "content": "Tybalt accepts the challenge, stating he is ready to fight.",
+    "content": "Tybalt draws his sword and says he is ready for Mercutio, accepting the challenge.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 15
+    "perplexity": 5
   },
   {
     "act": "III",
@@ -313,10 +313,10 @@
     "speaker": "ROMEO",
     "startOffset": 71096,
     "endOffset": 71140,
-    "content": "Romeo urges Mercutio to put away his rapier, trying to prevent the duel.",
+    "content": "Romeo urges Mercutio to put his sword away, trying to prevent the fight.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -324,10 +324,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71140,
     "endOffset": 71194,
-    "content": "Mercutio ignores Romeo and calls for Tybalt to make his fencing attack, initiating their fight.",
+    "content": "Mercutio ignores Romeo and challenges Tybalt with 'your passado' (a forward fencing thrust), and they begin fighting.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
   },
   {
     "act": "III",
@@ -335,10 +335,10 @@
     "speaker": "ROMEO",
     "startOffset": 71194,
     "endOffset": 71400,
-    "content": "Romeo calls on Benvolio to help disarm them, chastising the men for this shameful brawl and reminding them the Prince has forbidden fighting in Verona's streets; he pleads with both to stop.",
+    "content": "Romeo calls on Benvolio to help beat down their swords, shame the gentlemen for this outrage, and reminds them the Prince has forbidden fighting in Verona's streets. He cries for them to stop as Tybalt and his followers exit.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 25
   },
   {
     "act": "III",
@@ -346,10 +346,10 @@
     "speaker": "MERCUTIO",
     "startOffset": 71440,
     "endOffset": 71535,
-    "content": "Mercutio announces he is wounded, curses both the Montague and Capulet houses, and says he is finished; he asks if Tybalt got away unharmed.",
+    "content": "Mercutio reveals he is wounded, curses both the Montague and Capulet houses with a plague, says he is done for ('sped'), and asks if Tybalt got away unharmed. This marks the turning point where Mercutio's death escalates the tragedy.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 35
   },
   {
     "act": "III",
@@ -357,7 +357,7 @@
     "speaker": "BENVOLIO",
     "startOffset": 71535,
     "endOffset": 71567,
-    "content": "He asks if Mercutio is injured.",
+    "content": "Benvolio asks if Mercutio is injured.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -368,172 +368,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 71567,
     "endOffset": 71677,
-    "content": "He dismisses his wound as a scratch but immediately calls for a surgeon, showing he knows it is serious. 'Marry' is a mild oath.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 71694,
-    "endOffset": 71741,
-    "content": "He tries to reassure Mercutio, saying the injury cannot be too bad.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 71741,
-    "endOffset": 72181,
-    "content": "He jokes grimly that the wound is not large but will be fatal, punning on 'grave' meaning serious and a burial place. 'Peppered' means finished; he curses both the Montagues and Capulets and blames Romeo for intervening, which allowed Tybalt to strike under Romeo's arm.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72181,
-    "endOffset": 72217,
-    "content": "He explains that he meant well by trying to stop the fight.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "MERCUTIO",
-    "startOffset": 72217,
-    "endOffset": 72390,
-    "content": "He asks to be taken indoors before fainting, repeats his curse on both houses, and says they have killed him ('worms' meat' means a corpse).",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72426,
-    "endOffset": 72742,
-    "content": "He reflects that Mercutio, a friend and the Prince's relative, was mortally wounded defending him, and that Tybalt—now his cousin by marriage—has slandered him. He blames Juliet's beauty for making him soft and less brave.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 72742,
-    "endOffset": 72886,
-    "content": "He announces Mercutio's death, saying his noble spirit has ascended to the sky too soon.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 72886,
-    "endOffset": 73002,
-    "content": "He declares that this day's tragic fate will affect many future days, and this is only the beginning of sorrows that others will finish.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73002,
-    "endOffset": 73055,
-    "content": "He warns that Tybalt is returning angrily.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 25
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73055,
-    "endOffset": 73393,
-    "content": "He resolves to abandon gentle restraint and let fury guide him. He tells Tybalt to take back the insult 'villain,' saying Mercutio's soul is waiting for Tybalt's to join it, so one or both of them must die.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 65
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "TYBALT",
-    "startOffset": 73393,
-    "endOffset": 73472,
-    "content": "He calls Romeo a wretched boy who kept company with Mercutio and says he will join him in death.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 45
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73472,
-    "endOffset": 73539,
-    "content": "He says their fight will decide the matter.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 40
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73539,
-    "endOffset": 73704,
-    "content": "He urges Romeo to flee because the citizens are alerted and Tybalt is dead; he warns that the Prince will sentence Romeo to death if caught.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 25
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "ROMEO",
-    "startOffset": 73704,
-    "endOffset": 73738,
-    "content": "He laments that he is the plaything of cruel fate.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 30
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73738,
-    "endOffset": 73769,
-    "content": "He asks why Romeo is still lingering.",
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "perplexity": 35
-  },
-  {
-    "act": "III",
-    "scene": "I",
-    "speaker": "BENVOLIO",
-    "startOffset": 73903,
-    "endOffset": 74018,
-    "content": "Benvolio points out Tybalt's body, identifying him as the one slain by Romeo, who in turn had killed the Prince's relative Mercutio.",
+    "content": "Mercutio downplays his wound as a scratch but says it is enough to be serious; he calls for his page to fetch a surgeon. 'Marry' is a mild oath.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 15
@@ -541,24 +376,233 @@
   {
     "act": "III",
     "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 71694,
+    "endOffset": 71741,
+    "content": "Romeo tries to reassure Mercutio that the injury cannot be too bad.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 71741,
+    "endOffset": 72181,
+    "content": "Mercutio jests grimly that his wound is not very deep or wide, but enough to kill him; 'grave' puns on serious and burial place. He says he is done for ('peppered') and curses both the Montague and Capulet houses. He blames Romeo for coming between them in the fight. 'Zounds' is an oath; 'by the book of arithmetic' mocks Tybalt's precise, formal dueling style.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 65
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 72181,
+    "endOffset": 72217,
+    "content": "Romeo explains that he intervened with good intentions.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "MERCUTIO",
+    "startOffset": 72217,
+    "endOffset": 72390,
+    "content": "Mercutio asks Benvolio to help him inside before he faints, repeats his curse on both houses, and says they have turned him into food for worms (i.e., killed him).",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 72426,
+    "endOffset": 72742,
+    "content": "Romeo reflects that Mercutio, a close friend and relative of the Prince, was mortally wounded for his sake, and his own reputation has been damaged by Tybalt’s insult. He laments that his love for Juliet has made him soft and less courageous.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 55
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 72742,
+    "endOffset": 72886,
+    "content": "Benvolio announces that Mercutio is dead and that his noble spirit has risen to the sky too soon.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 72886,
+    "endOffset": 73002,
+    "content": "Romeo declares that this day’s tragic fate will affect more days to come; this is only the start of sorrows that others will finish.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 50
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 73002,
+    "endOffset": 73055,
+    "content": "Benvolio warns that Tybalt is returning angrily.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 73055,
+    "endOffset": 73393,
+    "content": "Romeo, seeing Tybalt return after killing Mercutio, renounces gentle mercy and calls for furious rage to guide him. He demands Tybalt take back the insult 'villain,' saying Mercutio’s soul is waiting for Tybalt’s to join it, so one or both of them must die.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 70
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "TYBALT",
+    "startOffset": 73393,
+    "endOffset": 73472,
+    "content": "Tybalt calls Romeo a wretched boy who kept company with Mercutio and says he will join him in death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 25
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 73472,
+    "endOffset": 73539,
+    "content": "Romeo says their fight will decide that outcome.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 73539,
+    "endOffset": 73704,
+    "content": "Benvolio urges Romeo to flee because the citizens are alerted and Tybalt is dead; he warns that the Prince will sentence him to death if caught.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 30
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "ROMEO",
+    "startOffset": 73704,
+    "endOffset": 73738,
+    "content": "Romeo exclaims that he is the plaything of bad luck.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 73738,
+    "endOffset": 73769,
+    "content": "Benvolio asks why Romeo is still lingering.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "FIRST CITIZEN",
+    "startOffset": 73805,
+    "endOffset": 73903,
+    "content": "The First Citizen asks which way Tybalt, the murderer of Mercutio, ran. This shows the immediate chaos and pursuit after the fight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "BENVOLIO",
+    "startOffset": 73903,
+    "endOffset": 73938,
+    "content": "Benvolio simply states that Tybalt lies dead here, pointing out the body.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 5
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "FIRST CITIZEN",
+    "startOffset": 73938,
+    "endOffset": 74018,
+    "content": "The citizen orders someone to come with him in the Prince’s name, asserting authority to arrest the offender.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 15
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "PRINCE",
+    "startOffset": 74087,
+    "endOffset": 74139,
+    "content": "The Prince demands to know who started the fight, seeking the instigators of the brawl.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
+  },
+  {
+    "act": "III",
+    "scene": "I",
     "speaker": "BENVOLIO",
     "startOffset": 74139,
     "endOffset": 74306,
-    "content": "He offers to reveal the unfortunate course of the deadly fight, again noting Tybalt's death at Romeo's hands and Tybalt's own slaying of Mercutio.",
+    "content": "Benvolio tells the Prince he can explain the whole unfortunate event: Tybalt lies slain by Romeo, who killed Mercutio.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 45
+    "perplexity": 20
   },
   {
     "act": "III",
     "scene": "I",
     "speaker": "LADY CAPULET",
     "startOffset": 74306,
-    "endOffset": 74564,
-    "content": "She laments Tybalt's death as her cousin and nephew, appealing to the Prince for justice by demanding a Montague life in return, heightening the tension with her grief and call for revenge.",
+    "endOffset": 74517,
+    "content": "Lady Capulet mourns Tybalt as her cousin and nephew, then demands the Prince, as a just ruler, require a Montague’s death in return for Tybalt’s blood.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 25
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "PRINCE",
+    "startOffset": 74517,
+    "endOffset": 74564,
+    "content": "The Prince asks Benvolio to name who began the bloody fight.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 10
   },
   {
     "act": "III",
@@ -566,31 +610,53 @@
     "speaker": "BENVOLIO",
     "startOffset": 74564,
     "endOffset": 75638,
-    "content": "He recounts the fight: Romeo tried to calm Tybalt and reminded him how trivial the quarrel was, but Tybalt, filled with unruly anger, instead fought Mercutio. Romeo intervened, but Tybalt fatally stabbed Mercutio under Romeo's arm, fled, returned, and was then slain by a vengeful Romeo in a swift duel. Benvolio swears this is true.",
+    "content": "Benvolio recounts the events: Romeo tried to calm Tybalt, but Tybalt, ignoring peace, fought Mercutio. Romeo intervened, but Tybalt under Romeo’s arm fatally stabbed Mercutio, then fled and later returned to fight Romeo, who killed Tybalt and fled. Benvolio swears this is true.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 60
   },
   {
     "act": "III",
     "scene": "I",
     "speaker": "LADY CAPULET",
     "startOffset": 75638,
-    "endOffset": 76007,
-    "content": "She dismisses Benvolio's account as biased because he is a Montague relative, falsely claims many Montagues fought, and insists Romeo must be executed for killing Tybalt, pressing the Prince for severe punishment.",
+    "endOffset": 75918,
+    "content": "Lady Capulet claims Benvolio is biased as a Montague relative and lies; she says many Montagues fought but only one died, and demands Romeo’s execution for killing Tybalt.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 35
+    "perplexity": 30
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "PRINCE",
+    "startOffset": 75918,
+    "endOffset": 76007,
+    "content": "The Prince notes Romeo killed Tybalt, and Tybalt killed Mercutio, then asks who owes the price for Mercutio’s death.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 20
   },
   {
     "act": "III",
     "scene": "I",
     "speaker": "MONTAGUE",
     "startOffset": 76007,
-    "endOffset": 76657,
-    "content": "He defends Romeo, arguing that Romeo was Mercutio's friend and that his killing of Tybalt merely carried out what the law would have done—executed Tybalt for Mercutio's murder—thus pleading for leniency.",
+    "endOffset": 76134,
+    "content": "Montague argues Romeo was Mercutio’s friend and his action only carried out what the law would have done—executed Tybalt.",
     "provider": "deepseek",
     "model": "deepseek-chat",
-    "perplexity": 65
+    "perplexity": 25
+  },
+  {
+    "act": "III",
+    "scene": "I",
+    "speaker": "PRINCE",
+    "startOffset": 76134,
+    "endOffset": 76657,
+    "content": "The Prince exiles Romeo immediately, saying he too has suffered from their feud (Mercutio was his kinsman), fines both families heavily, and warns that mercy to killers only leads to more murder.",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "perplexity": 40
   }
 ]

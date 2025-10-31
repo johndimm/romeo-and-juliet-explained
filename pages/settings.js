@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Settings() {
-  const [llmOptions, setLlmOptions] = useState({ 
+  const [llmOptions, setLlmOptions] = useState({
     model: 'gpt-4o-mini', 
     language: 'English', 
     educationLevel: 'High school', 
@@ -13,6 +13,7 @@ export default function Settings() {
   });
   const [providerModels, setProviderModels] = useState([]);
   const [noteThreshold, setNoteThreshold] = useState(50);
+  const [optionsHydrated, setOptionsHydrated] = useState(false);
 
   // Helper functions for notes density (inverted from perplexity threshold)
   // perplexity threshold: higher = fewer notes (0 = all notes, 100 = no notes)
@@ -43,19 +44,49 @@ export default function Settings() {
       const saved = localStorage.getItem('llmOptions');
       if (saved) {
         const parsed = JSON.parse(saved);
+        // Validate that model matches provider - fix mismatches
+        const provider = (parsed.provider || 'openai').toLowerCase();
+        const model = parsed.model || '';
+        let correctedModel = model;
+        
+        if (provider === 'deepseek' && !/deepseek/i.test(model)) {
+          correctedModel = 'deepseek-chat';
+        } else if (provider === 'openai' && !/^gpt-/i.test(model)) {
+          correctedModel = 'gpt-4o-mini';
+        } else if (provider === 'anthropic' && !/^claude/i.test(model)) {
+          correctedModel = 'claude-3-sonnet-20240229';
+        } else if (provider === 'gemini' && !/^gemini/i.test(model)) {
+          correctedModel = 'gemini-1.5-pro-latest';
+        }
+        
+        if (correctedModel !== model) {
+          parsed.model = correctedModel;
+          try {
+            localStorage.setItem('llmOptions', JSON.stringify(parsed));
+          } catch {}
+        }
+        
         setLlmOptions(parsed);
       }
       const savedNoteThreshold = localStorage.getItem('noteThreshold');
-      if (savedNoteThreshold !== null) {
-        setNoteThreshold(parseInt(savedNoteThreshold, 10) || 50);
+      if (savedNoteThreshold !== null && savedNoteThreshold !== '') {
+        const v = parseInt(savedNoteThreshold, 10);
+        if (Number.isFinite(v) && v >= 0 && v <= 100) {
+          setNoteThreshold(v);
+        }
       }
+      setOptionsHydrated(true);
     } catch (e) {
       // Use defaults
+      setOptionsHydrated(true);
     }
   }, []);
 
   // Fetch available models when provider changes
+  // Only validate after initial load from localStorage is complete
   useEffect(() => {
+    if (!optionsHydrated) return; // Don't validate until we've loaded from localStorage
+    
     const prov = (llmOptions.provider || 'openai').toLowerCase();
     fetch(`/api/models?provider=${encodeURIComponent(prov)}`)
       .then((r) => r.json())
@@ -63,9 +94,23 @@ export default function Settings() {
         const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
         setProviderModels(list);
         // If current model is not in the list for this provider, reset to default
+        // Only validate if we have models and the current model isn't valid for this provider
         if (list.length > 0) {
           setLlmOptions(prev => {
-            if (!list.includes(prev.model)) {
+            // Don't change model if provider doesn't match (shouldn't happen, but be safe)
+            const prevProvider = (prev.provider || 'openai').toLowerCase();
+            if (prevProvider !== prov) {
+              return prev; // Provider changed, let the provider change handler deal with it
+            }
+            // Check if current model is valid for this provider
+            const modelMatchesProvider = (
+              (prov === 'deepseek' && /deepseek/i.test(prev.model)) ||
+              (prov === 'openai' && /^gpt-/i.test(prev.model)) ||
+              (prov === 'anthropic' && /^claude/i.test(prev.model)) ||
+              (prov === 'gemini' && /^gemini/i.test(prev.model))
+            );
+            // Only reset if model doesn't match provider AND isn't in the fetched list
+            if (!modelMatchesProvider && !list.includes(prev.model)) {
               const defaultModel = list[0];
               const updated = { ...prev, model: defaultModel };
               try {
@@ -80,12 +125,12 @@ export default function Settings() {
         }
       })
       .catch(() => setProviderModels([]));
-  }, [llmOptions.provider]);
+  }, [llmOptions.provider, optionsHydrated]);
 
   function defaultModelForProvider(p) {
     if (providerModels && providerModels.length) return providerModels[0];
     const prov = (p || 'openai').toLowerCase();
-    if (prov === 'anthropic') return 'claude-3-5-sonnet-20240620';
+    if (prov === 'anthropic') return 'claude-3-sonnet-20240229';
     if (prov === 'deepseek') return 'deepseek-chat';
     if (prov === 'gemini') return 'gemini-1.5-pro-latest';
     return 'gpt-4o-mini';
@@ -94,7 +139,19 @@ export default function Settings() {
   const handleOptionChange = (key, value) => {
     const updated = { ...llmOptions, [key]: value };
     if (key === 'provider') {
-      updated.model = defaultModelForProvider(value);
+      // When provider changes, set model to appropriate default
+      // Use static defaults (not providerModels) since we're changing provider
+      // The useEffect will validate once models are fetched
+      const prov = (value || 'openai').toLowerCase();
+      if (prov === 'deepseek') {
+        updated.model = 'deepseek-chat';
+      } else if (prov === 'anthropic') {
+        updated.model = 'claude-3-sonnet-20240229';
+      } else if (prov === 'gemini') {
+        updated.model = 'gemini-1.5-pro-latest';
+      } else {
+        updated.model = 'gpt-4o-mini';
+      }
     }
     setLlmOptions(updated);
     try {
