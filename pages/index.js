@@ -865,6 +865,24 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       try { localStorage.setItem('noteThreshold', String(noteThreshold)); } catch {}
     }
   }, [optsHydrated, noteThreshold]);
+  useEffect(() => {
+    if (typeof window === 'undefined') return () => {};
+    const handler = (e) => {
+      const val = e?.detail?.value;
+      if (typeof val === 'number' && Number.isFinite(val)) {
+        setNoteThreshold((prev) => {
+          const next = Math.min(100, Math.max(0, val));
+          return prev === next ? prev : next;
+        });
+      }
+    };
+    window.addEventListener('note-threshold-set', handler);
+    return () => window.removeEventListener('note-threshold-set', handler);
+  }, []);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { value: noteThreshold } }));
+  }, [noteThreshold]);
 
   // Normalize perplexity for filtering (supports both 0–100 and raw LM PPL)
   function normalizedPerplexity(it) {
@@ -1215,7 +1233,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             forcedNotes={forcedNotes}
             onToggleForced={toggleForcedNote}
             noteThreshold={noteThreshold}
-            setNoteThreshold={setNoteThreshold}
             onRequestFocus={(pf) => setPendingFocus(pf)}
             llm={{
               options: llmOptions,
@@ -1383,17 +1400,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               <label>Age
                 <input type="number" min="10" max="100" value={llmOptions.age || ''} onChange={(e) => setLlmOptions({ ...llmOptions, age: e.target.value })} style={{ marginLeft: 6, width: 72 }} />
               </label>
-              {/* Notes density slider */}
-              <div style={{ width: '100%', marginTop: 8 }}>
-                <label style={{ display: 'block', marginBottom: 4 }}>Notes density (min perplexity): <b>{noteThreshold}</b></label>
-                <input type="range" min="0" max="100" value={noteThreshold} onChange={(e)=>setNoteThreshold(parseInt(e.target.value,10)||0)} style={{ width: '100%' }} />
-                <div style={{ display:'flex', gap:8, marginTop:6 }}>
-                  <button type="button" onClick={()=>setNoteThreshold(0)}>All</button>
-                  <button type="button" onClick={()=>setNoteThreshold(50)}>50</button>
-                  <button type="button" onClick={()=>setNoteThreshold(70)}>70</button>
-                  <button type="button" onClick={()=>setNoteThreshold(85)}>85</button>
-                </div>
-              </div>
             </div>
             <div style={{ marginTop: '0.75rem', textAlign: 'right' }}>
               <button
@@ -1408,7 +1414,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
                   // Also hide all notes: clear forced list and set density to hide
                   try { setForcedNotes?.([]); } catch {}
                   try { localStorage.setItem('forcedNotes', JSON.stringify([])); } catch {}
-                  try { setNoteThreshold?.(100); localStorage.setItem('noteThreshold', String(100)); } catch {}
+                  try {
+                    setNoteThreshold(100);
+                    localStorage.setItem('noteThreshold', String(100));
+                  } catch {}
                 }}
                 style={{ marginRight: 8 }}
                 title="Remove all saved explanations"
@@ -1424,7 +1433,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, setNoteThreshold, forcedNotes = [], onToggleForced, onRequestFocus }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -2019,65 +2028,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                              setPreFollowThreads((prev) => { const arr = Array.isArray(prev[key]) ? prev[key].slice() : []; arr.push({ q: 'More', a: `Error: ${String(e.message || e)}` }); return { ...prev, [key]: arr }; });
                            } finally { setPreFollowLoading(false); }
                         })(); }} title="Get a longer response">More</button>
-                        </div>
-                        {/* Quick note density controls (shown only when chat is open), on a new row below */}
-                        <div style={{ marginTop: '0.35rem', display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }} onClick={(e)=>e.stopPropagation()}>
-                          <span style={{ color: '#6b5f53', fontSize: '0.9em' }}>Notes:</span>
-                          {(() => {
-                            // Helper to get label from threshold (matching settings.js logic)
-                            const getNotesLabel = (threshold) => {
-                              if (threshold >= 100) return 'none';
-                              if (threshold >= 70) return 'some';
-                              if (threshold >= 30) return 'more';
-                              return 'all';
-                            };
-                            const currentLabel = getNotesLabel(noteThreshold ?? 50);
-                            const buttons = [
-                              { label: 'none', value: 100 },
-                              { label: 'some', value: 70 },
-                              { label: 'more', value: 30 },
-                              { label: 'all', value: 0 }
-                            ];
-                            return buttons.map(({ label, value }) => {
-                              const isSelected = currentLabel === label;
-                              return (
-                                <button
-                                  key={label}
-                                  type="button"
-                                  onClick={() => {
-                                    setNoteThreshold?.(value);
-                                    // Save to localStorage immediately
-                                    try { 
-                                      if (typeof window !== 'undefined') {
-                                        localStorage.setItem('noteThreshold', String(value));
-                                      }
-                                    } catch {}
-                                    try {
-                                      if (forcedKey && onToggleForced) onToggleForced(forcedKey, sectionIndex);
-                                    } catch {}
-                                    if (value === 100) setForceShow(false);
-                                  }}
-                                  title={label === 'none' ? 'Hide all notes' : label === 'all' ? 'Show all notes' : `Show ${label} notes`}
-                                  style={{
-                                    padding: '0.25rem 0.5rem',
-                                    border: '2px solid',
-                                    borderRadius: '4px',
-                                    background: isSelected ? '#e7d7b8' : '#f8f6f3',
-                                    borderColor: isSelected ? '#c9b99a' : '#d8d5d0',
-                                    color: '#3b3228',
-                                    fontWeight: isSelected ? 600 : 500,
-                                    cursor: 'pointer',
-                                    transition: 'all 0.2s ease',
-                                    fontSize: '0.85rem',
-                                    textTransform: 'capitalize',
-                                    boxShadow: isSelected ? 'inset 0 2px 4px rgba(0,0,0,0.1)' : 'none'
-                                  }}
-                                >
-                                  {label}
-                                </button>
-                              );
-                            });
-                          })()}
                         </div>
                       </>
                     )}

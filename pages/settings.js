@@ -12,31 +12,7 @@ export default function Settings() {
     length: 'brief' 
   });
   const [providerModels, setProviderModels] = useState([]);
-  const [noteThreshold, setNoteThreshold] = useState(50);
   const [optionsHydrated, setOptionsHydrated] = useState(false);
-
-  // Helper functions for notes density (inverted from perplexity threshold)
-  // perplexity threshold: higher = fewer notes (0 = all notes, 100 = no notes)
-  // notes density: higher = more notes (0 = no notes, 100 = all notes)
-  const thresholdToDensity = (threshold) => 100 - threshold;
-  const densityToThreshold = (density) => 100 - density;
-
-  const getNotesLabel = (threshold) => {
-    if (threshold >= 100) return 'none';
-    if (threshold >= 70) return 'some';
-    if (threshold >= 30) return 'more';
-    return 'all';
-  };
-
-  const getNotesValue = (label) => {
-    switch (label) {
-      case 'none': return 100;
-      case 'some': return 70;
-      case 'more': return 30;
-      case 'all': return 0;
-      default: return 50;
-    }
-  };
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -67,13 +43,6 @@ export default function Settings() {
         }
         
         setLlmOptions(parsed);
-      }
-      const savedNoteThreshold = localStorage.getItem('noteThreshold');
-      if (savedNoteThreshold !== null && savedNoteThreshold !== '') {
-        const v = parseInt(savedNoteThreshold, 10);
-        if (Number.isFinite(v) && v >= 0 && v <= 100) {
-          setNoteThreshold(v);
-        }
       }
       setOptionsHydrated(true);
     } catch (e) {
@@ -161,15 +130,6 @@ export default function Settings() {
     }
   };
 
-  const handleNoteThresholdChange = (value) => {
-    setNoteThreshold(value);
-    try {
-      localStorage.setItem('noteThreshold', String(value));
-    } catch (e) {
-      // Ignore
-    }
-  };
-
   const handleRemoveAllExplanations = () => {
     try {
       const ok = typeof window === 'undefined' ? true : window.confirm('Remove all saved explanations? This cannot be undone.');
@@ -178,7 +138,11 @@ export default function Settings() {
     try {
       localStorage.setItem('explanations', JSON.stringify({}));
       localStorage.setItem('forcedNotes', JSON.stringify([]));
-      handleNoteThresholdChange(100);
+      localStorage.setItem('noteThreshold', '100');
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { value: 100 } }));
+        window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { value: 100 } }));
+      }
       alert('All explanations have been removed.');
     } catch (e) {
       // Ignore
@@ -291,79 +255,6 @@ export default function Settings() {
             </div>
           </div>
         </div>
-
-        <div className="settings-section">
-          <h2>Notes Display</h2>
-          <p>Control how many prewritten notes are displayed based on difficulty (perplexity). Lower values show more notes.</p>
-          
-          <div className="form-group">
-            <label htmlFor="noteThreshold">
-              Notes Density: <strong>{thresholdToDensity(noteThreshold)}</strong> ({getNotesLabel(noteThreshold)})
-            </label>
-            <input
-              id="noteThreshold"
-              type="range"
-              min="0"
-              max="100"
-              value={thresholdToDensity(noteThreshold)}
-              onChange={(e) => {
-                const density = parseInt(e.target.value, 10) || 0;
-                handleNoteThresholdChange(densityToThreshold(density));
-              }}
-              style={{ width: '100%' }}
-            />
-            <div className="button-group" style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {['none', 'some', 'more', 'all'].map((label) => {
-                const value = getNotesValue(label);
-                const isSelected = getNotesLabel(noteThreshold) === label;
-                return (
-                  <label
-                    key={label}
-                    style={{
-                      display: 'inline-block',
-                      padding: '0.5rem 1rem',
-                      border: '2px solid',
-                      borderRadius: '6px',
-                      background: isSelected ? '#e7d7b8' : '#f8f6f3',
-                      borderColor: isSelected ? '#c9b99a' : '#d8d5d0',
-                      color: '#3b3228',
-                      fontWeight: isSelected ? 600 : 500,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      fontSize: '0.95rem',
-                      textTransform: 'capitalize',
-                      boxShadow: isSelected ? 'inset 0 2px 4px rgba(0,0,0,0.1)' : 'none',
-                      transform: isSelected ? 'none' : 'none'
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isSelected) {
-                        e.currentTarget.style.background = '#e7d7b8';
-                        e.currentTarget.style.borderColor = '#c9b99a';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isSelected) {
-                        e.currentTarget.style.background = '#f8f6f3';
-                        e.currentTarget.style.borderColor = '#d8d5d0';
-                      }
-                    }}
-                  >
-                    <input
-                      type="radio"
-                      name="notesDensity"
-                      value={value}
-                      checked={isSelected}
-                      onChange={() => handleNoteThresholdChange(value)}
-                      style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }}
-                    />
-                    {label}
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
         <div className="settings-section">
           <h2>Data Management</h2>
           <p>Manage your saved explanations and notes.</p>

@@ -60,49 +60,51 @@ export default function App({ Component, pageProps }) {
       <header className="appHeader">
         <div className="appHeaderInner" ref={headerRef}>
           <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet — Explained</Link>
-          {isPlayPage && <HeaderSearch />}
-          <nav className="headerLinks">
-            {isPlayPage && (
-              <a
-                href="#"
-                className="lnk-print"
-                onClick={(e) => {
-                  e.preventDefault();
-                  try {
-                    const act = localStorage.getItem('printAct') || '';
-                    const scene = localStorage.getItem('printScene') || '';
-                    let dest = '/print';
-                    const params = [];
-                    if (act) params.push(`act=${encodeURIComponent(act)}`);
-                    if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
-                    if (params.length) dest += `?${params.join('&')}`;
-                    if (location.pathname !== dest) location.assign(dest); else location.href = dest;
-                  } catch {
-                    location.assign('/print');
-                  }
-                }}
-              >
-                <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
-              </a>
-            )}
-            <Link href="/user-guide" className="lnk-guide" style={isPlayPage ? { marginLeft: 12 } : { marginLeft: 0 }}><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
-            <Link href="/about" className="lnk-about" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
-            {isMobile ? (
-              <a 
-                href="#" 
-                className="lnk-settings" 
-                style={{ marginLeft: 12 }} 
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowMobileMenu(!showMobileMenu);
-                }}
-              >
-                <span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span>
-              </a>
-            ) : (
-              <Link href="/settings" className="lnk-settings" style={{ marginLeft: 12 }}><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
-            )}
-          </nav>
+          <div className="headerRight">
+            <nav className="headerLinks">
+              {isPlayPage && (
+                <a
+                  href="#"
+                  className="lnk-print"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    try {
+                      const act = localStorage.getItem('printAct') || '';
+                      const scene = localStorage.getItem('printScene') || '';
+                      let dest = '/print';
+                      const params = [];
+                      if (act) params.push(`act=${encodeURIComponent(act)}`);
+                      if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
+                      if (params.length) dest += `?${params.join('&')}`;
+                      if (location.pathname !== dest) location.assign(dest); else location.href = dest;
+                    } catch {
+                      location.assign('/print');
+                    }
+                  }}
+                >
+                  <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
+                </a>
+              )}
+              <Link href="/user-guide" className="lnk-guide"><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
+              <Link href="/about" className="lnk-about"><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
+              {isMobile ? (
+                <a 
+                  href="#" 
+                  className="lnk-settings" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowMobileMenu(!showMobileMenu);
+                  }}
+                >
+                  <span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span>
+                </a>
+              ) : (
+                <Link href="/settings" className="lnk-settings"><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
+              )}
+            </nav>
+            {isPlayPage && <HeaderNotesDensity />}
+            {isPlayPage && <HeaderSearch />}
+          </div>
         </div>
       </header>
       )}
@@ -183,5 +185,135 @@ function HeaderSearch() {
       ) : null}
       {/* Explanation navigation removed */}
     </form>
+  );
+}
+
+const densityOptions = [
+  { key: 'none', label: 'None', value: 100 },
+  { key: 'some', label: 'Some', value: 70 },
+  { key: 'many', label: 'Many', value: 30 },
+  { key: 'all', label: 'All', value: 0 },
+];
+
+const densityKeyFromValue = (v = 50) => {
+  if (v >= 100) return 'none';
+  if (v >= 70) return 'some';
+  if (v >= 30) return 'many';
+  return 'all';
+};
+
+function HeaderNotesDensity() {
+  const [threshold, setThreshold] = React.useState(50);
+  const [open, setOpen] = React.useState(false);
+  const controlRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = window.localStorage.getItem('noteThreshold');
+      if (raw !== null && raw !== '') {
+        const val = parseInt(raw, 10);
+        if (Number.isFinite(val)) setThreshold(Math.min(100, Math.max(0, val)));
+      }
+    } catch {}
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return () => {};
+    const handler = (e) => {
+      const val = e?.detail?.value;
+      if (typeof val === 'number' && Number.isFinite(val)) {
+        setThreshold(Math.min(100, Math.max(0, val)));
+      }
+    };
+    window.addEventListener('note-threshold-updated', handler);
+    return () => window.removeEventListener('note-threshold-updated', handler);
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return () => {};
+    const onClick = (e) => {
+      if (!controlRef.current) return;
+      if (controlRef.current.contains(e.target)) return;
+      setOpen(false);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    if (typeof document !== 'undefined') {
+      document.addEventListener('mousedown', onClick);
+      document.addEventListener('touchstart', onClick);
+      document.addEventListener('keydown', onKey);
+      return () => {
+        document.removeEventListener('mousedown', onClick);
+        document.removeEventListener('touchstart', onClick);
+        document.removeEventListener('keydown', onKey);
+      };
+    }
+    return () => {};
+  }, [open]);
+
+  const applyValue = React.useCallback((value, { close = false } = {}) => {
+    const clamped = Math.min(100, Math.max(0, value));
+    setThreshold(clamped);
+    if (typeof window !== 'undefined') {
+      try { window.localStorage.setItem('noteThreshold', String(clamped)); } catch {}
+      window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { value: clamped } }));
+    }
+    if (close) setOpen(false);
+  }, []);
+
+  const currentKey = densityKeyFromValue(threshold);
+  const currentOption = densityOptions.find((opt) => opt.key === currentKey) || densityOptions[1];
+
+  return (
+    <div className="headerNotesDensity" ref={controlRef}>
+      <button
+        type="button"
+        className="headerNotesButton"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        onClick={() => setOpen((prev) => !prev)}
+        title="Adjust note density"
+      >
+        <span className="headerNotesIcon" data-level={currentKey} aria-hidden />
+        <span className="sr-only">Note density ({currentOption.label})</span>
+      </button>
+      {open ? (
+        <div className="headerNotesPopover" role="dialog" aria-label="Note density selector">
+          <div className="headerNotesOptions">
+            {densityOptions.map((opt) => {
+              const isActive = opt.key === currentKey;
+              return (
+                <button
+                  key={opt.key}
+                  type="button"
+                  className={`headerNotesOption${isActive ? ' active' : ''}`}
+                  onClick={() => applyValue(opt.value, { close: true })}
+                >
+                  <span className="headerNotesIcon" data-level={opt.key} aria-hidden />
+                  <span>{opt.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="headerNotesSlider">
+            <label htmlFor="header-note-threshold">Minimum perplexity</label>
+            <input
+              id="header-note-threshold"
+              type="range"
+              min="0"
+              max="100"
+              value={threshold}
+              onChange={(e) => {
+                const val = parseInt(e.target.value, 10);
+                if (Number.isFinite(val)) applyValue(val, { close: false });
+              }}
+            />
+            <div className="headerNotesSliderValue">{threshold}</div>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }

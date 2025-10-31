@@ -14,14 +14,60 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 
 .appHeader { background: #faf9f7; border-bottom: 1px solid #e8e6e3; height: var(--header-h); overflow: visible; }
 
-.appTitle { font-size: clamp(18px, 2vw, 22px); }
+.appTitle {
+  font-size: clamp(18px, 1.8vw, 22px);
+}
 .appTitle:hover { opacity: 0.8; }
 
-.appHeaderInner { height: var(--header-h); padding: 8px 12px; box-sizing: border-box; overflow: visible; white-space: nowrap; }
-.appHeaderInner .appTitle,
-.appHeaderInner .headerSearchBar,
-.appHeaderInner nav { display: inline-block; vertical-align: middle; }
-.appHeaderInner nav { margin-left: 12px; float: right; }
+
+.appHeaderInner {
+  height: var(--header-h);
+  padding: 8px 16px;
+  box-sizing: border-box;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.appHeaderInner .appTitle {
+  flex-shrink: 0;
+}
+
+.headerRight {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.headerRight {
+  margin-left: auto;
+}
+
+.headerLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.headerLinks .lbl {
+  margin-left: 4px;
+}
+
+.headerLinks a,
+.headerLinks .lnk-settings {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.headerNotesDensity {
+  flex-shrink: 0;
+}
 
 .headerSpacer { display: none; }
 
@@ -173,10 +219,18 @@ html.isPrintRoute .container { left: 0; }
 .tocHandle span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; letter-spacing: 1px; }
 
 /* Search bar embedded in header row */
-.searchBar { position: static; display: inline-block; vertical-align: middle; background: transparent; padding: 0; white-space: nowrap; }
-.headerSearchBar { margin-left: 16px; }
 
-.searchBar input[type="search"], .searchBar input[type="text"] { width: 280px; max-width: 28vw; font-size: 0.95rem; padding: 0.35rem 0.5rem; border: 1px solid #d8d5d0; border-radius: 6px; height: 34px; }
+.searchBar { position: static; display: inline-flex; align-items: center; background: transparent; padding: 0; white-space: nowrap; flex: 0 1 260px; }
+.headerSearchBar { margin-left: 0; min-width: 180px; }
+
+.searchBar input[type="search"], .searchBar input[type="text"] {
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #d8d5d0;
+  border-radius: 6px;
+  height: 34px;
+}
 .searchBar button { height: 34px; }
 .searchBar .searchCount { margin: 0 8px; }
 .searchBar .exCount { margin-left: 6px; }
@@ -194,6 +248,220 @@ html.isPrintRoute .container { left: 0; }
 .searchBar button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.headerNotesDensity {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.headerNotesButton {
+  border: 1px solid #cfc7bb;
+  background: #fff;
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+.headerNotesButton:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.headerNotesButton:active {
+  transform: scale(0.96);
+}
+
+.headerNotesIcon {
+  --density-fill: #c08a5c;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 2px solid #6b5f53;
+  background-color: rgba(255,255,255,0.9);
+  background-image: none;
+}
+
+.headerNotesIcon[data-level="none"] {
+  background-image: none;
+}
+
+.headerNotesIcon[data-level="some"] {
+  background-image: conic-gradient(var(--density-fill) 0deg 120deg, transparent 120deg 360deg);
+}
+
+.headerNotesIcon[data-level="many"] {
+  background-image: conic-gradient(var(--density-fill) 0deg 240deg, transparent 240deg 360deg);
+}
+
+.headerNotesIcon[data-level="all"] {
+  background-color: var(--density-fill);
+  background-image: none;
+}
+
+.headerNotesPopover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  background: #fffdfa;
+  border: 1px solid #e2d7c9;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+  padding: 12px;
+  z-index: 1500;
+}
+
+.headerNotesOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.headerNotesOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #3b3228;
+  text-align: left;
+}
+
+.headerNotesOption:hover {
+  background: #f0e8dc;
+}
+
+.headerNotesOption.active {
+  border-color: #c08a5c;
+  background: rgba(192,138,92,0.12);
+}
+
+.headerNotesSlider {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.headerNotesSlider label {
+  font-size: 0.8rem;
+  color: #6b5f53;
+}
+
+.headerNotesSlider input[type="range"] {
+  width: 100%;
+}
+
+.headerNotesSliderValue {
+  align-self: flex-end;
+  font-size: 0.85rem;
+  color: #53483e;
+  font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .appHeaderInner {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+  .appHeaderInner .appTitle {
+    width: 100%;
+  }
+  .headerRight {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(140px, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+  }
+  .headerNotesDensity {
+    margin-left: 0;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: flex-start;
+  }
+  .headerNotesPopover {
+    right: auto;
+    left: 0;
+  }
+  .headerSearchBar {
+    flex: 1 1 auto;
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .headerLinks {
+    grid-column: 3;
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  .headerRight nav {
+    width: auto;
+    justify-self: flex-end;
+  }
+  .headerLinks .lbl {
+    display: none;
+  }
+  .headerLinks a,
+  .headerLinks .lnk-settings {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d8d5d0;
+    border-radius: 6px;
+    background: #fff;
+  }
+  .headerLinks .icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .searchBar {
+    flex: 1 1 auto;
+  }
+  .searchBar input[type="search"],
+  .searchBar input[type="text"] {
+    width: 100%;
+    max-width: none;
+  }
+  .searchBar button {
+    min-width: 30px;
+    padding: 0 6px;
+  }
+  .searchBar .searchCount {
+    display: none;
+  }
 }
 
 .searchCount {
@@ -432,23 +700,79 @@ html.isPrintRoute .container { left: 0; }
   html.isPrintRoute .container { overflow-y: visible; }
   /* Taller, wrapping header so controls aren't clipped */
   :root { --mobile-header-h: 132px; }
-  .appHeader { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: auto; overflow: visible; box-shadow: 0 1px 0 #e8e6e3; background: #faf9f7; }
-  .appHeaderInner { height: auto; white-space: normal; overflow: visible; padding: 8px 20px; display: grid; grid-template-columns: auto 1fr; grid-template-areas: 'title title' 'links search'; align-items: center; gap: 6px 8px; }
-  .appHeaderInner .appTitle { display: block; grid-area: title; }
-  .appHeaderInner nav { grid-area: links; float: none; margin: 0; display: flex; flex-wrap: nowrap; gap: 4px; }
-  .appHeaderInner nav { justify-content: flex-end; }
-  .headerSearchBar { grid-area: search; display: flex; margin: 0; width: 100%; justify-self: end; justify-content: flex-start; align-items: center; gap: 6px; flex-wrap: nowrap; }
-  /* Make the search box narrower on phones */
-  .searchBar input[type="search"], .searchBar input[type="text"] { width: 100%; max-width: 150px; }
-  .searchBar button { min-width: 28px; padding: 0 6px; }
+  .appHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: auto;
+    overflow: visible;
+    box-shadow: 0 1px 0 #e8e6e3;
+    background: #faf9f7;
+  }
+  .appHeaderInner {
+    height: auto;
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .appHeaderInner .appTitle {
+    width: 100%;
+  }
+  .headerRight {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+  .headerNotesDensity {
+    grid-column: 1;
+    justify-self: flex-start;
+  }
+  .headerSearchBar {
+    grid-column: 2;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .headerLinks {
+    grid-column: 3;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  .headerLinks .lbl {
+    display: none;
+  }
+  .headerLinks a,
+  .headerLinks .lnk-settings {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d8d5d0;
+    border-radius: 6px;
+    background: #fff;
+  }
+  .headerLinks .icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .searchBar {
+    flex: 1 1 auto;
+  }
+  .searchBar input[type="search"], .searchBar input[type="text"] {
+    width: 100%;
+    max-width: none;
+  }
+  .searchBar button { min-width: 30px; padding: 0 6px; }
   .searchBar .searchCount { display: none; }
 
-  /* Icon-only header links on mobile (DOM icons) */
-  .headerLinks a { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; border: 1px solid #d8d5d0; border-radius: 6px; background: #fff; text-decoration: none; color: #3b3228; min-width: 30px; }
-  .headerLinks a .icon { font-size: 16px; line-height: 1; display: inline-block; }
-  .headerLinks a .lbl { position: absolute; left: -9999px; }
-  /* On phones, hide all but the gear icon */
-  .headerLinks .lnk-contents,
+  /* Hide non-critical links on phones */
   .headerLinks .lnk-print,
   .headerLinks .lnk-guide,
   .headerLinks .lnk-about { display: none; }
