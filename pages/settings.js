@@ -2,6 +2,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
+const clampFontScale = (value) => Math.min(1.6, Math.max(0.7, value));
+const applyFontScaleToDocument = (value) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.setProperty('--font-scale', value.toFixed(3));
+  }
+};
+
 export default function Settings() {
   const [llmOptions, setLlmOptions] = useState({
     model: 'gpt-4o-mini', 
@@ -13,6 +20,8 @@ export default function Settings() {
   });
   const [providerModels, setProviderModels] = useState([]);
   const [optionsHydrated, setOptionsHydrated] = useState(false);
+  const [fontScale, setFontScale] = useState(1);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -44,11 +53,30 @@ export default function Settings() {
         
         setLlmOptions(parsed);
       }
+      const savedFontScale = localStorage.getItem('fontScale');
+      if (savedFontScale !== null && savedFontScale !== '') {
+        const val = parseFloat(savedFontScale);
+        if (Number.isFinite(val)) {
+          const clamped = clampFontScale(val);
+          setFontScale(clamped);
+          applyFontScaleToDocument(clamped);
+        }
+      }
       setOptionsHydrated(true);
     } catch (e) {
-      // Use defaults
       setOptionsHydrated(true);
     }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return () => {};
+    const handler = (e) => {
+      const raw = e?.detail?.value;
+      const val = typeof raw === 'number' ? raw : parseFloat(raw);
+      if (Number.isFinite(val)) setFontScale(clampFontScale(val));
+    };
+    window.addEventListener('font-scale-updated', handler);
+    return () => window.removeEventListener('font-scale-updated', handler);
   }, []);
 
   // Fetch available models when provider changes
@@ -131,21 +159,35 @@ export default function Settings() {
   };
 
   const handleRemoveAllExplanations = () => {
-    try {
-      const ok = typeof window === 'undefined' ? true : window.confirm('Remove all saved explanations? This cannot be undone.');
-      if (!ok) return;
-    } catch {}
+    setShowDeleteConfirm(true);
+  };
+
+  const actuallyRemoveAll = () => {
     try {
       localStorage.setItem('explanations', JSON.stringify({}));
       localStorage.setItem('forcedNotes', JSON.stringify([]));
       localStorage.setItem('noteThreshold', '100');
       if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { value: 100 } }));
-        window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { value: 100 } }));
+        window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { threshold: 100, density: 0 } }));
+        window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { threshold: 100, density: 0 } }));
       }
-      alert('All explanations have been removed.');
+      setShowDeleteConfirm(false);
     } catch (e) {
       // Ignore
+    }
+  };
+
+  const cancelRemoveAll = () => setShowDeleteConfirm(false);
+
+  const handleFontScaleChange = (value) => {
+    const next = clampFontScale(value);
+    setFontScale(next);
+    applyFontScaleToDocument(next);
+    try {
+      localStorage.setItem('fontScale', String(next));
+    } catch {}
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('font-scale-set', { detail: { value: next } }));
     }
   };
 
@@ -256,9 +298,44 @@ export default function Settings() {
           </div>
         </div>
         <div className="settings-section">
+          <h2>Font Size</h2>
+          <p>Adjust the size of the play text and explanations. You can also pinch on touch devices to resize instantly.</p>
+          <div className="form-group">
+            <label htmlFor="fontScale">Font size: <strong>{Math.round(fontScale * 100)}%</strong></label>
+            <input
+              id="fontScale"
+              type="range"
+              min="0.7"
+              max="1.5"
+              step="0.05"
+              value={fontScale}
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                if (Number.isFinite(val)) handleFontScaleChange(val);
+              }}
+              style={{ width: '100%' }}
+            />
+            <div className="button-group" style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {[0.85, 1, 1.15, 1.3].map((val) => {
+                const label = `${Math.round(val * 100)}%`;
+                const isActive = Math.abs(fontScale - val) < 0.01;
+                return (
+                  <button
+                    type="button"
+                    key={label}
+                    onClick={() => handleFontScaleChange(val)}
+                    className={isActive ? 'active' : undefined}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <div className="settings-section">
           <h2>Data Management</h2>
           <p>Manage your saved explanations and notes.</p>
-          
           <div className="form-group">
             <button
               type="button"
@@ -267,7 +344,16 @@ export default function Settings() {
             >
               Remove All Explanations
             </button>
-            <p className="help-text">This will remove all saved explanations and reset notes. This action cannot be undone.</p>
+            {showDeleteConfirm && (
+              <div className="confirmation-panel">
+                <p>Remove all saved explanations? This cannot be undone.</p>
+                <div className="button-group">
+                  <button type="button" onClick={actuallyRemoveAll} className="danger-button">Yes, remove all</button>
+                  <button type="button" onClick={cancelRemoveAll}>Cancel</button>
+                </div>
+              </div>
+            )}
+            <p className="help-text">This will remove all saved explanations and reset notes.</p>
           </div>
         </div>
       </div>

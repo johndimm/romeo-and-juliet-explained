@@ -189,23 +189,76 @@ function HeaderSearch() {
 }
 
 const densityOptions = [
-  { key: 'none', label: 'None', value: 100 },
-  { key: 'some', label: 'Some', value: 70 },
-  { key: 'many', label: 'Many', value: 30 },
-  { key: 'all', label: 'All', value: 0 },
+  { key: 'none', label: 'None', value: 0 },
+  { key: 'some', label: 'Some', value: 33 },
+  { key: 'most', label: 'Most', value: 66 },
+  { key: 'all', label: 'All', value: 100 },
 ];
 
-const densityKeyFromValue = (v = 50) => {
-  if (v >= 100) return 'none';
-  if (v >= 70) return 'some';
-  if (v >= 30) return 'many';
-  return 'all';
+const clampDensity = (value) => Math.min(100, Math.max(0, value));
+const densityToThreshold = (density) => Math.min(100, Math.max(0, 100 - density));
+const thresholdToDensity = (threshold) => Math.min(100, Math.max(0, 100 - threshold));
+
+const densityKeyFromValue = (value = 66) => {
+  const target = clampDensity(value);
+  let closest = densityOptions[0];
+  for (const opt of densityOptions) {
+    if (Math.abs(opt.value - target) < Math.abs(closest.value - target)) {
+      closest = opt;
+    }
+  }
+  return closest.key;
+};
+
+const polarToCartesian = (cx, cy, r, angleDeg) => {
+  const angleRad = (angleDeg * Math.PI) / 180;
+  return {
+    x: cx + r * Math.cos(angleRad),
+    y: cy + r * Math.sin(angleRad)
+  }
+};
+
+const DensityIcon = ({ density, size = 26 }) => {
+  const clamped = clampDensity(density);
+  const cx = size / 2;
+  const cy = size / 2;
+  const radius = size / 2 - 2;
+  const angle = (clamped / 100) * 360;
+
+  let wedge = null;
+  if (clamped >= 100) {
+    wedge = <circle cx={cx} cy={cy} r={radius} fill="#c08a5c" />;
+  } else if (clamped > 0) {
+    const startAngle = -90;
+    const endAngle = startAngle + angle;
+    const start = polarToCartesian(cx, cy, radius, endAngle);
+    const end = polarToCartesian(cx, cy, radius, startAngle);
+    const largeArcFlag = angle > 180 ? 1 : 0;
+    const pathData = [
+      `M ${cx} ${cy}`,
+      `L ${end.x} ${end.y}`,
+      `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${start.x} ${start.y}`,
+      'Z'
+    ].join(' ');
+    wedge = <path d={pathData} fill="#c08a5c" />;
+  }
+
+  return (
+    <svg className="densityIcon" width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+      <circle cx={cx} cy={cy} r={radius} fill="#fdf6eb" stroke="#6b5f53" strokeWidth="2" />
+      {wedge}
+    </svg>
+  );
 };
 
 function HeaderNotesDensity() {
-  const [threshold, setThreshold] = React.useState(50);
+  const initialDensity = React.useMemo(() => thresholdToDensity(50), []);
+  const [density, setDensity] = React.useState(initialDensity);
+  const [sliderDensity, setSliderDensity] = React.useState(initialDensity);
   const [open, setOpen] = React.useState(false);
   const controlRef = React.useRef(null);
+  const lastEmittedRef = React.useRef(null);
+  const isDraggingRef = React.useRef(false);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -213,7 +266,12 @@ function HeaderNotesDensity() {
       const raw = window.localStorage.getItem('noteThreshold');
       if (raw !== null && raw !== '') {
         const val = parseInt(raw, 10);
-        if (Number.isFinite(val)) setThreshold(Math.min(100, Math.max(0, val)));
+        if (Number.isFinite(val)) {
+          const next = thresholdToDensity(val);
+          setDensity(next);
+          setSliderDensity(next);
+          lastEmittedRef.current = next;
+        }
       }
     } catch {}
   }, []);
@@ -221,10 +279,20 @@ function HeaderNotesDensity() {
   React.useEffect(() => {
     if (typeof window === 'undefined') return () => {};
     const handler = (e) => {
-      const val = e?.detail?.value;
-      if (typeof val === 'number' && Number.isFinite(val)) {
-        setThreshold(Math.min(100, Math.max(0, val)));
+      const detail = e?.detail || {};
+      if (isDraggingRef.current) return;
+      let next = null;
+      if (typeof detail.density === 'number' && Number.isFinite(detail.density)) {
+        next = clampDensity(detail.density);
+      } else if (typeof detail.threshold === 'number' && Number.isFinite(detail.threshold)) {
+        next = thresholdToDensity(detail.threshold);
+      } else if (typeof detail.value === 'number' && Number.isFinite(detail.value)) {
+        next = thresholdToDensity(detail.value);
       }
+      if (next == null) return;
+      lastEmittedRef.current = next;
+      setDensity(next);
+      setSliderDensity(next);
     };
     window.addEventListener('note-threshold-updated', handler);
     return () => window.removeEventListener('note-threshold-updated', handler);
@@ -253,18 +321,53 @@ function HeaderNotesDensity() {
     return () => {};
   }, [open]);
 
-  const applyValue = React.useCallback((value, { close = false } = {}) => {
-    const clamped = Math.min(100, Math.max(0, value));
-    setThreshold(clamped);
-    if (typeof window !== 'undefined') {
-      try { window.localStorage.setItem('noteThreshold', String(clamped)); } catch {}
-      window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { value: clamped } }));
+  React.useEffect(() => {
+    if (open) {
+      setSliderDensity(density);
     }
-    if (close) setOpen(false);
+  }, [open, density]);
+
+  const emitDensity = React.useCallback((value) => {
+    const clamped = clampDensity(value);
+    if (lastEmittedRef.current === clamped) return clamped;
+    lastEmittedRef.current = clamped;
+    const threshold = densityToThreshold(clamped);
+    if (typeof window !== 'undefined') {
+      try { window.localStorage.setItem('noteThreshold', String(threshold)); } catch {}
+      window.dispatchEvent(new CustomEvent('note-threshold-set', { detail: { threshold, density: clamped } }));
+    }
+    return clamped;
   }, []);
 
-  const currentKey = densityKeyFromValue(threshold);
-  const currentOption = densityOptions.find((opt) => opt.key === currentKey) || densityOptions[1];
+  const previewDensity = React.useCallback((value) => {
+    const clamped = clampDensity(value);
+    setSliderDensity((prev) => (prev === clamped ? prev : clamped));
+    emitDensity(clamped);
+    if (!isDraggingRef.current) {
+      setDensity((prev) => (prev === clamped ? prev : clamped));
+    }
+  }, [emitDensity]);
+
+  const commitDensity = React.useCallback((value, { close = false } = {}) => {
+    const clamped = clampDensity(value);
+    setSliderDensity(clamped);
+    setDensity((prev) => (prev === clamped ? prev : clamped));
+    emitDensity(clamped);
+    if (close) setOpen(false);
+  }, [emitDensity]);
+
+  const beginDrag = React.useCallback(() => {
+    isDraggingRef.current = true;
+  }, []);
+
+  const endDrag = React.useCallback(() => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    commitDensity(sliderDensity);
+  }, [commitDensity, sliderDensity]);
+
+  const currentKey = densityKeyFromValue(density);
+  const currentOption = densityOptions.find((opt) => opt.key === currentKey) || densityOptions[2];
 
   return (
     <div className="headerNotesDensity" ref={controlRef}>
@@ -276,7 +379,7 @@ function HeaderNotesDensity() {
         onClick={() => setOpen((prev) => !prev)}
         title="Adjust note density"
       >
-        <span className="headerNotesIcon" data-level={currentKey} aria-hidden />
+        <DensityIcon density={density} />
         <span className="sr-only">Note density ({currentOption.label})</span>
       </button>
       {open ? (
@@ -289,28 +392,43 @@ function HeaderNotesDensity() {
                   key={opt.key}
                   type="button"
                   className={`headerNotesOption${isActive ? ' active' : ''}`}
-                  onClick={() => applyValue(opt.value, { close: true })}
+                  aria-pressed={isActive}
+                  onClick={() => {
+                    isDraggingRef.current = false;
+                    commitDensity(opt.value, { close: true });
+                  }}
                 >
-                  <span className="headerNotesIcon" data-level={opt.key} aria-hidden />
+                  <DensityIcon density={opt.value} />
                   <span>{opt.label}</span>
                 </button>
               );
             })}
           </div>
           <div className="headerNotesSlider">
-            <label htmlFor="header-note-threshold">Minimum perplexity</label>
+            <label htmlFor="header-note-density">Note density</label>
             <input
-              id="header-note-threshold"
+              id="header-note-density"
               type="range"
               min="0"
               max="100"
-              value={threshold}
+              value={sliderDensity}
+              onPointerDown={beginDrag}
+              onPointerUp={endDrag}
+              onMouseDown={beginDrag}
+              onMouseUp={endDrag}
+              onTouchStart={beginDrag}
+              onTouchEnd={endDrag}
               onChange={(e) => {
                 const val = parseInt(e.target.value, 10);
-                if (Number.isFinite(val)) applyValue(val, { close: false });
+                if (Number.isFinite(val)) previewDensity(val);
+              }}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                  endDrag();
+                }
               }}
             />
-            <div className="headerNotesSliderValue">{threshold}</div>
+            <div className="headerNotesSliderValue">{Math.round(sliderDensity)}%</div>
           </div>
         </div>
       ) : null}

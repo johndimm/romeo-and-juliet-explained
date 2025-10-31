@@ -1,8 +1,18 @@
 import Head from 'next/head';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { parseSectionsWithOffsets } from '../lib/parseText';
 import fs from 'fs';
 import path from 'path';
+
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const densityToThreshold = (density) => clamp(100 - density, 0, 100);
+const thresholdToDensity = (threshold) => clamp(100 - threshold, 0, 100);
+const clampFontScale = (value) => clamp(value, 0.7, 1.6);
+const applyFontScaleToDocument = (value) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.setProperty('--font-scale', value.toFixed(3));
+  }
+};
 
 export async function getStaticProps() {
   const { sections: sectionsWithOffsets, markers } = parseSectionsWithOffsets('romeo-and-juliet.txt');
@@ -44,10 +54,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  // Minimum perplexity (0–100) to show precomputed notes. For LM raw PPL (>100),
-  // we normalize to 0–100 via a log scale.
-  // Default to "Some" notes by default
+  // Note visibility threshold (0–100). Lower thresholds surface more notes.
   const [noteThreshold, setNoteThreshold] = useState(50);
+  const [fontScale, setFontScale] = useState(1);
+  const fontScaleRef = useRef(1);
+  const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
   const suppressAutoExplainRef = useRef(false);
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
@@ -91,6 +102,256 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     } catch {}
   }, [metadata]);
   useEffect(() => { try { localStorage.setItem('forcedNotes', JSON.stringify(forcedNotes||[])); } catch {} }, [forcedNotes]);
+
+  const applyLiveFontScale = useCallback((value, { commit = false } = {}) => {
+    const next = clampFontScale(value);
+    applyFontScaleToDocument(next);
+    fontScaleRef.current = next;
+    if (commit) {
+      setFontScale((prev) => (Math.abs(prev - next) < 0.001 ? prev : next));
+    }
+    return next;
+  }, [setFontScale]);
+
+  useEffect(() => {
+    let initial = 1;
+    if (typeof window === 'undefined') {
+      applyLiveFontScale(initial, { commit: true });
+      setFontScaleHydrated(true);
+      return () => {};
+    }
+    try {
+      const rawScale = window.localStorage.getItem('fontScale');
+      if (rawScale !== null && rawScale !== '') {
+        const val = parseFloat(rawScale);
+        if (Number.isFinite(val)) initial = clampFontScale(val);
+      }
+    } catch {}
+    applyLiveFontScale(initial, { commit: true });
+    setFontScaleHydrated(true);
+    return () => {};
+  }, [applyLiveFontScale]);
+
+  useEffect(() => {
+    applyLiveFontScale(fontScale);
+    if (!fontScaleHydrated) return;
+    try { localStorage.setItem('fontScale', String(fontScale)); } catch {}
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('font-scale-updated', { detail: { value: fontScale } }));
+    }
+  }, [applyLiveFontScale, fontScale, fontScaleHydrated]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return () => {};
+    const handler = (e) => {
+      const raw = e?.detail?.value;
+      const val = typeof raw === 'number' ? raw : parseFloat(raw);
+      if (!Number.isFinite(val)) return;
+      applyLiveFontScale(val, { commit: true });
+    };
+    window.addEventListener('font-scale-set', handler);
+    return () => window.removeEventListener('font-scale-set', handler);
+  }, [applyLiveFontScale]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
+
+    const state = { active: false, startDist: 0, startScale: 1 };
+    const gestureState = { startScale: 1 };
+    let pendingScale = null;
+    let rafId = null;
+
+    const distance = (touches) => {
+      if (!touches || touches.length < 2) return 0;
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.hypot(dx, dy);
+    };
+
+    const flushPending = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (pendingScale != null) {
+        applyLiveFontScale(pendingScale);
+        pendingScale = null;
+      }
+    };
+
+    const scheduleScale = (value) => {
+      pendingScale = value;
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (pendingScale != null) {
+          applyLiveFontScale(pendingScale);
+          pendingScale = null;
+        }
+      });
+    };
+
+    const onTouchStart = (e) => {
+      if (e.touches.length >= 2) {
+        flushPending();
+        state.active = true;
+        state.startDist = distance(e.touches);
+        state.startScale = fontScaleRef.current;
+        window.__pinchActive = true;
+        e.preventDefault();
+      } else {
+        state.active = false;
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (!state.active || e.touches.length !== 2) return;
+      const dist = distance(e.touches);
+      if (state.startDist <= 0 || dist <= 0) return;
+      const ratio = dist / state.startDist;
+      scheduleScale(state.startScale * ratio);
+      e.preventDefault();
+    };
+
+    const finalizeTouch = () => {
+      if (!state.active) return false;
+      flushPending();
+      applyLiveFontScale(fontScaleRef.current, { commit: true });
+      state.active = false;
+      window.__pinchActive = false;
+      return true;
+    };
+
+    const onTouchEnd = (e) => {
+      if (e.touches.length < 2) {
+        const didCommit = finalizeTouch();
+        if (!didCommit) window.__pinchActive = false;
+        if (didCommit) e.preventDefault();
+        return;
+      }
+      if (state.active) e.preventDefault();
+    };
+
+    const onGestureStart = (e) => {
+      flushPending();
+      gestureState.startScale = fontScaleRef.current;
+      window.__pinchActive = true;
+      e.preventDefault();
+    };
+
+    const onGestureChange = (e) => {
+      const scale = typeof e.scale === 'number' && Number.isFinite(e.scale) ? e.scale : 1;
+      scheduleScale(gestureState.startScale * scale);
+      e.preventDefault();
+    };
+
+    const onGestureEnd = (e) => {
+      flushPending();
+      applyLiveFontScale(fontScaleRef.current, { commit: true });
+      window.__pinchActive = false;
+      e.preventDefault();
+    };
+
+    const add = (target, type, handler, opts) => {
+      if (target?.addEventListener) target.addEventListener(type, handler, opts);
+    };
+    const remove = (target, type, handler, opts) => {
+      if (target?.removeEventListener) target.removeEventListener(type, handler, opts);
+    };
+
+    const optionsPassiveFalse = { passive: false };
+    const targets = [window, document];
+
+    targets.forEach((target) => {
+      add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+      add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+      add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+      add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+      add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+      add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+      add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+    });
+
+    return () => {
+      flushPending();
+      targets.forEach((target) => {
+        remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+        remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+        remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+        remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+        remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+        remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+        remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+      });
+      window.__pinchActive = false;
+    };
+  }, [applyLiveFontScale]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
+
+    let wheelCommitTimer = null;
+    let pendingScale = null;
+    let rafId = null;
+
+    const flushPending = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (pendingScale != null) {
+        applyLiveFontScale(pendingScale);
+        pendingScale = null;
+      }
+    };
+
+    const scheduleScale = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (pendingScale != null) {
+          applyLiveFontScale(pendingScale);
+          pendingScale = null;
+        }
+      });
+    };
+
+    const scheduleCommit = () => {
+      if (wheelCommitTimer) clearTimeout(wheelCommitTimer);
+      wheelCommitTimer = setTimeout(() => {
+        flushPending();
+        applyLiveFontScale(fontScaleRef.current, { commit: true });
+        wheelCommitTimer = null;
+      }, 120);
+    };
+
+    const onWheel = (e) => {
+      if (window.__pinchActive) return;
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      const scaleFactor = Math.exp(-e.deltaY / 500);
+      const base = pendingScale != null ? pendingScale : fontScaleRef.current;
+      pendingScale = clampFontScale(base * scaleFactor);
+      scheduleScale();
+      scheduleCommit();
+    };
+
+    const wheelTargets = [window, document];
+    wheelTargets.forEach((target) => {
+      if (target?.addEventListener) target.addEventListener('wheel', onWheel, { passive: false });
+    });
+
+    return () => {
+      flushPending();
+      if (wheelCommitTimer) {
+        clearTimeout(wheelCommitTimer);
+        wheelCommitTimer = null;
+      }
+      wheelTargets.forEach((target) => {
+        if (target?.removeEventListener) target.removeEventListener('wheel', onWheel, { passive: false });
+      });
+    };
+  }, [applyLiveFontScale]);
   const toggleForcedNote = (speechKey, sectionIdx) => {
     setForcedNotes((prev) => {
       const arr = Array.isArray(prev) ? prev.slice() : [];
@@ -309,20 +570,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const lastPosSaveRef = useRef(0);
   const restoreCompletedRef = useRef(false); // Track if restore has completed to prevent multiple restores
   // Check immediately if we have a saved position to restore (before scroll handler can overwrite it)
-  const restoreAttemptedRef = useRef((() => {
-    if (typeof window === 'undefined') return false;
+  const initialRestoreAttempt = useMemo(() => {
+    if (typeof window === 'undefined') return { attempted: false };
     try {
       const rawScroll = localStorage.getItem('last-scroll');
       const savedScroll = rawScroll ? parseFloat(rawScroll) : NaN;
-      // If we have a valid saved scroll position that's not at the very top (> 50px), prevent saving until restore completes
-      // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
-      const hasValidPosition = !isNaN(savedScroll) && savedScroll > 50;
+      const hasValidPosition = !Number.isNaN(savedScroll) && savedScroll > 50;
       console.log('[init] Checking saved scroll position:', { scrollTop: savedScroll, hasValidPosition });
-      return hasValidPosition;
+      return { attempted: hasValidPosition };
     } catch {
-      return false;
+      return { attempted: false };
     }
-  })());
+  }, []);
+  const restoreAttemptedRef = useRef(initialRestoreAttempt.attempted);
   // Helper to choose the active scroll container (desktop: .container, narrow: .page, or window/body)
   function getScroller() {
     if (typeof document === 'undefined') return null;
@@ -770,7 +1030,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     if (!selectionContext) return;
     if (!String(selectionContext.text || '').trim()) return;
     // Optionally suppress one auto call when explicitly toggling UI elements
-    if (suppressAutoExplainRef.current) { suppressAutoExplainRef.current = false; return; }
+    if (suppressAutoExplainRef.current) suppressAutoExplainRef.current = false; return;
     // Avoid duplicate calls if we already have an explanation for this selection
     const len = new TextEncoder().encode(selectionContext.text || '').length;
     const id = `${selectionContext.byteOffset}-${len}`;
@@ -868,10 +1128,14 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   useEffect(() => {
     if (typeof window === 'undefined') return () => {};
     const handler = (e) => {
-      const val = e?.detail?.value;
-      if (typeof val === 'number' && Number.isFinite(val)) {
+      const detail = e?.detail || {};
+      let candidate = null;
+      if (typeof detail.threshold === 'number') candidate = detail.threshold;
+      else if (typeof detail.value === 'number') candidate = detail.value;
+      else if (typeof detail.density === 'number') candidate = densityToThreshold(detail.density);
+      if (typeof candidate === 'number' && Number.isFinite(candidate)) {
         setNoteThreshold((prev) => {
-          const next = Math.min(100, Math.max(0, val));
+          const next = clamp(candidate, 0, 100);
           return prev === next ? prev : next;
         });
       }
@@ -881,7 +1145,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   }, []);
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { value: noteThreshold } }));
+    window.dispatchEvent(new CustomEvent('note-threshold-updated', { detail: { threshold: noteThreshold, density: thresholdToDensity(noteThreshold) } }));
   }, [noteThreshold]);
 
   // Normalize perplexity for filtering (supports both 0–100 and raw LM PPL)
@@ -1411,7 +1675,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
                   } catch {}
                   setConversations({});
                   try { localStorage.setItem('explanations', JSON.stringify({})); } catch {}
-                  // Also hide all notes: clear forced list and set density to hide
+                  // Also hide all notes: clear forced list and set density to None
                   try { setForcedNotes?.([]); } catch {}
                   try { localStorage.setItem('forcedNotes', JSON.stringify([])); } catch {}
                   try {
@@ -2382,6 +2646,7 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       setLoading(false);
     }
   };
+
   return (
     <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       <button type="button" className="closeBtn" onClick={onDelete} aria-label="Close explanation" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
