@@ -13,6 +13,18 @@ const applyFontScaleToDocument = (value) => {
     document.documentElement.style.setProperty('--font-scale', value.toFixed(3));
   }
 };
+const PROVIDER_NAME_MAP = {
+  deepseek: 'DeepSeek',
+  openai: 'OpenAI',
+  anthropic: 'Anthropic',
+  gemini: 'Gemini',
+};
+const formatProviderName = (provider) => {
+  if (!provider) return '';
+  const lower = provider.toLowerCase();
+  if (PROVIDER_NAME_MAP[lower]) return PROVIDER_NAME_MAP[lower];
+  return provider.charAt(0).toUpperCase() + provider.slice(1);
+};
 
 export async function getStaticProps() {
   const { sections: sectionsWithOffsets, markers } = parseSectionsWithOffsets('romeo-and-juliet.txt');
@@ -60,6 +72,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
   const suppressAutoExplainRef = useRef(false);
+  const DEBUG_SCROLL = false;
+  const DEBUG_RESTORE = false;
+  const DEBUG_SELECTION = false;
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
   useEffect(() => {
@@ -576,7 +591,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const rawScroll = localStorage.getItem('last-scroll');
       const savedScroll = rawScroll ? parseFloat(rawScroll) : NaN;
       const hasValidPosition = !Number.isNaN(savedScroll) && savedScroll > 50;
-      console.log('[init] Checking saved scroll position:', { scrollTop: savedScroll, hasValidPosition });
       return { attempted: hasValidPosition };
     } catch {
       return { attempted: false };
@@ -645,18 +659,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       try {
         // Don't save if restore is in progress (prevents overwriting saved position on reload)
         if (restoreAttemptedRef.current) {
-          // Check if restore has been running for a while (more than 3 seconds)
-          // This allows saving to resume if restore somehow gets stuck
           const timeSinceLoad = Date.now() - (typeof performance !== 'undefined' && performance.timing ? performance.timing.navigationStart : 0);
           if (timeSinceLoad < 3000) {
-            // Restore is still in progress, don't overwrite - but continue to allow TOC tracking
-            console.log('[scroll] Skipping save - restore in progress (timeSinceLoad:', timeSinceLoad, ')');
             return;
           }
-          // After 3 seconds, restore should be done, allow saving again
-          // Reset the flag so normal saving can continue
           restoreAttemptedRef.current = false;
-          console.log('[scroll] Restore timeout reached, enabling saves');
         }
         
         const now = Date.now();
@@ -666,8 +673,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           // Don't save position if we're at the top - this is likely from page load, not intentional scrolling
           // Only save if we've actually scrolled away from the top
           if (scrollTop > 100) {
-            // Save which container type we're using so we can restore to the same one
-            // More reliably detect container: check if it's .container, .page, or window
             let containerType = 'window';
             if (s !== window) {
               if (s.classList && s.classList.contains('container')) {
@@ -675,7 +680,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               } else if (s.classList && s.classList.contains('page')) {
                 containerType = 'page';
               } else {
-                // Fallback: check if it matches selectors
                 const isContainer = document.querySelector('.container') === s;
                 const isPage = document.querySelector('.page') === s;
                 containerType = isContainer ? 'container' : (isPage ? 'page' : 'unknown');
@@ -684,9 +688,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             localStorage.setItem('last-scroll', String(scrollTop));
             localStorage.setItem('last-scrollHeight', String(scrollHeight));
             localStorage.setItem('last-scroll-container', containerType);
-            console.log('[scroll] Saving scroll position:', { scrollTop, scrollHeight, containerType, element: s === window ? 'window' : s.className });
-          } else {
-            console.log('[scroll] Skipping save - at top position (scrollTop:', scrollTop, ')');
           }
           lastPosSaveRef.current = now;
         }
@@ -707,19 +708,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     try {
       // Prevent multiple restores if already completed
       if (restoreCompletedRef.current) {
-        console.log('[restore] Already completed, skipping');
+        if (DEBUG_RESTORE) console.log('[restore] Already completed, skipping');
         return;
       }
       if (!sectionsWithOffsets || !sectionsWithOffsets.length) {
-        console.log('[restore] No sections available');
+        if (DEBUG_RESTORE) console.log('[restore] No sections available');
         return;
       }
       if (typeof window === 'undefined') {
-        console.log('[restore] Window undefined');
+        if (DEBUG_RESTORE) console.log('[restore] Window undefined');
         return;
       }
       if (/^#sel=/.test(window.location.hash || '')) {
-        console.log('[restore] Selection link in hash, skipping restore');
+        if (DEBUG_RESTORE) console.log('[restore] Selection link in hash, skipping restore');
         return; // selection link takes precedence
       }
       let savedScroll = NaN;
@@ -731,7 +732,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       if (rawScrollHeight) savedScrollHeight = parseFloat(rawScrollHeight);
       const rawContainerType = localStorage.getItem('last-scroll-container');
       if (rawContainerType) savedContainerType = rawContainerType;
-      console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
+      if (DEBUG_RESTORE) console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
       
       // Check if we have a valid scroll position to restore
       // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
@@ -739,14 +740,14 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const hasValidScroll = !isNaN(savedScroll) && savedScroll > 50;
       
       if (!hasValidScroll) {
-        console.log('[restore] No valid scroll position to restore (savedScroll:', savedScroll, '), starting at top');
+        if (DEBUG_RESTORE) console.log('[restore] No valid scroll position to restore (savedScroll:', savedScroll, '), starting at top');
         // Only clear positions that are exactly 0 or very close (likely from page load, not intentional scrolling)
         try {
           if (!isNaN(savedScroll) && savedScroll <= 50) {
             localStorage.removeItem('last-scroll');
             localStorage.removeItem('last-scrollHeight');
             localStorage.removeItem('last-scroll-container');
-            console.log('[restore] Cleared very small saved position (likely from page load)');
+            if (DEBUG_RESTORE) console.log('[restore] Cleared very small saved position (likely from page load)');
           }
         } catch {}
         restoreAttemptedRef.current = false; // No restore needed, allow saving
@@ -756,7 +757,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       // Flag should already be set from initialization, but ensure it's set here too
       restoreAttemptedRef.current = true; // Prevent saving while restoring
       
-      console.log('[restore] Will restore scroll position:', savedScroll);
+      if (DEBUG_RESTORE) console.log('[restore] Will restore scroll position:', savedScroll);
       
       let attempts = 0;
       const maxAttempts = 20; // Try for up to 2 seconds
@@ -773,7 +774,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         if (!scroller) {
           if (attempts < maxAttempts) {
             requestAnimationFrame(restorePosition);
-          } else {
+          } else if (DEBUG_RESTORE) {
             console.log('[restore] Failed: no scroller after', attempts, 'attempts');
           }
           return;
@@ -800,21 +801,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         const isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
         const wasMobile = savedContainerTypeValue === 'page';
         
-        console.log('[restore] Container check:', {
-          current: currentContainerType,
-          saved: savedContainerTypeValue,
-          mismatch: containerMismatch,
-          isMobile,
-          wasMobile,
-          element: scroller === window ? 'window' : scroller.className
-        });
+        if (DEBUG_RESTORE) {
+          console.log('[restore] Container check:', {
+            current: currentContainerType,
+            saved: savedContainerTypeValue,
+            mismatch: containerMismatch,
+            isMobile,
+            wasMobile,
+            element: scroller === window ? 'window' : scroller.className,
+          });
+        }
         
         // Check if sections are rendered (at least first section)
         const hasSections = sectionElsRef.current && sectionElsRef.current.length > 0 && sectionElsRef.current[0];
         if (!hasSections) {
           if (attempts < maxAttempts) {
             requestAnimationFrame(restorePosition);
-          } else {
+          } else if (DEBUG_RESTORE) {
             console.log('[restore] Failed: sections not rendered after', attempts, 'attempts');
           }
           return;
@@ -824,20 +827,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         if (scroller.scrollHeight <= scroller.clientHeight) {
           if (attempts < maxAttempts) {
             requestAnimationFrame(restorePosition);
-          } else {
+          } else if (DEBUG_RESTORE) {
             console.log('[restore] Failed: scroller not ready (scrollHeight:', scroller.scrollHeight, 'clientHeight:', scroller.clientHeight, ')');
           }
           return;
         }
         
-        console.log('[restore] Attempting restore at attempt', attempts, {
-          scroller: currentContainerType,
-          scrollHeight: scroller.scrollHeight,
-          clientHeight: scroller.clientHeight,
-          savedScroll: savedScrollValue,
-          savedHeight: savedScrollHeightValue,
-          containerMismatch
-        });
+        if (DEBUG_RESTORE) {
+          console.log('[restore] Attempting restore at attempt', attempts, {
+            scroller: currentContainerType,
+            scrollHeight: scroller.scrollHeight,
+            clientHeight: scroller.clientHeight,
+            savedScroll: savedScrollValue,
+            savedHeight: savedScrollHeightValue,
+            containerMismatch,
+          });
+        }
         
         // Calculate target scroll position - adjust for layout changes if scrollHeight changed
         let targetScroll = savedScrollValue;
@@ -862,39 +867,35 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         if (shouldAdjust && !skipMobileAdjust && ((significantChange && isFarFromTop) || (containerMismatch && isFarFromTop && !isMobile))) {
           const ratio = savedScrollValue / savedScrollHeightValue;
           targetScroll = currentScrollHeight * ratio;
-          console.log('[restore] Layout changed - adjusting scroll:', { 
-            oldScroll: savedScrollValue, 
-            oldHeight: savedScrollHeightValue, 
-            newHeight: currentScrollHeight,
-            heightDiff,
-            heightDiffPercent: heightDiffPercent.toFixed(1) + '%',
-            adjustedScroll: targetScroll,
-            ratio: ratio.toFixed(4),
-            reason: containerMismatch ? 'container mismatch' : 'significant height change'
-          });
+          if (DEBUG_RESTORE) {
+            console.log('[restore] Layout changed - adjusting scroll:', {
+              oldScroll: savedScrollValue,
+              oldHeight: savedScrollHeightValue,
+              newHeight: currentScrollHeight,
+              heightDiff,
+              heightDiffPercent: heightDiffPercent.toFixed(1) + '%',
+              adjustedScroll: targetScroll,
+              ratio: ratio.toFixed(4),
+              reason: containerMismatch ? 'container mismatch' : 'significant height change',
+            });
+          }
         } else if (skipMobileAdjust) {
-          // On mobile with container mismatch, use saved position directly (adjustment too unreliable)
-          console.log('[restore] Mobile + container mismatch - using saved position directly (adjustment skipped)');
-          // Keep targetScroll as savedScrollValue (no adjustment)
+          if (DEBUG_RESTORE) console.log('[restore] Mobile + container mismatch - using saved position directly (adjustment skipped)');
         } else if (shouldAdjust && (!significantChange || !isFarFromTop)) {
-          // Small change or near top, use saved position directly (proportional adjustment unreliable for small positions)
-          console.log('[restore] Using saved position directly (small change:', heightDiffPercent.toFixed(1), '% or near top:', savedScrollValue, 'px)');
-          // Keep targetScroll as savedScrollValue (no adjustment)
+          if (DEBUG_RESTORE) console.log('[restore] Using saved position directly (small change:', heightDiffPercent.toFixed(1), '% or near top:', savedScrollValue, 'px)');
         } else if (containerMismatch && !shouldAdjust) {
-          // Container changed but no height info, log warning
-          console.log('[restore] Container type mismatch but no saved height - using saved position directly');
-        } else {
-          // Default: use saved position directly
+          if (DEBUG_RESTORE) console.log('[restore] Container type mismatch but no saved height - using saved position directly');
+        } else if (DEBUG_RESTORE) {
           console.log('[restore] Using saved position directly (no adjustment needed)');
         }
         
         // Apply scroll position immediately
         if (scroller === window) {
           window.scrollTo({ top: targetScroll, behavior: 'auto' });
-          console.log('[restore] Set window.scrollY to', targetScroll, '(original:', savedScrollValue, ')');
+          if (DEBUG_RESTORE) console.log('[restore] Set window.scrollY to', targetScroll, '(original:', savedScrollValue, ')');
         } else {
           scroller.scrollTop = targetScroll;
-          console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ', isMobile:', isMobile, ')');
+          if (DEBUG_RESTORE) console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ', isMobile:', isMobile, ')');
         }
         
         // On mobile, wait longer for layout to stabilize (header height calculation, font loading, etc.)
@@ -906,7 +907,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             requestAnimationFrame(() => {
               const actualScroll = scroller === window ? window.scrollY : scroller.scrollTop;
               const diff = Math.abs(actualScroll - targetScroll);
-              console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff, isMobile });
+              if (DEBUG_RESTORE) console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff, isMobile });
               
               // For mobile, be very conservative - only adjust if extremely off and it's a significant position
               // The "scrolls down a few lines" issue suggests the initial restore is slightly off
@@ -914,7 +915,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               
               if (diff > threshold && savedScrollValue > 1000) {
                 // Only refine if way off and position is far enough from top that adjustment makes sense
-                console.log('[restore] Large offset detected (', diff, 'px), attempting single refinement');
+                if (DEBUG_RESTORE) console.log('[restore] Large offset detected (', diff, 'px), attempting single refinement');
                 
                 // Use the saved position directly (avoid recalculation which can cause more issues)
                 const refinedTarget = savedScrollValue;
@@ -926,22 +927,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
                   scroller.scrollTop = refinedTarget;
                 }
                 
-                console.log('[restore] Applied refinement to saved position:', refinedTarget);
+                if (DEBUG_RESTORE) console.log('[restore] Applied refinement to saved position:', refinedTarget);
                 
                 // Wait a bit more on mobile before marking complete
                 setTimeout(() => {
                   restoreCompletedRef.current = true;
                   restoreAttemptedRef.current = false;
-                  console.log('[restore] Restore complete, saving enabled');
+                  if (DEBUG_RESTORE) console.log('[restore] Restore complete, saving enabled');
                 }, isMobile ? 400 : 300);
               } else {
-                console.log('[restore] Position acceptable (diff:', diff, 'px, threshold:', threshold, ')');
+                if (DEBUG_RESTORE) console.log('[restore] Position acceptable (diff:', diff, 'px, threshold:', threshold, ')');
                 
                 // Mark restore as completed and enable saving after a short delay
                 restoreCompletedRef.current = true;
                 setTimeout(() => {
                   restoreAttemptedRef.current = false;
-                  console.log('[restore] Restore complete, saving enabled');
+                  if (DEBUG_RESTORE) console.log('[restore] Restore complete, saving enabled');
                 }, isMobile ? 400 : 300);
               }
             });
@@ -1030,7 +1031,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     if (!selectionContext) return;
     if (!String(selectionContext.text || '').trim()) return;
     // Optionally suppress one auto call when explicitly toggling UI elements
-    if (suppressAutoExplainRef.current) suppressAutoExplainRef.current = false; return;
+    if (suppressAutoExplainRef.current) {
+      suppressAutoExplainRef.current = false;
+      return;
+    }
     // Avoid duplicate calls if we already have an explanation for this selection
     const len = new TextEncoder().encode(selectionContext.text || '').length;
     const id = `${selectionContext.byteOffset}-${len}`;
@@ -1716,12 +1720,26 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const [preFollowLoading, setPreFollowLoading] = useState(false);
   const skipNextMouseUpRef = useRef(false);
   // Mini chat history per speech (keyed by startOffset)
-  const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a }]
+  const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a, model, provider }]
   const [forceShow, setForceShow] = useState(false);
   // Track suppressed notes (by speech key) that should be hidden even if they meet threshold
   const [suppressedNotes, setSuppressedNotes] = useState(new Set());
-  // When a note is expanded via "More", we replace the displayed text to avoid repetition
-  const [preNoteOverrides, setPreNoteOverrides] = useState({}); // key (startOffset) -> replaced content
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const rawThreads = window.localStorage.getItem('noteThreads');
+      if (rawThreads) {
+        const parsed = JSON.parse(rawThreads);
+        if (parsed && typeof parsed === 'object') setPreFollowThreads(parsed);
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try { window.localStorage.setItem('noteThreads', JSON.stringify(preFollowThreads)); } catch {}
+  }, [preFollowThreads]);
 
   // No local perplexity normalizer needed now that placeholder is removed
 
@@ -1805,9 +1823,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Keep forceShow in sync with persisted preference for current speech
   useEffect(() => {
     const it = currentVisible || currentForceVisible;
-    const key = it && typeof it.startOffset === 'number' ? it.startOffset : null;
-    if (key == null) { setForceShow(false); return; }
-    const isForced = Array.isArray(forcedNotes) && forcedNotes.indexOf(key) >= 0;
+    const sk = it ? getSpeechKeyForItem(it) : null;
+    if (!sk) { setForceShow(false); return; }
+    const isForced = Array.isArray(forcedNotes) && forcedNotes.map(String).includes(String(sk));
     setForceShow(isForced);
   }, [autoIdx, currentVisible, currentForceVisible, forcedNotes]);
 
@@ -1837,11 +1855,18 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // Handle selection or reveal note on mouse up
   const handleTextMouseUp = (e) => {
-    try { console.log('mouseUp:text', { sectionIndex }); } catch {}
+    try { if (DEBUG_SELECTION) console.log('mouseUp:text', { sectionIndex }); } catch {}
     // On touch devices, ignore mouseup completely (handled by touch handlers)
     try {
-      const touchEnv = (('ontouchstart' in window) || (navigator?.maxTouchPoints > 0));
-      if (touchEnv) return;
+      const isTouch = (() => {
+        if (typeof window === 'undefined') return false;
+        if (typeof navigator === 'undefined') return false;
+        // Treat as desktop-only when there is exactly 0 touch capability and no touchstart handler present
+        if (navigator.maxTouchPoints === 0) return false;
+        // If there is at least one touch point, treat as touch-enabled and let touch handlers handle selection
+        return navigator.maxTouchPoints > 0;
+      })();
+      if (isTouch) return;
     } catch {}
     if (skipNextMouseUpRef.current) { skipNextMouseUpRef.current = false; return; }
     // If the note is not visible yet and a note exists for this speech, a click brings it up
@@ -2182,7 +2207,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a, model: (llm?.options?.model || '') });
+                      arr.push({ q, a, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
                       return { ...prev, [key]: arr };
                     });
                     setPreFollowInput('');
@@ -2190,7 +2215,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || '') });
+                      arr.push({ q, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
                       return { ...prev, [key]: arr };
                     });
                   } finally {
@@ -2198,7 +2223,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   }
                 };
                 const requestLonger = async () => {
-                  const q = 'Please expand this into a longer explanation with more detail.';
+                  const key = String(it.startOffset || 0);
+                  const existing = (it.content || '').trim();
+                  const q = existing
+                    ? `Provide additional insight that builds on the existing explanation below without repeating or paraphrasing it. Focus on new details, clarifying tricky references, or subtle dramatic function.
+Existing explanation:
+"""${existing}"""`
+                    : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
                   try {
                     setPreFollowLoading(true);
                     const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
@@ -2208,23 +2239,22 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
                     const res = await fetch('/api/explain', {
-                      method: 'POST', headers: { 'Content-Type': 'application/json' },
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
                     });
                     const data = await res.json();
                     if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                    const a = data?.content || '';
-                    const key = String(it.startOffset || 0);
+                    const addition = (data?.content || '').trim();
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a });
+                      arr.push({ q: 'More detail', a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
                       return { ...prev, [key]: arr };
                     });
                   } catch (e) {
-                    const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}` });
+                      arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
                       return { ...prev, [key]: arr };
                     });
                   } finally {
@@ -2234,34 +2264,23 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ marginBottom: '0.75rem', paddingBottom: '0.5rem', paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
                     <button type="button" className="closeBtn" onClick={handleCloseNote} aria-label="Close note" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
-                    {(() => { const key = String(it.startOffset || 0); const display = (preNoteOverrides[key] != null ? preNoteOverrides[key] : (it.content || '')); return (
-                      <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); toggleFollow(); }} title="Ask a follow-up about this note">{display}</div>
-                    ); })()}
+                    <div className="noteContent" style={{ whiteSpace: 'pre-wrap', cursor: 'pointer', userSelect: 'text' }} onClick={(e)=>{ e.stopPropagation(); toggleFollow(); }} title="Ask a follow-up about this note">{it.content || ''}</div>
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {(() => {
-                        // Show provider/model attribution for precomputed notes
                         if (it.provider || it.model) {
                           const provider = it.provider || '';
                           const model = it.model || '';
+                          const providerName = formatProviderName(provider);
                           if (provider && model) {
-                            // Format provider names nicely
-                            const providerNames = {
-                              'deepseek': 'DeepSeek',
-                              'openai': 'OpenAI',
-                              'anthropic': 'Anthropic',
-                              'gemini': 'Gemini'
-                            };
-                            const providerName = providerNames[provider.toLowerCase()] || (provider.charAt(0).toUpperCase() + provider.slice(1));
-                            
                             if (model.toLowerCase().includes(provider.toLowerCase())) {
-                              return providerName;
+                              return providerName || model;
                             }
-                            return `${model} (via ${providerName})`;
+                            return providerName ? `${model} (via ${providerName})` : model;
                           }
                           if (model) return `Model: ${model}`;
-                          if (provider) return `Provider: ${provider}`;
+                          if (providerName) return providerName;
                         }
-                        // For LLM-generated notes, show current model
+
                         if (llm?.options?.model) return `Model: ${llm.options.model}`;
                         return '';
                       })()}
@@ -2271,27 +2290,14 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
                           <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
                           <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
-                          <button type="button" disabled={preFollowLoading} onClick={(e)=>{ e.stopPropagation(); (async()=>{
-                           const q = 'Expand into a longer, more detailed explanation without repeating earlier sentences.';
-                           try {
-                             setPreFollowLoading(true);
-                             const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                             const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                             const startC = bytesToCharOffset(text || '', startRelB);
-                             const endC = bytesToCharOffset(text || '', endRelB);
-                             const passage = (text || '').slice(startC, endC);
-                             const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                             const res = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q }) });
-                             const data = await res.json();
-                             if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                             const a = data?.content || '';
-                             const key = String(it.startOffset || 0);
-                             setPreNoteOverrides((prev)=>({ ...prev, [key]: a }));
-                           } catch (e) {
-                             const key = String(it.startOffset || 0);
-                             setPreFollowThreads((prev) => { const arr = Array.isArray(prev[key]) ? prev[key].slice() : []; arr.push({ q: 'More', a: `Error: ${String(e.message || e)}` }); return { ...prev, [key]: arr }; });
-                           } finally { setPreFollowLoading(false); }
-                        })(); }} title="Get a longer response">More</button>
+                          <button
+                            type="button"
+                            disabled={preFollowLoading}
+                            onClick={(e) => { e.stopPropagation(); requestLonger(); }}
+                            title="Get a longer response"
+                          >
+                            More
+                          </button>
                         </div>
                       </>
                     )}
@@ -2301,12 +2307,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       if (!thread.length) return null;
                       return (
                         <div style={{ marginTop: '0.5rem' }}>
-                          {thread.map((m, idx) => (
-                            <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
-                              <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
-                              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{m?.model ? `Model: ${m.model}` : (llm?.options?.model ? `Model: ${llm.options.model}` : '')}</div>
-                            </div>
-                          ))}
+                          {thread.map((m, idx) => {
+                            const providerName = formatProviderName(m?.provider || '');
+                            let attribution = '';
+                            if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+                            else if (m?.model) attribution = `Model: ${m.model}`;
+                            else if (providerName) attribution = providerName;
+                            if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+                              const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+                              const fallbackModel = llm?.options?.model || '';
+                              if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+                              else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+                              else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+                              else if (fallbackProvider) attribution = fallbackProvider;
+                            }
+                            return (
+                              <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
+                                <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+                                {attribution ? (
+                                  <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                                ) : null}
+                              </div>
+                            );
+                          })}
                         </div>
                       );
                     })()}
