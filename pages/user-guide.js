@@ -41,8 +41,9 @@ export default function UserGuide() {
               <li><strong>Select a sentence:</strong> When a note is visible, clicking the text selects the entire sentence around your cursor.</li>
               <li><strong>Select a custom range:</strong> Click‑drag to select any passage (longer or shorter than a sentence).</li>
               <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you select, showing “AI is thinking…” until the response is ready.</li>
+              <li><strong>Ask for more:</strong> Click <strong>More</strong> (or use the “Ask a follow‑up…” field) to get an extended explanation without losing the original note. Each follow‑up appears in the mini chat under the note, along with the provider/model used, and the entire thread is saved automatically.</li>
             </ul>
-            <p>Selected text is highlighted in blue.</p>
+            <p>Selected text is highlighted in blue. Follow‑up responses and “More” expansions persist between visits, so you can build a running commentary for any speech.</p>
           </div>
         </div>
 
@@ -68,7 +69,8 @@ export default function UserGuide() {
             <ul className="instruction-list">
               <li><strong>Click the explanation</strong> to highlight the corresponding text in the play</li>
               <li><strong>Ask follow-up questions</strong> using the chat interface for deeper understanding</li>
-              <li><strong>Save explanations</strong> by clicking the save button to return to them later</li>
+              <li><strong>More button</strong> adds a richer AI response beneath the note instead of replacing the original text</li>
+              <li><strong>Saved threads</strong> (notes plus follow-ups) automatically persist between sessions</li>
             </ul>
           </div>
         </div>
@@ -106,6 +108,24 @@ export default function UserGuide() {
               <li><strong>Persistent storage:</strong> Your saved explanations persist between visits</li>
               <li><strong>Navigation:</strong> Use the explanation arrows in the header to step through saved explanations</li>
               <li><strong>Remove:</strong> Close an explanation with the <strong>✕</strong> in its corner</li>
+            </ul>
+          </div>
+
+          <div className="step">
+            <h3>Note Density Control</h3>
+            <ul className="instruction-list">
+              <li><strong>Header control:</strong> Click the circle icon in the header to open the note-density popover. Four presets (None, Some, Most, All) sit beside a continuous slider.</li>
+              <li><strong>Immediate updates:</strong> Moving the slider updates the play instantly; the control also remembers your preference between visits.</li>
+              <li><strong>Popover behavior:</strong> Click anywhere outside the popover (or press <kbd>Esc</kbd>) to close it.</li>
+            </ul>
+          </div>
+
+          <div className="step">
+            <h3>Font Size & Pinch Gestures</h3>
+            <ul className="instruction-list">
+              <li><strong>Settings slider:</strong> Adjust the global font scale from Settings → Font Size.</li>
+              <li><strong>Pinch to zoom:</strong> On touch devices, pinch anywhere on the page to resize the text. On desktop, use <kbd>Ctrl</kbd>+scroll (or <kbd>Cmd</kbd>+scroll on macOS).</li>
+              <li><strong>Saved preference:</strong> The font scale syncs across tabs and persists after reload.</li>
             </ul>
           </div>
 
