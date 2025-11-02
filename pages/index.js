@@ -1714,6 +1714,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
   const scrollerStartRef = useRef(0);
+  // Mobile selection mode state/refs
+  const [mobileSelectMode, setMobileSelectMode] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const mobileStartCharRef = useRef(null);
+  const mobileStartPointRef = useRef({ x: 0, y: 0 });
   const [autoIdx, setAutoIdx] = useState(0);
   const [showPreFollow, setShowPreFollow] = useState(false);
   const [preFollowInput, setPreFollowInput] = useState('');
@@ -1740,6 +1745,14 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     if (typeof window === 'undefined') return;
     try { window.localStorage.setItem('noteThreads', JSON.stringify(preFollowThreads)); } catch {}
   }, [preFollowThreads]);
+
+  // Detect touch-capable devices once on mount
+  useEffect(() => {
+    try {
+      const ok = typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0;
+      setIsTouchDevice(!!ok);
+    } catch { setIsTouchDevice(false); }
+  }, []);
 
   // No local perplexity normalizer needed now that placeholder is removed
 
@@ -1941,11 +1954,36 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // Simplified mobile interaction: single tap toggles the note for current speech
   const onTouchStart = (e) => {
-    // Record start to detect scroll; do not preventDefault to preserve smooth scrolling
     const t = e.touches && e.touches[0];
-    startXYRef.current = { x: t ? t.clientX : 0, y: t ? t.clientY : 0 };
+    const tx = t ? t.clientX : 0;
+    const ty = t ? t.clientY : 0;
+    // Always record starting point
+    startXYRef.current = { x: tx, y: ty };
     movedRef.current = false;
     touchActiveRef.current = true;
+    mobileStartPointRef.current = { x: tx, y: ty };
+    // If mobile selection mode is active, capture starting caret and prevent scroll
+    if (mobileSelectMode) {
+      try { e.preventDefault(); e.stopPropagation(); } catch {}
+      try {
+        const container = preRef.current;
+        const caretFromPoint = (cx2, cy2) => {
+          if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
+          const pos = document.caretPositionFromPoint?.(cx2, cy2);
+          if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
+          return null;
+        };
+        const r = caretFromPoint(tx, ty);
+        if (container && r) {
+          const r0 = document.createRange(); r0.selectNodeContents(container);
+          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
+          mobileStartCharRef.current = before.toString().length;
+        } else {
+          mobileStartCharRef.current = null;
+        }
+      } catch { mobileStartCharRef.current = null; }
+      return;
+    }
     try {
       const s = (function(){
         const cont = document.querySelector('.container');
@@ -1963,10 +2001,56 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
     const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
     if (dx + dy > 6) movedRef.current = true;
+    if (mobileSelectMode) {
+      try { e.preventDefault(); e.stopPropagation(); } catch {}
+    }
   };
   const onTouchEnd = (e) => {
     // Prevent synthetic click delays and bubbling to desktop handlers
     try { e.preventDefault(); e.stopPropagation(); } catch {}
+    // Handle selection mode on mobile: tap selects sentence, drag selects range
+    if (mobileSelectMode) {
+      try {
+        const container = preRef.current;
+        const touch = e.changedTouches && e.changedTouches[0];
+        const cx = touch?.clientX || mobileStartPointRef.current.x || 0;
+        const cy = touch?.clientY || mobileStartPointRef.current.y || 0;
+        const caretFromPoint = (cx2, cy2) => {
+          if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
+          const pos = document.caretPositionFromPoint?.(cx2, cy2);
+          if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
+          return null;
+        };
+        let endChar = null;
+        const r = caretFromPoint(cx, cy);
+        if (container && r) {
+          const r0 = document.createRange(); r0.selectNodeContents(container);
+          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
+          endChar = before.toString().length;
+        }
+        const startChar = mobileStartCharRef.current;
+        let start = null, end = null;
+        if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
+          start = Math.max(0, Math.min(startChar, endChar));
+          end = Math.max(start, Math.max(startChar, endChar));
+        } else {
+          const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
+          if (idx != null) {
+            const sent = expandToSentence(text || '', idx);
+            if (sent) { start = sent.start; end = sent.end; }
+          }
+        }
+        if (start != null && end != null && end > start) {
+          onSelectRange?.({ start, end });
+          setMobileSelectMode(false);
+          scrollAsideIntoView();
+        }
+      } catch {}
+      skipNextMouseUpRef.current = true;
+      touchActiveRef.current = false;
+      setTimeout(() => { movedRef.current = false; }, 80);
+      return;
+    }
     // If the user scrolled, do nothing and swallow the synthetic mouseup
     try {
       const s = (function(){
@@ -2108,7 +2192,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: (isTouchDevice && mobileSelectMode) ? 'text' : 'pointer' }}
         >
           {renderWithSelectionAndHighlights(text, query, selectedRange, matchRefs, selectedId)}
         </pre>
@@ -2285,6 +2369,18 @@ Existing explanation:
                         return '';
                       })()}
                     </div>
+                    {isTouchDevice ? (
+                      <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <button
+                          type="button"
+                          onClick={(e)=>{ e.stopPropagation(); setMobileSelectMode((v)=>!v); }}
+                          title="Enable selecting text in the play"
+                        >
+                          {mobileSelectMode ? 'Cancel Text Selection' : 'Enable Text Selection'}
+                        </button>
+                        {mobileSelectMode ? (<span style={{ color: '#6b5f53' }}>Tap a sentence or drag to select</span>) : null}
+                      </div>
+                    ) : null}
                     {showPreFollow && (
                       <>
                         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
