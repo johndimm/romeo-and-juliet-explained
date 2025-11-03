@@ -297,7 +297,7 @@ const DensityIcon = ({ density, size = 26 }) => {
 };
 
 function HeaderNotesDensity() {
-  const initialDensity = React.useMemo(() => thresholdToDensity(50), []);
+  const initialDensity = React.useMemo(() => thresholdToDensity(33), []);
   const [density, setDensity] = React.useState(initialDensity);
   const [sliderDensity, setSliderDensity] = React.useState(initialDensity);
   const [open, setOpen] = React.useState(false);

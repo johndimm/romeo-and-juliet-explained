@@ -1303,51 +1303,86 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   async function callLLM({ mode = 'brief', followup, length }) {
     if (!selectionContext) return;
     setLoadingLLM(true);
-    try {
-      const conv = conversations[selectionId] || { messages: [] };
-      // Eager placeholder so a card appears immediately
-      const thinkingText = 'AI is thinking…';
-      let speechKeyForSelection = null;
-      try {
-        const byte = selectionContext.byteOffset || 0;
-        const sectionIdx = selection?.sectionIndex ?? null;
-        if (sectionIdx != null) {
-          const list = speechMaps?.speechesBySection?.get(sectionIdx) || [];
-          let chosen = null;
-          for (const sp of list) {
-            if ((sp.offset || 0) <= byte) chosen = sp; else break;
-          }
-          if (chosen) {
-            speechKeyForSelection = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
-          }
-        }
-      } catch {}
-      const meta = {
-        sectionIndex: selection.sectionIndex,
-        start: selection.start,
-        end: selection.end,
-        text: selectionContext.text,
-        act: selectionContext.act,
-        scene: selectionContext.scene,
-        speaker: selectionContext.speaker,
-        onStage: selectionContext.onStage,
-        byteOffset: selectionContext.byteOffset,
-        speechKey: speechKeyForSelection,
-      };
-      if (!conversations[selectionId] || !conversations[selectionId].last) {
-        setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
-      }
 
+    const conv = conversations[selectionId] || { messages: [] };
+    const thinkingText = 'AI is thinking…';
+
+    const resolveSectionIndex = () => {
+      if (selection && typeof selection.sectionIndex === 'number') return selection.sectionIndex;
+      const byte = selectionContext?.byteOffset;
+      if (!Number.isFinite(byte)) return null;
+      for (let i = sectionsWithOffsets.length - 1; i >= 0; i--) {
+        const start = sectionsWithOffsets[i]?.startOffset || 0;
+        if (byte >= start) return i;
+      }
+      return sectionsWithOffsets.length ? 0 : null;
+    };
+    const resolvedSectionIndex = resolveSectionIndex();
+
+    let speechKeyForSelection = null;
+    try {
+      const byte = selectionContext.byteOffset ?? null;
+      if (byte != null && resolvedSectionIndex != null) {
+        const list = speechMaps?.speechesBySection?.get(resolvedSectionIndex) || [];
+        let chosen = null;
+        for (const sp of list) {
+          if ((sp.offset || 0) <= byte) chosen = sp; else break;
+        }
+        if (chosen) {
+          speechKeyForSelection = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
+        }
+      }
+    } catch {}
+
+    const selectionRange = (selection && typeof selection.start === 'number' && typeof selection.end === 'number')
+      ? selection
+      : null;
+
+    const encoder = new TextEncoder();
+    const deriveCharRange = () => {
+      const defaults = { start: selectionRange?.start ?? null, end: selectionRange?.end ?? null };
+      if ((defaults.start != null && defaults.end != null) || resolvedSectionIndex == null) return defaults;
+      const sectionText = sections[resolvedSectionIndex] || '';
+      const sectionStart = sectionsWithOffsets[resolvedSectionIndex]?.startOffset || 0;
+      if (!sectionText) return defaults;
+      const startBytes = Math.max(0, (selectionContext.byteOffset || 0) - sectionStart);
+      const baseStart = bytesToCharOffset(sectionText, startBytes);
+      const lenBytes = encoder.encode(selectionContext.text || '').length;
+      const endBytes = startBytes + lenBytes;
+      const baseEnd = bytesToCharOffset(sectionText, endBytes);
+      return {
+        start: defaults.start != null ? defaults.start : baseStart,
+        end: defaults.end != null ? defaults.end : baseEnd,
+      };
+    };
+    const { start: derivedStart, end: derivedEnd } = deriveCharRange();
+
+    const meta = {
+      sectionIndex: resolvedSectionIndex,
+      start: derivedStart,
+      end: derivedEnd,
+      text: selectionContext.text,
+      act: selectionContext.act,
+      scene: selectionContext.scene,
+      speaker: selectionContext.speaker,
+      onStage: selectionContext.onStage,
+      byteOffset: selectionContext.byteOffset,
+      speechKey: speechKeyForSelection,
+    };
+
+    if (!conversations[selectionId] || !conversations[selectionId].last) {
+      setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
+    }
+
+    try {
       // Build a compact excerpt: previous speech only, to ground who was speaking
       let contextText = '';
       try {
         const byte = selectionContext.byteOffset || 0;
         const enc = new TextEncoder();
-        // Find current scene range
         const scn = (Array.isArray(metadata?.scenes) ? metadata.scenes : []).find((s) => byte >= (s.startOffset||0) && byte <= (s.endOffset||0));
         const sceneStart = scn?.startOffset ?? 0;
         const sceneEnd = scn?.endOffset ?? byte;
-        // Find speeches in scene and identify the one immediately before the selection
         const speeches = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
         let prevStart = null; let nextStart = null;
         for (let i = 0; i < speeches.length; i++) {
@@ -1357,7 +1392,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         }
         if (prevStart != null) {
           const endB = Math.min(nextStart != null ? nextStart : sceneEnd, byte);
-          // Stitch previous speech text only
           let out = '';
           for (let i = 0; i < sectionsWithOffsets.length; i++) {
             const sec = sectionsWithOffsets[i];
@@ -1376,6 +1410,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           contextText = out;
         }
       } catch {}
+
       // Derive current speech's prewritten note (if any) for stronger context
       let noteText = '';
       try {
@@ -1423,18 +1458,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       ].slice(-12);
       setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta } });
     } catch (e) {
-      const meta = {
-        sectionIndex: selection.sectionIndex,
-        start: selection.start,
-        end: selection.end,
-        text: selectionContext.text,
-        act: selectionContext.act,
-        scene: selectionContext.scene,
-        speaker: selectionContext.speaker,
-        onStage: selectionContext.onStage,
-        byteOffset: selectionContext.byteOffset,
-        speechKey: speechKeyForSelection,
-      };
       setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta } });
     } finally {
       setLoadingLLM(false);
@@ -1581,9 +1604,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             noteBySpeechKey={speechMaps.noteBySpeechKey}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => {
-              flushSync(() => {
-                setSelection(range ? { sectionIndex: idx, ...range } : null);
-              });
+              setSelection(range ? { sectionIndex: idx, ...range } : null);
             }}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
             contextInfo={selection && selection.sectionIndex === idx ? selectionContext : null}
@@ -1800,9 +1821,18 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const touchActiveRef = useRef(false);
   const scrollerStartRef = useRef(0);
   // Mobile selection mode state/refs - now driven by noteInSelectMode
-  const isTouchDevice = noteInSelectMode ? true : (() => {
-    try { return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0; } catch { return false; }
-  })();
+  const [detectedTouchDevice, setDetectedTouchDevice] = useState(false);
+  useEffect(() => {
+    if (typeof navigator === 'undefined') return;
+    try {
+      if (navigator.maxTouchPoints > 0) {
+        setDetectedTouchDevice(true);
+      }
+    } catch {
+      // Ignore detection errors and leave as non-touch
+    }
+  }, []);
+  const isTouchDevice = noteInSelectMode || detectedTouchDevice;
   // Only enable mobile select mode if this section contains the note that's in select mode
   const sectionHasSelectModeNote = noteInSelectMode && speeches.some(sp => {
     const spKey = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
@@ -3170,34 +3200,60 @@ function getOffsetsWithin(container, range) {
 }
 
 function expandToSentence(text, index) {
-  if (!text) return null;
+  if (!text || index < 0 || index > text.length) return null;
   const len = text.length;
   let start = index;
   let end = index;
-  // Move start left to previous sentence ender (.!?;), then step to first non-space/newline
+
+  // Move start left to previous sentence ender (.!?;)
+  // Optimize: search backwards from index only
+  let foundStart = false;
   for (let i = index - 1; i >= 0; i--) {
     const ch = text[i];
     if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
       start = i + 1;
+      foundStart = true;
       break;
     }
-    start = 0;
   }
-  // Skip leading whitespace/newlines
-  while (start < len && /\s/.test(text[start])) start++;
-  // Move end right to next sentence ender (.!?;), include trailing quotes/brackets if adjacent
+  if (!foundStart) start = 0;
+
+  // Skip leading whitespace/newlines (optimize: use a single pass)
+  while (start < len && (text[start] === ' ' || text[start] === '\t' || text[start] === '\n' || text[start] === '\r')) {
+    start++;
+  }
+
+  // Move end right to next sentence ender
+  let foundEnd = false;
   for (let i = index; i < len; i++) {
     const ch = text[i];
     if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
       end = i + 1;
       // include immediate closing quotes/brackets
-      while (end < len && /["'\)\]]/.test(text[end])) end++;
+      while (end < len) {
+        const nextCh = text[end];
+        if (nextCh === '"' || nextCh === "'" || nextCh === ')' || nextCh === ']') {
+          end++;
+        } else {
+          break;
+        }
+      }
+      foundEnd = true;
       break;
     }
-    end = len;
   }
-  // Trim trailing whitespace/newlines
-  while (end > start && /\s/.test(text[end - 1])) end--;
+  if (!foundEnd) end = len;
+
+  // Trim trailing whitespace
+  while (end > start) {
+    const ch = text[end - 1];
+    if (ch === ' ' || ch === '\t' || ch === '\n' || ch === '\r') {
+      end--;
+    } else {
+      break;
+    }
+  }
+
   if (end > start) return { start, end };
   return null;
 }
