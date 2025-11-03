@@ -32,25 +32,56 @@ export default function App({ Component, pageProps }) {
   }, [isPrintRoute]);
   // Measure header height on mobile and expose as CSS var for page padding
   React.useEffect(() => {
+    let rafId = null;
+    let pendingUpdate = false;
+    
     const setVar = () => {
-      if (!headerRef.current) return;
-      const h = headerRef.current.offsetHeight || 0;
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.setProperty('--mobile-header-h', `${h}px`);
-      }
+      // Throttle using requestAnimationFrame to avoid forced reflows
+      if (pendingUpdate) return;
+      pendingUpdate = true;
+      rafId = requestAnimationFrame(() => {
+        pendingUpdate = false;
+        if (!headerRef.current) return;
+        // Batch read: get offsetHeight once
+        const h = headerRef.current.offsetHeight || 0;
+        if (typeof document !== 'undefined') {
+          document.documentElement.style.setProperty('--mobile-header-h', `${h}px`);
+        }
+      });
     };
-    setVar();
+    
+    // Initial measurement
+    requestAnimationFrame(() => {
+      if (headerRef.current) {
+        const h = headerRef.current.offsetHeight || 0;
+        if (typeof document !== 'undefined') {
+          document.documentElement.style.setProperty('--mobile-header-h', `${h}px`);
+        }
+      }
+    });
+    
     if (typeof window !== 'undefined') {
-      window.addEventListener('resize', setVar);
-      // Recalculate after fonts load and after small UI changes
-      const t = setTimeout(setVar, 50);
-      // Observe header size changes (buttons/counters appear)
+      // Throttle resize handler
+      let resizeTimeout = null;
+      const handleResize = () => {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(setVar, 100);
+      };
+      window.addEventListener('resize', handleResize, { passive: true });
+      
+      // Observe header size changes (buttons/counters appear) - ResizeObserver already throttles
       let ro = null;
       if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
         ro = new ResizeObserver(() => setVar());
         ro.observe(headerRef.current);
       }
-      return () => { window.removeEventListener('resize', setVar); clearTimeout(t); if (ro) ro.disconnect(); };
+      
+      return () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        window.removeEventListener('resize', handleResize);
+        if (ro) ro.disconnect();
+      };
     }
   }, []);
 
@@ -100,6 +131,20 @@ export default function App({ Component, pageProps }) {
                 </a>
               ) : (
                 <Link href="/settings" className="lnk-settings"><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
+              )}
+              {isPlayPage && isMobile && (
+                <a
+                  href="#"
+                  className="lnk-toc"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new Event('toggle-toc'));
+                    }
+                  }}
+                >
+                  <span className="icon" aria-hidden>📑</span><span className="lbl">Contents</span>
+                </a>
               )}
             </nav>
             {isPlayPage && <HeaderNotesDensity />}

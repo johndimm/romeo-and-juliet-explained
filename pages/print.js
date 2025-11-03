@@ -34,6 +34,7 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata, pre
   const [selectedScene, setSelectedScene] = useState(''); // empty = all
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const d = new Date();
     setDateStr(d.toLocaleString());
     try {
@@ -78,6 +79,7 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata, pre
 
   // Initialize filters from URL or localStorage (e.g., /print?act=I&scene=V)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const params = new URLSearchParams(window.location.search);
       let act = params.get('act') || '';
@@ -93,6 +95,7 @@ export default function PrintView({ sections, sectionsWithOffsets, metadata, pre
 
   // Keep URL in sync with filters (for sharing)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const url = new URL(window.location.href);
       if (selectedAct) url.searchParams.set('act', selectedAct); else url.searchParams.delete('act');

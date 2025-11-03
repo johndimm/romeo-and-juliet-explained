@@ -99,7 +99,8 @@ export default async function handler(req, res) {
   const history = Array.isArray(messages) ? messages.slice(-10) : [];
   const shouldLogPrompt = true;
   if (shouldLogPrompt) {
-    console.log('[prompt]', JSON.stringify({ mode, provider, model, userPrompt }, null, 2));
+    console.log('[prompt]', JSON.stringify({ mode, provider, model }, null, 2));
+    console.log('[prompt text]\n' + userPrompt);
   }
 
   try {

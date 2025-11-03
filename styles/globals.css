@@ -219,6 +219,40 @@ html.isPrintRoute .container { left: 0; }
 }
 .tocHandle span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; letter-spacing: 1px; }
 
+/* TOC Popup (mobile only) */
+.tocPopupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.tocPopupPanel {
+  background: #faf9f7;
+  border: 1px solid #e8e6e3;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  max-width: min(90vw, 400px);
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.tocPopupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e8e6e3;
+}
+.tocPopupPanel .toc {
+  padding: 0.75rem 1rem 1rem 1rem;
+  overflow-y: auto;
+}
+
 /* Search bar embedded in header row */
 
 .searchBar { position: static; display: inline-flex; align-items: center; background: transparent; padding: 0; white-space: nowrap; flex: 0 1 260px; }
@@ -913,6 +947,19 @@ html.isPrintRoute .container { left: 0; }
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-family: "IM Fell English", serif;
+}
+
+.subsection {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.subsection h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #53483e;
 }
 
 .step h3 {

@@ -2597,6 +2597,16 @@
   },
   {
     "act": "II",
+    "scene": "",
+    "speaker": "CHORUS",
+    "startOffset": 36077,
+    "endOffset": 36718,
+    "content": "\"Old desire\" refers to Romeo's infatuation with Rosaline, which is fading, while \"young affection\" is his new love for Juliet. \"Gapes to be his heir\" means this new love eagerly waits to replace the old one. Rosaline, for whom Romeo once suffered, now seems unattractive compared to Juliet.\n\nRomeo and Juliet are equally captivated by each other's appearance, but he must express his love to a supposed enemy, and she must cautiously receive it. As members of feuding families, they cannot openly meet or exchange lovers' promises.\n\nYet their intense passion gives them the courage and opportunity to overcome these obstacles, making their extreme difficulties sweet through their secret encounters.",
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  {
+    "act": "II",
     "scene": "I",
     "speaker": "ROMEO",
     "startOffset": 36787,

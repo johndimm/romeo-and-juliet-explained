@@ -35,15 +35,38 @@ export default function UserGuide() {
           
           <div className="step" id="notes-explanations">
             <h3>2. Notes and Explanations</h3>
-            <p>Here’s how clicking in the text works:</p>
-            <ul className="instruction-list">
-              <li><strong>Reveal a note:</strong> If a prewritten note exists for the current speech but isn’t visible, a single click on the text reveals it. Use the <strong>✕</strong> in the note’s top‑right to close it. Clicking the text again does not close the note.</li>
-              <li><strong>Select a sentence:</strong> When a note is visible, clicking the text selects the entire sentence around your cursor.</li>
-              <li><strong>Select a custom range:</strong> Click‑drag to select any passage (longer or shorter than a sentence).</li>
-              <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you select, showing “AI is thinking…” until the response is ready.</li>
-              <li><strong>Ask for more:</strong> Click <strong>More</strong> (or use the “Ask a follow‑up…” field) to get an extended explanation without losing the original note. Each follow‑up appears in the mini chat under the note, along with the provider/model used, and the entire thread is saved automatically.</li>
-            </ul>
-            <p>Selected text is highlighted in blue. Follow‑up responses and “More” expansions persist between visits, so you can build a running commentary for any speech.</p>
+            
+            <div className="subsection">
+              <h4>Understanding the Difference</h4>
+              <p>This application provides two types of content to help you understand the play:</p>
+              <ul className="instruction-list">
+                <li><strong>Notes (Pre-computed):</strong> These are pre-written explanations that have been generated offline and stored with the play. They appear for specific speeches throughout the play and are immediately available when you click on the text. Notes are pre-selected to cover important passages and common points of confusion.</li>
+                <li><strong>Explanations (On-Demand):</strong> These are generated in real-time by selecting any text in the play and requesting an explanation. When you select text, the application calls an AI API to create a custom explanation tailored to your specific selection. These explanations are generated on demand, so you can get help for any passage, not just those with pre-computed notes.</li>
+              </ul>
+            </div>
+
+            <div className="subsection">
+              <h4>How to Use Notes and Explanations</h4>
+              <p>Here's how clicking and selecting in the text works:</p>
+              <ul className="instruction-list">
+                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Use the <strong>✕</strong> in the note's top‑right to close it. Clicking the text again does not close the note.</li>
+                <li><strong>Select text for an explanation:</strong> To get an on-demand explanation, click and drag to select any passage you want explained. You can also click on a note to enable text selection mode, then select a specific part of that speech.</li>
+                <li><strong>Auto-select sentence:</strong> When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
+                <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you make a selection, showing "AI is thinking…" until the API response is ready.</li>
+                <li><strong>Ask for more:</strong> Click <strong>More</strong> (or use the "Ask a follow‑up…" field) to get an extended explanation without losing the original note. Each follow‑up appears in the mini chat under the note, along with the provider/model used, and the entire thread is saved automatically.</li>
+              </ul>
+            </div>
+
+            <div className="subsection">
+              <h4>Why Both Types Exist</h4>
+              <p>
+                <strong>Pre-computed notes</strong> provide instant access to carefully curated explanations for key passages, without requiring an API call. 
+                <strong>On-demand explanations</strong> give you the flexibility to get help for any text you select, using the latest AI technology. 
+                Together, they provide comprehensive coverage: notes for common questions, and explanations for your specific needs.
+              </p>
+            </div>
+
+            <p>Selected text is highlighted in blue. Follow‑up responses and "More" expansions persist between visits, so you can build a running commentary for any speech.</p>
           </div>
         </div>
 
