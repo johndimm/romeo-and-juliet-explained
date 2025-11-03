@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { parseSectionsWithOffsets } from '../lib/parseText';
 import fs from 'fs';
 import path from 'path';
@@ -72,6 +73,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
   const suppressAutoExplainRef = useRef(false);
+  const llmCallTimerRef = useRef(null);
   const DEBUG_SCROLL = false;
   const DEBUG_RESTORE = false;
   const DEBUG_SELECTION = false;
@@ -1071,21 +1073,31 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
 
   // Auto-request on selection when a new passage is selected
   useEffect(() => {
-    if (!selectionContext) return;
-    if (!String(selectionContext.text || '').trim()) return;
-    // Optionally suppress one auto call when explicitly toggling UI elements
+    if (llmCallTimerRef.current) {
+      clearTimeout(llmCallTimerRef.current);
+      llmCallTimerRef.current = null;
+    }
+    if (!selectionContext) return () => {};
+    if (!String(selectionContext.text || '').trim()) return () => {};
     if (suppressAutoExplainRef.current) {
       suppressAutoExplainRef.current = false;
-      return;
+      return () => {};
     }
-    // Avoid duplicate calls if we already have an explanation for this selection
     const len = new TextEncoder().encode(selectionContext.text || '').length;
     const id = `${selectionContext.byteOffset}-${len}`;
-    if (conversations && conversations[id] && conversations[id].last) return;
-    // Use preferred length from options; default to brief
+    if (conversations && conversations[id] && conversations[id].last) return () => {};
     const pref = (llmOptions?.length === 'medium' ? 'more' : (llmOptions?.length === 'large' ? 'more' : 'brief'));
-    callLLM({ mode: pref, length: llmOptions?.length || 'brief' });
-  }, [selectionContext]);
+    llmCallTimerRef.current = setTimeout(() => {
+      callLLM({ mode: pref, length: llmOptions?.length || 'brief' });
+      llmCallTimerRef.current = null;
+    }, 0);
+    return () => {
+      if (llmCallTimerRef.current) {
+        clearTimeout(llmCallTimerRef.current);
+        llmCallTimerRef.current = null;
+      }
+    };
+  }, [selectionContext, conversations, llmOptions?.length]);
 
   // Deep-linking disabled: do not update URL on selection (prevents auto-explanations on reload)
 
@@ -1271,6 +1283,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     setConversations(next);
   }
 
+  const deleteExplanationsForSpeech = useCallback((speechKey) => {
+    if (!speechKey) return;
+    setConversations((curr) => {
+      if (!curr) return curr;
+      let changed = false;
+      const next = {};
+      for (const [id, convo] of Object.entries(curr)) {
+        if (convo?.meta?.speechKey === speechKey) {
+          changed = true;
+          continue;
+        }
+        next[id] = convo;
+      }
+      return changed ? next : curr;
+    });
+  }, []);
+
   async function callLLM({ mode = 'brief', followup, length }) {
     if (!selectionContext) return;
     setLoadingLLM(true);
@@ -1278,6 +1307,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       const conv = conversations[selectionId] || { messages: [] };
       // Eager placeholder so a card appears immediately
       const thinkingText = 'AI is thinking…';
+      let speechKeyForSelection = null;
+      try {
+        const byte = selectionContext.byteOffset || 0;
+        const sectionIdx = selection?.sectionIndex ?? null;
+        if (sectionIdx != null) {
+          const list = speechMaps?.speechesBySection?.get(sectionIdx) || [];
+          let chosen = null;
+          for (const sp of list) {
+            if ((sp.offset || 0) <= byte) chosen = sp; else break;
+          }
+          if (chosen) {
+            speechKeyForSelection = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
+          }
+        }
+      } catch {}
       const meta = {
         sectionIndex: selection.sectionIndex,
         start: selection.start,
@@ -1288,6 +1332,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         speaker: selectionContext.speaker,
         onStage: selectionContext.onStage,
         byteOffset: selectionContext.byteOffset,
+        speechKey: speechKeyForSelection,
       };
       if (!conversations[selectionId] || !conversations[selectionId].last) {
         setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
@@ -1388,6 +1433,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         speaker: selectionContext.speaker,
         onStage: selectionContext.onStage,
         byteOffset: selectionContext.byteOffset,
+        speechKey: speechKeyForSelection,
       };
       setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta } });
     } finally {
@@ -1534,17 +1580,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             speeches={(speechMaps.speechesBySection.get(idx) || [])}
             noteBySpeechKey={speechMaps.noteBySpeechKey}
             selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
-            onSelectRange={(range) => setSelection(range ? { sectionIndex: idx, ...range } : null)}
+            onSelectRange={(range) => {
+              flushSync(() => {
+                setSelection(range ? { sectionIndex: idx, ...range } : null);
+              });
+            }}
             sectionRef={(el) => (sectionElsRef.current[idx] = el)}
             contextInfo={selection && selection.sectionIndex === idx ? selectionContext : null}
             sectionIndex={idx}
             sectionStartOffset={sectionStartOffset}
-            suppressNextAutoExplain={() => { suppressAutoExplainRef.current = true; }}
+            suppressNextAutoExplain={suppressAutoExplainRef}
             metadata={metadata}
             forcedNotes={forcedNotes}
             onToggleForced={toggleForcedNote}
             noteThreshold={noteThreshold}
             onRequestFocus={(pf) => setPendingFocus(pf)}
+            onDeleteSpeech={deleteExplanationsForSpeech}
             llm={{
               options: llmOptions,
               setOptions: setLlmOptions,
@@ -1578,7 +1629,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             }}
             noteInSelectMode={noteInSelectMode}
             onToggleNoteSelectMode={(speechKey) => {
-              setNoteInSelectMode(prev => prev === speechKey ? null : speechKey);
+              setNoteInSelectMode((prev) => (prev === speechKey ? null : speechKey));
             }}
           />
           );
@@ -1735,7 +1786,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, noteInSelectMode = null, onToggleNoteSelectMode }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, noteInSelectMode = null, onToggleNoteSelectMode }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -1770,6 +1821,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const [forceShow, setForceShow] = useState(false);
   // Track suppressed notes (by speech key) that should be hidden even if they meet threshold
   const [suppressedNotes, setSuppressedNotes] = useState(new Set());
+  const textEncoder = useMemo(() => new TextEncoder(), []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -1854,7 +1906,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const forcedKey = sectionForcedSpeech ? `${sectionForcedSpeech.act}|${sectionForcedSpeech.scene}|${sectionForcedSpeech.speechIndex}` : null;
   // Check if current note is suppressed (hidden even if it meets threshold)
   const isSuppressed = speechKey && suppressedNotes.has(speechKey);
-  const chosenItem = (forcedKey ? noteBySpeechKey.get(forcedKey) : (isSuppressed ? null : (currentVisible || (forceShow ? currentForceVisible : null))));
+  // Check if forced note is suppressed
+  const isForcedSuppressed = forcedKey && suppressedNotes.has(forcedKey);
+  const chosenItem = (forcedKey && !isForcedSuppressed ? noteBySpeechKey.get(forcedKey) : (isSuppressed ? null : (currentVisible || (forceShow ? currentForceVisible : null))));
   // Show the aside only when there is actual content to show
   // Check if there's a chosenItem, savedExplanations, or a valid LLM conversation for selectedRange
   // Also show if there's a selection (even without conversation yet) or if LLM is loading
@@ -1872,6 +1926,255 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     && (!savedExplanations || savedExplanations.length === 0)
     && !currentVisible
     && !!currentForceVisible;
+  const hasSelectionContext = !!(selectedRange && contextInfo);
+  const conversationLast = llm?.conversation?.last;
+  const isThinking = hasSelectionContext && llm?.loading && (!conversationLast || conversationLast === 'AI is thinking…');
+  const hasConversation = hasSelectionContext && conversationLast && conversationLast !== 'AI is thinking…';
+  const currentSelectionId = hasSelectionContext ? (() => {
+    const len = textEncoder.encode(contextInfo.text || '').length;
+    return `${contextInfo.byteOffset}-${len}`;
+  })() : null;
+  const filteredSavedExplanations = (savedExplanations || []).filter((ex) => {
+    if (!currentSelectionId || !ex?.meta) return true;
+    const len = textEncoder.encode(ex.meta.text || '').length;
+    const exId = `${ex.meta.byteOffset}-${len}`;
+    return exId !== currentSelectionId;
+  });
+  const selectionByteStart = hasSelectionContext && contextInfo ? (contextInfo.byteOffset ?? null) : null;
+  const selectionByteLength = (hasSelectionContext && contextInfo && contextInfo.text) ? textEncoder.encode(contextInfo.text).length : 0;
+  const selectionByteEnd = selectionByteStart != null ? selectionByteStart + selectionByteLength : null;
+  const speechSpan = useMemo(() => {
+    if (!hasSelectionContext || selectionByteStart == null) return null;
+    const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+    if (!speechesMeta.length) return null;
+    let idx = -1;
+    for (let i = 0; i < speechesMeta.length; i++) {
+      const off = speechesMeta[i]?.offset || 0;
+      if (off <= selectionByteStart) idx = i; else break;
+    }
+    if (idx < 0) return null;
+    const start = speechesMeta[idx].offset || 0;
+    let end = null;
+    for (let j = idx + 1; j < speechesMeta.length; j++) {
+      const nextOff = speechesMeta[j]?.offset;
+      if (nextOff != null && nextOff > start) { end = nextOff; break; }
+    }
+    if (end == null) {
+      const scene = (metadata?.scenes || []).find((s) => start >= (s.startOffset || 0) && start < (s.endOffset || 0));
+      if (scene && scene.endOffset != null) end = scene.endOffset;
+    }
+    if (end == null || end <= start) end = start + selectionByteLength;
+    return { start, end };
+  }, [hasSelectionContext, metadata, selectionByteStart, selectionByteLength]);
+  const selectionIsWholeSpeech = useMemo(() => {
+    if (!speechSpan || selectionByteStart == null || selectionByteEnd == null) return false;
+    const tolerance = 4;
+    const startDiff = Math.abs(selectionByteStart - speechSpan.start);
+    const endDiff = Math.abs(selectionByteEnd - speechSpan.end);
+    return startDiff <= tolerance && endDiff <= tolerance;
+  }, [speechSpan, selectionByteStart, selectionByteEnd]);
+  const selectionPreview = (() => {
+    if (!hasSelectionContext || !contextInfo) return null;
+    if (selectionIsWholeSpeech) return null;
+    const str = (contextInfo.text || '').trim();
+    return str ? str : null;
+  })();
+  const selectionPreviewForChat = (selectionPreview && !hasConversation) ? selectionPreview : null;
+  const selectionPreviewForExplanation = (selectionPreview && hasConversation) ? selectionPreview : null;
+  const renderSelectionPreview = (preview) => {
+    if (!preview) return null;
+    return (
+      <div
+        style={{
+          marginBottom: '0.5rem',
+          paddingLeft: '1rem',
+          borderLeft: '3px solid #e8d8b5',
+          fontStyle: 'italic',
+          color: '#4a4036',
+          whiteSpace: 'pre-wrap',
+        }}
+      >
+        {preview}
+      </div>
+    );
+  };
+  const noteModeChatPanel = (() => {
+    if (!(sectionHasSelectModeNote && chosenItem && !hasSelectionContext)) return null;
+    const it = chosenItem;
+    const handleNoteMore = async () => {
+      try {
+        setPreFollowLoading(true);
+        const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+        const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+        const startC = bytesToCharOffset(text || '', startRelB);
+        const endC = bytesToCharOffset(text || '', endRelB);
+        const passage = (text || '').slice(startC, endC);
+        const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+        const existing = (it.content || '').trim();
+        const q = existing
+          ? `Provide additional insight that builds on the existing explanation below without repeating or paraphrasing it. Focus on new details, clarifying tricky references, or subtle dramatic function.
+Existing explanation:
+"""${existing}"""`
+          : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
+        const res = await fetch('/api/explain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+        const addition = (data?.content || '').trim();
+        const key = String(it.startOffset || 0);
+        setPreFollowThreads((prev) => {
+          const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+          arr.push({ q: 'More detail', a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          return { ...prev, [key]: arr };
+        });
+      } catch (e) {
+        const key = String(it.startOffset || 0);
+        setPreFollowThreads((prev) => {
+          const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+          arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          return { ...prev, [key]: arr };
+        });
+      } finally {
+        setPreFollowLoading(false);
+      }
+    };
+    const handleNoteFollowup = async (followupText) => {
+      try {
+        setPreFollowLoading(true);
+        const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
+        const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+        const startC = bytesToCharOffset(text || '', startRelB);
+        const endC = bytesToCharOffset(text || '', endRelB);
+        const passage = (text || '').slice(startC, endC);
+        const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+        const res = await fetch('/api/explain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
+        const addition = (data?.content || '').trim();
+        const key = String(it.startOffset || 0);
+        setPreFollowThreads((prev) => {
+          const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+          arr.push({ q: followupText, a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          return { ...prev, [key]: arr };
+        });
+      } catch (e) {
+        const key = String(it.startOffset || 0);
+        setPreFollowThreads((prev) => {
+          const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+          arr.push({ q: followupText, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          return { ...prev, [key]: arr };
+        });
+      } finally {
+        setPreFollowLoading(false);
+      }
+    };
+    return (
+      <div style={{ marginTop: '0.5rem', paddingTop: '0.25rem', borderTop: '1px solid #eee' }}>
+        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginBottom: '0.5rem' }}>
+          You can select text in the play to ask about it, or ask a follow-up about this note below.
+        </div>
+        <TextSelectionChat
+          contextInfo={contextInfo}
+          llm={{ ...llm, loading: preFollowLoading }}
+          onRequestFocus={() => {}}
+          noteMode
+          onNoteMore={handleNoteMore}
+          onNoteFollowup={handleNoteFollowup}
+        />
+      </div>
+    );
+  })();
+  const selectionChatPanel = hasSelectionContext ? (
+    <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
+      {renderSelectionPreview(selectionPreviewForChat)}
+      {isThinking ? <div style={{ marginBottom: '0.5rem', color: '#6b5f53' }}>Thinking…</div> : null}
+      <TextSelectionChat
+        contextInfo={contextInfo}
+        llm={llm}
+        onRequestFocus={() => {
+          if (selectedRange && contextInfo && onRequestFocus) {
+            const len = textEncoder.encode(contextInfo.text || '').length;
+            const id = `${contextInfo.byteOffset}-${len}`;
+            onRequestFocus({ sectionIndex, id });
+          }
+        }}
+      />
+    </div>
+  ) : null;
+  const explanationPanel = hasConversation ? (
+    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee' }}>
+      <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
+      {renderSelectionPreview(selectionPreviewForExplanation)}
+      <div style={{ whiteSpace: 'pre-wrap' }}>{conversationLast}</div>
+      {(() => {
+        const providerName = formatProviderName(llm?.options?.provider || '');
+        let attribution = '';
+        if (llm?.options?.model && providerName) attribution = `${llm.options.model} (via ${providerName})`;
+        else if (llm?.options?.model) attribution = `Model: ${llm.options.model}`;
+        else if (providerName) attribution = providerName;
+        return attribution ? (
+          <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
+            {attribution}
+          </div>
+        ) : null;
+      })()}
+    </div>
+  ) : null;
+  const savedExplanationsPanel = filteredSavedExplanations.length > 0 ? (
+    <div style={{ marginTop: (explanationPanel || selectionChatPanel || noteModeChatPanel) ? '0.75rem' : '0.5rem' }}>
+      {filteredSavedExplanations.map((ex, i) => {
+        const meta = ex?.meta || {};
+        const passageText = (() => {
+          const direct = (meta.text || '').trim();
+          if (direct) return direct;
+          const start = Number.isFinite(meta.start) ? meta.start : null;
+          const end = Number.isFinite(meta.end) ? meta.end : null;
+          if (start != null && end != null && end > start) {
+            return (text || '').slice(start, end).trim();
+          }
+          return '';
+        })();
+        return (
+          <ExplanationCard
+            key={`ex-${i}-${meta.byteOffset || i}`}
+            passage={passageText}
+            content={ex?.last || ''}
+            meta={meta}
+            options={llm?.options}
+            onLocate={() => {
+              if (meta.start != null && meta.end != null) {
+                onSelectRange({ start: meta.start, end: meta.end });
+                const len = textEncoder.encode(meta.text || passageText || '').length;
+                const id = `${meta.byteOffset}-${len}`;
+                onRequestFocus?.({ sectionIndex, id });
+              }
+            }}
+            onCopy={() => {
+              if (meta.byteOffset != null) {
+                const len = textEncoder.encode(meta.text || passageText || '').length;
+                const url = buildSelectionLink(meta.byteOffset, len);
+                navigator.clipboard?.writeText(url);
+              }
+            }}
+            onDelete={() => {
+              if (meta.byteOffset != null) {
+                const len = textEncoder.encode(meta.text || passageText || '').length;
+                const id = `${meta.byteOffset}-${len}`;
+                onDeleteSaved?.(id);
+              }
+            }}
+          />
+        );
+      })}
+    </div>
+  ) : null;
 
   // Keep forceShow in sync with persisted preference for current speech
   useEffect(() => {
@@ -1922,12 +2225,71 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       if (isTouch) return;
     } catch {}
     if (skipNextMouseUpRef.current) { skipNextMouseUpRef.current = false; return; }
-    // If the note is not visible yet and a note exists for this speech, a click brings it up
+    // If not in select mode and a note exists for this speech, clicking toggles the note visibility
     const noteVisible = !!chosenItem;
-    const hasRevealableNote = !!(speechKey && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(speechKey));
-    if (!noteVisible && hasRevealableNote) {
-      // Reveal-only click: just show the note; do not trigger selection or LLM query
-      revealNoteForCurrentSpeech();
+    // Get the speech key from the click position
+    // Always resolve from click Y using anchors for accuracy
+    let keyToToggle = null;
+    let hasNote = false;
+    try {
+      const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
+      if (anchors.length) {
+        let best = { idx: 0, d: Infinity };
+        const y = e?.clientY || 0;
+        anchors.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const d = Math.abs((r.top || 0) - y);
+          const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
+          if (d < best.d) best = { idx: i, d };
+        });
+        const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
+        if (sp) {
+          keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+          hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
+        }
+      }
+    } catch {}
+    // Fallback: if anchors didn't work, try speechKey
+    if (!hasNote && speechKey && noteBySpeechKey) {
+      keyToToggle = speechKey;
+      hasNote = !!(noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
+    }
+    if (!mobileSelectMode && hasNote) {
+      // Toggle note visibility on click when not in select mode
+      const sk = keyToToggle;
+      if (sk) {
+        // If note is suppressed, remove from suppressed list first
+        if (suppressedNotes.has(sk)) {
+          setSuppressedNotes((prev) => {
+            const next = new Set(prev);
+            next.delete(sk);
+            return next;
+          });
+        }
+        const isForced = forcedSet.has(sk);
+        if (onToggleForced) onToggleForced(sk, sectionIndex);
+        if (isForced) {
+          setSuppressedNotes((prev) => {
+            const next = new Set(prev);
+            next.add(sk);
+            return next;
+          });
+          if (onDeleteSpeech) onDeleteSpeech(sk);
+          if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
+            const enc = new TextEncoder();
+            for (const ex of filteredSavedExplanations) {
+              const meta = ex?.meta;
+              if (!meta) continue;
+              const exKey = meta.speechKey;
+              const matches = exKey ? exKey === sk : meta.sectionIndex === sectionIndex;
+              if (!matches) continue;
+              const len = enc.encode(meta.text || '').length;
+              onDeleteSaved?.(`${meta.byteOffset}-${len}`);
+            }
+          }
+          llm?.onDeleteCurrent?.();
+        }
+      }
       // Clear any selection to prevent triggering LLM query
       if (typeof window !== 'undefined' && window.getSelection) {
         try {
@@ -1935,8 +2297,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           if (sel) sel.removeAllRanges();
         } catch {}
       }
-      // Suppress auto-explain for this reveal click
-      if (suppressNextAutoExplain) suppressNextAutoExplain.current = true;
+      // Suppress auto-explain for this toggle click
+      if (typeof suppressNextAutoExplain === 'function') suppressNextAutoExplain();
+      else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') suppressNextAutoExplain.current = true;
       return;
     }
     // If the note is visible, a click selects the sentence; click-drag selects a custom range
@@ -1950,13 +2313,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const { start, end } = getOffsetsWithin(container, range);
     // If user dragged, honor the exact selection
     if (end > start) {
+      selPendingRef.current = true;
       onSelectRange?.({ start, end });
       return;
     }
     // Otherwise, expand single-click caret to the surrounding sentence
     const idx = start;
     const sent = expandToSentence(text || '', idx);
-    if (sent) onSelectRange?.({ start: sent.start, end: sent.end });
+    if (sent) {
+      selPendingRef.current = true;
+      onSelectRange?.({ start: sent.start, end: sent.end });
+    }
   };
 
   // Clean up any pending timers on unmount
@@ -2108,6 +2475,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           }
         }
         if (start != null && end != null && end > start) {
+          selPendingRef.current = true;
           onSelectRange?.({ start, end });
           // Exit text selection mode when selection is made
           if (onToggleNoteSelectMode && noteInSelectMode) {
@@ -2140,28 +2508,31 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       }
     } catch {}
     // Single tap: toggle note visibility (reveal/hide)
-    let keyToToggle = speechKey;
-    let hasNote = !!(keyToToggle && noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-    // Fallback 1: if current autoIdx didn't resolve, pick the nearest speech by tap Y using hidden anchors
-    if (!hasNote) {
-      try {
-        const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
-        if (anchors.length) {
-          let best = { idx: 0, d: Infinity };
-          const y = (e.changedTouches && e.changedTouches[0]?.clientY) || startXYRef.current?.y || 0;
-          anchors.forEach((el) => {
-            const r = el.getBoundingClientRect();
-            const d = Math.abs((r.top || 0) - y);
-            const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
-            if (d < best.d) best = { idx: i, d };
-          });
-          const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
-          if (sp) {
-            keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
-            hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-          }
+    // Always resolve from click Y using anchors for accuracy
+    let keyToToggle = null;
+    let hasNote = false;
+    try {
+      const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
+      if (anchors.length) {
+        let best = { idx: 0, d: Infinity };
+        const y = (e.changedTouches && e.changedTouches[0]?.clientY) || startXYRef.current?.y || 0;
+        anchors.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const d = Math.abs((r.top || 0) - y);
+          const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
+          if (d < best.d) best = { idx: i, d };
+        });
+        const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
+        if (sp) {
+          keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+          hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
         }
-      } catch {}
+      }
+    } catch {}
+    // Fallback: if anchors didn't work, try speechKey
+    if (!hasNote && speechKey && noteBySpeechKey) {
+      keyToToggle = speechKey;
+      hasNote = !!(noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
     }
     // Fallback 2: use caret position under the finger to map to the exact speech
     if (!hasNote) {
@@ -2187,7 +2558,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           // Find speech containing this absolute offset
           let speech = null;
           for (const sp of (speeches || [])) {
-            const it = speechMaps?.noteBySpeechKey?.get?.(`${sp.act}|${sp.scene}|${sp.speechIndex}`);
+            const it = noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`);
             if (!it) continue;
             if ((absOffset >= (it.startOffset || 0)) && (absOffset <= (it.endOffset || (it.startOffset || 0)))) { speech = sp; break; }
           }
@@ -2207,11 +2578,33 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           return next;
         });
       }
-      // Optimistic local toggle for instant UI response
-      setForceShow((prev) => !prev);
+      const wasForced = forcedSet.has(keyToToggle);
+      // Toggle forced state
       if (onToggleForced) onToggleForced(keyToToggle, sectionIndex);
-      // Immediately bring the aside into view; no delay
-      scrollAsideIntoView();
+      if (wasForced) {
+        setSuppressedNotes((prev) => {
+          const next = new Set(prev);
+          next.add(keyToToggle);
+          return next;
+        });
+        if (onDeleteSpeech) onDeleteSpeech(keyToToggle);
+        if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
+          const enc = new TextEncoder();
+          for (const ex of filteredSavedExplanations) {
+            const meta = ex?.meta;
+            if (!meta) continue;
+            const exKey = meta.speechKey;
+            const matches = exKey ? exKey === keyToToggle : meta.sectionIndex === sectionIndex;
+            if (!matches) continue;
+            const len = enc.encode(meta.text || '').length;
+            onDeleteSaved?.(`${meta.byteOffset}-${len}`);
+          }
+        }
+        llm?.onDeleteCurrent?.();
+      } else {
+        // Immediately bring the aside into view; no delay
+        scrollAsideIntoView();
+      }
     }
     // Swallow the synthetic mouseup to avoid desktop selection logic
     skipNextMouseUpRef.current = true;
@@ -2238,6 +2631,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       onPendingFocusConsumed?.();
     }
   }, [pendingFocus, selectedId]);
+
+  useEffect(() => {
+    if (!selPendingRef.current || !selectedRange) return;
+    selPendingRef.current = false;
+    requestAnimationFrame(() => {
+      const el = preRef.current?.querySelector('.selected');
+      if (!el) return;
+      el.classList.add('flash');
+      setTimeout(() => el.classList.remove('flash'), 900);
+    });
+  }, [selectedRange?.start, selectedRange?.end, selectedRange, preRef]);
 
   // Memoize rendered text to avoid recalculating on unnecessary re-renders
   const renderedText = useMemo(() => {
@@ -2274,7 +2678,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             border: mobileSelectMode ? '1px solid #c9c0b8' : 'none',
             borderRadius: mobileSelectMode ? '2px' : '0',
             backgroundColor: mobileSelectMode ? '#faf9f7' : 'transparent',
-            transition: 'all 0.2s ease'
+            transition: 'all 0.2s ease',
+            userSelect: mobileSelectMode ? 'text' : undefined,
+            WebkitUserSelect: mobileSelectMode ? 'text' : undefined,
+            WebkitTouchCallout: mobileSelectMode ? 'default' : undefined,
+            WebkitTapHighlightColor: mobileSelectMode ? 'rgba(0,0,0,0.2)' : undefined
           }}
         >
           {renderedText}
@@ -2320,37 +2728,66 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               {(() => {
                 const it = chosenItem;
                 if (!it) return null; // safety
+                // Get the speech key for this specific note item
+                const itemSpeechKey = getSpeechKeyForItem(it);
                 const handleCloseNote = (e) => {
                   e.stopPropagation();
-                  // First, try to remove from forced list using forcedKey (most reliable)
-                  if (forcedKey && onToggleForced) {
-                    onToggleForced(forcedKey, sectionIndex);
-                    return;
+                  e.preventDefault();
+                  // Use itemSpeechKey to identify the note being closed
+                  const sk = itemSpeechKey;
+                  if (!sk) return;
+                  // Check if this note is in the forced list
+                  const isForced = forcedSet.has(String(sk));
+                  if (isForced && onToggleForced) {
+                    // Remove from forced list before suppressing so it stays hidden
+                    onToggleForced(sk, sectionIndex);
                   }
-                  // If forcedKey isn't set but speechKey exists, check if it's in forced list
-                  if (speechKey && onToggleForced) {
-                    const isForced = Array.isArray(forcedNotes) && forcedNotes.indexOf(speechKey) >= 0;
-                    if (isForced) {
-                      onToggleForced(speechKey, sectionIndex);
-                      return;
+                  // Add to suppressed list to hide it immediately (regardless of forced state)
+                  setSuppressedNotes((prev) => {
+                    const next = new Set(prev);
+                    next.add(sk);
+                    return next;
+                  });
+                  // Also hide locally visible notes
+                  setForceShow(false);
+                  if (onDeleteSpeech) onDeleteSpeech(sk);
+                  if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
+                    const enc = new TextEncoder();
+                    for (const ex of filteredSavedExplanations) {
+                      const meta = ex?.meta;
+                      if (!meta) continue;
+                      const exKey = meta.speechKey;
+                      const matches = exKey ? exKey === sk : meta.sectionIndex === sectionIndex;
+                      if (!matches) continue;
+                      const len = enc.encode(meta.text || '').length;
+                      onDeleteSaved?.(`${meta.byteOffset}-${len}`);
                     }
                   }
-                  // If not in forced list but note is showing due to threshold, suppress it
-                  // by adding it to suppressedNotes state (local to this component)
-                  if (speechKey && chosenItem && !forcedKey) {
-                    setSuppressedNotes((prev) => {
-                      const next = new Set(prev);
-                      next.add(speechKey);
-                      return next;
-                    });
-                    // Also hide locally visible notes
-                    setForceShow(false);
-                    return;
+                  llm?.onDeleteCurrent?.();
+                  // Clear any active selection/explanation tied to this note
+                  onSelectRange?.(null);
+                  if (typeof suppressNextAutoExplain === 'function') {
+                    suppressNextAutoExplain();
+                  } else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
+                    suppressNextAutoExplain.current = true;
                   }
-                  // Fallback: hide locally visible notes
-                  if (forceShow) {
-                    setForceShow(false);
-                  }
+                  if (onToggleNoteSelectMode) onToggleNoteSelectMode(null);
+                  setShowPreFollow(false);
+                  setPreFollowInput('');
+                  setPreFollowLoading(false);
+                  const key = String(it.startOffset || 0);
+                  setPreFollowThreads((prev) => {
+                    if (!prev || !Object.prototype.hasOwnProperty.call(prev, key)) return prev;
+                    const next = { ...prev };
+                    delete next[key];
+                    return next;
+                  });
+                  try {
+                    if (typeof window !== 'undefined') {
+                      const sel = window.getSelection?.();
+                      sel?.removeAllRanges?.();
+                    }
+                  } catch {}
                 };
                 const toggleFollow = () => setShowPreFollow((v)=>!v);
                 const submitFollow = async () => {
@@ -2428,8 +2865,6 @@ Existing explanation:
                     setPreFollowLoading(false);
                   }
                 };
-                // Get the speech key for this specific note item
-                const itemSpeechKey = getSpeechKeyForItem(it);
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
                     <button type="button" className="closeBtn" onClick={handleCloseNote} aria-label="Close note" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
@@ -2443,13 +2878,37 @@ Existing explanation:
                       onClick={(e)=>{ 
                         e.stopPropagation(); 
                         e.preventDefault();
-                        // Toggle text selection mode for this note
-                        if (onToggleNoteSelectMode && itemSpeechKey) {
-                          onToggleNoteSelectMode(itemSpeechKey);
-                          // Don't clear selection - let user select text which will show chat UI
-                        } else {
-                          toggleFollow(); 
+                        const hasSelection = !!selectedRange;
+                        const hasExplanation = !!(selectedRange && contextInfo && llm?.conversation?.last && llm?.conversation?.last !== 'AI is thinking…');
+                        const inSelectMode = noteInSelectMode === itemSpeechKey;
+                        const hasChatOpen = showPreFollow || inSelectMode || hasSelection || hasExplanation;
+                        if (hasChatOpen) {
+                          onSelectRange?.(null);
+                          if (typeof suppressNextAutoExplain === 'function') {
+                            suppressNextAutoExplain();
+                          } else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
+                            suppressNextAutoExplain.current = true;
+                          }
+                          if (onToggleNoteSelectMode) onToggleNoteSelectMode(null);
+                          setShowPreFollow(false);
+                          setPreFollowInput('');
+                          setPreFollowLoading(false);
+                          try {
+                            if (typeof window !== 'undefined') {
+                              const sel = window.getSelection?.();
+                              sel?.removeAllRanges?.();
+                            }
+                          } catch {}
+                          return;
                         }
+                        if (onToggleNoteSelectMode && itemSpeechKey) {
+                          if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
+                            suppressNextAutoExplain.current = false;
+                          }
+                          onToggleNoteSelectMode(itemSpeechKey);
+                          return;
+                        }
+                        toggleFollow(); 
                       }} 
                       title={(noteInSelectMode === itemSpeechKey) ? "Click to exit text selection mode" : "Click to enable text selection mode"}>
                       {it.content || ''}
@@ -2527,218 +2986,10 @@ Existing explanation:
               })()}
             </div>
           ) : null}
-          {/* Simple chat UI for text selection mode (search box + More button) - show when note is clicked to enter select mode or when text is selected - appears below note */}
-          {/* Show chat UI when note is in select mode (even without text selection yet) OR when text is selected but no explanation exists yet */}
-          {/* Don't show here if there's already an explanation (it will be shown in the explanation block below) */}
-          {((sectionHasSelectModeNote && !(selectedRange && contextInfo && llm?.conversation?.last)) || (selectedRange && contextInfo && !llm?.conversation?.last)) ? (
-            <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
-              {llm?.loading && (
-                <div style={{ marginBottom: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
-              )}
-              <TextSelectionChat 
-                contextInfo={contextInfo}
-                llm={llm}
-                onRequestFocus={() => {
-                  if (selectedRange && contextInfo && onRequestFocus) {
-                    const len = new TextEncoder().encode(contextInfo.text || '').length;
-                    const id = `${contextInfo.byteOffset}-${len}`;
-                    onRequestFocus({ sectionIndex, id });
-                  }
-                }}
-              />
-            </div>
-          ) : null}
-          {/* Always show chat UI below notes (when not in select mode and no explanation exists), so users can ask follow-ups */}
-          {chosenItem && !sectionHasSelectModeNote && !(selectedRange && contextInfo && llm?.conversation?.last) ? (
-            <div style={{ marginTop: '0.25rem', paddingTop: '0.25rem', borderTop: '1px solid #eee' }}>
-              {(() => {
-                const it = chosenItem;
-                if (!it) return null;
-                const handleNoteMore = async () => {
-                  try {
-                    setPreFollowLoading(true);
-                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                    const startC = bytesToCharOffset(text || '', startRelB);
-                    const endC = bytesToCharOffset(text || '', endRelB);
-                    const passage = (text || '').slice(startC, endC);
-                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const existing = (it.content || '').trim();
-                    const q = existing
-                      ? `Provide additional insight that builds on the existing explanation below without repeating or paraphrasing it. Focus on new details, clarifying tricky references, or subtle dramatic function.
-Existing explanation:
-"""${existing}"""`
-                      : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
-                    const res = await fetch('/api/explain', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
-                    });
-                    const data = await res.json();
-                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                    const addition = (data?.content || '').trim();
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } catch (e) {
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } finally {
-                    setPreFollowLoading(false);
-                  }
-                };
-                const handleNoteFollowup = async (followupText) => {
-                  try {
-                    setPreFollowLoading(true);
-                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                    const startC = bytesToCharOffset(text || '', startRelB);
-                    const endC = bytesToCharOffset(text || '', endRelB);
-                    const passage = (text || '').slice(startC, endC);
-                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const res = await fetch('/api/explain', {
-                      method: 'POST', headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText })
-                    });
-                    const data = await res.json();
-                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
-                    const a = data?.content || '';
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: followupText, a, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } catch (e) {
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: followupText, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } finally {
-                    setPreFollowLoading(false);
-                  }
-                };
-                return (
-                  <TextSelectionChat 
-                    contextInfo={null}
-                    llm={{ ...llm, loading: preFollowLoading }}
-                    onRequestFocus={() => {}}
-                    noteMode={true}
-                    onNoteMore={handleNoteMore}
-                    onNoteFollowup={handleNoteFollowup}
-                  />
-                );
-              })()}
-            </div>
-          ) : null}
-          {/* Show explanation content when available */}
-          {selectedRange && contextInfo && llm?.conversation?.last && (
-            <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', paddingRight: '32px', borderTop: chosenItem ? '1px solid #eee' : 'none', position: 'relative' }}>
-              <button 
-                type="button" 
-                className="closeBtn" 
-                onClick={() => {
-                  if (llm?.onDeleteCurrent) {
-                    llm.onDeleteCurrent();
-                  }
-                }}
-                aria-label="Close explanation" 
-                style={{ position: 'absolute', right: 0, top: 0 }}
-              >
-                ✕
-              </button>
-              <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
-              {/* Only show explanation content if it's not the placeholder "AI is thinking…" text */}
-              {llm.conversation.last === 'AI is thinking…' ? (
-                <div style={{ color: '#6b5f53' }}>Thinking…</div>
-              ) : (
-                <>
-                  <div style={{ whiteSpace: 'pre-wrap' }}>{llm.conversation.last}</div>
-                  {(() => {
-                    const providerName = formatProviderName(llm?.options?.provider || '');
-                    let attribution = '';
-                    if (llm?.options?.model && providerName) attribution = `${llm.options.model} (via ${providerName})`;
-                    else if (llm?.options?.model) attribution = `Model: ${llm.options.model}`;
-                    else if (providerName) attribution = providerName;
-                    return attribution ? (
-                      <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
-                        {attribution}
-                      </div>
-                    ) : null;
-                  })()}
-                </>
-              )}
-              <TextSelectionChat 
-                contextInfo={contextInfo}
-                llm={llm}
-                onRequestFocus={() => {
-                  if (selectedRange && contextInfo && onRequestFocus) {
-                    const len = new TextEncoder().encode(contextInfo.text || '').length;
-                    const id = `${contextInfo.byteOffset}-${len}`;
-                    onRequestFocus({ sectionIndex, id });
-                  }
-                }}
-              />
-            </div>
-          )}
-          {/* Placeholder removed; clicking the empty aside reveals the suppressed note */}
-          {/* Filter out current selection's explanation from savedExplanations if it's already shown inline */}
-          {(() => {
-            const currentSelectionId = selectedRange && contextInfo ? (() => {
-              const len = new TextEncoder().encode(contextInfo.text || '').length;
-              return `${contextInfo.byteOffset}-${len}`;
-            })() : null;
-            const filteredSaved = savedExplanations.filter(ex => {
-              if (!currentSelectionId || !ex?.meta) return true;
-              const len = new TextEncoder().encode(ex.meta.text || '').length;
-              const exId = `${ex.meta.byteOffset}-${len}`;
-              return exId !== currentSelectionId;
-            });
-            return filteredSaved.length > 0 && (
-              <div style={{ marginTop: '0.75rem' }}>
-                {filteredSaved.map((ex, i) => (
-                <ExplanationCard
-                  key={`ex-${i}-${ex?.meta?.byteOffset || i}`}
-                  passage={ex?.meta?.text || ''}
-                  content={ex?.last || ''}
-                  meta={ex?.meta}
-                  options={llm?.options}
-                onLocate={() => {
-                  if (ex?.meta) {
-                    onSelectRange({ start: ex.meta.start, end: ex.meta.end });
-                    const len = new TextEncoder().encode(ex.meta.text || '').length;
-                    const id = `${ex.meta.byteOffset}-${len}`;
-                    onRequestFocus?.({ sectionIndex, id });
-                  }
-                }}
-                  onCopy={() => {
-                    if (ex?.meta) {
-                      const len = new TextEncoder().encode(ex.meta.text || '').length;
-                      const url = buildSelectionLink(ex.meta.byteOffset, len);
-                      navigator.clipboard?.writeText(url);
-                    }
-                  }}
-                  onDelete={() => {
-                    if (ex?.meta) {
-                      const len = new TextEncoder().encode(ex.meta.text || '').length;
-                      const id = `${ex.meta.byteOffset}-${len}`;
-                      onDeleteSaved?.(id);
-                    }
-                  }}
-                />
-              ))}
-            </div>
-            );
-          })()}
+          {noteModeChatPanel}
+          {selectionChatPanel}
+          {explanationPanel}
+          {savedExplanationsPanel}
         </aside>
       ) : null}
     </div>
@@ -2923,10 +3174,10 @@ function expandToSentence(text, index) {
   const len = text.length;
   let start = index;
   let end = index;
-  // Move start left to previous sentence ender (.!?), then step to first non-space/newline
+  // Move start left to previous sentence ender (.!?;), then step to first non-space/newline
   for (let i = index - 1; i >= 0; i--) {
     const ch = text[i];
-    if (ch === '.' || ch === '!' || ch === '?') {
+    if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
       start = i + 1;
       break;
     }
@@ -2934,10 +3185,10 @@ function expandToSentence(text, index) {
   }
   // Skip leading whitespace/newlines
   while (start < len && /\s/.test(text[start])) start++;
-  // Move end right to next sentence ender (.!?), include trailing quotes/brackets if adjacent
+  // Move end right to next sentence ender (.!?;), include trailing quotes/brackets if adjacent
   for (let i = index; i < len; i++) {
     const ch = text[i];
-    if (ch === '.' || ch === '!' || ch === '?') {
+    if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
       end = i + 1;
       // include immediate closing quotes/brackets
       while (end < len && /["'\)\]]/.test(text[end])) end++;
@@ -3091,9 +3342,35 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
 
   return (
     <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
-      <button type="button" className="closeBtn" onClick={onDelete} aria-label="Close explanation" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
+      <button
+        type="button"
+        className="closeBtn"
+        onClick={onDelete}
+        aria-label="Delete saved explanation"
+        style={{ position: 'absolute', right: 0, top: 0, width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+      >
+        🗑️
+      </button>
+      {(() => {
+        const preview = (passage || '').trim();
+        if (!preview) return null;
+        return (
+          <div
+            style={{
+              marginBottom: '0.5rem',
+              paddingLeft: '1rem',
+              borderLeft: '3px solid #e8d8b5',
+              fontStyle: 'italic',
+              color: '#4a4036',
+              whiteSpace: 'pre-wrap',
+            }}
+          >
+            {preview}
+          </div>
+        );
+      })()}
       <div style={{ marginTop: '0.25rem' }} onClick={() => { onLocate?.(); setOpen((v)=>!v); }} title="Click to highlight source and toggle follow‑up">
-        <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
+        <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Saved Explanation</div>
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
         <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
           {options?.model ? `Model: ${options.model}` : ''}

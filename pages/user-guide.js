@@ -49,7 +49,7 @@ export default function UserGuide() {
               <h4>How to Use Notes and Explanations</h4>
               <p>Here's how clicking and selecting in the text works:</p>
               <ul className="instruction-list">
-                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Use the <strong>✕</strong> in the note's top‑right to close it. Clicking the text again does not close the note.</li>
+                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Clicking the text again hides the note. You can also use the <strong>✕</strong> in the note's top‑right to close it.</li>
                 <li><strong>Select text for an explanation:</strong> To get an on-demand explanation, click and drag to select any passage you want explained. You can also click on a note to enable text selection mode, then select a specific part of that speech.</li>
                 <li><strong>Auto-select sentence:</strong> When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
                 <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you make a selection, showing "AI is thinking…" until the API response is ready.</li>
