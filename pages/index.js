@@ -68,7 +68,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   // Note visibility threshold (0–100). Lower thresholds surface more notes.
-  const [noteThreshold, setNoteThreshold] = useState(50);
+  const [noteThreshold, setNoteThreshold] = useState(33);
   const [fontScale, setFontScale] = useState(1);
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
