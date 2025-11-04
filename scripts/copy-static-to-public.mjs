@@ -44,7 +44,7 @@ function copyRecursive(src, dest) {
 
 console.log('Copying static build from out/ to public/...');
 try {
-  // Remove existing files in public (but keep it as a directory)
+  // Completely remove public directory contents (including _next if it exists)
   if (fs.existsSync(publicDir)) {
     const entries = fs.readdirSync(publicDir);
     for (const entry of entries) {
@@ -58,7 +58,7 @@ try {
     }
   }
   
-  // Copy all files from out to public
+  // Copy all files from out to public (including _next - this is needed for static export)
   copyRecursive(outDir, publicDir);
   console.log('✓ Successfully copied static build to public/');
   console.log('  You can now run: npx cap sync android');
