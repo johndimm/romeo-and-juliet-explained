@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   // Handle CORS preflight
   if (handleCorsPreflight(req, res)) return;
   
-  // Set CORS headers for all responses
+  // Set CORS headers for all responses (must be set before any response)
   setCorsHeaders(res);
   
   const provider = (req.query.provider || 'openai').toLowerCase();
@@ -80,6 +80,8 @@ export default async function handler(req, res) {
     else models = await listOpenAI();
     res.status(200).json({ models });
   } catch (e) {
+    // Ensure CORS headers are set even on error
+    setCorsHeaders(res);
     res.status(500).json({ error: 'list models failed', detail: String(e) });
   }
 }

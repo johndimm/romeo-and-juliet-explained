@@ -4,10 +4,12 @@ export default async function handler(req, res) {
   // Handle CORS preflight
   if (handleCorsPreflight(req, res)) return;
   
-  // Set CORS headers for all responses
+  // Set CORS headers for all responses (must be set before any response)
   setCorsHeaders(res);
   
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   const {
     selectionText,
@@ -21,6 +23,7 @@ export default async function handler(req, res) {
   } = req.body || {};
 
   if (!selectionText || !context) {
+    setCorsHeaders(res);
     return res.status(400).json({ error: 'Missing selectionText or context' });
   }
 
@@ -204,6 +207,8 @@ export default async function handler(req, res) {
     return res.status(200).json({ content });
   } catch (e) {
     console.error('LLM request error:', e);
+    // Ensure CORS headers are set even on error
+    setCorsHeaders(res);
     return res.status(502).json({ error: 'LLM request error', detail: String(e) });
   }
 }
