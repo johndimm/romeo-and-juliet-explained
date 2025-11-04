@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { parseSectionsWithOffsets } from '../lib/parseText';
+import { getApiUrl } from '../lib/api';
 import fs from 'fs';
 import path from 'path';
 
@@ -1433,7 +1434,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         }
       } catch {}
 
-      const res = await fetch('/api/explain', {
+      const res = await fetch(getApiUrl('/api/explain'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1488,7 +1489,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   useEffect(() => {
     const prov = (llmOptions.provider || 'openai').toLowerCase();
     providerRef.current = prov;
-    fetch(`/api/models?provider=${encodeURIComponent(prov)}`)
+    fetch(getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`))
       .then((r) => r.json())
       .then((data) => {
         const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
@@ -2046,7 +2047,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 Existing explanation:
 """${existing}"""`
           : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
-        const res = await fetch('/api/explain', {
+        const res = await fetch(getApiUrl('/api/explain'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
@@ -2080,7 +2081,7 @@ Existing explanation:
         const endC = bytesToCharOffset(text || '', endRelB);
         const passage = (text || '').slice(startC, endC);
         const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-        const res = await fetch('/api/explain', {
+        const res = await fetch(getApiUrl('/api/explain'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText })
@@ -2831,7 +2832,7 @@ Existing explanation:
                     const endC = bytesToCharOffset(text || '', endRelB);
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const res = await fetch('/api/explain', {
+                    const res = await fetch(getApiUrl('/api/explain'), {
                       method: 'POST', headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
                     });
@@ -2872,7 +2873,7 @@ Existing explanation:
                     const endC = bytesToCharOffset(text || '', endRelB);
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const res = await fetch('/api/explain', {
+                    const res = await fetch(getApiUrl('/api/explain'), {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
@@ -3373,7 +3374,7 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
     if (!v) return;
     try {
       setLoading(true);
-      const res = await fetch('/api/explain', {
+      const res = await fetch(getApiUrl('/api/explain'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

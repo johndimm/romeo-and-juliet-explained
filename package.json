@@ -3,6 +3,9 @@
   "private": true,
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.1.30",
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4",
     "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1"
@@ -23,6 +26,10 @@
     "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json",
     "snapshot": "node scripts/search-snapshot.mjs",
     "build": "next build",
+    "build:static": "BUILD_STATIC=true next build",
+    "build:android": "BUILD_STATIC=true NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-} next build",
+    "copy:static": "node scripts/copy-static-to-public.mjs",
+    "build:android:sync": "npm run build:android && npm run copy:static",
     "build:characters": "node scripts/build-character-map.mjs",
     "hist:perplexity": "node scripts/hist-perplexity.mjs --in data/explanations.json --bins 10",
     "merge:explanations": "node scripts/merge-explanations.mjs",

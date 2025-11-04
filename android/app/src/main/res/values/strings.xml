@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Romeo and Juliet Explained</string>
+    <string name="title_activity_main">Romeo and Juliet Explained</string>
+    <string name="package_name">dimm.explainers.shakespeare.romeo_and_juliet</string>
+    <string name="custom_url_scheme">dimm.explainers.shakespeare.romeo_and_juliet</string>
+</resources>

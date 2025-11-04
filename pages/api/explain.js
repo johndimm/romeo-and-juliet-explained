@@ -1,4 +1,12 @@
+import { setCorsHeaders, handleCorsPreflight } from '../../lib/cors';
+
 export default async function handler(req, res) {
+  // Handle CORS preflight
+  if (handleCorsPreflight(req, res)) return;
+  
+  // Set CORS headers for all responses
+  setCorsHeaders(res);
+  
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const {

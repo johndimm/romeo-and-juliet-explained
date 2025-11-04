@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { getApiUrl } from '../lib/api';
 
 const clampFontScale = (value) => Math.min(1.6, Math.max(0.7, value));
 const applyFontScaleToDocument = (value) => {
@@ -85,7 +86,7 @@ export default function Settings() {
     if (!optionsHydrated) return; // Don't validate until we've loaded from localStorage
     
     const prov = (llmOptions.provider || 'openai').toLowerCase();
-    fetch(`/api/models?provider=${encodeURIComponent(prov)}`)
+    fetch(getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`))
       .then((r) => r.json())
       .then((data) => {
         const list = Array.isArray(data?.models) && data.models.length ? data.models : [];

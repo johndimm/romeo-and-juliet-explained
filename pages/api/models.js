@@ -1,4 +1,12 @@
+import { setCorsHeaders, handleCorsPreflight } from '../../lib/cors';
+
 export default async function handler(req, res) {
+  // Handle CORS preflight
+  if (handleCorsPreflight(req, res)) return;
+  
+  // Set CORS headers for all responses
+  setCorsHeaders(res);
+  
   const provider = (req.query.provider || 'openai').toLowerCase();
 
   async function listOpenAI() {
