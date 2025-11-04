@@ -1821,6 +1821,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
   const scrollerStartRef = useRef(0);
+  const selectionTimeoutRef = useRef(null);
+  const lastSelectionStringRef = useRef('');
   // Mobile selection mode state/refs - now driven by noteInSelectMode
   const [detectedTouchDevice, setDetectedTouchDevice] = useState(false);
   useEffect(() => {
@@ -2360,6 +2362,152 @@ Existing explanation:
   // Clean up any pending timers on unmount
   useEffect(() => { return () => { clearTimeout(selDebounceRef.current); }; }, []);
 
+  // Listen for native text selection (including mobile fallback when custom touch handling is inactive)
+  useEffect(() => {
+    const handleSelectionChange = () => {
+      // Immediately capture the selection range (don't wait for debounce)
+      // This ensures we get it before the system menu potentially interferes
+      const container = preRef.current;
+      if (!container || typeof window === 'undefined' || !window.getSelection) return;
+      
+      const sel = window.getSelection();
+      if (mobileSelectMode && touchActiveRef.current) return;
+      if (!sel || sel.rangeCount === 0) {
+        // Selection cleared - reset tracking
+        lastSelectionStringRef.current = '';
+        return;
+      }
+      
+      const range = sel.getRangeAt(0);
+      // Only process selections within this section's text container
+      if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) {
+        lastSelectionStringRef.current = '';
+        return;
+      }
+      
+      const { start, end } = getOffsetsWithin(container, range);
+      // Only trigger if there's an actual selection (not just a caret)
+      if (end <= start) {
+        lastSelectionStringRef.current = '';
+        return;
+      }
+      
+      // Create a unique string identifier for this selection to avoid duplicate triggers
+      const selectionString = `${start}-${end}`;
+      if (selectionString === lastSelectionStringRef.current) {
+        // Same selection, don't trigger again
+        return;
+      }
+      
+      // Don't trigger if we're already processing the exact same selection from touch handlers
+      if (selPendingRef.current) {
+        if (selectionString === lastSelectionStringRef.current) {
+          return;
+        }
+        // New selection detected while pending; treat as fresh input
+        selPendingRef.current = false;
+      }
+      
+      // Clear any pending timeout
+      if (selectionTimeoutRef.current) {
+        clearTimeout(selectionTimeoutRef.current);
+        selectionTimeoutRef.current = null;
+      }
+      
+      // Wait a moment to ensure selection is stable (especially important on mobile)
+      // Then process the selection
+      selectionTimeoutRef.current = setTimeout(() => {
+        // Double-check the selection is still valid
+        const currentSel = window.getSelection();
+        if (!currentSel || currentSel.rangeCount === 0) return;
+        const currentRange = currentSel.getRangeAt(0);
+        if (!container.contains(currentRange.startContainer) || !container.contains(currentRange.endContainer)) return;
+        
+        const { start: checkStart, end: checkEnd } = getOffsetsWithin(container, currentRange);
+        if (checkEnd <= checkStart) return;
+        const checkString = `${checkStart}-${checkEnd}`;
+        
+        // Only proceed if this is still the same selection we saw earlier
+        if (checkString !== selectionString) return;
+        
+        // Mark that we're processing this selection
+        selPendingRef.current = true;
+        lastSelectionStringRef.current = selectionString;
+        
+        // Call onSelectRange to trigger explanation
+        onSelectRange?.({ start, end });
+        
+        // Reset after a delay to allow the selection to be processed
+        setTimeout(() => {
+          selPendingRef.current = false;
+        }, 500);
+        
+        selectionTimeoutRef.current = null;
+      }, 300); // Wait 300ms for selection to stabilize (system menu appears ~200ms after selection)
+    };
+
+    // Also check for selection when user clicks/taps (after menu might be dismissed)
+    // This is a fallback in case selectionchange didn't catch it
+    const handleClick = (e) => {
+      // Only check if there's actually a selection (not just a click)
+      const sel = window.getSelection?.();
+      if (!sel || sel.rangeCount === 0) return;
+      
+      const range = sel.getRangeAt(0);
+      // Only process if clicking within our section
+      const container = preRef.current;
+      if (!container || !container.contains(e.target) && !container.contains(range.startContainer)) return;
+      
+      // Small delay to let any selection settle
+      setTimeout(() => {
+        if (selPendingRef.current) return; // Already processing
+        
+        if (!container || typeof window === 'undefined' || !window.getSelection) return;
+        
+        const checkSel = window.getSelection();
+        if (!checkSel || checkSel.rangeCount === 0) return;
+        
+        const checkRange = checkSel.getRangeAt(0);
+        if (!container.contains(checkRange.startContainer) || !container.contains(checkRange.endContainer)) return;
+        
+        const { start, end } = getOffsetsWithin(container, checkRange);
+        if (end <= start) return;
+        
+        const selectionString = `${start}-${end}`;
+        if (selectionString === lastSelectionStringRef.current) return; // Already processed
+        
+        // This is a new selection, process it
+        selPendingRef.current = true;
+        lastSelectionStringRef.current = selectionString;
+        onSelectRange?.({ start, end });
+        setTimeout(() => { selPendingRef.current = false; }, 500);
+      }, 150);
+    };
+
+    if (typeof document !== 'undefined') {
+      document.addEventListener('selectionchange', handleSelectionChange);
+      // Listen for clicks as a fallback (user might tap to dismiss menu)
+      document.addEventListener('click', handleClick, true);
+      // Also listen for pointerdown as another fallback
+      document.addEventListener('pointerdown', handleClick, true);
+    }
+
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('selectionchange', handleSelectionChange);
+        document.removeEventListener('click', handleClick, true);
+        document.removeEventListener('pointerdown', handleClick, true);
+      }
+      if (selectionTimeoutRef.current) {
+        clearTimeout(selectionTimeoutRef.current);
+        selectionTimeoutRef.current = null;
+      }
+      if (selDebounceRef.current) {
+        clearTimeout(selDebounceRef.current);
+      }
+    };
+  }, [mobileSelectMode, onSelectRange, text]);
+
   // In-view observer using invisible anchors per speech start
   useEffect(() => {
     const list = (precomputedAllItems && precomputedAllItems.length ? precomputedAllItems : (precomputedItems && precomputedItems.length ? precomputedItems : []))
@@ -2402,6 +2550,8 @@ Existing explanation:
     mobileStartPointRef.current = { x: tx, y: ty };
     // If mobile selection mode is active, capture starting caret and prevent scroll
     if (mobileSelectMode) {
+      selPendingRef.current = false;
+      lastSelectionStringRef.current = '';
       try { e.preventDefault(); e.stopPropagation(); } catch {}
       try {
         const container = preRef.current;
@@ -2463,16 +2613,15 @@ Existing explanation:
         if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
           const start = Math.max(0, Math.min(startChar, endChar));
           const end = Math.max(start, Math.max(startChar, endChar));
-          if (end > start) {
-            onSelectRange?.({ start, end });
-          }
         }
       } catch {}
     }
   };
   const onTouchEnd = (e) => {
-    // Prevent synthetic click delays and bubbling to desktop handlers
-    try { e.preventDefault(); e.stopPropagation(); } catch {}
+    // Only prevent default if we're in custom selection mode or if we handled the touch
+    if (mobileSelectMode) {
+      try { e.preventDefault(); e.stopPropagation(); } catch {}
+    }
     // Handle selection mode on mobile: tap selects sentence, drag selects range
     if (mobileSelectMode) {
       try {
@@ -2495,18 +2644,40 @@ Existing explanation:
         }
         const startChar = mobileStartCharRef.current;
         let start = null, end = null;
-        if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
-          start = Math.max(0, Math.min(startChar, endChar));
-          end = Math.max(start, Math.max(startChar, endChar));
-        } else {
-          const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
-          if (idx != null) {
-            const sent = expandToSentence(text || '', idx);
-            if (sent) { start = sent.start; end = sent.end; }
+
+        // Prefer the actual native selection if the browser created one
+        if (container && typeof window !== 'undefined') {
+          try {
+            const nativeSel = window.getSelection?.();
+            if (nativeSel && nativeSel.rangeCount > 0) {
+              const nativeRange = nativeSel.getRangeAt(0);
+              if (container.contains(nativeRange.startContainer) && container.contains(nativeRange.endContainer)) {
+                const off = getOffsetsWithin(container, nativeRange);
+                if (off.end > off.start) {
+                  start = off.start;
+                  end = off.end;
+                }
+              }
+            }
+          } catch {}
+        }
+
+        // Fall back to our manual tracking if the native selection was unavailable/collapsed
+        if (start == null || end == null || end <= start) {
+          if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
+            start = Math.max(0, Math.min(startChar, endChar));
+            end = Math.max(start, Math.max(startChar, endChar));
+          } else {
+            const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
+            if (idx != null) {
+              const sent = expandToSentence(text || '', idx);
+              if (sent) { start = sent.start; end = sent.end; }
+            }
           }
         }
         if (start != null && end != null && end > start) {
           selPendingRef.current = true;
+          lastSelectionStringRef.current = `${start}-${end}`;
           onSelectRange?.({ start, end });
           // Exit text selection mode when selection is made
           if (onToggleNoteSelectMode && noteInSelectMode) {
@@ -2532,6 +2703,30 @@ Existing explanation:
       const now = (s === window) ? window.scrollY : s.scrollTop;
       // Treat small rubber-band or inertia movement as a tap; only swallow for larger moves
       if (Math.abs(now - (scrollerStartRef.current || 0)) > 30 || movedRef.current) {
+        // User moved - check if they made a text selection
+        // Wait a moment for the native selection to be established
+        setTimeout(() => {
+          if (typeof window !== 'undefined' && window.getSelection) {
+            try {
+              const container = preRef.current;
+              if (!container) return;
+              const sel = window.getSelection();
+              if (sel && sel.rangeCount > 0 && !selPendingRef.current) {
+                const range = sel.getRangeAt(0);
+                // Only process selections within this section's text container
+                if (container.contains(range.startContainer) && container.contains(range.endContainer)) {
+                  const { start, end } = getOffsetsWithin(container, range);
+                  // If there's an actual selection (not just a caret), trigger explanation
+                  if (end > start) {
+                    selPendingRef.current = true;
+                    onSelectRange?.({ start, end });
+                    setTimeout(() => { selPendingRef.current = false; }, 500);
+                  }
+                }
+              }
+            } catch {}
+          }
+        }, 100);
         skipNextMouseUpRef.current = true;
         touchActiveRef.current = false;
         setTimeout(() => { movedRef.current = false; }, 80);
@@ -2710,10 +2905,10 @@ Existing explanation:
             borderRadius: mobileSelectMode ? '2px' : '0',
             backgroundColor: mobileSelectMode ? '#faf9f7' : 'transparent',
             transition: 'all 0.2s ease',
-            userSelect: mobileSelectMode ? 'text' : undefined,
-            WebkitUserSelect: mobileSelectMode ? 'text' : undefined,
-            WebkitTouchCallout: mobileSelectMode ? 'default' : undefined,
-            WebkitTapHighlightColor: mobileSelectMode ? 'rgba(0,0,0,0.2)' : undefined
+            userSelect: 'text',  // Always allow text selection on mobile
+            WebkitUserSelect: 'text',  // Always allow text selection on mobile
+            WebkitTouchCallout: 'default',  // Show default callout menu
+            WebkitTapHighlightColor: 'rgba(0,0,0,0.1)'  // Subtle tap highlight
           }}
         >
           {renderedText}
