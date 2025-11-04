@@ -1,11 +1,15 @@
-import { setCorsHeaders, handleCorsPreflight } from '../../lib/cors';
-
 export default async function handler(req, res) {
-  // Handle CORS preflight
-  if (handleCorsPreflight(req, res)) return;
-  
   // Set CORS headers for all responses (must be set before any response)
-  setCorsHeaders(res);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Max-Age', '86400');
+  
+  // Handle CORS preflight
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
   
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -23,7 +27,7 @@ export default async function handler(req, res) {
   } = req.body || {};
 
   if (!selectionText || !context) {
-    setCorsHeaders(res);
+    // CORS headers already set at top
     return res.status(400).json({ error: 'Missing selectionText or context' });
   }
 
@@ -207,8 +211,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ content });
   } catch (e) {
     console.error('LLM request error:', e);
-    // Ensure CORS headers are set even on error
-    setCorsHeaders(res);
+    // CORS headers already set at top
     return res.status(502).json({ error: 'LLM request error', detail: String(e) });
   }
 }
