@@ -1,0 +1,20 @@
+Levels of use
+
+Beginner -- reading the play
+
+Scroll through the play from start to finish, or use the Table of Contents to jump around.  You will find notes that explain some of the more difficult speeches.  The notes are provided by a Language Model and were generated while building the app.
+
+Intermediate -- control the notes
+
+Every speech has a note.  Clicking on the speech reveals the note if it is hidden, and hides it if it is visible.
+
+The colored circle at top left controls how many notes are automatically visible.  Turn the all off, or show them all, or anything in between.
+
+Advanced -- ask questions
+
+Click on a note to enable four ways to get more information about a passage by prompting the Language Model while you wait.
+
+  - ask follow-up questions
+  - click the More button to get a longer explanation for the whole speech
+  - click on a sentence in the speech to find out about it
+  - click-drag to select more or less than a sentence

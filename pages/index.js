@@ -6,6 +6,46 @@ import { getApiUrl } from '../lib/api';
 import fs from 'fs';
 import path from 'path';
 
+// Helper function to fetch with better error handling including URL
+async function fetchWithErrorHandling(url, options = {}) {
+  try {
+    // Get the actual resolved URL (for debugging)
+    const resolvedUrl = url.startsWith('http') ? url : (typeof window !== 'undefined' ? new URL(url, window.location.origin).href : url);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'unknown';
+    
+    const res = await fetch(url, options);
+    const contentType = res.headers.get('content-type') || '';
+    let data;
+    
+    if (contentType.includes('application/json')) {
+      data = await res.json();
+    } else {
+      // If not JSON, try to get the text to see what we got
+      const text = await res.text();
+      const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+      const errorMsg = `Expected JSON but got ${contentType}. Response: ${text.substring(0, 200)}... Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`;
+      throw new Error(errorMsg);
+    }
+    
+    if (!res.ok) {
+      const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+      throw new Error(data?.detail || data?.error || `HTTP ${res.status}: ${res.statusText}. Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`);
+    }
+    
+    return data;
+  } catch (e) {
+    // If it's already our custom error with URL info, throw it
+    if (e.message && (e.message.includes('URL:') || e.message.includes('Request URL:'))) {
+      throw e;
+    }
+    // Otherwise, add URL info
+    const resolvedUrl = url.startsWith('http') ? url : (typeof window !== 'undefined' ? new URL(url, window.location.origin).href : url);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'unknown';
+    const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+    throw new Error(`${e.message || String(e)}. Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`);
+  }
+}
+
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const densityToThreshold = (density) => clamp(100 - density, 0, 100);
 const thresholdToDensity = (threshold) => clamp(100 - threshold, 0, 100);
@@ -1434,7 +1474,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         }
       } catch {}
 
-      const res = await fetch(getApiUrl('/api/explain'), {
+      const url = getApiUrl('/api/explain');
+      const data = await fetchWithErrorHandling(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1448,8 +1489,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           followup,
         }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
       const assistantMsg = { role: 'assistant', content: data.content };
       const reqLen = length || llmOptions.length || 'brief';
       const newMsgs = [
@@ -1489,8 +1528,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   useEffect(() => {
     const prov = (llmOptions.provider || 'openai').toLowerCase();
     providerRef.current = prov;
-    fetch(getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`))
-      .then((r) => r.json())
+    const url = getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`);
+    fetchWithErrorHandling(url)
       .then((data) => {
         const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
         if (providerRef.current === prov) setProviderModels(list);
@@ -2049,13 +2088,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 Existing explanation:
 """${existing}"""`
           : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
-        const res = await fetch(getApiUrl('/api/explain'), {
+        const url = getApiUrl('/api/explain');
+        const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
         const addition = (data?.content || '').trim();
         const key = String(it.startOffset || 0);
         setPreFollowThreads((prev) => {
@@ -2083,13 +2121,12 @@ Existing explanation:
         const endC = bytesToCharOffset(text || '', endRelB);
         const passage = (text || '').slice(startC, endC);
         const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-        const res = await fetch(getApiUrl('/api/explain'), {
+        const url = getApiUrl('/api/explain');
+        const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText })
         });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
         const addition = (data?.content || '').trim();
         const key = String(it.startOffset || 0);
         setPreFollowThreads((prev) => {
@@ -3027,12 +3064,11 @@ Existing explanation:
                     const endC = bytesToCharOffset(text || '', endRelB);
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const res = await fetch(getApiUrl('/api/explain'), {
+                    const url = getApiUrl('/api/explain');
+                    const data = await fetchWithErrorHandling(url, {
                       method: 'POST', headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
                     });
-                    const data = await res.json();
-                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
                     const a = data?.content || '';
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
@@ -3068,13 +3104,12 @@ Existing explanation:
                     const endC = bytesToCharOffset(text || '', endRelB);
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const res = await fetch(getApiUrl('/api/explain'), {
+                    const url = getApiUrl('/api/explain');
+                    const data = await fetchWithErrorHandling(url, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
                     });
-                    const data = await res.json();
-                    if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
                     const addition = (data?.content || '').trim();
                     setPreFollowThreads((prev) => {
                       const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
@@ -3569,7 +3604,8 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
     if (!v) return;
     try {
       setLoading(true);
-      const res = await fetch(getApiUrl('/api/explain'), {
+      const url = getApiUrl('/api/explain');
+      const data = await fetchWithErrorHandling(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -3581,8 +3617,6 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           followup: v,
         }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.detail || data?.error || 'LLM error');
       setThread((t) => t.concat({ q: v, a: data?.content || '' }));
       setQ('');
     } catch (e) {

@@ -3,6 +3,46 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getApiUrl } from '../lib/api';
 
+// Helper function to fetch with better error handling including URL
+async function fetchWithErrorHandling(url, options = {}) {
+  try {
+    // Get the actual resolved URL (for debugging)
+    const resolvedUrl = url.startsWith('http') ? url : (typeof window !== 'undefined' ? new URL(url, window.location.origin).href : url);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'unknown';
+    
+    const res = await fetch(url, options);
+    const contentType = res.headers.get('content-type') || '';
+    let data;
+    
+    if (contentType.includes('application/json')) {
+      data = await res.json();
+    } else {
+      // If not JSON, try to get the text to see what we got
+      const text = await res.text();
+      const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+      const errorMsg = `Expected JSON but got ${contentType}. Response: ${text.substring(0, 200)}... Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`;
+      throw new Error(errorMsg);
+    }
+    
+    if (!res.ok) {
+      const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+      throw new Error(data?.detail || data?.error || `HTTP ${res.status}: ${res.statusText}. Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`);
+    }
+    
+    return data;
+  } catch (e) {
+    // If it's already our custom error with URL info, throw it
+    if (e.message && (e.message.includes('URL:') || e.message.includes('Request URL:'))) {
+      throw e;
+    }
+    // Otherwise, add URL info
+    const resolvedUrl = url.startsWith('http') ? url : (typeof window !== 'undefined' ? new URL(url, window.location.origin).href : url);
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'unknown';
+    const apiBaseUrl = typeof window !== 'undefined' ? (window.__NEXT_PUBLIC_API_URL__ || 'unknown') : 'unknown';
+    throw new Error(`${e.message || String(e)}. Request URL: ${url} | Resolved URL: ${resolvedUrl} | Base URL: ${baseUrl} | NEXT_PUBLIC_API_URL: ${apiBaseUrl}`);
+  }
+}
+
 const clampFontScale = (value) => Math.min(1.6, Math.max(0.7, value));
 const applyFontScaleToDocument = (value) => {
   if (typeof document !== 'undefined') {
@@ -86,8 +126,8 @@ export default function Settings() {
     if (!optionsHydrated) return; // Don't validate until we've loaded from localStorage
     
     const prov = (llmOptions.provider || 'openai').toLowerCase();
-    fetch(getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`))
-      .then((r) => r.json())
+    const url = getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`);
+    fetchWithErrorHandling(url)
       .then((data) => {
         const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
         setProviderModels(list);

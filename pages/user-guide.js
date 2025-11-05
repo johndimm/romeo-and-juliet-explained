@@ -23,13 +23,65 @@ export default function UserGuide() {
         </p>
 
         <div className="guide-section">
+          <h2>Three Levels of Use</h2>
+          <p className="guide-intro">
+            Whether you're reading Shakespeare for the first time or diving deep into the text, 
+            this application adapts to your needs. Choose your level of engagement:
+          </p>
+
+          <div className="step">
+            <h3>Beginner — Reading the Play</h3>
+            <p>
+              Scroll through the play from start to finish, or use the Table of Contents to jump 
+              around. You'll find notes that explain some of the more difficult speeches. These notes 
+              are provided by a Language Model and were generated while building the app, so they're 
+              instantly available without any waiting.
+            </p>
+          </div>
+
+          <div className="step">
+            <h3>Intermediate — Control the Notes</h3>
+            <p>
+              Every speech has a note available. Click on any speech to reveal its note if it's 
+              hidden, or hide it if it's visible.
+            </p>
+            <p>
+              The colored circle icon at the top left controls how many notes are automatically visible. 
+              Turn them all off for a clean reading experience, show them all for maximum help, or 
+              choose anything in between using the slider.
+            </p>
+          </div>
+
+          <div className="step">
+            <h3>Advanced — Ask Questions</h3>
+            <p>
+              Click on a note to enable four ways to get more information about a passage by prompting 
+              the Language Model while you wait:
+            </p>
+            <ul className="instruction-list">
+              <li><strong>Ask follow-up questions:</strong> Use the chat interface to ask anything 
+              about the passage. The AI will respond with detailed explanations based on your specific question.</li>
+              <li><strong>Click the "More" button:</strong> Get a longer, more comprehensive explanation 
+              for the whole speech. This expands the note without losing the original, giving you 
+              deeper context and analysis.</li>
+              <li><strong>Click on a sentence in the speech:</strong> Click anywhere in a speech to 
+              automatically select that sentence and get an explanation focused specifically on that line.</li>
+              <li><strong>Click-drag to select more or less than a sentence:</strong> Select precisely 
+              what you want explained by clicking and dragging across any portion of text. This gives 
+              you complete control over the selection.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="guide-section">
           <h2>Getting Started</h2>
           <div className="step">
             <h3>1. Reading the Play</h3>
             <p>
-              The play text appears in the main column on the right. You can scroll through 
-              the entire play or use the table of contents in the sidebar to jump to specific 
-              acts and scenes.
+              On desktop, the layout has three columns: the Table of Contents on the far left, 
+              the play text in the middle column, and notes and explanations in the right column. 
+              You can scroll through the entire play or use the table of contents sidebar to jump 
+              to specific acts and scenes.
             </p>
           </div>
           
@@ -52,7 +104,7 @@ export default function UserGuide() {
                 <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Clicking the text again hides the note. You can also use the <strong>✕</strong> in the note's top‑right to close it.</li>
                 <li><strong>Select text for an explanation:</strong> To get an on-demand explanation, click and drag to select any passage you want explained. You can also click on a note to enable text selection mode, then select a specific part of that speech.</li>
                 <li><strong>Auto-select sentence:</strong> When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
-                <li><strong>Immediate feedback:</strong> A new explanation card appears on the right as soon as you make a selection, showing "AI is thinking…" until the API response is ready.</li>
+                <li><strong>Immediate feedback:</strong> A new explanation card appears in the right column (next to the play text) as soon as you make a selection, showing "AI is thinking…" until the API response is ready.</li>
                 <li><strong>Ask for more:</strong> Click <strong>More</strong> (or use the "Ask a follow‑up…" field) to get an extended explanation without losing the original note. Each follow‑up appears in the mini chat under the note, along with the provider/model used, and the entire thread is saved automatically.</li>
               </ul>
             </div>

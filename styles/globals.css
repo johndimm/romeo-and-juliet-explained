@@ -66,6 +66,14 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
   white-space: nowrap;
 }
 
+.headerLinks .icon svg,
+.lnk-toc .icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+
 .headerNotesDensity {
   flex-shrink: 0;
 }
@@ -417,7 +425,7 @@ html.isPrintRoute .container { left: 0; }
   .headerRight {
     width: 100%;
     display: grid;
-    grid-template-columns: auto minmax(140px, 1fr) auto;
+    grid-template-columns: auto auto minmax(140px, 1fr) auto;
     align-items: center;
     gap: 10px;
   }
@@ -431,14 +439,39 @@ html.isPrintRoute .container { left: 0; }
     right: auto;
     left: 0;
   }
+  .lnk-toc {
+    grid-column: 2;
+    grid-row: 1;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d8d5d0;
+    border-radius: 6px;
+    background: #fff;
+    text-decoration: none;
+  }
+  .lnk-toc .icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .lnk-toc .lbl {
+    display: none;
+  }
+  .lnk-toc:hover {
+    background: #f6f2ea;
+  }
   .headerSearchBar {
     flex: 1 1 auto;
     min-width: 0;
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 1;
   }
   .headerLinks {
-    grid-column: 3;
+    grid-column: 4;
     grid-row: 1;
     justify-content: flex-end;
     gap: 6px;
@@ -605,7 +638,18 @@ html.isPrintRoute .container { left: 0; }
     cursor: pointer;
   }
   .headerLinks a:hover, .headerLinks button:hover { background: #f6f2ea; }
-  .headerLinks .icon { font-size: 16px; line-height: 1; }
+  .headerLinks .icon { 
+    font-size: 16px; 
+    line-height: 1; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .headerLinks .icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
   .headerLinks .lbl { position: static; }
 }
 
@@ -747,7 +791,7 @@ html.isPrintRoute .container { left: 0; }
   .headerRight {
     width: 100%;
     display: grid;
-    grid-template-columns: auto minmax(160px, 1fr) auto;
+    grid-template-columns: auto auto minmax(160px, 1fr) auto;
     align-items: center;
     gap: 10px;
   }
@@ -755,13 +799,38 @@ html.isPrintRoute .container { left: 0; }
     grid-column: 1;
     justify-self: flex-start;
   }
-  .headerSearchBar {
+  .lnk-toc {
     grid-column: 2;
+    grid-row: 1;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d8d5d0;
+    border-radius: 6px;
+    background: #fff;
+    text-decoration: none;
+  }
+  .lnk-toc .icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .lnk-toc .lbl {
+    display: none;
+  }
+  .lnk-toc:hover {
+    background: #f6f2ea;
+  }
+  .headerSearchBar {
+    grid-column: 3;
     flex: 1 1 auto;
     min-width: 0;
   }
   .headerLinks {
-    grid-column: 3;
+    grid-column: 4;
     justify-content: flex-end;
     gap: 6px;
   }
@@ -784,6 +853,14 @@ html.isPrintRoute .container { left: 0; }
   .headerLinks .icon {
     font-size: 16px;
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .headerLinks .icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
   }
   .searchBar {
     flex: 1 1 auto;

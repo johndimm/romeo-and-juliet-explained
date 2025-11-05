@@ -127,27 +127,46 @@ export default function App({ Component, pageProps }) {
                     setShowMobileMenu(!showMobileMenu);
                   }}
                 >
-                  <span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span>
+                  <span className="icon" aria-hidden>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </span><span className="lbl">Settings</span>
                 </a>
               ) : (
-                <Link href="/settings" className="lnk-settings"><span className="icon" aria-hidden>⚙️</span><span className="lbl">Settings</span></Link>
-              )}
-              {isPlayPage && isMobile && (
-                <a
-                  href="#"
-                  className="lnk-toc"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (typeof window !== 'undefined') {
-                      window.dispatchEvent(new Event('toggle-toc'));
-                    }
-                  }}
-                >
-                  <span className="icon" aria-hidden>📑</span><span className="lbl">Contents</span>
-                </a>
+                <Link href="/settings" className="lnk-settings">
+                  <span className="icon" aria-hidden>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </span><span className="lbl">Settings</span>
+                </Link>
               )}
             </nav>
             {isPlayPage && <HeaderNotesDensity />}
+            {isPlayPage && isMobile && (
+              <a
+                href="#"
+                className="lnk-toc"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== 'undefined') {
+                    window.dispatchEvent(new Event('toggle-toc'));
+                  }
+                }}
+              >
+                <span className="icon" aria-hidden>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                    <line x1="9" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="15" x2="21" y2="15"></line>
+                  </svg>
+                </span><span className="lbl">Contents</span>
+              </a>
+            )}
             {isPlayPage && <HeaderSearch />}
           </div>
         </div>
@@ -161,7 +180,13 @@ export default function App({ Component, pageProps }) {
             )}
             <Link className="menuItem" href="/user-guide" onClick={() => setShowMobileMenu(false)}>📖 User Guide</Link>
             <Link className="menuItem" href="/about" onClick={() => setShowMobileMenu(false)}>ℹ️ About</Link>
-            <Link className="menuItem" href="/settings" onClick={() => setShowMobileMenu(false)}>⚙️ Settings</Link>
+            <Link className="menuItem" href="/settings" onClick={() => setShowMobileMenu(false)}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }}>
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              Settings
+            </Link>
           </div>
         </div>
       )}

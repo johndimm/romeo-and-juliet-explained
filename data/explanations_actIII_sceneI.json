@@ -126,7 +126,7 @@
     "speaker": "MERCUTIO",
     "startOffset": 69024,
     "endOffset": 69121,
-    "content": "Mercutio挑衅地回应，说如果只跟一个人说一句话，那就再加点别的，比如一句话加一拳。",
+    "content": "Mercutio is taunting Tybalt, who has just asked to have \"a word\" with them. He twists Tybalt's polite request into a challenge for a fight, saying that if Tybalt wants one word, he should \"couple it with something\"—specifically, a blow or a sword strike. He is essentially telling Tybalt to stop talking and start fighting.",
     "provider": "deepseek",
     "model": "deepseek-chat",
     "perplexity": 20

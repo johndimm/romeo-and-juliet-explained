@@ -28,7 +28,7 @@
     "snapshot": "node scripts/search-snapshot.mjs",
     "build": "npm run clean:public && next build",
     "build:static": "BUILD_STATIC=true next build",
-    "build:android": "BUILD_STATIC=true NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-} next build",
+    "build:android": "BUILD_STATIC=true next build",
     "copy:static": "node scripts/copy-static-to-public.mjs",
     "build:android:sync": "npm run build:android && npm run copy:static",
     "setup:android": "./scripts/setup-android-build.sh",
