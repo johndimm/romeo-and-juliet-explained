@@ -122,6 +122,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [forcedNotes, setForcedNotes] = useState([]);
   // Track which note is in text selection mode (speech key string or null)
   const [noteInSelectMode, setNoteInSelectMode] = useState(null);
+  // Track which notes are expanded (Set of speech keys)
+  const [expandedNotes, setExpandedNotes] = useState(new Set());
   useEffect(() => {
     try {
       const raw = localStorage.getItem('forcedNotes');
@@ -435,7 +437,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   useEffect(() => {
     if (!query || !query.trim()) {
       setTotalMatches(0);
-      setCurrentIdx(0);
+    setCurrentIdx(0);
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
       return;
     }
@@ -527,24 +529,24 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
       // Use requestAnimationFrame to ensure DOM has updated with highlights
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          const el = matchRefs.current[currentIdx];
+      const el = matchRefs.current[currentIdx];
           if (el) {
             // Mark active class
             matchRefs.current.forEach((e) => e && e.classList.remove('current'));
-            el.classList.add('current');
-            // Scroll within our active scroller rather than window to avoid header shifts on mobile
-            const scroller = getScroller();
-            if (scroller) {
-              try {
-                const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
-                if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
-                else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
-              } catch (e) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-              }
-            } else {
-              el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-            }
+      el.classList.add('current');
+      // Scroll within our active scroller rather than window to avoid header shifts on mobile
+      const scroller = getScroller();
+      if (scroller) {
+        try {
+          const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
+          if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+        } catch (e) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+        }
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      }
           }
         });
       });
@@ -1817,6 +1819,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
               navigator.clipboard?.writeText(url);
             }}
             noteInSelectMode={noteInSelectMode}
+            expandedNotes={expandedNotes}
+            onToggleNoteExpanded={(speechKey) => {
+              setExpandedNotes((prev) => {
+                const next = new Set(prev);
+                if (next.has(speechKey)) {
+                  next.delete(speechKey);
+                } else {
+                  next.add(speechKey);
+                }
+                return next;
+              });
+            }}
             onToggleNoteSelectMode={(speechKey) => {
               setNoteInSelectMode((prev) => (prev === speechKey ? null : speechKey));
             }}
@@ -1975,7 +1989,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, noteInSelectMode = null, onToggleNoteSelectMode }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, noteInSelectMode = null, onToggleNoteSelectMode, expandedNotes = new Set(), onToggleNoteExpanded }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -2111,6 +2125,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Check if forced note is suppressed
   const isForcedSuppressed = forcedKey && suppressedNotes.has(forcedKey);
   const chosenItem = (forcedKey && !isForcedSuppressed ? noteBySpeechKey.get(forcedKey) : (isSuppressed ? null : (currentVisible || (forceShow ? currentForceVisible : null))));
+  const chosenItemSpeechKey = chosenItem ? getSpeechKeyForItem(chosenItem) : null;
+  const isNoteExpanded = chosenItemSpeechKey && expandedNotes.has(chosenItemSpeechKey);
   // Show the aside only when there is actual content to show
   // Check if there's a chosenItem, savedExplanations, or a valid LLM conversation for selectedRange
   // Also show if there's a selection (even without conversation yet) or if LLM is loading
@@ -2118,10 +2134,36 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const hasSelection = !!selectedRange;
   // Show aside when note is in select mode (even without selection yet) or when there's actual content
   const hasSelectModeActive = !!sectionHasSelectModeNote;
-  const hasAside = !!chosenItem
-    || (savedExplanations && savedExplanations.length > 0)
-    || hasLLMContent
-    || hasSelection
+  // Check if chosenItem has actual content (not empty)
+  const hasNoteContent = chosenItem && (chosenItem.content || '').trim().length > 0;
+  // Check if note is suppressed (hidden) - check both current speech and forced note
+  const currentSpeechNoteSuppressed = speechKey && suppressedNotes.has(speechKey);
+  const forcedNoteSuppressed = forcedKey && suppressedNotes.has(forcedKey);
+  const noteIsSuppressed = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
+  // Calculate filtered saved explanations count (for checking if aside should show)
+  // Only count explanations that are NOT associated with a suppressed note
+  const filteredSavedExplanationsCount = (savedExplanations || []).filter((ex) => {
+    if (!ex?.meta) return false;
+    const meta = ex.meta;
+    // If explanation is associated with a suppressed note, don't count it
+    const exSpeechKey = meta.speechKey;
+    if (exSpeechKey && suppressedNotes.has(exSpeechKey)) return false;
+    if (chosenItem && !noteIsSuppressed) {
+      const noteSpeechKey = chosenItemSpeechKey;
+      if (noteSpeechKey && exSpeechKey && exSpeechKey === noteSpeechKey) return true;
+      if (noteSpeechSpan && meta.byteOffset != null) {
+        const exStart = meta.byteOffset;
+        const exEnd = exStart + (meta.text ? new TextEncoder().encode(meta.text).length : 0);
+        return exStart >= noteSpeechSpan.start && exEnd <= noteSpeechSpan.end;
+      }
+    }
+    return meta.sectionIndex === sectionIndex;
+  }).length;
+  // Only show aside if there's actual visible content (not suppressed note, or has other content)
+  const hasAside = (hasNoteContent && !noteIsSuppressed)
+    || filteredSavedExplanationsCount > 0
+    || (hasLLMContent && !currentSpeechNoteSuppressed)
+    || (hasSelection && !currentSpeechNoteSuppressed)
     || hasSelectModeActive;
   // Indicate clickability in the text area when a suppressed note exists for the current speech
   const canForceReveal = !selectedRange
@@ -2171,6 +2213,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   }, [chosenItem, metadata]);
   const filteredSavedExplanations = (savedExplanations || []).filter((ex) => {
     if (!ex?.meta) return false;
+    // Hide explanations associated with suppressed notes
+    const exSpeechKey = ex.meta.speechKey;
+    if (exSpeechKey && suppressedNotes.has(exSpeechKey)) return false;
     // If there's a note, show explanations that match the note's speech
     // This ensures explanations created when the note is open will show when the note is reopened
     if (chosenItem) {
@@ -2295,14 +2340,19 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     );
   };
   const noteModeChatPanel = (() => {
-    // Only show noteModeChatPanel when note is open and NO text is selected
+    // Only show noteModeChatPanel when note is expanded and NO text is selected
     // When text is selected, selectionChatPanel will show instead (with instructions)
-    // Show if note is in select mode OR if there are preFollowThreads for this note (to persist them when note is reopened)
-    const threadKey = chosenItem ? String(chosenItem.startOffset || 0) : '';
-    const hasThreads = threadKey && preFollowThreads[threadKey] && preFollowThreads[threadKey].length > 0;
-    if (!(chosenItem && !hasSelectionContext && (sectionHasSelectModeNote || hasThreads))) return null;
+    // Show whenever note is expanded (instructions, chat, and buttons should be visible)
+    if (!(chosenItem && isNoteExpanded && !hasSelectionContext)) return null;
     const it = chosenItem;
     const handleNoteMore = async () => {
+      const key = String(it.startOffset || 0);
+      // Add placeholder entry immediately to show title and "Thinking..."
+      setPreFollowThreads((prev) => {
+        const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+        arr.push({ q: 'More detail', a: null, loading: true, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+        return { ...prev, [key]: arr };
+      });
       try {
         setPreFollowLoading(true);
         const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
@@ -2314,23 +2364,35 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         const existingNote = (it.content || '').trim();
         const q = 'Please expand this into a longer explanation with more detail.';
         const url = getApiUrl('/api/explain');
+        // For "More", use the note content as the primary text, not the passage
+        // This ensures "More" expands the note, not the speech text
         const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
+          body: JSON.stringify({ selectionText: existingNote || passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
         });
         const addition = (data?.content || '').trim();
-        const key = String(it.startOffset || 0);
+        // Update the placeholder entry with actual response
         setPreFollowThreads((prev) => {
           const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-          arr.push({ q: 'More detail', a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          const lastIdx = arr.length - 1;
+          if (lastIdx >= 0 && arr[lastIdx].loading) {
+            arr[lastIdx] = { q: 'More detail', a: addition, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') };
+          } else {
+            arr.push({ q: 'More detail', a: addition, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          }
           return { ...prev, [key]: arr };
         });
       } catch (e) {
-        const key = String(it.startOffset || 0);
+        // Update placeholder with error
         setPreFollowThreads((prev) => {
           const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-          arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          const lastIdx = arr.length - 1;
+          if (lastIdx >= 0 && arr[lastIdx].loading) {
+            arr[lastIdx] = { q: 'More detail', a: `Error: ${String(e.message || e)}`, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') };
+          } else {
+            arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          }
           return { ...prev, [key]: arr };
         });
       } finally {
@@ -2338,6 +2400,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       }
     };
     const handleNoteFollowup = async (followupText) => {
+      const key = String(it.startOffset || 0);
+      // Add placeholder entry immediately to show title and "Thinking..."
+      setPreFollowThreads((prev) => {
+        const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
+        arr.push({ q: followupText, a: null, loading: true, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+        return { ...prev, [key]: arr };
+      });
       try {
         setPreFollowLoading(true);
         const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
@@ -2354,24 +2423,34 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText, noteText: existingNote })
         });
         const addition = (data?.content || '').trim();
-        const key = String(it.startOffset || 0);
+        // Update the placeholder entry with actual response
         setPreFollowThreads((prev) => {
           const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-          arr.push({ q: followupText, a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          const lastIdx = arr.length - 1;
+          if (lastIdx >= 0 && arr[lastIdx].loading && arr[lastIdx].q === followupText) {
+            arr[lastIdx] = { q: followupText, a: addition, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') };
+          } else {
+            arr.push({ q: followupText, a: addition, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          }
           return { ...prev, [key]: arr };
         });
       } catch (e) {
-        const key = String(it.startOffset || 0);
+        // Update placeholder with error
         setPreFollowThreads((prev) => {
           const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-          arr.push({ q: followupText, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          const lastIdx = arr.length - 1;
+          if (lastIdx >= 0 && arr[lastIdx].loading && arr[lastIdx].q === followupText) {
+            arr[lastIdx] = { q: followupText, a: `Error: ${String(e.message || e)}`, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') };
+          } else {
+            arr.push({ q: followupText, a: `Error: ${String(e.message || e)}`, loading: false, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
+          }
           return { ...prev, [key]: arr };
         });
       } finally {
         setPreFollowLoading(false);
       }
     };
-    // threadKey is already defined above in the condition check
+    const threadKey = chosenItem ? String(chosenItem.startOffset || 0) : '';
     const thread = preFollowThreads[threadKey] || [];
     return (
       <div style={{ marginTop: '0.5rem', paddingTop: '0.25rem', borderTop: '1px solid #eee' }}>
@@ -2439,29 +2518,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                         </div>
                       </>
                     ) : null}
-                    <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
-                    {attribution ? (
-                      <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
-                    ) : null}
+                    {m.loading ? (
+                      <div style={{ color: '#6b5f53' }}>Thinking…</div>
+                    ) : (
+                      <>
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                        {attribution ? (
+                          <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                        ) : null}
+                      </>
+                    )}
                   </div>
                 );
               })}
-              {preFollowLoading && (
-                <div style={{ marginTop: thread.length > 0 ? '0.5rem' : '0' }}>
-                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
-                  <div style={{ color: '#6b5f53' }}>Thinking…</div>
-                </div>
-              )}
             </div>
           );
         })()}
       </div>
     );
   })();
-  const selectionChatPanel = hasSelectionContext ? (
+  const selectionChatPanel = (hasSelectionContext && isNoteExpanded) ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
-      {/* Show instructions when note is in select mode */}
-      {sectionHasSelectModeNote && chosenItem && (
+      {/* Show instructions when note is expanded */}
+      {chosenItem && isNoteExpanded && (
         <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginBottom: '0.5rem' }}>
           You can select text in the play to ask about it, or ask a follow-up about this note below.
         </div>
@@ -2500,9 +2579,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
             {/* Show selection preview below chat UI */}
             {showSelectionPreview && renderSelectionPreview(selectionPreviewForChat)}
-            {/* Show "Thinking..." for initial selection loading */}
+            {/* Show "Selected Text" title and "Thinking..." for initial selection loading */}
             {showInitialThinking && (
-              <div style={{ marginTop: showSelectionPreview ? '0.5rem' : '0', marginBottom: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
+              <div style={{ marginTop: showSelectionPreview ? '0.5rem' : '0', marginBottom: '0.5rem' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Selected Text</div>
+                <div style={{ color: '#6b5f53' }}>Thinking…</div>
+              </div>
             )}
             {moreThreads.map((m, idx) => {
               const providerName = formatProviderName(m?.provider || '');
@@ -2685,11 +2767,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     </div>
   ) : null;
   // Explanation panel always appears after chat inputs (which appear after the note)
-  // Only hide when a note exists (chosenItem) but is closed/collapsed (suppressed)
-  // If there's no note at all, show explanations normally
-  // Only consider the note suppressed if there's actually a chosenItem that's suppressed
-  const hasSuppressedNote = chosenItem && (isSuppressed || isForcedSuppressed);
-  const explanationPanel = (hasConversation && !hasSuppressedNote) ? (
+  // Hide explanations when the note is suppressed (closed) - check if current speech note is suppressed
+  const hasSuppressedNote = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
+  const explanationPanel = (hasConversation && !hasSuppressedNote && isNoteExpanded) ? (
     <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       <button 
         type="button" 
@@ -2715,7 +2795,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       {/* Title for selected text explanation */}
       <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Selected Text</div>
       {renderSelectionPreview(selectionPreviewForExplanation)}
+      {isThinking ? (
+        <div style={{ color: '#6b5f53' }}>Thinking…</div>
+      ) : (
       <div style={{ whiteSpace: 'pre-wrap' }}>{conversationLast}</div>
+      )}
       {(() => {
         const providerName = formatProviderName(llm?.options?.provider || '');
         let attribution = '';
@@ -2730,9 +2814,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       })()}
     </div>
   ) : null;
-  // Only hide saved explanations when a note exists but is closed/collapsed (suppressed)
-  // If there's no note at all, show saved explanations normally
-  const savedExplanationsPanel = (filteredSavedExplanations.length > 0 && !hasSuppressedNote) ? (
+  const savedExplanationsPanel = (filteredSavedExplanations.length > 0 && !hasSuppressedNote && isNoteExpanded) ? (
     <div style={{ marginTop: (explanationPanel || selectionChatPanel || noteModeChatPanel) ? '0.75rem' : '0.5rem' }}>
       {filteredSavedExplanations.map((ex, i) => {
         const meta = ex?.meta || {};
@@ -2941,10 +3023,21 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       hasNote = !!(noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
     }
     if (!mobileSelectMode && hasNote) {
-      // Toggle note visibility on click when not in select mode
       const sk = keyToToggle;
-      if (sk) {
-        // If note is suppressed, remove from suppressed list first
+      if (!sk) return;
+      // Check if this note is expanded
+      const noteIsExpanded = expandedNotes && expandedNotes.has(sk);
+      if (noteIsExpanded) {
+        // When note is expanded, clicking the speech allows text selection (fall through to selection logic)
+        // Don't return - let the selection handler process the click
+      } else {
+        // When note is collapsed, clicking the speech toggles visibility
+        // Check if this note is currently visible (is it the chosenItem?)
+        const noteItem = noteBySpeechKey.get(sk);
+        const isCurrentlyVisible = chosenItem && chosenItemSpeechKey === sk;
+        if (suppressedNotes.has(sk) || !isCurrentlyVisible) {
+          // Note is hidden (either suppressed or not visible due to threshold)
+          // Show it by removing suppression and forcing it
         if (suppressedNotes.has(sk)) {
           setSuppressedNotes((prev) => {
             const next = new Set(prev);
@@ -2952,28 +3045,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             return next;
           });
         }
-        const isForced = forcedSet.has(sk);
-        if (onToggleForced) onToggleForced(sk, sectionIndex);
-        if (isForced) {
+          // Force it to be visible
+          if (onToggleForced) {
+            onToggleForced(sk, sectionIndex);
+          }
+          // Don't auto-expand - show in collapsed state per spec flow
+        } else {
+          // Note is visible but collapsed, hide it by suppressing
           setSuppressedNotes((prev) => {
             const next = new Set(prev);
             next.add(sk);
             return next;
           });
-          if (onDeleteSpeech) onDeleteSpeech(sk);
-          if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
-            const enc = new TextEncoder();
-            for (const ex of filteredSavedExplanations) {
-              const meta = ex?.meta;
-              if (!meta) continue;
-              const exKey = meta.speechKey;
-              const matches = exKey ? exKey === sk : meta.sectionIndex === sectionIndex;
-              if (!matches) continue;
-              const len = enc.encode(meta.text || '').length;
-              onDeleteSaved?.(`${meta.byteOffset}-${len}`);
-            }
+          // Remove from forcedNotes if it was forced
+          if (onToggleForced && forcedSet.has(sk)) {
+            onToggleForced(sk, sectionIndex);
           }
-          llm?.onDeleteCurrent?.();
+          // Clear select mode when closing note
+          if (onToggleNoteSelectMode && noteInSelectMode === sk) {
+            onToggleNoteSelectMode(null);
+          }
+          // Clear expanded state when closing note (via callback if available)
+          if (onToggleNoteExpanded && expandedNotes && expandedNotes.has(sk)) {
+            onToggleNoteExpanded(sk); // This will toggle it off if it's on
         }
       }
       // Clear any selection to prevent triggering LLM query
@@ -2987,6 +3081,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       if (typeof suppressNextAutoExplain === 'function') suppressNextAutoExplain();
       else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') suppressNextAutoExplain.current = true;
       return;
+      }
     }
     // If the note is visible, a click selects the sentence; click-drag selects a custom range
     const container = preRef.current;
@@ -2996,11 +3091,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const range = sel.getRangeAt(0);
     // Only process selections within this section's text container
     if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
-      const { start, end } = getOffsetsWithin(container, range);
+    const { start, end } = getOffsetsWithin(container, range);
       // If user dragged, honor the exact selection (no expansion)
-      if (end > start) {
+    if (end > start) {
         isManualDragSelection.current = true;
-        selPendingRef.current = true;
+      selPendingRef.current = true;
         // Clear any native browser selection to prevent interference
         try {
           if (typeof window !== 'undefined' && window.getSelection) {
@@ -3017,11 +3112,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             }
           }
         } catch {}
-        onSelectRange?.({ start, end });
+      onSelectRange?.({ start, end });
         // Reset flag after a delay
         setTimeout(() => { isManualDragSelection.current = false; }, 1000);
-        return;
-      }
+      return;
+    }
     // Otherwise, expand single-click caret to the surrounding sentence
     const idx = start;
     const sent = expandToSentence(text || '', idx);
@@ -3323,7 +3418,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const onTouchEnd = (e) => {
     // Only prevent default if we're in custom selection mode or if we handled the touch
     if (mobileSelectMode) {
-      try { e.preventDefault(); e.stopPropagation(); } catch {}
+    try { e.preventDefault(); e.stopPropagation(); } catch {}
     }
     // Handle selection mode on mobile: tap selects sentence, drag selects range
     if (mobileSelectMode) {
@@ -3367,7 +3462,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
         // Fall back to our manual tracking if the native selection was unavailable/collapsed
         if (start == null || end == null || end <= start) {
-          if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
+        if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
             // User dragged - use exact selection, no expansion
             start = Math.max(0, Math.min(startChar, endChar));
             end = Math.max(start, Math.max(startChar, endChar));
@@ -3375,9 +3470,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             // We have both start and end, even if movedRef is false (might be timing issue)
             // If they're different, user dragged, so use exact selection
             if (startChar !== endChar) {
-              start = Math.max(0, Math.min(startChar, endChar));
-              end = Math.max(start, Math.max(startChar, endChar));
-            } else {
+          start = Math.max(0, Math.min(startChar, endChar));
+          end = Math.max(start, Math.max(startChar, endChar));
+        } else {
               // Single click - expand to sentence
               const idx = startChar;
               const sent = expandToSentence(text || '', idx);
@@ -3385,10 +3480,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             }
           } else {
             // Only one coordinate or neither - single click, expand to sentence
-            const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
-            if (idx != null) {
-              const sent = expandToSentence(text || '', idx);
-              if (sent) { start = sent.start; end = sent.end; }
+          const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
+          if (idx != null) {
+            const sent = expandToSentence(text || '', idx);
+            if (sent) { start = sent.start; end = sent.end; }
             }
           }
         }
@@ -3676,116 +3771,14 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               {(() => {
                 const it = chosenItem;
                 if (!it) return null; // safety
+                // Don't render empty note boxes
+                const noteContent = (it.content || '').trim();
+                if (!noteContent) return null;
                 // Get the speech key for this specific note item
                 const itemSpeechKey = getSpeechKeyForItem(it);
-                const handleCloseNote = (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  // Use itemSpeechKey to identify the note being closed
-                  const sk = itemSpeechKey;
-                  if (!sk) return;
-                  // Check if this note is in the forced list
-                  const isForced = forcedSet.has(String(sk));
-                  if (isForced && onToggleForced) {
-                    // Remove from forced list before suppressing so it stays hidden
-                    onToggleForced(sk, sectionIndex);
-                  }
-                  // Add to suppressed list to hide the note itself (but keep explanations visible)
-                  setSuppressedNotes((prev) => {
-                    const next = new Set(prev);
-                    next.add(sk);
-                    return next;
-                  });
-                  // Also hide locally visible notes
-                  setForceShow(false);
-                  // Don't clear selection or explanations - they should persist when note is closed
-                  // and reappear when note is reopened
-                  // Only clear chat UI state, not the underlying data
-                  if (onToggleNoteSelectMode) onToggleNoteSelectMode(null);
-                  setShowPreFollow(false);
-                  setPreFollowInput('');
-                  setPreFollowLoading(false);
-                  // Don't delete preFollowThreads, conversations, or selections - they should persist
-                  try {
-                    if (typeof window !== 'undefined') {
-                      const sel = window.getSelection?.();
-                      sel?.removeAllRanges?.();
-                    }
-                  } catch {}
-                };
-                const toggleFollow = () => setShowPreFollow((v)=>!v);
-                const submitFollow = async () => {
-                  const q = (preFollowInput || '').trim();
-                  if (!q) return;
-                  try {
-                    setPreFollowLoading(true);
-                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                    const startC = bytesToCharOffset(text || '', startRelB);
-                    const endC = bytesToCharOffset(text || '', endRelB);
-                    const passage = (text || '').slice(startC, endC);
-                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const url = getApiUrl('/api/explain');
-                    const existingNote = (it.content || '').trim();
-                    const data = await fetchWithErrorHandling(url, {
-                      method: 'POST', headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
-                    });
-                    const a = data?.content || '';
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } catch (e) {
-                    const key = String(it.startOffset || 0);
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q, a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } finally {
-                    setPreFollowLoading(false);
-                  }
-                };
-                const requestLonger = async () => {
-                  const key = String(it.startOffset || 0);
-                  const q = 'Please expand this into a longer explanation with more detail.';
-                  try {
-                    setPreFollowLoading(true);
-                    const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-                    const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
-                    const startC = bytesToCharOffset(text || '', startRelB);
-                    const endC = bytesToCharOffset(text || '', endRelB);
-                    const passage = (text || '').slice(startC, endC);
-                    const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-                    const url = getApiUrl('/api/explain');
-                    const existingNote = (it.content || '').trim();
-                    const data = await fetchWithErrorHandling(url, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
-                    });
-                    const addition = (data?.content || '').trim();
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a: addition, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } catch (e) {
-                    setPreFollowThreads((prev) => {
-                      const arr = Array.isArray(prev[key]) ? prev[key].slice() : [];
-                      arr.push({ q: 'More detail', a: `Error: ${String(e.message || e)}`, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
-                      return { ...prev, [key]: arr };
-                    });
-                  } finally {
-                    setPreFollowLoading(false);
-                  }
-                };
+                const isExpanded = itemSpeechKey && expandedNotes.has(itemSpeechKey);
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
-                    <button type="button" className="closeBtn" onClick={handleCloseNote} aria-label="Close note" style={{ position: 'absolute', right: 0, top: 0 }}>✕</button>
                     <div 
                       className="noteContent" 
                       style={{ 
@@ -3796,40 +3789,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       onClick={(e)=>{ 
                         e.stopPropagation(); 
                         e.preventDefault();
-                        const hasSelection = !!selectedRange;
-                        const hasExplanation = !!(selectedRange && contextInfo && llm?.conversation?.last && llm?.conversation?.last !== 'AI is thinking…');
-                        const inSelectMode = noteInSelectMode === itemSpeechKey;
-                        const hasChatOpen = showPreFollow || inSelectMode || hasSelection || hasExplanation;
-                        if (hasChatOpen) {
-                          onSelectRange?.(null);
-                          if (typeof suppressNextAutoExplain === 'function') {
-                            suppressNextAutoExplain();
-                          } else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
-                            suppressNextAutoExplain.current = true;
-                          }
-                          if (onToggleNoteSelectMode) onToggleNoteSelectMode(null);
-                          setShowPreFollow(false);
-                          setPreFollowInput('');
-                          setPreFollowLoading(false);
-                          try {
-                            if (typeof window !== 'undefined') {
-                              const sel = window.getSelection?.();
-                              sel?.removeAllRanges?.();
-                            }
-                          } catch {}
-                          return;
+                        // Toggle expanded/collapsed state
+                        if (itemSpeechKey && onToggleNoteExpanded) {
+                          onToggleNoteExpanded(itemSpeechKey);
                         }
-                        if (onToggleNoteSelectMode && itemSpeechKey) {
-                          if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
-                            suppressNextAutoExplain.current = false;
-                          }
-                          onToggleNoteSelectMode(itemSpeechKey);
-                          return;
-                        }
-                        toggleFollow(); 
                       }} 
-                      title={(noteInSelectMode === itemSpeechKey) ? "Click to exit text selection mode" : "Click to enable text selection mode"}>
-                      {it.content || ''}
+                      title={isExpanded ? "Click to collapse note" : "Click to expand note"}>
+                      {noteContent}
                     </div>
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {(() => {
@@ -3851,109 +3817,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                         return '';
                       })()}
                     </div>
-                    {showPreFollow && (
-                      <>
-                        <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-                            <input 
-                              type="text" 
-                              placeholder="Ask a follow‑up…" 
-                              value={preFollowInput} 
-                              onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} 
-                              onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} 
-                              style={{ width: '100%', paddingRight: preFollowInput ? '24px' : '0' }} 
-                            />
-                            {preFollowInput && (
-                              <button
-                                type="button"
-                                onClick={(e) => { e.stopPropagation(); setPreFollowInput(''); }}
-                                style={{
-                                  position: 'absolute',
-                                  right: '4px',
-                                  top: '50%',
-                                  transform: 'translateY(-50%)',
-                                  background: 'none',
-                                  border: 'none',
-                                  cursor: 'pointer',
-                                  padding: '2px 6px',
-                                  fontSize: '18px',
-                                  lineHeight: '1',
-                                  color: '#6b5f53'
-                                }}
-                                aria-label="Clear"
-                              >
-                                ×
-                              </button>
-                            )}
-                          </div>
-                          <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
-                          <button
-                            type="button"
-                            disabled={preFollowLoading}
-                            onClick={(e) => { e.stopPropagation(); requestLonger(); }}
-                            title="Get a longer response"
-                          >
-                            More
-                          </button>
-                        </div>
-                      </>
-                    )}
-                    {preFollowLoading && !sectionHasSelectModeNote && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
-                    {(() => {
-                      // Only show threads here if note is NOT in select mode AND noteModeChatPanel is not showing them
-                      // noteModeChatPanel shows threads when sectionHasSelectModeNote is true OR when hasThreads is true
-                      if (sectionHasSelectModeNote) return null;
-                      const threadKey = String(it.startOffset || 0);
-                      const hasThreads = threadKey && preFollowThreads[threadKey] && preFollowThreads[threadKey].length > 0;
-                      // If noteModeChatPanel would show these threads (hasThreads is true), don't show them here too
-                      if (hasThreads) return null;
-                      const thread = preFollowThreads[threadKey] || [];
-                      if (!thread.length) return null;
-                      return (
-                        <div style={{ marginTop: '0.5rem' }}>
-                          {thread.map((m, idx) => {
-                            const providerName = formatProviderName(m?.provider || '');
-                            let attribution = '';
-                            if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
-                            else if (m?.model) attribution = `Model: ${m.model}`;
-                            else if (providerName) attribution = providerName;
-                            if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
-                              const fallbackProvider = formatProviderName(llm?.options?.provider || '');
-                              const fallbackModel = llm?.options?.model || '';
-                              if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
-                              else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
-                              else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
-                              else if (fallbackProvider) attribution = fallbackProvider;
-                            }
-                            const isMore = m.q === 'More detail' || m.q === 'More';
-                            return (
-                              <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
-                                {isMore ? (
-                                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
-                                ) : m.q ? (
-                                  <div
-                                    style={{
-                                      marginBottom: '0.5rem',
-                                      paddingLeft: '1rem',
-                                      borderLeft: '3px solid #e8d8b5',
-                                      fontStyle: 'italic',
-                                      color: '#4a4036',
-                                      whiteSpace: 'pre-wrap',
-                                    }}
-                                  >
-                                    {m.q}
-                                  </div>
-                                ) : null}
-                                <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
-                                {attribution ? (
-                                  <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
-                                ) : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      );
-                    })()}
                   </div>
                 );
               })()}
@@ -4281,15 +4144,15 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
   return (
     <div style={{ marginTop: noteMode ? '0.25rem' : '0.5rem' }}>
       <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-        {showInput ? (
-          <>
-            <div style={{ flex: 1, minWidth: 0, position: 'relative', maxWidth: 'calc(100% - 80px)' }}>
-              <input 
-                type="text" 
-                placeholder="Ask a follow‑up…" 
-                value={q} 
-                onChange={(e)=>setQ(e.target.value)} 
-                onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); submitFollowup(); } }} 
+      {showInput ? (
+        <>
+            <div style={{ flex: 1, minWidth: 0, position: 'relative', maxWidth: 'calc(100% - 120px)' }}>
+          <input 
+            type="text" 
+            placeholder="Ask a follow‑up…" 
+            value={q} 
+            onChange={(e)=>setQ(e.target.value)} 
+            onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); submitFollowup(); } }} 
                 style={{ width: '100%', paddingRight: q ? '24px' : '0' }} 
               />
               {q && (
@@ -4316,15 +4179,15 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
               )}
             </div>
             <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup} style={{ flexShrink: 0 }}>Ask</button>
-          </>
-        ) : isInSelectMode ? (
-          <div style={{ flex: 1, fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic' }}>
-            Tap a sentence or drag to select text
-          </div>
-        ) : (
-          <div style={{ flex: 1 }}></div>
-        )}
-        <button type="button" disabled={loading || (!hasContext && !noteMode)} onClick={requestMore}>More</button>
+        </>
+      ) : isInSelectMode ? (
+        <div style={{ flex: 1, fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic' }}>
+          Tap a sentence or drag to select text
+        </div>
+      ) : (
+        <div style={{ flex: 1 }}></div>
+      )}
+      <button type="button" disabled={loading || (!hasContext && !noteMode)} onClick={requestMore}>More</button>
       </div>
       {/* Show selection hint below input when in noteMode but no text selected */}
       {showSelectionHint && (
@@ -4362,12 +4225,12 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
       {/* Follow-up question */}
       <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
         <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-          <input
-            type="text"
-            value={q}
-            onChange={(e)=>setQ(e.target.value)}
-            placeholder="Ask a follow‑up…"
-            onKeyDown={(e)=>{ if (e.key==='Enter') { e.preventDefault(); submitFollowup(); } }}
+        <input
+          type="text"
+          value={q}
+          onChange={(e)=>setQ(e.target.value)}
+          placeholder="Ask a follow‑up…"
+          onKeyDown={(e)=>{ if (e.key==='Enter') { e.preventDefault(); submitFollowup(); } }}
             style={{ width: '100%', paddingRight: q ? '24px' : '0' }}
           />
           {q && (
@@ -4402,11 +4265,13 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
   );
 }
 
-function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options }) {
+function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options, title }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const [loading, setLoading] = useState(false);
   const [thread, setThread] = useState([]); // [{q,a}]
+  // Determine title based on meta or prop
+  const explanationTitle = title || (meta?.mode === 'more' ? 'More' : (meta?.mode === 'followup' ? 'Chat Prompt' : 'Selected Text'));
   const ask = async (followupText) => {
     const v = (followupText || q || '').trim();
     if (!v) return;
@@ -4436,19 +4301,21 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
   return (
     <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       {onDelete && (
-        <button 
-          type="button" 
-          className="closeBtn" 
+      <button
+        type="button"
+        className="closeBtn"
           onClick={(e) => {
             e.stopPropagation();
             onDelete();
           }} 
           aria-label="Delete explanation" 
           style={{ position: 'absolute', right: 0, top: 0 }}
-        >
-          🗑️
-        </button>
+      >
+        🗑️
+      </button>
       )}
+      {/* Title for explanation */}
+      <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>{explanationTitle}</div>
       {(() => {
         const preview = (passage || '').trim();
         if (!preview) return null;
@@ -4517,7 +4384,7 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           {thread.map((m, i) => {
             const isMore = m.q === 'More detail' || m.q === 'More' || (m.q && m.q.toLowerCase().includes('expand') && m.q.toLowerCase().includes('more'));
             return (
-              <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
+            <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
                 {isMore ? (
                   <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
                 ) : m.q ? (
@@ -4534,9 +4401,9 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
                     {m.q}
                   </div>
                 ) : null}
-                <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
-                <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
-              </div>
+              <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
+            </div>
             );
           })}
         </div>

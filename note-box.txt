@@ -1,0 +1,59 @@
+The note box appears on the right of a speech in the play.  It can be hidden, open and collapsed, or open and expanded.
+
+When it first appears, it is in its collapsed state:
+
+  - note
+  - model attribution
+
+The note is hot and a click on it toggles the note box between collapsed and expanded states.
+
+When expanded, it shows:
+
+  - note
+  - model attribution
+  - instructions on selecting text (visible whenever the note is expanded)
+  - chat input box, ask button, More button
+
+The open note box offers three ways to request on-demand explanations.  
+
+  - More
+  - Chat Prompt
+  - Text Selection (click a word to select sentence, or click-and-drag for custom selection)
+
+Explanation layout:
+
+  - title (Selected Text, More, Chat Prompt)
+  - the associated text string.  For More, it is the full speech, like the original note. There is a special rule that the text is not displayed if it is the full speech, to avoid repetition.   Indented, italic.
+  - the explanation
+  - model attribution
+  - garbage can icon
+
+The user can create many explanations for the same speech.  They all appear one after another below the chat input box.
+
+When the note box is collapsed, it returns to its original layout
+
+  - note
+  - model attribution
+
+The explanations are hidden in this layout, but are still available.  
+
+At this point, a click on the speech will hide the note box entirely.
+
+When the note box is expanded, clicking on the speech allows text selection (click word to select sentence, or click-and-drag for custom selection).
+
+Later, when the note box is opened again, the explanations will become visible.
+
+A possible layout:
+
+  - note
+  - model attribution
+  - instructions on selecting text
+  - chat input box, ask button, More button
+
+  - More
+  - More response
+
+  - Chat Prompt
+  - prompt text
+  - Chat Prompt response
+
