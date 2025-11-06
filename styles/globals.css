@@ -558,6 +558,52 @@ html.isPrintRoute .container { left: 0; }
   word-break: break-word;
 }
 
+/* Subtle hover effect for speeches with notes - indicates clickability */
+.playText pre.hasNotes {
+  position: relative;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease;
+}
+
+.playText pre.hasNotes:hover {
+  background-color: #faf9f7 !important;
+  box-shadow: 0 0 0 2px rgba(231, 215, 184, 0.7), inset 0 0 0 1px rgba(231, 215, 184, 0.3) !important;
+  outline: 2px solid rgba(231, 215, 184, 0.6) !important;
+  outline-offset: -2px;
+}
+
+.playText pre.hasNotes:hover::after {
+  content: 'Click to open note';
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  font-size: 0.7em;
+  color: #9b8f82;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 6px;
+  border-radius: 3px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Note content hover effect - shows it's clickable and reveals toggle indicator */
+.noteContent {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.noteContent:hover {
+  background-color: #f8f6f3 !important;
+  border-color: rgba(231, 215, 184, 0.5) !important;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+}
+
+.noteContent:hover .noteToggleIndicator {
+  opacity: 1 !important;
+  color: #7a6d5f !important;
+}
+
 /* Highlighted search results */
 .highlight {
   background: #ffea9e;

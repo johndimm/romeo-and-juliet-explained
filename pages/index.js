@@ -3058,11 +3058,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           if (onToggleForced) {
             onToggleForced(sk, sectionIndex);
           }
-          // Enable mobile text selection mode when note is opened
-          if (onToggleNoteSelectMode && noteInSelectMode !== sk) {
-            onToggleNoteSelectMode(sk);
-          }
           // Don't auto-expand - show in collapsed state per spec flow
+          // Text selection mode will be enabled when user expands the note (via onToggleNoteExpanded)
         } else {
           // Note is visible but collapsed, hide it by suppressing
           setSuppressedNotes((prev) => {
@@ -3509,10 +3506,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           selPendingRef.current = true;
           lastSelectionStringRef.current = `${start}-${end}`;
           onSelectRange?.({ start, end });
-          // Exit text selection mode when selection is made
-          if (onToggleNoteSelectMode && noteInSelectMode) {
-            onToggleNoteSelectMode(noteInSelectMode);
-          }
+          // Don't exit text selection mode - keep it active so user can select again
+          // (same behavior as desktop)
           scrollAsideIntoView();
         }
       } catch {}
@@ -3706,6 +3701,15 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // hasAside is recomputed just before render using visibility-aware lists
 
+  // Check if this section has any notes to enable hover effects
+  const sectionHasNotes = useMemo(() => {
+    if (!noteBySpeechKey || !speeches || speeches.length === 0) return false;
+    return speeches.some(sp => {
+      const spKey = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+      return noteBySpeechKey.has(spKey);
+    });
+  }, [noteBySpeechKey, speeches]);
+
   // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
     <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
@@ -3727,13 +3731,16 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
+          data-has-notes={sectionHasNotes ? 'true' : 'false'}
+          className={sectionHasNotes ? 'hasNotes' : ''}
           style={{ 
-            cursor: (isTouchDevice && mobileSelectMode) ? 'text' : 'pointer',
+            cursor: (isTouchDevice && mobileSelectMode) ? 'text' : (sectionHasNotes ? 'pointer' : 'default'),
             // Subtle visual indicator for text selection mode on the text area
             // Only show if this section contains the note that's in select mode
             border: mobileSelectMode ? '1px solid #c9c0b8' : 'none',
             borderRadius: mobileSelectMode ? '2px' : '0',
-            backgroundColor: mobileSelectMode ? '#faf9f7' : 'transparent',
+            // Don't set backgroundColor inline - let CSS hover handle it
+            ...(mobileSelectMode ? { backgroundColor: '#faf9f7' } : {}),
             transition: 'all 0.2s ease',
             userSelect: 'text',  // Always allow text selection on mobile
             WebkitUserSelect: 'text',  // Always allow text selection on mobile
@@ -3797,7 +3804,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       style={{ 
                         whiteSpace: 'pre-wrap', 
                         cursor: 'pointer', 
-                        userSelect: 'text'
+                        userSelect: 'text',
+                        position: 'relative',
+                        paddingRight: '1.5rem'
                       }} 
                       onClick={(e)=>{ 
                         e.stopPropagation(); 
@@ -3809,6 +3818,22 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       }} 
                       title={isExpanded ? "Click to collapse note" : "Click to expand note"}>
                       {noteContent}
+                      <span 
+                        className="noteToggleIndicator"
+                        style={{
+                          position: 'absolute',
+                          right: 0,
+                          top: 0,
+                          fontSize: '0.75em',
+                          color: '#9b8f82',
+                          opacity: 0,
+                          transition: 'opacity 0.2s ease',
+                          pointerEvents: 'none'
+                        }}
+                        aria-hidden="true"
+                      >
+                        {isExpanded ? '▼' : '▶'}
+                      </span>
                     </div>
                     <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
                       {(() => {
