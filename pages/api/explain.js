@@ -95,7 +95,7 @@ export default async function handler(req, res) {
     (contextText && contextText.trim().length ? contextText : null),
     (contextText && contextText.trim().length ? '"""' : null),
     (contextText && contextText.trim().length ? '' : null),
-    (noteText && noteText.trim().length ? 'Prewritten note for these lines (use only as grounding; do not repeat or paraphrase it):' : null),
+    (noteText && noteText.trim().length ? 'Existing note for these lines (the user will see both the note and your response; do not repeat or paraphrase information already in the note):' : null),
     (noteText && noteText.trim().length ? '"""' : null),
     (noteText && noteText.trim().length ? noteText : null),
     (noteText && noteText.trim().length ? '"""' : null),
@@ -103,9 +103,11 @@ export default async function handler(req, res) {
     'Context for grounding (do not restate it):',
     ctxLines.join('\n') || 'N/A',
     '',
-    'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.',
+    (noteText && noteText.trim().length && (mode === 'followup' || mode === 'more') ? 'IMPORTANT: Your response will be appended to the existing note above. Focus on adding new information, insights, or details that are not already covered in the note. Do not repeat or rephrase what is already there.' : null),
+    (noteText && noteText.trim().length && mode !== 'followup' && mode !== 'more' ? 'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.' : null),
+    (!noteText || mode === 'brief' ? 'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.' : null),
     mode === 'brief' ? 'Brief mode: 2-3 sentences; weave clarifications naturally into the paraphrase.' : null,
-    mode === 'more' ? 'More mode: add a little more detail; if helpful, include very short glosses (word — meaning) before the paraphrase.' : null,
+    mode === 'more' ? (noteText && noteText.trim().length ? 'More mode: add additional detail, context, or insights that build on the existing note without repeating it.' : 'More mode: add a little more detail; if helpful, include very short glosses (word — meaning) before the paraphrase.') : null,
     mode === 'followup' && followup ? `Follow-up question: ${followup}` : null,
   ]
     .filter(Boolean)

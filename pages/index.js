@@ -431,32 +431,124 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   // Reset the refs array before rendering highlights so it doesn't accumulate
   matchRefs.current = [];
 
-  // After highlights render for a given query, capture count and reset index
+  // After highlights render for a given query, capture count and scroll to first match
   useEffect(() => {
-    setTotalMatches(matchRefs.current.length);
-    setCurrentIdx(0);
+    if (!query || !query.trim()) {
+      setTotalMatches(0);
+      setCurrentIdx(0);
+      matchRefs.current.forEach((el) => el && el.classList.remove('current'));
+      return;
+    }
+
+    // Wait for all sections to render, then query DOM for highlights
+    // This is more reliable than waiting for refs to populate
+    let rafId1, rafId2, timeoutId;
+    let attempts = 0;
+    const maxAttempts = 10;
+    
+    const checkAndScroll = () => {
+      // Query DOM directly for all highlight elements
+      const highlights = Array.from(document.querySelectorAll('.highlight'));
+      
+      // Also check refs array (in case it's populated)
+      const refsCount = matchRefs.current.length;
+      const domCount = highlights.length;
+      const count = Math.max(refsCount, domCount);
+      
+      if (count > 0) {
+        // Sync refs array with DOM if needed
+        if (domCount > refsCount) {
+          matchRefs.current = highlights;
+        }
+        
+        setTotalMatches(count);
+        setCurrentIdx(0);
+        
+        // Scroll to first match
+        rafId2 = requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const el = matchRefs.current[0] || highlights[0];
+            if (el) {
+              // Ensure refs array is synced
+              if (!matchRefs.current[0] && highlights[0]) {
+                matchRefs.current = highlights;
+              }
+              
+              // Mark active class
+              matchRefs.current.forEach((e) => e && e.classList.remove('current'));
+              highlights.forEach((e) => e.classList.remove('current'));
+              el.classList.add('current');
+              
+              // Scroll within our active scroller rather than window to avoid header shifts on mobile
+              const scroller = getScroller();
+              if (scroller) {
+                try {
+                  const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
+                  if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                  else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+                } catch (e) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                }
+              } else {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+              }
+            }
+          });
+        });
+      } else if (attempts < maxAttempts) {
+        // If no matches found yet, keep trying (sections might still be rendering)
+        attempts++;
+        timeoutId = setTimeout(() => {
+          checkAndScroll();
+        }, 50);
+      } else {
+        // Give up after max attempts
+        setTotalMatches(0);
+        setCurrentIdx(0);
+      }
+    };
+
+    rafId1 = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        checkAndScroll();
+      });
+    });
+
+    return () => {
+      if (rafId1) cancelAnimationFrame(rafId1);
+      if (rafId2) cancelAnimationFrame(rafId2);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [query]);
 
+  // Handle scrolling when currentIdx changes (via prev/next buttons)
   useEffect(() => {
-    if (totalMatches > 0 && matchRefs.current[currentIdx]) {
-      // Mark active class
-      matchRefs.current.forEach((el) => el && el.classList.remove('current'));
-      const el = matchRefs.current[currentIdx];
-      el.classList.add('current');
-      // Scroll within our active scroller rather than window to avoid header shifts on mobile
-      const scroller = getScroller();
-      if (scroller) {
-        try {
-          const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
-          if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
-          else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
-        } catch (e) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-        }
-      } else {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-      }
-    } else {
+    if (totalMatches > 0 && currentIdx >= 0 && currentIdx < totalMatches) {
+      // Use requestAnimationFrame to ensure DOM has updated with highlights
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = matchRefs.current[currentIdx];
+          if (el) {
+            // Mark active class
+            matchRefs.current.forEach((e) => e && e.classList.remove('current'));
+            el.classList.add('current');
+            // Scroll within our active scroller rather than window to avoid header shifts on mobile
+            const scroller = getScroller();
+            if (scroller) {
+              try {
+                const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
+                if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+              } catch (e) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+              }
+            } else {
+              el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+            }
+          }
+        });
+      });
+    } else if (totalMatches === 0) {
       // Ensure no stale 'current' class remains when there are no matches
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
     }
@@ -1108,7 +1200,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     const base = sectionsWithOffsets[sectionIndex]?.startOffset || 0;
     const byteOffset = base + bytesBefore;
     const ctx = getContextForOffset(metadata, byteOffset);
-    const textForLLM = selection.fullText || sectionText.slice(selection.start, selection.end);
+    // Always use the exact selected text range, never expand to fullText
+    const textForLLM = sectionText.slice(selection.start, selection.end);
     setSelectionContext({ ...ctx, text: textForLLM, byteOffset });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
@@ -1412,7 +1505,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
     };
 
     if (!conversations[selectionId] || !conversations[selectionId].last) {
-      setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta } });
+      setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
     }
 
     try {
@@ -1473,6 +1566,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
           }
         }
       } catch {}
+      // If mode is 'more' or 'followup' and there's an existing explanation, use it as noteText
+      // This ensures the API knows not to repeat existing content
+      if ((mode === 'more' || mode === 'followup') && conversations[selectionId] && conversations[selectionId].last) {
+        const existingExplanation = conversations[selectionId].last;
+        if (existingExplanation && existingExplanation !== 'AI is thinking…' && String(existingExplanation).trim()) {
+          // Prepend existing explanation to noteText if there's already a precomputed note
+          noteText = noteText ? `${noteText}\n\n${existingExplanation}` : existingExplanation;
+        }
+      }
 
       const url = getApiUrl('/api/explain');
       const data = await fetchWithErrorHandling(url, {
@@ -1496,9 +1598,28 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
         { role: 'user', content: buildUserPrompt(selectionContext, mode, followup, reqLen) },
         assistantMsg,
       ].slice(-12);
-      setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta } });
+      
+      // For 'more' mode, append to moreThreads instead of replacing last
+      if (mode === 'more') {
+        const existingMoreThreads = conversations[selectionId]?.moreThreads || [];
+        const newMoreThreads = [
+          ...existingMoreThreads,
+          { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
+        ];
+        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: conversations[selectionId]?.last || data.content, meta, moreThreads: newMoreThreads, followupThreads: conversations[selectionId]?.followupThreads || [] } });
+      } else if (mode === 'followup' && followup) {
+        // For followup mode, append to followupThreads
+        const existingFollowupThreads = conversations[selectionId]?.followupThreads || [];
+        const newFollowupThreads = [
+          ...existingFollowupThreads,
+          { q: followup, a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
+        ];
+        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: conversations[selectionId]?.last || data.content, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: newFollowupThreads } });
+      } else {
+        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
+      }
     } catch (e) {
-      setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta } });
+      setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
     } finally {
       setLoadingLLM(false);
     }
@@ -1669,6 +1790,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
                   deleteExplanationById(selectionId);
                   // also clear the current selection to remove the panel immediately
                   setSelection(null);
+                  // Clear browser selection to prevent re-triggering
+                  if (typeof window !== 'undefined' && window.getSelection) {
+                    try {
+                      const sel = window.getSelection();
+                      if (sel) sel.removeAllRanges();
+                    } catch {}
+                  }
                 }
               },
             }}
@@ -1862,6 +1990,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const scrollerStartRef = useRef(0);
   const selectionTimeoutRef = useRef(null);
   const lastSelectionStringRef = useRef('');
+  const isManualDragSelection = useRef(false); // Track if user manually dragged to select
+  const isMouseDown = useRef(false); // Track if mouse button is currently down
   // Mobile selection mode state/refs - now driven by noteInSelectMode
   const [detectedTouchDevice, setDetectedTouchDevice] = useState(false);
   useEffect(() => {
@@ -2006,23 +2136,21 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const len = textEncoder.encode(contextInfo.text || '').length;
     return `${contextInfo.byteOffset}-${len}`;
   })() : null;
-  const filteredSavedExplanations = (savedExplanations || []).filter((ex) => {
-    if (!currentSelectionId || !ex?.meta) return true;
-    const len = textEncoder.encode(ex.meta.text || '').length;
-    const exId = `${ex.meta.byteOffset}-${len}`;
-    return exId !== currentSelectionId;
-  });
-  const selectionByteStart = hasSelectionContext && contextInfo ? (contextInfo.byteOffset ?? null) : null;
-  const selectionByteLength = (hasSelectionContext && contextInfo && contextInfo.text) ? textEncoder.encode(contextInfo.text).length : 0;
-  const selectionByteEnd = selectionByteStart != null ? selectionByteStart + selectionByteLength : null;
-  const speechSpan = useMemo(() => {
-    if (!hasSelectionContext || selectionByteStart == null) return null;
+  // Filter saved explanations to only show ones relevant to current note or section
+  // If there's a note (chosenItem), show explanations for that note's speech
+  // Otherwise, show all explanations for this section
+  // Note: speechSpan is computed below, but we need to check it here
+  // We'll compute it early for filtering purposes
+  const noteSpeechSpan = useMemo(() => {
+    if (!chosenItem) return null;
+    const byteOffset = chosenItem.startOffset ?? chosenItem.byteOffset ?? null;
+    if (byteOffset == null) return null;
     const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
     if (!speechesMeta.length) return null;
     let idx = -1;
     for (let i = 0; i < speechesMeta.length; i++) {
       const off = speechesMeta[i]?.offset || 0;
-      if (off <= selectionByteStart) idx = i; else break;
+      if (off <= byteOffset) idx = i; else break;
     }
     if (idx < 0) return null;
     const start = speechesMeta[idx].offset || 0;
@@ -2035,9 +2163,105 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       const scene = (metadata?.scenes || []).find((s) => start >= (s.startOffset || 0) && start < (s.endOffset || 0));
       if (scene && scene.endOffset != null) end = scene.endOffset;
     }
-    if (end == null || end <= start) end = start + selectionByteLength;
+    if (end == null || end <= start) {
+      const noteEnd = chosenItem?.endOffset;
+      end = noteEnd != null && noteEnd > start ? noteEnd : (start + 100);
+    }
     return { start, end };
-  }, [hasSelectionContext, metadata, selectionByteStart, selectionByteLength]);
+  }, [chosenItem, metadata]);
+  const filteredSavedExplanations = (savedExplanations || []).filter((ex) => {
+    if (!ex?.meta) return false;
+    // If there's a note, show explanations that match the note's speech
+    // This ensures explanations created when the note is open will show when the note is reopened
+    if (chosenItem) {
+      let matches = false;
+      
+      // Get the speech key for the chosenItem (note) - this is more reliable than using currentSpeech
+      const noteSpeechKey = getSpeechKeyForItem(chosenItem);
+      
+      // First try to match by speechKey - most reliable
+      if (noteSpeechKey) {
+        const exSpeechKey = ex.meta.speechKey;
+        if (exSpeechKey && exSpeechKey === noteSpeechKey) {
+          matches = true;
+        }
+      }
+      
+      // Also try the currentSpeech's speechKey as a fallback (in case getSpeechKeyForItem fails)
+      if (!matches && speechKey) {
+        const exSpeechKey = ex.meta.speechKey;
+        if (exSpeechKey && exSpeechKey === speechKey) {
+          matches = true;
+        }
+      }
+      
+      // Also check by byte offset range if speech span is available
+      if (!matches && noteSpeechSpan) {
+        const exByteOffset = ex.meta.byteOffset;
+        if (exByteOffset != null && typeof exByteOffset === 'number') {
+          const isWithinRange = exByteOffset >= noteSpeechSpan.start && exByteOffset < noteSpeechSpan.end;
+          if (isWithinRange) {
+            matches = true;
+          }
+        }
+      }
+      
+      // If we have a note but no matches, exclude this explanation
+      if (!matches) {
+        return false;
+      }
+    }
+    // Don't show saved explanations that match the currently selected text (they're shown in explanationPanel)
+    if (!currentSelectionId) return true;
+    // Try multiple ways to match the ID to be more robust
+    const len = textEncoder.encode(ex.meta.text || '').length;
+    const exId = `${ex.meta.byteOffset}-${len}`;
+    // Also check if selectedId matches (passed from parent)
+    if (selectedId && selectedId === exId) return false;
+    // Check if currentSelectionId matches
+    if (exId === currentSelectionId) return false;
+    // Also check byteOffset match if text length matches (in case of encoding differences)
+    if (ex.meta.byteOffset === contextInfo?.byteOffset && len === textEncoder.encode(contextInfo?.text || '').length) {
+      return false;
+    }
+    return true;
+  });
+  const selectionByteStart = hasSelectionContext && contextInfo ? (contextInfo.byteOffset ?? null) : null;
+  const selectionByteLength = (hasSelectionContext && contextInfo && contextInfo.text) ? textEncoder.encode(contextInfo.text).length : 0;
+  const selectionByteEnd = selectionByteStart != null ? selectionByteStart + selectionByteLength : null;
+  // Compute speech span for the current selection OR for the note if one is active
+  const speechSpan = useMemo(() => {
+    let byteOffset = selectionByteStart;
+    // If no selection but there's a note, use the note's byte offset
+    if (byteOffset == null && chosenItem && (chosenItem.startOffset != null || chosenItem.byteOffset != null)) {
+      byteOffset = chosenItem.startOffset ?? chosenItem.byteOffset ?? null;
+    }
+    if (byteOffset == null) return null;
+    const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+    if (!speechesMeta.length) return null;
+    let idx = -1;
+    for (let i = 0; i < speechesMeta.length; i++) {
+      const off = speechesMeta[i]?.offset || 0;
+      if (off <= byteOffset) idx = i; else break;
+    }
+    if (idx < 0) return null;
+    const start = speechesMeta[idx].offset || 0;
+    let end = null;
+    for (let j = idx + 1; j < speechesMeta.length; j++) {
+      const nextOff = speechesMeta[j]?.offset;
+      if (nextOff != null && nextOff > start) { end = nextOff; break; }
+    }
+    if (end == null) {
+      const scene = (metadata?.scenes || []).find((s) => start >= (s.startOffset || 0) && start < (s.endOffset || 0));
+      if (scene && scene.endOffset != null) end = scene.endOffset;
+    }
+    if (end == null || end <= start) {
+      // If no end found, use selection length or note's end offset
+      const noteEnd = chosenItem?.endOffset ?? chosenItem?.byteOffset;
+      end = noteEnd != null && noteEnd > start ? noteEnd : (start + (selectionByteLength || 100));
+    }
+    return { start, end };
+  }, [hasSelectionContext, metadata, selectionByteStart, selectionByteLength, chosenItem]);
   const selectionIsWholeSpeech = useMemo(() => {
     if (!speechSpan || selectionByteStart == null || selectionByteEnd == null) return false;
     const tolerance = 4;
@@ -2071,7 +2295,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     );
   };
   const noteModeChatPanel = (() => {
-    if (!(sectionHasSelectModeNote && chosenItem && !hasSelectionContext)) return null;
+    // Only show noteModeChatPanel when note is open and NO text is selected
+    // When text is selected, selectionChatPanel will show instead (with instructions)
+    // Show if note is in select mode OR if there are preFollowThreads for this note (to persist them when note is reopened)
+    const threadKey = chosenItem ? String(chosenItem.startOffset || 0) : '';
+    const hasThreads = threadKey && preFollowThreads[threadKey] && preFollowThreads[threadKey].length > 0;
+    if (!(chosenItem && !hasSelectionContext && (sectionHasSelectModeNote || hasThreads))) return null;
     const it = chosenItem;
     const handleNoteMore = async () => {
       try {
@@ -2082,17 +2311,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         const endC = bytesToCharOffset(text || '', endRelB);
         const passage = (text || '').slice(startC, endC);
         const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-        const existing = (it.content || '').trim();
-        const q = existing
-          ? `Provide additional insight that builds on the existing explanation below without repeating or paraphrasing it. Focus on new details, clarifying tricky references, or subtle dramatic function.
-Existing explanation:
-"""${existing}"""`
-          : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
+        const existingNote = (it.content || '').trim();
+        const q = 'Please expand this into a longer explanation with more detail.';
         const url = getApiUrl('/api/explain');
         const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
         });
         const addition = (data?.content || '').trim();
         const key = String(it.startOffset || 0);
@@ -2122,10 +2347,11 @@ Existing explanation:
         const passage = (text || '').slice(startC, endC);
         const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
         const url = getApiUrl('/api/explain');
+        const existingNote = (it.content || '').trim();
         const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText })
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText, noteText: existingNote })
         });
         const addition = (data?.content || '').trim();
         const key = String(it.startOffset || 0);
@@ -2145,11 +2371,10 @@ Existing explanation:
         setPreFollowLoading(false);
       }
     };
+    // threadKey is already defined above in the condition check
+    const thread = preFollowThreads[threadKey] || [];
     return (
       <div style={{ marginTop: '0.5rem', paddingTop: '0.25rem', borderTop: '1px solid #eee' }}>
-        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginBottom: '0.5rem' }}>
-          You can select text in the play to ask about it, or ask a follow-up about this note below.
-        </div>
         <TextSelectionChat
           contextInfo={contextInfo}
           llm={{ ...llm, loading: preFollowLoading }}
@@ -2158,13 +2383,89 @@ Existing explanation:
           onNoteMore={handleNoteMore}
           onNoteFollowup={handleNoteFollowup}
         />
+        {/* Display "More" and follow-up responses below the chat UI */}
+        {(() => {
+          if (!thread.length && !preFollowLoading) return null;
+          return (
+            <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
+              {thread.map((m, idx) => {
+                const providerName = formatProviderName(m?.provider || '');
+                let attribution = '';
+                if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+                else if (m?.model) attribution = `Model: ${m.model}`;
+                else if (providerName) attribution = providerName;
+                if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+                  const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+                  const fallbackModel = llm?.options?.model || '';
+                  if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+                  else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+                  else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+                  else if (fallbackProvider) attribution = fallbackProvider;
+                }
+                const isMore = m.q === 'More detail' || m.q === 'More';
+                return (
+                  <div key={`more-${idx}`} style={{ marginBottom: '0.5rem', position: 'relative', paddingRight: '32px' }}>
+                    <button
+                      type="button"
+                      className="closeBtn"
+                      onClick={() => {
+                        setPreFollowThreads((prev) => {
+                          const arr = Array.isArray(prev[threadKey]) ? prev[threadKey].slice() : [];
+                          const updated = arr.filter((_, i) => i !== idx);
+                          return { ...prev, [threadKey]: updated };
+                        });
+                      }}
+                      aria-label="Delete response"
+                      style={{ position: 'absolute', right: 0, top: 0 }}
+                    >
+                      🗑️
+                    </button>
+                    {isMore ? (
+                      <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                    ) : m.q ? (
+                      <>
+                        <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Chat Prompt</div>
+                        <div
+                          style={{
+                            marginBottom: '0.5rem',
+                            paddingLeft: '1rem',
+                            borderLeft: '3px solid #e8d8b5',
+                            fontStyle: 'italic',
+                            color: '#4a4036',
+                            whiteSpace: 'pre-wrap',
+                          }}
+                        >
+                          {m.q}
+                        </div>
+                      </>
+                    ) : null}
+                    <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                    {attribution ? (
+                      <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                    ) : null}
+                  </div>
+                );
+              })}
+              {preFollowLoading && (
+                <div style={{ marginTop: thread.length > 0 ? '0.5rem' : '0' }}>
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                  <div style={{ color: '#6b5f53' }}>Thinking…</div>
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
     );
   })();
   const selectionChatPanel = hasSelectionContext ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
-      {renderSelectionPreview(selectionPreviewForChat)}
-      {isThinking ? <div style={{ marginBottom: '0.5rem', color: '#6b5f53' }}>Thinking…</div> : null}
+      {/* Show instructions when note is in select mode */}
+      {sectionHasSelectModeNote && chosenItem && (
+        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginBottom: '0.5rem' }}>
+          You can select text in the play to ask about it, or ask a follow-up about this note below.
+        </div>
+      )}
       <TextSelectionChat
         contextInfo={contextInfo}
         llm={llm}
@@ -2175,12 +2476,244 @@ Existing explanation:
             onRequestFocus({ sectionIndex, id });
           }
         }}
+        onLength={llm?.onLength}
       />
+      {/* Display selection preview and "More" responses below the chat UI */}
+      {(() => {
+        const moreThreads = llm?.conversation?.moreThreads || [];
+        const followupThreads = llm?.conversation?.followupThreads || [];
+        // Show "Thinking..." if loading and we already have an explanation
+        // We can't easily distinguish between "More" and follow-up loading, so we'll show a generic indicator
+        // that will be replaced by the actual response when it arrives
+        const isLoadingFollowup = llm?.loading && conversationLast && conversationLast !== 'AI is thinking…';
+        // Also check for preFollowThreads from note mode (when a note is active and text is selected)
+        let noteThreads = [];
+        if (chosenItem && sectionHasSelectModeNote) {
+          const threadKey = String(chosenItem.startOffset || 0);
+          noteThreads = preFollowThreads[threadKey] || [];
+        }
+        // Show "Thinking..." for initial selection loading below chat UI
+        const showInitialThinking = isThinking && !conversationLast;
+        const showSelectionPreview = selectionPreviewForChat;
+        if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading && !showInitialThinking && !showSelectionPreview) return null;
+        return (
+          <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
+            {/* Show selection preview below chat UI */}
+            {showSelectionPreview && renderSelectionPreview(selectionPreviewForChat)}
+            {/* Show "Thinking..." for initial selection loading */}
+            {showInitialThinking && (
+              <div style={{ marginTop: showSelectionPreview ? '0.5rem' : '0', marginBottom: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
+            )}
+            {moreThreads.map((m, idx) => {
+              const providerName = formatProviderName(m?.provider || '');
+              let attribution = '';
+              if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+              else if (m?.model) attribution = `Model: ${m.model}`;
+              else if (providerName) attribution = providerName;
+              if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+                const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+                const fallbackModel = llm?.options?.model || '';
+                if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+                else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+                else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+                else if (fallbackProvider) attribution = fallbackProvider;
+              }
+              return (
+                <div key={`more-${idx}`} style={{ marginBottom: '0.5rem', position: 'relative', paddingRight: '32px' }}>
+                  <button
+                    type="button"
+                    className="closeBtn"
+                    onClick={() => {
+                      if (selectionId && conversations[selectionId]) {
+                        const updatedMoreThreads = (conversations[selectionId].moreThreads || []).filter((_, i) => i !== idx);
+                        setConversations({
+                          ...conversations,
+                          [selectionId]: {
+                            ...conversations[selectionId],
+                            moreThreads: updatedMoreThreads
+                          }
+                        });
+                      }
+                    }}
+                    aria-label="Delete More response"
+                    style={{ position: 'absolute', right: 0, top: 0 }}
+                  >
+                    🗑️
+                  </button>
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                  <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                  {attribution ? (
+                    <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                  ) : null}
+                </div>
+              );
+            })}
+            {/* Display follow-up threads for text selections */}
+            {followupThreads.map((m, idx) => {
+              const providerName = formatProviderName(m?.provider || '');
+              let attribution = '';
+              if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+              else if (m?.model) attribution = `Model: ${m.model}`;
+              else if (providerName) attribution = providerName;
+              if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+                const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+                const fallbackModel = llm?.options?.model || '';
+                if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+                else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+                else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+                else if (fallbackProvider) attribution = fallbackProvider;
+              }
+              return (
+                <div key={`followup-${idx}`} style={{ marginTop: (moreThreads.length > 0 || idx > 0) ? '0.5rem' : '0', marginBottom: '0.5rem', position: 'relative', paddingRight: '32px' }}>
+                  <button
+                    type="button"
+                    className="closeBtn"
+                    onClick={() => {
+                      if (selectionId && conversations[selectionId]) {
+                        const updatedFollowupThreads = (conversations[selectionId].followupThreads || []).filter((_, i) => i !== idx);
+                        setConversations({
+                          ...conversations,
+                          [selectionId]: {
+                            ...conversations[selectionId],
+                            followupThreads: updatedFollowupThreads
+                          }
+                        });
+                      }
+                    }}
+                    aria-label="Delete follow-up response"
+                    style={{ position: 'absolute', right: 0, top: 0 }}
+                  >
+                    🗑️
+                  </button>
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Chat Prompt</div>
+                  <div
+                    style={{
+                      marginBottom: '0.5rem',
+                      paddingLeft: '1rem',
+                      borderLeft: '3px solid #e8d8b5',
+                      fontStyle: 'italic',
+                      color: '#4a4036',
+                      whiteSpace: 'pre-wrap',
+                    }}
+                  >
+                    {m.q}
+                  </div>
+                  <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                  {attribution ? (
+                    <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                  ) : null}
+                </div>
+              );
+            })}
+            {/* Show "Thinking..." for follow-up or More requests when loading */}
+            {isLoadingFollowup && !moreThreads.length && !followupThreads.length && (
+              <div style={{ marginTop: (moreThreads.length > 0 || followupThreads.length > 0) ? '0.5rem' : '0' }}>
+                <div style={{ color: '#6b5f53' }}>Thinking…</div>
+              </div>
+            )}
+            {/* Display note threads (from preFollowThreads) when a note is active and text is selected */}
+            {noteThreads.map((m, idx) => {
+              const providerName = formatProviderName(m?.provider || '');
+              let attribution = '';
+              if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+              else if (m?.model) attribution = `Model: ${m.model}`;
+              else if (providerName) attribution = providerName;
+              if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+                const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+                const fallbackModel = llm?.options?.model || '';
+                if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+                else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+                else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+                else if (fallbackProvider) attribution = fallbackProvider;
+              }
+              const isMore = m.q === 'More detail' || m.q === 'More';
+              const threadKey = chosenItem ? String(chosenItem.startOffset || 0) : '';
+              return (
+                <div key={`note-thread-${idx}`} style={{ marginTop: (moreThreads.length > 0 || idx > 0) ? '0.5rem' : '0', marginBottom: '0.5rem', position: 'relative', paddingRight: '32px' }}>
+                  <button
+                    type="button"
+                    className="closeBtn"
+                    onClick={() => {
+                      if (threadKey) {
+                        setPreFollowThreads((prev) => {
+                          const arr = Array.isArray(prev[threadKey]) ? prev[threadKey].slice() : [];
+                          const updated = arr.filter((_, i) => i !== idx);
+                          return { ...prev, [threadKey]: updated };
+                        });
+                      }
+                    }}
+                    aria-label="Delete response"
+                    style={{ position: 'absolute', right: 0, top: 0 }}
+                  >
+                    🗑️
+                  </button>
+                  {isMore ? (
+                    <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                  ) : m.q ? (
+                    <>
+                      <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Chat Prompt</div>
+                      <div
+                        style={{
+                          marginBottom: '0.5rem',
+                          paddingLeft: '1rem',
+                          borderLeft: '3px solid #e8d8b5',
+                          fontStyle: 'italic',
+                          color: '#4a4036',
+                          whiteSpace: 'pre-wrap',
+                        }}
+                      >
+                        {m.q}
+                      </div>
+                    </>
+                  ) : null}
+                  <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                  {attribution ? (
+                    <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                  ) : null}
+                </div>
+              );
+            })}
+            {preFollowLoading && chosenItem && sectionHasSelectModeNote && (
+              <div style={{ marginTop: (moreThreads.length > 0 || noteThreads.length > 0) ? '0.5rem' : '0' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                <div style={{ color: '#6b5f53' }}>Thinking…</div>
+              </div>
+            )}
+          </div>
+        );
+      })()}
     </div>
   ) : null;
-  const explanationPanel = hasConversation ? (
-    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee' }}>
-      <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
+  // Explanation panel always appears after chat inputs (which appear after the note)
+  // Only hide when a note exists (chosenItem) but is closed/collapsed (suppressed)
+  // If there's no note at all, show explanations normally
+  // Only consider the note suppressed if there's actually a chosenItem that's suppressed
+  const hasSuppressedNote = chosenItem && (isSuppressed || isForcedSuppressed);
+  const explanationPanel = (hasConversation && !hasSuppressedNote) ? (
+    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
+      <button 
+        type="button" 
+        className="closeBtn" 
+        onClick={() => {
+          if (llm?.onDeleteCurrent) {
+            llm.onDeleteCurrent();
+          }
+          onSelectRange?.(null);
+          // Clear browser selection to prevent re-triggering
+          if (typeof window !== 'undefined' && window.getSelection) {
+            try {
+              const sel = window.getSelection();
+              if (sel) sel.removeAllRanges();
+            } catch {}
+          }
+        }} 
+        aria-label="Delete explanation" 
+        style={{ position: 'absolute', right: 0, top: 0 }}
+      >
+        🗑️
+      </button>
+      {/* Title for selected text explanation */}
+      <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Selected Text</div>
       {renderSelectionPreview(selectionPreviewForExplanation)}
       <div style={{ whiteSpace: 'pre-wrap' }}>{conversationLast}</div>
       {(() => {
@@ -2197,7 +2730,9 @@ Existing explanation:
       })()}
     </div>
   ) : null;
-  const savedExplanationsPanel = filteredSavedExplanations.length > 0 ? (
+  // Only hide saved explanations when a note exists but is closed/collapsed (suppressed)
+  // If there's no note at all, show saved explanations normally
+  const savedExplanationsPanel = (filteredSavedExplanations.length > 0 && !hasSuppressedNote) ? (
     <div style={{ marginTop: (explanationPanel || selectionChatPanel || noteModeChatPanel) ? '0.75rem' : '0.5rem' }}>
       {filteredSavedExplanations.map((ex, i) => {
         const meta = ex?.meta || {};
@@ -2218,6 +2753,11 @@ Existing explanation:
             content={ex?.last || ''}
             meta={meta}
             options={llm?.options}
+            onDelete={() => {
+              const len = textEncoder.encode(meta.text || passageText || '').length;
+              const id = `${meta.byteOffset}-${len}`;
+              onDeleteSaved?.(id);
+            }}
             onLocate={() => {
               if (meta.start != null && meta.end != null) {
                 onSelectRange({ start: meta.start, end: meta.end });
@@ -2233,18 +2773,94 @@ Existing explanation:
                 navigator.clipboard?.writeText(url);
               }
             }}
-            onDelete={() => {
-              if (meta.byteOffset != null) {
-                const len = textEncoder.encode(meta.text || passageText || '').length;
-                const id = `${meta.byteOffset}-${len}`;
-                onDeleteSaved?.(id);
-              }
-            }}
           />
         );
       })}
     </div>
   ) : null;
+
+  // Show preFollowThreads for suppressed notes (when note is collapsed but threads exist)
+  const suppressedNoteThreadsPanel = (() => {
+    // Find suppressed notes that have threads
+    if (!suppressedNotes.size) return null;
+    const suppressedThreads = [];
+    for (const sk of suppressedNotes) {
+      // Find the note item for this speech key
+      const noteItem = noteBySpeechKey.get(String(sk));
+      if (!noteItem) continue;
+      const threadKey = String(noteItem.startOffset || 0);
+      const threads = preFollowThreads[threadKey] || [];
+      if (threads.length > 0) {
+        suppressedThreads.push({ threadKey, threads, noteItem });
+      }
+    }
+    if (suppressedThreads.length === 0) return null;
+    // Show all suppressed note threads
+    return (
+      <div style={{ marginTop: (explanationPanel || selectionChatPanel || noteModeChatPanel || savedExplanationsPanel) ? '0.75rem' : '0.5rem' }}>
+        {suppressedThreads.map(({ threadKey, threads, noteItem }) =>
+          threads.map((m, idx) => {
+            const providerName = formatProviderName(m?.provider || '');
+            let attribution = '';
+            if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+            else if (m?.model) attribution = `Model: ${m.model}`;
+            else if (providerName) attribution = providerName;
+            if (!attribution && (llm?.options?.model || llm?.options?.provider)) {
+              const fallbackProvider = formatProviderName(llm?.options?.provider || '');
+              const fallbackModel = llm?.options?.model || '';
+              if (fallbackModel && fallbackProvider && fallbackModel.toLowerCase().includes((llm?.options?.provider || '').toLowerCase())) attribution = fallbackModel;
+              else if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+              else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+              else if (fallbackProvider) attribution = fallbackProvider;
+            }
+            const isMore = m.q === 'More detail' || m.q === 'More';
+            return (
+              <div key={`suppressed-${threadKey}-${idx}`} style={{ marginBottom: '0.5rem', position: 'relative', paddingRight: '32px' }}>
+                <button
+                  type="button"
+                  className="closeBtn"
+                  onClick={() => {
+                    setPreFollowThreads((prev) => {
+                      const arr = Array.isArray(prev[threadKey]) ? prev[threadKey].slice() : [];
+                      const updated = arr.filter((_, i) => i !== idx);
+                      return { ...prev, [threadKey]: updated };
+                    });
+                  }}
+                  aria-label="Delete response"
+                  style={{ position: 'absolute', right: 0, top: 0 }}
+                >
+                  🗑️
+                </button>
+                {isMore ? (
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                ) : m.q ? (
+                  <>
+                    <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Chat Prompt</div>
+                    <div
+                      style={{
+                        marginBottom: '0.5rem',
+                        paddingLeft: '1rem',
+                        borderLeft: '3px solid #e8d8b5',
+                        fontStyle: 'italic',
+                        color: '#4a4036',
+                        whiteSpace: 'pre-wrap',
+                      }}
+                    >
+                      {m.q}
+                    </div>
+                  </>
+                ) : null}
+                <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                {attribution ? (
+                  <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                ) : null}
+              </div>
+            );
+          })
+        )}
+      </div>
+    );
+  })();
 
   // Keep forceShow in sync with persisted preference for current speech
   useEffect(() => {
@@ -2380,13 +2996,32 @@ Existing explanation:
     const range = sel.getRangeAt(0);
     // Only process selections within this section's text container
     if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
-    const { start, end } = getOffsetsWithin(container, range);
-    // If user dragged, honor the exact selection
-    if (end > start) {
-      selPendingRef.current = true;
-      onSelectRange?.({ start, end });
-      return;
-    }
+      const { start, end } = getOffsetsWithin(container, range);
+      // If user dragged, honor the exact selection (no expansion)
+      if (end > start) {
+        isManualDragSelection.current = true;
+        selPendingRef.current = true;
+        // Clear any native browser selection to prevent interference
+        try {
+          if (typeof window !== 'undefined' && window.getSelection) {
+            const nativeSel = window.getSelection();
+            if (nativeSel) {
+              const nativeRange = nativeSel.rangeCount > 0 ? nativeSel.getRangeAt(0) : null;
+              if (nativeRange) {
+                const nativeOffsets = getOffsetsWithin(container, nativeRange);
+                // If native selection differs from what we calculated, clear it
+                if (nativeOffsets.start !== start || nativeOffsets.end !== end) {
+                  nativeSel.removeAllRanges();
+                }
+              }
+            }
+          }
+        } catch {}
+        onSelectRange?.({ start, end });
+        // Reset flag after a delay
+        setTimeout(() => { isManualDragSelection.current = false; }, 1000);
+        return;
+      }
     // Otherwise, expand single-click caret to the surrounding sentence
     const idx = start;
     const sent = expandToSentence(text || '', idx);
@@ -2401,17 +3036,44 @@ Existing explanation:
 
   // Listen for native text selection (including mobile fallback when custom touch handling is inactive)
   useEffect(() => {
+    // Track mouse state to prevent expansion during drag
+    const handleMouseDown = () => {
+      isMouseDown.current = true;
+    };
+    const handleMouseUp = () => {
+      // Small delay to ensure selection is finalized
+      setTimeout(() => {
+        isMouseDown.current = false;
+      }, 100);
+    };
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousedown', handleMouseDown);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+    
     const handleSelectionChange = () => {
       // Immediately capture the selection range (don't wait for debounce)
       // This ensures we get it before the system menu potentially interferes
       const container = preRef.current;
       if (!container || typeof window === 'undefined' || !window.getSelection) return;
       
+      // Don't process selection changes while mouse is down (user is dragging)
+      if (isMouseDown.current) {
+        return;
+      }
+      
       const sel = window.getSelection();
       if (mobileSelectMode && touchActiveRef.current) return;
       if (!sel || sel.rangeCount === 0) {
         // Selection cleared - reset tracking
         lastSelectionStringRef.current = '';
+        return;
+      }
+      
+      // If we're processing a selection (from mouse or touch), don't override it with native selection
+      // This prevents the browser's native selection from overriding a manual drag selection
+      if (selPendingRef.current || isManualDragSelection.current) {
         return;
       }
       
@@ -2436,15 +3098,6 @@ Existing explanation:
         return;
       }
       
-      // Don't trigger if we're already processing the exact same selection from touch handlers
-      if (selPendingRef.current) {
-        if (selectionString === lastSelectionStringRef.current) {
-          return;
-        }
-        // New selection detected while pending; treat as fresh input
-        selPendingRef.current = false;
-      }
-      
       // Clear any pending timeout
       if (selectionTimeoutRef.current) {
         clearTimeout(selectionTimeoutRef.current);
@@ -2454,6 +3107,12 @@ Existing explanation:
       // Wait a moment to ensure selection is stable (especially important on mobile)
       // Then process the selection
       selectionTimeoutRef.current = setTimeout(() => {
+        // Don't override a manual drag selection
+        if (isManualDragSelection.current) {
+          selectionTimeoutRef.current = null;
+          return;
+        }
+        
         // Double-check the selection is still valid
         const currentSel = window.getSelection();
         if (!currentSel || currentSel.rangeCount === 0) return;
@@ -2486,6 +3145,9 @@ Existing explanation:
     // Also check for selection when user clicks/taps (after menu might be dismissed)
     // This is a fallback in case selectionchange didn't catch it
     const handleClick = (e) => {
+      // If we're already processing a selection or user manually dragged, don't override it
+      if (selPendingRef.current || isManualDragSelection.current) return;
+      
       // Only check if there's actually a selection (not just a click)
       const sel = window.getSelection?.();
       if (!sel || sel.rangeCount === 0) return;
@@ -2531,6 +3193,10 @@ Existing explanation:
 
     return () => {
       if (typeof document !== 'undefined') {
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('mousedown', handleMouseDown);
+          window.removeEventListener('mouseup', handleMouseUp);
+        }
         document.removeEventListener('selectionchange', handleSelectionChange);
         document.removeEventListener('click', handleClick, true);
         document.removeEventListener('pointerdown', handleClick, true);
@@ -2702,9 +3368,23 @@ Existing explanation:
         // Fall back to our manual tracking if the native selection was unavailable/collapsed
         if (start == null || end == null || end <= start) {
           if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
+            // User dragged - use exact selection, no expansion
             start = Math.max(0, Math.min(startChar, endChar));
             end = Math.max(start, Math.max(startChar, endChar));
+          } else if (Number.isFinite(startChar) && Number.isFinite(endChar)) {
+            // We have both start and end, even if movedRef is false (might be timing issue)
+            // If they're different, user dragged, so use exact selection
+            if (startChar !== endChar) {
+              start = Math.max(0, Math.min(startChar, endChar));
+              end = Math.max(start, Math.max(startChar, endChar));
+            } else {
+              // Single click - expand to sentence
+              const idx = startChar;
+              const sent = expandToSentence(text || '', idx);
+              if (sent) { start = sent.start; end = sent.end; }
+            }
           } else {
+            // Only one coordinate or neither - single click, expand to sentence
             const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
             if (idx != null) {
               const sent = expandToSentence(text || '', idx);
@@ -2713,6 +3393,11 @@ Existing explanation:
           }
         }
         if (start != null && end != null && end > start) {
+          // Mark as manual drag selection if user actually dragged (not a single tap)
+          if (movedRef.current || (Number.isFinite(startChar) && Number.isFinite(endChar) && startChar !== endChar)) {
+            isManualDragSelection.current = true;
+            setTimeout(() => { isManualDragSelection.current = false; }, 1000);
+          }
           selPendingRef.current = true;
           lastSelectionStringRef.current = `${start}-${end}`;
           onSelectRange?.({ start, end });
@@ -3005,7 +3690,7 @@ Existing explanation:
                     // Remove from forced list before suppressing so it stays hidden
                     onToggleForced(sk, sectionIndex);
                   }
-                  // Add to suppressed list to hide it immediately (regardless of forced state)
+                  // Add to suppressed list to hide the note itself (but keep explanations visible)
                   setSuppressedNotes((prev) => {
                     const next = new Set(prev);
                     next.add(sk);
@@ -3013,38 +3698,14 @@ Existing explanation:
                   });
                   // Also hide locally visible notes
                   setForceShow(false);
-                  if (onDeleteSpeech) onDeleteSpeech(sk);
-                  if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
-                    const enc = new TextEncoder();
-                    for (const ex of filteredSavedExplanations) {
-                      const meta = ex?.meta;
-                      if (!meta) continue;
-                      const exKey = meta.speechKey;
-                      const matches = exKey ? exKey === sk : meta.sectionIndex === sectionIndex;
-                      if (!matches) continue;
-                      const len = enc.encode(meta.text || '').length;
-                      onDeleteSaved?.(`${meta.byteOffset}-${len}`);
-                    }
-                  }
-                  llm?.onDeleteCurrent?.();
-                  // Clear any active selection/explanation tied to this note
-                  onSelectRange?.(null);
-                  if (typeof suppressNextAutoExplain === 'function') {
-                    suppressNextAutoExplain();
-                  } else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') {
-                    suppressNextAutoExplain.current = true;
-                  }
+                  // Don't clear selection or explanations - they should persist when note is closed
+                  // and reappear when note is reopened
+                  // Only clear chat UI state, not the underlying data
                   if (onToggleNoteSelectMode) onToggleNoteSelectMode(null);
                   setShowPreFollow(false);
                   setPreFollowInput('');
                   setPreFollowLoading(false);
-                  const key = String(it.startOffset || 0);
-                  setPreFollowThreads((prev) => {
-                    if (!prev || !Object.prototype.hasOwnProperty.call(prev, key)) return prev;
-                    const next = { ...prev };
-                    delete next[key];
-                    return next;
-                  });
+                  // Don't delete preFollowThreads, conversations, or selections - they should persist
                   try {
                     if (typeof window !== 'undefined') {
                       const sel = window.getSelection?.();
@@ -3065,9 +3726,10 @@ Existing explanation:
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
                     const url = getApiUrl('/api/explain');
+                    const existingNote = (it.content || '').trim();
                     const data = await fetchWithErrorHandling(url, {
                       method: 'POST', headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
                     });
                     const a = data?.content || '';
                     const key = String(it.startOffset || 0);
@@ -3076,7 +3738,6 @@ Existing explanation:
                       arr.push({ q, a, model: (llm?.options?.model || ''), provider: (llm?.options?.provider || '') });
                       return { ...prev, [key]: arr };
                     });
-                    setPreFollowInput('');
                   } catch (e) {
                     const key = String(it.startOffset || 0);
                     setPreFollowThreads((prev) => {
@@ -3090,12 +3751,7 @@ Existing explanation:
                 };
                 const requestLonger = async () => {
                   const key = String(it.startOffset || 0);
-                  const existing = (it.content || '').trim();
-                  const q = existing
-                    ? `Provide additional insight that builds on the existing explanation below without repeating or paraphrasing it. Focus on new details, clarifying tricky references, or subtle dramatic function.
-Existing explanation:
-"""${existing}"""`
-                    : 'Please expand this into a longer explanation with more detail while avoiding repetition.';
+                  const q = 'Please expand this into a longer explanation with more detail.';
                   try {
                     setPreFollowLoading(true);
                     const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
@@ -3105,10 +3761,11 @@ Existing explanation:
                     const passage = (text || '').slice(startC, endC);
                     const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
                     const url = getApiUrl('/api/explain');
+                    const existingNote = (it.content || '').trim();
                     const data = await fetchWithErrorHandling(url, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q })
+                      body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
                     });
                     const addition = (data?.content || '').trim();
                     setPreFollowThreads((prev) => {
@@ -3197,7 +3854,38 @@ Existing explanation:
                     {showPreFollow && (
                       <>
                         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                          <input type="text" placeholder="Ask a follow‑up…" value={preFollowInput} onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} style={{ flex:1, minWidth:0 }} />
+                          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+                            <input 
+                              type="text" 
+                              placeholder="Ask a follow‑up…" 
+                              value={preFollowInput} 
+                              onChange={(e)=>{ e.stopPropagation(); setPreFollowInput(e.target.value); }} 
+                              onKeyDown={(e)=>{ if (e.key==='Enter'){ e.preventDefault(); e.stopPropagation(); submitFollow(); } }} 
+                              style={{ width: '100%', paddingRight: preFollowInput ? '24px' : '0' }} 
+                            />
+                            {preFollowInput && (
+                              <button
+                                type="button"
+                                onClick={(e) => { e.stopPropagation(); setPreFollowInput(''); }}
+                                style={{
+                                  position: 'absolute',
+                                  right: '4px',
+                                  top: '50%',
+                                  transform: 'translateY(-50%)',
+                                  background: 'none',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  padding: '2px 6px',
+                                  fontSize: '18px',
+                                  lineHeight: '1',
+                                  color: '#6b5f53'
+                                }}
+                                aria-label="Clear"
+                              >
+                                ×
+                              </button>
+                            )}
+                          </div>
                           <button type="button" disabled={preFollowLoading || !preFollowInput.trim()} onClick={(e)=>{ e.stopPropagation(); submitFollow(); }}>Ask</button>
                           <button
                             type="button"
@@ -3210,9 +3898,16 @@ Existing explanation:
                         </div>
                       </>
                     )}
-                    {preFollowLoading && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
+                    {preFollowLoading && !sectionHasSelectModeNote && <div style={{ marginTop: '0.5rem', color:'#6b5f53' }}>Thinking…</div>}
                     {(() => {
-                      const thread = preFollowThreads[String(it.startOffset || 0)] || [];
+                      // Only show threads here if note is NOT in select mode AND noteModeChatPanel is not showing them
+                      // noteModeChatPanel shows threads when sectionHasSelectModeNote is true OR when hasThreads is true
+                      if (sectionHasSelectModeNote) return null;
+                      const threadKey = String(it.startOffset || 0);
+                      const hasThreads = threadKey && preFollowThreads[threadKey] && preFollowThreads[threadKey].length > 0;
+                      // If noteModeChatPanel would show these threads (hasThreads is true), don't show them here too
+                      if (hasThreads) return null;
+                      const thread = preFollowThreads[threadKey] || [];
                       if (!thread.length) return null;
                       return (
                         <div style={{ marginTop: '0.5rem' }}>
@@ -3230,8 +3925,25 @@ Existing explanation:
                               else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
                               else if (fallbackProvider) attribution = fallbackProvider;
                             }
+                            const isMore = m.q === 'More detail' || m.q === 'More';
                             return (
                               <div key={`fu-${idx}`} style={{ marginBottom: '0.5rem' }}>
+                                {isMore ? (
+                                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                                ) : m.q ? (
+                                  <div
+                                    style={{
+                                      marginBottom: '0.5rem',
+                                      paddingLeft: '1rem',
+                                      borderLeft: '3px solid #e8d8b5',
+                                      fontStyle: 'italic',
+                                      color: '#4a4036',
+                                      whiteSpace: 'pre-wrap',
+                                    }}
+                                  >
+                                    {m.q}
+                                  </div>
+                                ) : null}
                                 <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
                                 {attribution ? (
                                   <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
@@ -3247,10 +3959,14 @@ Existing explanation:
               })()}
             </div>
           ) : null}
+          {/* Chat inputs always appear right after the note */}
           {noteModeChatPanel}
           {selectionChatPanel}
+          {/* Explanations appear after chat inputs */}
           {explanationPanel}
           {savedExplanationsPanel}
+          {/* Show threads for suppressed notes (when note is collapsed) */}
+          {suppressedNoteThreadsPanel}
         </aside>
       ) : null}
     </div>
@@ -3437,11 +4153,54 @@ function expandToSentence(text, index) {
   let end = index;
 
   // Move start left to previous sentence ender (.!?;)
+  // But stop if we encounter a speaker name (all caps followed by period)
   // Optimize: search backwards from index only
   let foundStart = false;
   for (let i = index - 1; i >= 0; i--) {
     const ch = text[i];
     if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
+      // Check if this might be a speaker name (all caps followed by period)
+      // Look backwards to see if the text before the period is all caps
+      let j = i - 1;
+      let isAllCaps = true;
+      let hasNonWhitespace = false;
+      let foundNewline = false;
+      // Check if the text before the period is all caps (allow spaces, apostrophes, hyphens)
+      while (j >= 0 && j >= i - 50) { // limit search to avoid scanning too far
+        const prevCh = text[j];
+        if (prevCh === '\n' || prevCh === '\r') {
+          foundNewline = true;
+          break; // Stop at newline - if all caps before, it's likely a speaker name
+        }
+        if (prevCh === ' ' || prevCh === '\t' || prevCh === "'" || prevCh === '-') {
+          j--;
+          continue; // Allow spaces, apostrophes, hyphens in speaker names
+        }
+        if (prevCh >= 'A' && prevCh <= 'Z') {
+          hasNonWhitespace = true;
+          j--;
+          continue;
+        }
+        // If we hit a lowercase letter, it's not all caps
+        if (prevCh >= 'a' && prevCh <= 'z') {
+          isAllCaps = false;
+          break; // Not a speaker name
+        }
+        // Other characters might break the pattern
+        if (prevCh !== '.' && prevCh !== '!' && prevCh !== '?' && prevCh !== ';') {
+          j--;
+        } else {
+          break;
+        }
+      }
+      // If we found a newline and all the text before the period was all caps, it's likely a speaker name
+      // In that case, start the selection after the period
+      if (foundNewline && hasNonWhitespace && isAllCaps) {
+        start = i + 1;
+        foundStart = true;
+        break;
+      }
+      // Otherwise, this is a normal sentence ender
       start = i + 1;
       foundStart = true;
       break;
@@ -3489,7 +4248,7 @@ function expandToSentence(text, index) {
   return null;
 }
 
-function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false, onNoteMore, onNoteFollowup }) {
+function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false, onNoteMore, onNoteFollowup, onLength }) {
   const { loading, onFollowup, conversation } = llm || {};
   const [q, setQ] = useState('');
   const submitFollowup = () => {
@@ -3500,45 +4259,79 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
     } else {
       onFollowup?.(v);
     }
-    setQ('');
   };
   const requestMore = () => {
     if (noteMode && onNoteMore) {
       onNoteMore();
+    } else if (onLength) {
+      // Use onLength to get a longer explanation (mode: 'more', length: 'large')
+      onLength('large');
     } else {
+      // Fallback to followup if onLength is not available
       onFollowup?.('Expand into a longer, more detailed explanation without repeating earlier sentences.');
     }
   };
-  // Don't show "Thinking…" in chat UI if explanation is still loading (it's shown in explanation area)
-  const showThinking = loading && conversation?.last && conversation.last !== 'AI is thinking…';
   // Show input field when there's contextInfo (text selected) OR when in noteMode
   // When just in select mode without selection, show hint
   const hasContext = !!contextInfo;
-  const isInSelectMode = !hasContext && !noteMode; // Show hint only when in select mode but no text selected yet
+  const isInSelectMode = !hasContext && !noteMode; // Show hint when in select mode but no text selected yet
   const showInput = hasContext || noteMode; // Show input for text selections OR notes
+  // Show selection instructions when noteMode is true but no text is selected yet
+  const showSelectionHint = noteMode && !hasContext;
   return (
-    <div style={{ marginTop: noteMode ? '0.25rem' : '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-      {showInput ? (
-        <>
-          <input 
-            type="text" 
-            placeholder="Ask a follow‑up…" 
-            value={q} 
-            onChange={(e)=>setQ(e.target.value)} 
-            onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); submitFollowup(); } }} 
-            style={{ flex:1, minWidth:0 }} 
-          />
-          <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup}>Ask</button>
-        </>
-      ) : isInSelectMode ? (
-        <div style={{ flex: 1, fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic' }}>
+    <div style={{ marginTop: noteMode ? '0.25rem' : '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        {showInput ? (
+          <>
+            <div style={{ flex: 1, minWidth: 0, position: 'relative', maxWidth: 'calc(100% - 80px)' }}>
+              <input 
+                type="text" 
+                placeholder="Ask a follow‑up…" 
+                value={q} 
+                onChange={(e)=>setQ(e.target.value)} 
+                onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); submitFollowup(); } }} 
+                style={{ width: '100%', paddingRight: q ? '24px' : '0' }} 
+              />
+              {q && (
+                <button
+                  type="button"
+                  onClick={() => setQ('')}
+                  style={{
+                    position: 'absolute',
+                    right: '4px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '2px 6px',
+                    fontSize: '18px',
+                    lineHeight: '1',
+                    color: '#6b5f53'
+                  }}
+                  aria-label="Clear"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+            <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup} style={{ flexShrink: 0 }}>Ask</button>
+          </>
+        ) : isInSelectMode ? (
+          <div style={{ flex: 1, fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic' }}>
+            Tap a sentence or drag to select text
+          </div>
+        ) : (
+          <div style={{ flex: 1 }}></div>
+        )}
+        <button type="button" disabled={loading || (!hasContext && !noteMode)} onClick={requestMore}>More</button>
+      </div>
+      {/* Show selection hint below input when in noteMode but no text selected */}
+      {showSelectionHint && (
+        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginTop: '0.25rem' }}>
           Tap a sentence or drag to select text
         </div>
-      ) : (
-        <div style={{ flex: 1 }}></div>
       )}
-      <button type="button" disabled={loading || (!hasContext && !noteMode)} onClick={requestMore}>More</button>
-      {showThinking && <span style={{ color:'#6b5f53' }}>Thinking…</span>}
     </div>
   );
 }
@@ -3550,13 +4343,11 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
     const v = (q || '').trim();
     if (!v) return;
     onFollowup?.(v);
-    setQ('');
   };
   return (
     <div>
       {conversation?.last ? (
         <div style={{ marginTop: '0.5rem' }} onClick={onFocusSource} title="Click to highlight source in the text">
-          <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Explanation</div>
           <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{conversation.last}</div>
         </div>
       ) : null}
@@ -3567,24 +4358,41 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
         <button type="button" disabled={loading} onClick={() => onLength?.('large')}>Large</button>
         <button type="button" onClick={onFocusSource} title="Highlight source in text">Locate Source</button>
         <span style={{ marginLeft: 'auto', color: '#6b5f53' }}>Provider/Model: {(options?.provider || 'openai')}/{options?.model || ''}</span>
-        <button
-          type="button"
-          onClick={() => { if (onDeleteCurrent) onDeleteCurrent(); }}
-          title="Delete this explanation"
-        >
-          Delete
-        </button>
       </div>
       {/* Follow-up question */}
       <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-        <input
-          type="text"
-          value={q}
-          onChange={(e)=>setQ(e.target.value)}
-          placeholder="Ask a follow‑up…"
-          onKeyDown={(e)=>{ if (e.key==='Enter') { e.preventDefault(); submitFollowup(); } }}
-          style={{ flex: 1, minWidth: 0 }}
-        />
+        <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+          <input
+            type="text"
+            value={q}
+            onChange={(e)=>setQ(e.target.value)}
+            placeholder="Ask a follow‑up…"
+            onKeyDown={(e)=>{ if (e.key==='Enter') { e.preventDefault(); submitFollowup(); } }}
+            style={{ width: '100%', paddingRight: q ? '24px' : '0' }}
+          />
+          {q && (
+            <button
+              type="button"
+              onClick={() => setQ('')}
+              style={{
+                position: 'absolute',
+                right: '4px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '2px 6px',
+                fontSize: '18px',
+                lineHeight: '1',
+                color: '#6b5f53'
+              }}
+              aria-label="Clear"
+            >
+              ×
+            </button>
+          )}
+        </div>
         <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup}>Ask</button>
       </div>
       {loading && (
@@ -3618,7 +4426,6 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
         }),
       });
       setThread((t) => t.concat({ q: v, a: data?.content || '' }));
-      setQ('');
     } catch (e) {
       setThread((t) => t.concat({ q: v, a: `Error: ${String(e.message || e)}` }));
     } finally {
@@ -3628,15 +4435,20 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
 
   return (
     <div style={{ marginTop: '0.5rem', paddingTop: '0.5rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
-      <button
-        type="button"
-        className="closeBtn"
-        onClick={onDelete}
-        aria-label="Delete saved explanation"
-        style={{ position: 'absolute', right: 0, top: 0, width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
-      >
-        🗑️
-      </button>
+      {onDelete && (
+        <button 
+          type="button" 
+          className="closeBtn" 
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }} 
+          aria-label="Delete explanation" 
+          style={{ position: 'absolute', right: 0, top: 0 }}
+        >
+          🗑️
+        </button>
+      )}
       {(() => {
         const preview = (passage || '').trim();
         if (!preview) return null;
@@ -3656,7 +4468,6 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
         );
       })()}
       <div style={{ marginTop: '0.25rem' }} onClick={() => { onLocate?.(); setOpen((v)=>!v); }} title="Click to highlight source and toggle follow‑up">
-        <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Saved Explanation</div>
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
         <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
           {options?.model ? `Model: ${options.model}` : ''}
@@ -3664,7 +4475,38 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       </div>
       {open && (
         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <input type="text" placeholder="Ask a follow‑up…" value={q} onChange={(e)=>setQ(e.target.value)} onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); ask(); } }} style={{ flex:1, minWidth:0 }} />
+          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+            <input 
+              type="text" 
+              placeholder="Ask a follow‑up…" 
+              value={q} 
+              onChange={(e)=>setQ(e.target.value)} 
+              onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); ask(); } }} 
+              style={{ width: '100%', paddingRight: q ? '24px' : '0' }} 
+            />
+            {q && (
+              <button
+                type="button"
+                onClick={() => setQ('')}
+                style={{
+                  position: 'absolute',
+                  right: '4px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '2px 6px',
+                  fontSize: '18px',
+                  lineHeight: '1',
+                  color: '#6b5f53'
+                }}
+                aria-label="Clear"
+              >
+                ×
+              </button>
+            )}
+          </div>
           <button type="button" disabled={loading || !q.trim()} onClick={()=>ask()}>Ask</button>
           <button type="button" disabled={loading} onClick={()=>ask('Expand into a longer, more detailed explanation without repeating earlier sentences.')}>More</button>
           {loading && <span style={{ color:'#6b5f53' }}>Thinking…</span>}
@@ -3672,12 +4514,31 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       )}
       {open && thread.length > 0 && (
         <div style={{ marginTop: '0.5rem' }}>
-          {thread.map((m, i) => (
-            <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
-              <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
-              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
-            </div>
-          ))}
+          {thread.map((m, i) => {
+            const isMore = m.q === 'More detail' || m.q === 'More' || (m.q && m.q.toLowerCase().includes('expand') && m.q.toLowerCase().includes('more'));
+            return (
+              <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
+                {isMore ? (
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                ) : m.q ? (
+                  <div
+                    style={{
+                      marginBottom: '0.5rem',
+                      paddingLeft: '1rem',
+                      borderLeft: '3px solid #e8d8b5',
+                      fontStyle: 'italic',
+                      color: '#4a4036',
+                      whiteSpace: 'pre-wrap',
+                    }}
+                  >
+                    {m.q}
+                  </div>
+                ) : null}
+                <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
+                <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

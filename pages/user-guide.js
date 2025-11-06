@@ -1,7 +1,28 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function UserGuide() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
+
   return (
     <div className="user-guide-page">
       <Head>
@@ -61,9 +82,7 @@ export default function UserGuide() {
             <ul className="instruction-list">
               <li><strong>Ask follow-up questions:</strong> Use the chat interface to ask anything 
               about the passage. The AI will respond with detailed explanations based on your specific question.</li>
-              <li><strong>Click the "More" button:</strong> Get a longer, more comprehensive explanation 
-              for the whole speech. This expands the note without losing the original, giving you 
-              deeper context and analysis.</li>
+              <li><strong>Click the "More" button:</strong> Get a longer explanation for the whole speech without losing the original note.</li>
               <li><strong>Click on a sentence in the speech:</strong> Click anywhere in a speech to 
               automatically select that sentence and get an explanation focused specifically on that line.</li>
               <li><strong>Click-drag to select more or less than a sentence:</strong> Select precisely 
@@ -80,7 +99,7 @@ export default function UserGuide() {
             <p>
               On desktop, the layout has three columns: the Table of Contents on the far left, 
               the play text in the middle column, and notes and explanations in the right column. 
-              You can scroll through the entire play or use the table of contents sidebar to jump 
+              You can scroll through the entire play or use the Table of Contents to jump 
               to specific acts and scenes.
             </p>
           </div>
@@ -101,11 +120,10 @@ export default function UserGuide() {
               <h4>How to Use Notes and Explanations</h4>
               <p>Here's how clicking and selecting in the text works:</p>
               <ul className="instruction-list">
-                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Clicking the text again hides the note. You can also use the <strong>✕</strong> in the note's top‑right to close it.</li>
-                <li><strong>Select text for an explanation:</strong> To get an on-demand explanation, click and drag to select any passage you want explained. You can also click on a note to enable text selection mode, then select a specific part of that speech.</li>
-                <li><strong>Auto-select sentence:</strong> When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
-                <li><strong>Immediate feedback:</strong> A new explanation card appears in the right column (next to the play text) as soon as you make a selection, showing "AI is thinking…" until the API response is ready.</li>
-                <li><strong>Ask for more:</strong> Click <strong>More</strong> (or use the "Ask a follow‑up…" field) to get an extended explanation without losing the original note. Each follow‑up appears in the mini chat under the note, along with the provider/model used, and the entire thread is saved automatically.</li>
+                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Click the text again to hide it, or use the <strong>✕</strong> button to close.</li>
+                <li><strong>Select text for an explanation:</strong> Click and drag to select any passage, or click on a note to enable text selection mode, then select a specific part of that speech. When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
+                <li><strong>Get explanations:</strong> A new explanation card appears in the right column (on desktop) or below the text (on mobile) as soon as you make a selection, showing "AI is thinking…" until the response is ready. Selected text is highlighted in blue.</li>
+                <li><strong>Ask follow-up questions:</strong> Use the "Ask a follow‑up…" field or click <strong>More</strong> to get extended explanations. Each follow‑up appears in the conversation thread, and all threads are saved automatically between visits.</li>
               </ul>
             </div>
 
@@ -117,8 +135,6 @@ export default function UserGuide() {
                 Together, they provide comprehensive coverage: notes for common questions, and explanations for your specific needs.
               </p>
             </div>
-
-            <p>Selected text is highlighted in blue. Follow‑up responses and "More" expansions persist between visits, so you can build a running commentary for any speech.</p>
           </div>
         </div>
 
@@ -127,25 +143,11 @@ export default function UserGuide() {
           <div className="step" id="what-youll-see">
             <h3>What You'll See</h3>
             <ul className="feature-list">
-              <li><strong>Immediate card:</strong> New explanation cards appear right away with a “thinking…” placeholder, then update with the final text.</li>
+              <li><strong>Immediate card:</strong> New explanation cards appear right away with a "thinking…" placeholder, then update with the final text.</li>
               <li><strong>Click to locate:</strong> Click any explanation card to highlight its source in the play.</li>
-              <li><strong>Close with ✕:</strong> Both notes and explanation cards use the <strong>✕</strong> in the top‑right to close.</li>
-              <li><strong>Contents:</strong> short vocabulary help, any tricky syntax, and a clear paraphrase focused on your selection.</li>
-            </ul>
-          </div>
-
-          <div className="step" id="demo-video">
-            <h3>Video Demonstration</h3>
-            <p>A short video walkthrough of notes and selections will be embedded here.</p>
-          </div>
-
-          <div className="step">
-            <h3>Interactive Features</h3>
-            <ul className="instruction-list">
-              <li><strong>Click the explanation</strong> to highlight the corresponding text in the play</li>
-              <li><strong>Ask follow-up questions</strong> using the chat interface for deeper understanding</li>
-              <li><strong>More button</strong> adds a richer AI response beneath the note instead of replacing the original text</li>
-              <li><strong>Saved threads</strong> (notes plus follow-ups) automatically persist between sessions</li>
+              <li><strong>Close with ✕:</strong> Use the <strong>✕</strong> button in the top‑right of any note or explanation card to close it.</li>
+              <li><strong>Contents:</strong> Explanations include vocabulary help, clarification of tricky syntax, and a clear paraphrase focused on your selection.</li>
+              <li><strong>Follow-up questions:</strong> The question appears in italics and indented, followed by the answer, matching the format of sentence selections.</li>
             </ul>
           </div>
         </div>
@@ -155,8 +157,8 @@ export default function UserGuide() {
           <div className="step">
             <h3>Table of Contents</h3>
             <p>
-              Use the sidebar to quickly navigate between acts and scenes. The current scene 
-              is highlighted in the table of contents.
+              The Table of Contents in the left sidebar (or drawer on mobile) shows all acts and scenes. 
+              The current scene is highlighted, and clicking any scene jumps directly to it.
             </p>
           </div>
 
@@ -179,10 +181,9 @@ export default function UserGuide() {
           <div className="step">
             <h3>Saving and Managing Explanations</h3>
             <ul className="instruction-list">
-              <li><strong>Auto-save:</strong> Explanations are automatically saved in your browser</li>
-              <li><strong>Persistent storage:</strong> Your saved explanations persist between visits</li>
+              <li><strong>Auto-save:</strong> All explanations and follow-up threads are automatically saved in your browser and persist between visits</li>
               <li><strong>Navigation:</strong> Use the explanation arrows in the header to step through saved explanations</li>
-              <li><strong>Remove:</strong> Close an explanation with the <strong>✕</strong> in its corner</li>
+              <li><strong>Remove:</strong> Close any explanation or note using the <strong>✕</strong> button</li>
             </ul>
           </div>
 
@@ -193,6 +194,55 @@ export default function UserGuide() {
               <li><strong>Immediate updates:</strong> Moving the slider updates the play instantly; the control also remembers your preference between visits.</li>
               <li><strong>Popover behavior:</strong> Click anywhere outside the popover (or press <kbd>Esc</kbd>) to close it.</li>
             </ul>
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                <div>
+                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Note Density Popover</p>
+                  <img 
+                    src="/user-guide-screenshots/note-density.jpg" 
+                    alt="Note density control popover showing presets and slider"
+                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/note-density.jpg', alt: 'Note density control popover showing presets and slider' })}
+                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>None</p>
+                  <img 
+                    src="/user-guide-screenshots/none.jpg" 
+                    alt="No notes visible"
+                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/none.jpg', alt: 'No notes visible' })}
+                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Some</p>
+                  <img 
+                    src="/user-guide-screenshots/some.jpg" 
+                    alt="Some notes visible"
+                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/some.jpg', alt: 'Some notes visible' })}
+                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Most</p>
+                  <img 
+                    src="/user-guide-screenshots/most.jpg" 
+                    alt="Most notes visible"
+                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/most.jpg', alt: 'Most notes visible' })}
+                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>All</p>
+                  <img 
+                    src="/user-guide-screenshots/all.jpg" 
+                    alt="All notes visible"
+                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/all.jpg', alt: 'All notes visible' })}
+                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="step">
@@ -251,7 +301,7 @@ export default function UserGuide() {
             </div>
             <div className="tip-card">
               <h4>❓ Ask Questions</h4>
-              <p>Use the chat feature to ask follow-up questions about confusing passages.</p>
+              <p>Use the follow-up feature to ask specific questions about confusing passages or request more detail.</p>
             </div>
             <div className="tip-card">
               <h4>📖 Print for Study</h4>
@@ -269,6 +319,38 @@ export default function UserGuide() {
           </p>
         </div>
       </div>
+      {selectedImage && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10000,
+            padding: '20px',
+            cursor: 'pointer'
+          }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <img 
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+              borderRadius: '8px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)'
+            }}
+            onClick={() => setSelectedImage(null)}
+          />
+        </div>
+      )}
     </div>
   );
 }
