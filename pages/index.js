@@ -1823,10 +1823,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
             onToggleNoteExpanded={(speechKey) => {
               setExpandedNotes((prev) => {
                 const next = new Set(prev);
+                const isExpanding = !next.has(speechKey);
                 if (next.has(speechKey)) {
                   next.delete(speechKey);
+                  // Disable mobile text selection mode when note is collapsed
+                  if (noteInSelectMode === speechKey) {
+                    setNoteInSelectMode(null);
+                  }
                 } else {
                   next.add(speechKey);
+                  // Enable mobile text selection mode when note is expanded
+                  if (noteInSelectMode !== speechKey) {
+                    setNoteInSelectMode(speechKey);
+                  }
                 }
                 return next;
               });
@@ -3048,6 +3057,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           // Force it to be visible
           if (onToggleForced) {
             onToggleForced(sk, sectionIndex);
+          }
+          // Enable mobile text selection mode when note is opened
+          if (onToggleNoteSelectMode && noteInSelectMode !== sk) {
+            onToggleNoteSelectMode(sk);
           }
           // Don't auto-expand - show in collapsed state per spec flow
         } else {
