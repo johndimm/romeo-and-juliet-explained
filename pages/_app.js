@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }) {
       {!isPrintRoute && (
       <header className="appHeader">
         <div className="appHeaderInner" ref={headerRef}>
-          <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet — Explained</Link>
+          <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet Explained</Link>
           <div className="headerRight">
             <nav className="headerLinks">
               {isPlayPage && (

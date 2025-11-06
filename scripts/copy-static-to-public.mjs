@@ -60,6 +60,19 @@ try {
   
   // Copy all files from out to public (including _next - this is needed for static export)
   copyRecursive(outDir, publicDir);
+  
+  // Also copy explanations.json to public/data/ so it can be fetched client-side
+  const dataDir = path.join(rootDir, 'data');
+  const explanationsFile = path.join(dataDir, 'explanations.json');
+  const publicDataDir = path.join(publicDir, 'data');
+  if (fs.existsSync(explanationsFile)) {
+    if (!fs.existsSync(publicDataDir)) {
+      fs.mkdirSync(publicDataDir, { recursive: true });
+    }
+    fs.copyFileSync(explanationsFile, path.join(publicDataDir, 'explanations.json'));
+    console.log('✓ Copied explanations.json to public/data/');
+  }
+  
   console.log('✓ Successfully copied static build to public/');
   console.log('  You can now run: npx cap sync android');
 } catch (error) {

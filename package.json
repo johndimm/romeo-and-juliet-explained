@@ -21,7 +21,7 @@
     "score:gpt2": "python3 scripts/score-perplexity-gpt2.py --in data/explanations.json --out data/explanations.json",
     "lint": "next lint --no-inline-config",
     "clean:public": "node scripts/clean-public.mjs",
-    "dev": "next dev",
+    "dev": "node scripts/copy-data-to-public.mjs && next dev",
     "gen:prologue": "node scripts/gen-prologue-deepseek.mjs",
     "start": "next start",
     "gen:fill": "node scripts/fill-missing-deepseek.mjs --act=I --scene=I --in=data/explanations_actI_sceneI.json",

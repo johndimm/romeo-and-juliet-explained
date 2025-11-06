@@ -586,6 +586,10 @@ html.isPrintRoute .container { left: 0; }
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
+.playText pre.hasNotes[data-note-open="true"]:hover::after {
+  content: 'Click to close note';
+}
+
 /* Note content hover effect - shows it's clickable and reveals toggle indicator */
 .noteContent {
   transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -703,17 +707,41 @@ html.isPrintRoute .container { left: 0; }
 
 /* Print layout: remove UI chrome, stack content, keep explanations */
 @media print {
-  @page { margin: 16mm; }
+  @page { 
+    /* Minimal margins - use all available space */
+    margin: 5mm 5mm;
+    size: auto;
+  }
   :root {
-    --print-header-h: 22mm;
-    --print-footer-h: 16mm;
+    --print-header-h: 12mm;
+    --print-footer-h: 10mm;
+  }
+  html, body, #__next {
+    height: auto !important;
+    overflow: visible !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   body {
     background: #fff;
     color: #000;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   /* Let content flow normally on print */
-  .page { position: static !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: auto !important; overflow: visible !important; }
+  .page { 
+    position: static !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    right: 0 !important; 
+    bottom: auto !important; 
+    overflow: visible !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   /* Hide the app chrome so it doesn't overlap print header */
   .appHeader,
   .headerSearchBar,
@@ -734,12 +762,48 @@ html.isPrintRoute .container { left: 0; }
   }
   .section {
     grid-template-columns: 1fr !important;
-    break-inside: auto; /* allow large sections to flow across pages */
+    break-inside: auto; /* allow sections to break across pages if needed */
     page-break-inside: auto;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0.25rem 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 0.5rem !important;
+  }
+  .playText {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .playText pre {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0.25rem 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .explanations {
     background: none;
     border: 1px solid #ddd;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    break-inside: auto;
+    page-break-inside: auto;
+    margin: 0 !important;
+    padding: 0.5rem !important;
+  }
+  /* Ensure explanation content can break across pages */
+  .explanations > div {
+    break-inside: auto;
+    page-break-inside: auto;
   }
   .highlight,
   .highlight.current {
@@ -754,51 +818,253 @@ html.isPrintRoute .container { left: 0; }
   }
   .printHeader,
   .printFooter {
-    position: fixed;
+    /* Use regular flow instead of fixed to avoid clipping */
+    position: relative;
     left: 0;
     right: 0;
     color: #444;
-    font-size: 12px;
+    font-size: 10px;
     background: #fff;
-    z-index: 1;
+    margin: 0 !important;
+    padding: 2mm 0 !important;
+    width: 100% !important;
   }
   .printHeader {
-    top: 0;
     border-bottom: 1px solid #ddd;
-    height: var(--print-header-h);
-    padding: 4mm 0;
-    box-sizing: border-box;
     text-align: center;
+    margin-bottom: 3mm !important;
   }
   .printHeaderTitle {
     font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
   }
   .printHeaderDate {
-    margin-top: 2mm;
+    margin-top: 1mm;
+    font-size: 9px;
   }
   .printFooter {
-    bottom: 0;
     border-top: 1px solid #ddd;
-    height: var(--print-footer-h);
-    padding: 4mm 0;
-    box-sizing: border-box;
     text-align: center;
+    margin-top: 3mm !important;
   }
   .printFooter .pageNumber:after {
     content: "Page " counter(page);
   }
-  .container { /* reserve space for fixed header/footer */
-    padding-top: calc(var(--print-header-h) + 4mm);
-    padding-bottom: calc(var(--print-footer-h) + 4mm);
+  .container { 
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+    /* No extra padding - header/footer are in normal flow now */
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  /* Ensure individual explanation items can break if they're too long */
+  .explanations > div > div {
+    break-inside: auto;
+    page-break-inside: auto;
+    orphans: 2;
+    widows: 2;
   }
   /* Wrap lines in print for better flow */
-  .playText pre { white-space: pre-wrap; }
+  .playText pre { 
+    white-space: pre-wrap; 
+    margin: 0 !important;
+    padding: 0.25rem 0.5rem !important;
+  }
 }
 
 /* In landscape print, keep two-column layout so explanations sit on the right */
 @media print and (orientation: landscape) {
+  @page {
+    margin: 8mm 6mm;
+  }
+  html, body, #__next, .page, .container {
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .container {
+    padding-top: 16mm !important;
+    padding-bottom: 12mm !important;
+  }
   .section {
-    grid-template-columns: 1fr minmax(260px, 0.8fr) !important;
+    grid-template-columns: 1fr minmax(200px, 0.75fr) !important;
+    height: auto !important;
+    max-height: none !important;
+    gap: 0.75rem !important;
+    margin: 0.25rem 0 !important;
+  }
+  .playText, .explanations {
+    padding: 0.25rem !important;
+  }
+}
+
+/* Print controls styling (screen only) */
+.printControls {
+  background: #fff;
+  border: 1px solid #e8e6e3;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.printControlsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.printControlsTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  line-height: 1.2;
+  font-family: "IM Fell English", serif;
+}
+
+.printControlsActions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.printButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.printButtonPrimary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.printButtonPrimary:hover {
+  background: #333;
+  border-color: #333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.printButtonPrimary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.printButtonSecondary {
+  background: #fff;
+  color: #555;
+  border-color: #d1cfcc;
+}
+
+.printButtonSecondary:hover {
+  background: #faf9f7;
+  border-color: #b8b5b0;
+  color: #333;
+}
+
+.printControlsFilters {
+  padding-top: 1rem;
+  border-top: 1px solid #e8e6e3;
+}
+
+.printFilterGroup {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.printFilterLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #555;
+  min-width: 120px;
+}
+
+.printFilterSelect {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  border: 1px solid #d1cfcc;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.printFilterSelect:hover:not(:disabled) {
+  border-color: #b8b5b0;
+  background: #faf9f7;
+}
+
+.printFilterSelect:focus {
+  outline: none;
+  border-color: #8b8275;
+  box-shadow: 0 0 0 3px rgba(139, 130, 117, 0.1);
+}
+
+.printFilterSelect:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f5f4f2;
+}
+
+@media (max-width: 640px) {
+  .printControls {
+    padding: 1rem;
+  }
+  
+  .printControlsHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .printControlsTitle {
+    font-size: 1.25rem;
+  }
+  
+  .printControlsActions {
+    width: 100%;
+  }
+  
+  .printButton {
+    flex: 1;
+  }
+  
+  .printFilterGroup {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .printFilterLabel {
+    width: 100%;
   }
 }
 

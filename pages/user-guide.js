@@ -255,11 +255,24 @@ export default function UserGuide() {
           </div>
 
           <div className="step">
-            <h3>Printing and Export</h3>
+            <h3>Printing for Offline Reading</h3>
+            <p>
+              Printing is an interesting option if you want to reduce your screen time. You can print a scene, 
+              an act, or the whole play with all the notes you've revealed during your reading session.
+            </p>
             <ul className="instruction-list">
-              <li><strong>Print View:</strong> Access a print-friendly version that includes your saved explanations</li>
-              <li><strong>Clean layout:</strong> Print version removes UI elements for clean reading</li>
-              <li><strong>Saved explanations:</strong> Your saved explanations appear alongside the text in print</li>
+              <li><strong>Access Print View:</strong> Click the Print button (🖨️) in the header to open the print-friendly version</li>
+              <li><strong>Filter by Act/Scene:</strong> Use the dropdown menus at the top to select a specific act and scene, or leave them set to "All" to print the entire play</li>
+              <li><strong>What Gets Printed:</strong> Only the notes you've revealed (based on your note density setting) will be included in the print. Notes appear after their corresponding speeches in portrait mode, or in the right column in landscape mode</li>
+              <li><strong>Portrait vs Landscape:</strong> 
+                <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                  <li><strong>Portrait mode:</strong> Single column layout with notes appearing below each speech</li>
+                  <li><strong>Landscape mode:</strong> Two-column layout with play text on the left and explanations on the right</li>
+                </ul>
+              </li>
+              <li><strong>Save as PDF:</strong> When you click Print, use your browser's "Save as PDF" option to generate a PDF file</li>
+              <li><strong>Send to Kindle:</strong> You can email the PDF to your Kindle's email address (found in your Amazon account settings) to read on your e-reader, reducing screen time while still having access to your personalized notes</li>
+              <li><strong>Clean Layout:</strong> The print version removes all UI elements (navigation, search, buttons) for a clean reading experience</li>
             </ul>
           </div>
         </div>
@@ -304,8 +317,8 @@ export default function UserGuide() {
               <p>Use the follow-up feature to ask specific questions about confusing passages or request more detail.</p>
             </div>
             <div className="tip-card">
-              <h4>📖 Print for Study</h4>
-              <p>Use the print view to create study materials with your saved explanations.</p>
+              <h4>📖 Print for Offline Study</h4>
+              <p>Reduce screen time by printing scenes, acts, or the whole play with your revealed notes. Generate a PDF and send it to your Kindle for comfortable e-reader reading.</p>
             </div>
           </div>
         </div>

@@ -57,3 +57,17 @@ A possible layout:
   - prompt text
   - Chat Prompt response
 
+When the note box is empty, do not show an empty rectangle on screen.
+
+The flow:
+
+  - speech has no note box
+  - click on speech to open note box
+  - click on speech again to close note box
+  - click on open note box to expand it
+  - speech allows text selection
+  - generate some explanations
+  - click on note to collapse the note box
+  - explanations are hidden, chat and More are hidden
+  - speech no longer allows text selection
+  - click on speech to hide note box

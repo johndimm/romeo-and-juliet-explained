@@ -79,24 +79,18 @@ export async function getStaticProps() {
   const sections = filtered.map((s) => s.text);
   // Load prebuilt metadata if available (built via npm run build:characters)
   let metadata = null;
-  let precomputed = [];
+  // Note: precomputed explanations are loaded client-side to reduce initial page size
+  // They're served as a static JSON file from /data/explanations.json
   try {
     const p = path.join(process.cwd(), 'data', 'metadata.json');
     metadata = JSON.parse(fs.readFileSync(p, 'utf8'));
   } catch (e) {
     // Metadata not built yet; that's okay for UI
   }
-  try {
-    const p2 = path.join(process.cwd(), 'data', 'explanations.json');
-    precomputed = JSON.parse(fs.readFileSync(p2, 'utf8')) || [];
-    if (!Array.isArray(precomputed)) precomputed = [];
-  } catch (e) {
-    // No precomputed explanations yet; runtime will ignore
-  }
-  return { props: { sections, sectionsWithOffsets: filtered, metadata, markers, precomputed } };
+  return { props: { sections, sectionsWithOffsets: filtered, metadata, markers } };
 }
 
-export default function Home({ sections, sectionsWithOffsets, metadata, markers, precomputed }) {
+export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
   const [query, setQuery] = useState(''); // executed search
   const [input, setInput] = useState(''); // text in the box
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -109,7 +103,20 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [loadingLLM, setLoadingLLM] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   // Note visibility threshold (0–100). Lower thresholds surface more notes.
-  const [noteThreshold, setNoteThreshold] = useState(33);
+  // Initialize from localStorage if available, otherwise default to 33 (Most)
+  const [noteThreshold, setNoteThreshold] = useState(() => {
+    if (typeof window === 'undefined') return 33;
+    try {
+      const raw = localStorage.getItem('noteThreshold');
+      if (raw !== null && raw !== '') {
+        const val = parseInt(raw, 10);
+        if (Number.isFinite(val)) {
+          return clamp(val, 0, 100);
+        }
+      }
+    } catch {}
+    return 33;
+  });
   const [fontScale, setFontScale] = useState(1);
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
@@ -124,6 +131,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   const [noteInSelectMode, setNoteInSelectMode] = useState(null);
   // Track which notes are expanded (Set of speech keys)
   const [expandedNotes, setExpandedNotes] = useState(new Set());
+  // Load precomputed explanations client-side to reduce initial page size
+  const [precomputed, setPrecomputed] = useState([]);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    // Load precomputed explanations asynchronously
+    fetch('/data/explanations.json')
+      .then(res => res.ok ? res.json() : [])
+      .then(data => {
+        if (Array.isArray(data)) {
+          setPrecomputed(data);
+        }
+      })
+      .catch(() => {
+        // Silently fail if explanations.json doesn't exist or can't be loaded
+        setPrecomputed([]);
+      });
+  }, []);
   useEffect(() => {
     try {
       const raw = localStorage.getItem('forcedNotes');
@@ -1672,7 +1696,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers,
   return (
     <>
       <Head>
-        <title>Romeo and Juliet — Explained</title>
+        <title>Romeo and Juliet Explained</title>
         <meta name="description" content="Romeo and Juliet text with space for explanations." />
       </Head>
       <div className={`page`}>
@@ -3710,6 +3734,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     });
   }, [noteBySpeechKey, speeches]);
 
+  // Check if the current note in this section is visible/open (not suppressed)
+  const sectionNoteIsOpen = useMemo(() => {
+    if (!chosenItem || !speeches) return false;
+    // Check if there's a visible note (chosenItem exists and is not suppressed)
+    if (noteIsSuppressed) return false;
+    // Check if the chosen item's speech is in this section
+    const noteSpeechKey = chosenItemSpeechKey;
+    if (!noteSpeechKey) return false;
+    return speeches.some(sp => {
+      const spKey = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
+      return spKey === noteSpeechKey;
+    });
+  }, [chosenItem, chosenItemSpeechKey, speeches, noteIsSuppressed]);
+
   // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
     <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
@@ -3732,6 +3770,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
           data-has-notes={sectionHasNotes ? 'true' : 'false'}
+          data-note-open={sectionNoteIsOpen ? 'true' : 'false'}
           className={sectionHasNotes ? 'hasNotes' : ''}
           style={{ 
             cursor: (isTouchDevice && mobileSelectMode) ? 'text' : (sectionHasNotes ? 'pointer' : 'default'),
