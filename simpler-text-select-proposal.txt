@@ -1,0 +1,13 @@
+Remove the mode switch for text selection.  Text selection should be on at all times.  
+
+On both mobiel and desktop, we can allow two things all the time:
+
+  - scrolling should be smooth.  A scroll is click or touch down, drag, release.  
+
+  - a single click on a speech should select the sentence.  Click or touch down, release, with no or little change in position.  We find the sentence and generate an explanation.
+
+That should work well.  What is hard to do at the same time on mobile is text selection on a range:
+
+  - to select more or less than a sentence, click down, drag, release.  That is hard to distinguish from a scroll.  So, for mobile, let's not provide this feature.  It's a desktop only feature.
+
+When you click on a sentence, it will reveal the note for this speech if it is not already visible.  If the sentence is not the entire speech, it will be explained and the explanation will be shown below the note.  If it is the entire speech, we have the note already, so no additional explanation is needed.

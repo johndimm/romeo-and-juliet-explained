@@ -1,0 +1,3 @@
+export DEEPSEEK_API_KEY=sk-df8fc9aadd714ec3994d75642734a89c
+
+echo $DEEPSEEK_API_KEY

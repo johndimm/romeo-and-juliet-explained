@@ -1,0 +1,7330 @@
+{
+  "characters": [
+    {
+      "canonical": "ESCALUS",
+      "display": "Escalus"
+    },
+    {
+      "canonical": "MERCUTIO",
+      "display": "Mercutio"
+    },
+    {
+      "canonical": "PARIS",
+      "display": "Paris"
+    },
+    {
+      "canonical": "MONTAGUE",
+      "display": "Montague"
+    },
+    {
+      "canonical": "LADY MONTAGUE",
+      "display": "Lady Montague"
+    },
+    {
+      "canonical": "ROMEO",
+      "display": "Romeo"
+    },
+    {
+      "canonical": "BENVOLIO",
+      "display": "Benvolio"
+    },
+    {
+      "canonical": "ABRAM",
+      "display": "Abram"
+    },
+    {
+      "canonical": "BALTHASAR",
+      "display": "Balthasar"
+    },
+    {
+      "canonical": "CAPULET",
+      "display": "Capulet"
+    },
+    {
+      "canonical": "LADY CAPULET",
+      "display": "Lady Capulet"
+    },
+    {
+      "canonical": "JULIET",
+      "display": "Juliet"
+    },
+    {
+      "canonical": "TYBALT",
+      "display": "Tybalt"
+    },
+    {
+      "canonical": "CAPULET'S COUSIN",
+      "display": "Capulet's Cousin"
+    },
+    {
+      "canonical": "NURSE",
+      "display": "Nurse"
+    },
+    {
+      "canonical": "PETER",
+      "display": "Peter"
+    },
+    {
+      "canonical": "SAMPSON",
+      "display": "Sampson"
+    },
+    {
+      "canonical": "GREGORY",
+      "display": "Gregory"
+    },
+    {
+      "canonical": "FRIAR LAWRENCE",
+      "display": "Friar Lawrence"
+    },
+    {
+      "canonical": "FRIAR JOHN",
+      "display": "Friar John"
+    },
+    {
+      "canonical": "CHORUS",
+      "display": "Chorus"
+    }
+  ],
+  "scenes": [
+    {
+      "act": "Prologue",
+      "scene": "",
+      "title": "THE PROLOGUE",
+      "startOffset": 2027,
+      "endOffset": 2728
+    },
+    {
+      "act": "I",
+      "scene": "I",
+      "title": "SCENE I. A public place.",
+      "startOffset": 2736,
+      "endOffset": 13779
+    },
+    {
+      "act": "I",
+      "scene": "II",
+      "title": "SCENE II. A Street.",
+      "startOffset": 13780,
+      "endOffset": 18562
+    },
+    {
+      "act": "I",
+      "scene": "III",
+      "title": "SCENE III. Room in Capulet’s House.",
+      "startOffset": 18563,
+      "endOffset": 23667
+    },
+    {
+      "act": "I",
+      "scene": "IV",
+      "title": "SCENE IV. A Street.",
+      "startOffset": 23668,
+      "endOffset": 29039
+    },
+    {
+      "act": "I",
+      "scene": "V",
+      "title": "SCENE V. A Hall in Capulet’s House.",
+      "startOffset": 29040,
+      "endOffset": 36051
+    },
+    {
+      "act": "II",
+      "scene": "I",
+      "title": "SCENE I. An open place adjoining Capulet’s Garden.",
+      "startOffset": 36718,
+      "endOffset": 38816
+    },
+    {
+      "act": "II",
+      "scene": "II",
+      "title": "SCENE II. Capulet’s Garden.",
+      "startOffset": 38817,
+      "endOffset": 47761
+    },
+    {
+      "act": "II",
+      "scene": "III",
+      "title": "SCENE III. Friar Lawrence’s Cell.",
+      "startOffset": 47762,
+      "endOffset": 52241
+    },
+    {
+      "act": "II",
+      "scene": "IV",
+      "title": "SCENE IV. A Street.",
+      "startOffset": 52242,
+      "endOffset": 61614
+    },
+    {
+      "act": "II",
+      "scene": "V",
+      "title": "SCENE V. Capulet’s Garden.",
+      "startOffset": 61615,
+      "endOffset": 65330
+    },
+    {
+      "act": "II",
+      "scene": "VI",
+      "title": "SCENE VI. Friar Lawrence’s Cell.",
+      "startOffset": 65331,
+      "endOffset": 67118
+    },
+    {
+      "act": "III",
+      "scene": "I",
+      "title": "SCENE I. A public Place.",
+      "startOffset": 67128,
+      "endOffset": 76670
+    },
+    {
+      "act": "III",
+      "scene": "II",
+      "title": "SCENE II. A Room in Capulet’s House.",
+      "startOffset": 76671,
+      "endOffset": 83269
+    },
+    {
+      "act": "III",
+      "scene": "III",
+      "title": "SCENE III. Friar Lawrence’s cell.",
+      "startOffset": 83270,
+      "endOffset": 91460
+    },
+    {
+      "act": "III",
+      "scene": "IV",
+      "title": "SCENE IV. A Room in Capulet’s House.",
+      "startOffset": 91461,
+      "endOffset": 93165
+    },
+    {
+      "act": "III",
+      "scene": "V",
+      "title": "SCENE V. An open Gallery to Juliet’s Chamber, overlooking the Garden.",
+      "startOffset": 93166,
+      "endOffset": 104553
+    },
+    {
+      "act": "IV",
+      "scene": "I",
+      "title": "SCENE I. Friar Lawrence’s Cell.",
+      "startOffset": 104562,
+      "endOffset": 110460
+    },
+    {
+      "act": "IV",
+      "scene": "II",
+      "title": "SCENE II. Hall in Capulet’s House.",
+      "startOffset": 110461,
+      "endOffset": 112815
+    },
+    {
+      "act": "IV",
+      "scene": "III",
+      "title": "SCENE III. Juliet’s Chamber.",
+      "startOffset": 112816,
+      "endOffset": 115532
+    },
+    {
+      "act": "IV",
+      "scene": "IV",
+      "title": "SCENE IV. Hall in Capulet’s House.",
+      "startOffset": 115533,
+      "endOffset": 117146
+    },
+    {
+      "act": "IV",
+      "scene": "V",
+      "title": "SCENE V. Juliet’s Chamber; Juliet on the bed.",
+      "startOffset": 117147,
+      "endOffset": 123885
+    },
+    {
+      "act": "V",
+      "scene": "I",
+      "title": "SCENE I. Mantua. A Street.",
+      "startOffset": 123893,
+      "endOffset": 127888
+    },
+    {
+      "act": "V",
+      "scene": "II",
+      "title": "SCENE II. Friar Lawrence’s Cell.",
+      "startOffset": 127889,
+      "endOffset": 129300
+    },
+    {
+      "act": "V",
+      "scene": "III",
+      "title": "SCENE III. A churchyard; in it a Monument belonging to the Capulets.",
+      "startOffset": 129301,
+      "endOffset": 144395
+    }
+  ],
+  "stageEvents": [
+    {
+      "offset": 2042,
+      "line": 91,
+      "act": "Prologue",
+      "scene": "",
+      "kind": "enter",
+      "names": [
+        "CHORUS"
+      ],
+      "text": " Enter Chorus.",
+      "onStage": [
+        "CHORUS"
+      ]
+    },
+    {
+      "offset": 2714,
+      "line": 109,
+      "act": "Prologue",
+      "scene": "",
+      "kind": "exit",
+      "names": [
+        "CHORUS"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 2763,
+      "line": 119,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "SAMPSON",
+        "GREGORY"
+      ],
+      "text": " Enter Sampson and Gregory armed with swords and bucklers.",
+      "onStage": [
+        "GREGORY",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 4290,
+      "line": 183,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ABRAM",
+        "BALTHASAR"
+      ],
+      "text": " Enter Abram and Balthasar.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "GREGORY",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 5146,
+      "line": 240,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "BENVOLIO"
+      ],
+      "text": " Enter Benvolio.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "GREGORY",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 5458,
+      "line": 261,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "TYBALT"
+      ],
+      "text": " Enter Tybalt.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "GREGORY",
+        "SAMPSON",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 5806,
+      "line": 278,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter three or four Citizens with clubs.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "GREGORY",
+        "SAMPSON",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 5966,
+      "line": 284,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Capulet in his gown, and Lady Capulet.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "CAPULET",
+        "GREGORY",
+        "LADY CAPULET",
+        "SAMPSON",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 6221,
+      "line": 296,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "MONTAGUE",
+        "LADY MONTAGUE"
+      ],
+      "text": " Enter Montague and his Lady Montague.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "CAPULET",
+        "GREGORY",
+        "LADY CAPULET",
+        "LADY MONTAGUE",
+        "MONTAGUE",
+        "SAMPSON",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 6378,
+      "line": 304,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ESCALUS"
+      ],
+      "text": " Enter Prince Escalus, with Attendants.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "CAPULET",
+        "ESCALUS",
+        "GREGORY",
+        "LADY CAPULET",
+        "LADY MONTAGUE",
+        "MONTAGUE",
+        "SAMPSON",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 7428,
+      "line": 331,
+      "act": "I",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "TYBALT"
+      ],
+      "text": " [_Exeunt Prince and Attendants; Capulet, Lady Capulet, Tybalt,",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "ESCALUS",
+        "GREGORY",
+        "LADY MONTAGUE",
+        "MONTAGUE",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 9827,
+      "line": 404,
+      "act": "I",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "ESCALUS",
+        "GREGORY",
+        "LADY MONTAGUE",
+        "MONTAGUE",
+        "ROMEO",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 10043,
+      "line": 414,
+      "act": "I",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [
+        "MONTAGUE",
+        "LADY MONTAGUE"
+      ],
+      "text": " [_Exeunt Montague and Lady Montague._]",
+      "onStage": [
+        "ABRAM",
+        "BALTHASAR",
+        "BENVOLIO",
+        "ESCALUS",
+        "GREGORY",
+        "ROMEO",
+        "SAMPSON"
+      ]
+    },
+    {
+      "offset": 13766,
+      "line": 569,
+      "act": "I",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 13801,
+      "line": 573,
+      "act": "I",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "PARIS",
+        "CAPULET"
+      ],
+      "text": " Enter Capulet, Paris and Servant.",
+      "onStage": [
+        "CAPULET",
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 15492,
+      "line": 622,
+      "act": "I",
+      "scene": "II",
+      "kind": "exeunt",
+      "names": [
+        "PARIS",
+        "CAPULET"
+      ],
+      "text": " [_Exeunt Capulet and Paris._]",
+      "onStage": []
+    },
+    {
+      "offset": 15893,
+      "line": 632,
+      "act": "I",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "ROMEO",
+        "BENVOLIO"
+      ],
+      "text": " Enter Benvolio and Romeo.",
+      "onStage": [
+        "BENVOLIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 17610,
+      "line": 716,
+      "act": "I",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "SERVANT"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "BENVOLIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 18549,
+      "line": 746,
+      "act": "I",
+      "scene": "II",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 18602,
+      "line": 750,
+      "act": "I",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ],
+      "text": " Enter Lady Capulet and Nurse.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 18843,
+      "line": 760,
+      "act": "I",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 23299,
+      "line": 907,
+      "act": "I",
+      "scene": "III",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter a Servant.",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 23556,
+      "line": 917,
+      "act": "I",
+      "scene": "III",
+      "kind": "exit",
+      "names": [
+        "LADY CAPULET"
+      ],
+      "text": " [_Exit Servant._]",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 23654,
+      "line": 924,
+      "act": "I",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 23689,
+      "line": 928,
+      "act": "I",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "MERCUTIO",
+        "ROMEO",
+        "BENVOLIO"
+      ],
+      "text": " Enter Romeo, Mercutio, Benvolio, with five or six Maskers;",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 29026,
+      "line": 1107,
+      "act": "I",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 29079,
+      "line": 1111,
+      "act": "I",
+      "scene": "V",
+      "kind": "enter",
+      "names": [],
+      "text": " Musicians waiting. Enter Servants.",
+      "onStage": []
+    },
+    {
+      "offset": 29814,
+      "line": 1137,
+      "act": "I",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 29828,
+      "line": 1139,
+      "act": "I",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " Enter Capulet, &c. with the Guests and Gentlewomen to the Maskers.",
+      "onStage": [
+        "CAPULET"
+      ]
+    },
+    {
+      "offset": 33476,
+      "line": 1265,
+      "act": "I",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "TYBALT"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "CAPULET"
+      ]
+    },
+    {
+      "offset": 35189,
+      "line": 1340,
+      "act": "I",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [
+        "JULIET",
+        "NURSE"
+      ],
+      "text": " [_Exeunt all but Juliet and Nurse._]",
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 36035,
+      "line": 1387,
+      "act": "I",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 36061,
+      "line": 1395,
+      "act": "II",
+      "scene": null,
+      "kind": "enter",
+      "names": [
+        "CHORUS"
+      ],
+      "text": " Enter Chorus.",
+      "onStage": [
+        "CHORUS"
+      ]
+    },
+    {
+      "offset": 36706,
+      "line": 1413,
+      "act": "II",
+      "scene": null,
+      "kind": "exit",
+      "names": [
+        "CHORUS"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 36772,
+      "line": 1417,
+      "act": "II",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 36934,
+      "line": 1425,
+      "act": "II",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "MERCUTIO",
+        "BENVOLIO"
+      ],
+      "text": " Enter Benvolio and Mercutio.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 38803,
+      "line": 1488,
+      "act": "II",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 38848,
+      "line": 1492,
+      "act": "II",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 45222,
+      "line": 1706,
+      "act": "II",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "JULIET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 45362,
+      "line": 1713,
+      "act": "II",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet above.",
+      "onStage": [
+        "JULIET",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 46004,
+      "line": 1745,
+      "act": "II",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "JULIET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 47547,
+      "line": 1814,
+      "act": "II",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "JULIET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 47750,
+      "line": 1822,
+      "act": "II",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 47799,
+      "line": 1826,
+      "act": "II",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence with a basket.",
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 48861,
+      "line": 1852,
+      "act": "II",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 52228,
+      "line": 1966,
+      "act": "II",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 52263,
+      "line": 1970,
+      "act": "II",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "MERCUTIO",
+        "BENVOLIO"
+      ],
+      "text": " Enter Benvolio and Mercutio.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO"
+      ]
+    },
+    {
+      "offset": 53938,
+      "line": 2026,
+      "act": "II",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 56705,
+      "line": 2138,
+      "act": "II",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "NURSE",
+        "PETER"
+      ],
+      "text": " Enter Nurse and Peter.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "NURSE",
+        "PETER",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 58288,
+      "line": 2223,
+      "act": "II",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [
+        "MERCUTIO",
+        "BENVOLIO"
+      ],
+      "text": " [_Exeunt Mercutio and Benvolio._]",
+      "onStage": [
+        "NURSE",
+        "PETER",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 61543,
+      "line": 2329,
+      "act": "II",
+      "scene": "IV",
+      "kind": "exit",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " [_Exit Romeo._]",
+      "onStage": [
+        "NURSE",
+        "PETER"
+      ]
+    },
+    {
+      "offset": 61601,
+      "line": 2337,
+      "act": "II",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 61645,
+      "line": 2341,
+      "act": "II",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 62410,
+      "line": 2362,
+      "act": "II",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "NURSE",
+        "PETER"
+      ],
+      "text": " Enter Nurse and Peter.",
+      "onStage": [
+        "JULIET",
+        "NURSE",
+        "PETER"
+      ]
+    },
+    {
+      "offset": 62556,
+      "line": 2370,
+      "act": "II",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "PETER"
+      ],
+      "text": " [_Exit Peter._]",
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 65317,
+      "line": 2463,
+      "act": "II",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 65367,
+      "line": 2467,
+      "act": "II",
+      "scene": "VI",
+      "kind": "enter",
+      "names": [
+        "ROMEO",
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence and Romeo.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 66080,
+      "line": 2490,
+      "act": "II",
+      "scene": "VI",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "JULIET",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 67102,
+      "line": 2527,
+      "act": "II",
+      "scene": "VI",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 67155,
+      "line": 2537,
+      "act": "III",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "MERCUTIO",
+        "BENVOLIO"
+      ],
+      "text": " Enter Mercutio, Benvolio, Page and Servants.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO"
+      ]
+    },
+    {
+      "offset": 68817,
+      "line": 2582,
+      "act": "III",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "TYBALT"
+      ],
+      "text": " Enter Tybalt and others.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 69790,
+      "line": 2623,
+      "act": "III",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "ROMEO",
+        "TYBALT"
+      ]
+    },
+    {
+      "offset": 71400,
+      "line": 2686,
+      "act": "III",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [
+        "TYBALT"
+      ],
+      "text": " [_Exeunt Tybalt with his Partizans._]",
+      "onStage": [
+        "BENVOLIO",
+        "MERCUTIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 71677,
+      "line": 2700,
+      "act": "III",
+      "scene": "I",
+      "kind": "exit",
+      "names": [
+        "MERCUTIO"
+      ],
+      "text": " [_Exit Page._]",
+      "onStage": [
+        "BENVOLIO",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 72390,
+      "line": 2723,
+      "act": "III",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [
+        "MERCUTIO",
+        "BENVOLIO"
+      ],
+      "text": " [_Exeunt Mercutio and Benvolio._]",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 73769,
+      "line": 2781,
+      "act": "III",
+      "scene": "I",
+      "kind": "exit",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " [_Exit Romeo._]",
+      "onStage": []
+    },
+    {
+      "offset": 73787,
+      "line": 2783,
+      "act": "III",
+      "scene": "I",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter Citizens.",
+      "onStage": []
+    },
+    {
+      "offset": 74018,
+      "line": 2796,
+      "act": "III",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "MONTAGUE",
+        "CAPULET"
+      ],
+      "text": " Enter Prince, attended; Montague, Capulet, their Wives and others.",
+      "onStage": [
+        "CAPULET",
+        "MONTAGUE"
+      ]
+    },
+    {
+      "offset": 76657,
+      "line": 2874,
+      "act": "III",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 76711,
+      "line": 2878,
+      "act": "III",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 78181,
+      "line": 2915,
+      "act": "III",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "NURSE"
+      ],
+      "text": " Enter Nurse, with cords.",
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 83256,
+      "line": 3078,
+      "act": "III",
+      "scene": "II",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 83307,
+      "line": 3082,
+      "act": "III",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence.",
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 83470,
+      "line": 3089,
+      "act": "III",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 87179,
+      "line": 3224,
+      "act": "III",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "NURSE"
+      ],
+      "text": " Enter Nurse.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "NURSE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 90946,
+      "line": 3338,
+      "act": "III",
+      "scene": "III",
+      "kind": "exit",
+      "names": [
+        "NURSE"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 91447,
+      "line": 3357,
+      "act": "III",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 91501,
+      "line": 3361,
+      "act": "III",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "PARIS",
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Capulet, Lady Capulet and Paris.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 93152,
+      "line": 3415,
+      "act": "III",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 93239,
+      "line": 3419,
+      "act": "III",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "ROMEO",
+        "JULIET"
+      ],
+      "text": " Enter Romeo and Juliet.",
+      "onStage": [
+        "JULIET",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 94907,
+      "line": 3469,
+      "act": "III",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "NURSE"
+      ],
+      "text": " Enter Nurse.",
+      "onStage": [
+        "JULIET",
+        "NURSE",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 95044,
+      "line": 3481,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "NURSE"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "JULIET",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 95899,
+      "line": 3520,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " [_Exit below._]",
+      "onStage": [
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 96325,
+      "line": 3537,
+      "act": "III",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Lady Capulet.",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "LADY CAPULET"
+      ]
+    },
+    {
+      "offset": 99137,
+      "line": 3642,
+      "act": "III",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "NURSE"
+      ],
+      "text": " Enter Capulet and Nurse.",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 102468,
+      "line": 3752,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 102829,
+      "line": 3766,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "LADY CAPULET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 104174,
+      "line": 3817,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "NURSE"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 104539,
+      "line": 3829,
+      "act": "III",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "JULIET"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 104598,
+      "line": 3839,
+      "act": "IV",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "PARIS",
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence and Paris.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 105413,
+      "line": 3868,
+      "act": "IV",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "JULIET",
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 106713,
+      "line": 3935,
+      "act": "IV",
+      "scene": "I",
+      "kind": "exit",
+      "names": [
+        "PARIS"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 110447,
+      "line": 4038,
+      "act": "IV",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 110499,
+      "line": 4042,
+      "act": "IV",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ],
+      "text": " Enter Capulet, Lady Capulet, Nurse and Servants.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 110600,
+      "line": 4047,
+      "act": "IV",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " [_Exit first Servant._]",
+      "onStage": [
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 110964,
+      "line": 4065,
+      "act": "IV",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " [_Exit second Servant._]",
+      "onStage": [
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 111199,
+      "line": 4077,
+      "act": "IV",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "JULIET"
+      ],
+      "text": " Enter Juliet.",
+      "onStage": [
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 112300,
+      "line": 4120,
+      "act": "IV",
+      "scene": "II",
+      "kind": "exeunt",
+      "names": [
+        "JULIET",
+        "NURSE"
+      ],
+      "text": " [_Exeunt Juliet and Nurse._]",
+      "onStage": [
+        "LADY CAPULET"
+      ]
+    },
+    {
+      "offset": 112802,
+      "line": 4137,
+      "act": "IV",
+      "scene": "II",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 112848,
+      "line": 4141,
+      "act": "IV",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "JULIET",
+        "NURSE"
+      ],
+      "text": " Enter Juliet and Nurse.",
+      "onStage": [
+        "JULIET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 113100,
+      "line": 4150,
+      "act": "IV",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Lady Capulet.",
+      "onStage": [
+        "CAPULET",
+        "JULIET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 113505,
+      "line": 4167,
+      "act": "IV",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ],
+      "text": " [_Exeunt Lady Capulet and Nurse._]",
+      "onStage": [
+        "JULIET"
+      ]
+    },
+    {
+      "offset": 115571,
+      "line": 4223,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ],
+      "text": " Enter Lady Capulet and Nurse.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 115725,
+      "line": 4231,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " Enter Capulet.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 116242,
+      "line": 4252,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ],
+      "text": " [_Exeunt Lady Capulet and Nurse._]",
+      "onStage": []
+    },
+    {
+      "offset": 116321,
+      "line": 4257,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter Servants, with spits, logs and baskets.",
+      "onStage": []
+    },
+    {
+      "offset": 116496,
+      "line": 4267,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "exit",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " [_Exit First Servant._]",
+      "onStage": []
+    },
+    {
+      "offset": 116699,
+      "line": 4276,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "exit",
+      "names": [
+        "SECOND SERVANT"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 117133,
+      "line": 4295,
+      "act": "IV",
+      "scene": "IV",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 117196,
+      "line": 4299,
+      "act": "IV",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "NURSE"
+      ],
+      "text": " Enter Nurse.",
+      "onStage": [
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 117942,
+      "line": 4319,
+      "act": "IV",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Lady Capulet.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 118209,
+      "line": 4338,
+      "act": "IV",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "CAPULET"
+      ],
+      "text": " Enter Capulet.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 118813,
+      "line": 4366,
+      "act": "IV",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "PARIS",
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence and Paris with Musicians.",
+      "onStage": [
+        "CAPULET",
+        "FRIAR LAWRENCE",
+        "LADY CAPULET",
+        "NURSE",
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 121649,
+      "line": 4451,
+      "act": "IV",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [
+        "PARIS",
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " [_Exeunt Capulet, Lady Capulet, Paris and Friar._]",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "NURSE"
+      ]
+    },
+    {
+      "offset": 121913,
+      "line": 4463,
+      "act": "IV",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "NURSE"
+      ],
+      "text": " [_Exit Nurse._]",
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 121931,
+      "line": 4465,
+      "act": "IV",
+      "scene": "V",
+      "kind": "enter",
+      "names": [
+        "PETER"
+      ],
+      "text": " Enter Peter.",
+      "onStage": [
+        "FRIAR LAWRENCE",
+        "PETER"
+      ]
+    },
+    {
+      "offset": 123705,
+      "line": 4540,
+      "act": "IV",
+      "scene": "V",
+      "kind": "exit",
+      "names": [
+        "PETER"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 123869,
+      "line": 4549,
+      "act": "IV",
+      "scene": "V",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 123922,
+      "line": 4559,
+      "act": "V",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "ROMEO"
+      ],
+      "text": " Enter Romeo.",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 124449,
+      "line": 4574,
+      "act": "V",
+      "scene": "I",
+      "kind": "enter",
+      "names": [
+        "BALTHASAR"
+      ],
+      "text": " Enter Balthasar.",
+      "onStage": [
+        "BALTHASAR",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 125461,
+      "line": 4613,
+      "act": "V",
+      "scene": "I",
+      "kind": "exit",
+      "names": [
+        "BALTHASAR"
+      ],
+      "text": " [_Exit Balthasar._]",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 126478,
+      "line": 4640,
+      "act": "V",
+      "scene": "I",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter Apothecary.",
+      "onStage": [
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 127875,
+      "line": 4688,
+      "act": "V",
+      "scene": "I",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    },
+    {
+      "offset": 127925,
+      "line": 4692,
+      "act": "V",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "FRIAR JOHN"
+      ],
+      "text": " Enter Friar John.",
+      "onStage": [
+        "FRIAR JOHN"
+      ]
+    },
+    {
+      "offset": 127994,
+      "line": 4697,
+      "act": "V",
+      "scene": "II",
+      "kind": "enter",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter Friar Lawrence.",
+      "onStage": [
+        "FRIAR JOHN",
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 128977,
+      "line": 4733,
+      "act": "V",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "FRIAR JOHN"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "FRIAR LAWRENCE"
+      ]
+    },
+    {
+      "offset": 129289,
+      "line": 4744,
+      "act": "V",
+      "scene": "II",
+      "kind": "exit",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " [_Exit._]",
+      "onStage": []
+    },
+    {
+      "offset": 129371,
+      "line": 4748,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "PARIS"
+      ],
+      "text": " Enter Paris, and his Page bearing flowers and a torch.",
+      "onStage": [
+        "PARIS"
+      ]
+    },
+    {
+      "offset": 130452,
+      "line": 4784,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "ROMEO",
+        "BALTHASAR"
+      ],
+      "text": " Enter Romeo and Balthasar with a torch, mattock, &c.",
+      "onStage": [
+        "BALTHASAR",
+        "PARIS",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 132833,
+      "line": 4866,
+      "act": "V",
+      "scene": "III",
+      "kind": "exit",
+      "names": [
+        "PAGE"
+      ],
+      "text": " [_Exit._]",
+      "onStage": [
+        "BALTHASAR",
+        "PARIS",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 135025,
+      "line": 4928,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " Enter, at the other end of the Churchyard, Friar Lawrence, with a",
+      "onStage": [
+        "BALTHASAR",
+        "FRIAR LAWRENCE",
+        "PARIS",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 137147,
+      "line": 5016,
+      "act": "V",
+      "scene": "III",
+      "kind": "exit",
+      "names": [
+        "FRIAR LAWRENCE"
+      ],
+      "text": " [_Exit Friar Lawrence._]",
+      "onStage": [
+        "BALTHASAR",
+        "PARIS",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 137722,
+      "line": 5041,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "PARIS"
+      ],
+      "text": " Enter Watch with the Page of Paris.",
+      "onStage": [
+        "BALTHASAR",
+        "PARIS",
+        "ROMEO"
+      ]
+    },
+    {
+      "offset": 137929,
+      "line": 5050,
+      "act": "V",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt some of the Watch._]",
+      "onStage": []
+    },
+    {
+      "offset": 138174,
+      "line": 5058,
+      "act": "V",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt others of the Watch._]",
+      "onStage": []
+    },
+    {
+      "offset": 138774,
+      "line": 5081,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [],
+      "text": " Enter the Prince and Attendants.",
+      "onStage": []
+    },
+    {
+      "offset": 138901,
+      "line": 5087,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "CAPULET",
+        "LADY CAPULET"
+      ],
+      "text": " Enter Capulet, Lady Capulet and others.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET"
+      ]
+    },
+    {
+      "offset": 139775,
+      "line": 5123,
+      "act": "V",
+      "scene": "III",
+      "kind": "enter",
+      "names": [
+        "MONTAGUE"
+      ],
+      "text": " Enter Montague and others.",
+      "onStage": [
+        "CAPULET",
+        "LADY CAPULET",
+        "MONTAGUE"
+      ]
+    },
+    {
+      "offset": 144382,
+      "line": 5263,
+      "act": "V",
+      "scene": "III",
+      "kind": "exeunt",
+      "names": [],
+      "text": " [_Exeunt._]",
+      "onStage": []
+    }
+  ],
+  "speeches": [
+    {
+      "offset": 2058,
+      "line": 93,
+      "speaker": "CHORUS",
+      "endOffset": 2728
+    },
+    {
+      "offset": 2823,
+      "line": 121,
+      "speaker": "SAMPSON",
+      "endOffset": 2878
+    },
+    {
+      "offset": 2879,
+      "line": 124,
+      "speaker": "GREGORY",
+      "endOffset": 2924
+    },
+    {
+      "offset": 2925,
+      "line": 127,
+      "speaker": "SAMPSON",
+      "endOffset": 2976
+    },
+    {
+      "offset": 2977,
+      "line": 130,
+      "speaker": "GREGORY",
+      "endOffset": 3042
+    },
+    {
+      "offset": 3043,
+      "line": 133,
+      "speaker": "SAMPSON",
+      "endOffset": 3083
+    },
+    {
+      "offset": 3084,
+      "line": 136,
+      "speaker": "GREGORY",
+      "endOffset": 3135
+    },
+    {
+      "offset": 3136,
+      "line": 139,
+      "speaker": "SAMPSON",
+      "endOffset": 3186
+    },
+    {
+      "offset": 3187,
+      "line": 142,
+      "speaker": "GREGORY",
+      "endOffset": 3298
+    },
+    {
+      "offset": 3299,
+      "line": 146,
+      "speaker": "SAMPSON",
+      "endOffset": 3409
+    },
+    {
+      "offset": 3410,
+      "line": 150,
+      "speaker": "GREGORY",
+      "endOffset": 3483
+    },
+    {
+      "offset": 3484,
+      "line": 153,
+      "speaker": "SAMPSON",
+      "endOffset": 3663
+    },
+    {
+      "offset": 3664,
+      "line": 158,
+      "speaker": "GREGORY",
+      "endOffset": 3726
+    },
+    {
+      "offset": 3727,
+      "line": 161,
+      "speaker": "SAMPSON",
+      "endOffset": 3873
+    },
+    {
+      "offset": 3874,
+      "line": 165,
+      "speaker": "GREGORY",
+      "endOffset": 3907
+    },
+    {
+      "offset": 3908,
+      "line": 168,
+      "speaker": "SAMPSON",
+      "endOffset": 4000
+    },
+    {
+      "offset": 4001,
+      "line": 172,
+      "speaker": "GREGORY",
+      "endOffset": 4051
+    },
+    {
+      "offset": 4052,
+      "line": 175,
+      "speaker": "SAMPSON",
+      "endOffset": 4153
+    },
+    {
+      "offset": 4154,
+      "line": 179,
+      "speaker": "GREGORY",
+      "endOffset": 4318
+    },
+    {
+      "offset": 4319,
+      "line": 185,
+      "speaker": "SAMPSON",
+      "endOffset": 4379
+    },
+    {
+      "offset": 4380,
+      "line": 188,
+      "speaker": "GREGORY",
+      "endOffset": 4417
+    },
+    {
+      "offset": 4418,
+      "line": 191,
+      "speaker": "SAMPSON",
+      "endOffset": 4440
+    },
+    {
+      "offset": 4441,
+      "line": 194,
+      "speaker": "GREGORY",
+      "endOffset": 4474
+    },
+    {
+      "offset": 4475,
+      "line": 197,
+      "speaker": "SAMPSON",
+      "endOffset": 4534
+    },
+    {
+      "offset": 4535,
+      "line": 200,
+      "speaker": "GREGORY",
+      "endOffset": 4606
+    },
+    {
+      "offset": 4607,
+      "line": 203,
+      "speaker": "SAMPSON",
+      "endOffset": 4708
+    },
+    {
+      "offset": 4709,
+      "line": 207,
+      "speaker": "ABRAM",
+      "endOffset": 4751
+    },
+    {
+      "offset": 4752,
+      "line": 210,
+      "speaker": "SAMPSON",
+      "endOffset": 4786
+    },
+    {
+      "offset": 4787,
+      "line": 213,
+      "speaker": "ABRAM",
+      "endOffset": 4829
+    },
+    {
+      "offset": 4830,
+      "line": 216,
+      "speaker": "SAMPSON",
+      "endOffset": 4875
+    },
+    {
+      "offset": 4876,
+      "line": 219,
+      "speaker": "GREGORY",
+      "endOffset": 4889
+    },
+    {
+      "offset": 4890,
+      "line": 222,
+      "speaker": "SAMPSON",
+      "endOffset": 4969
+    },
+    {
+      "offset": 4970,
+      "line": 225,
+      "speaker": "GREGORY",
+      "endOffset": 5000
+    },
+    {
+      "offset": 5001,
+      "line": 228,
+      "speaker": "ABRAM",
+      "endOffset": 5031
+    },
+    {
+      "offset": 5032,
+      "line": 231,
+      "speaker": "SAMPSON",
+      "endOffset": 5105
+    },
+    {
+      "offset": 5106,
+      "line": 234,
+      "speaker": "ABRAM",
+      "endOffset": 5124
+    },
+    {
+      "offset": 5125,
+      "line": 237,
+      "speaker": "SAMPSON",
+      "endOffset": 5163
+    },
+    {
+      "offset": 5164,
+      "line": 242,
+      "speaker": "GREGORY",
+      "endOffset": 5226
+    },
+    {
+      "offset": 5227,
+      "line": 245,
+      "speaker": "SAMPSON",
+      "endOffset": 5254
+    },
+    {
+      "offset": 5255,
+      "line": 248,
+      "speaker": "ABRAM",
+      "endOffset": 5271
+    },
+    {
+      "offset": 5272,
+      "line": 251,
+      "speaker": "SAMPSON",
+      "endOffset": 5356
+    },
+    {
+      "offset": 5357,
+      "line": 256,
+      "speaker": "BENVOLIO",
+      "endOffset": 5473
+    },
+    {
+      "offset": 5474,
+      "line": 263,
+      "speaker": "TYBALT",
+      "endOffset": 5573
+    },
+    {
+      "offset": 5574,
+      "line": 267,
+      "speaker": "BENVOLIO",
+      "endOffset": 5667
+    },
+    {
+      "offset": 5668,
+      "line": 271,
+      "speaker": "TYBALT",
+      "endOffset": 5848
+    },
+    {
+      "offset": 5849,
+      "line": 280,
+      "speaker": "FIRST CITIZEN",
+      "endOffset": 6012
+    },
+    {
+      "offset": 6013,
+      "line": 286,
+      "speaker": "CAPULET",
+      "endOffset": 6069
+    },
+    {
+      "offset": 6070,
+      "line": 289,
+      "speaker": "LADY CAPULET",
+      "endOffset": 6130
+    },
+    {
+      "offset": 6131,
+      "line": 292,
+      "speaker": "CAPULET",
+      "endOffset": 6260
+    },
+    {
+      "offset": 6261,
+      "line": 298,
+      "speaker": "MONTAGUE",
+      "endOffset": 6317
+    },
+    {
+      "offset": 6318,
+      "line": 301,
+      "speaker": "LADY MONTAGUE",
+      "endOffset": 6418
+    },
+    {
+      "offset": 6419,
+      "line": 306,
+      "speaker": "PRINCE",
+      "endOffset": 7518
+    },
+    {
+      "offset": 7519,
+      "line": 334,
+      "speaker": "MONTAGUE",
+      "endOffset": 7613
+    },
+    {
+      "offset": 7614,
+      "line": 338,
+      "speaker": "BENVOLIO",
+      "endOffset": 8075
+    },
+    {
+      "offset": 8076,
+      "line": 350,
+      "speaker": "LADY MONTAGUE",
+      "endOffset": 8169
+    },
+    {
+      "offset": 8170,
+      "line": 354,
+      "speaker": "BENVOLIO",
+      "endOffset": 8726
+    },
+    {
+      "offset": 8727,
+      "line": 369,
+      "speaker": "MONTAGUE",
+      "endOffset": 9253
+    },
+    {
+      "offset": 9254,
+      "line": 383,
+      "speaker": "BENVOLIO",
+      "endOffset": 9303
+    },
+    {
+      "offset": 9304,
+      "line": 386,
+      "speaker": "MONTAGUE",
+      "endOffset": 9354
+    },
+    {
+      "offset": 9355,
+      "line": 389,
+      "speaker": "BENVOLIO",
+      "endOffset": 9405
+    },
+    {
+      "offset": 9406,
+      "line": 392,
+      "speaker": "MONTAGUE",
+      "endOffset": 9841
+    },
+    {
+      "offset": 9842,
+      "line": 406,
+      "speaker": "BENVOLIO",
+      "endOffset": 9944
+    },
+    {
+      "offset": 9945,
+      "line": 410,
+      "speaker": "MONTAGUE",
+      "endOffset": 10083
+    },
+    {
+      "offset": 10084,
+      "line": 416,
+      "speaker": "BENVOLIO",
+      "endOffset": 10115
+    },
+    {
+      "offset": 10116,
+      "line": 419,
+      "speaker": "ROMEO",
+      "endOffset": 10144
+    },
+    {
+      "offset": 10145,
+      "line": 422,
+      "speaker": "BENVOLIO",
+      "endOffset": 10176
+    },
+    {
+      "offset": 10177,
+      "line": 425,
+      "speaker": "ROMEO",
+      "endOffset": 10256
+    },
+    {
+      "offset": 10257,
+      "line": 429,
+      "speaker": "BENVOLIO",
+      "endOffset": 10315
+    },
+    {
+      "offset": 10316,
+      "line": 432,
+      "speaker": "ROMEO",
+      "endOffset": 10372
+    },
+    {
+      "offset": 10373,
+      "line": 435,
+      "speaker": "BENVOLIO",
+      "endOffset": 10392
+    },
+    {
+      "offset": 10393,
+      "line": 438,
+      "speaker": "ROMEO",
+      "endOffset": 10405
+    },
+    {
+      "offset": 10406,
+      "line": 441,
+      "speaker": "BENVOLIO",
+      "endOffset": 10425
+    },
+    {
+      "offset": 10426,
+      "line": 444,
+      "speaker": "ROMEO",
+      "endOffset": 10471
+    },
+    {
+      "offset": 10472,
+      "line": 447,
+      "speaker": "BENVOLIO",
+      "endOffset": 10563
+    },
+    {
+      "offset": 10564,
+      "line": 451,
+      "speaker": "ROMEO",
+      "endOffset": 11123
+    },
+    {
+      "offset": 11124,
+      "line": 466,
+      "speaker": "BENVOLIO",
+      "endOffset": 11157
+    },
+    {
+      "offset": 11158,
+      "line": 469,
+      "speaker": "ROMEO",
+      "endOffset": 11186
+    },
+    {
+      "offset": 11187,
+      "line": 472,
+      "speaker": "BENVOLIO",
+      "endOffset": 11231
+    },
+    {
+      "offset": 11232,
+      "line": 475,
+      "speaker": "ROMEO",
+      "endOffset": 11722
+    },
+    {
+      "offset": 11723,
+      "line": 490,
+      "speaker": "BENVOLIO",
+      "endOffset": 11797
+    },
+    {
+      "offset": 11798,
+      "line": 494,
+      "speaker": "ROMEO",
+      "endOffset": 11889
+    },
+    {
+      "offset": 11890,
+      "line": 498,
+      "speaker": "BENVOLIO",
+      "endOffset": 11941
+    },
+    {
+      "offset": 11942,
+      "line": 501,
+      "speaker": "ROMEO",
+      "endOffset": 11984
+    },
+    {
+      "offset": 11985,
+      "line": 504,
+      "speaker": "BENVOLIO",
+      "endOffset": 12034
+    },
+    {
+      "offset": 12035,
+      "line": 507,
+      "speaker": "ROMEO",
+      "endOffset": 12164
+    },
+    {
+      "offset": 12165,
+      "line": 512,
+      "speaker": "BENVOLIO",
+      "endOffset": 12224
+    },
+    {
+      "offset": 12225,
+      "line": 515,
+      "speaker": "ROMEO",
+      "endOffset": 12279
+    },
+    {
+      "offset": 12280,
+      "line": 518,
+      "speaker": "BENVOLIO",
+      "endOffset": 12335
+    },
+    {
+      "offset": 12336,
+      "line": 521,
+      "speaker": "ROMEO",
+      "endOffset": 12748
+    },
+    {
+      "offset": 12749,
+      "line": 532,
+      "speaker": "BENVOLIO",
+      "endOffset": 12812
+    },
+    {
+      "offset": 12813,
+      "line": 535,
+      "speaker": "ROMEO",
+      "endOffset": 13110
+    },
+    {
+      "offset": 13111,
+      "line": 544,
+      "speaker": "BENVOLIO",
+      "endOffset": 13163
+    },
+    {
+      "offset": 13164,
+      "line": 547,
+      "speaker": "ROMEO",
+      "endOffset": 13212
+    },
+    {
+      "offset": 13213,
+      "line": 550,
+      "speaker": "BENVOLIO",
+      "endOffset": 13282
+    },
+    {
+      "offset": 13283,
+      "line": 554,
+      "speaker": "ROMEO",
+      "endOffset": 13707
+    },
+    {
+      "offset": 13708,
+      "line": 566,
+      "speaker": "BENVOLIO",
+      "endOffset": 13779
+    },
+    {
+      "offset": 13837,
+      "line": 575,
+      "speaker": "CAPULET",
+      "endOffset": 13970
+    },
+    {
+      "offset": 13971,
+      "line": 580,
+      "speaker": "PARIS",
+      "endOffset": 14103
+    },
+    {
+      "offset": 14104,
+      "line": 585,
+      "speaker": "CAPULET",
+      "endOffset": 14329
+    },
+    {
+      "offset": 14330,
+      "line": 592,
+      "speaker": "PARIS",
+      "endOffset": 14378
+    },
+    {
+      "offset": 14379,
+      "line": 595,
+      "speaker": "CAPULET",
+      "endOffset": 15523
+    },
+    {
+      "offset": 15524,
+      "line": 624,
+      "speaker": "SERVANT",
+      "endOffset": 15920
+    },
+    {
+      "offset": 15921,
+      "line": 634,
+      "speaker": "BENVOLIO",
+      "endOffset": 16208
+    },
+    {
+      "offset": 16209,
+      "line": 642,
+      "speaker": "ROMEO",
+      "endOffset": 16258
+    },
+    {
+      "offset": 16259,
+      "line": 645,
+      "speaker": "BENVOLIO",
+      "endOffset": 16292
+    },
+    {
+      "offset": 16293,
+      "line": 648,
+      "speaker": "ROMEO",
+      "endOffset": 16322
+    },
+    {
+      "offset": 16323,
+      "line": 651,
+      "speaker": "BENVOLIO",
+      "endOffset": 16359
+    },
+    {
+      "offset": 16360,
+      "line": 654,
+      "speaker": "ROMEO",
+      "endOffset": 16502
+    },
+    {
+      "offset": 16503,
+      "line": 659,
+      "speaker": "SERVANT",
+      "endOffset": 16557
+    },
+    {
+      "offset": 16558,
+      "line": 662,
+      "speaker": "ROMEO",
+      "endOffset": 16600
+    },
+    {
+      "offset": 16601,
+      "line": 665,
+      "speaker": "SERVANT",
+      "endOffset": 16695
+    },
+    {
+      "offset": 16696,
+      "line": 669,
+      "speaker": "ROMEO",
+      "endOffset": 16747
+    },
+    {
+      "offset": 16748,
+      "line": 672,
+      "speaker": "SERVANT",
+      "endOffset": 16790
+    },
+    {
+      "offset": 16791,
+      "line": 675,
+      "speaker": "ROMEO",
+      "endOffset": 17263
+    },
+    {
+      "offset": 17264,
+      "line": 693,
+      "speaker": "SERVANT",
+      "endOffset": 17277
+    },
+    {
+      "offset": 17278,
+      "line": 696,
+      "speaker": "ROMEO",
+      "endOffset": 17304
+    },
+    {
+      "offset": 17305,
+      "line": 699,
+      "speaker": "SERVANT",
+      "endOffset": 17328
+    },
+    {
+      "offset": 17329,
+      "line": 702,
+      "speaker": "ROMEO",
+      "endOffset": 17349
+    },
+    {
+      "offset": 17350,
+      "line": 705,
+      "speaker": "SERVANT",
+      "endOffset": 17374
+    },
+    {
+      "offset": 17375,
+      "line": 708,
+      "speaker": "ROMEO",
+      "endOffset": 17428
+    },
+    {
+      "offset": 17429,
+      "line": 711,
+      "speaker": "SERVANT",
+      "endOffset": 17621
+    },
+    {
+      "offset": 17622,
+      "line": 718,
+      "speaker": "BENVOLIO",
+      "endOffset": 17888
+    },
+    {
+      "offset": 17889,
+      "line": 726,
+      "speaker": "ROMEO",
+      "endOffset": 18170
+    },
+    {
+      "offset": 18171,
+      "line": 734,
+      "speaker": "BENVOLIO",
+      "endOffset": 18457
+    },
+    {
+      "offset": 18458,
+      "line": 742,
+      "speaker": "ROMEO",
+      "endOffset": 18562
+    },
+    {
+      "offset": 18634,
+      "line": 752,
+      "speaker": "LADY CAPULET",
+      "endOffset": 18700
+    },
+    {
+      "offset": 18701,
+      "line": 755,
+      "speaker": "NURSE",
+      "endOffset": 18858
+    },
+    {
+      "offset": 18859,
+      "line": 762,
+      "speaker": "JULIET",
+      "endOffset": 18887
+    },
+    {
+      "offset": 18888,
+      "line": 765,
+      "speaker": "NURSE",
+      "endOffset": 18908
+    },
+    {
+      "offset": 18909,
+      "line": 768,
+      "speaker": "JULIET",
+      "endOffset": 18954
+    },
+    {
+      "offset": 18955,
+      "line": 771,
+      "speaker": "LADY CAPULET",
+      "endOffset": 19160
+    },
+    {
+      "offset": 19161,
+      "line": 777,
+      "speaker": "NURSE",
+      "endOffset": 19208
+    },
+    {
+      "offset": 19209,
+      "line": 780,
+      "speaker": "LADY CAPULET",
+      "endOffset": 19245
+    },
+    {
+      "offset": 19246,
+      "line": 783,
+      "speaker": "NURSE",
+      "endOffset": 19393
+    },
+    {
+      "offset": 19394,
+      "line": 789,
+      "speaker": "LADY CAPULET",
+      "endOffset": 19434
+    },
+    {
+      "offset": 19435,
+      "line": 792,
+      "speaker": "NURSE",
+      "endOffset": 20913
+    },
+    {
+      "offset": 20914,
+      "line": 827,
+      "speaker": "LADY CAPULET",
+      "endOffset": 20972
+    },
+    {
+      "offset": 20973,
+      "line": 830,
+      "speaker": "NURSE",
+      "endOffset": 21359
+    },
+    {
+      "offset": 21360,
+      "line": 840,
+      "speaker": "JULIET",
+      "endOffset": 21415
+    },
+    {
+      "offset": 21416,
+      "line": 843,
+      "speaker": "NURSE",
+      "endOffset": 21582
+    },
+    {
+      "offset": 21583,
+      "line": 848,
+      "speaker": "LADY CAPULET",
+      "endOffset": 21721
+    },
+    {
+      "offset": 21722,
+      "line": 853,
+      "speaker": "JULIET",
+      "endOffset": 21767
+    },
+    {
+      "offset": 21768,
+      "line": 856,
+      "speaker": "NURSE",
+      "endOffset": 21869
+    },
+    {
+      "offset": 21870,
+      "line": 860,
+      "speaker": "LADY CAPULET",
+      "endOffset": 22132
+    },
+    {
+      "offset": 22133,
+      "line": 868,
+      "speaker": "NURSE",
+      "endOffset": 22220
+    },
+    {
+      "offset": 22221,
+      "line": 872,
+      "speaker": "LADY CAPULET",
+      "endOffset": 22277
+    },
+    {
+      "offset": 22278,
+      "line": 875,
+      "speaker": "NURSE",
+      "endOffset": 22331
+    },
+    {
+      "offset": 22332,
+      "line": 878,
+      "speaker": "LADY CAPULET",
+      "endOffset": 23046
+    },
+    {
+      "offset": 23047,
+      "line": 896,
+      "speaker": "NURSE",
+      "endOffset": 23094
+    },
+    {
+      "offset": 23095,
+      "line": 899,
+      "speaker": "LADY CAPULET",
+      "endOffset": 23155
+    },
+    {
+      "offset": 23156,
+      "line": 902,
+      "speaker": "JULIET",
+      "endOffset": 23317
+    },
+    {
+      "offset": 23318,
+      "line": 909,
+      "speaker": "SERVANT",
+      "endOffset": 23524
+    },
+    {
+      "offset": 23525,
+      "line": 914,
+      "speaker": "LADY CAPULET",
+      "endOffset": 23602
+    },
+    {
+      "offset": 23603,
+      "line": 921,
+      "speaker": "NURSE",
+      "endOffset": 23667
+    },
+    {
+      "offset": 23777,
+      "line": 931,
+      "speaker": "ROMEO",
+      "endOffset": 23865
+    },
+    {
+      "offset": 23866,
+      "line": 935,
+      "speaker": "BENVOLIO",
+      "endOffset": 24211
+    },
+    {
+      "offset": 24212,
+      "line": 945,
+      "speaker": "ROMEO",
+      "endOffset": 24302
+    },
+    {
+      "offset": 24303,
+      "line": 949,
+      "speaker": "MERCUTIO",
+      "endOffset": 24356
+    },
+    {
+      "offset": 24357,
+      "line": 952,
+      "speaker": "ROMEO",
+      "endOffset": 24490
+    },
+    {
+      "offset": 24491,
+      "line": 957,
+      "speaker": "MERCUTIO",
+      "endOffset": 24583
+    },
+    {
+      "offset": 24584,
+      "line": 961,
+      "speaker": "ROMEO",
+      "endOffset": 24755
+    },
+    {
+      "offset": 24756,
+      "line": 967,
+      "speaker": "MERCUTIO",
+      "endOffset": 24851
+    },
+    {
+      "offset": 24852,
+      "line": 971,
+      "speaker": "ROMEO",
+      "endOffset": 24952
+    },
+    {
+      "offset": 24953,
+      "line": 975,
+      "speaker": "MERCUTIO",
+      "endOffset": 25238
+    },
+    {
+      "offset": 25239,
+      "line": 983,
+      "speaker": "BENVOLIO",
+      "endOffset": 25327
+    },
+    {
+      "offset": 25328,
+      "line": 987,
+      "speaker": "ROMEO",
+      "endOffset": 25556
+    },
+    {
+      "offset": 25557,
+      "line": 994,
+      "speaker": "MERCUTIO",
+      "endOffset": 25763
+    },
+    {
+      "offset": 25764,
+      "line": 1000,
+      "speaker": "ROMEO",
+      "endOffset": 25793
+    },
+    {
+      "offset": 25794,
+      "line": 1003,
+      "speaker": "MERCUTIO",
+      "endOffset": 25966
+    },
+    {
+      "offset": 25967,
+      "line": 1009,
+      "speaker": "ROMEO",
+      "endOffset": 26039
+    },
+    {
+      "offset": 26040,
+      "line": 1013,
+      "speaker": "MERCUTIO",
+      "endOffset": 26068
+    },
+    {
+      "offset": 26069,
+      "line": 1016,
+      "speaker": "ROMEO",
+      "endOffset": 26102
+    },
+    {
+      "offset": 26103,
+      "line": 1019,
+      "speaker": "MERCUTIO",
+      "endOffset": 26127
+    },
+    {
+      "offset": 26128,
+      "line": 1022,
+      "speaker": "ROMEO",
+      "endOffset": 26156
+    },
+    {
+      "offset": 26157,
+      "line": 1025,
+      "speaker": "MERCUTIO",
+      "endOffset": 26192
+    },
+    {
+      "offset": 26193,
+      "line": 1028,
+      "speaker": "ROMEO",
+      "endOffset": 26248
+    },
+    {
+      "offset": 26249,
+      "line": 1031,
+      "speaker": "MERCUTIO",
+      "endOffset": 28167
+    },
+    {
+      "offset": 28168,
+      "line": 1076,
+      "speaker": "ROMEO",
+      "endOffset": 28233
+    },
+    {
+      "offset": 28234,
+      "line": 1080,
+      "speaker": "MERCUTIO",
+      "endOffset": 28560
+    },
+    {
+      "offset": 28561,
+      "line": 1090,
+      "speaker": "BENVOLIO",
+      "endOffset": 28662
+    },
+    {
+      "offset": 28663,
+      "line": 1094,
+      "speaker": "ROMEO",
+      "endOffset": 29000
+    },
+    {
+      "offset": 29001,
+      "line": 1104,
+      "speaker": "BENVOLIO",
+      "endOffset": 29039
+    },
+    {
+      "offset": 29116,
+      "line": 1113,
+      "speaker": "FIRST SERVANT",
+      "endOffset": 29224
+    },
+    {
+      "offset": 29225,
+      "line": 1117,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 29348
+    },
+    {
+      "offset": 29349,
+      "line": 1121,
+      "speaker": "FIRST SERVANT",
+      "endOffset": 29568
+    },
+    {
+      "offset": 29569,
+      "line": 1126,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 29601
+    },
+    {
+      "offset": 29602,
+      "line": 1129,
+      "speaker": "FIRST SERVANT",
+      "endOffset": 29700
+    },
+    {
+      "offset": 29701,
+      "line": 1133,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 29896
+    },
+    {
+      "offset": 29897,
+      "line": 1141,
+      "speaker": "CAPULET",
+      "endOffset": 30743
+    },
+    {
+      "offset": 30744,
+      "line": 1164,
+      "speaker": "CAPULET'S COUSIN",
+      "endOffset": 30791
+    },
+    {
+      "offset": 30792,
+      "line": 1167,
+      "speaker": "CAPULET",
+      "endOffset": 30978
+    },
+    {
+      "offset": 30979,
+      "line": 1173,
+      "speaker": "CAPULET'S COUSIN",
+      "endOffset": 31067
+    },
+    {
+      "offset": 31068,
+      "line": 1177,
+      "speaker": "CAPULET",
+      "endOffset": 31138
+    },
+    {
+      "offset": 31139,
+      "line": 1181,
+      "speaker": "ROMEO",
+      "endOffset": 31210
+    },
+    {
+      "offset": 31211,
+      "line": 1185,
+      "speaker": "SERVANT",
+      "endOffset": 31237
+    },
+    {
+      "offset": 31238,
+      "line": 1188,
+      "speaker": "ROMEO",
+      "endOffset": 31692
+    },
+    {
+      "offset": 31693,
+      "line": 1200,
+      "speaker": "TYBALT",
+      "endOffset": 31948
+    },
+    {
+      "offset": 31949,
+      "line": 1208,
+      "speaker": "CAPULET",
+      "endOffset": 32004
+    },
+    {
+      "offset": 32005,
+      "line": 1212,
+      "speaker": "TYBALT",
+      "endOffset": 32127
+    },
+    {
+      "offset": 32128,
+      "line": 1217,
+      "speaker": "CAPULET",
+      "endOffset": 32157
+    },
+    {
+      "offset": 32158,
+      "line": 1220,
+      "speaker": "TYBALT",
+      "endOffset": 32197
+    },
+    {
+      "offset": 32198,
+      "line": 1223,
+      "speaker": "CAPULET",
+      "endOffset": 32622
+    },
+    {
+      "offset": 32623,
+      "line": 1235,
+      "speaker": "TYBALT",
+      "endOffset": 32694
+    },
+    {
+      "offset": 32695,
+      "line": 1239,
+      "speaker": "CAPULET",
+      "endOffset": 32942
+    },
+    {
+      "offset": 32943,
+      "line": 1247,
+      "speaker": "TYBALT",
+      "endOffset": 32979
+    },
+    {
+      "offset": 32980,
+      "line": 1250,
+      "speaker": "CAPULET",
+      "endOffset": 33283
+    },
+    {
+      "offset": 33284,
+      "line": 1259,
+      "speaker": "TYBALT",
+      "endOffset": 33487
+    },
+    {
+      "offset": 33488,
+      "line": 1267,
+      "speaker": "ROMEO",
+      "endOffset": 33681
+    },
+    {
+      "offset": 33682,
+      "line": 1273,
+      "speaker": "JULIET",
+      "endOffset": 33873
+    },
+    {
+      "offset": 33874,
+      "line": 1279,
+      "speaker": "ROMEO",
+      "endOffset": 33925
+    },
+    {
+      "offset": 33926,
+      "line": 1282,
+      "speaker": "JULIET",
+      "endOffset": 33982
+    },
+    {
+      "offset": 33983,
+      "line": 1285,
+      "speaker": "ROMEO",
+      "endOffset": 34089
+    },
+    {
+      "offset": 34090,
+      "line": 1289,
+      "speaker": "JULIET",
+      "endOffset": 34152
+    },
+    {
+      "offset": 34153,
+      "line": 1292,
+      "speaker": "ROMEO",
+      "endOffset": 34274
+    },
+    {
+      "offset": 34275,
+      "line": 1297,
+      "speaker": "JULIET",
+      "endOffset": 34330
+    },
+    {
+      "offset": 34331,
+      "line": 1300,
+      "speaker": "ROMEO",
+      "endOffset": 34406
+    },
+    {
+      "offset": 34407,
+      "line": 1304,
+      "speaker": "JULIET",
+      "endOffset": 34437
+    },
+    {
+      "offset": 34438,
+      "line": 1307,
+      "speaker": "NURSE",
+      "endOffset": 34488
+    },
+    {
+      "offset": 34489,
+      "line": 1310,
+      "speaker": "ROMEO",
+      "endOffset": 34516
+    },
+    {
+      "offset": 34517,
+      "line": 1313,
+      "speaker": "NURSE",
+      "endOffset": 34733
+    },
+    {
+      "offset": 34734,
+      "line": 1321,
+      "speaker": "ROMEO",
+      "endOffset": 34803
+    },
+    {
+      "offset": 34804,
+      "line": 1325,
+      "speaker": "BENVOLIO",
+      "endOffset": 34855
+    },
+    {
+      "offset": 34856,
+      "line": 1328,
+      "speaker": "ROMEO",
+      "endOffset": 34901
+    },
+    {
+      "offset": 34902,
+      "line": 1331,
+      "speaker": "CAPULET",
+      "endOffset": 35227
+    },
+    {
+      "offset": 35228,
+      "line": 1342,
+      "speaker": "JULIET",
+      "endOffset": 35280
+    },
+    {
+      "offset": 35281,
+      "line": 1345,
+      "speaker": "NURSE",
+      "endOffset": 35321
+    },
+    {
+      "offset": 35322,
+      "line": 1348,
+      "speaker": "JULIET",
+      "endOffset": 35373
+    },
+    {
+      "offset": 35374,
+      "line": 1351,
+      "speaker": "NURSE",
+      "endOffset": 35421
+    },
+    {
+      "offset": 35422,
+      "line": 1354,
+      "speaker": "JULIET",
+      "endOffset": 35483
+    },
+    {
+      "offset": 35484,
+      "line": 1357,
+      "speaker": "NURSE",
+      "endOffset": 35503
+    },
+    {
+      "offset": 35504,
+      "line": 1360,
+      "speaker": "JULIET",
+      "endOffset": 35586
+    },
+    {
+      "offset": 35587,
+      "line": 1364,
+      "speaker": "NURSE",
+      "endOffset": 35663
+    },
+    {
+      "offset": 35664,
+      "line": 1368,
+      "speaker": "JULIET",
+      "endOffset": 35827
+    },
+    {
+      "offset": 35828,
+      "line": 1374,
+      "speaker": "NURSE",
+      "endOffset": 35865
+    },
+    {
+      "offset": 35866,
+      "line": 1377,
+      "speaker": "JULIET",
+      "endOffset": 35967
+    },
+    {
+      "offset": 35968,
+      "line": 1383,
+      "speaker": "NURSE",
+      "endOffset": 36051
+    },
+    {
+      "offset": 36077,
+      "line": 1397,
+      "speaker": "CHORUS",
+      "endOffset": 144395
+    },
+    {
+      "offset": 36787,
+      "line": 1419,
+      "speaker": "ROMEO",
+      "endOffset": 36964
+    },
+    {
+      "offset": 36965,
+      "line": 1427,
+      "speaker": "BENVOLIO",
+      "endOffset": 37006
+    },
+    {
+      "offset": 37007,
+      "line": 1430,
+      "speaker": "MERCUTIO",
+      "endOffset": 37075
+    },
+    {
+      "offset": 37076,
+      "line": 1434,
+      "speaker": "BENVOLIO",
+      "endOffset": 37156
+    },
+    {
+      "offset": 37157,
+      "line": 1438,
+      "speaker": "MERCUTIO",
+      "endOffset": 37842
+    },
+    {
+      "offset": 37843,
+      "line": 1456,
+      "speaker": "BENVOLIO",
+      "endOffset": 37894
+    },
+    {
+      "offset": 37895,
+      "line": 1459,
+      "speaker": "MERCUTIO",
+      "endOffset": 38208
+    },
+    {
+      "offset": 38209,
+      "line": 1468,
+      "speaker": "BENVOLIO",
+      "endOffset": 38349
+    },
+    {
+      "offset": 38350,
+      "line": 1473,
+      "speaker": "MERCUTIO",
+      "endOffset": 38718
+    },
+    {
+      "offset": 38719,
+      "line": 1484,
+      "speaker": "BENVOLIO",
+      "endOffset": 38816
+    },
+    {
+      "offset": 38863,
+      "line": 1494,
+      "speaker": "ROMEO",
+      "endOffset": 39968
+    },
+    {
+      "offset": 39969,
+      "line": 1524,
+      "speaker": "JULIET",
+      "endOffset": 39984
+    },
+    {
+      "offset": 39985,
+      "line": 1527,
+      "speaker": "ROMEO",
+      "endOffset": 40288
+    },
+    {
+      "offset": 40289,
+      "line": 1537,
+      "speaker": "JULIET",
+      "endOffset": 40454
+    },
+    {
+      "offset": 40455,
+      "line": 1543,
+      "speaker": "ROMEO",
+      "endOffset": 40518
+    },
+    {
+      "offset": 40519,
+      "line": 1546,
+      "speaker": "JULIET",
+      "endOffset": 41005
+    },
+    {
+      "offset": 41006,
+      "line": 1560,
+      "speaker": "ROMEO",
+      "endOffset": 41120
+    },
+    {
+      "offset": 41121,
+      "line": 1565,
+      "speaker": "JULIET",
+      "endOffset": 41208
+    },
+    {
+      "offset": 41209,
+      "line": 1569,
+      "speaker": "ROMEO",
+      "endOffset": 41380
+    },
+    {
+      "offset": 41381,
+      "line": 1576,
+      "speaker": "JULIET",
+      "endOffset": 41519
+    },
+    {
+      "offset": 41520,
+      "line": 1581,
+      "speaker": "ROMEO",
+      "endOffset": 41571
+    },
+    {
+      "offset": 41572,
+      "line": 1584,
+      "speaker": "JULIET",
+      "endOffset": 41760
+    },
+    {
+      "offset": 41761,
+      "line": 1590,
+      "speaker": "ROMEO",
+      "endOffset": 41952
+    },
+    {
+      "offset": 41953,
+      "line": 1596,
+      "speaker": "JULIET",
+      "endOffset": 42005
+    },
+    {
+      "offset": 42006,
+      "line": 1599,
+      "speaker": "ROMEO",
+      "endOffset": 42142
+    },
+    {
+      "offset": 42143,
+      "line": 1604,
+      "speaker": "JULIET",
+      "endOffset": 42197
+    },
+    {
+      "offset": 42198,
+      "line": 1607,
+      "speaker": "ROMEO",
+      "endOffset": 42384
+    },
+    {
+      "offset": 42385,
+      "line": 1613,
+      "speaker": "JULIET",
+      "endOffset": 42444
+    },
+    {
+      "offset": 42445,
+      "line": 1616,
+      "speaker": "ROMEO",
+      "endOffset": 42667
+    },
+    {
+      "offset": 42668,
+      "line": 1623,
+      "speaker": "JULIET",
+      "endOffset": 43679
+    },
+    {
+      "offset": 43680,
+      "line": 1647,
+      "speaker": "ROMEO",
+      "endOffset": 43775
+    },
+    {
+      "offset": 43776,
+      "line": 1651,
+      "speaker": "JULIET",
+      "endOffset": 43916
+    },
+    {
+      "offset": 43917,
+      "line": 1656,
+      "speaker": "ROMEO",
+      "endOffset": 43947
+    },
+    {
+      "offset": 43948,
+      "line": 1659,
+      "speaker": "JULIET",
+      "endOffset": 44080
+    },
+    {
+      "offset": 44081,
+      "line": 1665,
+      "speaker": "ROMEO",
+      "endOffset": 44118
+    },
+    {
+      "offset": 44119,
+      "line": 1668,
+      "speaker": "JULIET",
+      "endOffset": 44547
+    },
+    {
+      "offset": 44548,
+      "line": 1679,
+      "speaker": "ROMEO",
+      "endOffset": 44592
+    },
+    {
+      "offset": 44593,
+      "line": 1682,
+      "speaker": "JULIET",
+      "endOffset": 44644
+    },
+    {
+      "offset": 44645,
+      "line": 1685,
+      "speaker": "ROMEO",
+      "endOffset": 44705
+    },
+    {
+      "offset": 44706,
+      "line": 1688,
+      "speaker": "JULIET",
+      "endOffset": 44800
+    },
+    {
+      "offset": 44801,
+      "line": 1692,
+      "speaker": "ROMEO",
+      "endOffset": 44861
+    },
+    {
+      "offset": 44862,
+      "line": 1695,
+      "speaker": "JULIET",
+      "endOffset": 45233
+    },
+    {
+      "offset": 45234,
+      "line": 1708,
+      "speaker": "ROMEO",
+      "endOffset": 45383
+    },
+    {
+      "offset": 45384,
+      "line": 1715,
+      "speaker": "JULIET",
+      "endOffset": 45706
+    },
+    {
+      "offset": 45707,
+      "line": 1724,
+      "speaker": "NURSE",
+      "endOffset": 45733
+    },
+    {
+      "offset": 45734,
+      "line": 1727,
+      "speaker": "JULIET",
+      "endOffset": 45811
+    },
+    {
+      "offset": 45812,
+      "line": 1731,
+      "speaker": "NURSE",
+      "endOffset": 45838
+    },
+    {
+      "offset": 45839,
+      "line": 1734,
+      "speaker": "JULIET",
+      "endOffset": 45935
+    },
+    {
+      "offset": 45936,
+      "line": 1739,
+      "speaker": "ROMEO",
+      "endOffset": 45965
+    },
+    {
+      "offset": 45966,
+      "line": 1742,
+      "speaker": "JULIET",
+      "endOffset": 46015
+    },
+    {
+      "offset": 46016,
+      "line": 1747,
+      "speaker": "ROMEO",
+      "endOffset": 46226
+    },
+    {
+      "offset": 46227,
+      "line": 1756,
+      "speaker": "JULIET",
+      "endOffset": 46492
+    },
+    {
+      "offset": 46493,
+      "line": 1764,
+      "speaker": "ROMEO",
+      "endOffset": 46628
+    },
+    {
+      "offset": 46629,
+      "line": 1769,
+      "speaker": "JULIET",
+      "endOffset": 46644
+    },
+    {
+      "offset": 46645,
+      "line": 1772,
+      "speaker": "ROMEO",
+      "endOffset": 46661
+    },
+    {
+      "offset": 46662,
+      "line": 1775,
+      "speaker": "JULIET",
+      "endOffset": 46716
+    },
+    {
+      "offset": 46717,
+      "line": 1779,
+      "speaker": "ROMEO",
+      "endOffset": 46745
+    },
+    {
+      "offset": 46746,
+      "line": 1782,
+      "speaker": "JULIET",
+      "endOffset": 46842
+    },
+    {
+      "offset": 46843,
+      "line": 1786,
+      "speaker": "ROMEO",
+      "endOffset": 46891
+    },
+    {
+      "offset": 46892,
+      "line": 1789,
+      "speaker": "JULIET",
+      "endOffset": 46984
+    },
+    {
+      "offset": 46985,
+      "line": 1793,
+      "speaker": "ROMEO",
+      "endOffset": 47078
+    },
+    {
+      "offset": 47079,
+      "line": 1797,
+      "speaker": "JULIET",
+      "endOffset": 47340
+    },
+    {
+      "offset": 47341,
+      "line": 1805,
+      "speaker": "ROMEO",
+      "endOffset": 47373
+    },
+    {
+      "offset": 47374,
+      "line": 1808,
+      "speaker": "JULIET",
+      "endOffset": 47558
+    },
+    {
+      "offset": 47559,
+      "line": 1816,
+      "speaker": "ROMEO",
+      "endOffset": 47761
+    },
+    {
+      "offset": 47837,
+      "line": 1828,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 49238
+    },
+    {
+      "offset": 49239,
+      "line": 1863,
+      "speaker": "ROMEO",
+      "endOffset": 49267
+    },
+    {
+      "offset": 49268,
+      "line": 1866,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 49775
+    },
+    {
+      "offset": 49776,
+      "line": 1880,
+      "speaker": "ROMEO",
+      "endOffset": 49829
+    },
+    {
+      "offset": 49830,
+      "line": 1883,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 49887
+    },
+    {
+      "offset": 49888,
+      "line": 1886,
+      "speaker": "ROMEO",
+      "endOffset": 49981
+    },
+    {
+      "offset": 49982,
+      "line": 1890,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 50051
+    },
+    {
+      "offset": 50052,
+      "line": 1893,
+      "speaker": "ROMEO",
+      "endOffset": 50337
+    },
+    {
+      "offset": 50338,
+      "line": 1902,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 50446
+    },
+    {
+      "offset": 50447,
+      "line": 1906,
+      "speaker": "ROMEO",
+      "endOffset": 50801
+    },
+    {
+      "offset": 50802,
+      "line": 1916,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 51536
+    },
+    {
+      "offset": 51537,
+      "line": 1934,
+      "speaker": "ROMEO",
+      "endOffset": 51588
+    },
+    {
+      "offset": 51589,
+      "line": 1937,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 51645
+    },
+    {
+      "offset": 51646,
+      "line": 1940,
+      "speaker": "ROMEO",
+      "endOffset": 51680
+    },
+    {
+      "offset": 51681,
+      "line": 1943,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 51748
+    },
+    {
+      "offset": 51749,
+      "line": 1947,
+      "speaker": "ROMEO",
+      "endOffset": 51865
+    },
+    {
+      "offset": 51866,
+      "line": 1952,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 52116
+    },
+    {
+      "offset": 52117,
+      "line": 1960,
+      "speaker": "ROMEO",
+      "endOffset": 52165
+    },
+    {
+      "offset": 52166,
+      "line": 1963,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 52241
+    },
+    {
+      "offset": 52294,
+      "line": 1972,
+      "speaker": "MERCUTIO",
+      "endOffset": 52368
+    },
+    {
+      "offset": 52369,
+      "line": 1975,
+      "speaker": "BENVOLIO",
+      "endOffset": 52424
+    },
+    {
+      "offset": 52425,
+      "line": 1978,
+      "speaker": "MERCUTIO",
+      "endOffset": 52533
+    },
+    {
+      "offset": 52534,
+      "line": 1982,
+      "speaker": "BENVOLIO",
+      "endOffset": 52624
+    },
+    {
+      "offset": 52625,
+      "line": 1986,
+      "speaker": "MERCUTIO",
+      "endOffset": 52660
+    },
+    {
+      "offset": 52661,
+      "line": 1989,
+      "speaker": "BENVOLIO",
+      "endOffset": 52693
+    },
+    {
+      "offset": 52694,
+      "line": 1992,
+      "speaker": "MERCUTIO",
+      "endOffset": 52748
+    },
+    {
+      "offset": 52749,
+      "line": 1995,
+      "speaker": "BENVOLIO",
+      "endOffset": 52829
+    },
+    {
+      "offset": 52830,
+      "line": 1998,
+      "speaker": "MERCUTIO",
+      "endOffset": 53065
+    },
+    {
+      "offset": 53066,
+      "line": 2004,
+      "speaker": "BENVOLIO",
+      "endOffset": 53097
+    },
+    {
+      "offset": 53098,
+      "line": 2007,
+      "speaker": "MERCUTIO",
+      "endOffset": 53500
+    },
+    {
+      "offset": 53501,
+      "line": 2015,
+      "speaker": "BENVOLIO",
+      "endOffset": 53521
+    },
+    {
+      "offset": 53522,
+      "line": 2018,
+      "speaker": "MERCUTIO",
+      "endOffset": 53952
+    },
+    {
+      "offset": 53953,
+      "line": 2028,
+      "speaker": "BENVOLIO",
+      "endOffset": 53999
+    },
+    {
+      "offset": 54000,
+      "line": 2031,
+      "speaker": "MERCUTIO",
+      "endOffset": 54473
+    },
+    {
+      "offset": 54474,
+      "line": 2040,
+      "speaker": "ROMEO",
+      "endOffset": 54539
+    },
+    {
+      "offset": 54540,
+      "line": 2043,
+      "speaker": "MERCUTIO",
+      "endOffset": 54596
+    },
+    {
+      "offset": 54597,
+      "line": 2046,
+      "speaker": "ROMEO",
+      "endOffset": 54704
+    },
+    {
+      "offset": 54705,
+      "line": 2050,
+      "speaker": "MERCUTIO",
+      "endOffset": 54801
+    },
+    {
+      "offset": 54802,
+      "line": 2054,
+      "speaker": "ROMEO",
+      "endOffset": 54829
+    },
+    {
+      "offset": 54830,
+      "line": 2057,
+      "speaker": "MERCUTIO",
+      "endOffset": 54870
+    },
+    {
+      "offset": 54871,
+      "line": 2060,
+      "speaker": "ROMEO",
+      "endOffset": 54907
+    },
+    {
+      "offset": 54908,
+      "line": 2063,
+      "speaker": "MERCUTIO",
+      "endOffset": 54955
+    },
+    {
+      "offset": 54956,
+      "line": 2066,
+      "speaker": "ROMEO",
+      "endOffset": 54980
+    },
+    {
+      "offset": 54981,
+      "line": 2069,
+      "speaker": "MERCUTIO",
+      "endOffset": 54998
+    },
+    {
+      "offset": 54999,
+      "line": 2072,
+      "speaker": "ROMEO",
+      "endOffset": 55042
+    },
+    {
+      "offset": 55043,
+      "line": 2075,
+      "speaker": "MERCUTIO",
+      "endOffset": 55219
+    },
+    {
+      "offset": 55220,
+      "line": 2080,
+      "speaker": "ROMEO",
+      "endOffset": 55284
+    },
+    {
+      "offset": 55285,
+      "line": 2083,
+      "speaker": "MERCUTIO",
+      "endOffset": 55342
+    },
+    {
+      "offset": 55343,
+      "line": 2086,
+      "speaker": "ROMEO",
+      "endOffset": 55407
+    },
+    {
+      "offset": 55408,
+      "line": 2089,
+      "speaker": "MERCUTIO",
+      "endOffset": 55606
+    },
+    {
+      "offset": 55607,
+      "line": 2094,
+      "speaker": "ROMEO",
+      "endOffset": 55692
+    },
+    {
+      "offset": 55693,
+      "line": 2098,
+      "speaker": "MERCUTIO",
+      "endOffset": 55746
+    },
+    {
+      "offset": 55747,
+      "line": 2101,
+      "speaker": "ROMEO",
+      "endOffset": 55781
+    },
+    {
+      "offset": 55782,
+      "line": 2104,
+      "speaker": "MERCUTIO",
+      "endOffset": 55853
+    },
+    {
+      "offset": 55854,
+      "line": 2107,
+      "speaker": "ROMEO",
+      "endOffset": 55913
+    },
+    {
+      "offset": 55914,
+      "line": 2110,
+      "speaker": "MERCUTIO",
+      "endOffset": 56006
+    },
+    {
+      "offset": 56007,
+      "line": 2114,
+      "speaker": "ROMEO",
+      "endOffset": 56118
+    },
+    {
+      "offset": 56119,
+      "line": 2118,
+      "speaker": "MERCUTIO",
+      "endOffset": 56391
+    },
+    {
+      "offset": 56392,
+      "line": 2124,
+      "speaker": "BENVOLIO",
+      "endOffset": 56426
+    },
+    {
+      "offset": 56427,
+      "line": 2127,
+      "speaker": "MERCUTIO",
+      "endOffset": 56491
+    },
+    {
+      "offset": 56492,
+      "line": 2130,
+      "speaker": "BENVOLIO",
+      "endOffset": 56546
+    },
+    {
+      "offset": 56547,
+      "line": 2133,
+      "speaker": "MERCUTIO",
+      "endOffset": 56729
+    },
+    {
+      "offset": 56730,
+      "line": 2140,
+      "speaker": "ROMEO",
+      "endOffset": 56775
+    },
+    {
+      "offset": 56776,
+      "line": 2144,
+      "speaker": "MERCUTIO",
+      "endOffset": 56817
+    },
+    {
+      "offset": 56818,
+      "line": 2147,
+      "speaker": "NURSE",
+      "endOffset": 56832
+    },
+    {
+      "offset": 56833,
+      "line": 2150,
+      "speaker": "PETER",
+      "endOffset": 56846
+    },
+    {
+      "offset": 56847,
+      "line": 2153,
+      "speaker": "NURSE",
+      "endOffset": 56869
+    },
+    {
+      "offset": 56870,
+      "line": 2156,
+      "speaker": "MERCUTIO",
+      "endOffset": 56943
+    },
+    {
+      "offset": 56944,
+      "line": 2159,
+      "speaker": "NURSE",
+      "endOffset": 56982
+    },
+    {
+      "offset": 56983,
+      "line": 2162,
+      "speaker": "MERCUTIO",
+      "endOffset": 57028
+    },
+    {
+      "offset": 57029,
+      "line": 2165,
+      "speaker": "NURSE",
+      "endOffset": 57052
+    },
+    {
+      "offset": 57053,
+      "line": 2168,
+      "speaker": "MERCUTIO",
+      "endOffset": 57152
+    },
+    {
+      "offset": 57153,
+      "line": 2172,
+      "speaker": "NURSE",
+      "endOffset": 57194
+    },
+    {
+      "offset": 57195,
+      "line": 2175,
+      "speaker": "ROMEO",
+      "endOffset": 57259
+    },
+    {
+      "offset": 57260,
+      "line": 2178,
+      "speaker": "NURSE",
+      "endOffset": 57394
+    },
+    {
+      "offset": 57395,
+      "line": 2182,
+      "speaker": "ROMEO",
+      "endOffset": 57559
+    },
+    {
+      "offset": 57560,
+      "line": 2187,
+      "speaker": "NURSE",
+      "endOffset": 57581
+    },
+    {
+      "offset": 57582,
+      "line": 2190,
+      "speaker": "MERCUTIO",
+      "endOffset": 57659
+    },
+    {
+      "offset": 57660,
+      "line": 2193,
+      "speaker": "NURSE",
+      "endOffset": 57721
+    },
+    {
+      "offset": 57722,
+      "line": 2196,
+      "speaker": "BENVOLIO",
+      "endOffset": 57768
+    },
+    {
+      "offset": 57769,
+      "line": 2199,
+      "speaker": "MERCUTIO",
+      "endOffset": 57810
+    },
+    {
+      "offset": 57811,
+      "line": 2202,
+      "speaker": "ROMEO",
+      "endOffset": 57840
+    },
+    {
+      "offset": 57841,
+      "line": 2205,
+      "speaker": "MERCUTIO",
+      "endOffset": 58197
+    },
+    {
+      "offset": 58198,
+      "line": 2217,
+      "speaker": "ROMEO",
+      "endOffset": 58224
+    },
+    {
+      "offset": 58225,
+      "line": 2220,
+      "speaker": "MERCUTIO",
+      "endOffset": 58323
+    },
+    {
+      "offset": 58324,
+      "line": 2225,
+      "speaker": "NURSE",
+      "endOffset": 58409
+    },
+    {
+      "offset": 58410,
+      "line": 2229,
+      "speaker": "ROMEO",
+      "endOffset": 58536
+    },
+    {
+      "offset": 58537,
+      "line": 2233,
+      "speaker": "NURSE",
+      "endOffset": 58854
+    },
+    {
+      "offset": 58855,
+      "line": 2240,
+      "speaker": "PETER",
+      "endOffset": 59062
+    },
+    {
+      "offset": 59063,
+      "line": 2245,
+      "speaker": "NURSE",
+      "endOffset": 59652
+    },
+    {
+      "offset": 59653,
+      "line": 2258,
+      "speaker": "NURSE",
+      "endOffset": 59751
+    },
+    {
+      "offset": 59752,
+      "line": 2262,
+      "speaker": "ROMEO",
+      "endOffset": 59814
+    },
+    {
+      "offset": 59815,
+      "line": 2265,
+      "speaker": "NURSE",
+      "endOffset": 59912
+    },
+    {
+      "offset": 59913,
+      "line": 2269,
+      "speaker": "ROMEO",
+      "endOffset": 60075
+    },
+    {
+      "offset": 60076,
+      "line": 2275,
+      "speaker": "NURSE",
+      "endOffset": 60111
+    },
+    {
+      "offset": 60112,
+      "line": 2278,
+      "speaker": "ROMEO",
+      "endOffset": 60143
+    },
+    {
+      "offset": 60144,
+      "line": 2281,
+      "speaker": "NURSE",
+      "endOffset": 60198
+    },
+    {
+      "offset": 60199,
+      "line": 2284,
+      "speaker": "ROMEO",
+      "endOffset": 60507
+    },
+    {
+      "offset": 60508,
+      "line": 2293,
+      "speaker": "NURSE",
+      "endOffset": 60560
+    },
+    {
+      "offset": 60561,
+      "line": 2296,
+      "speaker": "ROMEO",
+      "endOffset": 60603
+    },
+    {
+      "offset": 60604,
+      "line": 2299,
+      "speaker": "NURSE",
+      "endOffset": 60697
+    },
+    {
+      "offset": 60698,
+      "line": 2303,
+      "speaker": "ROMEO",
+      "endOffset": 60749
+    },
+    {
+      "offset": 60750,
+      "line": 2306,
+      "speaker": "NURSE",
+      "endOffset": 61212
+    },
+    {
+      "offset": 61213,
+      "line": 2315,
+      "speaker": "ROMEO",
+      "endOffset": 61261
+    },
+    {
+      "offset": 61262,
+      "line": 2318,
+      "speaker": "NURSE",
+      "endOffset": 61473
+    },
+    {
+      "offset": 61474,
+      "line": 2323,
+      "speaker": "ROMEO",
+      "endOffset": 61505
+    },
+    {
+      "offset": 61506,
+      "line": 2326,
+      "speaker": "NURSE",
+      "endOffset": 61560
+    },
+    {
+      "offset": 61561,
+      "line": 2331,
+      "speaker": "PETER",
+      "endOffset": 61574
+    },
+    {
+      "offset": 61575,
+      "line": 2334,
+      "speaker": "NURSE",
+      "endOffset": 61614
+    },
+    {
+      "offset": 61661,
+      "line": 2343,
+      "speaker": "JULIET",
+      "endOffset": 62522
+    },
+    {
+      "offset": 62523,
+      "line": 2367,
+      "speaker": "NURSE",
+      "endOffset": 62573
+    },
+    {
+      "offset": 62574,
+      "line": 2372,
+      "speaker": "JULIET",
+      "endOffset": 62771
+    },
+    {
+      "offset": 62772,
+      "line": 2378,
+      "speaker": "NURSE",
+      "endOffset": 62863
+    },
+    {
+      "offset": 62864,
+      "line": 2382,
+      "speaker": "JULIET",
+      "endOffset": 62971
+    },
+    {
+      "offset": 62972,
+      "line": 2386,
+      "speaker": "NURSE",
+      "endOffset": 63063
+    },
+    {
+      "offset": 63064,
+      "line": 2390,
+      "speaker": "JULIET",
+      "endOffset": 63379
+    },
+    {
+      "offset": 63380,
+      "line": 2399,
+      "speaker": "NURSE",
+      "endOffset": 63794
+    },
+    {
+      "offset": 63795,
+      "line": 2407,
+      "speaker": "JULIET",
+      "endOffset": 63887
+    },
+    {
+      "offset": 63888,
+      "line": 2411,
+      "speaker": "NURSE",
+      "endOffset": 64120
+    },
+    {
+      "offset": 64121,
+      "line": 2418,
+      "speaker": "JULIET",
+      "endOffset": 64230
+    },
+    {
+      "offset": 64231,
+      "line": 2422,
+      "speaker": "NURSE",
+      "endOffset": 64374
+    },
+    {
+      "offset": 64375,
+      "line": 2427,
+      "speaker": "JULIET",
+      "endOffset": 64542
+    },
+    {
+      "offset": 64543,
+      "line": 2433,
+      "speaker": "NURSE",
+      "endOffset": 64693
+    },
+    {
+      "offset": 64694,
+      "line": 2439,
+      "speaker": "JULIET",
+      "endOffset": 64747
+    },
+    {
+      "offset": 64748,
+      "line": 2442,
+      "speaker": "NURSE",
+      "endOffset": 64797
+    },
+    {
+      "offset": 64798,
+      "line": 2445,
+      "speaker": "JULIET",
+      "endOffset": 64814
+    },
+    {
+      "offset": 64815,
+      "line": 2448,
+      "speaker": "NURSE",
+      "endOffset": 65262
+    },
+    {
+      "offset": 65263,
+      "line": 2460,
+      "speaker": "JULIET",
+      "endOffset": 65330
+    },
+    {
+      "offset": 65401,
+      "line": 2469,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 65500
+    },
+    {
+      "offset": 65501,
+      "line": 2473,
+      "speaker": "ROMEO",
+      "endOffset": 65759
+    },
+    {
+      "offset": 65760,
+      "line": 2481,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 66290
+    },
+    {
+      "offset": 66291,
+      "line": 2498,
+      "speaker": "JULIET",
+      "endOffset": 66334
+    },
+    {
+      "offset": 66335,
+      "line": 2501,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 66398
+    },
+    {
+      "offset": 66399,
+      "line": 2504,
+      "speaker": "JULIET",
+      "endOffset": 66452
+    },
+    {
+      "offset": 66453,
+      "line": 2507,
+      "speaker": "ROMEO",
+      "endOffset": 66725
+    },
+    {
+      "offset": 66726,
+      "line": 2515,
+      "speaker": "JULIET",
+      "endOffset": 66948
+    },
+    {
+      "offset": 66949,
+      "line": 2522,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 67118
+    },
+    {
+      "offset": 67202,
+      "line": 2539,
+      "speaker": "BENVOLIO",
+      "endOffset": 67388
+    },
+    {
+      "offset": 67389,
+      "line": 2545,
+      "speaker": "MERCUTIO",
+      "endOffset": 67654
+    },
+    {
+      "offset": 67655,
+      "line": 2551,
+      "speaker": "BENVOLIO",
+      "endOffset": 67690
+    },
+    {
+      "offset": 67691,
+      "line": 2554,
+      "speaker": "MERCUTIO",
+      "endOffset": 67827
+    },
+    {
+      "offset": 67828,
+      "line": 2558,
+      "speaker": "BENVOLIO",
+      "endOffset": 67851
+    },
+    {
+      "offset": 67852,
+      "line": 2561,
+      "speaker": "MERCUTIO",
+      "endOffset": 68654
+    },
+    {
+      "offset": 68655,
+      "line": 2575,
+      "speaker": "BENVOLIO",
+      "endOffset": 68779
+    },
+    {
+      "offset": 68780,
+      "line": 2579,
+      "speaker": "MERCUTIO",
+      "endOffset": 68843
+    },
+    {
+      "offset": 68844,
+      "line": 2584,
+      "speaker": "BENVOLIO",
+      "endOffset": 68891
+    },
+    {
+      "offset": 68892,
+      "line": 2587,
+      "speaker": "MERCUTIO",
+      "endOffset": 68926
+    },
+    {
+      "offset": 68927,
+      "line": 2590,
+      "speaker": "TYBALT",
+      "endOffset": 69023
+    },
+    {
+      "offset": 69024,
+      "line": 2594,
+      "speaker": "MERCUTIO",
+      "endOffset": 69120
+    },
+    {
+      "offset": 69121,
+      "line": 2598,
+      "speaker": "TYBALT",
+      "endOffset": 69203
+    },
+    {
+      "offset": 69204,
+      "line": 2602,
+      "speaker": "MERCUTIO",
+      "endOffset": 69263
+    },
+    {
+      "offset": 69264,
+      "line": 2605,
+      "speaker": "TYBALT",
+      "endOffset": 69310
+    },
+    {
+      "offset": 69311,
+      "line": 2608,
+      "speaker": "MERCUTIO",
+      "endOffset": 69509
+    },
+    {
+      "offset": 69510,
+      "line": 2613,
+      "speaker": "BENVOLIO",
+      "endOffset": 69682
+    },
+    {
+      "offset": 69683,
+      "line": 2619,
+      "speaker": "MERCUTIO",
+      "endOffset": 69804
+    },
+    {
+      "offset": 69805,
+      "line": 2625,
+      "speaker": "TYBALT",
+      "endOffset": 69862
+    },
+    {
+      "offset": 69863,
+      "line": 2628,
+      "speaker": "MERCUTIO",
+      "endOffset": 70022
+    },
+    {
+      "offset": 70023,
+      "line": 2633,
+      "speaker": "TYBALT",
+      "endOffset": 70116
+    },
+    {
+      "offset": 70117,
+      "line": 2637,
+      "speaker": "ROMEO",
+      "endOffset": 70295
+    },
+    {
+      "offset": 70296,
+      "line": 2643,
+      "speaker": "TYBALT",
+      "endOffset": 70393
+    },
+    {
+      "offset": 70394,
+      "line": 2647,
+      "speaker": "ROMEO",
+      "endOffset": 70604
+    },
+    {
+      "offset": 70605,
+      "line": 2654,
+      "speaker": "MERCUTIO",
+      "endOffset": 70737
+    },
+    {
+      "offset": 70738,
+      "line": 2659,
+      "speaker": "TYBALT",
+      "endOffset": 70778
+    },
+    {
+      "offset": 70779,
+      "line": 2662,
+      "speaker": "MERCUTIO",
+      "endOffset": 71059
+    },
+    {
+      "offset": 71060,
+      "line": 2668,
+      "speaker": "TYBALT",
+      "endOffset": 71095
+    },
+    {
+      "offset": 71096,
+      "line": 2671,
+      "speaker": "ROMEO",
+      "endOffset": 71139
+    },
+    {
+      "offset": 71140,
+      "line": 2674,
+      "speaker": "MERCUTIO",
+      "endOffset": 71193
+    },
+    {
+      "offset": 71194,
+      "line": 2679,
+      "speaker": "ROMEO",
+      "endOffset": 71439
+    },
+    {
+      "offset": 71440,
+      "line": 2688,
+      "speaker": "MERCUTIO",
+      "endOffset": 71534
+    },
+    {
+      "offset": 71535,
+      "line": 2693,
+      "speaker": "BENVOLIO",
+      "endOffset": 71566
+    },
+    {
+      "offset": 71567,
+      "line": 2696,
+      "speaker": "MERCUTIO",
+      "endOffset": 71693
+    },
+    {
+      "offset": 71694,
+      "line": 2702,
+      "speaker": "ROMEO",
+      "endOffset": 71740
+    },
+    {
+      "offset": 71741,
+      "line": 2705,
+      "speaker": "MERCUTIO",
+      "endOffset": 72180
+    },
+    {
+      "offset": 72181,
+      "line": 2714,
+      "speaker": "ROMEO",
+      "endOffset": 72216
+    },
+    {
+      "offset": 72217,
+      "line": 2717,
+      "speaker": "MERCUTIO",
+      "endOffset": 72425
+    },
+    {
+      "offset": 72426,
+      "line": 2725,
+      "speaker": "ROMEO",
+      "endOffset": 72741
+    },
+    {
+      "offset": 72742,
+      "line": 2736,
+      "speaker": "BENVOLIO",
+      "endOffset": 72885
+    },
+    {
+      "offset": 72886,
+      "line": 2741,
+      "speaker": "ROMEO",
+      "endOffset": 73001
+    },
+    {
+      "offset": 73002,
+      "line": 2747,
+      "speaker": "BENVOLIO",
+      "endOffset": 73054
+    },
+    {
+      "offset": 73055,
+      "line": 2750,
+      "speaker": "ROMEO",
+      "endOffset": 73392
+    },
+    {
+      "offset": 73393,
+      "line": 2760,
+      "speaker": "TYBALT",
+      "endOffset": 73471
+    },
+    {
+      "offset": 73472,
+      "line": 2764,
+      "speaker": "ROMEO",
+      "endOffset": 73538
+    },
+    {
+      "offset": 73539,
+      "line": 2769,
+      "speaker": "BENVOLIO",
+      "endOffset": 73703
+    },
+    {
+      "offset": 73704,
+      "line": 2775,
+      "speaker": "ROMEO",
+      "endOffset": 73737
+    },
+    {
+      "offset": 73738,
+      "line": 2778,
+      "speaker": "BENVOLIO",
+      "endOffset": 73804
+    },
+    {
+      "offset": 73805,
+      "line": 2785,
+      "speaker": "FIRST CITIZEN",
+      "endOffset": 73902
+    },
+    {
+      "offset": 73903,
+      "line": 2789,
+      "speaker": "BENVOLIO",
+      "endOffset": 73937
+    },
+    {
+      "offset": 73938,
+      "line": 2792,
+      "speaker": "FIRST CITIZEN",
+      "endOffset": 74086
+    },
+    {
+      "offset": 74087,
+      "line": 2798,
+      "speaker": "PRINCE",
+      "endOffset": 74138
+    },
+    {
+      "offset": 74139,
+      "line": 2801,
+      "speaker": "BENVOLIO",
+      "endOffset": 74305
+    },
+    {
+      "offset": 74306,
+      "line": 2807,
+      "speaker": "LADY CAPULET",
+      "endOffset": 74516
+    },
+    {
+      "offset": 74517,
+      "line": 2814,
+      "speaker": "PRINCE",
+      "endOffset": 74563
+    },
+    {
+      "offset": 74564,
+      "line": 2817,
+      "speaker": "BENVOLIO",
+      "endOffset": 75637
+    },
+    {
+      "offset": 75638,
+      "line": 2843,
+      "speaker": "LADY CAPULET",
+      "endOffset": 75917
+    },
+    {
+      "offset": 75918,
+      "line": 2851,
+      "speaker": "PRINCE",
+      "endOffset": 76006
+    },
+    {
+      "offset": 76007,
+      "line": 2855,
+      "speaker": "MONTAGUE",
+      "endOffset": 76133
+    },
+    {
+      "offset": 76134,
+      "line": 2860,
+      "speaker": "PRINCE",
+      "endOffset": 76670
+    },
+    {
+      "offset": 76727,
+      "line": 2880,
+      "speaker": "JULIET",
+      "endOffset": 78290
+    },
+    {
+      "offset": 78291,
+      "line": 2920,
+      "speaker": "NURSE",
+      "endOffset": 78341
+    },
+    {
+      "offset": 78342,
+      "line": 2925,
+      "speaker": "JULIET",
+      "endOffset": 78399
+    },
+    {
+      "offset": 78400,
+      "line": 2928,
+      "speaker": "NURSE",
+      "endOffset": 78556
+    },
+    {
+      "offset": 78557,
+      "line": 2933,
+      "speaker": "JULIET",
+      "endOffset": 78591
+    },
+    {
+      "offset": 78592,
+      "line": 2936,
+      "speaker": "NURSE",
+      "endOffset": 78687
+    },
+    {
+      "offset": 78688,
+      "line": 2941,
+      "speaker": "JULIET",
+      "endOffset": 79077
+    },
+    {
+      "offset": 79078,
+      "line": 2952,
+      "speaker": "NURSE",
+      "endOffset": 79305
+    },
+    {
+      "offset": 79306,
+      "line": 2959,
+      "speaker": "JULIET",
+      "endOffset": 79492
+    },
+    {
+      "offset": 79493,
+      "line": 2965,
+      "speaker": "NURSE",
+      "endOffset": 79621
+    },
+    {
+      "offset": 79622,
+      "line": 2970,
+      "speaker": "JULIET",
+      "endOffset": 79843
+    },
+    {
+      "offset": 79844,
+      "line": 2977,
+      "speaker": "NURSE",
+      "endOffset": 79928
+    },
+    {
+      "offset": 79929,
+      "line": 2981,
+      "speaker": "JULIET",
+      "endOffset": 79986
+    },
+    {
+      "offset": 79987,
+      "line": 2984,
+      "speaker": "NURSE",
+      "endOffset": 80032
+    },
+    {
+      "offset": 80033,
+      "line": 2987,
+      "speaker": "JULIET",
+      "endOffset": 80563
+    },
+    {
+      "offset": 80564,
+      "line": 3002,
+      "speaker": "NURSE",
+      "endOffset": 80800
+    },
+    {
+      "offset": 80801,
+      "line": 3010,
+      "speaker": "JULIET",
+      "endOffset": 81045
+    },
+    {
+      "offset": 81046,
+      "line": 3018,
+      "speaker": "NURSE",
+      "endOffset": 81107
+    },
+    {
+      "offset": 81108,
+      "line": 3021,
+      "speaker": "JULIET",
+      "endOffset": 82516
+    },
+    {
+      "offset": 82517,
+      "line": 3054,
+      "speaker": "NURSE",
+      "endOffset": 82614
+    },
+    {
+      "offset": 82615,
+      "line": 3058,
+      "speaker": "JULIET",
+      "endOffset": 82980
+    },
+    {
+      "offset": 82981,
+      "line": 3068,
+      "speaker": "NURSE",
+      "endOffset": 83156
+    },
+    {
+      "offset": 83157,
+      "line": 3074,
+      "speaker": "JULIET",
+      "endOffset": 83269
+    },
+    {
+      "offset": 83331,
+      "line": 3084,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 83484
+    },
+    {
+      "offset": 83485,
+      "line": 3091,
+      "speaker": "ROMEO",
+      "endOffset": 83605
+    },
+    {
+      "offset": 83606,
+      "line": 3096,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 83719
+    },
+    {
+      "offset": 83720,
+      "line": 3101,
+      "speaker": "ROMEO",
+      "endOffset": 83775
+    },
+    {
+      "offset": 83776,
+      "line": 3104,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 83882
+    },
+    {
+      "offset": 83883,
+      "line": 3108,
+      "speaker": "ROMEO",
+      "endOffset": 84015
+    },
+    {
+      "offset": 84016,
+      "line": 3113,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 84114
+    },
+    {
+      "offset": 84115,
+      "line": 3117,
+      "speaker": "ROMEO",
+      "endOffset": 84425
+    },
+    {
+      "offset": 84426,
+      "line": 3126,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 84674
+    },
+    {
+      "offset": 84675,
+      "line": 3133,
+      "speaker": "ROMEO",
+      "endOffset": 85654
+    },
+    {
+      "offset": 85655,
+      "line": 3158,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 85714
+    },
+    {
+      "offset": 85715,
+      "line": 3161,
+      "speaker": "ROMEO",
+      "endOffset": 85762
+    },
+    {
+      "offset": 85763,
+      "line": 3164,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 85907
+    },
+    {
+      "offset": 85908,
+      "line": 3169,
+      "speaker": "ROMEO",
+      "endOffset": 86075
+    },
+    {
+      "offset": 86076,
+      "line": 3175,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 86133
+    },
+    {
+      "offset": 86134,
+      "line": 3178,
+      "speaker": "ROMEO",
+      "endOffset": 86191
+    },
+    {
+      "offset": 86192,
+      "line": 3181,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 86248
+    },
+    {
+      "offset": 86249,
+      "line": 3184,
+      "speaker": "ROMEO",
+      "endOffset": 86581
+    },
+    {
+      "offset": 86582,
+      "line": 3195,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 86643
+    },
+    {
+      "offset": 86644,
+      "line": 3198,
+      "speaker": "ROMEO",
+      "endOffset": 86757
+    },
+    {
+      "offset": 86758,
+      "line": 3204,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 87056
+    },
+    {
+      "offset": 87057,
+      "line": 3217,
+      "speaker": "NURSE",
+      "endOffset": 87147
+    },
+    {
+      "offset": 87148,
+      "line": 3221,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 87193
+    },
+    {
+      "offset": 87194,
+      "line": 3226,
+      "speaker": "NURSE",
+      "endOffset": 87283
+    },
+    {
+      "offset": 87284,
+      "line": 3230,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 87352
+    },
+    {
+      "offset": 87353,
+      "line": 3233,
+      "speaker": "NURSE",
+      "endOffset": 87657
+    },
+    {
+      "offset": 87658,
+      "line": 3242,
+      "speaker": "ROMEO",
+      "endOffset": 87672
+    },
+    {
+      "offset": 87673,
+      "line": 3245,
+      "speaker": "NURSE",
+      "endOffset": 87722
+    },
+    {
+      "offset": 87723,
+      "line": 3248,
+      "speaker": "ROMEO",
+      "endOffset": 87996
+    },
+    {
+      "offset": 87997,
+      "line": 3256,
+      "speaker": "NURSE",
+      "endOffset": 88167
+    },
+    {
+      "offset": 88168,
+      "line": 3262,
+      "speaker": "ROMEO",
+      "endOffset": 88451
+    },
+    {
+      "offset": 88452,
+      "line": 3273,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 90655
+    },
+    {
+      "offset": 90656,
+      "line": 3326,
+      "speaker": "NURSE",
+      "endOffset": 90799
+    },
+    {
+      "offset": 90800,
+      "line": 3331,
+      "speaker": "ROMEO",
+      "endOffset": 90849
+    },
+    {
+      "offset": 90850,
+      "line": 3334,
+      "speaker": "NURSE",
+      "endOffset": 90957
+    },
+    {
+      "offset": 90958,
+      "line": 3340,
+      "speaker": "ROMEO",
+      "endOffset": 91007
+    },
+    {
+      "offset": 91008,
+      "line": 3343,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 91343
+    },
+    {
+      "offset": 91344,
+      "line": 3352,
+      "speaker": "ROMEO",
+      "endOffset": 91460
+    },
+    {
+      "offset": 91542,
+      "line": 3363,
+      "speaker": "CAPULET",
+      "endOffset": 91853
+    },
+    {
+      "offset": 91854,
+      "line": 3372,
+      "speaker": "PARIS",
+      "endOffset": 91951
+    },
+    {
+      "offset": 91952,
+      "line": 3376,
+      "speaker": "LADY CAPULET",
+      "endOffset": 92053
+    },
+    {
+      "offset": 92054,
+      "line": 3380,
+      "speaker": "CAPULET",
+      "endOffset": 92360
+    },
+    {
+      "offset": 92361,
+      "line": 3389,
+      "speaker": "PARIS",
+      "endOffset": 92385
+    },
+    {
+      "offset": 92386,
+      "line": 3392,
+      "speaker": "CAPULET",
+      "endOffset": 92834
+    },
+    {
+      "offset": 92835,
+      "line": 3404,
+      "speaker": "PARIS",
+      "endOffset": 92888
+    },
+    {
+      "offset": 92889,
+      "line": 3407,
+      "speaker": "CAPULET",
+      "endOffset": 93165
+    },
+    {
+      "offset": 93265,
+      "line": 3421,
+      "speaker": "JULIET",
+      "endOffset": 93492
+    },
+    {
+      "offset": 93493,
+      "line": 3428,
+      "speaker": "ROMEO",
+      "endOffset": 93766
+    },
+    {
+      "offset": 93767,
+      "line": 3436,
+      "speaker": "JULIET",
+      "endOffset": 93983
+    },
+    {
+      "offset": 93984,
+      "line": 3443,
+      "speaker": "ROMEO",
+      "endOffset": 94395
+    },
+    {
+      "offset": 94396,
+      "line": 3454,
+      "speaker": "JULIET",
+      "endOffset": 94847
+    },
+    {
+      "offset": 94848,
+      "line": 3466,
+      "speaker": "ROMEO",
+      "endOffset": 94921
+    },
+    {
+      "offset": 94922,
+      "line": 3471,
+      "speaker": "NURSE",
+      "endOffset": 94936
+    },
+    {
+      "offset": 94937,
+      "line": 3474,
+      "speaker": "JULIET",
+      "endOffset": 94952
+    },
+    {
+      "offset": 94953,
+      "line": 3477,
+      "speaker": "NURSE",
+      "endOffset": 95055
+    },
+    {
+      "offset": 95056,
+      "line": 3483,
+      "speaker": "JULIET",
+      "endOffset": 95108
+    },
+    {
+      "offset": 95109,
+      "line": 3486,
+      "speaker": "ROMEO",
+      "endOffset": 95182
+    },
+    {
+      "offset": 95183,
+      "line": 3491,
+      "speaker": "JULIET",
+      "endOffset": 95394
+    },
+    {
+      "offset": 95395,
+      "line": 3498,
+      "speaker": "ROMEO",
+      "endOffset": 95484
+    },
+    {
+      "offset": 95485,
+      "line": 3503,
+      "speaker": "JULIET",
+      "endOffset": 95535
+    },
+    {
+      "offset": 95536,
+      "line": 3506,
+      "speaker": "ROMEO",
+      "endOffset": 95632
+    },
+    {
+      "offset": 95633,
+      "line": 3510,
+      "speaker": "JULIET",
+      "endOffset": 95806
+    },
+    {
+      "offset": 95807,
+      "line": 3516,
+      "speaker": "ROMEO",
+      "endOffset": 95916
+    },
+    {
+      "offset": 95917,
+      "line": 3522,
+      "speaker": "JULIET",
+      "endOffset": 96129
+    },
+    {
+      "offset": 96130,
+      "line": 3529,
+      "speaker": "LADY CAPULET",
+      "endOffset": 96182
+    },
+    {
+      "offset": 96183,
+      "line": 3532,
+      "speaker": "JULIET",
+      "endOffset": 96346
+    },
+    {
+      "offset": 96347,
+      "line": 3539,
+      "speaker": "LADY CAPULET",
+      "endOffset": 96383
+    },
+    {
+      "offset": 96384,
+      "line": 3542,
+      "speaker": "JULIET",
+      "endOffset": 96414
+    },
+    {
+      "offset": 96415,
+      "line": 3545,
+      "speaker": "LADY CAPULET",
+      "endOffset": 96678
+    },
+    {
+      "offset": 96679,
+      "line": 3552,
+      "speaker": "JULIET",
+      "endOffset": 96728
+    },
+    {
+      "offset": 96729,
+      "line": 3555,
+      "speaker": "LADY CAPULET",
+      "endOffset": 96810
+    },
+    {
+      "offset": 96811,
+      "line": 3559,
+      "speaker": "JULIET",
+      "endOffset": 96882
+    },
+    {
+      "offset": 96883,
+      "line": 3563,
+      "speaker": "LADY CAPULET",
+      "endOffset": 97001
+    },
+    {
+      "offset": 97002,
+      "line": 3567,
+      "speaker": "JULIET",
+      "endOffset": 97031
+    },
+    {
+      "offset": 97032,
+      "line": 3570,
+      "speaker": "LADY CAPULET",
+      "endOffset": 97071
+    },
+    {
+      "offset": 97072,
+      "line": 3573,
+      "speaker": "JULIET",
+      "endOffset": 97204
+    },
+    {
+      "offset": 97205,
+      "line": 3578,
+      "speaker": "LADY CAPULET",
+      "endOffset": 97263
+    },
+    {
+      "offset": 97264,
+      "line": 3581,
+      "speaker": "JULIET",
+      "endOffset": 97366
+    },
+    {
+      "offset": 97367,
+      "line": 3585,
+      "speaker": "LADY CAPULET",
+      "endOffset": 97646
+    },
+    {
+      "offset": 97647,
+      "line": 3593,
+      "speaker": "JULIET",
+      "endOffset": 98054
+    },
+    {
+      "offset": 98055,
+      "line": 3605,
+      "speaker": "LADY CAPULET",
+      "endOffset": 98165
+    },
+    {
+      "offset": 98166,
+      "line": 3609,
+      "speaker": "JULIET",
+      "endOffset": 98255
+    },
+    {
+      "offset": 98256,
+      "line": 3613,
+      "speaker": "LADY CAPULET",
+      "endOffset": 98441
+    },
+    {
+      "offset": 98442,
+      "line": 3619,
+      "speaker": "JULIET",
+      "endOffset": 98490
+    },
+    {
+      "offset": 98491,
+      "line": 3622,
+      "speaker": "LADY CAPULET",
+      "endOffset": 98679
+    },
+    {
+      "offset": 98680,
+      "line": 3628,
+      "speaker": "JULIET",
+      "endOffset": 99032
+    },
+    {
+      "offset": 99033,
+      "line": 3638,
+      "speaker": "LADY CAPULET",
+      "endOffset": 99163
+    },
+    {
+      "offset": 99164,
+      "line": 3644,
+      "speaker": "CAPULET",
+      "endOffset": 99714
+    },
+    {
+      "offset": 99715,
+      "line": 3659,
+      "speaker": "LADY CAPULET",
+      "endOffset": 99823
+    },
+    {
+      "offset": 99824,
+      "line": 3663,
+      "speaker": "CAPULET",
+      "endOffset": 100063
+    },
+    {
+      "offset": 100064,
+      "line": 3670,
+      "speaker": "JULIET",
+      "endOffset": 100204
+    },
+    {
+      "offset": 100205,
+      "line": 3675,
+      "speaker": "CAPULET",
+      "endOffset": 100601
+    },
+    {
+      "offset": 100602,
+      "line": 3686,
+      "speaker": "LADY CAPULET",
+      "endOffset": 100645
+    },
+    {
+      "offset": 100646,
+      "line": 3689,
+      "speaker": "JULIET",
+      "endOffset": 100737
+    },
+    {
+      "offset": 100738,
+      "line": 3693,
+      "speaker": "CAPULET",
+      "endOffset": 101112
+    },
+    {
+      "offset": 101113,
+      "line": 3704,
+      "speaker": "NURSE",
+      "endOffset": 101188
+    },
+    {
+      "offset": 101189,
+      "line": 3708,
+      "speaker": "CAPULET",
+      "endOffset": 101287
+    },
+    {
+      "offset": 101288,
+      "line": 3712,
+      "speaker": "NURSE",
+      "endOffset": 101315
+    },
+    {
+      "offset": 101316,
+      "line": 3715,
+      "speaker": "CAPULET",
+      "endOffset": 101343
+    },
+    {
+      "offset": 101344,
+      "line": 3718,
+      "speaker": "NURSE",
+      "endOffset": 101370
+    },
+    {
+      "offset": 101371,
+      "line": 3721,
+      "speaker": "CAPULET",
+      "endOffset": 101476
+    },
+    {
+      "offset": 101477,
+      "line": 3726,
+      "speaker": "LADY CAPULET",
+      "endOffset": 101508
+    },
+    {
+      "offset": 101509,
+      "line": 3729,
+      "speaker": "CAPULET",
+      "endOffset": 102479
+    },
+    {
+      "offset": 102480,
+      "line": 3754,
+      "speaker": "JULIET",
+      "endOffset": 102724
+    },
+    {
+      "offset": 102725,
+      "line": 3762,
+      "speaker": "LADY CAPULET",
+      "endOffset": 102840
+    },
+    {
+      "offset": 102841,
+      "line": 3768,
+      "speaker": "JULIET",
+      "endOffset": 103224
+    },
+    {
+      "offset": 103225,
+      "line": 3779,
+      "speaker": "NURSE",
+      "endOffset": 103817
+    },
+    {
+      "offset": 103818,
+      "line": 3795,
+      "speaker": "JULIET",
+      "endOffset": 103856
+    },
+    {
+      "offset": 103857,
+      "line": 3798,
+      "speaker": "NURSE",
+      "endOffset": 103913
+    },
+    {
+      "offset": 103914,
+      "line": 3802,
+      "speaker": "JULIET",
+      "endOffset": 103928
+    },
+    {
+      "offset": 103929,
+      "line": 3805,
+      "speaker": "NURSE",
+      "endOffset": 103942
+    },
+    {
+      "offset": 103943,
+      "line": 3808,
+      "speaker": "JULIET",
+      "endOffset": 104125
+    },
+    {
+      "offset": 104126,
+      "line": 3814,
+      "speaker": "NURSE",
+      "endOffset": 104185
+    },
+    {
+      "offset": 104186,
+      "line": 3819,
+      "speaker": "JULIET",
+      "endOffset": 104553
+    },
+    {
+      "offset": 104632,
+      "line": 3841,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 104690
+    },
+    {
+      "offset": 104691,
+      "line": 3844,
+      "speaker": "PARIS",
+      "endOffset": 104775
+    },
+    {
+      "offset": 104776,
+      "line": 3848,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 104872
+    },
+    {
+      "offset": 104873,
+      "line": 3852,
+      "speaker": "PARIS",
+      "endOffset": 105288
+    },
+    {
+      "offset": 105289,
+      "line": 3864,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 105428
+    },
+    {
+      "offset": 105429,
+      "line": 3870,
+      "speaker": "PARIS",
+      "endOffset": 105470
+    },
+    {
+      "offset": 105471,
+      "line": 3873,
+      "speaker": "JULIET",
+      "endOffset": 105519
+    },
+    {
+      "offset": 105520,
+      "line": 3876,
+      "speaker": "PARIS",
+      "endOffset": 105573
+    },
+    {
+      "offset": 105574,
+      "line": 3879,
+      "speaker": "JULIET",
+      "endOffset": 105605
+    },
+    {
+      "offset": 105606,
+      "line": 3882,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 105647
+    },
+    {
+      "offset": 105648,
+      "line": 3885,
+      "speaker": "PARIS",
+      "endOffset": 105699
+    },
+    {
+      "offset": 105700,
+      "line": 3888,
+      "speaker": "JULIET",
+      "endOffset": 105749
+    },
+    {
+      "offset": 105750,
+      "line": 3891,
+      "speaker": "PARIS",
+      "endOffset": 105794
+    },
+    {
+      "offset": 105795,
+      "line": 3894,
+      "speaker": "JULIET",
+      "endOffset": 105842
+    },
+    {
+      "offset": 105843,
+      "line": 3897,
+      "speaker": "PARIS",
+      "endOffset": 105891
+    },
+    {
+      "offset": 105892,
+      "line": 3900,
+      "speaker": "JULIET",
+      "endOffset": 105986
+    },
+    {
+      "offset": 105987,
+      "line": 3904,
+      "speaker": "PARIS",
+      "endOffset": 106043
+    },
+    {
+      "offset": 106044,
+      "line": 3907,
+      "speaker": "JULIET",
+      "endOffset": 106136
+    },
+    {
+      "offset": 106137,
+      "line": 3911,
+      "speaker": "PARIS",
+      "endOffset": 106197
+    },
+    {
+      "offset": 106198,
+      "line": 3914,
+      "speaker": "JULIET",
+      "endOffset": 106290
+    },
+    {
+      "offset": 106291,
+      "line": 3918,
+      "speaker": "PARIS",
+      "endOffset": 106346
+    },
+    {
+      "offset": 106347,
+      "line": 3921,
+      "speaker": "JULIET",
+      "endOffset": 106471
+    },
+    {
+      "offset": 106472,
+      "line": 3926,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 106577
+    },
+    {
+      "offset": 106578,
+      "line": 3930,
+      "speaker": "PARIS",
+      "endOffset": 106724
+    },
+    {
+      "offset": 106725,
+      "line": 3937,
+      "speaker": "JULIET",
+      "endOffset": 106830
+    },
+    {
+      "offset": 106831,
+      "line": 3941,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 107017
+    },
+    {
+      "offset": 107018,
+      "line": 3947,
+      "speaker": "JULIET",
+      "endOffset": 107807
+    },
+    {
+      "offset": 107808,
+      "line": 3967,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 108216
+    },
+    {
+      "offset": 108217,
+      "line": 3978,
+      "speaker": "JULIET",
+      "endOffset": 108759
+    },
+    {
+      "offset": 108760,
+      "line": 3992,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 110159
+    },
+    {
+      "offset": 110160,
+      "line": 4026,
+      "speaker": "JULIET",
+      "endOffset": 110209
+    },
+    {
+      "offset": 110210,
+      "line": 4029,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 110359
+    },
+    {
+      "offset": 110360,
+      "line": 4034,
+      "speaker": "JULIET",
+      "endOffset": 110460
+    },
+    {
+      "offset": 110550,
+      "line": 4044,
+      "speaker": "CAPULET",
+      "endOffset": 110667
+    },
+    {
+      "offset": 110668,
+      "line": 4051,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 110761
+    },
+    {
+      "offset": 110762,
+      "line": 4055,
+      "speaker": "CAPULET",
+      "endOffset": 110799
+    },
+    {
+      "offset": 110800,
+      "line": 4058,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 110941
+    },
+    {
+      "offset": 110942,
+      "line": 4062,
+      "speaker": "CAPULET",
+      "endOffset": 111082
+    },
+    {
+      "offset": 111083,
+      "line": 4070,
+      "speaker": "NURSE",
+      "endOffset": 111104
+    },
+    {
+      "offset": 111105,
+      "line": 4073,
+      "speaker": "CAPULET",
+      "endOffset": 111214
+    },
+    {
+      "offset": 111215,
+      "line": 4079,
+      "speaker": "NURSE",
+      "endOffset": 111271
+    },
+    {
+      "offset": 111272,
+      "line": 4082,
+      "speaker": "CAPULET",
+      "endOffset": 111334
+    },
+    {
+      "offset": 111335,
+      "line": 4085,
+      "speaker": "JULIET",
+      "endOffset": 111576
+    },
+    {
+      "offset": 111577,
+      "line": 4093,
+      "speaker": "CAPULET",
+      "endOffset": 111676
+    },
+    {
+      "offset": 111677,
+      "line": 4097,
+      "speaker": "JULIET",
+      "endOffset": 111813
+    },
+    {
+      "offset": 111814,
+      "line": 4102,
+      "speaker": "CAPULET",
+      "endOffset": 112045
+    },
+    {
+      "offset": 112046,
+      "line": 4109,
+      "speaker": "JULIET",
+      "endOffset": 112177
+    },
+    {
+      "offset": 112178,
+      "line": 4114,
+      "speaker": "LADY CAPULET",
+      "endOffset": 112237
+    },
+    {
+      "offset": 112238,
+      "line": 4117,
+      "speaker": "CAPULET",
+      "endOffset": 112330
+    },
+    {
+      "offset": 112331,
+      "line": 4122,
+      "speaker": "LADY CAPULET",
+      "endOffset": 112404
+    },
+    {
+      "offset": 112405,
+      "line": 4126,
+      "speaker": "CAPULET",
+      "endOffset": 112815
+    },
+    {
+      "offset": 112874,
+      "line": 4143,
+      "speaker": "JULIET",
+      "endOffset": 113121
+    },
+    {
+      "offset": 113122,
+      "line": 4152,
+      "speaker": "LADY CAPULET",
+      "endOffset": 113178
+    },
+    {
+      "offset": 113179,
+      "line": 4155,
+      "speaker": "JULIET",
+      "endOffset": 113431
+    },
+    {
+      "offset": 113432,
+      "line": 4163,
+      "speaker": "LADY CAPULET",
+      "endOffset": 113541
+    },
+    {
+      "offset": 113542,
+      "line": 4169,
+      "speaker": "JULIET",
+      "endOffset": 115532
+    },
+    {
+      "offset": 115603,
+      "line": 4225,
+      "speaker": "LADY CAPULET",
+      "endOffset": 115669
+    },
+    {
+      "offset": 115670,
+      "line": 4228,
+      "speaker": "NURSE",
+      "endOffset": 115741
+    },
+    {
+      "offset": 115742,
+      "line": 4233,
+      "speaker": "CAPULET",
+      "endOffset": 115919
+    },
+    {
+      "offset": 115920,
+      "line": 4239,
+      "speaker": "NURSE",
+      "endOffset": 116028
+    },
+    {
+      "offset": 116029,
+      "line": 4244,
+      "speaker": "CAPULET",
+      "endOffset": 116136
+    },
+    {
+      "offset": 116137,
+      "line": 4248,
+      "speaker": "LADY CAPULET",
+      "endOffset": 116278
+    },
+    {
+      "offset": 116279,
+      "line": 4254,
+      "speaker": "CAPULET",
+      "endOffset": 116398
+    },
+    {
+      "offset": 116399,
+      "line": 4261,
+      "speaker": "FIRST SERVANT",
+      "endOffset": 116461
+    },
+    {
+      "offset": 116462,
+      "line": 4264,
+      "speaker": "CAPULET",
+      "endOffset": 116597
+    },
+    {
+      "offset": 116598,
+      "line": 4272,
+      "speaker": "SECOND SERVANT",
+      "endOffset": 116710
+    },
+    {
+      "offset": 116711,
+      "line": 4278,
+      "speaker": "CAPULET",
+      "endOffset": 117146
+    },
+    {
+      "offset": 117211,
+      "line": 4301,
+      "speaker": "NURSE",
+      "endOffset": 117963
+    },
+    {
+      "offset": 117964,
+      "line": 4321,
+      "speaker": "LADY CAPULET",
+      "endOffset": 117998
+    },
+    {
+      "offset": 117999,
+      "line": 4324,
+      "speaker": "NURSE",
+      "endOffset": 118024
+    },
+    {
+      "offset": 118025,
+      "line": 4327,
+      "speaker": "LADY CAPULET",
+      "endOffset": 118059
+    },
+    {
+      "offset": 118060,
+      "line": 4330,
+      "speaker": "NURSE",
+      "endOffset": 118092
+    },
+    {
+      "offset": 118093,
+      "line": 4333,
+      "speaker": "LADY CAPULET",
+      "endOffset": 118225
+    },
+    {
+      "offset": 118226,
+      "line": 4340,
+      "speaker": "CAPULET",
+      "endOffset": 118284
+    },
+    {
+      "offset": 118285,
+      "line": 4343,
+      "speaker": "NURSE",
+      "endOffset": 118347
+    },
+    {
+      "offset": 118348,
+      "line": 4346,
+      "speaker": "LADY CAPULET",
+      "endOffset": 118419
+    },
+    {
+      "offset": 118420,
+      "line": 4349,
+      "speaker": "CAPULET",
+      "endOffset": 118650
+    },
+    {
+      "offset": 118651,
+      "line": 4356,
+      "speaker": "NURSE",
+      "endOffset": 118676
+    },
+    {
+      "offset": 118677,
+      "line": 4359,
+      "speaker": "LADY CAPULET",
+      "endOffset": 118705
+    },
+    {
+      "offset": 118706,
+      "line": 4362,
+      "speaker": "CAPULET",
+      "endOffset": 118861
+    },
+    {
+      "offset": 118862,
+      "line": 4368,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 118920
+    },
+    {
+      "offset": 118921,
+      "line": 4371,
+      "speaker": "CAPULET",
+      "endOffset": 119222
+    },
+    {
+      "offset": 119223,
+      "line": 4380,
+      "speaker": "PARIS",
+      "endOffset": 119322
+    },
+    {
+      "offset": 119323,
+      "line": 4384,
+      "speaker": "LADY CAPULET",
+      "endOffset": 119594
+    },
+    {
+      "offset": 119595,
+      "line": 4392,
+      "speaker": "NURSE",
+      "endOffset": 119814
+    },
+    {
+      "offset": 119815,
+      "line": 4400,
+      "speaker": "PARIS",
+      "endOffset": 119995
+    },
+    {
+      "offset": 119996,
+      "line": 4406,
+      "speaker": "CAPULET",
+      "endOffset": 120256
+    },
+    {
+      "offset": 120257,
+      "line": 4414,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 121124
+    },
+    {
+      "offset": 121125,
+      "line": 4435,
+      "speaker": "CAPULET",
+      "endOffset": 121421
+    },
+    {
+      "offset": 121422,
+      "line": 4444,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 121701
+    },
+    {
+      "offset": 121702,
+      "line": 4453,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 121762
+    },
+    {
+      "offset": 121763,
+      "line": 4456,
+      "speaker": "NURSE",
+      "endOffset": 121853
+    },
+    {
+      "offset": 121854,
+      "line": 4460,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 121945
+    },
+    {
+      "offset": 121946,
+      "line": 4467,
+      "speaker": "PETER",
+      "endOffset": 122079
+    },
+    {
+      "offset": 122080,
+      "line": 4471,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122122
+    },
+    {
+      "offset": 122123,
+      "line": 4474,
+      "speaker": "PETER",
+      "endOffset": 122238
+    },
+    {
+      "offset": 122239,
+      "line": 4478,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122298
+    },
+    {
+      "offset": 122299,
+      "line": 4481,
+      "speaker": "PETER",
+      "endOffset": 122325
+    },
+    {
+      "offset": 122326,
+      "line": 4484,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122346
+    },
+    {
+      "offset": 122347,
+      "line": 4487,
+      "speaker": "PETER",
+      "endOffset": 122387
+    },
+    {
+      "offset": 122388,
+      "line": 4490,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122427
+    },
+    {
+      "offset": 122428,
+      "line": 4493,
+      "speaker": "PETER",
+      "endOffset": 122503
+    },
+    {
+      "offset": 122504,
+      "line": 4496,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122563
+    },
+    {
+      "offset": 122564,
+      "line": 4499,
+      "speaker": "PETER",
+      "endOffset": 122706
+    },
+    {
+      "offset": 122707,
+      "line": 4503,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 122761
+    },
+    {
+      "offset": 122762,
+      "line": 4506,
+      "speaker": "SECOND MUSICIAN",
+      "endOffset": 122830
+    },
+    {
+      "offset": 122831,
+      "line": 4509,
+      "speaker": "PETER",
+      "endOffset": 123179
+    },
+    {
+      "offset": 123180,
+      "line": 4518,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 123243
+    },
+    {
+      "offset": 123244,
+      "line": 4521,
+      "speaker": "PETER",
+      "endOffset": 123286
+    },
+    {
+      "offset": 123287,
+      "line": 4524,
+      "speaker": "SECOND MUSICIAN",
+      "endOffset": 123365
+    },
+    {
+      "offset": 123366,
+      "line": 4527,
+      "speaker": "PETER",
+      "endOffset": 123416
+    },
+    {
+      "offset": 123417,
+      "line": 4530,
+      "speaker": "THIRD MUSICIAN",
+      "endOffset": 123464
+    },
+    {
+      "offset": 123465,
+      "line": 4533,
+      "speaker": "PETER",
+      "endOffset": 123716
+    },
+    {
+      "offset": 123717,
+      "line": 4542,
+      "speaker": "FIRST MUSICIAN",
+      "endOffset": 123770
+    },
+    {
+      "offset": 123771,
+      "line": 4545,
+      "speaker": "SECOND MUSICIAN",
+      "endOffset": 123885
+    },
+    {
+      "offset": 123937,
+      "line": 4561,
+      "speaker": "ROMEO",
+      "endOffset": 124668
+    },
+    {
+      "offset": 124669,
+      "line": 4582,
+      "speaker": "BALTHASAR",
+      "endOffset": 124971
+    },
+    {
+      "offset": 124972,
+      "line": 4591,
+      "speaker": "ROMEO",
+      "endOffset": 125111
+    },
+    {
+      "offset": 125112,
+      "line": 4596,
+      "speaker": "BALTHASAR",
+      "endOffset": 125223
+    },
+    {
+      "offset": 125224,
+      "line": 4601,
+      "speaker": "ROMEO",
+      "endOffset": 125343
+    },
+    {
+      "offset": 125344,
+      "line": 4606,
+      "speaker": "BALTHASAR",
+      "endOffset": 125373
+    },
+    {
+      "offset": 125374,
+      "line": 4609,
+      "speaker": "ROMEO",
+      "endOffset": 126497
+    },
+    {
+      "offset": 126498,
+      "line": 4642,
+      "speaker": "APOTHECARY",
+      "endOffset": 126529
+    },
+    {
+      "offset": 126530,
+      "line": 4645,
+      "speaker": "ROMEO",
+      "endOffset": 126881
+    },
+    {
+      "offset": 126882,
+      "line": 4655,
+      "speaker": "APOTHECARY",
+      "endOffset": 126976
+    },
+    {
+      "offset": 126977,
+      "line": 4659,
+      "speaker": "ROMEO",
+      "endOffset": 127302
+    },
+    {
+      "offset": 127303,
+      "line": 4668,
+      "speaker": "APOTHECARY",
+      "endOffset": 127353
+    },
+    {
+      "offset": 127354,
+      "line": 4671,
+      "speaker": "ROMEO",
+      "endOffset": 127398
+    },
+    {
+      "offset": 127399,
+      "line": 4674,
+      "speaker": "APOTHECARY",
+      "endOffset": 127543
+    },
+    {
+      "offset": 127544,
+      "line": 4679,
+      "speaker": "ROMEO",
+      "endOffset": 127888
+    },
+    {
+      "offset": 127945,
+      "line": 4694,
+      "speaker": "FRIAR JOHN",
+      "endOffset": 128017
+    },
+    {
+      "offset": 128018,
+      "line": 4699,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 128162
+    },
+    {
+      "offset": 128163,
+      "line": 4704,
+      "speaker": "FRIAR JOHN",
+      "endOffset": 128510
+    },
+    {
+      "offset": 128511,
+      "line": 4714,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 128561
+    },
+    {
+      "offset": 128562,
+      "line": 4717,
+      "speaker": "FRIAR JOHN",
+      "endOffset": 128691
+    },
+    {
+      "offset": 128692,
+      "line": 4722,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 128925
+    },
+    {
+      "offset": 128926,
+      "line": 4730,
+      "speaker": "FRIAR JOHN",
+      "endOffset": 128988
+    },
+    {
+      "offset": 128989,
+      "line": 4735,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 129300
+    },
+    {
+      "offset": 129428,
+      "line": 4750,
+      "speaker": "PARIS",
+      "endOffset": 129838
+    },
+    {
+      "offset": 129839,
+      "line": 4761,
+      "speaker": "PAGE",
+      "endOffset": 129951
+    },
+    {
+      "offset": 129952,
+      "line": 4767,
+      "speaker": "PARIS",
+      "endOffset": 130506
+    },
+    {
+      "offset": 130507,
+      "line": 4786,
+      "speaker": "ROMEO",
+      "endOffset": 131278
+    },
+    {
+      "offset": 131279,
+      "line": 4806,
+      "speaker": "BALTHASAR",
+      "endOffset": 131332
+    },
+    {
+      "offset": 131333,
+      "line": 4809,
+      "speaker": "ROMEO",
+      "endOffset": 131442
+    },
+    {
+      "offset": 131443,
+      "line": 4813,
+      "speaker": "BALTHASAR",
+      "endOffset": 131556
+    },
+    {
+      "offset": 131557,
+      "line": 4819,
+      "speaker": "ROMEO",
+      "endOffset": 131788
+    },
+    {
+      "offset": 131789,
+      "line": 4828,
+      "speaker": "PARIS",
+      "endOffset": 132211
+    },
+    {
+      "offset": 132212,
+      "line": 4842,
+      "speaker": "ROMEO",
+      "endOffset": 132635
+    },
+    {
+      "offset": 132636,
+      "line": 4854,
+      "speaker": "PARIS",
+      "endOffset": 132707
+    },
+    {
+      "offset": 132708,
+      "line": 4858,
+      "speaker": "ROMEO",
+      "endOffset": 132779
+    },
+    {
+      "offset": 132780,
+      "line": 4863,
+      "speaker": "PAGE",
+      "endOffset": 132844
+    },
+    {
+      "offset": 132845,
+      "line": 4868,
+      "speaker": "PARIS",
+      "endOffset": 132946
+    },
+    {
+      "offset": 132947,
+      "line": 4874,
+      "speaker": "ROMEO",
+      "endOffset": 135119
+    },
+    {
+      "offset": 135120,
+      "line": 4931,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 135275
+    },
+    {
+      "offset": 135276,
+      "line": 4936,
+      "speaker": "BALTHASAR",
+      "endOffset": 135340
+    },
+    {
+      "offset": 135341,
+      "line": 4939,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 135529
+    },
+    {
+      "offset": 135530,
+      "line": 4945,
+      "speaker": "BALTHASAR",
+      "endOffset": 135607
+    },
+    {
+      "offset": 135608,
+      "line": 4949,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 135635
+    },
+    {
+      "offset": 135636,
+      "line": 4952,
+      "speaker": "BALTHASAR",
+      "endOffset": 135654
+    },
+    {
+      "offset": 135655,
+      "line": 4955,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 135700
+    },
+    {
+      "offset": 135701,
+      "line": 4958,
+      "speaker": "BALTHASAR",
+      "endOffset": 135731
+    },
+    {
+      "offset": 135732,
+      "line": 4961,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 135773
+    },
+    {
+      "offset": 135774,
+      "line": 4964,
+      "speaker": "BALTHASAR",
+      "endOffset": 135920
+    },
+    {
+      "offset": 135921,
+      "line": 4970,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 136024
+    },
+    {
+      "offset": 136025,
+      "line": 4974,
+      "speaker": "BALTHASAR",
+      "endOffset": 136145
+    },
+    {
+      "offset": 136146,
+      "line": 4979,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 136556
+    },
+    {
+      "offset": 136557,
+      "line": 4995,
+      "speaker": "JULIET",
+      "endOffset": 136697
+    },
+    {
+      "offset": 136698,
+      "line": 5002,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 137096
+    },
+    {
+      "offset": 137097,
+      "line": 5013,
+      "speaker": "JULIET",
+      "endOffset": 137473
+    },
+    {
+      "offset": 137474,
+      "line": 5029,
+      "speaker": "FIRST WATCH",
+      "endOffset": 137521
+    },
+    {
+      "offset": 137522,
+      "line": 5032,
+      "speaker": "JULIET",
+      "endOffset": 137759
+    },
+    {
+      "offset": 137760,
+      "line": 5043,
+      "speaker": "PAGE",
+      "endOffset": 137819
+    },
+    {
+      "offset": 137820,
+      "line": 5046,
+      "speaker": "FIRST WATCH",
+      "endOffset": 138383
+    },
+    {
+      "offset": 138384,
+      "line": 5066,
+      "speaker": "SECOND WATCH",
+      "endOffset": 138454
+    },
+    {
+      "offset": 138455,
+      "line": 5069,
+      "speaker": "FIRST WATCH",
+      "endOffset": 138720
+    },
+    {
+      "offset": 138721,
+      "line": 5078,
+      "speaker": "FIRST WATCH",
+      "endOffset": 138808
+    },
+    {
+      "offset": 138809,
+      "line": 5083,
+      "speaker": "PRINCE",
+      "endOffset": 138942
+    },
+    {
+      "offset": 138943,
+      "line": 5089,
+      "speaker": "CAPULET",
+      "endOffset": 138998
+    },
+    {
+      "offset": 138999,
+      "line": 5092,
+      "speaker": "LADY CAPULET",
+      "endOffset": 139130
+    },
+    {
+      "offset": 139131,
+      "line": 5097,
+      "speaker": "PRINCE",
+      "endOffset": 139185
+    },
+    {
+      "offset": 139186,
+      "line": 5100,
+      "speaker": "FIRST WATCH",
+      "endOffset": 139308
+    },
+    {
+      "offset": 139309,
+      "line": 5105,
+      "speaker": "PRINCE",
+      "endOffset": 139368
+    },
+    {
+      "offset": 139369,
+      "line": 5108,
+      "speaker": "FIRST WATCH",
+      "endOffset": 139497
+    },
+    {
+      "offset": 139498,
+      "line": 5113,
+      "speaker": "CAPULET",
+      "endOffset": 139682
+    },
+    {
+      "offset": 139683,
+      "line": 5119,
+      "speaker": "LADY CAPULET",
+      "endOffset": 139803
+    },
+    {
+      "offset": 139804,
+      "line": 5125,
+      "speaker": "PRINCE",
+      "endOffset": 139892
+    },
+    {
+      "offset": 139893,
+      "line": 5129,
+      "speaker": "MONTAGUE",
+      "endOffset": 140042
+    },
+    {
+      "offset": 140043,
+      "line": 5134,
+      "speaker": "PRINCE",
+      "endOffset": 140077
+    },
+    {
+      "offset": 140078,
+      "line": 5137,
+      "speaker": "MONTAGUE",
+      "endOffset": 140169
+    },
+    {
+      "offset": 140170,
+      "line": 5141,
+      "speaker": "PRINCE",
+      "endOffset": 140477
+    },
+    {
+      "offset": 140478,
+      "line": 5150,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 140702
+    },
+    {
+      "offset": 140703,
+      "line": 5157,
+      "speaker": "PRINCE",
+      "endOffset": 140757
+    },
+    {
+      "offset": 140758,
+      "line": 5160,
+      "speaker": "FRIAR LAWRENCE",
+      "endOffset": 142524
+    },
+    {
+      "offset": 142525,
+      "line": 5203,
+      "speaker": "PRINCE",
+      "endOffset": 142624
+    },
+    {
+      "offset": 142625,
+      "line": 5207,
+      "speaker": "BALTHASAR",
+      "endOffset": 142898
+    },
+    {
+      "offset": 142899,
+      "line": 5215,
+      "speaker": "PRINCE",
+      "endOffset": 143045
+    },
+    {
+      "offset": 143046,
+      "line": 5220,
+      "speaker": "PAGE",
+      "endOffset": 143259
+    },
+    {
+      "offset": 143260,
+      "line": 5227,
+      "speaker": "PRINCE",
+      "endOffset": 143726
+    },
+    {
+      "offset": 143727,
+      "line": 5239,
+      "speaker": "CAPULET",
+      "endOffset": 143834
+    },
+    {
+      "offset": 143835,
+      "line": 5244,
+      "speaker": "MONTAGUE",
+      "endOffset": 144034
+    },
+    {
+      "offset": 144035,
+      "line": 5251,
+      "speaker": "CAPULET",
+      "endOffset": 144120
+    },
+    {
+      "offset": 144121,
+      "line": 5255,
+      "speaker": "PRINCE",
+      "endOffset": 144395
+    }
+  ]
+}

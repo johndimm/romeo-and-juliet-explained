@@ -223,8 +223,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const DEBUG_SELECTION = false;
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
-  // Track which note is in text selection mode (speech key string or null)
-  const [noteInSelectMode, setNoteInSelectMode] = useState(null);
   // Track which notes are expanded (Set of speech keys)
   const [expandedNotes, setExpandedNotes] = useState(new Set());
   // Load precomputed explanations client-side to reduce initial page size
@@ -1372,7 +1370,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     if (conversations && conversations[id] && conversations[id].last) return () => {};
     const pref = (llmOptions?.length === 'medium' ? 'more' : (llmOptions?.length === 'large' ? 'more' : 'brief'));
     llmCallTimerRef.current = setTimeout(() => {
-      callLLM({ mode: pref, length: llmOptions?.length || 'brief' });
+      callLLM({ mode: pref, length: llmOptions?.length || 'brief', auto: true });
       llmCallTimerRef.current = null;
     }, 0);
     return () => {
@@ -1584,9 +1582,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     });
   }, []);
 
-  async function callLLM({ mode = 'brief', followup, length }) {
+  async function callLLM({ mode = 'brief', followup, length, auto = false }) {
     if (!selectionContext) return;
-    setLoadingLLM(true);
 
     const conv = conversations[selectionId] || { messages: [] };
     const thinkingText = 'AI is thinking…';
@@ -1604,6 +1601,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const resolvedSectionIndex = resolveSectionIndex();
 
     let speechKeyForSelection = null;
+    let chosenSpeech = null;
     try {
       const byte = selectionContext.byteOffset ?? null;
       if (byte != null && resolvedSectionIndex != null) {
@@ -1614,6 +1612,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         }
         if (chosen) {
           speechKeyForSelection = `${chosen.act}|${chosen.scene}|${chosen.speechIndex}`;
+          chosenSpeech = chosen;
         }
       }
     } catch {}
@@ -1623,6 +1622,50 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       : null;
 
     const encoder = new TextEncoder();
+    const selectionStartByte = selectionContext?.byteOffset ?? null;
+    const selectionEndByte = selectionStartByte != null
+      ? selectionStartByte + encoder.encode(selectionContext.text || '').length
+      : null;
+    let selectionCoversWholeSpeech = false;
+    if (auto && chosenSpeech && selectionStartByte != null && selectionEndByte != null) {
+      const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+      const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+      const speechStart = chosenSpeech.offset || 0;
+      let speechEnd = null;
+      for (let i = 0; i < speechesMeta.length; i++) {
+        const sp = speechesMeta[i];
+        if (!sp) continue;
+        if ((sp.offset || 0) === speechStart) {
+          for (let j = i + 1; j < speechesMeta.length; j++) {
+            const nextOff = speechesMeta[j]?.offset;
+            if (nextOff != null && nextOff > speechStart) {
+              speechEnd = nextOff;
+              break;
+            }
+          }
+          if (speechEnd == null) {
+            const scene = scenesMeta.find((sc) => speechStart >= (sc.startOffset || 0) && speechStart < (sc.endOffset || 0));
+            if (scene && scene.endOffset != null) {
+              speechEnd = scene.endOffset;
+            }
+          }
+          break;
+        }
+      }
+      if (speechEnd != null) {
+        const tolerance = 4;
+        if (Math.abs(selectionStartByte - speechStart) <= tolerance && Math.abs(selectionEndByte - speechEnd) <= tolerance) {
+          selectionCoversWholeSpeech = true;
+        }
+      }
+    }
+ 
+    if (auto && selectionCoversWholeSpeech) {
+      return;
+    }
+ 
+    setLoadingLLM(true);
+ 
     const deriveCharRange = () => {
       const defaults = { start: selectionRange?.start ?? null, end: selectionRange?.end ?? null };
       if ((defaults.start != null && defaults.end != null) || resolvedSectionIndex == null) return defaults;
@@ -1966,7 +2009,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               const url = buildSelectionLink(curr.byteOffset, len);
               navigator.clipboard?.writeText(url);
             }}
-            noteInSelectMode={noteInSelectMode}
             expandedNotes={expandedNotes}
             onToggleNoteExpanded={(speechKey) => {
               setExpandedNotes((prev) => {
@@ -1974,22 +2016,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 const isExpanding = !next.has(speechKey);
                 if (next.has(speechKey)) {
                   next.delete(speechKey);
-                  // Disable mobile text selection mode when note is collapsed
-                  if (noteInSelectMode === speechKey) {
-                    setNoteInSelectMode(null);
-                  }
                 } else {
                   next.add(speechKey);
-                  // Enable mobile text selection mode when note is expanded
-                  if (noteInSelectMode !== speechKey) {
-                    setNoteInSelectMode(speechKey);
-                  }
                 }
                 return next;
               });
-            }}
-            onToggleNoteSelectMode={(speechKey) => {
-              setNoteInSelectMode((prev) => (prev === speechKey ? null : speechKey));
             }}
           />
           );
@@ -2146,7 +2177,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, noteInSelectMode = null, onToggleNoteSelectMode, expandedNotes = new Set(), onToggleNoteExpanded }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, expandedNotes = new Set(), onToggleNoteExpanded }) {
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -2163,7 +2194,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const lastSelectionStringRef = useRef('');
   const isManualDragSelection = useRef(false); // Track if user manually dragged to select
   const isMouseDown = useRef(false); // Track if mouse button is currently down
-  // Mobile selection mode state/refs - now driven by noteInSelectMode
+  const touchSelectingRef = useRef(false);
+  const TOUCH_SCROLL_THRESHOLD = 12;
+  // Mobile selection mode state/refs
   const [detectedTouchDevice, setDetectedTouchDevice] = useState(false);
   useEffect(() => {
     if (typeof navigator === 'undefined') return;
@@ -2175,13 +2208,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       // Ignore detection errors and leave as non-touch
     }
   }, []);
-  const isTouchDevice = noteInSelectMode || detectedTouchDevice;
-  // Only enable mobile select mode if this section contains the note that's in select mode
-  const sectionHasSelectModeNote = noteInSelectMode && speeches.some(sp => {
-    const spKey = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
-    return spKey === noteInSelectMode;
-  });
-  const mobileSelectMode = !!sectionHasSelectModeNote;
+  const isTouchDevice = detectedTouchDevice;
+  const mobileSelectMode = true;
   const mobileStartCharRef = useRef(null);
   const mobileStartPointRef = useRef({ x: 0, y: 0 });
   const [autoIdx, setAutoIdx] = useState(0);
@@ -2289,8 +2317,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Also show if there's a selection (even without conversation yet) or if LLM is loading
   const hasLLMContent = selectedRange && (llm?.conversation?.last || llm?.loading);
   const hasSelection = !!selectedRange;
-  // Show aside when note is in select mode (even without selection yet) or when there's actual content
-  const hasSelectModeActive = !!sectionHasSelectModeNote;
+  // Show aside when note is expanded (even without selection yet) or when there's actual content
+  const hasSelectModeActive = isNoteExpanded;
   // Check if chosenItem has actual content (not empty)
   const hasNoteContent = chosenItem && (chosenItem.content || '').trim().length > 0;
   // Check if note is suppressed (hidden) - check both current speech and forced note
@@ -2479,6 +2507,29 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   })();
   const selectionPreviewForChat = (selectionPreview && !hasConversation) ? selectionPreview : null;
   const selectionPreviewForExplanation = (selectionPreview && hasConversation) ? selectionPreview : null;
+  const selectionSpeech = useMemo(() => {
+    if (!Array.isArray(speeches) || !speeches.length) return null;
+    if (selectionByteStart == null) return null;
+    let chosen = null;
+    for (const sp of speeches) {
+      if ((sp.offset || 0) <= selectionByteStart) {
+        chosen = sp;
+      } else {
+        break;
+      }
+    }
+    return chosen;
+  }, [speeches, selectionByteStart]);
+  const selectionSpeechKey = selectionSpeech ? `${selectionSpeech.act}|${selectionSpeech.scene}|${selectionSpeech.speechIndex}` : null;
+  const selectionSpeechIndex = useMemo(() => {
+    if (!selectionSpeechKey || !Array.isArray(speeches)) return -1;
+    for (let i = 0; i < speeches.length; i++) {
+      const sp = speeches[i];
+      if (`${sp.act}|${sp.scene}|${sp.speechIndex}` === selectionSpeechKey) return i;
+    }
+    return -1;
+  }, [selectionSpeechKey, speeches]);
+  const hasNoteForSelection = !!(selectionSpeechKey && noteBySpeechKey?.has?.(selectionSpeechKey));
   const renderSelectionPreview = (preview) => {
     if (!preview) return null;
     return (
@@ -2496,6 +2547,28 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       </div>
     );
   };
+  useEffect(() => {
+    if (!selectionSpeechKey) return;
+    if (selectionSpeechIndex >= 0) {
+      setAutoIdx((prev) => (prev === selectionSpeechIndex ? prev : selectionSpeechIndex));
+    }
+    setSuppressedNotes((prev) => {
+      if (!prev || !prev.has(selectionSpeechKey)) return prev;
+      const next = new Set(prev);
+      next.delete(selectionSpeechKey);
+      return next;
+    });
+    if (!hasNoteForSelection) return;
+    if (onToggleForced) {
+      const forcedList = Array.isArray(forcedNotes) ? forcedNotes.map(String) : [];
+      if (!forcedList.includes(selectionSpeechKey)) {
+        onToggleForced(selectionSpeechKey, sectionIndex);
+      }
+    }
+    if (onToggleNoteExpanded && !expandedNotes.has(selectionSpeechKey)) {
+      onToggleNoteExpanded(selectionSpeechKey);
+    }
+  }, [selectionSpeechKey, selectionSpeechIndex, hasNoteForSelection, expandedNotes, forcedNotes, onToggleForced, onToggleNoteExpanded, sectionIndex]);
   const noteModeChatPanel = (() => {
     // Only show noteModeChatPanel when note is expanded and NO text is selected
     // When text is selected, selectionChatPanel will show instead (with instructions)
@@ -2696,12 +2769,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   })();
   const selectionChatPanel = (hasSelectionContext && isNoteExpanded) ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
-      {/* Show instructions when note is expanded */}
-      {chosenItem && isNoteExpanded && (
-        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginBottom: '0.5rem' }}>
-          You can select text in the play to ask about it, or ask a follow-up about this note below.
-        </div>
-      )}
       <TextSelectionChat
         contextInfo={contextInfo}
         llm={llm}
@@ -2724,7 +2791,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         const isLoadingFollowup = llm?.loading && conversationLast && conversationLast !== 'AI is thinking…';
         // Also check for preFollowThreads from note mode (when a note is active and text is selected)
         let noteThreads = [];
-        if (chosenItem && sectionHasSelectModeNote) {
+        if (chosenItem && isNoteExpanded) {
           const threadKey = String(chosenItem.startOffset || 0);
           noteThreads = preFollowThreads[threadKey] || [];
         }
@@ -2912,7 +2979,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 </div>
               );
             })}
-            {preFollowLoading && chosenItem && sectionHasSelectModeNote && (
+            {preFollowLoading && chosenItem && isNoteExpanded && (
               <div style={{ marginTop: (moreThreads.length > 0 || noteThreads.length > 0) ? '0.5rem' : '0' }}>
                 <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
                 <div style={{ color: '#6b5f53' }}>Thinking…</div>
@@ -2950,7 +3017,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         🗑️
       </button>
       {/* Title for selected text explanation */}
-      <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Selected Text</div>
+      <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Text selection</div>
       {renderSelectionPreview(selectionPreviewForExplanation)}
       {isThinking ? (
         <div style={{ color: '#6b5f53' }}>Thinking…</div>
@@ -3150,98 +3217,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       if (isTouch) return;
     } catch {}
     if (skipNextMouseUpRef.current) { skipNextMouseUpRef.current = false; return; }
-    // If not in select mode and a note exists for this speech, clicking toggles the note visibility
-    const noteVisible = !!chosenItem;
-    // Get the speech key from the click position
-    // Always resolve from click Y using anchors for accuracy
-    let keyToToggle = null;
-    let hasNote = false;
-    try {
-      const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
-      if (anchors.length) {
-        let best = { idx: 0, d: Infinity };
-        const y = e?.clientY || 0;
-        anchors.forEach((el) => {
-          const r = el.getBoundingClientRect();
-          const d = Math.abs((r.top || 0) - y);
-          const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
-          if (d < best.d) best = { idx: i, d };
-        });
-        const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
-        if (sp) {
-          keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
-          hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-        }
-      }
-    } catch {}
-    // Fallback: if anchors didn't work, try speechKey
-    if (!hasNote && speechKey && noteBySpeechKey) {
-      keyToToggle = speechKey;
-      hasNote = !!(noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-    }
-    if (!mobileSelectMode && hasNote) {
-      const sk = keyToToggle;
-      if (!sk) return;
-      // Check if this note is expanded
-      const noteIsExpanded = expandedNotes && expandedNotes.has(sk);
-      if (noteIsExpanded) {
-        // When note is expanded, clicking the speech allows text selection (fall through to selection logic)
-        // Don't return - let the selection handler process the click
-      } else {
-        // When note is collapsed, clicking the speech toggles visibility
-        // Check if this note is currently visible (is it the chosenItem?)
-        const noteItem = noteBySpeechKey.get(sk);
-        const isCurrentlyVisible = chosenItem && chosenItemSpeechKey === sk;
-        if (suppressedNotes.has(sk) || !isCurrentlyVisible) {
-          // Note is hidden (either suppressed or not visible due to threshold)
-          // Show it by removing suppression and forcing it
-        if (suppressedNotes.has(sk)) {
-          setSuppressedNotes((prev) => {
-            const next = new Set(prev);
-            next.delete(sk);
-            return next;
-          });
-        }
-          // Force it to be visible
-          if (onToggleForced) {
-            onToggleForced(sk, sectionIndex);
-          }
-          // Don't auto-expand - show in collapsed state per spec flow
-          // Text selection mode will be enabled when user expands the note (via onToggleNoteExpanded)
-        } else {
-          // Note is visible but collapsed, hide it by suppressing
-          setSuppressedNotes((prev) => {
-            const next = new Set(prev);
-            next.add(sk);
-            return next;
-          });
-          // Remove from forcedNotes if it was forced
-          if (onToggleForced && forcedSet.has(sk)) {
-            onToggleForced(sk, sectionIndex);
-          }
-          // Clear select mode when closing note
-          if (onToggleNoteSelectMode && noteInSelectMode === sk) {
-            onToggleNoteSelectMode(null);
-          }
-          // Clear expanded state when closing note (via callback if available)
-          if (onToggleNoteExpanded && expandedNotes && expandedNotes.has(sk)) {
-            onToggleNoteExpanded(sk); // This will toggle it off if it's on
-        }
-      }
-      // Clear any selection to prevent triggering LLM query
-      if (typeof window !== 'undefined' && window.getSelection) {
-        try {
-          const sel = window.getSelection();
-          if (sel) sel.removeAllRanges();
-        } catch {}
-      }
-      // Suppress auto-explain for this toggle click
-      if (typeof suppressNextAutoExplain === 'function') suppressNextAutoExplain();
-      else if (suppressNextAutoExplain && typeof suppressNextAutoExplain === 'object') suppressNextAutoExplain.current = true;
-      return;
-      }
-    }
-    // If the note is visible, a click selects the sentence; click-drag selects a custom range
+
     const container = preRef.current;
     if (!container || typeof window === 'undefined' || !window.getSelection) return;
     const sel = window.getSelection();
@@ -3250,6 +3226,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     // Only process selections within this section's text container
     if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) return;
     const { start, end } = getOffsetsWithin(container, range);
+
       // If user dragged, honor the exact selection (no expansion)
     if (end > start) {
         isManualDragSelection.current = true;
@@ -3262,7 +3239,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               const nativeRange = nativeSel.rangeCount > 0 ? nativeSel.getRangeAt(0) : null;
               if (nativeRange) {
                 const nativeOffsets = getOffsetsWithin(container, nativeRange);
-                // If native selection differs from what we calculated, clear it
                 if (nativeOffsets.start !== start || nativeOffsets.end !== end) {
                   nativeSel.removeAllRanges();
                 }
@@ -3275,6 +3251,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         setTimeout(() => { isManualDragSelection.current = false; }, 1000);
       return;
     }
+
     // Otherwise, expand single-click caret to the surrounding sentence
     const idx = start;
     const sent = expandToSentence(text || '', idx);
@@ -3502,13 +3479,25 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     // Always record starting point
     startXYRef.current = { x: tx, y: ty };
     movedRef.current = false;
+    touchSelectingRef.current = true;
     touchActiveRef.current = true;
     mobileStartPointRef.current = { x: tx, y: ty };
-    // If mobile selection mode is active, capture starting caret and prevent scroll
-    if (mobileSelectMode) {
       selPendingRef.current = false;
       lastSelectionStringRef.current = '';
-      try { e.preventDefault(); e.stopPropagation(); } catch {}
+
+    try {
+      const s = (function(){
+        const cont = document.querySelector('.container');
+        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+        const pg = document.querySelector('.page');
+        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+        return window;
+      })();
+      scrollerStartRef.current = (s === window) ? window.scrollY : s.scrollTop;
+    } catch { scrollerStartRef.current = 0; }
+
+    // If mobile selection mode is active, capture starting caret
+    if (mobileSelectMode) {
       try {
         const container = preRef.current;
         const caretFromPoint = (cx2, cy2) => {
@@ -3528,284 +3517,87 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       } catch { mobileStartCharRef.current = null; }
       return;
     }
-    try {
-      const s = (function(){
-        const cont = document.querySelector('.container');
-        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
-        const pg = document.querySelector('.page');
-        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
-        return window;
-      })();
-      scrollerStartRef.current = (s === window) ? window.scrollY : s.scrollTop;
-    } catch { scrollerStartRef.current = 0; }
   };
   const onTouchMove = (e) => {
     const t = e.touches && e.touches[0];
     if (!t) return;
     const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
     const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
-    if (dx + dy > 6) movedRef.current = true;
-    if (mobileSelectMode) {
-      try { e.preventDefault(); e.stopPropagation(); } catch {}
-      // Update selection in real-time during drag for visual feedback
-      try {
-        const container = preRef.current;
-        const cx = t.clientX || mobileStartPointRef.current.x || 0;
-        const cy = t.clientY || mobileStartPointRef.current.y || 0;
-        const caretFromPoint = (cx2, cy2) => {
-          if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
-          const pos = document.caretPositionFromPoint?.(cx2, cy2);
-          if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
-          return null;
-        };
-        let endChar = null;
-        const r = caretFromPoint(cx, cy);
-        if (container && r) {
-          const r0 = document.createRange(); r0.selectNodeContents(container);
-          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
-          endChar = before.toString().length;
-        }
-        const startChar = mobileStartCharRef.current;
-        if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
-          const start = Math.max(0, Math.min(startChar, endChar));
-          const end = Math.max(start, Math.max(startChar, endChar));
-        }
+    if (dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD) {
+      if (!movedRef.current) {
+        movedRef.current = true;
+        touchSelectingRef.current = false;
+        mobileStartCharRef.current = null;
+        selPendingRef.current = false;
+        lastSelectionStringRef.current = '';
+        try {
+          const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
+          if (sel && sel.rangeCount > 0) sel.removeAllRanges();
       } catch {}
+      }
+      return;
     }
   };
   const onTouchEnd = (e) => {
-    // Only prevent default if we're in custom selection mode or if we handled the touch
-    if (mobileSelectMode) {
-    try { e.preventDefault(); e.stopPropagation(); } catch {}
-    }
-    // Handle selection mode on mobile: tap selects sentence, drag selects range
-    if (mobileSelectMode) {
-      try {
-        const container = preRef.current;
         const touch = e.changedTouches && e.changedTouches[0];
-        const cx = touch?.clientX || mobileStartPointRef.current.x || 0;
-        const cy = touch?.clientY || mobileStartPointRef.current.y || 0;
-        const caretFromPoint = (cx2, cy2) => {
-          if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
-          const pos = document.caretPositionFromPoint?.(cx2, cy2);
-          if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
-          return null;
-        };
-        let endChar = null;
-        const r = caretFromPoint(cx, cy);
-        if (container && r) {
-          const r0 = document.createRange(); r0.selectNodeContents(container);
-          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
-          endChar = before.toString().length;
-        }
-        const startChar = mobileStartCharRef.current;
-        let start = null, end = null;
+    const endX = touch ? touch.clientX : mobileStartPointRef.current.x || 0;
+    const endY = touch ? touch.clientY : mobileStartPointRef.current.y || 0;
+    const dx = Math.abs(endX - startXYRef.current.x);
+    const dy = Math.abs(endY - startXYRef.current.y);
+    const movedTooFar = dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD;
 
-        // Prefer the actual native selection if the browser created one
-        if (container && typeof window !== 'undefined') {
-          try {
-            const nativeSel = window.getSelection?.();
-            if (nativeSel && nativeSel.rangeCount > 0) {
-              const nativeRange = nativeSel.getRangeAt(0);
-              if (container.contains(nativeRange.startContainer) && container.contains(nativeRange.endContainer)) {
-                const off = getOffsetsWithin(container, nativeRange);
-                if (off.end > off.start) {
-                  start = off.start;
-                  end = off.end;
-                }
-              }
-            }
-          } catch {}
-        }
-
-        // Fall back to our manual tracking if the native selection was unavailable/collapsed
-        if (start == null || end == null || end <= start) {
-        if (Number.isFinite(startChar) && Number.isFinite(endChar) && movedRef.current) {
-            // User dragged - use exact selection, no expansion
-            start = Math.max(0, Math.min(startChar, endChar));
-            end = Math.max(start, Math.max(startChar, endChar));
-          } else if (Number.isFinite(startChar) && Number.isFinite(endChar)) {
-            // We have both start and end, even if movedRef is false (might be timing issue)
-            // If they're different, user dragged, so use exact selection
-            if (startChar !== endChar) {
-          start = Math.max(0, Math.min(startChar, endChar));
-          end = Math.max(start, Math.max(startChar, endChar));
-        } else {
-              // Single click - expand to sentence
-              const idx = startChar;
-              const sent = expandToSentence(text || '', idx);
-              if (sent) { start = sent.start; end = sent.end; }
-            }
-          } else {
-            // Only one coordinate or neither - single click, expand to sentence
-          const idx = Number.isFinite(endChar) ? endChar : (Number.isFinite(startChar) ? startChar : null);
-          if (idx != null) {
-            const sent = expandToSentence(text || '', idx);
-            if (sent) { start = sent.start; end = sent.end; }
-            }
-          }
-        }
-        if (start != null && end != null && end > start) {
-          // Mark as manual drag selection if user actually dragged (not a single tap)
-          if (movedRef.current || (Number.isFinite(startChar) && Number.isFinite(endChar) && startChar !== endChar)) {
-            isManualDragSelection.current = true;
-            setTimeout(() => { isManualDragSelection.current = false; }, 1000);
-          }
-          selPendingRef.current = true;
-          lastSelectionStringRef.current = `${start}-${end}`;
-          onSelectRange?.({ start, end });
-          // Don't exit text selection mode - keep it active so user can select again
-          // (same behavior as desktop)
-          scrollAsideIntoView();
-        }
-      } catch {}
-      skipNextMouseUpRef.current = true;
+    if (!mobileSelectMode) {
       touchActiveRef.current = false;
       setTimeout(() => { movedRef.current = false; }, 80);
       return;
     }
-    // If the user scrolled, do nothing and swallow the synthetic mouseup
-    try {
-      const s = (function(){
-        const cont = document.querySelector('.container');
-        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
-        const pg = document.querySelector('.page');
-        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
-        return window;
-      })();
-      const now = (s === window) ? window.scrollY : s.scrollTop;
-      // Treat small rubber-band or inertia movement as a tap; only swallow for larger moves
-      if (Math.abs(now - (scrollerStartRef.current || 0)) > 30 || movedRef.current) {
-        // User moved - check if they made a text selection
-        // Wait a moment for the native selection to be established
-        setTimeout(() => {
-          if (typeof window !== 'undefined' && window.getSelection) {
+
+    if (movedTooFar || !touchSelectingRef.current || movedRef.current) {
+      try {
+        const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
+        if (sel && sel.rangeCount > 0) sel.removeAllRanges();
+          } catch {}
+      touchSelectingRef.current = false;
+      touchActiveRef.current = false;
+      mobileStartCharRef.current = null;
+      setTimeout(() => { movedRef.current = false; }, 80);
+      return;
+    }
+
+    try { e.preventDefault(); e.stopPropagation(); } catch {}
+
             try {
               const container = preRef.current;
-              if (!container) return;
-              const sel = window.getSelection();
-              if (sel && sel.rangeCount > 0 && !selPendingRef.current) {
-                const range = sel.getRangeAt(0);
-                // Only process selections within this section's text container
-                if (container.contains(range.startContainer) && container.contains(range.endContainer)) {
-                  const { start, end } = getOffsetsWithin(container, range);
-                  // If there's an actual selection (not just a caret), trigger explanation
-                  if (end > start) {
-                    selPendingRef.current = true;
-                    onSelectRange?.({ start, end });
-                    setTimeout(() => { selPendingRef.current = false; }, 500);
-                  }
-                }
-              }
-            } catch {}
-          }
-        }, 100);
-        skipNextMouseUpRef.current = true;
+      if (!container) {
         touchActiveRef.current = false;
         setTimeout(() => { movedRef.current = false; }, 80);
         return;
       }
-    } catch {}
-    // Single tap: toggle note visibility (reveal/hide)
-    // Always resolve from click Y using anchors for accuracy
-    let keyToToggle = null;
-    let hasNote = false;
-    try {
-      const anchors = sectionRef?.current?.querySelectorAll?.(':scope .speechAnchor') || [];
-      if (anchors.length) {
-        let best = { idx: 0, d: Infinity };
-        const y = (e.changedTouches && e.changedTouches[0]?.clientY) || startXYRef.current?.y || 0;
-        anchors.forEach((el) => {
-          const r = el.getBoundingClientRect();
-          const d = Math.abs((r.top || 0) - y);
-          const i = parseInt(el.getAttribute('data-idx') || '0', 10) || 0;
-          if (d < best.d) best = { idx: i, d };
-        });
-        const sp = (speeches || [])[Math.min(best.idx, Math.max(0, (speeches || []).length - 1))];
-        if (sp) {
-          keyToToggle = `${sp.act}|${sp.scene}|${sp.speechIndex}`;
-          hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-        }
-      }
-    } catch {}
-    // Fallback: if anchors didn't work, try speechKey
-    if (!hasNote && speechKey && noteBySpeechKey) {
-      keyToToggle = speechKey;
-      hasNote = !!(noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-    }
-    // Fallback 2: use caret position under the finger to map to the exact speech
-    if (!hasNote) {
-      try {
-        const container = preRef.current;
-        const touch = e.changedTouches && e.changedTouches[0];
-        const cx = touch?.clientX || 0;
-        const cy = touch?.clientY || 0;
         const caretFromPoint = (cx2, cy2) => {
           if (document.caretRangeFromPoint) return document.caretRangeFromPoint(cx2, cy2);
           const pos = document.caretPositionFromPoint?.(cx2, cy2);
           if (pos) { const r = document.createRange(); r.setStart(pos.offsetNode, pos.offset); r.collapse(true); return r; }
           return null;
         };
-        const r = caretFromPoint(cx, cy);
-        if (container && r) {
+      let charIndex = mobileStartCharRef.current;
+      const rangeFromPoint = caretFromPoint(endX, endY);
+      if (container && rangeFromPoint) {
           const r0 = document.createRange(); r0.selectNodeContents(container);
-          const before = r0.cloneRange(); before.setEnd(r.startContainer, r.startOffset);
-          const idxChar = before.toString().length;
-          // Convert character index to byte offset within full doc
-          const startRelB = new TextEncoder().encode((text || '').slice(0, idxChar)).length;
-          const absOffset = (sectionStartOffset || 0) + startRelB;
-          // Find speech containing this absolute offset
-          let speech = null;
-          for (const sp of (speeches || [])) {
-            const it = noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`);
-            if (!it) continue;
-            if ((absOffset >= (it.startOffset || 0)) && (absOffset <= (it.endOffset || (it.startOffset || 0)))) { speech = sp; break; }
-          }
-          if (speech) {
-            keyToToggle = `${speech.act}|${speech.scene}|${speech.speechIndex}`;
-            hasNote = !!(noteBySpeechKey && noteBySpeechKey.get && noteBySpeechKey.get(keyToToggle));
-          }
-        }
-      } catch {}
-    }
-    if (hasNote && keyToToggle) {
-      // If note is suppressed, remove from suppressed list first
-      if (suppressedNotes.has(keyToToggle)) {
-        setSuppressedNotes((prev) => {
-          const next = new Set(prev);
-          next.delete(keyToToggle);
-          return next;
-        });
+        const before = r0.cloneRange(); before.setEnd(rangeFromPoint.startContainer, rangeFromPoint.startOffset);
+        charIndex = before.toString().length;
       }
-      const wasForced = forcedSet.has(keyToToggle);
-      // Toggle forced state
-      if (onToggleForced) onToggleForced(keyToToggle, sectionIndex);
-      if (wasForced) {
-        setSuppressedNotes((prev) => {
-          const next = new Set(prev);
-          next.add(keyToToggle);
-          return next;
-        });
-        if (onDeleteSpeech) onDeleteSpeech(keyToToggle);
-        if (Array.isArray(filteredSavedExplanations) && filteredSavedExplanations.length) {
-          const enc = new TextEncoder();
-          for (const ex of filteredSavedExplanations) {
-            const meta = ex?.meta;
-            if (!meta) continue;
-            const exKey = meta.speechKey;
-            const matches = exKey ? exKey === keyToToggle : meta.sectionIndex === sectionIndex;
-            if (!matches) continue;
-            const len = enc.encode(meta.text || '').length;
-            onDeleteSaved?.(`${meta.byteOffset}-${len}`);
-          }
-        }
-        llm?.onDeleteCurrent?.();
-      } else {
-        // Immediately bring the aside into view; no delay
+      if (typeof charIndex === 'number' && Number.isFinite(charIndex)) {
+        const sent = expandToSentence(text || '', charIndex);
+        if (sent) {
+          const selectionKey = `${sent.start}-${sent.end}`;
+          lastSelectionStringRef.current = selectionKey;
+          selPendingRef.current = true;
+          onSelectRange?.({ start: sent.start, end: sent.end });
         scrollAsideIntoView();
       }
     }
-    // Swallow the synthetic mouseup to avoid desktop selection logic
+    } catch {}
+
     skipNextMouseUpRef.current = true;
     touchActiveRef.current = false;
     setTimeout(() => { movedRef.current = false; }, 80);
@@ -3898,12 +3690,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           className={sectionHasNotes ? 'hasNotes' : ''}
           style={{ 
             cursor: (isTouchDevice && mobileSelectMode) ? 'text' : (sectionHasNotes ? 'pointer' : 'default'),
-            // Subtle visual indicator for text selection mode on the text area
-            // Only show if this section contains the note that's in select mode
-            border: mobileSelectMode ? '1px solid #c9c0b8' : 'none',
-            borderRadius: mobileSelectMode ? '2px' : '0',
-            // Don't set backgroundColor inline - let CSS hover handle it
-            ...(mobileSelectMode ? { backgroundColor: '#faf9f7' } : {}),
             transition: 'all 0.2s ease',
             userSelect: 'text',  // Always allow text selection on mobile
             WebkitUserSelect: 'text',  // Always allow text selection on mobile
@@ -3960,8 +3746,35 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 // Get the speech key for this specific note item
                 const itemSpeechKey = getSpeechKeyForItem(it);
                 const isExpanded = itemSpeechKey && expandedNotes.has(itemSpeechKey);
+                const handleCloseNote = (event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                  if (itemSpeechKey) {
+                    setSuppressedNotes((prev) => {
+                      const next = new Set(prev || []);
+                      next.add(itemSpeechKey);
+                      return next;
+                    });
+                    if (onToggleNoteExpanded && expandedNotes.has(itemSpeechKey)) {
+                      onToggleNoteExpanded(itemSpeechKey);
+                    }
+                    if (onToggleForced && forcedSet.has(itemSpeechKey)) {
+                      onToggleForced(itemSpeechKey, sectionIndex);
+                    }
+                  }
+                  onSelectRange?.(null);
+                };
                 return (
                   <div key={`pc-${autoIdx}-${it.startOffset || autoIdx}`} style={{ paddingRight: '32px', paddingTop: '6px', borderBottom: '1px solid #eee', position: 'relative' }}>
+                    <button
+                      type="button"
+                      className="closeBtn"
+                      onClick={handleCloseNote}
+                      aria-label="Hide note"
+                      style={{ position: 'absolute', right: 0, top: 0 }}
+                    >
+                      ✕
+                    </button>
                     <div 
                       className="noteContent" 
                       style={{ 
@@ -3979,7 +3792,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                           onToggleNoteExpanded(itemSpeechKey);
                         }
                       }} 
-                      title={isExpanded ? "Click to collapse note" : "Click to expand note"}>
+                    >
                       {noteContent}
                       <span 
                         className="noteToggleIndicator"

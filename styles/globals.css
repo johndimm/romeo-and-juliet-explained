@@ -675,29 +675,18 @@ html.isPrintRoute .container { left: 0; }
 }
 
 .playText pre.hasNotes:hover {
-  background-color: #faf9f7 !important;
-  box-shadow: 0 0 0 2px rgba(231, 215, 184, 0.7), inset 0 0 0 1px rgba(231, 215, 184, 0.3) !important;
-  outline: 2px solid rgba(231, 215, 184, 0.6) !important;
-  outline-offset: -2px;
+  background-color: inherit !important;
+  box-shadow: none !important;
+  outline: none !important;
+  outline-offset: 0;
 }
 
 .playText pre.hasNotes:hover::after {
-  content: 'Click to open note';
-  position: absolute;
-  right: 8px;
-  top: 4px;
-  font-size: 0.7em;
-  color: #9b8f82;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2px 6px;
-  border-radius: 3px;
-  pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  content: '';
 }
 
 .playText pre.hasNotes[data-note-open="true"]:hover::after {
-  content: 'Click to close note';
+  content: '';
 }
 
 /* Note content hover effect - shows it's clickable and reveals toggle indicator */
