@@ -13,7 +13,89 @@ html, body, #__next { height: 100%; touch-action: pan-y; }
 
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: #111; background: #faf9f7; overflow: hidden; }
 
-.appHeader { background: #faf9f7; border-bottom: 1px solid #e8e6e3; height: var(--header-h); overflow: visible; }
+/* Special rules for test-scroll page - MUST allow scrolling */
+html.testScroll body,
+body.testScroll,
+#__next.testScroll {
+  overflow: auto !important;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  -webkit-overflow-scrolling: touch !important;
+  position: relative !important;
+}
+
+html.testScroll #__next {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  position: relative !important;
+}
+
+/* FORCE scrolling in iOS/Capacitor - check for iOS user agent or capacitor protocol */
+@media screen and (max-width: 9999px) {
+  html[data-capacitor="true"] body,
+  html.isCapacitor body,
+  body[data-ios-scroll="true"] {
+    overflow: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: auto !important;
+  }
+  html[data-capacitor="true"] #__next,
+  html.isCapacitor #__next,
+  #__next[data-ios-scroll="true"] {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* Allow scrolling in Capacitor (iOS/Android native apps) */
+html.isCapacitor,
+html[data-capacitor="true"],
+html.isCapacitor body,
+html[data-capacitor="true"] body,
+html.isCapacitor #__next,
+html[data-capacitor="true"] #__next {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+html.isCapacitor body,
+html[data-capacitor="true"] body {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+html.isCapacitor .page,
+html[data-capacitor="true"] .page {
+  position: relative !important;
+  top: 0 !important;
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+html.isCapacitor .container,
+html[data-capacitor="true"] .container {
+  position: relative !important;
+  left: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+  overflow-y: visible !important;
+}
+
+.appHeader { 
+  background: #faf9f7; 
+  border-bottom: 1px solid #e8e6e3; 
+  min-height: var(--header-h);
+  height: calc(var(--header-h) + env(safe-area-inset-top, 0));
+  overflow: visible;
+  /* Add safe area padding for notch on iOS */
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
 
 .appTitle {
   font-size: clamp(18px, 1.8vw, 22px);
@@ -24,11 +106,13 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 .appHeaderInner {
   height: var(--header-h);
   padding: 8px 16px;
+  padding-top: calc(8px + env(safe-area-inset-top, 0));
   box-sizing: border-box;
   overflow: visible;
   display: flex;
   align-items: center;
   gap: 16px;
+  min-height: var(--header-h);
 }
 
 .appHeaderInner .appTitle {
@@ -82,7 +166,25 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 
 .page { position: absolute; top: var(--header-h); left: 0; right: 0; bottom: 0; overflow: hidden; }
 
+html.isCapacitor .page {
+  position: relative;
+  top: 0;
+  height: auto;
+  min-height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0));
+  overflow: visible;
+  padding-top: env(safe-area-inset-top, 0);
+}
+
 .sidebar { position: absolute; top: 0; bottom: 0; left: 0; width: 260px; overflow-y: auto; overflow-x: hidden; padding: 0.25rem 0.5rem 1rem 1rem; border-right: 1px solid #e8e6e3; box-sizing: border-box; }
+
+html.isCapacitor .sidebar {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  border-right: none;
+  border-bottom: 1px solid #e8e6e3;
+}
 
 .toc h2 {
   margin: 0 0 0.5rem 0;
@@ -115,6 +217,14 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubunt
 }
 
 .container { position: absolute; top: 0; bottom: 0; left: 260px; right: 0; overflow-y: auto; overflow-x: hidden; padding: 1rem; box-sizing: border-box; }
+
+html.isCapacitor .container,
+html[data-capacitor="true"] .container {
+  position: relative !important;
+  left: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
 
 /* Removed - no longer needed with new layout */
 
@@ -1074,6 +1184,13 @@ html.isPrintRoute .container { left: 0; }
   /* Use percentage widths to avoid 100vw overflow on mobile browsers */
   html, body, #__next { height: auto; width: 100% !important; max-width: 100% !important; }
   body { overflow: hidden; }
+  /* In Capacitor, ALWAYS allow scrolling regardless of screen size */
+  html.isCapacitor body,
+  html[data-capacitor="true"] body {
+    overflow: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
   /* On the print route, allow the document to scroll normally on mobile */
   html.isPrintRoute body { overflow: auto; }
   html.isPrintRoute .container { overflow-y: visible; }

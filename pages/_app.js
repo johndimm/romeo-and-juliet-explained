@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
 
@@ -30,6 +31,35 @@ export default function App({ Component, pageProps }) {
     if (isPrintRoute) html.classList.add('isPrintRoute'); else html.classList.remove('isPrintRoute');
     return () => { html.classList.remove('isPrintRoute'); };
   }, [isPrintRoute]);
+
+  // Detect if running in Capacitor (iOS/Android app) and add class for CSS adjustments
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const html = document.documentElement;
+    if (!html) return;
+    // Check if Capacitor is available (indicates native app)
+    // Check for Capacitor object, CapacitorWeb, or user agent indicators
+    // Also check for capacitor:// protocol in URL
+    const isCapacitor = !!(window.Capacitor || window.CapacitorWeb || 
+      (typeof window !== 'undefined' && window.location && window.location.protocol === 'capacitor:') ||
+      (window.navigator && window.navigator.userAgent && 
+       (window.navigator.userAgent.includes('Capacitor') || 
+        window.navigator.userAgent.includes('ionic') ||
+        (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')))));
+    
+    if (isCapacitor) {
+      html.classList.add('isCapacitor');
+      // Also set a data attribute for CSS targeting
+      html.setAttribute('data-capacitor', 'true');
+    } else {
+      html.classList.remove('isCapacitor');
+      html.removeAttribute('data-capacitor');
+    }
+    return () => { 
+      html.classList.remove('isCapacitor');
+      html.removeAttribute('data-capacitor');
+    };
+  }, []);
   // Measure header height on mobile and expose as CSS var for page padding
   React.useEffect(() => {
     let rafId = null;
@@ -87,6 +117,10 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        {/* Ensure viewport supports safe area for iOS notch */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </Head>
       {!isPrintRoute && (
       <header className="appHeader">
         <div className="appHeaderInner" ref={headerRef}>
@@ -94,27 +128,30 @@ export default function App({ Component, pageProps }) {
           <div className="headerRight">
             <nav className="headerLinks">
               {isPlayPage && (
-                <a
-                  href="#"
-                  className="lnk-print"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    try {
-                      const act = localStorage.getItem('printAct') || '';
-                      const scene = localStorage.getItem('printScene') || '';
-                      let dest = '/print';
-                      const params = [];
-                      if (act) params.push(`act=${encodeURIComponent(act)}`);
-                      if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
-                      if (params.length) dest += `?${params.join('&')}`;
-                      if (location.pathname !== dest) location.assign(dest); else location.href = dest;
-                    } catch {
-                      location.assign('/print');
-                    }
-                  }}
-                >
-                  <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
-                </a>
+                <>
+                  <Link href="/test-scroll" className="lnk-test-scroll"><span className="icon" aria-hidden>📜</span><span className="lbl">Test Scroll</span></Link>
+                  <a
+                    href="#"
+                    className="lnk-print"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      try {
+                        const act = localStorage.getItem('printAct') || '';
+                        const scene = localStorage.getItem('printScene') || '';
+                        let dest = '/print';
+                        const params = [];
+                        if (act) params.push(`act=${encodeURIComponent(act)}`);
+                        if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
+                        if (params.length) dest += `?${params.join('&')}`;
+                        if (location.pathname !== dest) location.assign(dest); else location.href = dest;
+                      } catch {
+                        location.assign('/print');
+                      }
+                    }}
+                  >
+                    <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
+                  </a>
+                </>
               )}
               <Link href="/user-guide" className="lnk-guide"><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
               <Link href="/about" className="lnk-about"><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
@@ -175,6 +212,7 @@ export default function App({ Component, pageProps }) {
       {showMobileMenu && (
         <div className="mobileMenu" role="dialog" aria-label="Menu" onClick={() => setShowMobileMenu(false)}>
           <div className="panel" onClick={(e) => e.stopPropagation()}>
+            <Link className="menuItem" href="/test-scroll" onClick={() => setShowMobileMenu(false)}>📜 Test Scroll</Link>
             {isPlayPage && (
               <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
             )}

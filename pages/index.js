@@ -91,6 +91,102 @@ export async function getStaticProps() {
 }
 
 export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
+  // Force enable scrolling in Capacitor/iOS - apply styles directly with aggressive fixes
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
+    // Multiple detection methods
+    const ua = window.navigator?.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    const isCapacitor = !!(window.Capacitor || window.CapacitorWeb ||
+      (window.location && window.location.protocol === 'capacitor:') ||
+      ua.includes('Capacitor') || ua.includes('ionic'));
+    
+    // If iOS or Capacitor, force enable scrolling
+    if (isIOS || isCapacitor) {
+      // Debug log (remove later)
+      if (typeof window !== 'undefined' && window.Capacitor) {
+        console.log('[Scroll Fix] Capacitor detected, enabling scrolling...');
+      }
+      if (isIOS) {
+        console.log('[Scroll Fix] iOS detected, enabling scrolling...');
+      }
+      
+      const html = document.documentElement;
+      const body = document.body;
+      const next = document.getElementById('__next');
+      
+      // Set data attributes for CSS targeting
+      if (html) {
+        html.classList.add('isCapacitor');
+        html.setAttribute('data-capacitor', 'true');
+        html.setAttribute('data-ios-scroll', 'true');
+        html.style.height = 'auto';
+        html.style.overflow = 'visible';
+        html.style.overflowY = 'visible';
+      }
+      if (body) {
+        body.setAttribute('data-ios-scroll', 'true');
+        body.style.height = 'auto';
+        body.style.minHeight = '100vh';
+        body.style.overflow = 'auto';
+        body.style.overflowY = 'auto';
+        body.style.position = 'relative';
+        body.style.WebkitOverflowScrolling = 'touch';
+        body.style.overflowX = 'hidden';
+      }
+      if (next) {
+        next.setAttribute('data-ios-scroll', 'true');
+        next.style.height = 'auto';
+        next.style.minHeight = '100vh';
+        next.style.overflow = 'visible';
+      }
+      
+      // Fix page and container elements with delays to ensure DOM is ready
+      const fixLayout = () => {
+        const page = document.querySelector('.page');
+        const container = document.querySelector('.container');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (page) {
+          page.style.position = 'relative';
+          page.style.height = 'auto';
+          page.style.minHeight = '100vh';
+          page.style.overflow = 'visible';
+          page.style.top = '0';
+          page.style.bottom = 'auto';
+        }
+        if (container) {
+          container.style.position = 'relative';
+          container.style.height = 'auto';
+          container.style.overflow = 'visible';
+          container.style.overflowY = 'visible';
+          container.style.left = '0';
+          container.style.top = 'auto';
+          container.style.bottom = 'auto';
+        }
+        if (sidebar) {
+          sidebar.style.position = 'relative';
+          sidebar.style.height = 'auto';
+          sidebar.style.overflow = 'visible';
+        }
+      };
+      
+      // Try multiple times to ensure it applies
+      fixLayout();
+      setTimeout(fixLayout, 50);
+      setTimeout(fixLayout, 200);
+      setTimeout(fixLayout, 500);
+      
+      // Also listen for any layout changes
+      if (typeof ResizeObserver !== 'undefined') {
+        const ro = new ResizeObserver(() => fixLayout());
+        if (body) ro.observe(body);
+        if (next) ro.observe(next);
+      }
+    }
+  }, []);
+
   const [query, setQuery] = useState(''); // executed search
   const [input, setInput] = useState(''); // text in the box
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -242,6 +338,15 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
 
+    // Check if running in Capacitor - if so, disable font scaling touch handlers to allow scrolling
+    // Check for Capacitor object, capacitor:// protocol, or user agent
+    const isCapacitor = typeof window !== 'undefined' && 
+      (window.Capacitor || window.CapacitorWeb ||
+       (window.location && window.location.protocol === 'capacitor:') ||
+       (window.navigator && window.navigator.userAgent && 
+        (window.navigator.userAgent.includes('Capacitor') || 
+         window.navigator.userAgent.includes('ionic'))));
+
     const state = { active: false, startDist: 0, startScale: 1 };
     const gestureState = { startScale: 1 };
     let pendingScale = null;
@@ -278,6 +383,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchStart = (e) => {
+      // In Capacitor, allow normal scrolling - don't intercept touch events for font scaling
+      if (isCapacitor) return;
       if (e.touches.length >= 2) {
         flushPending();
         state.active = true;
@@ -291,6 +398,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchMove = (e) => {
+      // In Capacitor, allow normal scrolling
+      if (isCapacitor) return;
       if (!state.active || e.touches.length !== 2) return;
       const dist = distance(e.touches);
       if (state.startDist <= 0 || dist <= 0) return;
@@ -309,6 +418,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchEnd = (e) => {
+      // In Capacitor, allow normal scrolling
+      if (isCapacitor) return;
       if (e.touches.length < 2) {
         const didCommit = finalizeTouch();
         if (!didCommit) window.__pinchActive = false;
@@ -319,6 +430,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onGestureStart = (e) => {
+      // In Capacitor, allow normal scrolling
+      if (isCapacitor) return;
       flushPending();
       gestureState.startScale = fontScaleRef.current;
       window.__pinchActive = true;
@@ -326,12 +439,16 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onGestureChange = (e) => {
+      // In Capacitor, allow normal scrolling
+      if (isCapacitor) return;
       const scale = typeof e.scale === 'number' && Number.isFinite(e.scale) ? e.scale : 1;
       scheduleScale(gestureState.startScale * scale);
       e.preventDefault();
     };
 
     const onGestureEnd = (e) => {
+      // In Capacitor, allow normal scrolling
+      if (isCapacitor) return;
       flushPending();
       applyLiveFontScale(fontScaleRef.current, { commit: true });
       window.__pinchActive = false;
@@ -345,30 +462,37 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (target?.removeEventListener) target.removeEventListener(type, handler, opts);
     };
 
-    const optionsPassiveFalse = { passive: false };
-    const targets = [window, document];
+    // Only attach font scaling touch handlers if not in Capacitor (to allow scrolling)
+    if (!isCapacitor) {
+      const optionsPassiveFalse = { passive: false };
+      const targets = [window, document];
 
-    targets.forEach((target) => {
-      add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-      add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-      add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-      add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-      add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-      add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-      add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-    });
+      targets.forEach((target) => {
+        add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+        add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+        add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+        add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+        add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+        add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+        add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+      });
+    }
 
     return () => {
       flushPending();
-      targets.forEach((target) => {
-        remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-        remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-        remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-        remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-        remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-        remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-        remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-      });
+      if (!isCapacitor) {
+        const optionsPassiveFalse = { passive: false };
+        const targets = [window, document];
+        targets.forEach((target) => {
+          remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+          remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+          remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+          remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+          remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+          remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+          remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+        });
+      }
       window.__pinchActive = false;
     };
   }, [applyLiveFontScale]);
