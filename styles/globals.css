@@ -13,25 +13,6 @@ html, body, #__next { height: 100%; touch-action: pan-y; }
 
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: #111; background: #faf9f7; overflow: hidden; }
 
-/* Special rules for test-scroll page - MUST allow scrolling */
-html.testScroll body,
-body.testScroll,
-#__next.testScroll {
-  overflow: auto !important;
-  overflow-y: auto !important;
-  height: auto !important;
-  min-height: 100vh !important;
-  -webkit-overflow-scrolling: touch !important;
-  position: relative !important;
-}
-
-html.testScroll #__next {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 100vh !important;
-  position: relative !important;
-}
-
 /* FORCE scrolling in iOS/Capacitor - check for iOS user agent or capacitor protocol */
 @media screen and (max-width: 9999px) {
   html[data-capacitor="true"] body,

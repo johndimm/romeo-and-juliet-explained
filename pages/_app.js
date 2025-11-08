@@ -129,7 +129,6 @@ export default function App({ Component, pageProps }) {
             <nav className="headerLinks">
               {isPlayPage && (
                 <>
-                  <Link href="/test-scroll" className="lnk-test-scroll"><span className="icon" aria-hidden>📜</span><span className="lbl">Test Scroll</span></Link>
                   <a
                     href="#"
                     className="lnk-print"
@@ -212,7 +211,6 @@ export default function App({ Component, pageProps }) {
       {showMobileMenu && (
         <div className="mobileMenu" role="dialog" aria-label="Menu" onClick={() => setShowMobileMenu(false)}>
           <div className="panel" onClick={(e) => e.stopPropagation()}>
-            <Link className="menuItem" href="/test-scroll" onClick={() => setShowMobileMenu(false)}>📜 Test Scroll</Link>
             {isPlayPage && (
               <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
             )}

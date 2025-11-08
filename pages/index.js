@@ -68,6 +68,8 @@ const formatProviderName = (provider) => {
   return provider.charAt(0).toUpperCase() + provider.slice(1);
 };
 
+const TOUCH_SCROLL_THRESHOLD = 18;
+
 export async function getStaticProps() {
   const { sections: sectionsWithOffsets, markers } = parseSectionsWithOffsets('romeo-and-juliet.txt');
   // Remove the original TOC: filter out sections between 'Contents' and 'THE PROLOGUE'
@@ -336,15 +338,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return () => {};
 
-    // Check if running in Capacitor - if so, disable font scaling touch handlers to allow scrolling
-    // Check for Capacitor object, capacitor:// protocol, or user agent
-    const isCapacitor = typeof window !== 'undefined' && 
-      (window.Capacitor || window.CapacitorWeb ||
-       (window.location && window.location.protocol === 'capacitor:') ||
-       (window.navigator && window.navigator.userAgent && 
-        (window.navigator.userAgent.includes('Capacitor') || 
-         window.navigator.userAgent.includes('ionic'))));
-
     const state = { active: false, startDist: 0, startScale: 1 };
     const gestureState = { startScale: 1 };
     let pendingScale = null;
@@ -381,8 +374,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchStart = (e) => {
-      // In Capacitor, allow normal scrolling - don't intercept touch events for font scaling
-      if (isCapacitor) return;
       if (e.touches.length >= 2) {
         flushPending();
         state.active = true;
@@ -396,8 +387,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchMove = (e) => {
-      // In Capacitor, allow normal scrolling
-      if (isCapacitor) return;
       if (!state.active || e.touches.length !== 2) return;
       const dist = distance(e.touches);
       if (state.startDist <= 0 || dist <= 0) return;
@@ -416,8 +405,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchEnd = (e) => {
-      // In Capacitor, allow normal scrolling
-      if (isCapacitor) return;
       if (e.touches.length < 2) {
         const didCommit = finalizeTouch();
         if (!didCommit) window.__pinchActive = false;
@@ -428,8 +415,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onGestureStart = (e) => {
-      // In Capacitor, allow normal scrolling
-      if (isCapacitor) return;
       flushPending();
       gestureState.startScale = fontScaleRef.current;
       window.__pinchActive = true;
@@ -437,16 +422,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onGestureChange = (e) => {
-      // In Capacitor, allow normal scrolling
-      if (isCapacitor) return;
       const scale = typeof e.scale === 'number' && Number.isFinite(e.scale) ? e.scale : 1;
       scheduleScale(gestureState.startScale * scale);
       e.preventDefault();
     };
 
     const onGestureEnd = (e) => {
-      // In Capacitor, allow normal scrolling
-      if (isCapacitor) return;
       flushPending();
       applyLiveFontScale(fontScaleRef.current, { commit: true });
       window.__pinchActive = false;
@@ -460,37 +441,32 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (target?.removeEventListener) target.removeEventListener(type, handler, opts);
     };
 
-    // Only attach font scaling touch handlers if not in Capacitor (to allow scrolling)
-    if (!isCapacitor) {
-      const optionsPassiveFalse = { passive: false };
-      const targets = [window, document];
+    const optionsPassiveFalse = { passive: false };
+    const targets = [window, document];
 
-      targets.forEach((target) => {
-        add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-        add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-        add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-        add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-        add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-        add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-        add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-      });
-    }
+    targets.forEach((target) => {
+      add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+      add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+      add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+      add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+      add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+      add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+      add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+    });
 
     return () => {
       flushPending();
-      if (!isCapacitor) {
-        const optionsPassiveFalse = { passive: false };
-        const targets = [window, document];
-        targets.forEach((target) => {
-          remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-          remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-          remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-          remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-          remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-          remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-          remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-        });
-      }
+      const optionsPassiveFalse = { passive: false };
+      const targets = [window, document];
+      targets.forEach((target) => {
+        remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+        remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+        remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+        remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+        remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+        remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+        remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+      });
       window.__pinchActive = false;
     };
   }, [applyLiveFontScale]);
@@ -1342,15 +1318,68 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       setSelectionContext(null);
       return;
     }
+    const selectionFlag = !!selection.isWholeSpeech;
     // Compute byte offset at selection start
     const encoder = new TextEncoder();
     const bytesBefore = encoder.encode(sectionText.slice(0, start)).length;
-    const base = sectionsWithOffsets[sectionIndex]?.startOffset || 0;
-    const byteOffset = base + bytesBefore;
+    const sectionBaseOffset = sectionsWithOffsets[sectionIndex]?.startOffset || 0;
+    const byteOffset = sectionBaseOffset + bytesBefore;
     const ctx = getContextForOffset(metadata, byteOffset);
     // Always use the exact selected text range, never expand to fullText
     const textForLLM = sectionText.slice(selection.start, selection.end);
-    setSelectionContext({ ...ctx, text: textForLLM, byteOffset });
+    const selectionTrimmed = textForLLM.trim();
+    const selectionByteLength = encoder.encode(textForLLM).length;
+    const selectionStartByte = byteOffset;
+    const selectionEndByte = selectionStartByte + selectionByteLength;
+    let selectionIsWholeSpeech = selectionFlag;
+    if (!selectionIsWholeSpeech) {
+      const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+      if (speechesMeta.length && selectionTrimmed) {
+        let speechIdx = -1;
+        for (let i = 0; i < speechesMeta.length; i++) {
+          const off = speechesMeta[i]?.offset || 0;
+          if (off <= selectionStartByte) speechIdx = i; else break;
+        }
+        if (speechIdx >= 0) {
+          const speechStartByte = speechesMeta[speechIdx]?.offset || 0;
+          let speechEndByte = null;
+          for (let i = speechIdx + 1; i < speechesMeta.length; i++) {
+            const nextOff = speechesMeta[i]?.offset;
+            if (nextOff != null && nextOff > speechStartByte) { speechEndByte = nextOff; break; }
+          }
+          if (speechEndByte == null) {
+            const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+            const scene = scenesMeta.find((s) => speechStartByte >= (s.startOffset || 0) && speechStartByte < (s.endOffset || 0));
+            if (scene && scene.endOffset != null) speechEndByte = scene.endOffset;
+          }
+          const relStartBytes = Math.max(0, speechStartByte - sectionBaseOffset);
+          const speechStartChar = bytesToCharOffset(sectionText, relStartBytes);
+          let speechEndChar = null;
+          if (speechEndByte != null) {
+            const relEndBytes = Math.max(0, speechEndByte - sectionBaseOffset);
+            speechEndChar = bytesToCharOffset(sectionText, relEndBytes);
+          }
+          if (speechEndChar == null || speechEndChar <= speechStartChar) {
+            const relEndBytes = relStartBytes + selectionByteLength;
+            speechEndChar = bytesToCharOffset(sectionText, relEndBytes);
+          }
+          const speechSource = sectionText.slice(speechStartChar, Math.min(sectionText.length, speechEndChar));
+          const speechByteLength = encoder.encode(speechSource).length;
+          const toleranceBytes = 32;
+          const startDiffBytes = Math.abs(selectionStartByte - speechStartByte);
+          const selectionMeetsLength = speechByteLength > 0 && (selectionByteLength + toleranceBytes) >= speechByteLength;
+          if (selectionMeetsLength && startDiffBytes <= toleranceBytes) {
+            selectionIsWholeSpeech = true;
+          } else {
+            const speechFullText = speechSource.trim();
+            if (speechFullText && speechFullText === selectionTrimmed) {
+              selectionIsWholeSpeech = true;
+            }
+          }
+        }
+      }
+    }
+    setSelectionContext({ ...ctx, text: textForLLM, byteOffset, isWholeSpeech: selectionIsWholeSpeech });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
   // Auto-request on selection when a new passage is selected
@@ -1360,6 +1389,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       llmCallTimerRef.current = null;
     }
     if (!selectionContext) return () => {};
+    if (selectionContext.isWholeSpeech) return () => {};
     if (!String(selectionContext.text || '').trim()) return () => {};
     if (suppressAutoExplainRef.current) {
       suppressAutoExplainRef.current = false;
@@ -1626,8 +1656,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const selectionEndByte = selectionStartByte != null
       ? selectionStartByte + encoder.encode(selectionContext.text || '').length
       : null;
-    let selectionCoversWholeSpeech = false;
-    if (auto && chosenSpeech && selectionStartByte != null && selectionEndByte != null) {
+    let selectionCoversWholeSpeech = !!selectionContext?.isWholeSpeech;
+    if (!selectionCoversWholeSpeech && auto && chosenSpeech && selectionStartByte != null && selectionEndByte != null) {
       const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
       const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
       const speechStart = chosenSpeech.offset || 0;
@@ -1653,8 +1683,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         }
       }
       if (speechEnd != null) {
-        const tolerance = 4;
-        if (Math.abs(selectionStartByte - speechStart) <= tolerance && Math.abs(selectionEndByte - speechEnd) <= tolerance) {
+        const tolerance = 32;
+        const selectionLen = Math.max(0, selectionEndByte - selectionStartByte);
+        const speechLen = Math.max(0, speechEnd - speechStart);
+        const startDiff = Math.abs(selectionStartByte - speechStart);
+        const endDiff = Math.abs(selectionEndByte - speechEnd);
+        if ((speechLen > 0 && selectionLen + tolerance >= speechLen && startDiff <= tolerance) || (startDiff <= tolerance && endDiff <= tolerance)) {
           selectionCoversWholeSpeech = true;
         }
       }
@@ -1794,12 +1828,28 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       
       // For 'more' mode, append to moreThreads instead of replacing last
       if (mode === 'more') {
-        const existingMoreThreads = conversations[selectionId]?.moreThreads || [];
-        const newMoreThreads = [
-          ...existingMoreThreads,
-          { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
-        ];
-        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: conversations[selectionId]?.last || data.content, meta, moreThreads: newMoreThreads, followupThreads: conversations[selectionId]?.followupThreads || [] } });
+        setConversations((prev) => {
+          const prevConv = prev[selectionId] || {};
+          const existingMoreThreads = Array.isArray(prevConv.moreThreads) ? prevConv.moreThreads : [];
+          const newMoreThreads = [
+            ...existingMoreThreads,
+            { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
+          ];
+          const prevFollowups = Array.isArray(prevConv.followupThreads) ? prevConv.followupThreads : [];
+          const prevLast = prevConv.last;
+          const nextLast = (prevLast && prevLast !== thinkingText) ? prevLast : undefined;
+          return {
+            ...prev,
+            [selectionId]: {
+              ...prevConv,
+              messages: newMsgs,
+              last: nextLast,
+              meta,
+              moreThreads: newMoreThreads,
+              followupThreads: prevFollowups,
+            },
+          };
+        });
       } else if (mode === 'followup' && followup) {
         // For followup mode, append to followupThreads
         const existingFollowupThreads = conversations[selectionId]?.followupThreads || [];
@@ -2189,57 +2239,72 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const startXYRef = useRef({ x: 0, y: 0 });
   const selDebounceRef = useRef(null);
   const touchActiveRef = useRef(false);
+  const touchSelectingRef = useRef(false);
   const scrollerStartRef = useRef(0);
   const selectionTimeoutRef = useRef(null);
   const lastSelectionStringRef = useRef('');
   const isManualDragSelection = useRef(false); // Track if user manually dragged to select
   const isMouseDown = useRef(false); // Track if mouse button is currently down
-  const touchSelectingRef = useRef(false);
-  const TOUCH_SCROLL_THRESHOLD = 12;
-  // Mobile selection mode state/refs
-  const [detectedTouchDevice, setDetectedTouchDevice] = useState(false);
-  useEffect(() => {
-    if (typeof navigator === 'undefined') return;
+  const autoExpandedRef = useRef(new Set());
+  const mobileStartPointRef = useRef({ x: 0, y: 0 });
+  const mobileStartCharRef = useRef(null);
+  const skipNextMouseUpRef = useRef(false);
+  const textEncoder = useMemo(() => new TextEncoder(), []);
+  const [autoIdx, setAutoIdx] = useState(0);
+  const [forceShow, setForceShow] = useState(false);
+  const [suppressedNotes, setSuppressedNotes] = useState(() => new Set());
+  const [preFollowThreads, setPreFollowThreads] = useState({});
+  const [preFollowLoading, setPreFollowLoading] = useState(false);
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === 'undefined') return false;
     try {
-      if (navigator.maxTouchPoints > 0) {
-        setDetectedTouchDevice(true);
-      }
+      const nav = window.navigator;
+      if (nav && typeof nav.maxTouchPoints === 'number' && nav.maxTouchPoints > 0) return true;
+      if (typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches) return true;
+      return 'ontouchstart' in window;
     } catch {
-      // Ignore detection errors and leave as non-touch
+      return false;
     }
   }, []);
-  const isTouchDevice = detectedTouchDevice;
-  const mobileSelectMode = true;
-  const mobileStartCharRef = useRef(null);
-  const mobileStartPointRef = useRef({ x: 0, y: 0 });
-  const [autoIdx, setAutoIdx] = useState(0);
-  const [showPreFollow, setShowPreFollow] = useState(false);
-  const [preFollowInput, setPreFollowInput] = useState('');
-  const [preFollowLoading, setPreFollowLoading] = useState(false);
-  const skipNextMouseUpRef = useRef(false);
-  // Mini chat history per speech (keyed by startOffset)
-  const [preFollowThreads, setPreFollowThreads] = useState({}); // key -> [{ q, a, model, provider }]
-  const [forceShow, setForceShow] = useState(false);
-  // Track suppressed notes (by speech key) that should be hidden even if they meet threshold
-  const [suppressedNotes, setSuppressedNotes] = useState(new Set());
-  const textEncoder = useMemo(() => new TextEncoder(), []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    try {
-      const rawThreads = window.localStorage.getItem('noteThreads');
-      if (rawThreads) {
-        const parsed = JSON.parse(rawThreads);
-        if (parsed && typeof parsed === 'object') setPreFollowThreads(parsed);
-      }
-    } catch {}
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    try { window.localStorage.setItem('noteThreads', JSON.stringify(preFollowThreads)); } catch {}
-  }, [preFollowThreads]);
-
+  const mobileSelectMode = isTouchDevice;
+  const computeIsWholeSpeech = useCallback((startChar, endChar) => {
+    if (startChar == null || endChar == null) return false;
+    const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+    if (!speechesMeta.length) return false;
+    const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+    const textValue = text || '';
+    const selectionString = textValue.slice(startChar, endChar);
+    const normalizedSelection = selectionString.trim().replace(/\s+/g, ' ');
+    if (!normalizedSelection) return false;
+    const startByte = sectionStartOffset + textEncoder.encode(textValue.slice(0, startChar)).length;
+    const endByte = sectionStartOffset + textEncoder.encode(textValue.slice(0, endChar)).length;
+    let speechIdx = -1;
+    for (let i = 0; i < speechesMeta.length; i++) {
+      const off = speechesMeta[i]?.offset || 0;
+      if (off <= startByte) speechIdx = i; else break;
+    }
+    if (speechIdx < 0) return false;
+    const speechStart = speechesMeta[speechIdx]?.offset || 0;
+    let speechEnd = null;
+    for (let i = speechIdx + 1; i < speechesMeta.length; i++) {
+      const off = speechesMeta[i]?.offset;
+      if (off != null && off > speechStart) { speechEnd = off; break; }
+    }
+    if (speechEnd == null) {
+      const scene = scenesMeta.find((s) => speechStart >= (s.startOffset || 0) && speechStart < (s.endOffset || 0));
+      if (scene && scene.endOffset != null) speechEnd = scene.endOffset;
+    }
+    const tolerance = 32;
+    if (Math.abs(startByte - speechStart) > tolerance) return false;
+    if (speechEnd != null && Math.abs(endByte - speechEnd) > tolerance) return false;
+    const relStartBytes = Math.max(0, speechStart - sectionStartOffset);
+    const speechStartChar = bytesToCharOffset(textValue, relStartBytes);
+    const relEndBytes = Math.max(0, (speechEnd != null ? speechEnd : endByte) - sectionStartOffset);
+    const speechEndChar = bytesToCharOffset(textValue, relEndBytes);
+    const speechFullText = textValue.slice(speechStartChar, Math.min(textValue.length, speechEndChar)).trim().replace(/\s+/g, ' ');
+    if (!speechFullText) return false;
+    return speechFullText === normalizedSelection;
+  }, [metadata?.speeches, metadata?.scenes, sectionStartOffset, text, textEncoder]);
 
   // No local perplexity normalizer needed now that placeholder is removed
 
@@ -2493,12 +2558,16 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     return { start, end };
   }, [hasSelectionContext, metadata, selectionByteStart, selectionByteLength, chosenItem]);
   const selectionIsWholeSpeech = useMemo(() => {
+    if (hasSelectionContext && contextInfo?.isWholeSpeech) return true;
     if (!speechSpan || selectionByteStart == null || selectionByteEnd == null) return false;
-    const tolerance = 4;
+    const tolerance = 32;
+    const selectionLen = Math.max(0, selectionByteEnd - selectionByteStart);
+    const speechLen = Math.max(0, (speechSpan.end ?? 0) - (speechSpan.start ?? 0));
     const startDiff = Math.abs(selectionByteStart - speechSpan.start);
     const endDiff = Math.abs(selectionByteEnd - speechSpan.end);
+    if (speechLen > 0 && selectionLen + tolerance >= speechLen && startDiff <= tolerance) return true;
     return startDiff <= tolerance && endDiff <= tolerance;
-  }, [speechSpan, selectionByteStart, selectionByteEnd]);
+  }, [hasSelectionContext, contextInfo?.isWholeSpeech, speechSpan, selectionByteStart, selectionByteEnd]);
   const selectionPreview = (() => {
     if (!hasSelectionContext || !contextInfo) return null;
     if (selectionIsWholeSpeech) return null;
@@ -2568,7 +2637,26 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     if (onToggleNoteExpanded && !expandedNotes.has(selectionSpeechKey)) {
       onToggleNoteExpanded(selectionSpeechKey);
     }
-  }, [selectionSpeechKey, selectionSpeechIndex, hasNoteForSelection, expandedNotes, forcedNotes, onToggleForced, onToggleNoteExpanded, sectionIndex]);
+  }, [selectionIsWholeSpeech, selectionSpeechKey, selectionSpeechIndex, hasNoteForSelection, expandedNotes, forcedNotes, onToggleForced, onToggleNoteExpanded, sectionIndex]);
+
+  useEffect(() => {
+    if (!chosenItemSpeechKey) return;
+    const shouldAutoExpand = (filteredSavedExplanationsCount > 0)
+      || hasConversation
+      || hasLLMContent
+      || hasSelection;
+    if (!shouldAutoExpand) return;
+    if (expandedNotes.has(chosenItemSpeechKey)) {
+      autoExpandedRef.current.add(chosenItemSpeechKey);
+      return;
+    }
+    if (autoExpandedRef.current.has(chosenItemSpeechKey)) return;
+    if (onToggleNoteExpanded) {
+      autoExpandedRef.current.add(chosenItemSpeechKey);
+      onToggleNoteExpanded(chosenItemSpeechKey);
+    }
+  }, [chosenItemSpeechKey, filteredSavedExplanationsCount, expandedNotes, onToggleNoteExpanded, hasConversation, hasLLMContent, hasSelection]);
+
   const noteModeChatPanel = (() => {
     // Only show noteModeChatPanel when note is expanded and NO text is selected
     // When text is selected, selectionChatPanel will show instead (with instructions)
