@@ -2,6 +2,40 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
+const Slideshow = ({ items, onSelectImage }) => {
+  const [index, setIndex] = useState(0);
+  const current = items[index];
+
+  return (
+    <div className="slideshow">
+      <div className="slideshow-controls">
+        <button
+          type="button"
+          onClick={() => setIndex((index - 1 + items.length) % items.length)}
+          aria-label="Previous screenshot"
+        >
+          ←
+        </button>
+        <span>{current.label}</span>
+        <button
+          type="button"
+          onClick={() => setIndex((index + 1) % items.length)}
+          aria-label="Next screenshot"
+        >
+          →
+        </button>
+      </div>
+      <div className="slideshow-main">
+        <img
+          src={current.src}
+          alt={current.alt}
+          onClick={() => onSelectImage(current)}
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function UserGuide() {
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -44,52 +78,18 @@ export default function UserGuide() {
         </p>
 
         <div className="guide-section">
-          <h2>Three Levels of Use</h2>
+          <h2>Get Help With Any Sentence</h2>
           <p className="guide-intro">
-            Whether you're reading Shakespeare for the first time or diving deep into the text, 
-            this application adapts to your needs. Choose your level of engagement:
+            When a line confuses you, click (or tap) any word in that sentence to get help immediately.
           </p>
-
-          <div className="step">
-            <h3>Beginner — Reading the Play</h3>
-            <p>
-              Scroll through the play from start to finish, or use the Table of Contents to jump 
-              around. You'll find notes that explain some of the more difficult speeches. These notes 
-              are provided by a Language Model and were generated while building the app, so they're 
-              instantly available without any waiting.
-            </p>
-          </div>
-
-          <div className="step">
-            <h3>Intermediate — Control the Notes</h3>
-            <p>
-              Every speech has a note available. Click on any speech to reveal its note if it's 
-              hidden, or hide it if it's visible.
-            </p>
-            <p>
-              The colored circle icon at the top left controls how many notes are automatically visible. 
-              Turn them all off for a clean reading experience, show them all for maximum help, or 
-              choose anything in between using the slider.
-            </p>
-          </div>
-
-          <div className="step">
-            <h3>Advanced — Ask Questions</h3>
-            <p>
-              Click on a note to enable four ways to get more information about a passage by prompting 
-              the Language Model while you wait:
-            </p>
-            <ul className="instruction-list">
-              <li><strong>Ask follow-up questions:</strong> Use the chat interface to ask anything 
-              about the passage. The AI will respond with detailed explanations based on your specific question.</li>
-              <li><strong>Click the "More" button:</strong> Get a longer explanation for the whole speech without losing the original note.</li>
-              <li><strong>Click on a sentence in the speech:</strong> Click anywhere in a speech to 
-              automatically select that sentence and get an explanation focused specifically on that line.</li>
-              <li><strong>Click-drag to select more or less than a sentence:</strong> Select precisely 
-              what you want explained by clicking and dragging across any portion of text. This gives 
-              you complete control over the selection.</li>
-            </ul>
-          </div>
+          <p>Five things happen:</p>
+          <ul className="instruction-list">
+            <li><strong>The sentence is highlighted:</strong> The sentence is selected automatically and ready for follow-ups. (On desktop you can drag to adjust the range; on touch devices it stays sentence-sized for smooth scrolling.)</li>
+            <li><strong>The note opens:</strong> If a note exists for the speech, it’s revealed and stays open until you close it with the <strong>✕</strong> button.</li>
+            <li><strong>The chat UI appears:</strong> The follow-up prompt and <strong>More</strong> button show up so you can ask additional questions or request a longer explanation.</li>
+            <li><strong>The selected sentence is quoted:</strong> The sentence appears in italics below the chat UI so you can see exactly what you asked about.</li>
+            <li><strong>The model responds:</strong> A new AI explanation focused on your selection is added beneath the note.</li>
+          </ul>
         </div>
 
         <div className="guide-section">
@@ -120,9 +120,9 @@ export default function UserGuide() {
               <h4>How to Use Notes and Explanations</h4>
               <p>Here's how clicking and selecting in the text works:</p>
               <ul className="instruction-list">
-                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Click the text again to hide it, or use the <strong>✕</strong> button to close.</li>
-                <li><strong>Select text for an explanation:</strong> Click and drag to select any passage, or click on a note to enable text selection mode, then select a specific part of that speech. When a note is visible, clicking the text automatically selects the entire sentence around your cursor.</li>
-                <li><strong>Get explanations:</strong> A new explanation card appears in the right column (on desktop) or below the text (on mobile) as soon as you make a selection, showing "AI is thinking…" until the response is ready. Selected text is highlighted in blue.</li>
+                <li><strong>Reveal a note:</strong> If a pre-computed note exists for the current speech but isn't visible, a single click on the text reveals it. Notes remain open until you close them with the <strong>✕</strong> button.</li>
+                <li><strong>Select text for an explanation:</strong> Text selection is always available. Click or tap a sentence to select it and request an explanation immediately. On desktop you can also click-drag to select a custom range; on mobile, selection is limited to individual sentences so scrolling stays smooth.</li>
+                <li><strong>Get explanations:</strong> A new explanation card appears in the right column (on desktop) or below the text (on mobile) as soon as you make a selection, showing "AI is thinking…" until the response is ready. Selected text is highlighted in blue, and clicking the speech again re-selects the same sentence.</li>
                 <li><strong>Ask follow-up questions:</strong> Use the "Ask a follow‑up…" field or click <strong>More</strong> to get extended explanations. Each follow‑up appears in the conversation thread, and all threads are saved automatically between visits.</li>
               </ul>
             </div>
@@ -145,7 +145,7 @@ export default function UserGuide() {
             <ul className="feature-list">
               <li><strong>Immediate card:</strong> New explanation cards appear right away with a "thinking…" placeholder, then update with the final text.</li>
               <li><strong>Click to locate:</strong> Click any explanation card to highlight its source in the play.</li>
-              <li><strong>Close with ✕:</strong> Use the <strong>✕</strong> button in the top‑right of any note or explanation card to close it.</li>
+              <li><strong>Close with 🗑️:</strong> Use the <strong>🗑️</strong> button in the top‑right of any note or explanation card to close it.</li>
               <li><strong>Contents:</strong> Explanations include vocabulary help, clarification of tricky syntax, and a clear paraphrase focused on your selection.</li>
               <li><strong>Follow-up questions:</strong> The question appears in italics and indented, followed by the answer, matching the format of sentence selections.</li>
             </ul>
@@ -194,53 +194,30 @@ export default function UserGuide() {
               <li><strong>Immediate updates:</strong> Moving the slider updates the play instantly; the control also remembers your preference between visits.</li>
               <li><strong>Popover behavior:</strong> Click anywhere outside the popover (or press <kbd>Esc</kbd>) to close it.</li>
             </ul>
-            <div style={{ marginTop: '1.5rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                <div>
-                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Note Density Popover</p>
-                  <img 
-                    src="/user-guide-screenshots/note-density.jpg" 
-                    alt="Note density control popover showing presets and slider"
-                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/note-density.jpg', alt: 'Note density control popover showing presets and slider' })}
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
-                  />
-                </div>
-                <div>
-                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>None</p>
-                  <img 
-                    src="/user-guide-screenshots/none.jpg" 
-                    alt="No notes visible"
-                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/none.jpg', alt: 'No notes visible' })}
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
-                  />
-                </div>
-                <div>
-                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Some</p>
-                  <img 
-                    src="/user-guide-screenshots/some.jpg" 
-                    alt="Some notes visible"
-                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/some.jpg', alt: 'Some notes visible' })}
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
-                  />
-                </div>
-                <div>
-                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>Most</p>
-                  <img 
-                    src="/user-guide-screenshots/most.jpg" 
-                    alt="Most notes visible"
-                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/most.jpg', alt: 'Most notes visible' })}
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
-                  />
-                </div>
-                <div>
-                  <p style={{ fontSize: '0.9rem', marginBottom: '0.25rem', fontWeight: 500 }}>All</p>
-                  <img 
-                    src="/user-guide-screenshots/all.jpg" 
-                    alt="All notes visible"
-                    onClick={() => setSelectedImage({ src: '/user-guide-screenshots/all.jpg', alt: 'All notes visible' })}
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto', border: '1px solid #e8e6e3', borderRadius: '8px', cursor: 'pointer' }}
-                  />
-                </div>
+            <div className="note-density-gallery">
+              <div className="note-density-card">
+                <p className="note-density-caption">Note Density Popover</p>
+                <img
+                  src="/user-guide-screenshots/note-density.jpg"
+                  alt="Note density control popover showing presets and slider"
+                  onClick={() =>
+                    setSelectedImage({
+                      src: '/user-guide-screenshots/note-density.jpg',
+                      alt: 'Note density control popover showing presets and slider',
+                    })
+                  }
+                />
+              </div>
+              <div className="note-density-slideshow">
+                <Slideshow
+                  items={[
+                    { label: 'None', src: '/user-guide-screenshots/none.jpg', alt: 'No notes visible' },
+                    { label: 'Some', src: '/user-guide-screenshots/some.jpg', alt: 'Some notes visible' },
+                    { label: 'Most', src: '/user-guide-screenshots/most.jpg', alt: 'Most notes visible' },
+                    { label: 'All', src: '/user-guide-screenshots/all.jpg', alt: 'All notes visible' },
+                  ]}
+                  onSelectImage={setSelectedImage}
+                />
               </div>
             </div>
           </div>
@@ -251,6 +228,18 @@ export default function UserGuide() {
               <li><strong>Settings slider:</strong> Adjust the global font scale from Settings → Font Size.</li>
               <li><strong>Pinch to zoom:</strong> On touch devices, pinch anywhere on the page to resize the text. On desktop, use <kbd>Ctrl</kbd>+scroll (or <kbd>Cmd</kbd>+scroll on macOS).</li>
               <li><strong>Saved preference:</strong> The font scale syncs across tabs and persists after reload.</li>
+            </ul>
+          </div>
+
+          <div className="step">
+            <h3>Language, Age, and Education Settings</h3>
+            <p>
+              Open <strong>Settings</strong> (top-right of the header) to tell the app how you want explanations written.
+            </p>
+            <ul className="instruction-list">
+              <li><strong>Explanation language:</strong> Choose your preferred language from the dropdown. Every new AI response uses that language immediately.</li>
+              <li><strong>Age & education level:</strong> These fields help the model match your background. Younger ages and lower grade levels produce simpler vocabulary and extra context; higher levels assume more literary familiarity.</li>
+              <li><strong>Live updates:</strong> Changes apply to the very next explanation—no reload required.</li>
             </ul>
           </div>
 
@@ -287,7 +276,7 @@ export default function UserGuide() {
             <ul className="instruction-list">
               <li>Table of contents becomes a collapsible drawer</li>
               <li>Explanations appear below the text instead of beside it</li>
-              <li>Touch-friendly selection and navigation</li>
+            <li>Touch-friendly selection: tap any sentence to highlight it (dragging to adjust the range is desktop-only)</li>
               <li>Responsive design works on all screen sizes</li>
             </ul>
           </div>

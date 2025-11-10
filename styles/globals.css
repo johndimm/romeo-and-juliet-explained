@@ -9,7 +9,7 @@
   --font-scale: 1;
 }
 
-html, body, #__next { height: 100%; touch-action: pan-y; }
+html, body, #__next { height: 100%; touch-action: pan-y pinch-zoom; }
 
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: #111; background: #faf9f7; overflow: hidden; }
 
@@ -76,6 +76,22 @@ html[data-capacitor="true"] .container {
   /* Add safe area padding for notch on iOS */
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
+}
+
+.appHeaderDesktop {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.appHeaderMobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .appTitle {
@@ -1460,6 +1476,98 @@ html.isPrintRoute .container { left: 0; }
 .feature-list li, .instruction-list li {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+}
+
+.user-guide-page .note-density-gallery {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .user-guide-page .note-density-gallery {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.user-guide-page .note-density-card {
+  flex: 1 1 320px;
+}
+
+.user-guide-page .note-density-card img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border: 1px solid #e8e6e3;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  background: #fff;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+}
+
+.user-guide-page .note-density-caption {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #4d4136;
+}
+
+.user-guide-page .note-density-slideshow {
+  flex: 1 1 320px;
+  max-width: 400px;
+}
+
+.user-guide-page .slideshow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.user-guide-page .slideshow-main img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e8e6e3;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background: #fff;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  max-height: 520px;
+}
+
+.user-guide-page .slideshow-main img:hover {
+  transform: translateY(-2px);
+}
+
+.user-guide-page .slideshow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #4d4136;
+}
+
+.user-guide-page .slideshow-controls button {
+  border: 1px solid #d8d5cf;
+  background: #faf9f7;
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.user-guide-page .slideshow-controls button:hover {
+  background: #f2efe8;
+  transform: translateY(-1px);
 }
 
 .developer-links {

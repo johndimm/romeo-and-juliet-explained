@@ -122,7 +122,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       {!isPrintRoute && (
-      <header className="appHeader">
+      <header className={`appHeader ${isMobile ? 'appHeaderMobile' : 'appHeaderDesktop'}`}>
         <div className="appHeaderInner" ref={headerRef}>
           <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet Explained</Link>
           <div className="headerRight">

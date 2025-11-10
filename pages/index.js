@@ -1657,6 +1657,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       ? selectionStartByte + encoder.encode(selectionContext.text || '').length
       : null;
     let selectionCoversWholeSpeech = !!selectionContext?.isWholeSpeech;
+    let noteHasContentForSelection = false;
+    let noteIsExpandedForSelection = false;
     if (!selectionCoversWholeSpeech && auto && chosenSpeech && selectionStartByte != null && selectionEndByte != null) {
       const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
       const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
@@ -1694,7 +1696,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       }
     }
  
-    if (auto && selectionCoversWholeSpeech) {
+    if (speechKeyForSelection && expandedNotes instanceof Set) {
+      noteIsExpandedForSelection = expandedNotes.has(speechKeyForSelection);
+    }
+
+    if (selectionCoversWholeSpeech && speechKeyForSelection && speechMaps?.noteBySpeechKey) {
+      const noteForSelection = speechMaps.noteBySpeechKey.get(speechKeyForSelection);
+      if (noteForSelection && typeof noteForSelection.content === 'string' && noteForSelection.content.trim().length > 0) {
+        noteHasContentForSelection = true;
+      }
+    }
+
+    if (auto && selectionCoversWholeSpeech && noteHasContentForSelection && noteIsExpandedForSelection) {
       return;
     }
  
