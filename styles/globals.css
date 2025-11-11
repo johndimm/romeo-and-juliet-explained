@@ -8,6 +8,9 @@
   --search-h: 0px; /* search lives inside header */
   --font-scale: 1;
   --safe-area-top: env(safe-area-inset-top, 0);
+  --safe-area-right: env(safe-area-inset-right, 0);
+  --safe-area-left: env(safe-area-inset-left, 0);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0);
   --mobile-header-base: 132px;
   --mobile-header-h: var(--mobile-header-base);
 }
@@ -15,6 +18,9 @@
 @supports (padding-top: constant(safe-area-inset-top)) {
   :root {
     --safe-area-top: constant(safe-area-inset-top);
+    --safe-area-right: constant(safe-area-inset-right);
+    --safe-area-left: constant(safe-area-inset-left);
+    --safe-area-bottom: constant(safe-area-inset-bottom);
   }
 }
 
@@ -73,7 +79,6 @@ html[data-capacitor="true"] .container {
   left: 0 !important;
   height: auto !important;
   overflow: visible !important;
-  overflow-y: visible !important;
 }
 
 .appHeader { 
@@ -83,8 +88,8 @@ html[data-capacitor="true"] .container {
   height: calc(var(--header-h) + var(--safe-area-top));
   overflow: visible;
   /* Add safe area padding for notch on iOS */
-  padding-left: env(safe-area-inset-left, 0);
-  padding-right: env(safe-area-inset-right, 0);
+  padding-left: var(--safe-area-left);
+  padding-right: var(--safe-area-right);
 }
 
 .appHeaderDesktop {
@@ -114,6 +119,8 @@ html[data-capacitor="true"] .container {
   height: var(--header-h);
   padding: 8px 16px;
   padding-top: calc(8px + var(--safe-area-top));
+  padding-left: calc(16px + var(--safe-area-left));
+  padding-right: calc(16px + var(--safe-area-right));
   box-sizing: border-box;
   overflow: visible;
   display: flex;
@@ -1305,8 +1312,31 @@ html.isPrintRoute .container { left: 0; }
 
   /* Mobile popup menu */
   .mobileMenu { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.25); z-index: 1500; }
-  .mobileMenu .panel { position: absolute; right: 20px; top: 8px; width: 220px; background: #fff; border: 1px solid #d8d5d0; border-radius: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.2); padding: 6px; }
-  .mobileMenu .menuItem { display: block; width: 100%; text-align: left; background: #fff; border: 1px solid #e8e6e3; border-radius: 6px; padding: 8px; margin: 4px 0; font-size: 16px; color: #2f2a25; text-decoration: none; }
+  .mobileMenu .panel {
+    position: absolute;
+    left: auto;
+    right: calc(16px + var(--safe-area-right));
+    top: calc(8px + var(--safe-area-top));
+    width: min(220px, calc(100vw - 32px - var(--safe-area-left) - var(--safe-area-right)));
+    background: #fff;
+    border: 1px solid #d8d5d0;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    padding: 6px;
+  }
+  .mobileMenu .menuItem {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #e8e6e3;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin: 4px 0;
+    font-size: 16px;
+    color: #2f2a25;
+    text-decoration: none;
+  }
   .mobileMenu .menuItem:hover { background: #f6f2ea; }
 
   .page { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; }
@@ -1328,6 +1358,16 @@ html.isPrintRoute .container { left: 0; }
   }
   .section { display: block; margin-top: var(--section-gap); }
   .section .explanations { margin-top: 0.5rem; }
+
+  .overlayPanel {
+    width: calc(100vw - 24px - var(--safe-area-left) - var(--safe-area-right));
+    max-width: 520px;
+    margin: calc(12px + var(--safe-area-top)) auto calc(12px + var(--safe-area-bottom));
+    padding: 1rem;
+    padding-top: calc(1rem + var(--safe-area-top));
+    padding-bottom: calc(1rem + var(--safe-area-bottom));
+    border-radius: 10px;
+  }
 
   /* Reduce inner padding so text uses the screen */
   .playText pre { padding: 0.25rem 0.35rem; }
@@ -1648,6 +1688,22 @@ html.isPrintRoute .container { left: 0; }
   border-radius: 12px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
   padding: 1.5rem;
+  padding-top: calc(1.5rem + var(--safe-area-top));
+  padding-bottom: calc(1.5rem + var(--safe-area-bottom));
+  margin-top: var(--safe-area-top);
+  margin-bottom: var(--safe-area-bottom);
+}
+
+@media (max-width: 820px) {
+  .overlayPanel {
+    width: calc(100vw - 16px - var(--safe-area-left) - var(--safe-area-right));
+    max-width: 520px;
+    margin: calc(12px + var(--safe-area-top)) auto calc(12px + var(--safe-area-bottom));
+    padding: 1rem;
+    padding-top: calc(1rem + var(--safe-area-top));
+    padding-bottom: calc(1rem + var(--safe-area-bottom));
+    border-radius: 10px;
+  }
 }
 
 .overlayPanel .settings-page,
@@ -1673,8 +1729,8 @@ html.isPrintRoute .container { left: 0; }
 
 .overlayClose {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: calc(0.75rem + var(--safe-area-top));
+  right: calc(0.75rem + var(--safe-area-right));
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -1881,8 +1937,8 @@ html.isPrintRoute .container { left: 0; }
   }
   
   .about-page .about-content, .user-guide-page .guide-content, .settings-page .settings-content {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: calc(8px + var(--safe-area-left)) calc(8px + var(--safe-area-right));
+    padding: 1rem;
     border-radius: 8px;
   }
   
