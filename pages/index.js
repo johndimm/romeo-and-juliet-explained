@@ -1742,10 +1742,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       onStage: selectionContext.onStage,
       byteOffset: selectionContext.byteOffset,
       speechKey: speechKeyForSelection,
+    provider: llmOptions?.provider || '',
+    model: llmOptions?.model || '',
     };
 
     if (!conversations[selectionId] || !conversations[selectionId].last) {
-      setConversations({ ...conversations, [selectionId]: { messages: conv.messages, last: thinkingText, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
+    setConversations({
+      ...conversations,
+      [selectionId]: {
+        messages: conv.messages,
+        last: thinkingText,
+        meta,
+        moreThreads: conversations[selectionId]?.moreThreads || [],
+        followupThreads: conversations[selectionId]?.followupThreads || [],
+        provider: meta.provider,
+        model: meta.model,
+      },
+    });
     }
 
     try {
@@ -1860,6 +1873,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               meta,
               moreThreads: newMoreThreads,
               followupThreads: prevFollowups,
+              provider: meta.provider,
+              model: meta.model,
             },
           };
         });
@@ -1870,12 +1885,45 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           ...existingFollowupThreads,
           { q: followup, a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
         ];
-        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: conversations[selectionId]?.last || data.content, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: newFollowupThreads } });
+        setConversations({
+          ...conversations,
+          [selectionId]: {
+            messages: newMsgs,
+            last: conversations[selectionId]?.last || data.content,
+            meta,
+            moreThreads: conversations[selectionId]?.moreThreads || [],
+            followupThreads: newFollowupThreads,
+            provider: meta.provider,
+            model: meta.model,
+          },
+        });
       } else {
-        setConversations({ ...conversations, [selectionId]: { messages: newMsgs, last: data.content, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
+        setConversations({
+          ...conversations,
+          [selectionId]: {
+            messages: newMsgs,
+            last: data.content,
+            meta,
+            moreThreads: conversations[selectionId]?.moreThreads || [],
+            followupThreads: conversations[selectionId]?.followupThreads || [],
+            provider: meta.provider,
+            model: meta.model,
+          },
+        });
       }
     } catch (e) {
-      setConversations({ ...conversations, [selectionId]: { messages: [], last: `Error: ${String(e.message || e)}`, meta, moreThreads: conversations[selectionId]?.moreThreads || [], followupThreads: conversations[selectionId]?.followupThreads || [] } });
+      setConversations({
+        ...conversations,
+        [selectionId]: {
+          messages: [],
+          last: `Error: ${String(e.message || e)}`,
+          meta,
+          moreThreads: conversations[selectionId]?.moreThreads || [],
+          followupThreads: conversations[selectionId]?.followupThreads || [],
+          provider: meta.provider,
+          model: meta.model,
+        },
+      });
     } finally {
       setLoadingLLM(false);
     }
@@ -3126,10 +3174,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       <div style={{ whiteSpace: 'pre-wrap' }}>{conversationLast}</div>
       )}
       {(() => {
-        const providerName = formatProviderName(llm?.options?.provider || '');
+        const convoProvider = llm?.conversation?.provider || llm?.options?.provider || '';
+        const convoModel = llm?.conversation?.model || llm?.options?.model || '';
+        const providerName = formatProviderName(convoProvider);
         let attribution = '';
-        if (llm?.options?.model && providerName) attribution = `${llm.options.model} (via ${providerName})`;
-        else if (llm?.options?.model) attribution = `Model: ${llm.options.model}`;
+        if (convoModel && providerName) attribution = `${convoModel} (via ${providerName})`;
+        else if (convoModel) attribution = `Model: ${convoModel}`;
         else if (providerName) attribution = providerName;
         return attribution ? (
           <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
@@ -3159,7 +3209,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             passage={passageText}
             content={ex?.last || ''}
             meta={meta}
-            options={llm?.options}
+            options={{ provider: ex?.provider || meta?.provider || llm?.options?.provider, model: ex?.model || meta?.model || llm?.options?.model }}
             onDelete={() => {
               const len = textEncoder.encode(meta.text || passageText || '').length;
               const id = `${meta.byteOffset}-${len}`;
@@ -4451,9 +4501,19 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       })()}
       <div style={{ marginTop: '0.25rem' }} onClick={() => { onLocate?.(); setOpen((v)=>!v); }} title="Click to highlight source and toggle follow‑up">
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
-        <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
-          {options?.model ? `Model: ${options.model}` : ''}
-        </div>
+        {(() => {
+          const resolvedModel = meta?.model || options?.model || '';
+          const resolvedProvider = formatProviderName(meta?.provider || options?.provider || '');
+          let attribution = '';
+          if (resolvedModel && resolvedProvider) attribution = `${resolvedModel} (via ${resolvedProvider})`;
+          else if (resolvedModel) attribution = `Model: ${resolvedModel}`;
+          else if (resolvedProvider) attribution = resolvedProvider;
+          return attribution ? (
+            <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
+              {attribution}
+            </div>
+          ) : null;
+        })()}
       </div>
       {open && (
         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>

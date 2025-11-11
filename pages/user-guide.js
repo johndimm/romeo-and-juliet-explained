@@ -320,6 +320,18 @@ export default function UserGuide() {
             to find contact information or explore the source code.
           </p>
         </div>
+
+        <div className="guide-section">
+          <h2>Privacy & Data</h2>
+          <p>
+            This app does not have a server. All notes, explanations, and settings live entirely in your browser’s local storage.
+          </p>
+          <ul className="instruction-list">
+            <li><strong>No cloud sync:</strong> Each device keeps its own copy. Using the app on another computer or phone starts with a clean slate.</li>
+            <li><strong>Delete anytime:</strong> Clear your browser storage (or use the Reset option in Settings) to remove your data instantly.</li>
+            <li><strong>Safe for classrooms:</strong> Because nothing leaves the device, students can use it without accounts or shared databases.</li>
+          </ul>
+        </div>
       </div>
       {selectedImage && (
         <div 
