@@ -1,10 +1,17 @@
 import Head from 'next/head';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
+import { useRouter } from 'next/router';
 import { parseSectionsWithOffsets } from '../lib/parseText';
 import { getApiUrl } from '../lib/api';
 import fs from 'fs';
 import path from 'path';
+import SettingsPanel from '../components/SettingsPanel';
+import UserGuidePanel from '../components/UserGuidePanel';
+import AboutPanel from '../components/AboutPanel';
+import PrintPanel from '../components/PrintPanel';
+import { useOverlay } from '../contexts/OverlayContext';
+import { log as appLog } from '../utils/log';
 
 // Helper function to fetch with better error handling including URL
 async function fetchWithErrorHandling(url, options = {}) {
@@ -93,6 +100,26 @@ export async function getStaticProps() {
 }
 
 export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
+  const router = useRouter();
+  const { overlay: overlayView, openOverlay, closeOverlay } = useOverlay();
+  const isOverlayOpen = ['settings', 'user-guide', 'about', 'print'].includes(overlayView || '');
+
+  useEffect(() => {
+    if (!router?.isReady) return;
+    if (!isOverlayOpen) return;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeOverlay();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.body.classList.add('overlay-open');
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.classList.remove('overlay-open');
+    };
+  }, [isOverlayOpen, closeOverlay, router?.isReady]);
+
   // Force enable scrolling in Capacitor/iOS - apply styles directly with aggressive fixes
   useEffect(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
@@ -108,10 +135,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     if (isIOS || isCapacitor) {
       // Debug log (remove later)
       if (typeof window !== 'undefined' && window.Capacitor) {
-        console.log('[Scroll Fix] Capacitor detected, enabling scrolling...');
+        appLog('scroll', 'Capacitor detected, enabling scrolling...');
       }
       if (isIOS) {
-        console.log('[Scroll Fix] iOS detected, enabling scrolling...');
+        appLog('scroll', 'iOS detected, enabling scrolling...');
       }
       
       const html = document.documentElement;
@@ -199,7 +226,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'High school', age: '16', provider: 'openai', length: 'brief' });
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   // Note visibility threshold (0–100). Lower thresholds surface more notes.
   // Initialize from localStorage if available, otherwise default to 33 (Most)
   const [noteThreshold, setNoteThreshold] = useState(() => {
@@ -441,32 +467,32 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (target?.removeEventListener) target.removeEventListener(type, handler, opts);
     };
 
-    const optionsPassiveFalse = { passive: false };
-    const targets = [window, document];
+      const optionsPassiveFalse = { passive: false };
+      const targets = [window, document];
 
-    targets.forEach((target) => {
-      add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-      add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-      add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-      add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-      add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-      add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-      add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-    });
+      targets.forEach((target) => {
+        add(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+        add(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+        add(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+        add(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+        add(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+        add(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+        add(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+      });
 
     return () => {
       flushPending();
-      const optionsPassiveFalse = { passive: false };
-      const targets = [window, document];
-      targets.forEach((target) => {
-        remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
-        remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
-        remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
-        remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
-        remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
-        remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
-        remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
-      });
+        const optionsPassiveFalse = { passive: false };
+        const targets = [window, document];
+        targets.forEach((target) => {
+          remove(target, 'touchstart', onTouchStart, optionsPassiveFalse);
+          remove(target, 'touchmove', onTouchMove, optionsPassiveFalse);
+          remove(target, 'touchend', onTouchEnd, optionsPassiveFalse);
+          remove(target, 'touchcancel', onTouchEnd, optionsPassiveFalse);
+          remove(target, 'gesturestart', onGestureStart, optionsPassiveFalse);
+          remove(target, 'gesturechange', onGestureChange, optionsPassiveFalse);
+          remove(target, 'gestureend', onGestureEnd, optionsPassiveFalse);
+        });
       window.__pinchActive = false;
     };
   }, [applyLiveFontScale]);
@@ -991,19 +1017,19 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     try {
       // Prevent multiple restores if already completed
       if (restoreCompletedRef.current) {
-        if (DEBUG_RESTORE) console.log('[restore] Already completed, skipping');
+    if (DEBUG_RESTORE) appLog('restore', 'Already completed, skipping');
         return;
       }
       if (!sectionsWithOffsets || !sectionsWithOffsets.length) {
-        if (DEBUG_RESTORE) console.log('[restore] No sections available');
+    if (DEBUG_RESTORE) appLog('restore', 'No sections available');
         return;
       }
       if (typeof window === 'undefined') {
-        if (DEBUG_RESTORE) console.log('[restore] Window undefined');
+    if (DEBUG_RESTORE) appLog('restore', 'Window undefined');
         return;
       }
       if (/^#sel=/.test(window.location.hash || '')) {
-        if (DEBUG_RESTORE) console.log('[restore] Selection link in hash, skipping restore');
+    if (DEBUG_RESTORE) appLog('restore', 'Selection link in hash, skipping restore');
         return; // selection link takes precedence
       }
       let savedScroll = NaN;
@@ -1015,7 +1041,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (rawScrollHeight) savedScrollHeight = parseFloat(rawScrollHeight);
       const rawContainerType = localStorage.getItem('last-scroll-container');
       if (rawContainerType) savedContainerType = rawContainerType;
-      if (DEBUG_RESTORE) console.log('[restore] Loaded from localStorage:', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
+      if (DEBUG_RESTORE) appLog('restore', 'Loaded from localStorage', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
       
       // Check if we have a valid scroll position to restore
       // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
@@ -1023,14 +1049,14 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       const hasValidScroll = !isNaN(savedScroll) && savedScroll > 50;
       
       if (!hasValidScroll) {
-        if (DEBUG_RESTORE) console.log('[restore] No valid scroll position to restore (savedScroll:', savedScroll, '), starting at top');
+      if (DEBUG_RESTORE) appLog('restore', 'No valid scroll position to restore', { savedScroll });
         // Only clear positions that are exactly 0 or very close (likely from page load, not intentional scrolling)
         try {
           if (!isNaN(savedScroll) && savedScroll <= 50) {
             localStorage.removeItem('last-scroll');
             localStorage.removeItem('last-scrollHeight');
             localStorage.removeItem('last-scroll-container');
-            if (DEBUG_RESTORE) console.log('[restore] Cleared very small saved position (likely from page load)');
+        if (DEBUG_RESTORE) appLog('restore', 'Cleared very small saved position (likely from page load)');
           }
         } catch {}
         restoreAttemptedRef.current = false; // No restore needed, allow saving
@@ -1040,7 +1066,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       // Flag should already be set from initialization, but ensure it's set here too
       restoreAttemptedRef.current = true; // Prevent saving while restoring
       
-      if (DEBUG_RESTORE) console.log('[restore] Will restore scroll position:', savedScroll);
+      if (DEBUG_RESTORE) appLog('restore', 'Will restore scroll position', savedScroll);
       
       let attempts = 0;
       const maxAttempts = 20; // Try for up to 2 seconds
@@ -1060,7 +1086,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             // Use setTimeout instead of RAF to avoid blocking render
             setTimeout(restorePosition, 50);
           } else if (DEBUG_RESTORE) {
-            console.log('[restore] Failed: no scroller after', attempts, 'attempts');
+            appLog('restore', 'Failed: no scroller after attempts', { attempts });
           }
           return;
         }
@@ -1071,7 +1097,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           if (attempts < maxAttempts) {
             setTimeout(restorePosition, 50);
           } else if (DEBUG_RESTORE) {
-            console.log('[restore] Failed: sections not rendered after', attempts, 'attempts');
+            appLog('restore', 'Failed: sections not rendered after attempts', { attempts });
           }
           return;
         }
@@ -1089,7 +1115,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               if (attempts < maxAttempts) {
                 setTimeout(restorePosition, 50);
               } else if (DEBUG_RESTORE) {
-                console.log('[restore] Failed: scroller not ready (scrollHeight:', scrollHeight, 'clientHeight:', clientHeight, ')');
+                appLog('restore', 'Failed: scroller not ready', { scrollHeight, clientHeight });
               }
               return;
             }
@@ -1114,7 +1140,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             const wasMobile = savedContainerTypeValue === 'page';
             
             if (DEBUG_RESTORE) {
-              console.log('[restore] Container check:', {
+              appLog('restore', 'Container check', {
                 current: currentContainerType,
                 saved: savedContainerTypeValue,
                 mismatch: containerMismatch,
@@ -1125,10 +1151,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             }
             
             if (DEBUG_RESTORE) {
-              console.log('[restore] Attempting restore at attempt', attempts, {
+              appLog('restore', 'Attempting restore', {
+                attempts,
                 scroller: currentContainerType,
-                scrollHeight: scrollHeight,
-                clientHeight: clientHeight,
+                scrollHeight,
+                clientHeight,
                 savedScroll: savedScrollValue,
                 savedHeight: savedScrollHeightValue,
                 containerMismatch,
@@ -1159,7 +1186,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               const ratio = savedScrollValue / savedScrollHeightValue;
               targetScroll = currentScrollHeight * ratio;
               if (DEBUG_RESTORE) {
-                console.log('[restore] Layout changed - adjusting scroll:', {
+                appLog('restore', 'Layout changed - adjusting scroll', {
                   oldScroll: savedScrollValue,
                   oldHeight: savedScrollHeightValue,
                   newHeight: currentScrollHeight,
@@ -1171,22 +1198,25 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 });
               }
             } else if (skipMobileAdjust) {
-              if (DEBUG_RESTORE) console.log('[restore] Mobile + container mismatch - using saved position directly (adjustment skipped)');
+              if (DEBUG_RESTORE) appLog('restore', 'Mobile + container mismatch - using saved position directly (adjustment skipped)');
             } else if (shouldAdjust && (!significantChange || !isFarFromTop)) {
-              if (DEBUG_RESTORE) console.log('[restore] Using saved position directly (small change:', heightDiffPercent.toFixed(1), '% or near top:', savedScrollValue, 'px)');
+              if (DEBUG_RESTORE) appLog('restore', 'Using saved position directly (small change or near top)', {
+                heightDiffPercent: heightDiffPercent.toFixed(1),
+                savedScrollValue,
+              });
             } else if (containerMismatch && !shouldAdjust) {
-              if (DEBUG_RESTORE) console.log('[restore] Container type mismatch but no saved height - using saved position directly');
+              if (DEBUG_RESTORE) appLog('restore', 'Container type mismatch but no saved height - using saved position directly');
             } else if (DEBUG_RESTORE) {
-              console.log('[restore] Using saved position directly (no adjustment needed)');
+              appLog('restore', 'Using saved position directly (no adjustment needed)');
             }
             
             // Apply scroll position immediately
             if (scroller === window) {
               window.scrollTo({ top: targetScroll, behavior: 'auto' });
-              if (DEBUG_RESTORE) console.log('[restore] Set window.scrollY to', targetScroll, '(original:', savedScrollValue, ')');
+              if (DEBUG_RESTORE) appLog('restore', 'Set window.scrollY', { targetScroll, savedScrollValue });
             } else {
               scroller.scrollTop = targetScroll;
-              if (DEBUG_RESTORE) console.log('[restore] Set scroller.scrollTop to', targetScroll, '(original:', savedScrollValue, ', isMobile:', isMobile, ')');
+              if (DEBUG_RESTORE) appLog('restore', 'Set scroller.scrollTop', { targetScroll, savedScrollValue, isMobile });
             }
             
             // Reduced wait time for faster restore - layout should be mostly stable by now
@@ -1198,7 +1228,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 requestAnimationFrame(() => {
                   const actualScroll = scroller === window ? window.scrollY : scroller.scrollTop;
                   const diff = Math.abs(actualScroll - targetScroll);
-                  if (DEBUG_RESTORE) console.log('[restore] Verify scroll:', { expected: targetScroll, actual: actualScroll, diff, isMobile });
+                  if (DEBUG_RESTORE) appLog('restore', 'Verify scroll', { expected: targetScroll, actual: actualScroll, diff, isMobile });
                   
                   // For mobile, be very conservative - only adjust if extremely off and it's a significant position
                   // The "scrolls down a few lines" issue suggests the initial restore is slightly off
@@ -1206,7 +1236,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                   
                   if (diff > threshold && savedScrollValue > 1000) {
                     // Only refine if way off and position is far enough from top that adjustment makes sense
-                    if (DEBUG_RESTORE) console.log('[restore] Large offset detected (', diff, 'px), attempting single refinement');
+                    if (DEBUG_RESTORE) appLog('restore', 'Large offset detected, attempting refinement', { diff });
                     
                     // Use the saved position directly (avoid recalculation which can cause more issues)
                     const refinedTarget = savedScrollValue;
@@ -1218,21 +1248,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                       scroller.scrollTop = refinedTarget;
                     }
                     
-                    if (DEBUG_RESTORE) console.log('[restore] Applied refinement to saved position:', refinedTarget);
+                    if (DEBUG_RESTORE) appLog('restore', 'Applied refinement to saved position', refinedTarget);
                     
                     // Mark complete quickly after refinement
                     restoreCompletedRef.current = true;
                     setTimeout(() => {
                       restoreAttemptedRef.current = false;
-                      if (DEBUG_RESTORE) console.log('[restore] Restore complete, saving enabled');
+                      if (DEBUG_RESTORE) appLog('restore', 'Restore complete, saving enabled');
                     }, 50);
                   } else {
-                    if (DEBUG_RESTORE) console.log('[restore] Position acceptable (diff:', diff, 'px, threshold:', threshold, ')');
+                    if (DEBUG_RESTORE) appLog('restore', 'Position acceptable', { diff, threshold });
                     
                     // Mark restore as completed and enable saving immediately
                     restoreCompletedRef.current = true;
                     restoreAttemptedRef.current = false;
-                    if (DEBUG_RESTORE) console.log('[restore] Restore complete, saving enabled');
+                    if (DEBUG_RESTORE) appLog('restore', 'Restore complete, saving enabled');
                   }
                 });
               });
@@ -1419,7 +1449,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (!metadata || !sectionsWithOffsets || !sections) return;
       // Handle cross-page actions
       if ((location.hash || '').includes('action=settings')) {
-        setShowSettings(true);
+        openOverlay('settings');
         const url = new URL(window.location.href); url.hash = ''; window.history.replaceState(null, '', url.toString());
         return;
       }
@@ -1449,7 +1479,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     applyHash();
     window.addEventListener('hashchange', applyHash);
     return () => window.removeEventListener('hashchange', applyHash);
-  }, [metadata, sectionsWithOffsets, sections]);
+  }, [metadata, sectionsWithOffsets, sections, openOverlay]);
 
   
 
@@ -1459,10 +1489,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const [storeHydrated, setStoreHydrated] = useState(false);
   const [optsHydrated, setOptsHydrated] = useState(false);
   useEffect(() => {
-    const handler = () => setShowSettings(true);
+    const handler = () => openOverlay('settings');
     if (typeof window !== 'undefined') window.addEventListener('open-settings', handler);
     return () => { if (typeof window !== 'undefined') window.removeEventListener('open-settings', handler); };
-  }, []);
+  }, [openOverlay]);
   useEffect(() => {
     try {
       const raw = localStorage.getItem('explanations');
@@ -1857,10 +1887,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         setConversations((prev) => {
           const prevConv = prev[selectionId] || {};
           const existingMoreThreads = Array.isArray(prevConv.moreThreads) ? prevConv.moreThreads : [];
-          const newMoreThreads = [
-            ...existingMoreThreads,
-            { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
-          ];
+        const newMoreThreads = [
+          ...existingMoreThreads,
+          { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
+        ];
           const prevFollowups = Array.isArray(prevConv.followupThreads) ? prevConv.followupThreads : [];
           const prevLast = prevConv.last;
           const nextLast = (prevLast && prevLast !== thinkingText) ? prevLast : undefined;
@@ -1948,29 +1978,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
   // Provider/model helpers for Settings
   // Dynamic model listing per provider (fetched from /api/models)
-  const [providerModels, setProviderModels] = useState([]);
-  const providerRef = useRef(llmOptions.provider || 'openai');
-  useEffect(() => {
-    const prov = (llmOptions.provider || 'openai').toLowerCase();
-    providerRef.current = prov;
-    const url = getApiUrl(`/api/models?provider=${encodeURIComponent(prov)}`);
-    fetchWithErrorHandling(url)
-      .then((data) => {
-        const list = Array.isArray(data?.models) && data.models.length ? data.models : [];
-        if (providerRef.current === prov) setProviderModels(list);
-      })
-      .catch(() => setProviderModels([]));
-  }, [llmOptions.provider]);
-  function defaultModelForProvider(p) {
-    if (providerModels && providerModels.length) return providerModels[0];
-    // static fallback
-    const prov = (p || 'openai').toLowerCase();
-    if (prov === 'anthropic') return 'claude-3-5-sonnet-20240620';
-    if (prov === 'deepseek') return 'deepseek-chat';
-    if (prov === 'gemini') return 'gemini-1.5-pro-latest';
-    return 'gpt-4o-mini';
-  }
-
   return (
     <>
       <Head>
@@ -2195,92 +2202,32 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           </div>
         )}
       </div>
-      {showSettings && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)', zIndex: 50 }} onClick={() => setShowSettings(false)}>
-          <div
-            style={{ background: '#fff', maxWidth: 560, margin: '10vh auto', padding: '1rem', borderRadius: 8, border: '1px solid #ddd' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3 style={{ marginTop: 0 }}>Settings</h3>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-              <label>Provider
-                <select
-                  value={(llmOptions.provider || 'openai')}
-                  onChange={(e) => {
-                    const prov = e.target.value;
-                    const model = defaultModelForProvider(prov);
-                    setLlmOptions({ ...llmOptions, provider: prov, model });
-                  }}
-                  style={{ marginLeft: 6 }}
-                >
-                  <option value="openai">OpenAI</option>
-                  <option value="anthropic">Anthropic</option>
-                  <option value="deepseek">DeepSeek</option>
-                  <option value="gemini">Gemini</option>
-                </select>
-              </label>
-              <label>Model
-                <select
-                  value={(providerModels.includes(llmOptions.model) ? llmOptions.model : defaultModelForProvider(llmOptions.provider))}
-                  onChange={(e) => setLlmOptions({ ...llmOptions, model: e.target.value })}
-                  style={{ marginLeft: 6 }}
-                >
-                  {(providerModels.length ? providerModels : [defaultModelForProvider(llmOptions.provider)]).map((m) => (
-                    <option key={m} value={m}>{m}</option>
-                  ))}
-                </select>
-              </label>
-              <label>Language
-                <input type="text" value={llmOptions.language || ''} onChange={(e) => setLlmOptions({ ...llmOptions, language: e.target.value })} style={{ marginLeft: 6 }} />
-              </label>
-              <label>Default length
-                <select
-                  value={(llmOptions.length || 'brief')}
-                  onChange={(e) => setLlmOptions({ ...llmOptions, length: e.target.value })}
-                  style={{ marginLeft: 6 }}
-                >
-                  <option value="brief">Brief</option>
-                  <option value="medium">Medium</option>
-                  <option value="large">Large</option>
-                </select>
-              </label>
-              <label>Education
-                <select value={llmOptions.educationLevel || 'High school'} onChange={(e) => setLlmOptions({ ...llmOptions, educationLevel: e.target.value })} style={{ marginLeft: 6 }}>
-                  <option>Middle school</option>
-                  <option>High school</option>
-                  <option>Undergraduate</option>
-                  <option>Graduate</option>
-                </select>
-              </label>
-              <label>Age
-                <input type="number" min="10" max="100" value={llmOptions.age || ''} onChange={(e) => setLlmOptions({ ...llmOptions, age: e.target.value })} style={{ marginLeft: 6, width: 72 }} />
-              </label>
-            </div>
-            <div style={{ marginTop: '0.75rem', textAlign: 'right' }}>
-              <button
-                type="button"
-                onClick={() => {
-                  try {
-                    const ok = typeof window === 'undefined' ? true : window.confirm('Remove all saved explanations? This cannot be undone.');
-                    if (!ok) return;
-                  } catch {}
-                  setConversations({});
-                  try { localStorage.setItem('explanations', JSON.stringify({})); } catch {}
-                  // Also hide all notes: clear forced list and set density to None
-                  try { setForcedNotes?.([]); } catch {}
-                  try { localStorage.setItem('forcedNotes', JSON.stringify([])); } catch {}
-                  try {
-                    setNoteThreshold(100);
-                    localStorage.setItem('noteThreshold', String(100));
-                  } catch {}
-                }}
-                style={{ marginRight: 8 }}
-                title="Remove all saved explanations"
-              >
-                Remove All Explanations
+      {isOverlayOpen && (
+        <div className="overlayBackdrop" onClick={closeOverlay}>
+          <div className="overlayPanel" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="overlayClose" onClick={closeOverlay} aria-label="Close panel">
+              ✕
               </button>
-              <button type="button" onClick={() => setShowSettings(false)}>Close</button>
-            </div>
+            {overlayView === 'settings' && (
+              <SettingsPanel
+                options={llmOptions}
+                onOptionsChange={setLlmOptions}
+                fontScale={fontScale}
+                onFontScaleChange={setFontScale}
+              />
+            )}
+            {overlayView === 'user-guide' && <UserGuidePanel />}
+            {overlayView === 'about' && <AboutPanel />}
+            {overlayView === 'print' && (
+              <PrintPanel
+                sections={sections}
+                sectionsWithOffsets={sectionsWithOffsets}
+                metadata={metadata}
+                precomputed={precomputed}
+                noteThreshold={noteThreshold}
+                onNoteThresholdChange={setNoteThreshold}
+              />
+            )}
           </div>
         </div>
       )}
@@ -3354,7 +3301,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // Handle selection or reveal note on mouse up
   const handleTextMouseUp = (e) => {
-    try { if (DEBUG_SELECTION) console.log('mouseUp:text', { sectionIndex }); } catch {}
+    try { if (DEBUG_SELECTION) appLog('selection', 'mouseUp:text', { sectionIndex }); } catch {}
     // On touch devices, ignore mouseup completely (handled by touch handlers)
     try {
       const isTouch = (() => {
@@ -4509,9 +4456,9 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           else if (resolvedModel) attribution = `Model: ${resolvedModel}`;
           else if (resolvedProvider) attribution = resolvedProvider;
           return attribution ? (
-            <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
+        <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
               {attribution}
-            </div>
+        </div>
           ) : null;
         })()}
       </div>

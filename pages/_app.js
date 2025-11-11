@@ -1,116 +1,106 @@
 import React from 'react';
-import Link from 'next/link';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
+import { OverlayProvider, useOverlay } from '../contexts/OverlayContext';
 
-export default function App({ Component, pageProps }) {
+export default function App(props) {
+  return (
+    <OverlayProvider>
+      <AppInner {...props} />
+    </OverlayProvider>
+  );
+}
+
+function AppInner({ Component, pageProps }) {
   const router = useRouter();
+  const { openOverlay } = useOverlay();
   const isPrintRoute = router && router.pathname === '/print';
   const isPlayPage = router && router.pathname === '/';
   const headerRef = React.useRef(null);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
   
-  // Detect mobile screen size (matching CSS breakpoint at 820px)
+  const handleOverlayLink = React.useCallback(
+    (event, name) => {
+      if (event) event.preventDefault();
+      openOverlay(name);
+      setShowMobileMenu(false);
+    },
+    [openOverlay],
+  );
+
+  // Detect mobile breakpoint
   React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 820);
-    };
+    const checkMobile = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 820);
     checkMobile();
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', checkMobile);
       return () => window.removeEventListener('resize', checkMobile);
     }
   }, []);
-  // Add a class on <html> when on the print route so CSS can adjust layout/scrolling
+
+  // Toggle html class for print route
   React.useEffect(() => {
     if (typeof document === 'undefined') return;
     const html = document.documentElement;
     if (!html) return;
     if (isPrintRoute) html.classList.add('isPrintRoute'); else html.classList.remove('isPrintRoute');
-    return () => { html.classList.remove('isPrintRoute'); };
+    return () => html.classList.remove('isPrintRoute');
   }, [isPrintRoute]);
 
-  // Detect if running in Capacitor (iOS/Android app) and add class for CSS adjustments
+  // Capacitor detection
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
     const html = document.documentElement;
     if (!html) return;
-    // Check if Capacitor is available (indicates native app)
-    // Check for Capacitor object, CapacitorWeb, or user agent indicators
-    // Also check for capacitor:// protocol in URL
-    const isCapacitor = !!(window.Capacitor || window.CapacitorWeb || 
-      (typeof window !== 'undefined' && window.location && window.location.protocol === 'capacitor:') ||
-      (window.navigator && window.navigator.userAgent && 
-       (window.navigator.userAgent.includes('Capacitor') || 
-        window.navigator.userAgent.includes('ionic') ||
-        (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')))));
-    
+    const ua = window.navigator?.userAgent || '';
+    const isCapacitor = !!(window.Capacitor || window.CapacitorWeb || window.location?.protocol === 'capacitor:' || ua.includes('Capacitor') || ua.includes('ionic'));
     if (isCapacitor) {
       html.classList.add('isCapacitor');
-      // Also set a data attribute for CSS targeting
       html.setAttribute('data-capacitor', 'true');
     } else {
       html.classList.remove('isCapacitor');
       html.removeAttribute('data-capacitor');
     }
-    return () => { 
+    return () => {
       html.classList.remove('isCapacitor');
       html.removeAttribute('data-capacitor');
     };
   }, []);
-  // Measure header height on mobile and expose as CSS var for page padding
+
+  // Measure header height for CSS var
   React.useEffect(() => {
     let rafId = null;
-    let pendingUpdate = false;
-    
-    const setVar = () => {
-      // Throttle using requestAnimationFrame to avoid forced reflows
-      if (pendingUpdate) return;
-      pendingUpdate = true;
-      rafId = requestAnimationFrame(() => {
-        pendingUpdate = false;
-        if (!headerRef.current) return;
-        // Batch read: get offsetHeight once
-        const h = headerRef.current.offsetHeight || 0;
-        if (typeof document !== 'undefined') {
-          document.documentElement.style.setProperty('--mobile-header-h', `${h}px`);
-        }
-      });
+    let resizeTimeout = null;
+    let observer = null;
+
+    const updateHeaderVar = () => {
+      if (!headerRef.current || typeof document === 'undefined') return;
+      const height = headerRef.current.offsetHeight || 0;
+      document.documentElement.style.setProperty('--mobile-header-h', `${height}px`);
     };
-    
-    // Initial measurement
-    requestAnimationFrame(() => {
-      if (headerRef.current) {
-        const h = headerRef.current.offsetHeight || 0;
-        if (typeof document !== 'undefined') {
-          document.documentElement.style.setProperty('--mobile-header-h', `${h}px`);
-        }
-      }
-    });
-    
+
+    rafId = requestAnimationFrame(updateHeaderVar);
+
     if (typeof window !== 'undefined') {
-      // Throttle resize handler
-      let resizeTimeout = null;
       const handleResize = () => {
         if (resizeTimeout) clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(setVar, 100);
+        resizeTimeout = setTimeout(() => requestAnimationFrame(updateHeaderVar), 100);
       };
       window.addEventListener('resize', handleResize, { passive: true });
-      
-      // Observe header size changes (buttons/counters appear) - ResizeObserver already throttles
-      let ro = null;
+
       if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
-        ro = new ResizeObserver(() => setVar());
-        ro.observe(headerRef.current);
+        observer = new ResizeObserver(() => updateHeaderVar());
+        observer.observe(headerRef.current);
       }
-      
+
       return () => {
         if (rafId) cancelAnimationFrame(rafId);
         if (resizeTimeout) clearTimeout(resizeTimeout);
         window.removeEventListener('resize', handleResize);
-        if (ro) ro.disconnect();
+        if (observer) observer.disconnect();
       };
     }
   }, []);
@@ -118,111 +108,94 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        {/* Ensure viewport supports safe area for iOS notch */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       {!isPrintRoute && (
-      <header className={`appHeader ${isMobile ? 'appHeaderMobile' : 'appHeaderDesktop'}`}>
-        <div className="appHeaderInner" ref={headerRef}>
-          <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>Romeo and Juliet Explained</Link>
-          <div className="headerRight">
-            <nav className="headerLinks">
-              {isPlayPage && (
-                <>
-                  <a
-                    href="#"
-                    className="lnk-print"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      try {
-                        const act = localStorage.getItem('printAct') || '';
-                        const scene = localStorage.getItem('printScene') || '';
-                        let dest = '/print';
-                        const params = [];
-                        if (act) params.push(`act=${encodeURIComponent(act)}`);
-                        if (scene) params.push(`scene=${encodeURIComponent(scene)}`);
-                        if (params.length) dest += `?${params.join('&')}`;
-                        if (location.pathname !== dest) location.assign(dest); else location.href = dest;
-                      } catch {
-                        location.assign('/print');
-                      }
-                    }}
-                  >
+        <header className={`appHeader ${isMobile ? 'appHeaderMobile' : 'appHeaderDesktop'}`}>
+          <div className="appHeaderInner" ref={headerRef}>
+            <Link href="/" className="appTitle" style={{ fontFamily: 'IM Fell English, serif', fontWeight: 700, whiteSpace: 'nowrap', color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>
+              Romeo and Juliet Explained
+            </Link>
+            <div className="headerRight">
+              <nav className="headerLinks">
+                {isPlayPage && (
+                  <a href="/?overlay=print" className="lnk-print" onClick={(e) => handleOverlayLink(e, 'print')}>
                     <span className="icon" aria-hidden>🖨️</span><span className="lbl">Print</span>
                   </a>
-                </>
-              )}
-              <Link href="/user-guide" className="lnk-guide"><span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span></Link>
-              <Link href="/about" className="lnk-about"><span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span></Link>
-              {isMobile ? (
-                <a 
-                  href="#" 
-                  className="lnk-settings" 
+                )}
+                <a href="/?overlay=user-guide" className="lnk-guide" onClick={(e) => handleOverlayLink(e, 'user-guide')}>
+                  <span className="icon" aria-hidden>📖</span><span className="lbl">User Guide</span>
+                </a>
+                <a href="/?overlay=about" className="lnk-about" onClick={(e) => handleOverlayLink(e, 'about')}>
+                  <span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span>
+                </a>
+                {isMobile ? (
+                  <a
+                    href="/?overlay=settings"
+                    className="lnk-settings"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowMobileMenu((prev) => !prev);
+                    }}
+                  >
+                    <span className="icon" aria-hidden>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </span><span className="lbl">Settings</span>
+                  </a>
+                ) : (
+                  <a href="/?overlay=settings" className="lnk-settings" onClick={(e) => handleOverlayLink(e, 'settings')}>
+                    <span className="icon" aria-hidden>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </span><span className="lbl">Settings</span>
+                  </a>
+                )}
+              </nav>
+              {isPlayPage && <HeaderNotesDensity />}
+              {isPlayPage && isMobile && (
+                <a
+                  href="#"
+                  className="lnk-toc"
                   onClick={(e) => {
                     e.preventDefault();
-                    setShowMobileMenu(!showMobileMenu);
+                    if (typeof window !== 'undefined') window.dispatchEvent(new Event('toggle-toc'));
                   }}
                 >
                   <span className="icon" aria-hidden>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="9" y1="3" x2="9" y2="21"></line>
+                      <line x1="9" y1="9" x2="21" y2="9"></line>
+                      <line x1="9" y1="15" x2="21" y2="15"></line>
                     </svg>
-                  </span><span className="lbl">Settings</span>
+                  </span><span className="lbl">Contents</span>
                 </a>
-              ) : (
-                <Link href="/settings" className="lnk-settings">
-                  <span className="icon" aria-hidden>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </span><span className="lbl">Settings</span>
-                </Link>
               )}
-            </nav>
-            {isPlayPage && <HeaderNotesDensity />}
-            {isPlayPage && isMobile && (
-              <a
-                href="#"
-                className="lnk-toc"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (typeof window !== 'undefined') {
-                    window.dispatchEvent(new Event('toggle-toc'));
-                  }
-                }}
-              >
-                <span className="icon" aria-hidden>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="9" y1="3" x2="9" y2="21"></line>
-                    <line x1="9" y1="9" x2="21" y2="9"></line>
-                    <line x1="9" y1="15" x2="21" y2="15"></line>
-                  </svg>
-                </span><span className="lbl">Contents</span>
-              </a>
-            )}
-            {isPlayPage && <HeaderSearch />}
+              {isPlayPage && <HeaderSearch />}
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
       )}
       {showMobileMenu && (
         <div className="mobileMenu" role="dialog" aria-label="Menu" onClick={() => setShowMobileMenu(false)}>
           <div className="panel" onClick={(e) => e.stopPropagation()}>
             {isPlayPage && (
-              <a className="menuItem" href="#" onClick={() => { setShowMobileMenu(false); try { const act = localStorage.getItem('printAct') || ''; const scene = localStorage.getItem('printScene') || ''; let dest='/print'; const params=[]; if(act) params.push(`act=${encodeURIComponent(act)}`); if(scene) params.push(`scene=${encodeURIComponent(scene)}`); if(params.length) dest += `?${params.join('&')}`; location.assign(dest);} catch { location.assign('/print'); } }}>🖨️ Print</a>
+              <a className="menuItem" href="/?overlay=print" onClick={(e) => handleOverlayLink(e, 'print')}>🖨️ Print</a>
             )}
-            <Link className="menuItem" href="/user-guide" onClick={() => setShowMobileMenu(false)}>📖 User Guide</Link>
-            <Link className="menuItem" href="/about" onClick={() => setShowMobileMenu(false)}>ℹ️ About</Link>
-            <Link className="menuItem" href="/settings" onClick={() => setShowMobileMenu(false)}>
+            <a className="menuItem" href="/?overlay=user-guide" onClick={(e) => handleOverlayLink(e, 'user-guide')}>📖 User Guide</a>
+            <a className="menuItem" href="/?overlay=about" onClick={(e) => handleOverlayLink(e, 'about')}>ℹ️ About</a>
+            <a className="menuItem" href="/?overlay=settings" onClick={(e) => handleOverlayLink(e, 'settings')}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }}>
                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
               Settings
-            </Link>
+            </a>
           </div>
         </div>
       )}

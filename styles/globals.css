@@ -1617,6 +1617,69 @@ html.isPrintRoute .container { left: 0; }
   font-size: 1.2rem;
 }
 
+.overlayBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2500;
+}
+
+.overlayPanel {
+  position: relative;
+  background: #fff;
+  width: min(960px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  padding: 1.5rem;
+}
+
+.overlayPanel .settings-page,
+.overlayPanel .user-guide-page,
+.overlayPanel .about-page,
+.overlayPanel .print-overlay {
+  position: static;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  overflow: visible;
+  background: transparent;
+  z-index: auto;
+}
+
+.overlayPanel .guide-content,
+.overlayPanel .about-content,
+.overlayPanel .settings-content,
+.overlayPanel .printContainer {
+  max-height: none;
+}
+
+.overlayClose {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #53483e;
+}
+
+.overlayClose:hover {
+  opacity: 0.7;
+}
+
+.overlay-open {
+  overflow: hidden;
+}
+
 /* Settings page form styles */
 .settings-form {
   display: flex;
