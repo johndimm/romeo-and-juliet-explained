@@ -1,13 +1,26 @@
-export async function getServerSideProps() {
-  return {
-    redirect: {
-      destination: '/?overlay=about',
-      permanent: false,
-    },
-  };
-}
+import { useEffect } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+
+const TARGET = '/?overlay=about';
 
 export default function AboutRedirect() {
-  return null;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace(TARGET, undefined, { shallow: true, scroll: false });
+  }, [router]);
+
+  return (
+    <>
+      <Head>
+        <meta httpEquiv="refresh" content={`0;url=${TARGET}`} />
+      </Head>
+      <p>
+        Redirecting to about…{' '}
+        <a href={TARGET}>click here</a> if you are not redirected automatically.
+      </p>
+    </>
+  );
 }
 
