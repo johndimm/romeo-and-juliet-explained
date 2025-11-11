@@ -2422,7 +2422,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     || filteredSavedExplanationsCount > 0
     || (hasLLMContent && !currentSpeechNoteSuppressed)
     || (hasSelection && !currentSpeechNoteSuppressed)
-    || hasSelectModeActive;
+    || (hasSelectModeActive && !noteIsSuppressed);
   // Indicate clickability in the text area when a suppressed note exists for the current speech
   const canForceReveal = !selectedRange
     && (!savedExplanations || savedExplanations.length === 0)
