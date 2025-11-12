@@ -1354,8 +1354,8 @@ html.isPrintRoute .container { left: 0; }
   }
 
   .appHeaderInner {
-    padding-left: calc(6px + var(--safe-area-left));
-    padding-right: calc(6px + var(--safe-area-right));
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .headerRight {
