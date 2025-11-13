@@ -223,13 +223,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const matchRefs = useRef([]); // flat list of all match elements
   const [selection, setSelection] = useState(null); // { sectionIndex, start, end }
   const [selectionContext, setSelectionContext] = useState(null); // { act, scene, onStage, speaker, text, byteOffset }
-  const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'High school', age: '16', provider: 'openai', length: 'brief' });
+  const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'Undergraduate', age: '20', provider: 'openai', length: 'brief' });
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   // Note visibility threshold (0–100). Lower thresholds surface more notes.
-  // Initialize from localStorage if available, otherwise default to 33 (Most)
+  // Initialize from localStorage if available, otherwise default to 67 (Some - density 33)
   const [noteThreshold, setNoteThreshold] = useState(() => {
-    if (typeof window === 'undefined') return 33;
+    if (typeof window === 'undefined') return 67;
     try {
       const raw = localStorage.getItem('noteThreshold');
       if (raw !== null && raw !== '') {
@@ -239,12 +239,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         }
       }
     } catch {}
-    return 33;
+    return 67; // Default threshold 67 = density 33 (Some)
   });
   const [fontScale, setFontScale] = useState(1);
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
   const suppressAutoExplainRef = useRef(false);
+  const deletedExplanationIdsRef = useRef(new Set()); // Track deleted explanation IDs to prevent re-creation
   const llmCallTimerRef = useRef(null);
   const DEBUG_SCROLL = false;
   const DEBUG_RESTORE = false;
@@ -1438,7 +1439,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     }
     const len = new TextEncoder().encode(selectionContext.text || '').length;
     const id = `${selectionContext.byteOffset}-${len}`;
+    // Don't create if it already exists OR if it was deleted
     if (conversations && conversations[id] && conversations[id].last) return () => {};
+    if (deletedExplanationIdsRef.current.has(id)) return () => {};
     const pref = (llmOptions?.length === 'medium' ? 'more' : (llmOptions?.length === 'large' ? 'more' : 'brief'));
     llmCallTimerRef.current = setTimeout(() => {
       callLLM({ mode: pref, length: llmOptions?.length || 'brief', auto: true });
@@ -1450,7 +1453,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         llmCallTimerRef.current = null;
       }
     };
-  }, [selectionContext, conversations, llmOptions?.length]);
+  }, [selectionContext, conversations, llmOptions?.length, callLLM]);
 
   // Deep-linking disabled: do not update URL on selection (prevents auto-explanations on reload)
 
@@ -1634,6 +1637,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const next = { ...conversations };
     delete next[id];
     setConversations(next);
+    // Track this ID as deleted to prevent auto-recreation
+    deletedExplanationIdsRef.current.add(id);
+    // Immediately save to localStorage to prevent reload from restoring it
+    try {
+      localStorage.setItem('explanations', JSON.stringify(next));
+    } catch {}
   }
 
   const deleteExplanationsForSpeech = useCallback((speechKey) => {
@@ -1649,7 +1658,14 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         }
         next[id] = convo;
       }
-      return changed ? next : curr;
+      if (changed) {
+        // Immediately save to localStorage to prevent reload from restoring it
+        try {
+          localStorage.setItem('explanations', JSON.stringify(next));
+        } catch {}
+        return next;
+      }
+      return curr;
     });
   }, []);
 
@@ -1926,6 +1942,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           ...existingFollowupThreads,
           { q: followup, a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
         ];
+        // Remove from deleted set when successfully creating a new explanation
+        deletedExplanationIdsRef.current.delete(selectionId);
         setConversations({
           ...conversations,
           [selectionId]: {
@@ -1939,6 +1957,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           },
         });
       } else {
+        // Remove from deleted set when successfully creating a new explanation
+        deletedExplanationIdsRef.current.delete(selectionId);
         setConversations({
           ...conversations,
           [selectionId]: {
@@ -2130,6 +2150,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               const next = { ...(conversations || {}) };
               delete next[id];
               setConversations(next);
+              // Track this ID as deleted to prevent auto-recreation
+              deletedExplanationIdsRef.current.add(id);
+              // Immediately save to localStorage to prevent reload from restoring it
+              try {
+                localStorage.setItem('explanations', JSON.stringify(next));
+              } catch {}
             }}
             onCopyLink={() => {
               const curr = selectionContext;
@@ -2676,13 +2702,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     }
   }, [chosenItemSpeechKey, filteredSavedExplanationsCount, expandedNotes, onToggleNoteExpanded, hasConversation, hasLLMContent, hasSelection]);
 
-  const noteModeChatPanel = (() => {
-    // Only show noteModeChatPanel when note is expanded and NO text is selected
-    // When text is selected, selectionChatPanel will show instead (with instructions)
-    // Show whenever note is expanded (instructions, chat, and buttons should be visible)
-    if (!(chosenItem && isNoteExpanded && !hasSelectionContext)) return null;
+  // Extract handleNoteMore to be reusable by both note click handler and noteModeChatPanel
+  const handleNoteMore = useCallback(async () => {
+    if (!chosenItem) return;
     const it = chosenItem;
-    const handleNoteMore = async () => {
       const key = String(it.startOffset || 0);
       // Add placeholder entry immediately to show title and "Thinking..."
       setPreFollowThreads((prev) => {
@@ -2735,7 +2758,14 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       } finally {
         setPreFollowLoading(false);
       }
-    };
+  }, [chosenItem, sectionStartOffset, text, metadata, llm?.options, setPreFollowThreads, setPreFollowLoading]);
+
+  const noteModeChatPanel = (() => {
+    // Only show noteModeChatPanel when note is expanded and NO text is selected
+    // When text is selected, selectionChatPanel will show instead (with instructions)
+    // Show whenever note is expanded (instructions, chat, and buttons should be visible)
+    if (!(chosenItem && isNoteExpanded && !hasSelectionContext)) return null;
+    const it = chosenItem;
     const handleNoteFollowup = async (followupText) => {
       const key = String(it.startOffset || 0);
       // Add placeholder entry immediately to show title and "Thinking..."
@@ -2904,15 +2934,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         }
         // Show "Thinking..." for initial selection loading below chat UI
         const showInitialThinking = isThinking && !conversationLast;
-        const showSelectionPreview = selectionPreviewForChat;
-        if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading && !showInitialThinking && !showSelectionPreview) return null;
+        // Don't show selection preview here - it's shown in explanationPanel instead
+        if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading && !showInitialThinking) return null;
         return (
           <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
-            {/* Show selection preview below chat UI */}
-            {showSelectionPreview && renderSelectionPreview(selectionPreviewForChat)}
             {/* Show "Selected Text" title and "Thinking..." for initial selection loading */}
             {showInitialThinking && (
-              <div style={{ marginTop: showSelectionPreview ? '0.5rem' : '0', marginBottom: '0.5rem' }}>
+              <div style={{ marginTop: '0', marginBottom: '0.5rem' }}>
                 <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Selected Text</div>
                 <div style={{ color: '#6b5f53' }}>Thinking…</div>
               </div>
@@ -3100,7 +3128,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Explanation panel always appears after chat inputs (which appear after the note)
   // Hide explanations when the note is suppressed (closed) - check if current speech note is suppressed
   const hasSuppressedNote = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
-  const explanationPanel = (hasConversation && !hasSuppressedNote && isNoteExpanded) ? (
+  const explanationPanel = ((hasConversation || hasSelectionContext) && !hasSuppressedNote && isNoteExpanded) ? (
     <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       <button 
         type="button" 
@@ -3125,7 +3153,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       </button>
       {/* Title for selected text explanation */}
       <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Text selection</div>
-      {renderSelectionPreview(selectionPreviewForExplanation)}
+      {renderSelectionPreview(selectionPreviewForExplanation || selectionPreview)}
       {isThinking ? (
         <div style={{ color: '#6b5f53' }}>Thinking…</div>
       ) : (
@@ -3856,9 +3884,15 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                       onClick={(e)=>{ 
                         e.stopPropagation(); 
                         e.preventDefault();
-                        // Toggle expanded/collapsed state
-                        if (itemSpeechKey && onToggleNoteExpanded) {
-                          onToggleNoteExpanded(itemSpeechKey);
+                        // If expanded, trigger "More" action; otherwise toggle expanded/collapsed state
+                        if (isExpanded) {
+                          // Trigger "More" action when clicking on expanded note
+                          handleNoteMore();
+                        } else {
+                          // Toggle expanded/collapsed state
+                          if (itemSpeechKey && onToggleNoteExpanded) {
+                            onToggleNoteExpanded(itemSpeechKey);
+                          }
                         }
                       }} 
                     >
@@ -4100,11 +4134,34 @@ function expandToSentence(text, index) {
 
   // Move start left to previous sentence ender (.!?;)
   // But stop if we encounter a speaker name (all caps followed by period)
+  // Skip periods that are inside stage direction brackets
   // Optimize: search backwards from index only
   let foundStart = false;
   for (let i = index - 1; i >= 0; i--) {
     const ch = text[i];
     if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
+      // Check if this period is inside stage direction brackets
+      // Look backwards to find if there's an unmatched opening bracket
+      let bracketDepth = 0;
+      let foundOpeningBracket = false;
+      for (let k = i; k >= 0; k--) {
+        if (text[k] === ']') {
+          bracketDepth++;
+        } else if (text[k] === '[') {
+          if (bracketDepth === 0) {
+            // Found opening bracket with no unmatched closing bracket before it
+            // This means the period is inside brackets
+            foundOpeningBracket = true;
+            break;
+          }
+          bracketDepth--;
+        }
+      }
+      // If period is inside brackets, skip it and continue searching
+      if (foundOpeningBracket) {
+        continue;
+      }
+      
       // Check if this might be a speaker name (all caps followed by period)
       // Look backwards to see if the text before the period is all caps
       let j = i - 1;
@@ -4158,6 +4215,21 @@ function expandToSentence(text, index) {
   while (start < len && (text[start] === ' ' || text[start] === '\t' || text[start] === '\n' || text[start] === '\r')) {
     start++;
   }
+  
+  // Skip stage directions (text in brackets like [_Within._] or [Aside])
+  if (start < len && text[start] === '[') {
+    let bracketEnd = start + 1;
+    while (bracketEnd < len && text[bracketEnd] !== ']') {
+      bracketEnd++;
+    }
+    if (bracketEnd < len) {
+      // Found closing bracket, skip past it and any whitespace
+      start = bracketEnd + 1;
+      while (start < len && (text[start] === ' ' || text[start] === '\t' || text[start] === '\n' || text[start] === '\r')) {
+        start++;
+      }
+    }
+  }
 
   // Move end right to next sentence ender
   let foundEnd = false;
@@ -4197,6 +4269,61 @@ function expandToSentence(text, index) {
 function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false, onNoteMore, onNoteFollowup, onLength }) {
   const { loading, onFollowup, conversation } = llm || {};
   const [q, setQ] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
+  const textareaRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  // Calculate base height (1 line) - just enough for one line of text
+  const baseHeight = useMemo(() => {
+    if (typeof window === 'undefined') return '1.5em';
+    // Minimal height for one line
+    return '1.5em';
+  }, []);
+  
+  const expandedHeight = useMemo(() => {
+    if (typeof window === 'undefined') return '4.5em';
+    // Approximate: line-height * 3 lines + padding
+    return 'calc(4.5em + 1em)'; // 1.5em * 3 + padding
+  }, []);
+  
+  // Auto-resize textarea when expanded and content changes
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    
+    if (isExpanded) {
+      // When expanded, allow it to grow based on content
+      textarea.style.height = 'auto';
+      const scrollHeight = textarea.scrollHeight;
+      const calculatedHeight = Math.min(scrollHeight, 200); // Max height 200px
+      textarea.style.height = `${calculatedHeight}px`;
+    } else {
+      // When collapsed, keep it at base height
+      textarea.style.height = baseHeight;
+    }
+  }, [q, isExpanded, baseHeight]);
+  
+  // Handle hover (desktop) - expand on hover
+  const handleMouseEnter = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+    }
+  };
+  
+  // Handle touch (mobile)
+  const handleTouchStart = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+    }
+  };
+  
+  // Handle focus - also expand when user focuses the textarea
+  const handleFocus = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+    }
+  };
+  
   const submitFollowup = () => {
     const v = (q || '').trim();
     if (!v) return;
@@ -4205,6 +4332,13 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
     } else {
       onFollowup?.(v);
     }
+    setQ(''); // Clear after submit
+    setIsExpanded(false); // Reset to collapsed state
+  };
+  
+  const handleClear = () => {
+    setQ('');
+    setIsExpanded(false); // Reset to collapsed state
   };
   const requestMore = () => {
     if (noteMode && onNoteMore) {
@@ -4218,35 +4352,56 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
     }
   };
   // Show input field when there's contextInfo (text selected) OR when in noteMode
-  // When just in select mode without selection, show hint
   const hasContext = !!contextInfo;
-  const isInSelectMode = !hasContext && !noteMode; // Show hint when in select mode but no text selected yet
   const showInput = hasContext || noteMode; // Show input for text selections OR notes
-  // Show selection instructions when noteMode is true but no text is selected yet
-  const showSelectionHint = noteMode && !hasContext;
   return (
     <div style={{ marginTop: noteMode ? '0.25rem' : '0.5rem' }}>
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
       {showInput ? (
         <>
-            <div style={{ flex: 1, minWidth: 0, position: 'relative', maxWidth: 'calc(100% - 120px)' }}>
-          <input 
-            type="text" 
+            <div 
+              ref={containerRef}
+              style={{ flex: 1, minWidth: 0, position: 'relative', marginRight: '20px' }}
+              onMouseEnter={handleMouseEnter}
+              onTouchStart={handleTouchStart}
+            >
+          <textarea 
+            ref={textareaRef}
             placeholder="Ask a follow‑up…" 
             value={q} 
             onChange={(e)=>setQ(e.target.value)} 
-            onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); submitFollowup(); } }} 
-                style={{ width: '100%', paddingRight: q ? '24px' : '0' }} 
+            onFocus={handleFocus}
+            onKeyDown={(e)=>{ 
+              if(e.key==='Enter' && !e.shiftKey) {
+                e.preventDefault(); 
+                submitFollowup(); 
+              }
+            }} 
+              style={{ 
+                width: '100%', 
+                paddingRight: q ? '24px' : '0',
+                resize: 'none',
+                overflow: 'hidden',
+                minHeight: baseHeight,
+                maxHeight: isExpanded ? '200px' : baseHeight,
+                fontFamily: 'inherit',
+                fontSize: 'inherit',
+                lineHeight: '1.5',
+                padding: '0.2em 0.5em',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                transition: 'height 0.2s ease-out, max-height 0.2s ease-out'
+              }}
+            rows={1}
               />
               {q && (
                 <button
                   type="button"
-                  onClick={() => setQ('')}
+                  onClick={handleClear}
                   style={{
                     position: 'absolute',
                     right: '4px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
+                    top: '4px',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
@@ -4261,23 +4416,11 @@ function TextSelectionChat({ contextInfo, llm, onRequestFocus, noteMode = false,
                 </button>
               )}
             </div>
-            <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup} style={{ flexShrink: 0 }}>Ask</button>
         </>
-      ) : isInSelectMode ? (
-        <div style={{ flex: 1, fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic' }}>
-          Tap a sentence or drag to select text
-        </div>
       ) : (
         <div style={{ flex: 1 }}></div>
       )}
-      <button type="button" disabled={loading || (!hasContext && !noteMode)} onClick={requestMore}>More</button>
       </div>
-      {/* Show selection hint below input when in noteMode but no text selected */}
-      {showSelectionHint && (
-        <div style={{ fontSize: '0.9em', color: '#6b5f53', fontStyle: 'italic', marginTop: '0.25rem' }}>
-          Tap a sentence or drag to select text
-        </div>
-      )}
     </div>
   );
 }
@@ -4339,7 +4482,6 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
             </button>
           )}
         </div>
-        <button type="button" disabled={loading || !q.trim()} onClick={submitFollowup}>Ask</button>
       </div>
       {loading && (
         <div style={{ marginTop: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
@@ -4353,11 +4495,62 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
   const [q, setQ] = useState('');
   const [loading, setLoading] = useState(false);
   const [thread, setThread] = useState([]); // [{q,a}]
+  const [isExpanded, setIsExpanded] = useState(false);
+  const textareaRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  // Calculate base height (1 line) - just enough for one line of text
+  const baseHeight = useMemo(() => {
+    if (typeof window === 'undefined') return '1.5em';
+    // Minimal height for one line
+    return '1.5em';
+  }, []);
+  
+  // Auto-resize textarea when expanded and content changes
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    
+    if (isExpanded) {
+      // When expanded, allow it to grow based on content
+      textarea.style.height = 'auto';
+      const scrollHeight = textarea.scrollHeight;
+      const calculatedHeight = Math.min(scrollHeight, 200); // Max height 200px
+      textarea.style.height = `${calculatedHeight}px`;
+    } else {
+      // When collapsed, keep it at base height
+      textarea.style.height = baseHeight;
+    }
+  }, [q, isExpanded, baseHeight]);
+  
+  // Handle hover (desktop)
+  const handleMouseEnter = () => {
+    if (!isExpanded && open) {
+      setIsExpanded(true);
+    }
+  };
+  
+  // Handle touch (mobile)
+  const handleTouchStart = () => {
+    if (!isExpanded && open) {
+      setIsExpanded(true);
+    }
+  };
+  
+  // Handle focus - also expand when user focuses the textarea
+  const handleFocus = () => {
+    if (!isExpanded && open) {
+      setIsExpanded(true);
+    }
+  };
   // Determine title based on meta or prop
   const explanationTitle = title || (meta?.mode === 'more' ? 'More' : (meta?.mode === 'followup' ? 'Chat Prompt' : 'Selected Text'));
   const ask = async (followupText) => {
     const v = (followupText || q || '').trim();
     if (!v) return;
+    const questionToSave = v;
+    setQ(''); // Clear input after submitting
+    setIsExpanded(false); // Reset to collapsed state
     try {
       setLoading(true);
       const url = getApiUrl('/api/explain');
@@ -4370,12 +4563,12 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           options: options || {},
           messages: [],
           mode: 'followup',
-          followup: v,
+          followup: questionToSave,
         }),
       });
-      setThread((t) => t.concat({ q: v, a: data?.content || '' }));
+      setThread((t) => t.concat({ q: questionToSave, a: data?.content || '' }));
     } catch (e) {
-      setThread((t) => t.concat({ q: v, a: `Error: ${String(e.message || e)}` }));
+      setThread((t) => t.concat({ q: questionToSave, a: `Error: ${String(e.message || e)}` }));
     } finally {
       setLoading(false);
     }
@@ -4417,7 +4610,19 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           </div>
         );
       })()}
-      <div style={{ marginTop: '0.25rem' }} onClick={() => { onLocate?.(); setOpen((v)=>!v); }} title="Click to highlight source and toggle follow‑up">
+      <div style={{ marginTop: '0.25rem' }} onClick={(e) => { 
+        e.stopPropagation();
+        e.preventDefault();
+        // Always trigger "More" action when clicking on explanation content
+        // Also ensure the follow-up input is visible
+        if (!open) {
+          setOpen(true);
+          setIsExpanded(false); // Reset expansion when opening
+        }
+        // Trigger "More" action
+        ask('Expand into a longer, more detailed explanation without repeating earlier sentences.');
+        onLocate?.(); // Highlight source in text
+      }} title="Click to get more detail">
         <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
         {(() => {
           const resolvedModel = meta?.model || options?.model || '';
@@ -4434,25 +4639,50 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
         })()}
       </div>
       {open && (
-        <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-            <input 
-              type="text" 
+        <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div 
+            ref={containerRef}
+            style={{ flex: 1, minWidth: 0, position: 'relative', marginRight: '20px' }}
+            onMouseEnter={handleMouseEnter}
+            onTouchStart={handleTouchStart}
+          >
+            <textarea 
+              ref={textareaRef}
               placeholder="Ask a follow‑up…" 
               value={q} 
               onChange={(e)=>setQ(e.target.value)} 
-              onKeyDown={(e)=>{ if(e.key==='Enter'){ e.preventDefault(); ask(); } }} 
-              style={{ width: '100%', paddingRight: q ? '24px' : '0' }} 
+              onFocus={handleFocus}
+              onKeyDown={(e)=>{ 
+                if(e.key==='Enter' && !e.shiftKey) {
+                  e.preventDefault(); 
+                  ask(); 
+                }
+              }} 
+              style={{ 
+                width: '100%', 
+                paddingRight: q ? '24px' : '0',
+                resize: 'none',
+                overflow: 'hidden',
+                minHeight: baseHeight,
+                maxHeight: isExpanded ? '200px' : baseHeight,
+                fontFamily: 'inherit',
+                fontSize: 'inherit',
+                lineHeight: '1.5',
+                padding: '0.2em 0.5em',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                transition: 'height 0.2s ease-out, max-height 0.2s ease-out'
+              }} 
+              rows={1}
             />
             {q && (
               <button
                 type="button"
-                onClick={() => setQ('')}
+                onClick={() => { setQ(''); setIsExpanded(false); }}
                 style={{
                   position: 'absolute',
                   right: '4px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
+                  top: '4px',
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
@@ -4467,8 +4697,6 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
               </button>
             )}
           </div>
-          <button type="button" disabled={loading || !q.trim()} onClick={()=>ask()}>Ask</button>
-          <button type="button" disabled={loading} onClick={()=>ask('Expand into a longer, more detailed explanation without repeating earlier sentences.')}>More</button>
           {loading && <span style={{ color:'#6b5f53' }}>Thinking…</span>}
         </div>
       )}

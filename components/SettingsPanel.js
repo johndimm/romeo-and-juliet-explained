@@ -4,8 +4,8 @@ import { getApiUrl } from '../lib/api';
 const defaultOptions = {
   model: 'gpt-4o-mini',
   language: 'English',
-  educationLevel: 'High school',
-  age: '16',
+  educationLevel: 'Undergraduate',
+  age: '20',
   provider: 'openai',
   length: 'brief',
 };
@@ -211,23 +211,39 @@ export default function SettingsPanel({
           <div className="settings-form">
             <div className="form-group">
               <label htmlFor="language">Preferred explanation language</label>
-              <input
+              <select
                 id="language"
-                type="text"
-                value={llmOptions.language || ''}
+                value={llmOptions.language || 'English'}
                 onChange={(event) => handleOptionChange('language', event.target.value)}
-                placeholder="e.g. English, Español, Français"
-              />
+              >
+                <option value="English">English</option>
+                <option value="Español">Español</option>
+                <option value="Français">Français</option>
+                <option value="Deutsch">Deutsch</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Português">Português</option>
+                <option value="中文">中文</option>
+                <option value="日本語">日本語</option>
+                <option value="한국어">한국어</option>
+                <option value="Русский">Русский</option>
+                <option value="العربية">العربية</option>
+                <option value="हिन्दी">हिन्दी</option>
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="educationLevel">Top education level completed</label>
-              <input
+              <select
                 id="educationLevel"
-                type="text"
-                value={llmOptions.educationLevel || ''}
+                value={llmOptions.educationLevel || 'Undergraduate'}
                 onChange={(event) => handleOptionChange('educationLevel', event.target.value)}
-                placeholder="e.g. High school, Undergraduate, Middle school"
-              />
+              >
+                <option value="Elementary school">Elementary school</option>
+                <option value="Middle school">Middle school</option>
+                <option value="High school">High school</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+                <option value="Postgraduate">Postgraduate</option>
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="age">Age (optional)</label>

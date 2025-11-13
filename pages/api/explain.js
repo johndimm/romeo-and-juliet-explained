@@ -56,8 +56,8 @@ export default async function handler(req, res) {
   }
   model = pickModel(provider, model);
   const language = options?.language || 'English';
-  const edu = options?.educationLevel || 'High school';
-  const age = options?.age || '16';
+  const edu = options?.educationLevel || 'Undergraduate';
+  const age = options?.age || '20';
 
   const sys = [
     'You are a helpful literature tutor who explains Romeo and Juliet clearly and accurately.',
@@ -105,7 +105,7 @@ export default async function handler(req, res) {
     '',
     (noteText && noteText.trim().length && (mode === 'followup' || mode === 'more') ? 'IMPORTANT: Your response will be appended to the existing note above. Focus on adding new information, insights, or details that are not already covered in the note. Do not repeat or rephrase what is already there.' : null),
     (noteText && noteText.trim().length && mode !== 'followup' && mode !== 'more' ? 'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.' : null),
-    (!noteText || mode === 'brief' ? 'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.' : null),
+    (!noteText && mode !== 'brief' ? 'Focus on helping the reader parse the sentence: clarify unfamiliar/archaic words and any inverted or compressed syntax, then give a clear paraphrase.' : null),
     mode === 'brief' ? 'Brief mode: 2-3 sentences; weave clarifications naturally into the paraphrase.' : null,
     mode === 'more' ? (noteText && noteText.trim().length ? 'More mode: add additional detail, context, or insights that build on the existing note without repeating it.' : 'More mode: add a little more detail; if helpful, include very short glosses (word — meaning) before the paraphrase.') : null,
     mode === 'followup' && followup ? `Follow-up question: ${followup}` : null,
@@ -120,6 +120,17 @@ export default async function handler(req, res) {
     console.log('[prompt text]\n' + userPrompt);
   }
 
+  const fullMessages = [{ role: 'system', content: sys }, ...history, { role: 'user', content: userPrompt }];
+  console.log('[FULL PROMPT]');
+  console.log('='.repeat(80));
+  fullMessages.forEach((msg, idx) => {
+    console.log(`\n[${idx}] ${msg.role.toUpperCase()}:`);
+    console.log('-'.repeat(80));
+    console.log(msg.content);
+    console.log('-'.repeat(80));
+  });
+  console.log('='.repeat(80));
+
   try {
     let content = '';
     if (provider === 'openai') {
@@ -128,7 +139,7 @@ export default async function handler(req, res) {
       const resp = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-        body: JSON.stringify({ model, temperature: 0.3, messages: [{ role: 'system', content: sys }, ...history, { role: 'user', content: userPrompt }] }),
+        body: JSON.stringify({ model, temperature: 0.3, messages: fullMessages }),
       });
       if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
       const data = await resp.json();
@@ -148,7 +159,7 @@ export default async function handler(req, res) {
           max_tokens: 800,
           temperature: 0.3,
           system: sys,
-          messages: [...history, { role: 'user', content: userPrompt }].map((m) => ({ role: m.role, content: m.content })),
+          messages: fullMessages.filter(m => m.role !== 'system').map((m) => ({ role: m.role, content: m.content })),
         }),
       });
       if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
@@ -160,7 +171,7 @@ export default async function handler(req, res) {
       const resp = await fetch('https://api.deepseek.com/chat/completions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-        body: JSON.stringify({ model, temperature: 0.3, messages: [{ role: 'system', content: sys }, ...history, { role: 'user', content: userPrompt }] }),
+        body: JSON.stringify({ model, temperature: 0.3, messages: fullMessages }),
       });
       if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
       const data = await resp.json();

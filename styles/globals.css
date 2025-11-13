@@ -1346,8 +1346,62 @@ html.isPrintRoute .container { left: 0; }
 
 /* Small screens in landscape: use two columns for easier navigation */
 @media (max-height: 500px) and (orientation: landscape) {
-  .section { display: grid; grid-template-columns: 1fr minmax(220px, 0.7fr); gap: var(--col-gap); max-width: 100%; }
-  .section .explanations { margin-top: 0; }
+  /* Hide TOC sidebar in landscape */
+  .sidebar {
+    display: none !important;
+  }
+  /* Hide TOC drawer in landscape */
+  .tocDrawer { display: none; }
+  .tocHandle { display: none; }
+  
+  /* Make container full width */
+  .page {
+    position: fixed;
+    top: var(--mobile-header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .container {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 0.5rem 1rem 1rem 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  /* Override mobile padding rules for landscape */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /* Override safe-area padding for landscape - use standard padding */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  /* Show play text on left, explanations on right */
+  .section { 
+    display: grid !important; 
+    grid-template-columns: 1fr minmax(220px, 0.7fr) !important; 
+    gap: var(--col-gap); 
+    max-width: 100%; 
+    margin-top: var(--section-gap);
+  }
+  .section:first-child {
+    margin-top: 0;
+  }
+  .section .explanations { 
+    margin-top: 0; 
+    grid-column: 2;
+  }
+  .playText {
+    grid-column: 1;
+  }
 
   .appHeader {
     padding-left: 0;
