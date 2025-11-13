@@ -400,6 +400,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     };
 
     const onTouchStart = (e) => {
+      // Ignore touches on interactive elements (buttons, links, etc.)
+      const target = e.target;
+      if (target && (
+        target.closest('button') ||
+        target.closest('a') ||
+        target.closest('[role="button"]') ||
+        target.closest('.headerNotesDensity') ||
+        target.closest('.headerNotesPopover')
+      )) {
+        return;
+      }
       if (e.touches.length >= 2) {
         flushPending();
         state.active = true;
@@ -2398,6 +2409,35 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const currentSpeechNoteSuppressed = speechKey && suppressedNotes.has(speechKey);
   const forcedNoteSuppressed = forcedKey && suppressedNotes.has(forcedKey);
   const noteIsSuppressed = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
+  // Compute noteSpeechSpan early so it can be used in filteredSavedExplanationsCount
+  const noteSpeechSpan = useMemo(() => {
+    if (!chosenItem) return null;
+    const byteOffset = chosenItem.startOffset ?? chosenItem.byteOffset ?? null;
+    if (byteOffset == null) return null;
+    const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+    if (!speechesMeta.length) return null;
+    let idx = -1;
+    for (let i = 0; i < speechesMeta.length; i++) {
+      const off = speechesMeta[i]?.offset || 0;
+      if (off <= byteOffset) idx = i; else break;
+    }
+    if (idx < 0) return null;
+    const start = speechesMeta[idx].offset || 0;
+    let end = null;
+    for (let j = idx + 1; j < speechesMeta.length; j++) {
+      const nextOff = speechesMeta[j]?.offset;
+      if (nextOff != null && nextOff > start) { end = nextOff; break; }
+    }
+    if (end == null) {
+      const scene = (metadata?.scenes || []).find((s) => start >= (s.startOffset || 0) && start < (s.endOffset || 0));
+      if (scene && scene.endOffset != null) end = scene.endOffset;
+    }
+    if (end == null || end <= start) {
+      const noteEnd = chosenItem?.endOffset;
+      end = noteEnd != null && noteEnd > start ? noteEnd : (start + 100);
+    }
+    return { start, end };
+  }, [chosenItem, metadata]);
   // Calculate filtered saved explanations count (for checking if aside should show)
   // Only count explanations that are NOT associated with a suppressed note
   const filteredSavedExplanationsCount = (savedExplanations || []).filter((ex) => {
@@ -2439,36 +2479,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Filter saved explanations to only show ones relevant to current note or section
   // If there's a note (chosenItem), show explanations for that note's speech
   // Otherwise, show all explanations for this section
-  // Note: speechSpan is computed below, but we need to check it here
-  // We'll compute it early for filtering purposes
-  const noteSpeechSpan = useMemo(() => {
-    if (!chosenItem) return null;
-    const byteOffset = chosenItem.startOffset ?? chosenItem.byteOffset ?? null;
-    if (byteOffset == null) return null;
-    const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
-    if (!speechesMeta.length) return null;
-    let idx = -1;
-    for (let i = 0; i < speechesMeta.length; i++) {
-      const off = speechesMeta[i]?.offset || 0;
-      if (off <= byteOffset) idx = i; else break;
-    }
-    if (idx < 0) return null;
-    const start = speechesMeta[idx].offset || 0;
-    let end = null;
-    for (let j = idx + 1; j < speechesMeta.length; j++) {
-      const nextOff = speechesMeta[j]?.offset;
-      if (nextOff != null && nextOff > start) { end = nextOff; break; }
-    }
-    if (end == null) {
-      const scene = (metadata?.scenes || []).find((s) => start >= (s.startOffset || 0) && start < (s.endOffset || 0));
-      if (scene && scene.endOffset != null) end = scene.endOffset;
-    }
-    if (end == null || end <= start) {
-      const noteEnd = chosenItem?.endOffset;
-      end = noteEnd != null && noteEnd > start ? noteEnd : (start + 100);
-    }
-    return { start, end };
-  }, [chosenItem, metadata]);
+  // Note: noteSpeechSpan is computed above for use in filteredSavedExplanationsCount
   const filteredSavedExplanations = (savedExplanations || []).filter((ex) => {
     if (!ex?.meta) return false;
     // Hide explanations associated with suppressed notes
@@ -3491,6 +3502,17 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // Simplified mobile interaction: single tap toggles the note for current speech
   const onTouchStart = (e) => {
+    // Ignore touches on interactive elements (buttons, links, etc.)
+    const target = e.target;
+    if (target && (
+      target.closest('button') ||
+      target.closest('a') ||
+      target.closest('[role="button"]') ||
+      target.closest('.headerNotesDensity') ||
+      target.closest('.headerNotesPopover')
+    )) {
+      return;
+    }
     const t = e.touches && e.touches[0];
     const tx = t ? t.clientX : 0;
     const ty = t ? t.clientY : 0;
@@ -3541,7 +3563,22 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     if (!t) return;
     const dx = Math.abs((t.clientX || 0) - startXYRef.current.x);
     const dy = Math.abs((t.clientY || 0) - startXYRef.current.y);
-    if (dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD) {
+    
+    // Check if page actually scrolled (more reliable than touch movement)
+    let scrolled = false;
+    try {
+      const s = (function(){
+        const cont = document.querySelector('.container');
+        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+        const pg = document.querySelector('.page');
+        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+        return window;
+      })();
+      const currentScroll = (s === window) ? window.scrollY : s.scrollTop;
+      scrolled = Math.abs(currentScroll - scrollerStartRef.current) > 5; // 5px scroll threshold
+    } catch {}
+    
+    if (dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD || scrolled) {
       if (!movedRef.current) {
         movedRef.current = true;
         touchSelectingRef.current = false;
@@ -3563,6 +3600,20 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const dx = Math.abs(endX - startXYRef.current.x);
     const dy = Math.abs(endY - startXYRef.current.y);
     const movedTooFar = dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD;
+    
+    // Check if page actually scrolled (more reliable than touch movement)
+    let scrolled = false;
+    try {
+      const s = (function(){
+        const cont = document.querySelector('.container');
+        if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+        const pg = document.querySelector('.page');
+        if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+        return window;
+      })();
+      const currentScroll = (s === window) ? window.scrollY : s.scrollTop;
+      scrolled = Math.abs(currentScroll - scrollerStartRef.current) > 5; // 5px scroll threshold
+    } catch {}
 
     if (!mobileSelectMode) {
       touchActiveRef.current = false;
@@ -3570,7 +3621,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       return;
     }
 
-    if (movedTooFar || !touchSelectingRef.current || movedRef.current) {
+    if (movedTooFar || scrolled || !touchSelectingRef.current || movedRef.current) {
       try {
         const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
         if (sel && sel.rangeCount > 0) sel.removeAllRanges();

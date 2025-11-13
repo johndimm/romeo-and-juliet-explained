@@ -433,6 +433,7 @@ html.isPrintRoute .container { left: 0; }
   position: relative;
   display: inline-flex;
   align-items: center;
+  z-index: 1501;
 }
 
 
@@ -1119,7 +1120,7 @@ html.isPrintRoute .container { left: 0; }
     align-items: stretch;
     gap: 10px;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
   }
   .appHeaderInner .appTitle {
     width: 100%;
@@ -1133,10 +1134,10 @@ html.isPrintRoute .container { left: 0; }
     gap: 4px;
     min-width: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
   }
   .headerNotesDensity {
-    grid-column: 1;
+    grid-column: 2;
     justify-self: flex-start;
     flex-shrink: 0;
     display: flex;
@@ -1154,7 +1155,7 @@ html.isPrintRoute .container { left: 0; }
     height: 20px;
   }
   .lnk-toc {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     width: 32px;
     height: 32px;
@@ -1369,7 +1370,7 @@ html.isPrintRoute .container { left: 0; }
     box-sizing: border-box;
   }
   .headerNotesDensity {
-    grid-column: 1;
+    grid-column: 2;
     justify-self: flex-start;
     flex-shrink: 0;
     display: flex;
@@ -1387,7 +1388,7 @@ html.isPrintRoute .container { left: 0; }
     height: 20px;
   }
   .lnk-toc {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     width: 32px;
     height: 32px;

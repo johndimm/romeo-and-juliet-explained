@@ -331,7 +331,7 @@ const DensityIcon = ({ density, size = 26 }) => {
 };
 
 function HeaderNotesDensity() {
-  const initialDensity = React.useMemo(() => thresholdToDensity(33), []);
+  const initialDensity = React.useMemo(() => thresholdToDensity(67), []); // Default to "Some" (density 33 = threshold 67)
   const [density, setDensity] = React.useState(initialDensity);
   const [sliderDensity, setSliderDensity] = React.useState(initialDensity);
   const [open, setOpen] = React.useState(false);
@@ -448,6 +448,64 @@ function HeaderNotesDensity() {
   const currentKey = densityKeyFromValue(density);
   const currentOption = densityOptions.find((opt) => opt.key === currentKey) || densityOptions[2];
 
+  const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+  
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkTouch = () => {
+      setIsTouchDevice(
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+      );
+    };
+    checkTouch();
+    window.addEventListener('resize', checkTouch);
+    return () => window.removeEventListener('resize', checkTouch);
+  }, []);
+
+  const handleButtonClick = React.useCallback((e) => {
+    console.log('[HeaderNotesDensity] onClick fired', { isTouchDevice, open });
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen((prev) => {
+      const newValue = !prev;
+      console.log('[HeaderNotesDensity] onClick setting open to:', newValue);
+      return newValue;
+    });
+  }, [isTouchDevice, open]);
+
+  const buttonTouchStartRef = React.useRef(false);
+
+  const handleButtonTouchStart = React.useCallback((e) => {
+    console.log('[HeaderNotesDensity] onTouchStart fired');
+    buttonTouchStartRef.current = true;
+    e.stopPropagation();
+    // Don't preventDefault here - let the browser handle touch normally
+  }, []);
+
+  const handleButtonTouchEnd = React.useCallback((e) => {
+    console.log('[HeaderNotesDensity] onTouchEnd fired', { buttonTouchStartRef: buttonTouchStartRef.current });
+    if (!buttonTouchStartRef.current) {
+      console.log('[HeaderNotesDensity] onTouchEnd skipped (no touch start)');
+      return;
+    }
+    buttonTouchStartRef.current = false;
+    e.stopPropagation();
+    e.preventDefault(); // Prevent default to avoid double-firing with click
+    console.log('[HeaderNotesDensity] onTouchEnd toggling, current open:', open);
+    setOpen((prev) => {
+      console.log('[HeaderNotesDensity] onTouchEnd setting open to:', !prev);
+      return !prev;
+    });
+  }, [open]);
+
+  const handleButtonTouchCancel = React.useCallback((e) => {
+    console.log('[HeaderNotesDensity] onTouchCancel fired');
+    buttonTouchStartRef.current = false;
+    e.stopPropagation();
+  }, []);
+
   return (
     <div className="headerNotesDensity" ref={controlRef}>
       <button
@@ -455,14 +513,18 @@ function HeaderNotesDensity() {
         className="headerNotesButton"
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={handleButtonClick}
+        onTouchStart={handleButtonTouchStart}
+        onTouchEnd={handleButtonTouchEnd}
+        onTouchCancel={handleButtonTouchCancel}
         title="Adjust note density"
       >
         <DensityIcon density={density} />
         <span className="sr-only">Note density ({currentOption.label})</span>
       </button>
       {open ? (
-        <div className="headerNotesPopover" role="dialog" aria-label="Note density selector">
+        <div className="headerNotesPopover" role="dialog" aria-label="Note density selector" style={{ display: 'block' }}>
+          {console.log('[HeaderNotesDensity] Rendering popover, open:', open)}
           <div className="headerNotesOptions">
             {densityOptions.map((opt) => {
               const isActive = opt.key === currentKey;
