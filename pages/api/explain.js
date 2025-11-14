@@ -40,7 +40,11 @@ export default async function handler(req, res) {
       return m;
     }
     if (p === 'anthropic') {
-      if (!m || !/^claude/.test(m)) return 'claude-3-sonnet-20240229';
+      if (!m || !/^claude/.test(m)) return 'claude-3-5-sonnet-20241022';
+      // Auto-upgrade deprecated models to newer versions
+      if (m === 'claude-3-sonnet-20240229' || m.includes('claude-3-sonnet-20240229')) {
+        return 'claude-3-5-sonnet-20241022';
+      }
       return m;
     }
     if (p === 'deepseek') {
@@ -50,6 +54,10 @@ export default async function handler(req, res) {
     if (p === 'gemini') {
       // Prefer the 1.5 pro/flash latest variants
       if (!m || !/^gemini/.test(m)) return 'gemini-1.5-pro-latest';
+      // Fix invalid model names (e.g., gemini-2.5-flash-latest -> gemini-1.5-flash-latest)
+      if (/^gemini-2\.5/.test(m)) {
+        return m.replace(/^gemini-2\.5/, 'gemini-1.5');
+      }
       return /-latest$/.test(m) ? m : `${m}-latest`;
     }
     return m || 'gpt-4o-mini';
@@ -147,22 +155,73 @@ export default async function handler(req, res) {
     } else if (provider === 'anthropic') {
       const apiKey = process.env.ANTHROPIC_API_KEY;
       if (!apiKey) return res.status(400).json({ error: 'Missing ANTHROPIC_API_KEY. Set it in .env.local' });
-      const resp = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: 800,
-          temperature: 0.3,
-          system: sys,
-          messages: fullMessages.filter(m => m.role !== 'system').map((m) => ({ role: m.role, content: m.content })),
-        }),
-      });
-      if (!resp.ok) return res.status(500).json({ error: 'LLM request failed', detail: await resp.text() });
+      
+      // Try multiple model names with fallback
+      // Remove deprecated models from fallback list
+      const modelCandidates = [
+        model,
+        'claude-3-5-sonnet-20241022',
+        'claude-3-opus-20240229',
+        'claude-3-haiku-20240307',
+      ];
+      
+      let resp = null;
+      let okModel = null;
+      let lastError = null;
+      
+      for (const candidateModel of modelCandidates) {
+        try {
+          const r = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': apiKey,
+              'anthropic-version': '2023-06-01',
+            },
+            body: JSON.stringify({
+              model: candidateModel,
+              max_tokens: 800,
+              temperature: 0.3,
+              system: sys,
+              messages: fullMessages.filter(m => m.role !== 'system').map((m) => ({ role: m.role, content: m.content })),
+            }),
+          });
+          
+          if (r.ok) {
+            resp = r;
+            okModel = candidateModel;
+            break;
+          } else {
+            const errorText = await r.text();
+            let errorData = null;
+            try {
+              errorData = JSON.parse(errorText);
+            } catch {}
+            lastError = { status: r.status, text: errorText, data: errorData };
+            // If it's not a "not found" error, stop trying
+            // Check both the text and parsed JSON for not_found errors
+            const isNotFoundError = errorText.includes('not_found') || 
+                                   errorText.includes('not found') ||
+                                   (errorData?.error?.type === 'not_found_error') ||
+                                   (errorData?.type === 'not_found_error');
+            if (!isNotFoundError) break;
+          }
+        } catch (e) {
+          lastError = { error: String(e) };
+          // Continue to next candidate
+        }
+      }
+      
+      if (!resp || !resp.ok) {
+        const detail = lastError ? JSON.stringify(lastError) : 'no response';
+        return res.status(500).json({ 
+          error: 'LLM request failed', 
+          detail,
+          tried: modelCandidates,
+        });
+      }
+      
+      model = okModel || model;
       const data = await resp.json();
       content = data?.content?.[0]?.text || '';
     } else if (provider === 'deepseek') {
@@ -181,16 +240,34 @@ export default async function handler(req, res) {
       if (!apiKey) return res.status(400).json({ error: 'Missing GEMINI_API_KEY. Set it in .env.local' });
       async function callGemini(mod) {
         const geminiModel = encodeURIComponent(mod);
-        return fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${sys}\n\n${userPrompt}` }] }] }),
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+        try {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: `${sys}\n\n${userPrompt}` }] }] }),
+            signal: controller.signal,
+          });
+          clearTimeout(timeoutId);
+          return response;
+        } catch (e) {
+          clearTimeout(timeoutId);
+          if (e.name === 'AbortError') {
+            throw new Error('Request timeout after 30 seconds');
+          }
+          throw e;
+        }
       }
       // Try a small set of common Gemini model aliases in order
+      // Fix invalid model names first
+      let fixedModel = model;
+      if (/^gemini-2\.5/.test(model)) {
+        fixedModel = model.replace(/^gemini-2\.5/, 'gemini-1.5');
+      }
       const candidates = Array.from(new Set([
-        model,
-        /-latest$/.test(model) ? model : `${model}-latest`,
+        fixedModel,
+        /-latest$/.test(fixedModel) ? fixedModel : `${fixedModel}-latest`,
         'gemini-1.5-pro-latest',
         'gemini-1.5-flash-latest',
         'gemini-pro',
@@ -198,17 +275,26 @@ export default async function handler(req, res) {
       ]));
       let resp = null;
       let okModel = null;
+      const errors = [];
       for (const mod of candidates) {
         try {
           const r = await callGemini(mod);
           if (r.ok) { resp = r; okModel = mod; break; }
-        } catch (e) { /* ignore and continue */ }
+          // If not ok, capture the error
+          const errorText = await r.text().catch(() => 'Failed to read error response');
+          errors.push(`${mod}: HTTP ${r.status} - ${errorText.substring(0, 200)}`);
+        } catch (e) {
+          errors.push(`${mod}: ${String(e.message || e)}`);
+        }
       }
       if (!resp || !resp.ok) {
-        const detail = resp ? await resp.text() : 'no response';
+        const detail = resp ? await resp.text().catch(() => 'Failed to read response') : 'All models failed';
+        const errorMsg = errors.length > 0 
+          ? `All Gemini models failed. Errors: ${errors.join('; ')}`
+          : `Gemini model unavailable: ${detail}`;
         return res.status(502).json({
           error: 'Gemini model unavailable',
-          detail,
+          detail: errorMsg,
           tried: candidates,
         });
       }

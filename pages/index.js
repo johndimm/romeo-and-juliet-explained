@@ -245,8 +245,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const fontScaleRef = useRef(1);
   const [fontScaleHydrated, setFontScaleHydrated] = useState(false);
   const suppressAutoExplainRef = useRef(false);
-  const deletedExplanationIdsRef = useRef(new Set()); // Track deleted explanation IDs to prevent re-creation
+  const deletedExplanationIdsRef = useRef(new Set()); // Track deleted explanation IDs to prevent auto-recreation on reload
+  const lastDeletedSelectionRef = useRef(null); // Track the last deleted selection to prevent immediate re-creation
   const llmCallTimerRef = useRef(null);
+  const callLLMRef = useRef(null);
   const DEBUG_SCROLL = false;
   const DEBUG_RESTORE = false;
   const DEBUG_SELECTION = false;
@@ -1424,36 +1426,83 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     setSelectionContext({ ...ctx, text: textForLLM, byteOffset, isWholeSpeech: selectionIsWholeSpeech });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
+  // Helper: Calculate stable explanation ID from context
+  const getExplanationId = useCallback((context) => {
+    if (!context || !context.byteOffset) return null;
+    const len = new TextEncoder().encode(context.text || '').length;
+    return `${context.byteOffset}-${len}`;
+  }, []);
+
+  // Helper: Check if we should generate an explanation (centralizes all skip conditions)
+  const shouldAutoGenerateExplanation = useCallback((context, explanationId) => {
+    if (!context || !explanationId) return false;
+    if (!String(context.text || '').trim()) return false;
+    if (suppressAutoExplainRef.current) {
+      suppressAutoExplainRef.current = false;
+      return false;
+    }
+    if (conversations[explanationId]?.last) return false;
+    
+    // Check if this is the same selection that was just deleted (within 2 seconds)
+    // This prevents accidental immediate re-creation when user clicks same text right after deleting
+    const lastDeleted = lastDeletedSelectionRef.current;
+    if (lastDeleted && 
+        lastDeleted.id === explanationId && 
+        lastDeleted.text === context.text &&
+        (Date.now() - lastDeleted.timestamp) < 2000) {
+      return false; // Too soon after deletion - likely accidental
+    }
+    
+    // If explanation was deleted but enough time has passed, allow re-generation
+    // Remove from deleted set so it can be created
+    if (deletedExplanationIdsRef.current.has(explanationId)) {
+      deletedExplanationIdsRef.current.delete(explanationId);
+    }
+    
+    return true;
+  }, [conversations]);
+
   // Auto-request on selection when a new passage is selected
   useEffect(() => {
+    // Clear any pending timer
     if (llmCallTimerRef.current) {
       clearTimeout(llmCallTimerRef.current);
       llmCallTimerRef.current = null;
     }
-    if (!selectionContext) return () => {};
-    if (selectionContext.isWholeSpeech) return () => {};
-    if (!String(selectionContext.text || '').trim()) return () => {};
-    if (suppressAutoExplainRef.current) {
-      suppressAutoExplainRef.current = false;
-      return () => {};
-    }
-    const len = new TextEncoder().encode(selectionContext.text || '').length;
-    const id = `${selectionContext.byteOffset}-${len}`;
-    // Don't create if it already exists OR if it was deleted
-    if (conversations && conversations[id] && conversations[id].last) return () => {};
-    if (deletedExplanationIdsRef.current.has(id)) return () => {};
-    const pref = (llmOptions?.length === 'medium' ? 'more' : (llmOptions?.length === 'large' ? 'more' : 'brief'));
+    
+    // Early exit if no selection
+    if (!selectionContext) return;
+    
+    // Calculate ID once
+    const id = getExplanationId(selectionContext);
+    if (!id) return;
+    
+    // Check all conditions in one place
+    // Note: shouldAutoGenerateExplanation removes deleted IDs when user explicitly selects text
+    // This allows re-generation - the selection itself is the user's intent
+    if (!shouldAutoGenerateExplanation(selectionContext, id)) return;
+    
+    // For auto-explanations, always use 'brief' mode (creates "Text Selection" section)
+    // The length preference only affects content length, not the mode
+    // 'more' mode is only for extending existing explanations via user action
+    const mode = 'brief';
+    
+    // Schedule generation (use ref to avoid dependency issues)
     llmCallTimerRef.current = setTimeout(() => {
-      callLLM({ mode: pref, length: llmOptions?.length || 'brief', auto: true });
+      if (callLLMRef.current) {
+        callLLMRef.current({ mode, length: llmOptions?.length || 'brief', auto: true });
+      }
       llmCallTimerRef.current = null;
     }, 0);
+    
+    // Cleanup
     return () => {
       if (llmCallTimerRef.current) {
         clearTimeout(llmCallTimerRef.current);
         llmCallTimerRef.current = null;
       }
     };
-  }, [selectionContext, conversations, llmOptions?.length, callLLM]);
+  }, [selectionContext, conversations, llmOptions?.length, getExplanationId, shouldAutoGenerateExplanation]);
 
   // Deep-linking disabled: do not update URL on selection (prevents auto-explanations on reload)
 
@@ -1582,11 +1631,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   }
 
   const selectionId = useMemo(() => {
-    if (!selectionContext) return null;
-    // Use byteOffset and length to key the passage
-    const len = new TextEncoder().encode(selectionContext.text || '').length;
-    return `${selectionContext.byteOffset}-${len}`;
-  }, [selectionContext]);
+    return getExplanationId(selectionContext);
+  }, [selectionContext, getExplanationId]);
 
   // All saved explanations across the document, sorted by byte offset
   const allExplanations = useMemo(() => {
@@ -1637,8 +1683,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const next = { ...conversations };
     delete next[id];
     setConversations(next);
-    // Track this ID as deleted to prevent auto-recreation
+    // Track this ID as deleted to prevent auto-recreation on page reload
     deletedExplanationIdsRef.current.add(id);
+    // Track the deleted selection to prevent immediate accidental re-creation
+    // Store the selection context so we can detect if user re-selects the same text
+    if (selectionContext && getExplanationId(selectionContext) === id) {
+      lastDeletedSelectionRef.current = {
+        id,
+        text: selectionContext.text,
+        timestamp: Date.now()
+      };
+    }
     // Immediately save to localStorage to prevent reload from restoring it
     try {
       localStorage.setItem('explanations', JSON.stringify(next));
@@ -1989,6 +2044,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       setLoadingLLM(false);
     }
   }
+  
+  // Keep callLLM ref updated so the effect can call the latest version
+  useEffect(() => {
+    callLLMRef.current = callLLM;
+  });
 
   function buildUserPrompt(selCtx, mode, followup, respLen) {
     const parts = [
@@ -2147,11 +2207,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             onPendingFocusConsumed={() => setPendingFocus(null)}
             savedExplanations={savedExplanations}
             onDeleteSaved={(id) => {
+              // Get the explanation text before deleting
+              const deletedEx = conversations[id];
+              const deletedText = deletedEx?.meta?.text || '';
+              
               const next = { ...(conversations || {}) };
               delete next[id];
               setConversations(next);
-              // Track this ID as deleted to prevent auto-recreation
+              // Track this ID as deleted to prevent auto-recreation on page reload
               deletedExplanationIdsRef.current.add(id);
+              // Track the deleted selection to prevent immediate accidental re-creation
+              if (deletedText) {
+                lastDeletedSelectionRef.current = {
+                  id,
+                  text: deletedText,
+                  timestamp: Date.now()
+                };
+              }
               // Immediately save to localStorage to prevent reload from restoring it
               try {
                 localStorage.setItem('explanations', JSON.stringify(next));

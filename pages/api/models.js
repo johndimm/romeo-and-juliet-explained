@@ -34,8 +34,9 @@ export default async function handler(req, res) {
   async function listAnthropic() {
     // Anthropic does not have a public list endpoint; provide a curated list
     return [
-      'claude-3-sonnet-20240229',
+      'claude-3-5-sonnet-20241022',
       'claude-3-opus-20240229',
+      'claude-3-sonnet-20240229',
       'claude-3-haiku-20240307',
     ];
   }
