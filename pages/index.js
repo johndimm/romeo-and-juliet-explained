@@ -249,6 +249,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const lastDeletedSelectionRef = useRef(null); // Track the last deleted selection to prevent immediate re-creation
   const llmCallTimerRef = useRef(null);
   const callLLMRef = useRef(null);
+  const scheduledExplanationIdsRef = useRef(new Set()); // Track IDs we've already scheduled calls for
   const DEBUG_SCROLL = false;
   const DEBUG_RESTORE = false;
   const DEBUG_SELECTION = false;
@@ -1375,8 +1376,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const selectionByteLength = encoder.encode(textForLLM).length;
     const selectionStartByte = byteOffset;
     const selectionEndByte = selectionStartByte + selectionByteLength;
+    // If handleTextMouseUp already detected whole speech, trust it and don't override
     let selectionIsWholeSpeech = selectionFlag;
-    if (!selectionIsWholeSpeech) {
+    if (!selectionFlag) {
+      // Only do detection if handleTextMouseUp didn't set the flag
       const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
       if (speechesMeta.length && selectionTrimmed) {
         let speechIdx = -1;
@@ -1415,15 +1418,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           if (selectionMeetsLength && startDiffBytes <= toleranceBytes) {
             selectionIsWholeSpeech = true;
           } else {
-            const speechFullText = speechSource.trim();
-            if (speechFullText && speechFullText === selectionTrimmed) {
+            // More robust text comparison - normalize whitespace
+            const speechFullText = speechSource.trim().replace(/\s+/g, ' ');
+            const selectionNormalized = selectionTrimmed.replace(/\s+/g, ' ');
+            if (speechFullText && (speechFullText === selectionNormalized || speechFullText === selectionTrimmed)) {
               selectionIsWholeSpeech = true;
             }
           }
         }
       }
     }
-    setSelectionContext({ ...ctx, text: textForLLM, byteOffset, isWholeSpeech: selectionIsWholeSpeech });
+    // Always create selection context - mark whole speech status for explanation generation logic
+    setSelectionContext({ ...ctx, text: textForLLM, byteOffset, isWholeSpeech: !!selectionIsWholeSpeech });
   }, [selection, metadata, sectionsWithOffsets, sections]);
 
   // Helper: Calculate stable explanation ID from context
@@ -1442,6 +1448,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       return false;
     }
     if (conversations[explanationId]?.last) return false;
+    
+    // Don't generate explanations for whole speeches - they already have notes
+    if (context.isWholeSpeech) return false;
     
     // Check if this is the same selection that was just deleted (within 2 seconds)
     // This prevents accidental immediate re-creation when user clicks same text right after deleting
@@ -1464,23 +1473,45 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
   // Auto-request on selection when a new passage is selected
   useEffect(() => {
-    // Clear any pending timer
+    // Early exit if no selection
+    if (!selectionContext) {
+      // Clear scheduled IDs when selection is cleared
+      scheduledExplanationIdsRef.current.clear();
+      return;
+    }
+    
+    // Calculate ID once
+    const id = getExplanationId(selectionContext);
+    if (!id) {
+      scheduledExplanationIdsRef.current.clear();
+      return;
+    }
+    
+    // Clear scheduled set if ID changed (allows new selections to work)
+    // Keep only the current ID in the set
+    const currentScheduled = Array.from(scheduledExplanationIdsRef.current);
+    if (currentScheduled.length > 0 && !currentScheduled.includes(id)) {
+      scheduledExplanationIdsRef.current.clear();
+    }
+    
+    // If we've already scheduled a call for this ID, skip (prevents double-runs)
+    if (scheduledExplanationIdsRef.current.has(id)) {
+      return;
+    }
+    
+    // Clear any pending timer for a different ID
     if (llmCallTimerRef.current) {
       clearTimeout(llmCallTimerRef.current);
       llmCallTimerRef.current = null;
     }
     
-    // Early exit if no selection
-    if (!selectionContext) return;
-    
-    // Calculate ID once
-    const id = getExplanationId(selectionContext);
-    if (!id) return;
-    
     // Check all conditions in one place
     // Note: shouldAutoGenerateExplanation removes deleted IDs when user explicitly selects text
     // This allows re-generation - the selection itself is the user's intent
     if (!shouldAutoGenerateExplanation(selectionContext, id)) return;
+    
+    // Mark this ID as scheduled
+    scheduledExplanationIdsRef.current.add(id);
     
     // For auto-explanations, always use 'brief' mode (creates "Text Selection" section)
     // The length preference only affects content length, not the mode
@@ -1493,6 +1524,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         callLLMRef.current({ mode, length: llmOptions?.length || 'brief', auto: true });
       }
       llmCallTimerRef.current = null;
+      // Keep ID in scheduled set to prevent duplicate runs until selection changes
     }, 0);
     
     // Cleanup
@@ -2507,6 +2539,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   const currentSpeechNoteSuppressed = speechKey && suppressedNotes.has(speechKey);
   const forcedNoteSuppressed = forcedKey && suppressedNotes.has(forcedKey);
   const noteIsSuppressed = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
+  // Check if whole speech is selected
+  const hasSelectionContext = !!(selectedRange && contextInfo);
+  const wholeSpeechSelected = hasSelectionContext && contextInfo?.isWholeSpeech;
+  // Always show note - don't suppress for whole speeches
+  const noteIsSuppressedWithWholeSpeech = noteIsSuppressed;
   // Compute noteSpeechSpan early so it can be used in filteredSavedExplanationsCount
   const noteSpeechSpan = useMemo(() => {
     if (!chosenItem) return null;
@@ -2556,17 +2593,18 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     return meta.sectionIndex === sectionIndex;
   }).length;
   // Only show aside if there's actual visible content (not suppressed note, or has other content)
-  const hasAside = (hasNoteContent && !noteIsSuppressed)
+  const hasAside = (hasNoteContent && !noteIsSuppressedWithWholeSpeech)
     || filteredSavedExplanationsCount > 0
     || (hasLLMContent && !currentSpeechNoteSuppressed)
     || (hasSelection && !currentSpeechNoteSuppressed)
-    || (hasSelectModeActive && !noteIsSuppressed);
+    || (hasSelectModeActive && !noteIsSuppressedWithWholeSpeech);
+  // Check if current selection is a whole speech (should not show explanation panel)
+  const isWholeSpeechSelection = hasSelectionContext && contextInfo?.isWholeSpeech;
   // Indicate clickability in the text area when a suppressed note exists for the current speech
   const canForceReveal = !selectedRange
     && (!savedExplanations || savedExplanations.length === 0)
     && !currentVisible
     && !!currentForceVisible;
-  const hasSelectionContext = !!(selectedRange && contextInfo);
   const conversationLast = llm?.conversation?.last;
   const isThinking = hasSelectionContext && llm?.loading && (!conversationLast || conversationLast === 'AI is thinking…');
   const hasConversation = hasSelectionContext && conversationLast && conversationLast !== 'AI is thinking…';
@@ -2687,7 +2725,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   }, [hasSelectionContext, contextInfo?.isWholeSpeech, speechSpan, selectionByteStart, selectionByteEnd]);
   const selectionPreview = (() => {
     if (!hasSelectionContext || !contextInfo) return null;
-    if (selectionIsWholeSpeech) return null;
+    // Always show source text for explanations, even if it's a whole speech
+    // (though whole speeches shouldn't generate explanations - they show notes instead)
     const str = (contextInfo.text || '').trim();
     return str ? str : null;
   })();
@@ -2976,6 +3015,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       </div>
     );
   })();
+  // Always show chat panel when there's a selection (even for whole speeches - they just won't generate explanations)
   const selectionChatPanel = (hasSelectionContext && isNoteExpanded) ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
       <TextSelectionChat
@@ -3199,8 +3239,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   ) : null;
   // Explanation panel always appears after chat inputs (which appear after the note)
   // Hide explanations when the note is suppressed (closed) - check if current speech note is suppressed
+  // Also hide for whole speeches (no explanation should be shown)
   const hasSuppressedNote = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
-  const explanationPanel = ((hasConversation || hasSelectionContext) && !hasSuppressedNote && isNoteExpanded) ? (
+  const explanationPanel = ((hasConversation || (hasSelectionContext && !isWholeSpeechSelection)) && !hasSuppressedNote && isNoteExpanded) ? (
     <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
       <button 
         type="button" 
@@ -3386,7 +3427,69 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const sent = expandToSentence(text || '', idx);
     if (sent) {
       selPendingRef.current = true;
-      onSelectRange?.({ start: sent.start, end: sent.end });
+      const selectedText = (text || '').slice(sent.start, sent.end).trim();
+      // Check if the expanded sentence matches a whole speech
+      let isWholeSpeech = false;
+      if (metadata && speeches && speeches.length) {
+        const encoder = new TextEncoder();
+        const bytesBefore = encoder.encode((text || '').slice(0, sent.start)).length;
+        const selectionStartByte = sectionStartOffset + bytesBefore;
+        const selectionByteLength = encoder.encode(selectedText).length;
+        
+        // Find the speech that contains this selection
+        let foundSpeech = null;
+        let speechIdx = -1;
+        for (let i = 0; i < speeches.length; i++) {
+          const sp = speeches[i];
+          const speechStartByte = (sp?.offset || 0);
+          if (speechStartByte <= selectionStartByte) {
+            foundSpeech = sp;
+            speechIdx = i;
+          } else {
+            break;
+          }
+        }
+        
+        if (foundSpeech && speechIdx >= 0) {
+          const speechStartByte = foundSpeech.offset || 0;
+          // Find speech end
+          let speechEndByte = null;
+          for (let j = speechIdx + 1; j < speeches.length; j++) {
+            const nextOff = speeches[j]?.offset;
+            if (nextOff != null && nextOff > speechStartByte) {
+              speechEndByte = nextOff;
+              break;
+            }
+          }
+          if (speechEndByte == null) {
+            const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+            const scene = scenesMeta.find((s) => speechStartByte >= (s.startOffset || 0) && speechStartByte < (s.endOffset || 0));
+            if (scene && scene.endOffset != null) speechEndByte = scene.endOffset;
+          }
+          
+          if (speechEndByte != null) {
+            const relStartBytes = Math.max(0, speechStartByte - sectionStartOffset);
+            const speechStartChar = bytesToCharOffset(text || '', relStartBytes);
+            const relEndBytes = Math.max(0, speechEndByte - sectionStartOffset);
+            const speechEndChar = bytesToCharOffset(text || '', relEndBytes);
+            const speechText = (text || '').slice(speechStartChar, speechEndChar).trim();
+            
+            // Check if selection matches whole speech
+            const tolerance = 32;
+            const speechByteLength = encoder.encode(speechText).length;
+            const startDiff = Math.abs(selectionStartByte - speechStartByte);
+            const selectionMeetsLength = speechByteLength > 0 && (selectionByteLength + tolerance) >= speechByteLength;
+            // More robust text comparison - normalize whitespace
+            const speechNormalized = speechText.replace(/\s+/g, ' ');
+            const selectedNormalized = selectedText.replace(/\s+/g, ' ');
+            if ((selectionMeetsLength && startDiff <= tolerance) || speechText === selectedText || speechNormalized === selectedNormalized) {
+              isWholeSpeech = true;
+            }
+          }
+        }
+      }
+      // Always explicitly set isWholeSpeech (true or false) so detection works correctly
+      onSelectRange?.({ start: sent.start, end: sent.end, isWholeSpeech: !!isWholeSpeech });
     }
   };
 
@@ -3713,19 +3816,19 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       })();
       const currentScroll = (s === window) ? window.scrollY : s.scrollTop;
       scrolled = Math.abs(currentScroll - scrollerStartRef.current) > 5; // 5px scroll threshold
-    } catch {}
+            } catch {}
 
     if (!mobileSelectMode) {
-      touchActiveRef.current = false;
-      setTimeout(() => { movedRef.current = false; }, 80);
-      return;
-    }
+        touchActiveRef.current = false;
+        setTimeout(() => { movedRef.current = false; }, 80);
+        return;
+      }
 
     if (movedTooFar || scrolled || !touchSelectingRef.current || movedRef.current) {
       try {
         const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
         if (sel && sel.rangeCount > 0) sel.removeAllRanges();
-          } catch {}
+    } catch {}
       touchSelectingRef.current = false;
       touchActiveRef.current = false;
       mobileStartCharRef.current = null;
@@ -3735,8 +3838,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
     try { e.preventDefault(); e.stopPropagation(); } catch {}
 
-            try {
-              const container = preRef.current;
+      try {
+        const container = preRef.current;
       if (!container) {
         touchActiveRef.current = false;
         setTimeout(() => { movedRef.current = false; }, 80);
@@ -3961,9 +4064,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                           // Trigger "More" action when clicking on expanded note
                           handleNoteMore();
                         } else {
-                          // Toggle expanded/collapsed state
-                          if (itemSpeechKey && onToggleNoteExpanded) {
-                            onToggleNoteExpanded(itemSpeechKey);
+                        // Toggle expanded/collapsed state
+                        if (itemSpeechKey && onToggleNoteExpanded) {
+                          onToggleNoteExpanded(itemSpeechKey);
                           }
                         }
                       }} 
