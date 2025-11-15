@@ -1406,11 +1406,13 @@ html.isPrintRoute .container { left: 0; }
   .appHeader {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0; /* No notch in landscape */
   }
 
   .appHeaderInner {
     padding-left: 8px;
-    padding-right: 8px;
+    padding-right: calc(8px + var(--safe-area-right)); /* Add right margin for gear icon */
+    padding-top: 8px; /* Remove safe-area-top padding in landscape */
   }
 
   .headerRight {
@@ -1422,6 +1424,7 @@ html.isPrintRoute .container { left: 0; }
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    padding-right: var(--safe-area-right); /* Ensure gear icon is reachable */
   }
   .headerNotesDensity {
     grid-column: 2;

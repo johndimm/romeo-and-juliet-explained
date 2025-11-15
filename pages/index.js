@@ -249,6 +249,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const lastDeletedSelectionRef = useRef(null); // Track the last deleted selection to prevent immediate re-creation
   const llmCallTimerRef = useRef(null);
   const callLLMRef = useRef(null);
+  const conversationsRef = useRef(conversations); // Keep ref to latest conversations
+  const onMoreExplanationRef = useRef(null); // Keep ref to latest onMoreExplanation handler
+  const metadataRef = useRef(metadata); // Keep ref to latest metadata
+  const speechMapsRef = useRef(null); // Keep ref to latest speechMaps (will be set after speechMaps is defined)
   const scheduledExplanationIdsRef = useRef(new Set()); // Track IDs we've already scheduled calls for
   const DEBUG_SCROLL = false;
   const DEBUG_RESTORE = false;
@@ -1363,7 +1367,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       setSelectionContext(null);
       return;
     }
-    const selectionFlag = !!selection.isWholeSpeech;
+    // If isWholeSpeech is explicitly set (true or false), trust it
+    const selectionFlag = selection.isWholeSpeech;
+    const isExplicitlySet = selectionFlag === true || selectionFlag === false;
+    
     // Compute byte offset at selection start
     const encoder = new TextEncoder();
     const bytesBefore = encoder.encode(sectionText.slice(0, start)).length;
@@ -1376,10 +1383,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const selectionByteLength = encoder.encode(textForLLM).length;
     const selectionStartByte = byteOffset;
     const selectionEndByte = selectionStartByte + selectionByteLength;
-    // If handleTextMouseUp already detected whole speech, trust it and don't override
-    let selectionIsWholeSpeech = selectionFlag;
-    if (!selectionFlag) {
-      // Only do detection if handleTextMouseUp didn't set the flag
+    
+    let selectionIsWholeSpeech = !!selectionFlag;
+    
+    // Only do detection if not explicitly set
+    if (!isExplicitlySet) {
       const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
       if (speechesMeta.length && selectionTrimmed) {
         let speechIdx = -1;
@@ -1410,19 +1418,37 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             const relEndBytes = relStartBytes + selectionByteLength;
             speechEndChar = bytesToCharOffset(sectionText, relEndBytes);
           }
-          const speechSource = sectionText.slice(speechStartChar, Math.min(sectionText.length, speechEndChar));
-          const speechByteLength = encoder.encode(speechSource).length;
-          const toleranceBytes = 32;
-          const startDiffBytes = Math.abs(selectionStartByte - speechStartByte);
-          const selectionMeetsLength = speechByteLength > 0 && (selectionByteLength + toleranceBytes) >= speechByteLength;
-          if (selectionMeetsLength && startDiffBytes <= toleranceBytes) {
-            selectionIsWholeSpeech = true;
-          } else {
-            // More robust text comparison - normalize whitespace
-            const speechFullText = speechSource.trim().replace(/\s+/g, ' ');
+          const speechSource = sectionText.slice(speechStartChar, Math.min(sectionText.length, speechEndChar)).trim();
+          
+          // Simplified detection: check if speech is only one sentence
+          // Count sentence-ending punctuation marks (excluding those in brackets)
+          let sentenceCount = 0;
+          let bracketDepth = 0;
+          for (let i = 0; i < speechSource.length; i++) {
+            const ch = speechSource[i];
+            if (ch === '[') bracketDepth++;
+            else if (ch === ']') bracketDepth--;
+            else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ';')) {
+              sentenceCount++;
+            }
+          }
+          
+          // If speech has only one sentence, and selection matches it, it's whole speech
+          if (sentenceCount <= 1) {
+            const speechNormalized = speechSource.replace(/\s+/g, ' ');
             const selectionNormalized = selectionTrimmed.replace(/\s+/g, ' ');
-            if (speechFullText && (speechFullText === selectionNormalized || speechFullText === selectionTrimmed)) {
+            if (speechNormalized === selectionNormalized || speechSource === selectionTrimmed) {
+            selectionIsWholeSpeech = true;
+            }
+          } else {
+            // Speech has multiple sentences - selection is whole speech only if it matches full speech text
+            const speechNormalized = speechSource.replace(/\s+/g, ' ');
+            const selectionNormalized = selectionTrimmed.replace(/\s+/g, ' ');
+            if (speechNormalized === selectionNormalized || speechSource === selectionTrimmed) {
               selectionIsWholeSpeech = true;
+            } else {
+              // Selection is only part of speech, so it's NOT whole speech
+              selectionIsWholeSpeech = false;
             }
           }
         }
@@ -1957,9 +1983,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             if (off >= (targetScene.startOffset||0) && off <= byte) count++;
           }
           if (count > 0 && speechMaps && speechMaps.noteBySpeechKey) {
+            // Get note for current speech
             const spKey = `${act}|${scene}|${count}`;
             const it = speechMaps.noteBySpeechKey.get(spKey);
             if (it && it.content) noteText = String(it.content);
+            
+            // Also get note for prior speech (if it exists) to provide context
+            if (count > 1) {
+              const priorSpKey = `${act}|${scene}|${count - 1}`;
+              const priorIt = speechMaps.noteBySpeechKey.get(priorSpKey);
+              if (priorIt && priorIt.content) {
+                const priorNote = String(priorIt.content);
+                // Combine prior note and current note
+                noteText = noteText 
+                  ? `Note for prior speech:\n${priorNote}\n\nNote for current speech:\n${noteText}`
+                  : `Note for prior speech:\n${priorNote}`;
+              }
+            }
           }
         }
       } catch {}
@@ -2003,12 +2043,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           const existingMoreThreads = Array.isArray(prevConv.moreThreads) ? prevConv.moreThreads : [];
         const newMoreThreads = [
           ...existingMoreThreads,
-          { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || '') }
+          { q: 'More', a: data.content, model: (llmOptions?.model || ''), provider: (llmOptions?.provider || ''), _id: `${selectionId}-more-${Date.now()}-${existingMoreThreads.length}` }
         ];
           const prevFollowups = Array.isArray(prevConv.followupThreads) ? prevConv.followupThreads : [];
           const prevLast = prevConv.last;
           const nextLast = (prevLast && prevLast !== thinkingText) ? prevLast : undefined;
-          return {
+          const next = {
             ...prev,
             [selectionId]: {
               ...prevConv,
@@ -2021,6 +2061,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               model: meta.model,
             },
           };
+          // Save to localStorage immediately
+          try {
+            localStorage.setItem('explanations', JSON.stringify(next));
+          } catch {}
+          return next;
         });
       } else if (mode === 'followup' && followup) {
         // For followup mode, append to followupThreads
@@ -2031,7 +2076,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         ];
         // Remove from deleted set when successfully creating a new explanation
         deletedExplanationIdsRef.current.delete(selectionId);
-        setConversations({
+        const next = {
           ...conversations,
           [selectionId]: {
             messages: newMsgs,
@@ -2042,11 +2087,16 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             provider: meta.provider,
             model: meta.model,
           },
-        });
+        };
+        // Save to localStorage immediately
+        try {
+          localStorage.setItem('explanations', JSON.stringify(next));
+        } catch {}
+        setConversations(next);
       } else {
         // Remove from deleted set when successfully creating a new explanation
         deletedExplanationIdsRef.current.delete(selectionId);
-        setConversations({
+        const next = {
           ...conversations,
           [selectionId]: {
             messages: newMsgs,
@@ -2057,7 +2107,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             provider: meta.provider,
             model: meta.model,
           },
-        });
+        };
+        // Save to localStorage immediately
+        try {
+          localStorage.setItem('explanations', JSON.stringify(next));
+        } catch {}
+        setConversations(next);
       }
     } catch (e) {
       setConversations({
@@ -2081,6 +2136,128 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   useEffect(() => {
     callLLMRef.current = callLLM;
   });
+
+  // Keep refs updated
+  useEffect(() => {
+    conversationsRef.current = conversations;
+  }, [conversations]);
+
+  useEffect(() => {
+    metadataRef.current = metadata;
+  }, [metadata]);
+
+  useEffect(() => {
+    speechMapsRef.current = speechMaps;
+  }, [speechMaps]);
+
+  // Create onMoreExplanation handler that uses refs to avoid stale closures
+  const handleMoreExplanation = useCallback(async (id, meta, passageText, options) => {
+    // Add a "More" response to an existing explanation
+    const currentConversations = conversationsRef.current;
+    const currentMetadata = metadataRef.current;
+    const currentSpeechMaps = speechMapsRef.current;
+    console.log('onMoreExplanation called', { id, conversationKeys: Object.keys(currentConversations) });
+    try {
+      const conv = currentConversations[id] || {};
+      const existingExplanation = conv.last || '';
+      console.log('Found conversation', { id, hasLast: !!conv.last, hasMoreThreads: Array.isArray(conv.moreThreads), moreThreadsCount: conv.moreThreads?.length || 0 });
+      
+      // Get notes for context (current speech and prior speech)
+      let noteText = '';
+      try {
+        const act = meta.act;
+        const scene = meta.scene;
+        const byte = meta.byteOffset || 0;
+        const scenes = Array.isArray(currentMetadata?.scenes) ? currentMetadata.scenes : [];
+        const targetScene = scenes.find((s) => s.act === act && String(s.scene) === String(scene));
+        if (targetScene && Array.isArray(currentMetadata?.speeches)) {
+          let count = 0;
+          for (const sp of currentMetadata.speeches) {
+            const off = sp?.offset || 0;
+            if (off >= (targetScene.startOffset||0) && off <= byte) count++;
+          }
+          if (count > 0 && currentSpeechMaps && currentSpeechMaps.noteBySpeechKey) {
+            const spKey = `${act}|${scene}|${count}`;
+            const it = currentSpeechMaps.noteBySpeechKey.get(spKey);
+            if (it && it.content) noteText = String(it.content);
+            
+            if (count > 1) {
+              const priorSpKey = `${act}|${scene}|${count - 1}`;
+              const priorIt = currentSpeechMaps.noteBySpeechKey.get(priorSpKey);
+              if (priorIt && priorIt.content) {
+                const priorNote = String(priorIt.content);
+                noteText = noteText 
+                  ? `Note for prior speech:\n${priorNote}\n\nNote for current speech:\n${noteText}`
+                  : `Note for prior speech:\n${priorNote}`;
+              }
+            }
+          }
+        }
+      } catch {}
+      
+      // Include existing explanation in noteText
+      if (existingExplanation && existingExplanation !== 'AI is thinking…' && String(existingExplanation).trim()) {
+        noteText = noteText 
+          ? `${noteText}\n\n${existingExplanation}`
+          : existingExplanation;
+      }
+      
+      const url = getApiUrl('/api/explain');
+      const data = await fetchWithErrorHandling(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          selectionText: passageText || meta.text || '',
+          context: { act: meta.act, scene: meta.scene, speaker: meta.speaker, onStage: meta.onStage },
+          options: options || {},
+          messages: [],
+          mode: 'more',
+          noteText,
+        }),
+      });
+      
+      // Update conversation with new More response using functional update
+      setConversations((prev) => {
+        const prevConv = prev[id] || {};
+        const existingMoreThreads = Array.isArray(prevConv.moreThreads) ? prevConv.moreThreads.slice() : [];
+        // Add a unique ID to each More response for stable React keys
+        const moreId = `${id}-more-${Date.now()}-${existingMoreThreads.length}`;
+        const newMoreThreads = [
+          ...existingMoreThreads,
+          { q: 'More', a: data.content, model: (options?.model || ''), provider: (options?.provider || ''), _id: moreId }
+        ];
+        console.log('Updating moreThreads', { id, existingCount: existingMoreThreads.length, newCount: newMoreThreads.length });
+        const next = {
+          ...prev,
+          [id]: {
+            ...prevConv,
+            moreThreads: newMoreThreads,
+            // Ensure all properties are preserved
+            last: prevConv.last,
+            meta: prevConv.meta,
+            messages: prevConv.messages,
+            followupThreads: prevConv.followupThreads,
+            provider: prevConv.provider || options?.provider,
+            model: prevConv.model || options?.model,
+          },
+        };
+        // Save to localStorage
+        try {
+          localStorage.setItem('explanations', JSON.stringify(next));
+        } catch {}
+        return next;
+      });
+    } catch (e) {
+      // Error handling - could show a notification here
+      appLog('error', 'Failed to add More response', e);
+      throw e; // Re-throw so caller can handle it
+    }
+  }, []); // Empty deps - use refs for everything
+
+  // Keep ref updated (for potential future use)
+  useEffect(() => {
+    onMoreExplanationRef.current = handleMoreExplanation;
+  }, [handleMoreExplanation]);
 
   function buildUserPrompt(selCtx, mode, followup, respLen) {
     const parts = [
@@ -2261,6 +2438,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 localStorage.setItem('explanations', JSON.stringify(next));
               } catch {}
             }}
+            onMoreExplanation={handleMoreExplanation}
             onCopyLink={() => {
               const curr = selectionContext;
               if (!curr) return;
@@ -2376,7 +2554,26 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, expandedNotes = new Set(), onToggleNoteExpanded }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, expandedNotes = new Set(), onToggleNoteExpanded, onMoreExplanation }) {
+  // Use ref to always access latest onMoreExplanation
+  // Initialize immediately and keep updated
+  const onMoreExplanationRef = useRef(onMoreExplanation);
+  // Update synchronously on every render to ensure it's always current
+  if (onMoreExplanationRef.current !== onMoreExplanation) {
+    onMoreExplanationRef.current = onMoreExplanation;
+  }
+  useEffect(() => {
+    onMoreExplanationRef.current = onMoreExplanation;
+  }, [onMoreExplanation]);
+  
+  // Debug: log when onMoreExplanation changes
+  useEffect(() => {
+    console.log('Section: onMoreExplanation prop changed', { 
+      hasOnMoreExplanation: !!onMoreExplanation, 
+      type: typeof onMoreExplanation,
+      sectionIndex 
+    });
+  }, [onMoreExplanation, sectionIndex]);
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -2661,19 +2858,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         return false;
       }
     }
-    // Don't show saved explanations that match the currently selected text (they're shown in explanationPanel)
-    if (!currentSelectionId) return true;
-    // Try multiple ways to match the ID to be more robust
-    const len = textEncoder.encode(ex.meta.text || '').length;
-    const exId = `${ex.meta.byteOffset}-${len}`;
-    // Also check if selectedId matches (passed from parent)
-    if (selectedId && selectedId === exId) return false;
-    // Check if currentSelectionId matches
-    if (exId === currentSelectionId) return false;
-    // Also check byteOffset match if text length matches (in case of encoding differences)
-    if (ex.meta.byteOffset === contextInfo?.byteOffset && len === textEncoder.encode(contextInfo?.text || '').length) {
-      return false;
-    }
+    // Show all explanations, including the current selection (they're all saved now)
     return true;
   });
   const selectionByteStart = hasSelectionContext && contextInfo ? (contextInfo.byteOffset ?? null) : null;
@@ -2826,21 +3011,78 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       });
       try {
         setPreFollowLoading(true);
-        const startRelB = Math.max(0, (it.startOffset || 0) - sectionStartOffset);
-        const endRelB = Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 1) - sectionStartOffset);
+        const byteOffset = it.startOffset || 0;
+        const ctx = getContextForOffset(metadata || {}, byteOffset);
+        
+        // Find speech boundaries to get the full speech text
+        let speechStartByte = byteOffset;
+        let speechEndByte = null;
+        const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+        let speechIdx = -1;
+        for (let i = 0; i < speechesMeta.length; i++) {
+          const off = speechesMeta[i]?.offset || 0;
+          if (off <= byteOffset) speechIdx = i; else break;
+        }
+        if (speechIdx >= 0) {
+          speechStartByte = speechesMeta[speechIdx].offset || 0;
+          // Find next speech or scene end
+          for (let j = speechIdx + 1; j < speechesMeta.length; j++) {
+            const nextOff = speechesMeta[j]?.offset;
+            if (nextOff != null && nextOff > speechStartByte) {
+              speechEndByte = nextOff;
+              break;
+            }
+          }
+          if (speechEndByte == null) {
+            const scenes = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+            const scene = scenes.find((s) => speechStartByte >= (s.startOffset || 0) && speechStartByte < (s.endOffset || 0));
+            if (scene && scene.endOffset != null) speechEndByte = scene.endOffset;
+          }
+        }
+        
+        // Extract passage from section text using speech boundaries
+        const startRelB = Math.max(0, speechStartByte - sectionStartOffset);
+        const endRelB = speechEndByte != null 
+          ? Math.max(startRelB, speechEndByte - sectionStartOffset)
+          : Math.max(startRelB + 1, (it.endOffset || (it.startOffset || 0) + 100) - sectionStartOffset); // Fallback: use endOffset or estimate
         const startC = bytesToCharOffset(text || '', startRelB);
         const endC = bytesToCharOffset(text || '', endRelB);
-        const passage = (text || '').slice(startC, endC);
-        const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
+        const passage = (text || '').slice(startC, endC).trim();
+        
         const existingNote = (it.content || '').trim();
+        
+        // Get prior speech's note for context
+        let noteText = existingNote;
+        try {
+          const byte = it.startOffset || 0;
+          const scenes = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+          const targetScene = scenes.find((s) => s.act === ctx.act && String(s.scene) === String(ctx.scene));
+          if (targetScene && Array.isArray(metadata?.speeches)) {
+            let count = 0;
+            for (const sp of metadata.speeches) {
+              const off = sp?.offset || 0;
+              if (off >= (targetScene.startOffset||0) && off <= byte) count++;
+            }
+            if (count > 1 && noteBySpeechKey) {
+              const priorSpKey = `${ctx.act}|${ctx.scene}|${count - 1}`;
+              const priorIt = noteBySpeechKey.get(priorSpKey);
+              if (priorIt && priorIt.content) {
+                const priorNote = String(priorIt.content);
+                noteText = noteText 
+                  ? `Note for prior speech:\n${priorNote}\n\nNote for current speech:\n${noteText}`
+                  : `Note for prior speech:\n${priorNote}`;
+              }
+            }
+          }
+        } catch {}
+        
         const q = 'Please expand this into a longer explanation with more detail.';
         const url = getApiUrl('/api/explain');
-        // For "More", use the note content as the primary text, not the passage
-        // This ensures "More" expands the note, not the speech text
+        // Use the actual passage from the play as selectionText, with notes in noteText
         const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ selectionText: existingNote || passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText: existingNote })
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: q, noteText })
         });
         const addition = (data?.content || '').trim();
         // Update the placeholder entry with actual response
@@ -2869,7 +3111,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       } finally {
         setPreFollowLoading(false);
       }
-  }, [chosenItem, sectionStartOffset, text, metadata, llm?.options, setPreFollowThreads, setPreFollowLoading]);
+  }, [chosenItem, sectionStartOffset, text, metadata, llm?.options, setPreFollowThreads, setPreFollowLoading, noteBySpeechKey]);
 
   const noteModeChatPanel = (() => {
     // Only show noteModeChatPanel when note is expanded and NO text is selected
@@ -2893,12 +3135,38 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         const endC = bytesToCharOffset(text || '', endRelB);
         const passage = (text || '').slice(startC, endC);
         const ctx = getContextForOffset(metadata || {}, it.startOffset || 0);
-        const url = getApiUrl('/api/explain');
         const existingNote = (it.content || '').trim();
+        
+        // Get prior speech's note for context
+        let noteText = existingNote;
+        try {
+          const byte = it.startOffset || 0;
+          const scenes = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+          const targetScene = scenes.find((s) => s.act === ctx.act && String(s.scene) === String(ctx.scene));
+          if (targetScene && Array.isArray(metadata?.speeches)) {
+            let count = 0;
+            for (const sp of metadata.speeches) {
+              const off = sp?.offset || 0;
+              if (off >= (targetScene.startOffset||0) && off <= byte) count++;
+            }
+            if (count > 1 && noteBySpeechKey) {
+              const priorSpKey = `${ctx.act}|${ctx.scene}|${count - 1}`;
+              const priorIt = noteBySpeechKey.get(priorSpKey);
+              if (priorIt && priorIt.content) {
+                const priorNote = String(priorIt.content);
+                noteText = noteText 
+                  ? `Note for prior speech:\n${priorNote}\n\nNote for current speech:\n${noteText}`
+                  : `Note for prior speech:\n${priorNote}`;
+              }
+            }
+          }
+        } catch {}
+        
+        const url = getApiUrl('/api/explain');
         const data = await fetchWithErrorHandling(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText, noteText: existingNote })
+          body: JSON.stringify({ selectionText: passage, context: { act: ctx.act, scene: ctx.scene, speaker: ctx.speaker, onStage: ctx.onStage }, options: llm?.options, messages: [], mode: 'followup', followup: followupText, noteText })
         });
         const addition = (data?.content || '').trim();
         // Update the placeholder entry with actual response
@@ -3046,7 +3314,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         }
         // Show "Thinking..." for initial selection loading below chat UI
         const showInitialThinking = isThinking && !conversationLast;
-        // Don't show selection preview here - it's shown in explanationPanel instead
+        // Selection preview is shown in ExplanationCard components
         if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading && !showInitialThinking) return null;
         return (
           <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
@@ -3226,7 +3494,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 </div>
               );
             })}
-            {preFollowLoading && chosenItem && isNoteExpanded && (
+            {/* Only show preFollowLoading indicator if there are no threads with loading: true */}
+            {preFollowLoading && chosenItem && isNoteExpanded && !noteThreads.some(m => m.loading) && (
               <div style={{ marginTop: (moreThreads.length > 0 || noteThreads.length > 0) ? '0.5rem' : '0' }}>
                 <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
                 <div style={{ color: '#6b5f53' }}>Thinking…</div>
@@ -3241,55 +3510,71 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Hide explanations when the note is suppressed (closed) - check if current speech note is suppressed
   // Also hide for whole speeches (no explanation should be shown)
   const hasSuppressedNote = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
-  const explanationPanel = ((hasConversation || (hasSelectionContext && !isWholeSpeechSelection)) && !hasSuppressedNote && isNoteExpanded) ? (
-    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee', position: 'relative' }}>
-      <button 
-        type="button" 
-        className="closeBtn" 
-        onClick={() => {
-          if (llm?.onDeleteCurrent) {
-            llm.onDeleteCurrent();
-          }
-          onSelectRange?.(null);
-          // Clear browser selection to prevent re-triggering
-          if (typeof window !== 'undefined' && window.getSelection) {
-            try {
-              const sel = window.getSelection();
-              if (sel) sel.removeAllRanges();
-            } catch {}
-          }
-        }} 
-        aria-label="Delete explanation" 
-        style={{ position: 'absolute', right: 0, top: 0 }}
-      >
-        🗑️
-      </button>
-      {/* Title for selected text explanation */}
+  // All explanations are now saved and rendered through savedExplanationsPanel
+  // Show loading indicator if thinking
+  const thinkingPanel = (isThinking && hasSelectionContext && !hasSuppressedNote && isNoteExpanded) ? (
+    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee' }}>
       <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Text selection</div>
       {renderSelectionPreview(selectionPreviewForExplanation || selectionPreview)}
-      {isThinking ? (
-        <div style={{ color: '#6b5f53' }}>Thinking…</div>
-      ) : (
-      <div style={{ whiteSpace: 'pre-wrap' }}>{conversationLast}</div>
-      )}
-      {(() => {
-        const convoProvider = llm?.conversation?.provider || llm?.options?.provider || '';
-        const convoModel = llm?.conversation?.model || llm?.options?.model || '';
-        const providerName = formatProviderName(convoProvider);
-        let attribution = '';
-        if (convoModel && providerName) attribution = `${convoModel} (via ${providerName})`;
-        else if (convoModel) attribution = `Model: ${convoModel}`;
-        else if (providerName) attribution = providerName;
-        return attribution ? (
-          <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 4 }}>
-            {attribution}
-          </div>
-        ) : null;
-      })()}
+      <div style={{ color: '#6b5f53' }}>Thinking…</div>
     </div>
   ) : null;
+  // Create stable handlers for each explanation using useMemo
+  // Include onMoreExplanation in deps so handlers are recreated when it changes
+  // The handlers will read from the ref.current at call time, which is always current
+  const explanationHandlers = useMemo(() => {
+    const handlers = new Map();
+    filteredSavedExplanations.forEach((ex, i) => {
+      const meta = ex?.meta || {};
+      const passageText = (() => {
+        const direct = (meta.text || '').trim();
+        if (direct) return direct;
+        const start = Number.isFinite(meta.start) ? meta.start : null;
+        const end = Number.isFinite(meta.end) ? meta.end : null;
+        if (start != null && end != null && end > start) {
+          return (text || '').slice(start, end).trim();
+        }
+        return '';
+      })();
+      const explanationId = (() => {
+        const len = textEncoder.encode(meta.text || passageText || '').length;
+        return `${meta.byteOffset}-${len}`;
+      })();
+      
+      // Create stable handler that always uses the latest onMoreExplanation via ref
+      handlers.set(explanationId, async () => {
+        const currentOnMoreExplanation = onMoreExplanationRef.current;
+        console.log('onMore called in Section', { 
+          hasOnMoreExplanation: !!currentOnMoreExplanation, 
+          explanationId, 
+          byteOffset: meta.byteOffset, 
+          passageTextLength: passageText?.length,
+          index: i,
+          totalExplanations: filteredSavedExplanations.length,
+          refCurrentType: typeof onMoreExplanationRef.current
+        });
+        if (currentOnMoreExplanation) {
+          try {
+            await currentOnMoreExplanation(explanationId, meta, passageText, { 
+              provider: ex?.provider || meta?.provider || llm?.options?.provider, 
+              model: ex?.model || meta?.model || llm?.options?.model 
+            });
+          } catch (err) {
+            console.error('onMoreExplanation failed in Section', err);
+            appLog('error', 'onMoreExplanation failed', err);
+            throw err; // Re-throw so ExplanationCard can handle it
+          }
+        } else {
+          console.error('onMoreExplanation not provided to Section', { explanationId, index: i, refCurrent: onMoreExplanationRef.current });
+          appLog('error', 'onMoreExplanation not provided to Section');
+        }
+      });
+    });
+    return handlers;
+  }, [filteredSavedExplanations, text, llm, onMoreExplanation]);
+
   const savedExplanationsPanel = (filteredSavedExplanations.length > 0 && !hasSuppressedNote && isNoteExpanded) ? (
-    <div style={{ marginTop: (explanationPanel || selectionChatPanel || noteModeChatPanel) ? '0.75rem' : '0.5rem' }}>
+    <div style={{ marginTop: (thinkingPanel || selectionChatPanel || noteModeChatPanel) ? '0.75rem' : '0.5rem' }}>
       {filteredSavedExplanations.map((ex, i) => {
         const meta = ex?.meta || {};
         const passageText = (() => {
@@ -3302,24 +3587,68 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           }
           return '';
         })();
+        const explanationId = (() => {
+          const len = textEncoder.encode(meta.text || passageText || '').length;
+          return `${meta.byteOffset}-${len}`;
+        })();
+        
+        // Always create handler on the fly to ensure it uses the latest ref value
+        // This ensures handlers work even on first render when useMemo might have stale values
+        const handleMore = async () => {
+          const currentOnMoreExplanation = onMoreExplanationRef.current;
+          console.log('onMore called in Section (inline handler)', { 
+            hasOnMoreExplanation: !!currentOnMoreExplanation, 
+            explanationId, 
+            byteOffset: meta.byteOffset, 
+            passageTextLength: passageText?.length,
+            index: i,
+            totalExplanations: filteredSavedExplanations.length,
+            refCurrentType: typeof currentOnMoreExplanation
+          });
+          if (currentOnMoreExplanation) {
+            try {
+              await currentOnMoreExplanation(explanationId, meta, passageText, { 
+                provider: ex?.provider || meta?.provider || llm?.options?.provider, 
+                model: ex?.model || meta?.model || llm?.options?.model 
+              });
+            } catch (err) {
+              console.error('onMoreExplanation failed in Section', err);
+              appLog('error', 'onMoreExplanation failed', err);
+              throw err;
+            }
+          } else {
+            console.error('onMoreExplanation not available', { explanationId, refCurrent: onMoreExplanationRef.current });
+            appLog('error', 'onMoreExplanation not available');
+          }
+        };
+        
+        console.log('Rendering ExplanationCard', { 
+          explanationId, 
+          byteOffset: meta.byteOffset, 
+          textLength: textEncoder.encode(meta.text || passageText || '').length, 
+          hasOnMoreExplanation: !!onMoreExplanation,
+          hasOnMoreExplanationRef: !!onMoreExplanationRef.current,
+          hasHandleMore: !!handleMore,
+          handlerType: typeof handleMore,
+          index: i,
+          totalExplanations: filteredSavedExplanations.length
+        });
+        
         return (
           <ExplanationCard
-            key={`ex-${i}-${meta.byteOffset || i}`}
+            key={explanationId}
             passage={passageText}
             content={ex?.last || ''}
             meta={meta}
             options={{ provider: ex?.provider || meta?.provider || llm?.options?.provider, model: ex?.model || meta?.model || llm?.options?.model }}
+            moreThreads={Array.isArray(ex?.moreThreads) ? ex.moreThreads : []}
             onDelete={() => {
-              const len = textEncoder.encode(meta.text || passageText || '').length;
-              const id = `${meta.byteOffset}-${len}`;
-              onDeleteSaved?.(id);
+              onDeleteSaved?.(explanationId);
             }}
             onLocate={() => {
               if (meta.start != null && meta.end != null) {
                 onSelectRange({ start: meta.start, end: meta.end });
-                const len = textEncoder.encode(meta.text || passageText || '').length;
-                const id = `${meta.byteOffset}-${len}`;
-                onRequestFocus?.({ sectionIndex, id });
+                onRequestFocus?.({ sectionIndex, id: explanationId });
               }
             }}
             onCopy={() => {
@@ -3329,6 +3658,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                 navigator.clipboard?.writeText(url);
               }
             }}
+            onMore={handleMore || (() => {
+              console.error('handleMore is undefined!', { explanationId });
+              appLog('error', 'handleMore is undefined');
+            })}
           />
         );
       })}
@@ -3805,6 +4138,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     const movedTooFar = dx > TOUCH_SCROLL_THRESHOLD || dy > TOUCH_SCROLL_THRESHOLD;
     
     // Check if page actually scrolled (more reliable than touch movement)
+    // Use a more lenient threshold for scroll detection to avoid false positives
     let scrolled = false;
     try {
       const s = (function(){
@@ -3815,7 +4149,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         return window;
       })();
       const currentScroll = (s === window) ? window.scrollY : s.scrollTop;
-      scrolled = Math.abs(currentScroll - scrollerStartRef.current) > 5; // 5px scroll threshold
+      // Increased threshold from 5px to 10px to be more lenient
+      scrolled = Math.abs(currentScroll - scrollerStartRef.current) > 10;
             } catch {}
 
     if (!mobileSelectMode) {
@@ -3824,7 +4159,9 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         return;
       }
 
-    if (movedTooFar || scrolled || !touchSelectingRef.current || movedRef.current) {
+    // Only cancel selection if user clearly scrolled or moved significantly
+    // Allow small movements for better touch selection reliability
+    if ((movedTooFar || scrolled) && !touchSelectingRef.current) {
       try {
         const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
         if (sel && sel.rangeCount > 0) sel.removeAllRanges();
@@ -3832,6 +4169,26 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       touchSelectingRef.current = false;
       touchActiveRef.current = false;
       mobileStartCharRef.current = null;
+      setTimeout(() => { movedRef.current = false; }, 80);
+      return;
+    }
+
+    // If moved too far or scrolled, cancel selection
+    if (movedTooFar || scrolled || movedRef.current) {
+      try {
+        const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
+        if (sel && sel.rangeCount > 0) sel.removeAllRanges();
+    } catch {}
+      touchSelectingRef.current = false;
+      touchActiveRef.current = false;
+      mobileStartCharRef.current = null;
+      setTimeout(() => { movedRef.current = false; }, 80);
+      return;
+    }
+
+    // Only proceed if we're in selection mode and haven't moved
+    if (!touchSelectingRef.current) {
+      touchActiveRef.current = false;
       setTimeout(() => { movedRef.current = false; }, 80);
       return;
     }
@@ -3864,13 +4221,90 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           const selectionKey = `${sent.start}-${sent.end}`;
           lastSelectionStringRef.current = selectionKey;
           selPendingRef.current = true;
-          onSelectRange?.({ start: sent.start, end: sent.end });
+          
+          // Check if this sentence is the whole speech
+          let isWholeSpeech = false;
+          try {
+            const selectedText = (text || '').slice(sent.start, sent.end).trim();
+            const encoder = new TextEncoder();
+            const selectionStartByte = sectionStartOffset + encoder.encode((text || '').slice(0, sent.start)).length;
+            const speechesMeta = Array.isArray(metadata?.speeches) ? metadata.speeches : [];
+            if (speechesMeta.length) {
+              let speechIdx = -1;
+              for (let i = 0; i < speechesMeta.length; i++) {
+                const off = speechesMeta[i]?.offset || 0;
+                if (off <= selectionStartByte) speechIdx = i; else break;
+              }
+              if (speechIdx >= 0) {
+                const speechStartByte = speechesMeta[speechIdx]?.offset || 0;
+                let speechEndByte = null;
+                for (let i = speechIdx + 1; i < speechesMeta.length; i++) {
+                  const nextOff = speechesMeta[i]?.offset;
+                  if (nextOff != null && nextOff > speechStartByte) { speechEndByte = nextOff; break; }
+                }
+                if (speechEndByte == null) {
+                  const scenesMeta = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
+                  const scene = scenesMeta.find((s) => speechStartByte >= (s.startOffset || 0) && speechStartByte < (s.endOffset || 0));
+                  if (scene && scene.endOffset != null) speechEndByte = scene.endOffset;
+                }
+                const relStartBytes = Math.max(0, speechStartByte - sectionStartOffset);
+                const speechStartChar = bytesToCharOffset(text || '', relStartBytes);
+                let speechEndChar = null;
+                if (speechEndByte != null) {
+                  const relEndBytes = Math.max(0, speechEndByte - sectionStartOffset);
+                  speechEndChar = bytesToCharOffset(text || '', relEndBytes);
+                }
+                if (speechEndChar == null || speechEndChar <= speechStartChar) {
+                  const relEndBytes = relStartBytes + encoder.encode(selectedText).length;
+                  speechEndChar = bytesToCharOffset(text || '', relEndBytes);
+                }
+                const speechSource = (text || '').slice(speechStartChar, Math.min((text || '').length, speechEndChar));
+                
+                // Count sentences in speech (excluding those in brackets)
+                // A sentence ends with .!?; (but not inside brackets)
+                let sentenceCount = 0;
+                let bracketDepth = 0;
+                for (let i = 0; i < speechSource.length; i++) {
+                  const ch = speechSource[i];
+                  if (ch === '[') bracketDepth++;
+                  else if (ch === ']') bracketDepth--;
+                  else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ';')) {
+                    sentenceCount++;
+                  }
+                }
+                
+                // Check if selection boundaries match speech boundaries (within tolerance)
+                // This is more reliable than text comparison since expandToSentence may trim whitespace
+                const tolerance = 10; // characters
+                const selectionStartDiff = Math.abs(sent.start - speechStartChar);
+                const selectionEndDiff = Math.abs(sent.end - speechEndChar);
+                
+                // If speech has only one sentence and selection boundaries match speech boundaries, it's whole speech
+                if (sentenceCount <= 1) {
+                  if (selectionStartDiff <= tolerance && selectionEndDiff <= tolerance) {
+                    isWholeSpeech = true;
+                  }
+                } else {
+                  // Speech has multiple sentences - selection is whole speech only if boundaries match exactly
+                  if (selectionStartDiff <= tolerance && selectionEndDiff <= tolerance) {
+                    isWholeSpeech = true;
+                  }
+                }
+              }
+            }
+          } catch (err) {
+            // If detection fails, default to false (not whole speech)
+            isWholeSpeech = false;
+          }
+          
+          onSelectRange?.({ start: sent.start, end: sent.end, isWholeSpeech });
         scrollAsideIntoView();
       }
     }
     } catch {}
 
     skipNextMouseUpRef.current = true;
+    touchSelectingRef.current = false;
     touchActiveRef.current = false;
     setTimeout(() => { movedRef.current = false; }, 80);
   };
@@ -4118,7 +4552,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           {noteModeChatPanel}
           {selectionChatPanel}
           {/* Explanations appear after chat inputs */}
-          {explanationPanel}
+          {thinkingPanel}
           {savedExplanationsPanel}
           {/* Show threads for suppressed notes (when note is collapsed) */}
           {suppressedNoteThreadsPanel}
@@ -4665,7 +5099,8 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
   );
 }
 
-function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options, title }) {
+function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options, title, onMore, moreThreads = [] }) {
+  appLog('debug', 'ExplanationCard rendered', { hasOnMore: !!onMore, hasContent: !!content, moreThreadsCount: moreThreads.length });
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const [loading, setLoading] = useState(false);
@@ -4785,10 +5220,43 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           </div>
         );
       })()}
-      <div style={{ marginTop: '0.25rem' }} onClick={(e) => { 
-        e.stopPropagation();
-        e.preventDefault();
-        // Always trigger "More" action when clicking on explanation content
+      <div 
+        style={{ marginTop: '0.25rem', cursor: onMore ? 'pointer' : 'default' }} 
+        onClick={async (e) => { 
+          console.log('ExplanationCard: onClick FIRED', { hasOnMore: !!onMore, hasContent: !!content, onMoreType: typeof onMore });
+          appLog('debug', 'ExplanationCard: onClick fired', { hasOnMore: !!onMore, hasContent: !!content });
+          // Only trigger if clicking directly on the content div, not on selected text
+          const selection = window.getSelection()?.toString().trim();
+          if (selection) {
+            console.log('ExplanationCard: text selected, skipping', { selection });
+            appLog('debug', 'ExplanationCard: text selected, skipping', { selection });
+            // User is selecting text, don't trigger More
+            return;
+          }
+          e.stopPropagation();
+          e.preventDefault();
+          // If onMore is provided (for saved explanations), use it to add More response
+          if (onMore) {
+            console.log('ExplanationCard: calling onMore function', { onMoreType: typeof onMore });
+            appLog('debug', 'ExplanationCard: calling onMore', { hasOnMore: !!onMore });
+            try {
+              setLoading(true);
+              await onMore();
+              console.log('ExplanationCard: onMore completed successfully');
+              onLocate?.(); // Highlight source in text
+            } catch (err) {
+              console.error('ExplanationCard: onMore failed', err);
+              appLog('error', 'Failed to add More response', err);
+              // Show error to user
+              alert(`Failed to add more detail: ${err.message || String(err)}`);
+            } finally {
+              setLoading(false);
+            }
+            return;
+          }
+          console.log('ExplanationCard: onMore not provided, using internal ask');
+          appLog('debug', 'ExplanationCard: onMore not provided, using internal ask');
+          // Otherwise, use internal ask function (for inline explanations)
         // Also ensure the follow-up input is visible
         if (!open) {
           setOpen(true);
@@ -4797,8 +5265,10 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
         // Trigger "More" action
         ask('Expand into a longer, more detailed explanation without repeating earlier sentences.');
         onLocate?.(); // Highlight source in text
-      }} title="Click to get more detail">
-        <div style={{ whiteSpace: 'pre-wrap', cursor: 'pointer' }}>{content || '—'}</div>
+        }}
+        title={onMore ? "Click to add more detail" : undefined}
+      >
+        <div style={{ whiteSpace: 'pre-wrap', cursor: onMore ? 'pointer' : 'default' }}>{content || '—'}</div>
         {(() => {
           const resolvedModel = meta?.model || options?.model || '';
           const resolvedProvider = formatProviderName(meta?.provider || options?.provider || '');
@@ -4813,6 +5283,40 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           ) : null;
         })()}
       </div>
+      {/* Show loading indicator when adding More */}
+      {loading && !open && (
+        <div style={{ marginTop: '0.5rem', color: '#6b5f53' }}>Thinking…</div>
+      )}
+      {/* Display moreThreads from saved explanation */}
+      {moreThreads.length > 0 && (
+        <div style={{ marginTop: '0.5rem' }}>
+          {moreThreads.map((m, i) => {
+            const providerName = formatProviderName(m?.provider || '');
+            let attribution = '';
+            if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+            else if (m?.model) attribution = `Model: ${m.model}`;
+            else if (providerName) attribution = providerName;
+            if (!attribution && (options?.model || options?.provider)) {
+              const fallbackProvider = formatProviderName(options?.provider || '');
+              const fallbackModel = options?.model || '';
+              if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+              else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+              else if (fallbackProvider) attribution = fallbackProvider;
+            }
+            // Use stable key from _id if available, otherwise fall back to index-based key
+            const moreKey = m._id || `${meta?.byteOffset || 'unknown'}-more-${i}`;
+            return (
+              <div key={moreKey} style={{ marginBottom: '0.5rem', marginTop: i > 0 ? '0.5rem' : '0', paddingTop: i > 0 ? '0.5rem' : '0', borderTop: i > 0 ? '1px solid #eee' : 'none' }}>
+                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
+                <div style={{ whiteSpace: 'pre-wrap' }}>{m.a}</div>
+                {attribution ? (
+                  <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      )}
       {open && (
         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <div 

@@ -103,7 +103,7 @@ export default async function handler(req, res) {
     (contextText && contextText.trim().length ? contextText : null),
     (contextText && contextText.trim().length ? '"""' : null),
     (contextText && contextText.trim().length ? '' : null),
-    (noteText && noteText.trim().length ? 'Existing note for these lines (the user will see both the note and your response; do not repeat or paraphrase information already in the note):' : null),
+    (noteText && noteText.trim().length ? 'Existing notes (the user will see both the notes and your response; do not repeat or paraphrase information already in the notes):' : null),
     (noteText && noteText.trim().length ? '"""' : null),
     (noteText && noteText.trim().length ? noteText : null),
     (noteText && noteText.trim().length ? '"""' : null),
