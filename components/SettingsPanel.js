@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { getApiUrl } from '../lib/api';
 
 const defaultOptions = {
-  model: 'gpt-4o-mini',
+  model: 'claude-3-5-sonnet-20241022',
   language: 'English',
   educationLevel: 'Undergraduate',
   age: '20',
-  provider: 'openai',
+  provider: 'anthropic',
   length: 'brief',
 };
 
@@ -150,7 +150,10 @@ export default function SettingsPanel({
     onOptionsChange?.(defaultOptions);
     handleFontScaleChange(1);
     if (typeof window !== 'undefined') {
-      window.location.reload();
+      // Reload to the base path without any query parameters (especially overlay=settings)
+      // This ensures settings don't reopen after clearing data
+      const basePath = window.location.pathname;
+      window.location.href = basePath;
     }
   };
 

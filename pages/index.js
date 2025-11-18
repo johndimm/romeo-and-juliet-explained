@@ -103,6 +103,13 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const router = useRouter();
   const { overlay: overlayView, openOverlay, closeOverlay } = useOverlay();
   const isOverlayOpen = ['settings', 'user-guide', 'about', 'print'].includes(overlayView || '');
+  
+  // Disable browser's automatic scroll restoration to prevent conflicts
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   useEffect(() => {
     if (!router?.isReady) return;
@@ -223,7 +230,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const matchRefs = useRef([]); // flat list of all match elements
   const [selection, setSelection] = useState(null); // { sectionIndex, start, end }
   const [selectionContext, setSelectionContext] = useState(null); // { act, scene, onStage, speaker, text, byteOffset }
-  const [llmOptions, setLlmOptions] = useState({ model: 'gpt-4o-mini', language: 'English', educationLevel: 'Undergraduate', age: '20', provider: 'openai', length: 'brief' });
+  const [llmOptions, setLlmOptions] = useState({ model: 'claude-3-5-sonnet-20241022', language: 'English', educationLevel: 'Undergraduate', age: '20', provider: 'anthropic', length: 'brief' });
   const [conversations, setConversations] = useState({}); // id -> { messages: [{role, content}], last: string }
   const [loadingLLM, setLoadingLLM] = useState(false);
   // Note visibility threshold (0–100). Lower thresholds surface more notes.
@@ -255,7 +262,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const speechMapsRef = useRef(null); // Keep ref to latest speechMaps (will be set after speechMaps is defined)
   const scheduledExplanationIdsRef = useRef(new Set()); // Track IDs we've already scheduled calls for
   const DEBUG_SCROLL = false;
-  const DEBUG_RESTORE = false;
+  const DEBUG_RESTORE = false; // Disable excessive logging
   const DEBUG_SELECTION = false;
   // Persist force-shown notes (by speech key act|scene|speechIndex)
   const [forcedNotes, setForcedNotes] = useState([]);
@@ -911,12 +918,22 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   // Helper to choose the active scroll container (desktop: .container, narrow: .page, or window/body)
   function getScroller() {
     if (typeof document === 'undefined') return null;
-    const cont = document.querySelector('.container');
-    if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
-    const pg = document.querySelector('.page');
-    if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
-    // Fallback to window/body scrolling
-    return typeof window !== 'undefined' ? window : null;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
+    
+    if (isMobile) {
+      // On mobile, body is usually the scroller
+      const body = document.body;
+      if (body && body.scrollHeight > body.clientHeight + 1) return body;
+      const pg = document.querySelector('.page');
+      if (pg && pg.scrollHeight > pg.clientHeight + 1) return pg;
+      return body || (typeof window !== 'undefined' ? window : null);
+    } else {
+      // On desktop, container is usually the scroller
+      const cont = document.querySelector('.container');
+      if (cont && cont.scrollHeight > cont.clientHeight + 1) return cont;
+      // Fallback to window/body scrolling
+      return typeof window !== 'undefined' ? window : null;
+    }
   }
 
   function getElementTopWithin(el, scroller) {
@@ -982,9 +999,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           // Persist reading position occasionally (but not during initial restore)
           try {
             // Don't save if restore is in progress (prevents overwriting saved position on reload)
+            // But allow saving after a short delay to catch programmatic scrolls (like TOC clicks)
             if (restoreAttemptedRef.current) {
               const timeSinceLoad = Date.now() - (typeof performance !== 'undefined' && performance.timing ? performance.timing.navigationStart : 0);
-              if (timeSinceLoad < 3000) {
+              // Reduced from 3000ms to 1000ms to allow saving after TOC clicks
+              if (timeSinceLoad < 1000) {
                 return;
               }
               restoreAttemptedRef.current = false;
@@ -998,7 +1017,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               // Only save if we've actually scrolled away from the top
               if (scrollTop > 100) {
                 let containerType = 'window';
-                if (s !== window) {
+                if (s === document.body) {
+                  containerType = 'body';
+                } else if (s !== window) {
                   if (s.classList && s.classList.contains('container')) {
                     containerType = 'container';
                   } else if (s.classList && s.classList.contains('page')) {
@@ -1006,12 +1027,23 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                   } else {
                     const isContainer = document.querySelector('.container') === s;
                     const isPage = document.querySelector('.page') === s;
-                    containerType = isContainer ? 'container' : (isPage ? 'page' : 'unknown');
+                    const isBody = document.body === s;
+                    containerType = isContainer ? 'container' : (isPage ? 'page' : (isBody ? 'body' : 'unknown'));
                   }
                 }
+                // Always save the current scroll position (don't skip if it's the same)
                 localStorage.setItem('last-scroll', String(scrollTop));
                 localStorage.setItem('last-scrollHeight', String(scrollHeight));
                 localStorage.setItem('last-scroll-container', containerType);
+                appLog('scroll', 'Saved scroll position', { scrollTop, containerType });
+              } else {
+                // If scrolling back to top, clear saved position
+                if (scrollTop < 50) {
+                  localStorage.removeItem('last-scroll');
+                  localStorage.removeItem('last-scrollHeight');
+                  localStorage.removeItem('last-scroll-container');
+                  appLog('scroll', 'Cleared scroll position (at top)');
+                }
               }
               lastPosSaveRef.current = now;
             }
@@ -1032,7 +1064,38 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   }, [metadata, sectionsWithOffsets]);
 
   // Restore reading position on load (when there is no deep-link selection)
+  // Use useEffect (not useLayoutEffect) to avoid SSR warnings, but set scroll immediately
   useEffect(() => {
+    // Only run on client side (SSR safe)
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+    
+    // Helper to detect mobile vs desktop and get the correct scroller
+    // On mobile: body is the scroller (overflow: auto on body)
+    // On desktop: .container is the scroller
+    const detectScroller = () => {
+      const isMobile = window.innerWidth <= 820;
+      if (isMobile) {
+        // On mobile, body is the scroller (CSS sets overflow: auto on body)
+        return document.body || window;
+      } else {
+        // On desktop, .container is the scroller
+        const container = document.querySelector('.container');
+        return container || window;
+      }
+    };
+    
+    // Helper to set scroll on the correct element
+    const setScrollOnElement = (element, position) => {
+      if (!element) return;
+      if (element === window) {
+        window.scrollTo(0, position);
+      } else if (element.scrollTop !== undefined) {
+        element.scrollTop = position;
+      }
+    };
+    
     try {
       // Prevent multiple restores if already completed
       if (restoreCompletedRef.current) {
@@ -1041,10 +1104,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       }
       if (!sectionsWithOffsets || !sectionsWithOffsets.length) {
     if (DEBUG_RESTORE) appLog('restore', 'No sections available');
-        return;
-      }
-      if (typeof window === 'undefined') {
-    if (DEBUG_RESTORE) appLog('restore', 'Window undefined');
         return;
       }
       if (/^#sel=/.test(window.location.hash || '')) {
@@ -1079,6 +1138,49 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           }
         } catch {}
         restoreAttemptedRef.current = false; // No restore needed, allow saving
+        restoreCompletedRef.current = true; // Mark as completed to prevent other scroll attempts
+        
+        // On first load (no saved scroll), scroll to absolute top immediately (no animation)
+        // Detect the correct scroller and set scroll immediately to prevent TOC flash
+        const isMobile = window.innerWidth <= 820;
+        const setScrollToZero = () => {
+          // On mobile, body is the scroller; on desktop, container
+          if (isMobile) {
+            // Mobile: set on body first (most important) and use scrollIntoView as backup
+            if (document.body) {
+              document.body.scrollTop = 0;
+              // Also try scrollIntoView to ensure it works
+              try {
+                document.body.scrollIntoView({ behavior: 'auto', block: 'start' });
+              } catch(e) {}
+            }
+            const page = document.querySelector('.page');
+            if (page) page.scrollTop = 0;
+          } else {
+            // Desktop: set on container first
+            const container = document.querySelector('.container');
+            if (container) container.scrollTop = 0;
+          }
+          // Also set on all as fallback
+          window.scrollTo(0, 0);
+          const body = document.body;
+          if (body) body.scrollTop = 0;
+          const container = document.querySelector('.container');
+          if (container) container.scrollTop = 0;
+          const page = document.querySelector('.page');
+          if (page) page.scrollTop = 0;
+        };
+        
+        // Set immediately (synchronously) at the very start
+        setScrollToZero();
+        
+        // Set it a few times via RAF to ensure it sticks, but don't overdo it
+        requestAnimationFrame(() => {
+          setScrollToZero();
+          requestAnimationFrame(() => {
+            setScrollToZero();
+          });
+        });
         return;
       }
       
@@ -1087,13 +1189,76 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       
       if (DEBUG_RESTORE) appLog('restore', 'Will restore scroll position', savedScroll);
       
+      // The inline script set scroll initially, but React needs to refine it once content is loaded
+      // Set scroll immediately to ensure it's correct
+      const setScrollImmediately = () => {
+        const isMobile = window.innerWidth <= 820;
+        let scroller = null;
+        
+        // First try to use saved container type - this is the most important
+        if (savedContainerType === 'container') {
+          scroller = document.querySelector('.container');
+        } else if (savedContainerType === 'page') {
+          scroller = document.querySelector('.page');
+        } else if (savedContainerType === 'body') {
+          scroller = document.body;
+        } else if (savedContainerType === 'window') {
+          scroller = window;
+        } else if (!savedContainerType && isMobile) {
+          // No saved type on mobile - default to body
+          scroller = document.body;
+        } else if (!savedContainerType) {
+          // No saved type on desktop - try to detect
+          scroller = detectScroller();
+        }
+        
+        // Set scroll on the exact scroller we saved from
+        if (scroller) {
+          setScrollOnElement(scroller, savedScroll);
+        }
+      };
+      
+      // Set scroll immediately - inline script may have set it, but refine it here
+      if (DEBUG_RESTORE) {
+        appLog('restore', 'Setting scroll immediately (refinement)', {
+          savedScroll,
+          savedContainerType,
+          isMobile: window.innerWidth <= 820
+        });
+      }
+      setScrollImmediately();
+      
+      // Simple: wait for content to load, then set scroll once to ensure it's correct
+      // Inline script may have set it, but content might not have been loaded yet
+      const refineScroll = () => {
+        const scroller = savedContainerType === 'container' ? document.querySelector('.container') :
+                        savedContainerType === 'body' ? document.body :
+                        savedContainerType === 'page' ? document.querySelector('.page') :
+                        detectScroller();
+        
+        if (scroller) {
+          setScrollOnElement(scroller, savedScroll);
+          restoreCompletedRef.current = true;
+          restoreAttemptedRef.current = false;
+        } else {
+          // Scroller not ready yet, try again
+          setTimeout(refineScroll, 50);
+        }
+      };
+      
+      // Wait a bit for content to load, then set scroll
+      setTimeout(refineScroll, 100);
+      
+      return; // Skip the complex refinement logic below
+      
+      // OLD COMPLEX REFINEMENT LOGIC - SKIPPED
       let attempts = 0;
       const maxAttempts = 20; // Try for up to 2 seconds
       const savedScrollValue = savedScroll; // Capture for closure
       const savedScrollHeightValue = savedScrollHeight; // Capture for closure
       const savedContainerTypeValue = savedContainerType; // Capture for closure
       
-      // Wait for DOM to be ready, then restore position
+      // Wait for DOM to be ready, then restore position (refinement)
       // Defer to avoid forced reflows during initial render
       const restorePosition = () => {
         attempts++;
@@ -1125,34 +1290,63 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         // Use double RAF to ensure browser has finished all layout calculations
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            // Batch all layout reads together to avoid forced reflows
-            const scrollHeight = scroller === window ? document.documentElement.scrollHeight : scroller.scrollHeight;
-            const clientHeight = scroller === window ? document.documentElement.clientHeight : scroller.clientHeight;
+            // IMPORTANT: First determine the exact scroller we saved from based on savedContainerType
+            // This ensures we're reading from and writing to the same element
+            let scrollerToUse = scroller; // Start with detected scroller
+            let currentContainerType = 'window';
+            
+            // Try to find the exact scroller we saved from based on savedContainerType
+            if (savedContainerTypeValue === 'container') {
+              const container = document.querySelector('.container');
+              if (container) {
+                scrollerToUse = container;
+                currentContainerType = 'container';
+              }
+            } else if (savedContainerTypeValue === 'page') {
+              const page = document.querySelector('.page');
+              if (page) {
+                scrollerToUse = page;
+                currentContainerType = 'page';
+              }
+            } else if (savedContainerTypeValue === 'body') {
+              scrollerToUse = document.body;
+              currentContainerType = 'body';
+            } else {
+              // No saved type or 'window' - detect current
+              if (scrollerToUse === document.body) {
+                currentContainerType = 'body';
+              } else if (scrollerToUse !== window) {
+                if (scrollerToUse.classList && scrollerToUse.classList.contains('container')) {
+                  currentContainerType = 'container';
+                } else if (scrollerToUse.classList && scrollerToUse.classList.contains('page')) {
+                  currentContainerType = 'page';
+                } else {
+                  const isContainer = document.querySelector('.container') === scrollerToUse;
+                  const isPage = document.querySelector('.page') === scrollerToUse;
+                  const isBody = document.body === scrollerToUse;
+                  currentContainerType = isContainer ? 'container' : (isPage ? 'page' : (isBody ? 'body' : 'unknown'));
+                }
+              }
+            }
+            
+            // Batch all layout reads together using the correct scroller
+            const scrollHeight = scrollerToUse === window ? document.documentElement.scrollHeight : scrollerToUse.scrollHeight;
+            const clientHeight = scrollerToUse === window ? document.documentElement.clientHeight : scrollerToUse.clientHeight;
             
             // Check if scroller has scrollable content (scrollHeight > clientHeight)
             if (scrollHeight <= clientHeight) {
               if (attempts < maxAttempts) {
                 setTimeout(restorePosition, 50);
               } else if (DEBUG_RESTORE) {
-                appLog('restore', 'Failed: scroller not ready', { scrollHeight, clientHeight });
+                appLog('restore', 'Failed: scroller not ready', { scrollHeight, clientHeight, scrollerType: currentContainerType });
               }
               return;
             }
             
-            // Check the container type matches what we saved (after we have layout values)
-            let currentContainerType = 'window';
-            if (scroller !== window) {
-              if (scroller.classList && scroller.classList.contains('container')) {
-                currentContainerType = 'container';
-              } else if (scroller.classList && scroller.classList.contains('page')) {
-                currentContainerType = 'page';
-              } else {
-                const isContainer = document.querySelector('.container') === scroller;
-                const isPage = document.querySelector('.page') === scroller;
-                currentContainerType = isContainer ? 'container' : (isPage ? 'page' : 'unknown');
-              }
-            }
             const containerMismatch = savedContainerTypeValue && savedContainerTypeValue !== currentContainerType;
+            
+            // Use the scroller we determined (either saved type or detected)
+            scroller = scrollerToUse;
             
             // On mobile, .page is the scroll container; on desktop it might be .container or window
             const isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
@@ -1181,62 +1375,99 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               });
             }
             
-            // Calculate target scroll position - adjust for layout changes if scrollHeight changed
-            let targetScroll = savedScrollValue;
-            const currentScrollHeight = scrollHeight;
+            // CRITICAL: Use the EXACT saved scroll position - no estimation, no proportional adjustment
+            // The user expects exact restoration, not an estimated position
+            // If layout changed, that's fine - we restore to the exact pixel position they were at
+            const targetScroll = savedScrollValue;
             
-            // On mobile, .page container has different scroll context (starts after header)
-            // Be more careful with proportional adjustment on mobile
-            // (isMobile already defined above in this function scope)
-            
-            // Only adjust proportionally if:
-            // 1. We have both old and new scrollHeight values
-            // 2. The change is significant (> 10% difference) to avoid tiny adjustments that make things worse
-            // 3. AND the saved scroll position is far enough from top (> 1000px) that proportional adjustment makes sense
-            // 4. AND we're NOT on mobile with a container mismatch (too unreliable)
-            const shouldAdjust = !isNaN(savedScrollHeightValue) && savedScrollHeightValue > 0 && currentScrollHeight > 0;
-            const heightDiff = Math.abs(currentScrollHeight - savedScrollHeightValue);
-            const heightDiffPercent = savedScrollHeightValue > 0 ? (heightDiff / savedScrollHeightValue) * 100 : 0;
-            const significantChange = heightDiffPercent > 10; // More than 10% change
-            const isFarFromTop = savedScrollValue > 1000; // Only do proportional adjustment for positions far from top
-            const skipMobileAdjust = isMobile && containerMismatch; // Skip adjustment on mobile if container changed
-            
-            if (shouldAdjust && !skipMobileAdjust && ((significantChange && isFarFromTop) || (containerMismatch && isFarFromTop && !isMobile))) {
-              const ratio = savedScrollValue / savedScrollHeightValue;
-              targetScroll = currentScrollHeight * ratio;
-              if (DEBUG_RESTORE) {
-                appLog('restore', 'Layout changed - adjusting scroll', {
-                  oldScroll: savedScrollValue,
-                  oldHeight: savedScrollHeightValue,
-                  newHeight: currentScrollHeight,
-                  heightDiff,
-                  heightDiffPercent: heightDiffPercent.toFixed(1) + '%',
-                  adjustedScroll: targetScroll,
-                  ratio: ratio.toFixed(4),
-                  reason: containerMismatch ? 'container mismatch' : 'significant height change',
-                });
-              }
-            } else if (skipMobileAdjust) {
-              if (DEBUG_RESTORE) appLog('restore', 'Mobile + container mismatch - using saved position directly (adjustment skipped)');
-            } else if (shouldAdjust && (!significantChange || !isFarFromTop)) {
-              if (DEBUG_RESTORE) appLog('restore', 'Using saved position directly (small change or near top)', {
-                heightDiffPercent: heightDiffPercent.toFixed(1),
-                savedScrollValue,
+            if (DEBUG_RESTORE) {
+              const currentScrollHeight = scrollHeight;
+              const heightDiff = savedScrollHeightValue > 0 ? Math.abs(currentScrollHeight - savedScrollHeightValue) : 0;
+              const heightDiffPercent = savedScrollHeightValue > 0 ? (heightDiff / savedScrollHeightValue) * 100 : 0;
+              appLog('restore', 'Using EXACT saved position (no adjustment)', {
+                savedScroll: savedScrollValue,
+                savedHeight: savedScrollHeightValue,
+                currentHeight: currentScrollHeight,
+                heightDiff,
+                heightDiffPercent: heightDiffPercent.toFixed(1) + '%',
+                containerMismatch
               });
-            } else if (containerMismatch && !shouldAdjust) {
-              if (DEBUG_RESTORE) appLog('restore', 'Container type mismatch but no saved height - using saved position directly');
-            } else if (DEBUG_RESTORE) {
-              appLog('restore', 'Using saved position directly (no adjustment needed)');
             }
             
             // Apply scroll position immediately
+            // CRITICAL: Only set on the exact scroller we saved from - don't set on multiple scrollers
+            // Setting on multiple scrollers causes conflicts and incorrect positions
             if (scroller === window) {
               window.scrollTo({ top: targetScroll, behavior: 'auto' });
-              if (DEBUG_RESTORE) appLog('restore', 'Set window.scrollY', { targetScroll, savedScrollValue });
+              if (DEBUG_RESTORE) {
+                appLog('restore', 'Set window.scrollY', { 
+                  targetScroll, 
+                  savedScrollValue, 
+                  savedType: savedContainerTypeValue,
+                  currentType: currentContainerType,
+                  diff: Math.abs(targetScroll - savedScrollValue)
+                });
+              }
             } else {
               scroller.scrollTop = targetScroll;
-              if (DEBUG_RESTORE) appLog('restore', 'Set scroller.scrollTop', { targetScroll, savedScrollValue, isMobile });
+              if (DEBUG_RESTORE) {
+                appLog('restore', 'Set scroller.scrollTop', { 
+                  targetScroll, 
+                  savedScrollValue, 
+                  isMobile, 
+                  scrollerType: currentContainerType, 
+                  savedType: savedContainerTypeValue,
+                  scrollerElement: scroller === document.body ? 'body' : (scroller.className || 'unknown'),
+                  diff: Math.abs(targetScroll - savedScrollValue)
+                });
+              }
             }
+            
+            // Verify the scroll was set correctly - it should be EXACT
+            // Wait a moment for scroll to settle, then verify and retry if needed
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                const actualScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+                const scrollDiff = Math.abs(actualScroll - targetScroll);
+                if (DEBUG_RESTORE) {
+                  appLog('restore', 'Scroll verification', {
+                    expected: targetScroll,
+                    actual: actualScroll,
+                    diff: scrollDiff,
+                    scrollerType: currentContainerType,
+                    scrollerElement: scroller === document.body ? 'body' : (scroller.className || 'unknown')
+                  });
+                }
+                if (scrollDiff > 2) {
+                  // If scroll wasn't set correctly, try again - aim for exact match
+                  if (scroller === window) {
+                    window.scrollTo({ top: targetScroll, behavior: 'auto' });
+                  } else {
+                    scroller.scrollTop = targetScroll;
+                  }
+                  // Verify one more time after retry
+                  setTimeout(() => {
+                    const retryScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+                    const retryDiff = Math.abs(retryScroll - targetScroll);
+                    if (DEBUG_RESTORE) {
+                      appLog('restore', 'After retry verification', {
+                        target: targetScroll,
+                        actual: retryScroll,
+                        diff: retryDiff
+                      });
+                    }
+                    // If still off by more than 2px, try one more time
+                    if (retryDiff > 2) {
+                      if (scroller === window) {
+                        window.scrollTo({ top: targetScroll, behavior: 'auto' });
+                      } else {
+                        scroller.scrollTop = targetScroll;
+                      }
+                    }
+                  }, 50);
+                }
+              });
+            });
             
             // Reduced wait time for faster restore - layout should be mostly stable by now
             const waitTime = isMobile ? 200 : 150;
@@ -1249,40 +1480,41 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                   const diff = Math.abs(actualScroll - targetScroll);
                   if (DEBUG_RESTORE) appLog('restore', 'Verify scroll', { expected: targetScroll, actual: actualScroll, diff, isMobile });
                   
-                  // For mobile, be very conservative - only adjust if extremely off and it's a significant position
-                  // The "scrolls down a few lines" issue suggests the initial restore is slightly off
-                  const threshold = isMobile ? 300 : 100; // Much higher threshold on mobile
-                  
-                  if (diff > threshold && savedScrollValue > 1000) {
-                    // Only refine if way off and position is far enough from top that adjustment makes sense
-                    if (DEBUG_RESTORE) appLog('restore', 'Large offset detected, attempting refinement', { diff });
+                  // Check if scroll is off by a consistent amount (like 30px)
+                  // If so, it might be a systematic offset we need to account for
+                  if (diff > 5 && diff < 100) {
+                    // Small but consistent offset - try to correct it
+                    if (DEBUG_RESTORE) appLog('restore', 'Small offset detected, attempting correction', { 
+                      expected: targetScroll, 
+                      actual: actualScroll, 
+                      diff 
+                    });
                     
-                    // Use the saved position directly (avoid recalculation which can cause more issues)
-                    const refinedTarget = savedScrollValue;
-                    
-                    // Apply refined position once
+                    // Apply the exact saved position one more time
                     if (scroller === window) {
-                      window.scrollTo({ top: refinedTarget, behavior: 'auto' });
+                      window.scrollTo({ top: targetScroll, behavior: 'auto' });
                     } else {
-                      scroller.scrollTop = refinedTarget;
+                      scroller.scrollTop = targetScroll;
                     }
                     
-                    if (DEBUG_RESTORE) appLog('restore', 'Applied refinement to saved position', refinedTarget);
-                    
-                    // Mark complete quickly after refinement
-                    restoreCompletedRef.current = true;
+                    // Verify after correction
                     setTimeout(() => {
-                      restoreAttemptedRef.current = false;
-                      if (DEBUG_RESTORE) appLog('restore', 'Restore complete, saving enabled');
+                      const correctedScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+                      const correctedDiff = Math.abs(correctedScroll - targetScroll);
+                      if (DEBUG_RESTORE) {
+                        appLog('restore', 'After correction', {
+                          target: targetScroll,
+                          actual: correctedScroll,
+                          diff: correctedDiff
+                        });
+                      }
                     }, 50);
-                  } else {
-                    if (DEBUG_RESTORE) appLog('restore', 'Position acceptable', { diff, threshold });
-                    
-                    // Mark restore as completed and enable saving immediately
-                    restoreCompletedRef.current = true;
-                    restoreAttemptedRef.current = false;
-                    if (DEBUG_RESTORE) appLog('restore', 'Restore complete, saving enabled');
                   }
+                  
+                  // Mark restore as completed
+                  restoreCompletedRef.current = true;
+                  restoreAttemptedRef.current = false;
+                  if (DEBUG_RESTORE) appLog('restore', 'Restore complete, saving enabled', { finalDiff: diff });
                 });
               });
             }, waitTime);
@@ -1319,9 +1551,29 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     if (!el) return;
     const scroller = getScroller();
     if (!scroller) return;
-    const target = getElementTopWithin(el, scroller) - 8;
-    if (scroller === window) window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
-    else scroller.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+    // Account for header height when scrolling to top
+    const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
+      parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
+    const target = getElementTopWithin(el, scroller) - 8 - (index === 0 ? headerHeight : 0);
+    const finalTarget = Math.max(0, target);
+    
+    // Scroll to section
+    if (scroller === window) {
+      window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+    } else {
+      scroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
+    }
+    
+    // After smooth scroll completes, ensure scroll position is saved
+    // Smooth scroll can take ~500ms, so wait a bit longer
+    setTimeout(() => {
+      // Force a scroll event to trigger save
+      const currentScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+      if (currentScroll > 100) {
+        // Manually trigger save by dispatching a scroll event
+        scroller.dispatchEvent(new Event('scroll', { bubbles: true }));
+      }
+    }, 800);
   };
 
   const scrollToTocTop = () => {
@@ -1428,7 +1680,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             const ch = speechSource[i];
             if (ch === '[') bracketDepth++;
             else if (ch === ']') bracketDepth--;
-            else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ';')) {
+            else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ':' || ch === ';')) {
               sentenceCount++;
             }
           }
@@ -2003,13 +2255,38 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           }
         }
       } catch {}
-      // If mode is 'more' or 'followup' and there's an existing explanation, use it as noteText
-      // This ensures the API knows not to repeat existing content
-      if ((mode === 'more' || mode === 'followup') && conversations[selectionId] && conversations[selectionId].last) {
-        const existingExplanation = conversations[selectionId].last;
-        if (existingExplanation && existingExplanation !== 'AI is thinking…' && String(existingExplanation).trim()) {
-          // Prepend existing explanation to noteText if there's already a precomputed note
-          noteText = noteText ? `${noteText}\n\n${existingExplanation}` : existingExplanation;
+      // If mode is 'more' or 'followup', include all existing explanations for context
+      // This ensures the API knows not to repeat existing content and can reference previous explanations
+      if ((mode === 'more' || mode === 'followup') && conversations[selectionId]) {
+        const conv = conversations[selectionId];
+        const explanations = [];
+        
+        // Include the main explanation
+        if (conv.last && conv.last !== 'AI is thinking…' && String(conv.last).trim()) {
+          explanations.push(`Initial explanation:\n${conv.last}`);
+        }
+        
+        // Include all More responses
+        if (Array.isArray(conv.moreThreads) && conv.moreThreads.length > 0) {
+          conv.moreThreads.forEach((m, idx) => {
+            if (m?.a && String(m.a).trim()) {
+              explanations.push(`More detail ${idx + 1}:\n${m.a}`);
+            }
+          });
+        }
+        
+        // Include all follow-up responses
+        if (Array.isArray(conv.followupThreads) && conv.followupThreads.length > 0) {
+          conv.followupThreads.forEach((f, idx) => {
+            if (f?.q && f?.a && String(f.a).trim()) {
+              explanations.push(`Follow-up ${idx + 1} (${f.q}):\n${f.a}`);
+            }
+          });
+        }
+        
+        if (explanations.length > 0) {
+          const allExplanations = explanations.join('\n\n');
+          noteText = noteText ? `${noteText}\n\nExisting explanations:\n${allExplanations}` : `Existing explanations:\n${allExplanations}`;
         }
       }
 
@@ -2195,11 +2472,37 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         }
       } catch {}
       
-      // Include existing explanation in noteText
+      // Include all existing explanations for context
+      const explanations = [];
+      
+      // Include the main explanation
       if (existingExplanation && existingExplanation !== 'AI is thinking…' && String(existingExplanation).trim()) {
+        explanations.push(`Initial explanation:\n${existingExplanation}`);
+      }
+      
+      // Include all More responses
+      if (Array.isArray(conv.moreThreads) && conv.moreThreads.length > 0) {
+        conv.moreThreads.forEach((m, idx) => {
+          if (m?.a && String(m.a).trim()) {
+            explanations.push(`More detail ${idx + 1}:\n${m.a}`);
+          }
+        });
+      }
+      
+      // Include all follow-up responses
+      if (Array.isArray(conv.followupThreads) && conv.followupThreads.length > 0) {
+        conv.followupThreads.forEach((f, idx) => {
+          if (f?.q && f?.a && String(f.a).trim()) {
+            explanations.push(`Follow-up ${idx + 1} (${f.q}):\n${f.a}`);
+          }
+        });
+      }
+      
+      if (explanations.length > 0) {
+        const allExplanations = explanations.join('\n\n');
         noteText = noteText 
-          ? `${noteText}\n\n${existingExplanation}`
-          : existingExplanation;
+          ? `${noteText}\n\nExisting explanations:\n${allExplanations}`
+          : `Existing explanations:\n${allExplanations}`;
       }
       
       const url = getApiUrl('/api/explain');
@@ -2343,7 +2646,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         {sections.map((section, idx) => {
           const savedExplanations = Object.entries(conversations || {})
             .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last)
-            .map(([, c]) => c)
+            .map(([id, c]) => ({ ...c, id }))
             .sort((a, b) => {
               const sa = (a.meta?.start ?? 0);
               const sb = (b.meta?.start ?? 0);
@@ -2566,14 +2869,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     onMoreExplanationRef.current = onMoreExplanation;
   }, [onMoreExplanation]);
   
-  // Debug: log when onMoreExplanation changes
-  useEffect(() => {
-    console.log('Section: onMoreExplanation prop changed', { 
-      hasOnMoreExplanation: !!onMoreExplanation, 
-      type: typeof onMoreExplanation,
-      sectionIndex 
-    });
-  }, [onMoreExplanation, sectionIndex]);
+  // Removed excessive logging - was causing too much console output
   const preRef = useRef(null);
   const asideRef = useRef(null);
   const selPendingRef = useRef(false);
@@ -2861,6 +3157,13 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     // Show all explanations, including the current selection (they're all saved now)
     return true;
   });
+  const savedExplanationIds = useMemo(() => {
+    const set = new Set();
+    (savedExplanations || []).forEach((ex) => {
+      if (ex && ex.id != null) set.add(String(ex.id));
+    });
+    return set;
+  }, [savedExplanations]);
   const selectionByteStart = hasSelectionContext && contextInfo ? (contextInfo.byteOffset ?? null) : null;
   const selectionByteLength = (hasSelectionContext && contextInfo && contextInfo.text) ? textEncoder.encode(contextInfo.text).length : 0;
   const selectionByteEnd = selectionByteStart != null ? selectionByteStart + selectionByteLength : null;
@@ -3284,7 +3587,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     );
   })();
   // Always show chat panel when there's a selection (even for whole speeches - they just won't generate explanations)
-  const selectionChatPanel = (hasSelectionContext && isNoteExpanded) ? (
+  const suppressSelectionChat = !!(selectedId && savedExplanationIds.has(String(selectedId)));
+  const selectionChatPanel = (hasSelectionContext && isNoteExpanded && !suppressSelectionChat) ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
       <TextSelectionChat
         contextInfo={contextInfo}
@@ -3312,19 +3616,11 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           const threadKey = String(chosenItem.startOffset || 0);
           noteThreads = preFollowThreads[threadKey] || [];
         }
-        // Show "Thinking..." for initial selection loading below chat UI
-        const showInitialThinking = isThinking && !conversationLast;
-        // Selection preview is shown in ExplanationCard components
-        if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading && !showInitialThinking) return null;
+        // Selection preview and thinking indicator are shown in thinkingPanel, not here
+        // Only show threads here
+        if (!moreThreads.length && !followupThreads.length && !noteThreads.length && !isLoadingFollowup && !preFollowLoading) return null;
         return (
           <div style={{ marginTop: '0.5rem', display: 'block', width: '100%' }}>
-            {/* Show "Selected Text" title and "Thinking..." for initial selection loading */}
-            {showInitialThinking && (
-              <div style={{ marginTop: '0', marginBottom: '0.5rem' }}>
-                <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Selected Text</div>
-                <div style={{ color: '#6b5f53' }}>Thinking…</div>
-              </div>
-            )}
             {moreThreads.map((m, idx) => {
               const providerName = formatProviderName(m?.provider || '');
               let attribution = '';
@@ -3511,14 +3807,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   // Also hide for whole speeches (no explanation should be shown)
   const hasSuppressedNote = currentSpeechNoteSuppressed || (chosenItem && (isSuppressed || isForcedSuppressed));
   // All explanations are now saved and rendered through savedExplanationsPanel
-  // Show loading indicator if thinking
-  const thinkingPanel = (isThinking && hasSelectionContext && !hasSuppressedNote && isNoteExpanded) ? (
-    <div style={{ marginTop: (noteModeChatPanel || selectionChatPanel) ? '0.5rem' : (chosenItem ? '0.5rem' : '0.25rem'), paddingTop: '0.25rem', paddingRight: '32px', borderTop: '1px solid #eee' }}>
-      <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Text selection</div>
-      {renderSelectionPreview(selectionPreviewForExplanation || selectionPreview)}
-      <div style={{ color: '#6b5f53' }}>Thinking…</div>
-    </div>
-  ) : null;
+  // Show loading indicator if thinking (without duplicating selected text - it will be shown in ExplanationCard)
+  const thinkingPanel = null;
   // Create stable handlers for each explanation using useMemo
   // Include onMoreExplanation in deps so handlers are recreated when it changes
   // The handlers will read from the ref.current at call time, which is always current
@@ -4159,24 +4449,37 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         return;
       }
 
-    // Only cancel selection if user clearly scrolled or moved significantly
-    // Allow small movements for better touch selection reliability
-    if ((movedTooFar || scrolled) && !touchSelectingRef.current) {
-      try {
-        const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
-        if (sel && sel.rangeCount > 0) sel.removeAllRanges();
-    } catch {}
-      touchSelectingRef.current = false;
-      touchActiveRef.current = false;
-      mobileStartCharRef.current = null;
-      setTimeout(() => { movedRef.current = false; }, 80);
-      return;
-    }
-
-    // If moved too far or scrolled, cancel selection
+    // If moved too far or scrolled, check if there's a browser text selection first
+    // If user dragged to select text, submit that selection instead of cancelling
+    // Check this BEFORE canceling to ensure drag selections are submitted
     if (movedTooFar || scrolled || movedRef.current) {
       try {
         const sel = typeof window !== 'undefined' ? window.getSelection?.() : null;
+        if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+          // User has selected text - try to submit it
+          const range = sel.getRangeAt(0);
+          const container = preRef.current;
+          if (container && range.intersectsNode(container)) {
+            const r0 = document.createRange();
+            r0.selectNodeContents(container);
+            const before = r0.cloneRange();
+            before.setEnd(range.startContainer, range.startOffset);
+            const startChar = before.toString().length;
+            const after = r0.cloneRange();
+            after.setStart(range.endContainer, range.endOffset);
+            const endChar = r0.toString().length - after.toString().length;
+            if (endChar > startChar) {
+              // Submit the selection
+              onSelectRange?.({ start: startChar, end: endChar });
+              touchSelectingRef.current = false;
+              touchActiveRef.current = false;
+              mobileStartCharRef.current = null;
+              setTimeout(() => { movedRef.current = false; }, 80);
+              return;
+            }
+          }
+        }
+        // No valid selection, cancel
         if (sel && sel.rangeCount > 0) sel.removeAllRanges();
     } catch {}
       touchSelectingRef.current = false;
@@ -4268,7 +4571,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
                   const ch = speechSource[i];
                   if (ch === '[') bracketDepth++;
                   else if (ch === ']') bracketDepth--;
-                  else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ';')) {
+                  else if (bracketDepth === 0 && (ch === '.' || ch === '!' || ch === '?' || ch === ':' || ch === ';')) {
                     sentenceCount++;
                   }
                 }
@@ -4548,12 +4851,12 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               })()}
             </div>
           ) : null}
-          {/* Chat inputs always appear right after the note */}
-          {noteModeChatPanel}
-          {selectionChatPanel}
-          {/* Explanations appear after chat inputs */}
+          {/* Explanations appear after the note, before chat inputs */}
           {thinkingPanel}
           {savedExplanationsPanel}
+          {/* Chat inputs always appear at the bottom */}
+          {noteModeChatPanel}
+          {selectionChatPanel}
           {/* Show threads for suppressed notes (when note is collapsed) */}
           {suppressedNoteThreadsPanel}
         </aside>
@@ -4741,14 +5044,14 @@ function expandToSentence(text, index) {
   let start = index;
   let end = index;
 
-  // Move start left to previous sentence ender (.!?;)
+  // Move start left to previous sentence ender (.!?:;)
   // But stop if we encounter a speaker name (all caps followed by period)
   // Skip periods that are inside stage direction brackets
   // Optimize: search backwards from index only
   let foundStart = false;
   for (let i = index - 1; i >= 0; i--) {
     const ch = text[i];
-    if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
+    if (ch === '.' || ch === '!' || ch === '?' || ch === ':' || ch === ';') {
       // Check if this period is inside stage direction brackets
       // Look backwards to find if there's an unmatched opening bracket
       let bracketDepth = 0;
@@ -4844,7 +5147,7 @@ function expandToSentence(text, index) {
   let foundEnd = false;
   for (let i = index; i < len; i++) {
     const ch = text[i];
-    if (ch === '.' || ch === '!' || ch === '?' || ch === ';') {
+    if (ch === '.' || ch === '!' || ch === '?' || ch === ':' || ch === ';') {
       end = i + 1;
       // include immediate closing quotes/brackets
       while (end < len) {
@@ -5233,8 +5536,8 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
             // User is selecting text, don't trigger More
             return;
           }
-          e.stopPropagation();
-          e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
           // If onMore is provided (for saved explanations), use it to add More response
           if (onMore) {
             console.log('ExplanationCard: calling onMore function', { onMoreType: typeof onMore });

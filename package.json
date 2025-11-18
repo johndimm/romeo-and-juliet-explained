@@ -11,6 +11,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  },
   "scripts": {
     "gen:scene": "node scripts/gen-scene-deepseek.mjs --act=I --scene=I",
     "normalize:perplexity": "node scripts/normalize-perplexity.mjs --in data/explanations.json --out data/explanations.json",
@@ -41,7 +44,9 @@
     "merge:explanations": "node scripts/merge-explanations.mjs",
     "score:perplexity": "node scripts/compute-perplexity.mjs --in=data/explanations.json",
     "fill:notes": "node scripts/fill_missing_explanations.mjs",
-    "gen:missing:deepseek": "node scripts/gen-missing-notes-deepseek.mjs"
+    "gen:missing:deepseek": "node scripts/gen-missing-notes-deepseek.mjs",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "type": "module",
   "name": "romeo-and-juliet-explained"

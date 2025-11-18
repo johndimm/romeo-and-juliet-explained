@@ -11,3 +11,21 @@ That should work well.  What is hard to do at the same time on mobile is text se
   - to select more or less than a sentence, click down, drag, release.  That is hard to distinguish from a scroll.  So, for mobile, let's not provide this feature.  It's a desktop only feature.
 
 When you click on a sentence, it will reveal the note for this speech if it is not already visible.  If the sentence is not the entire speech, it will be explained and the explanation will be shown below the note.  If it is the entire speech, we have the note already, so no additional explanation is needed.
+
+When the note is hidden and you click on a sentence, the result is:
+
+  note
+  model attribution
+  chat ui
+  Text selection
+  explanation
+
+If the note is visible but does not show the chat UI, the chat UI will be added before the text selection explanation.
+
+This means that clicking the speech a second time DOES NOTE close the note.  A second click will now select the sentence again.  To close the note use the X.
+
+Phase 1:  just make text select always on with no other changes.  I need to test scrolling.  
+
+Phase 2:  use the text selection to add an explanation to the note box.  The note is first displayed, if it is not already visible.  The chat UI also appears below the note and above the explanation.  The explanation has a garbage can to delete it.
+
+
