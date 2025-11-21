@@ -186,7 +186,7 @@ html.isCapacitor .page {
   height: auto;
   min-height: calc(100vh - var(--header-h) - env(safe-area-inset-top, 0));
   overflow: visible;
-  padding-top: env(safe-area-inset-top, 0);
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0));
 }
 
 .sidebar { position: absolute; top: 0; bottom: 0; left: 0; width: 260px; overflow-y: auto; overflow-x: hidden; padding: 0.25rem 0.5rem 1rem 1rem; border-right: 1px solid #e8e6e3; box-sizing: border-box; }
@@ -1295,7 +1295,7 @@ html.isPrintRoute .container { left: 0; }
     position: static;
     height: auto;
     overflow: visible;
-    padding: 0 0 0.5rem; /* bottom spacing */
+    padding: 0.5rem 0 0.5rem; /* top padding ensures title is visible when scrolling to top */
     box-sizing: border-box;
   }
   .section { display: block; margin-top: var(--section-gap); }
@@ -1592,7 +1592,7 @@ html.isPrintRoute .container { left: 0; }
     position: static;
     height: auto;
     overflow: visible;
-    padding: 0 0 0.5rem; /* bottom spacing */
+    padding: 0.5rem 0 0.5rem; /* top padding ensures title is visible when scrolling to top */
     box-sizing: border-box;
   }
   .section { display: block; margin-top: var(--section-gap); }

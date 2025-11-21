@@ -19,12 +19,27 @@ export default function Document() {
             __html: `
               (function() {
                 // SIMPLE: Just try to set scroll if we have saved position and elements exist
+                // But ensure title is visible on fresh app launches
                 try {
                   var savedScroll = localStorage.getItem('last-scroll');
                   var scrollPos = savedScroll ? parseFloat(savedScroll) : 0;
                   var savedContainerType = localStorage.getItem('last-scroll-container');
                   
-                  if (savedScroll && scrollPos > 50) {
+                  // Check if this is a fresh app launch (no hash, no selection link)
+                  var hash = window.location.hash || '';
+                  var isFreshLaunch = !hash || hash === '';
+                  var isSelectionLink = /^#sel=/.test(hash);
+                  
+                  // On fresh app launch (no hash, no selection), always start at top to show title
+                  // This ensures users see the title when opening the app
+                  // Only restore scroll if there's a hash/selection link (user navigating to specific content)
+                  if (isFreshLaunch && !isSelectionLink) {
+                    // Fresh launch - always show title at top
+                    scrollPos = 0;
+                  }
+                  
+                  if (savedScroll && scrollPos > 50 && !isFreshLaunch) {
+                    // Only restore scroll if not a fresh launch
                     // Try to set scroll immediately if container exists
                     var scroller = null;
                     if (savedContainerType === 'container') {
@@ -41,7 +56,7 @@ export default function Document() {
                       window.scrollTo(0, scrollPos);
                     }
                   } else {
-                    // First load: scroll to top
+                    // First load or fresh launch: scroll to top to show title
                     window.scrollTo(0, 0);
                     if (document.body) document.body.scrollTop = 0;
                   }
