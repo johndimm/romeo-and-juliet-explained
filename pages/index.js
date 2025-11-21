@@ -79,12 +79,39 @@ const TOUCH_SCROLL_THRESHOLD = 18;
 
 export async function getStaticProps() {
   const { sections: sectionsWithOffsets, markers } = parseSectionsWithOffsets('romeo-and-juliet.txt');
-  // Remove the original TOC: filter out sections between 'Contents' and 'THE PROLOGUE'
-  const filtered = sectionsWithOffsets.filter((s) => {
-    if (markers.contentsStart == null || markers.prologueStart == null) return true;
+  // Remove the original TOC: filter out sections that start within the TOC range (Contents to THE PROLOGUE)
+  // Also remove TOC content from sections that start before the TOC range but contain it
+  // This applies to both desktop and mobile - TOC is shown in sidebar (desktop) or popup (mobile), not in play text
+  const filtered = sectionsWithOffsets.map((s) => {
+    if (markers.contentsStart == null || markers.prologueStart == null) return s;
     const start = s.startOffset;
-    return !(start >= markers.contentsStart && start < markers.prologueStart);
-  });
+    
+    // Filter out sections that start within the TOC range
+    if (start >= markers.contentsStart && start < markers.prologueStart) {
+      return null; // Will be filtered out
+    }
+    
+    // For sections that start before the TOC range, remove TOC content if present
+    if (start < markers.contentsStart) {
+      const enc = new TextEncoder();
+      const sectionEnd = start + enc.encode(s.text || '').length;
+      // If this section extends into the TOC range, trim it
+      if (sectionEnd > markers.contentsStart) {
+        // Find where "Contents" appears in the text and cut everything from there
+        const contentsIndex = s.text.indexOf('Contents');
+        if (contentsIndex >= 0) {
+          // Keep only the part before "Contents", trimming trailing whitespace
+          const trimmed = s.text.substring(0, contentsIndex).trim();
+          if (trimmed.length > 0) {
+            return { ...s, text: trimmed };
+          }
+          return null; // Section is entirely TOC content
+        }
+      }
+    }
+    
+    return s;
+  }).filter(Boolean); // Remove null entries
   const sections = filtered.map((s) => s.text);
   // Load prebuilt metadata if available (built via npm run build:characters)
   let metadata = null;
@@ -103,6 +130,74 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const router = useRouter();
   const { overlay: overlayView, openOverlay, closeOverlay } = useOverlay();
   const isOverlayOpen = ['settings', 'user-guide', 'about', 'print'].includes(overlayView || '');
+  
+  // Client-side safeguard: filter out TOC sections (between Contents and THE PROLOGUE)
+  // This ensures TOC is never shown in play text on any screen size, even if build-time filtering fails
+  // Build-time filtering should already remove these, but this provides an extra safety net
+  const { filteredSections, filteredSectionsWithOffsets, filteredToOriginalIndex } = useMemo(() => {
+    if (!markers?.contentsStart || !markers?.prologueStart) {
+      return {
+        filteredSections: sections,
+        filteredSectionsWithOffsets: sectionsWithOffsets,
+        filteredToOriginalIndex: new Map(sections.map((_, i) => [i, i]))
+      };
+    }
+    
+    const filtered = [];
+    const filteredOffsets = [];
+    const indexMap = new Map(); // Maps filtered index -> original index
+    let filteredIdx = 0;
+    
+    sections.forEach((section, originalIdx) => {
+      const sectionOffset = sectionsWithOffsets[originalIdx]?.startOffset;
+      if (sectionOffset == null) {
+        // Keep sections with unknown offset
+        filtered.push(section);
+        filteredOffsets.push(sectionsWithOffsets[originalIdx]);
+        indexMap.set(filteredIdx, originalIdx);
+        filteredIdx++;
+        return;
+      }
+      
+      // Filter out sections that start within the TOC range
+      if (sectionOffset >= markers.contentsStart && sectionOffset < markers.prologueStart) {
+        return; // Skip this section
+      }
+      
+      // For sections that start before the TOC range, remove TOC content if present
+      let sectionText = section;
+      if (sectionOffset < markers.contentsStart) {
+        const enc = new TextEncoder();
+        const sectionEnd = sectionOffset + enc.encode(section || '').length;
+        // If this section extends into the TOC range, trim it
+        if (sectionEnd > markers.contentsStart) {
+          // Find where "Contents" appears in the text and cut everything from there
+          const contentsIndex = section.indexOf('Contents');
+          if (contentsIndex >= 0) {
+            // Keep only the part before "Contents", trimming trailing whitespace
+            const trimmed = section.substring(0, contentsIndex).trim();
+            if (trimmed.length > 0) {
+              sectionText = trimmed;
+            } else {
+              return; // Section is entirely TOC content, skip it
+            }
+          }
+        }
+      }
+      
+      // Keep this section (possibly trimmed)
+      filtered.push(sectionText);
+      filteredOffsets.push(sectionsWithOffsets[originalIdx]);
+      indexMap.set(filteredIdx, originalIdx);
+      filteredIdx++;
+    });
+    
+    return {
+      filteredSections: filtered,
+      filteredSectionsWithOffsets: filteredOffsets,
+      filteredToOriginalIndex: indexMap
+    };
+  }, [sections, sectionsWithOffsets, markers]);
   
   // Disable browser's automatic scroll restoration to prevent conflicts
   useEffect(() => {
@@ -2643,9 +2738,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           </div>
         </nav>
         <main className="container">
-        {sections.map((section, idx) => {
+        {filteredSections.map((section, filteredIdx) => {
+          // Map filtered index back to original index for speechMaps lookup
+          const originalIdx = filteredToOriginalIndex.get(filteredIdx) ?? filteredIdx;
           const savedExplanations = Object.entries(conversations || {})
-            .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === idx && c.last)
+            .filter(([id, c]) => c && c.meta && c.meta.sectionIndex === originalIdx && c.last)
             .map(([id, c]) => ({ ...c, id }))
             .sort((a, b) => {
               const sa = (a.meta?.start ?? 0);
@@ -2655,8 +2752,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               const bb = (b.meta?.byteOffset ?? 0);
               return ba - bb;
             });
-          const sectionStartOffset = sectionsWithOffsets[idx]?.startOffset || 0;
-          const speechesInSec = (speechMaps.speechesBySection.get(idx) || []);
+          const sectionStartOffset = filteredSectionsWithOffsets[filteredIdx]?.startOffset || 0;
+          const speechesInSec = (speechMaps.speechesBySection.get(originalIdx) || []);
           const itemsAllSec = speechesInSec
             .map((sp) => speechMaps.noteBySpeechKey.get(`${sp.act}|${sp.scene}|${sp.speechIndex}`))
             .filter(Boolean);
@@ -2669,21 +2766,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           });
           return (
           <Section
-            key={idx}
+            key={originalIdx}
             text={section}
             query={query}
             matchRefs={matchRefs}
             precomputedItems={itemsFilteredSec}
             precomputedAllItems={itemsAllSec}
-            speeches={(speechMaps.speechesBySection.get(idx) || [])}
+            speeches={speechesInSec}
             noteBySpeechKey={speechMaps.noteBySpeechKey}
-            selectedRange={selection && selection.sectionIndex === idx ? { start: selection.start, end: selection.end } : null}
+            selectedRange={selection && selection.sectionIndex === originalIdx ? { start: selection.start, end: selection.end } : null}
             onSelectRange={(range) => {
-              setSelection(range ? { sectionIndex: idx, ...range } : null);
+              setSelection(range ? { sectionIndex: originalIdx, ...range } : null);
             }}
-            sectionRef={(el) => (sectionElsRef.current[idx] = el)}
-            contextInfo={selection && selection.sectionIndex === idx ? selectionContext : null}
-            sectionIndex={idx}
+            sectionRef={(el) => (sectionElsRef.current[originalIdx] = el)}
+            contextInfo={selection && selection.sectionIndex === originalIdx ? selectionContext : null}
+            sectionIndex={originalIdx}
             sectionStartOffset={sectionStartOffset}
             suppressNextAutoExplain={suppressAutoExplainRef}
             metadata={metadata}
@@ -2714,8 +2811,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 }
               },
             }}
-            selectedId={selection && selection.sectionIndex === idx ? selectionId : null}
-            pendingFocus={pendingFocus && pendingFocus.sectionIndex === idx ? pendingFocus : null}
+            selectedId={selection && selection.sectionIndex === originalIdx ? selectionId : null}
+            pendingFocus={pendingFocus && pendingFocus.sectionIndex === originalIdx ? pendingFocus : null}
             onPendingFocusConsumed={() => setPendingFocus(null)}
             savedExplanations={savedExplanations}
             onDeleteSaved={(id) => {

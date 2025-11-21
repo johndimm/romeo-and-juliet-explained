@@ -1083,7 +1083,7 @@ html.isPrintRoute .container { left: 0; }
   }
 }
 
-/* Narrow screens: TOC at top (scrolls away), explanations below text */
+/* Narrow screens: Hide sidebar TOC (use popup/drawer instead), explanations below text */
 @media (max-width: 820px) {
   /* Let the document scroll normally on mobile to avoid gutter/blank space issues */
   /* Use percentage widths to avoid 100vw overflow on mobile browsers */
@@ -1289,13 +1289,7 @@ html.isPrintRoute .container { left: 0; }
 
   .page { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; }
   .sidebar {
-    position: static;
-    width: auto; height: auto;
-    overflow: visible;
-    border-right: none;
-    border-bottom: 1px solid #e8e6e3;
-    padding: 0.5rem 0.5rem; /* edge-to-edge on mobile */
-    box-sizing: border-box;
+    display: none !important; /* Hide sidebar TOC on narrow screens - use popup/drawer instead */
   }
   .container {
     position: static;
@@ -1592,13 +1586,7 @@ html.isPrintRoute .container { left: 0; }
 
   .page { position: fixed; top: var(--mobile-header-h); left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; }
   .sidebar {
-    position: static;
-    width: auto; height: auto;
-    overflow: visible;
-    border-right: none;
-    border-bottom: 1px solid #e8e6e3;
-    padding: 0.5rem 0.5rem; /* edge-to-edge on mobile */
-    box-sizing: border-box;
+    display: none !important; /* Hide sidebar TOC on narrow screens - use popup/drawer instead */
   }
   .container {
     position: static;

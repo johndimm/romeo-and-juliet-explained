@@ -171,21 +171,51 @@ export default async function handler(req, res) {
       
       for (const candidateModel of modelCandidates) {
         try {
-          const r = await fetch('https://api.anthropic.com/v1/messages', {
+          // First try with temperature
+          let requestBody = {
+            model: candidateModel,
+            max_tokens: 800,
+            temperature: 0.3,
+            system: sys,
+            messages: fullMessages.filter(m => m.role !== 'system').map((m) => ({ role: m.role, content: m.content })),
+          };
+          
+          let r = await fetch('https://api.anthropic.com/v1/messages', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'x-api-key': apiKey,
               'anthropic-version': '2023-06-01',
             },
-            body: JSON.stringify({
-              model: candidateModel,
-              max_tokens: 800,
-              temperature: 0.3,
-              system: sys,
-              messages: fullMessages.filter(m => m.role !== 'system').map((m) => ({ role: m.role, content: m.content })),
-            }),
+            body: JSON.stringify(requestBody),
           });
+          
+          // If we get an unsupported temperature error, retry without temperature
+          if (!r.ok) {
+            const errorText = await r.text();
+            let errorData = null;
+            try {
+              errorData = JSON.parse(errorText);
+            } catch {}
+            
+            const isUnsupportedTemperature = 
+              (errorData?.error?.code === 'unsupported_value' && errorData?.error?.param === 'temperature') ||
+              (errorData?.error?.message?.includes("temperature") && errorData?.error?.message?.includes("unsupported"));
+            
+            if (isUnsupportedTemperature) {
+              // Retry without temperature parameter
+              delete requestBody.temperature;
+              r = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'x-api-key': apiKey,
+                  'anthropic-version': '2023-06-01',
+                },
+                body: JSON.stringify(requestBody),
+              });
+            }
+          }
           
           if (r.ok) {
             resp = r;
