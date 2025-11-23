@@ -2657,6 +2657,135 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     onMoreExplanationRef.current = handleMoreExplanation;
   }, [handleMoreExplanation]);
 
+  const handleFollowupExplanation = useCallback(async (id, meta, passageText, options, followupText) => {
+    // Add a follow-up response to an existing explanation
+    const currentConversations = conversationsRef.current;
+    const currentMetadata = metadataRef.current;
+    const currentSpeechMaps = speechMapsRef.current;
+    appLog('debug', 'onFollowupExplanation called', { id, followupText, conversationKeys: Object.keys(currentConversations) });
+    try {
+      const conv = currentConversations[id] || {};
+      const existingExplanation = conv.last || '';
+      
+      // Get notes for context (current speech and prior speech)
+      let noteText = '';
+      try {
+        const act = meta.act;
+        const scene = meta.scene;
+        const byte = meta.byteOffset || 0;
+        const scenes = Array.isArray(currentMetadata?.scenes) ? currentMetadata.scenes : [];
+        const targetScene = scenes.find((s) => s.act === act && String(s.scene) === String(scene));
+        if (targetScene && Array.isArray(currentMetadata?.speeches)) {
+          let count = 0;
+          for (const sp of currentMetadata.speeches) {
+            const off = sp?.offset || 0;
+            if (off >= (targetScene.startOffset||0) && off <= byte) count++;
+          }
+          if (count > 0 && currentSpeechMaps && currentSpeechMaps.noteBySpeechKey) {
+            const spKey = `${act}|${scene}|${count}`;
+            const it = currentSpeechMaps.noteBySpeechKey.get(spKey);
+            if (it && it.content) noteText = String(it.content);
+            
+            if (count > 1) {
+              const priorSpKey = `${act}|${scene}|${count - 1}`;
+              const priorIt = currentSpeechMaps.noteBySpeechKey.get(priorSpKey);
+              if (priorIt && priorIt.content) {
+                const priorNote = String(priorIt.content);
+                noteText = noteText 
+                  ? `Note for prior speech:\n${priorNote}\n\nNote for current speech:\n${noteText}`
+                  : `Note for prior speech:\n${priorNote}`;
+              }
+            }
+          }
+        }
+      } catch {}
+      
+      // Include all existing explanations for context
+      const explanations = [];
+      
+      // Include the main explanation
+      if (existingExplanation && existingExplanation !== 'AI is thinking…' && String(existingExplanation).trim()) {
+        explanations.push(`Initial explanation:\n${existingExplanation}`);
+      }
+      
+      // Include all More responses
+      if (Array.isArray(conv.moreThreads) && conv.moreThreads.length > 0) {
+        conv.moreThreads.forEach((m, idx) => {
+          if (m?.a && String(m.a).trim()) {
+            explanations.push(`More detail ${idx + 1}:\n${m.a}`);
+          }
+        });
+      }
+      
+      // Include all follow-up responses
+      if (Array.isArray(conv.followupThreads) && conv.followupThreads.length > 0) {
+        conv.followupThreads.forEach((f, idx) => {
+          if (f?.q && f?.a && String(f.a).trim()) {
+            explanations.push(`Follow-up ${idx + 1} (${f.q}):\n${f.a}`);
+          }
+        });
+      }
+      
+      if (explanations.length > 0) {
+        const allExplanations = explanations.join('\n\n');
+        noteText = noteText 
+          ? `${noteText}\n\nExisting explanations:\n${allExplanations}`
+          : `Existing explanations:\n${allExplanations}`;
+      }
+      
+      const url = getApiUrl('/api/explain');
+      const data = await fetchWithErrorHandling(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          selectionText: passageText || meta.text || '',
+          context: { act: meta.act, scene: meta.scene, speaker: meta.speaker, onStage: meta.onStage },
+          options: options || {},
+          messages: [],
+          mode: 'followup',
+          followup: followupText,
+          noteText,
+        }),
+      });
+      
+      // Update conversation with new follow-up response using functional update
+      setConversations((prev) => {
+        const prevConv = prev[id] || {};
+        const existingFollowupThreads = Array.isArray(prevConv.followupThreads) ? prevConv.followupThreads.slice() : [];
+        // Add a unique ID to each follow-up response for stable React keys
+        const followupId = `${id}-followup-${Date.now()}-${existingFollowupThreads.length}`;
+        const newFollowupThreads = [
+          ...existingFollowupThreads,
+          { q: followupText, a: data.content, model: (options?.model || ''), provider: (options?.provider || ''), _id: followupId }
+        ];
+        appLog('debug', 'Updating followupThreads', { id, existingCount: existingFollowupThreads.length, newCount: newFollowupThreads.length });
+        const next = {
+          ...prev,
+          [id]: {
+            ...prevConv,
+            followupThreads: newFollowupThreads,
+            // Ensure all properties are preserved
+            last: prevConv.last,
+            meta: prevConv.meta,
+            messages: prevConv.messages,
+            moreThreads: prevConv.moreThreads,
+            provider: prevConv.provider || options?.provider,
+            model: prevConv.model || options?.model,
+          },
+        };
+        // Save to localStorage
+        try {
+          localStorage.setItem('explanations', JSON.stringify(next));
+        } catch {}
+        return next;
+      });
+    } catch (e) {
+      // Error handling - could show a notification here
+      appLog('error', 'Failed to add follow-up response', e);
+      throw e; // Re-throw so caller can handle it
+    }
+  }, []); // Empty deps - use refs for everything
+
   function buildUserPrompt(selCtx, mode, followup, respLen) {
     const parts = [
       'Explain the selected Romeo and Juliet line(s) directly — no prefaces like "In this quote", and do not repeat the quote or restate Act/Scene/Speaker.',
@@ -2839,6 +2968,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
               } catch {}
             }}
             onMoreExplanation={handleMoreExplanation}
+            onFollowupExplanation={handleFollowupExplanation}
             onCopyLink={() => {
               const curr = selectionContext;
               if (!curr) return;
@@ -2954,7 +3084,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   );
 }
 
-function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, expandedNotes = new Set(), onToggleNoteExpanded, onMoreExplanation }) {
+function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRange, contextInfo, llm, savedExplanations = [], onCopyLink, selectedId, pendingFocus, onPendingFocusConsumed, precomputedItems = [], precomputedAllItems = [], speeches = [], noteBySpeechKey = new Map(), sectionIndex = 0, sectionStartOffset = 0, onDeleteSaved, onDeleteSpeech, suppressNextAutoExplain, metadata, noteThreshold = 0, forcedNotes = [], onToggleForced, onRequestFocus, expandedNotes = new Set(), onToggleNoteExpanded, onMoreExplanation, onFollowupExplanation }) {
   // Use ref to always access latest onMoreExplanation
   // Initialize immediately and keep updated
   const onMoreExplanationRef = useRef(onMoreExplanation);
@@ -2965,6 +3095,15 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
   useEffect(() => {
     onMoreExplanationRef.current = onMoreExplanation;
   }, [onMoreExplanation]);
+  
+  // Use ref to always access latest onFollowupExplanation
+  const onFollowupExplanationRef = useRef(onFollowupExplanation);
+  if (onFollowupExplanationRef.current !== onFollowupExplanation) {
+    onFollowupExplanationRef.current = onFollowupExplanation;
+  }
+  useEffect(() => {
+    onFollowupExplanationRef.current = onFollowupExplanation;
+  }, [onFollowupExplanation]);
   
   // Removed excessive logging - was causing too much console output
   const preRef = useRef(null);
@@ -3517,7 +3656,10 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     // Only show noteModeChatPanel when note is expanded and NO text is selected
     // When text is selected, selectionChatPanel will show instead (with instructions)
     // Show whenever note is expanded (instructions, chat, and buttons should be visible)
-    if (!(chosenItem && isNoteExpanded && !hasSelectionContext)) return null;
+    // Use chosenItemSpeechKey to check if note is expanded, to ensure we're checking the right note
+    const noteSpeechKey = chosenItem ? getSpeechKeyForItem(chosenItem) : null;
+    const noteIsExpanded = noteSpeechKey && expandedNotes.has(noteSpeechKey);
+    if (!(chosenItem && noteIsExpanded && !hasSelectionContext)) return null;
     const it = chosenItem;
     const handleNoteFollowup = async (followupText) => {
       const key = String(it.startOffset || 0);
@@ -3684,7 +3826,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     );
   })();
   // Always show chat panel when there's a selection (even for whole speeches - they just won't generate explanations)
-  const suppressSelectionChat = !!(selectedId && savedExplanationIds.has(String(selectedId)));
+  // Don't suppress the chat panel - users should be able to ask follow-ups even after an explanation is saved
+  const suppressSelectionChat = false; // Keep input visible even when there's a saved explanation
   const selectionChatPanel = (hasSelectionContext && isNoteExpanded && !suppressSelectionChat) ? (
     <div style={{ marginTop: chosenItem ? '0.5rem' : '0.25rem', paddingTop: chosenItem ? '0.25rem' : '0', borderTop: chosenItem ? '1px solid #eee' : 'none' }}>
       <TextSelectionChat
@@ -4009,6 +4152,34 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           }
         };
         
+        const handleFollowup = async (followupText) => {
+          const currentOnFollowupExplanation = onFollowupExplanationRef.current;
+          appLog('debug', 'onFollowup called in Section (inline handler)', { 
+            hasOnFollowupExplanation: !!currentOnFollowupExplanation, 
+            explanationId, 
+            followupText,
+            byteOffset: meta.byteOffset, 
+            passageTextLength: passageText?.length,
+            index: i,
+            totalExplanations: filteredSavedExplanations.length
+          });
+          if (currentOnFollowupExplanation) {
+            try {
+              await currentOnFollowupExplanation(explanationId, meta, passageText, { 
+                provider: ex?.provider || meta?.provider || llm?.options?.provider, 
+                model: ex?.model || meta?.model || llm?.options?.model 
+              }, followupText);
+            } catch (err) {
+              console.error('onFollowupExplanation failed in Section', err);
+              appLog('error', 'onFollowupExplanation failed', err);
+              throw err;
+            }
+          } else {
+            console.error('onFollowupExplanation not available', { explanationId, refCurrent: onFollowupExplanationRef.current });
+            appLog('error', 'onFollowupExplanation not available');
+          }
+        };
+        
         console.log('Rendering ExplanationCard', { 
           explanationId, 
           byteOffset: meta.byteOffset, 
@@ -4049,6 +4220,8 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
               console.error('handleMore is undefined!', { explanationId });
               appLog('error', 'handleMore is undefined');
             })}
+            onFollowup={handleFollowup}
+            followupThreads={Array.isArray(ex?.followupThreads) ? ex.followupThreads : []}
           />
         );
       })}
@@ -5499,12 +5672,12 @@ function LlmPanel({ passage, contextInfo, llm, onFocusSource, onCopyLink }) {
   );
 }
 
-function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options, title, onMore, moreThreads = [] }) {
-  appLog('debug', 'ExplanationCard rendered', { hasOnMore: !!onMore, hasContent: !!content, moreThreadsCount: moreThreads.length });
+function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, options, title, onMore, moreThreads = [], onFollowup, followupThreads = [] }) {
+  appLog('debug', 'ExplanationCard rendered', { hasOnMore: !!onMore, hasContent: !!content, moreThreadsCount: moreThreads.length, hasOnFollowup: !!onFollowup, followupThreadsCount: followupThreads.length });
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const [loading, setLoading] = useState(false);
-  const [thread, setThread] = useState([]); // [{q,a}]
+  const [thread, setThread] = useState([]); // [{q,a}] - only used when onFollowup is not available (inline explanations)
   const [isExpanded, setIsExpanded] = useState(false);
   const textareaRef = useRef(null);
   const containerRef = useRef(null);
@@ -5553,12 +5726,38 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       setIsExpanded(true);
     }
   };
+  
+  // Keep input visible when there are existing followupThreads (for saved explanations)
+  useEffect(() => {
+    if (onFollowup && followupThreads.length > 0 && !open) {
+      setOpen(true);
+    }
+  }, [onFollowup, followupThreads.length, open]);
+  
   // Determine title based on meta or prop
   const explanationTitle = title || (meta?.mode === 'more' ? 'More' : (meta?.mode === 'followup' ? 'Chat Prompt' : 'Selected Text'));
   const ask = async (followupText) => {
     const v = (followupText || q || '').trim();
     if (!v) return;
     const questionToSave = v;
+    
+    // If onFollowup is provided (for saved explanations), use it
+    if (onFollowup) {
+      setQ(''); // Clear input after submitting
+      setIsExpanded(false); // Reset to collapsed state
+      try {
+        setLoading(true);
+        await onFollowup(questionToSave);
+      } catch (e) {
+        appLog('error', 'Follow-up failed', e);
+        // Error is handled by onFollowup
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+    
+    // Otherwise, use internal ask function (for inline explanations)
     setQ(''); // Clear input after submitting
     setIsExpanded(false); // Reset to collapsed state
     try {
@@ -5717,7 +5916,8 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           })}
         </div>
       )}
-      {open && (
+      {/* Show input when open is true OR when there are existing followupThreads (for saved explanations) */}
+      {(open || (onFollowup && followupThreads.length > 0)) && (
         <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.5rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <div 
             ref={containerRef}
@@ -5779,12 +5979,26 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
           {loading && <span style={{ color:'#6b5f53' }}>Thinking…</span>}
         </div>
       )}
-      {open && thread.length > 0 && (
+      {/* Display followupThreads from saved explanation or local thread for inline explanations */}
+      {((onFollowup && followupThreads.length > 0) || (!onFollowup && thread.length > 0)) && (
         <div style={{ marginTop: '0.5rem' }}>
-          {thread.map((m, i) => {
+          {(onFollowup ? followupThreads : thread).map((m, i) => {
             const isMore = m.q === 'More detail' || m.q === 'More' || (m.q && m.q.toLowerCase().includes('expand') && m.q.toLowerCase().includes('more'));
+            const providerName = formatProviderName(m?.provider || '');
+            let attribution = '';
+            if (m?.model && providerName) attribution = `${m.model} (via ${providerName})`;
+            else if (m?.model) attribution = `Model: ${m.model}`;
+            else if (providerName) attribution = providerName;
+            if (!attribution && (options?.model || options?.provider)) {
+              const fallbackProvider = formatProviderName(options?.provider || '');
+              const fallbackModel = options?.model || '';
+              if (fallbackModel && fallbackProvider) attribution = `${fallbackModel} (via ${fallbackProvider})`;
+              else if (fallbackModel) attribution = `Model: ${fallbackModel}`;
+              else if (fallbackProvider) attribution = fallbackProvider;
+            }
+            const threadKey = m._id || `fu-${i}`;
             return (
-            <div key={`fu-${i}`} style={{ marginBottom: '0.5rem' }}>
+            <div key={threadKey} style={{ marginBottom: '0.5rem' }}>
                 {isMore ? (
                   <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>More</div>
                 ) : m.q ? (
@@ -5802,7 +6016,9 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
                   </div>
                 ) : null}
               <div style={{ whiteSpace:'pre-wrap' }}>{m.a}</div>
-              <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{options?.model ? `Model: ${options.model}` : ''}</div>
+              {attribution ? (
+                <div style={{ fontStyle: 'italic', fontSize: '0.85em', color: '#6b5f53', marginTop: 2 }}>{attribution}</div>
+              ) : null}
             </div>
             );
           })}
