@@ -309,6 +309,36 @@ export default function UserGuidePanel() {
               <li>Responsive design works on all screen sizes</li>
             </ul>
           </div>
+
+          <div className="step">
+            <h3>Android App</h3>
+            <p>
+              You can download the Android app (.apk) to install Romeo and Juliet Explained on your Android device:
+            </p>
+            <p style={{ marginTop: '1rem' }}>
+              <a
+                href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.0/app-release.apk"
+                download
+                style={{
+                  display: 'inline-block',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: '#6b5f53',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: '4px',
+                  fontWeight: '500',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
+              >
+                📱 Download Android APK
+              </a>
+            </p>
+            <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
+              After downloading, you may need to allow installation from unknown sources in your Android settings.
+            </p>
+          </div>
         </div>
 
         <div className="guide-section">

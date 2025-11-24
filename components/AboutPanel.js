@@ -100,6 +100,33 @@ export default function AboutPanel() {
             </button>{' '}
             for detailed instructions on how to make the most of this tool, or simply start reading and select any text that interests you.
           </p>
+          <div style={{ marginTop: '1.5rem' }}>
+            <h3 style={{ marginBottom: '0.75rem', fontSize: '1.1em' }}>Download for Android</h3>
+            <p style={{ marginBottom: '0.75rem' }}>
+              Install Romeo and Juliet Explained on your Android device:
+            </p>
+            <a
+              href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.0/app-release.apk"
+              download
+              style={{
+                display: 'inline-block',
+                padding: '0.75rem 1.5rem',
+                backgroundColor: '#6b5f53',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontWeight: '500',
+                transition: 'background-color 0.2s',
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
+            >
+              📱 Download Android APK
+            </a>
+            <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
+              After downloading, you may need to allow installation from unknown sources in your Android settings.
+            </p>
+          </div>
         </div>
       </div>
     </div>
