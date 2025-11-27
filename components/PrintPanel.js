@@ -185,7 +185,8 @@ export default function PrintPanel({
     const info = sectionsWithOffsets.map(() => ({ act: null, scene: null, title: null }));
     const scenes = Array.isArray(metadata?.scenes) ? metadata.scenes : [];
     sectionsWithOffsets.forEach((section, index) => {
-      const start = section.startOffset;
+      const start = section.startOffset || 0;
+      // Find scene that contains this section's start offset
       const scene = scenes.find((s) => start >= s.startOffset && start <= s.endOffset);
       if (scene) {
         info[index] = {
@@ -229,21 +230,36 @@ export default function PrintPanel({
     if (!selectedAct && !selectedScene) {
       return sectionsWithOffsets.map((_, index) => index);
     }
+    
+    // Normalize act and scene for comparison
+    const normalizedSelectedAct = selectedAct ? selectedAct.trim().toLowerCase() : null;
+    const normalizedSelectedScene = selectedScene ? selectedScene.trim().toUpperCase() : null;
+    
     return sectionsWithOffsets.map((_, index) => index).filter((index) => {
       const info = sectionInfo[index];
-      if (selectedAct) {
+      
+      // Filter by act
+      if (normalizedSelectedAct) {
         if (!info.act) return false;
-        if ((info.act || '').toLowerCase() !== selectedAct.toLowerCase()) return false;
+        const normalizedInfoAct = (info.act || '').trim().toLowerCase();
+        if (normalizedInfoAct !== normalizedSelectedAct) return false;
       }
-      if (selectedScene) {
-        if (selectedAct && selectedAct.toLowerCase() === 'prologue') {
-          return selectedScene.trim() === '';
+      
+      // Filter by scene
+      if (normalizedSelectedScene) {
+        // Handle Prologue (which has empty scene string)
+        if (normalizedSelectedAct === 'prologue') {
+          // Prologue should have empty scene
+          if (info.scene && info.scene.trim() !== '') return false;
+          return true;
         }
-        if (!info.scene || info.scene === '') {
-          return selectedScene.trim() === '';
-        }
-        if (String(info.scene).toUpperCase() !== selectedScene.toUpperCase()) return false;
+        
+        // For non-Prologue scenes, must have matching scene
+        if (!info.scene || info.scene.trim() === '') return false;
+        const normalizedInfoScene = String(info.scene).trim().toUpperCase();
+        if (normalizedInfoScene !== normalizedSelectedScene) return false;
       }
+      
       return true;
     });
   }, [sectionsWithOffsets, sectionInfo, selectedAct, selectedScene]);
@@ -345,17 +361,28 @@ export default function PrintPanel({
       </div>
 
       <div className="printContainer">
-        {filteredIndices.map((index) => {
+        {filteredIndices.map((index, mapIndex) => {
           const section = sections[index] || '';
           const info = sectionInfo[index] || {};
           const saved = bySectionSaved[index] || [];
           const forced = bySectionForced[index] || [];
           const pre = bySectionPrecomputed[index] || [];
 
+          // Only show Act/Scene header when it changes from the previous section
+          const prevIndex = mapIndex > 0 ? filteredIndices[mapIndex - 1] : null;
+          const prevInfo = prevIndex != null ? sectionInfo[prevIndex] || {} : null;
+          const showActScene = !prevInfo || 
+            prevInfo.act !== info.act || 
+            prevInfo.scene !== info.scene ||
+            prevInfo.title !== info.title;
+          
+          // Only show title when it changes
+          const showTitle = info.title && (!prevInfo || prevInfo.title !== info.title);
+
           return (
             <div key={`print-section-${index}`} className="printSection">
-              {info.title && <h2 className="printSectionTitle">{info.title}</h2>}
-              {info.act && (
+              {showTitle && <h2 className="printSectionTitle">{info.title}</h2>}
+              {showActScene && info.act && (
                 <div className="printSectionMeta">
                   <strong>Act {info.act}</strong>
                   {info.scene && info.scene !== '' ? <> — Scene {info.scene}</> : null}
@@ -364,20 +391,40 @@ export default function PrintPanel({
               <pre className="printSectionText">{section}</pre>
               {forced.length > 0 && (
                 <div className="printNotesGroup">
-                  <h3>Priority notes</h3>
                   {forced.map((entry, idx) => (
-                    <div key={`forced-${index}-${idx}`} className="printNoteCard">
-                      <p>{entry.last}</p>
+                    <div key={`forced-${index}-${idx}`} className="printNoteCard" style={{
+                      marginTop: '0.75rem',
+                      marginBottom: '0.75rem',
+                      paddingLeft: '1.5rem',
+                      paddingRight: '1rem',
+                      paddingTop: '0.5rem',
+                      paddingBottom: '0.5rem',
+                      borderLeft: '3px solid #d4c4b0',
+                      fontStyle: 'italic',
+                      color: '#4a4036',
+                      backgroundColor: '#f9f7f4'
+                    }}>
+                      <p style={{ margin: 0 }}>{entry.last}</p>
                     </div>
                   ))}
                 </div>
               )}
               {pre.length > 0 && (
                 <div className="printNotesGroup">
-                  <h3>Precomputed notes</h3>
                   {pre.map((entry, idx) => (
-                    <div key={`pre-${index}-${idx}`} className="printNoteCard">
-                      <p>{entry.last}</p>
+                    <div key={`pre-${index}-${idx}`} className="printNoteCard" style={{
+                      marginTop: '0.75rem',
+                      marginBottom: '0.75rem',
+                      paddingLeft: '1.5rem',
+                      paddingRight: '1rem',
+                      paddingTop: '0.5rem',
+                      paddingBottom: '0.5rem',
+                      borderLeft: '3px solid #d4c4b0',
+                      fontStyle: 'italic',
+                      color: '#4a4036',
+                      backgroundColor: '#f9f7f4'
+                    }}>
+                      <p style={{ margin: 0 }}>{entry.last}</p>
                     </div>
                   ))}
                 </div>
