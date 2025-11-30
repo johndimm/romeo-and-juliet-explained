@@ -313,11 +313,11 @@ export default function UserGuidePanel() {
           <div className="step">
             <h3>Android App</h3>
             <p>
-              You can download the Android app (.apk) to install Romeo and Juliet Explained on your Android device:
+              You can download the Android app (.aab) to install Romeo and Juliet Explained on your Android device:
             </p>
             <p style={{ marginTop: '1rem' }}>
               <a
-                href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.0/app-release.apk"
+                href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.0/app-release.aab"
                 download
                 style={{
                   display: 'inline-block',
@@ -332,7 +332,7 @@ export default function UserGuidePanel() {
                 onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
                 onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
               >
-                📱 Download Android APK
+                📱 Download Android AAB
               </a>
             </p>
             <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
