@@ -1271,6 +1271,8 @@ html.isPrintRoute .container { left: 0; }
     border-radius: 8px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     padding: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .mobileMenu .menuItem {
     display: block;
@@ -1284,6 +1286,10 @@ html.isPrintRoute .container { left: 0; }
     font-size: 16px;
     color: #2f2a25;
     text-decoration: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
   }
   .mobileMenu .menuItem:hover { background: #f6f2ea; }
 
@@ -1568,6 +1574,8 @@ html.isPrintRoute .container { left: 0; }
     border-radius: 8px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     padding: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .mobileMenu .menuItem {
     display: block;
@@ -1581,6 +1589,10 @@ html.isPrintRoute .container { left: 0; }
     font-size: 16px;
     color: #2f2a25;
     text-decoration: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
   }
   .mobileMenu .menuItem:hover { background: #f6f2ea; }
 
