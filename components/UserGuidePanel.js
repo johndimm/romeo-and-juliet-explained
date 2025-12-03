@@ -311,32 +311,24 @@ export default function UserGuidePanel() {
           </div>
 
           <div className="step">
-            <h3>Android App</h3>
+            <h3>Desktop Version on Mobile</h3>
             <p>
-              You can download the Android app (.apk) to install Romeo and Juliet Explained on your Android device:
+              If you're on a mobile device and want to use the desktop version with the three-column layout, you can access it at:
             </p>
-            <p style={{ marginTop: '1rem' }}>
+            <p style={{ marginTop: '1rem', padding: '0.75rem 1rem', backgroundColor: '#f8f6f3', borderRadius: '6px', border: '1px solid #e7d7b8' }}>
               <a
-                href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.2/app-release.apk"
-                download
+                href="https://romeo-and-juliet-explained.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  display: 'inline-block',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#6b5f53',
-                  color: '#fff',
+                  color: '#3b3228',
                   textDecoration: 'none',
-                  borderRadius: '4px',
                   fontWeight: '500',
-                  transition: 'background-color 0.2s',
+                  wordBreak: 'break-all',
                 }}
-                onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
-                onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
               >
-                📱 Download Android APK
+                https://romeo-and-juliet-explained.vercel.app/
               </a>
-            </p>
-            <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
-              After downloading, you may need to allow installation from unknown sources in your Android settings.
             </p>
           </div>
         </div>

@@ -101,30 +101,24 @@ export default function AboutPanel() {
             for detailed instructions on how to make the most of this tool, or simply start reading and select any text that interests you.
           </p>
           <div style={{ marginTop: '1.5rem' }}>
-            <h3 style={{ marginBottom: '0.75rem', fontSize: '1.1em' }}>Download for Android</h3>
+            <h3 style={{ marginBottom: '0.75rem', fontSize: '1.1em' }}>Desktop Version on Mobile</h3>
             <p style={{ marginBottom: '0.75rem' }}>
-              Install Romeo and Juliet Explained on your Android device:
+              If you're on a mobile device and want to use the desktop version with the three-column layout, you can access it at:
             </p>
-            <a
-              href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.2/app-release.apk"
-              download
-              style={{
-                display: 'inline-block',
-                padding: '0.75rem 1.5rem',
-                backgroundColor: '#6b5f53',
-                color: '#fff',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                fontWeight: '500',
-                transition: 'background-color 0.2s',
-              }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
-            >
-              📱 Download Android APK
-            </a>
-            <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
-              After downloading, you may need to allow installation from unknown sources in your Android settings.
+            <p style={{ padding: '0.75rem 1rem', backgroundColor: '#f8f6f3', borderRadius: '6px', border: '1px solid #e7d7b8' }}>
+              <a
+                href="https://romeo-and-juliet-explained.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#3b3228',
+                  textDecoration: 'none',
+                  fontWeight: '500',
+                  wordBreak: 'break-all',
+                }}
+              >
+                https://romeo-and-juliet-explained.vercel.app/
+              </a>
             </p>
           </div>
         </div>
