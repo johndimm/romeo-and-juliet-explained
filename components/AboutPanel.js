@@ -106,7 +106,7 @@ export default function AboutPanel() {
               Install Romeo and Juliet Explained on your Android device:
             </p>
             <a
-              href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.0/app-release.aab"
+              href="https://github.com/johndimm/romeo-and-juliet-explained/releases/download/v1.0.2/app-release.apk"
               download
               style={{
                 display: 'inline-block',
@@ -121,7 +121,7 @@ export default function AboutPanel() {
               onMouseEnter={(e) => (e.target.style.backgroundColor = '#53483e')}
               onMouseLeave={(e) => (e.target.style.backgroundColor = '#6b5f53')}
             >
-              📱 Download Android AAB
+              📱 Download Android APK
             </a>
             <p style={{ marginTop: '0.5rem', fontSize: '0.9em', color: '#6b5f53' }}>
               After downloading, you may need to allow installation from unknown sources in your Android settings.

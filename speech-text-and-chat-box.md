@@ -31,8 +31,7 @@ Entries are created by
     - select text from Speech Text
     - click to select the containing sentence
     - click-drag for a phrase or long passage
-    - title is "Selected Text: " 
-      = followed by selected text
+    - title is "Selected Text: " followed by selected text
 
   - more
     - click on note, explanation, or answer 

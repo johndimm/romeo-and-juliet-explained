@@ -10,6 +10,7 @@ import SettingsPanel from '../components/SettingsPanel';
 import UserGuidePanel from '../components/UserGuidePanel';
 import AboutPanel from '../components/AboutPanel';
 import PrintPanel from '../components/PrintPanel';
+import WelcomePanel from '../components/WelcomePanel';
 import { useOverlay } from '../contexts/OverlayContext';
 import { log as appLog } from '../utils/log';
 
@@ -3080,6 +3081,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           </div>
         </div>
       )}
+      <WelcomePanel />
     </>
   );
 }
@@ -3322,11 +3324,15 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     return meta.sectionIndex === sectionIndex;
   }).length;
   // Only show aside if there's actual visible content (not suppressed note, or has other content)
-  const hasAside = (hasNoteContent && !noteIsSuppressedWithWholeSpeech)
+  // Check if there's actually content to show - don't show empty boxes
+  // Use chosenItemSpeechKey (already defined above) instead of redefining noteSpeechKey
+  const noteIsExpandedForAside = chosenItemSpeechKey && expandedNotes.has(chosenItemSpeechKey);
+  const hasVisibleContent = (hasNoteContent && !noteIsSuppressedWithWholeSpeech)
     || filteredSavedExplanationsCount > 0
     || (hasLLMContent && !currentSpeechNoteSuppressed)
-    || (hasSelection && !currentSpeechNoteSuppressed)
-    || (hasSelectModeActive && !noteIsSuppressedWithWholeSpeech);
+    || (hasSelection && noteIsExpandedForAside && !currentSpeechNoteSuppressed) // Only show if note is expanded (so chat panel will show)
+    || (hasSelectModeActive && hasNoteContent && !noteIsSuppressedWithWholeSpeech); // Only show if there's a note with content
+  const hasAside = hasVisibleContent;
   // Check if current selection is a whole speech (should not show explanation panel)
   const isWholeSpeechSelection = hasSelectionContext && contextInfo?.isWholeSpeech;
   // Indicate clickability in the text area when a suppressed note exists for the current speech
@@ -4263,6 +4269,37 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       try { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 900); } catch {}
     } catch {}
   };
+
+  // Track previous explanation count to detect new explanations
+  const prevExplanationCountRef = useRef(0);
+  
+  // Scroll to explanation when it first appears
+  useEffect(() => {
+    const currentCount = filteredSavedExplanations.length;
+    const prevCount = prevExplanationCountRef.current;
+    
+    // Determine if note is expanded for scroll detection (using chosenItemSpeechKey defined above)
+    const noteIsExpandedForScroll = chosenItemSpeechKey && expandedNotes.has(chosenItemSpeechKey);
+    
+    // If a new explanation was added (count increased), scroll to it
+    // Only scroll if we're in a section that has the aside visible and note expanded
+    if (currentCount > prevCount && currentCount > 0 && hasAside && noteIsExpandedForScroll && asideRef.current) {
+      // Use a delay to ensure the DOM has updated and the explanation card is rendered
+      const timer = setTimeout(() => {
+        // Scroll the aside into view, using 'center' block to ensure explanation is visible
+        const el = asideRef.current;
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+          try { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 900); } catch {}
+        }
+      }, 200);
+      
+      prevExplanationCountRef.current = currentCount;
+      return () => clearTimeout(timer);
+    }
+    
+    prevExplanationCountRef.current = currentCount;
+  }, [filteredSavedExplanations.length, hasAside, chosenItemSpeechKey, expandedNotes]);
 
   // Handle selection or reveal note on mouse up
   const handleTextMouseUp = (e) => {
