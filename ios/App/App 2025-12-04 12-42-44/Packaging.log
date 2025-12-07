@@ -1,0 +1,393 @@
+2025-12-04 20:42:35 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7fd525ce4960; archive(resolved)="<IDEArchive: 0x6000095afa30>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team(resolved)="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	Chain (16, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7fd525ce4960; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionProcessingPipelineContext: 0x7fd525cbe6a0; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd525c54390; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd525ca90a0; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd53e67d410; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd53b82a780; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd525ce74b0; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd525cab0f0; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd53e689e80; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000023bc280; teamID='Q7GDVRDLKY', teamName='John Dimm', teamType='Individual', username='jdimm@yahoo.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x7fd53b82a570; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="(null)">
+	<IDEDistributionContext: 0x7fd53b807ca0; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="(null)">
+	<IDEDistributionContext: 0x7fd53b81c960; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="(null)">
+	<IDEDistributionContext: 0x7fd53c5deb80; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="<IDEDistributionMethodDevelopmentSigned: 0x600003f23110>", team="(null)">
+	<IDEDistributionContext: 0x7fd525c72c10; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x7fd523c1f100; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x7fd525cb2e60; archive = "<IDEArchive: 0x6000095afa30>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x7fd525ce4960>
+2025-12-04 20:42:35 +0000  Processing step: IDEDistributionCreateDestRootStep
+2025-12-04 20:42:35 +0000  Processing step: IDEDistributionCopyItemStep
+2025-12-04 20:42:35 +0000  Running /usr/bin/ditto '-V' '/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app' '/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app'
+2025-12-04 20:42:35 +0000  >>> Copying /Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app 
+2025-12-04 20:42:36 +0000  copying file ./_CodeSignature/CodeResources ... 
+2025-12-04 20:42:36 +0000  15515 bytes for ./_CodeSignature/CodeResources
+2025-12-04 20:42:36 +0000  copying file ./App ... 
+2025-12-04 20:42:36 +0000  93264 bytes for ./App
+2025-12-04 20:42:36 +0000  copying file ./AppIcon60x60@2x.png ... 
+2025-12-04 20:42:36 +0000  10151 bytes for ./AppIcon60x60@2x.png
+2025-12-04 20:42:36 +0000  copying file ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-12-04 20:42:36 +0000  858 bytes for ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+2025-12-04 20:42:36 +0000  copying file ./Base.lproj/Main.storyboardc/Info.plist ... 
+2025-12-04 20:42:36 +0000  258 bytes for ./Base.lproj/Main.storyboardc/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib ... 
+2025-12-04 20:42:36 +0000  1278 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib
+2025-12-04 20:42:36 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-12-04 20:42:36 +0000  924 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-12-04 20:42:36 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-12-04 20:42:36 +0000  258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./config.xml ... 
+2025-12-04 20:42:36 +0000  185 bytes for ./config.xml
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/-1AfzIS1e6EHWV5OstlUg/_ssgManifest.js ... 
+2025-12-04 20:42:36 +0000  88 bytes for ./public/_next/static/-1AfzIS1e6EHWV5OstlUg/_ssgManifest.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/-1AfzIS1e6EHWV5OstlUg/_buildManifest.js ... 
+2025-12-04 20:42:36 +0000  578 bytes for ./public/_next/static/-1AfzIS1e6EHWV5OstlUg/_buildManifest.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/css/87cdf4bbcd263832.css ... 
+2025-12-04 20:42:36 +0000  38454 bytes for ./public/_next/static/css/87cdf4bbcd263832.css
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/webpack-4e7214a60fad8e88.js ... 
+2025-12-04 20:42:36 +0000  1319 bytes for ./public/_next/static/chunks/webpack-4e7214a60fad8e88.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/framework-ecc4130bc7a58a64.js ... 
+2025-12-04 20:42:36 +0000  140942 bytes for ./public/_next/static/chunks/framework-ecc4130bc7a58a64.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/main-ac52e5f1ea1d2a16.js ... 
+2025-12-04 20:42:36 +0000  109836 bytes for ./public/_next/static/chunks/main-ac52e5f1ea1d2a16.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/_error-77823ddac6993d35.js ... 
+2025-12-04 20:42:36 +0000  247 bytes for ./public/_next/static/chunks/pages/_error-77823ddac6993d35.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/settings-756ce088933d2f83.js ... 
+2025-12-04 20:42:36 +0000  793 bytes for ./public/_next/static/chunks/pages/settings-756ce088933d2f83.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/user-guide-2ab5427b545eba73.js ... 
+2025-12-04 20:42:36 +0000  803 bytes for ./public/_next/static/chunks/pages/user-guide-2ab5427b545eba73.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/_app-661a2d0f632ffc7c.js ... 
+2025-12-04 20:42:36 +0000  22217 bytes for ./public/_next/static/chunks/pages/_app-661a2d0f632ffc7c.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/about-4182f5665bf4a223.js ... 
+2025-12-04 20:42:36 +0000  782 bytes for ./public/_next/static/chunks/pages/about-4182f5665bf4a223.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/index-43d46c13b357d1cc.js ... 
+2025-12-04 20:42:36 +0000  144213 bytes for ./public/_next/static/chunks/pages/index-43d46c13b357d1cc.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/pages/print-37002003955457dc.js ... 
+2025-12-04 20:42:36 +0000  789 bytes for ./public/_next/static/chunks/pages/print-37002003955457dc.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js ... 
+2025-12-04 20:42:36 +0000  91381 bytes for ./public/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js
+2025-12-04 20:42:36 +0000  copying file ./public/_next/data/-1AfzIS1e6EHWV5OstlUg/index.json ... 
+2025-12-04 20:42:36 +0000  385586 bytes for ./public/_next/data/-1AfzIS1e6EHWV5OstlUg/index.json
+2025-12-04 20:42:36 +0000  copying file ./public/index.html ... 
+2025-12-04 20:42:36 +0000  813071 bytes for ./public/index.html
+2025-12-04 20:42:36 +0000  copying file ./public/about.html ... 
+2025-12-04 20:42:36 +0000  7038 bytes for ./public/about.html
+2025-12-04 20:42:36 +0000  copying file ./public/cordova.js ... 
+2025-12-04 20:42:36 +0000  0 bytes for ./public/cordova.js
+2025-12-04 20:42:36 +0000  copying file ./public/404.html ... 
+2025-12-04 20:42:36 +0000  7742 bytes for ./public/404.html
+2025-12-04 20:42:36 +0000  copying file ./public/print.html ... 
+2025-12-04 20:42:36 +0000  5539 bytes for ./public/print.html
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide.html ... 
+2025-12-04 20:42:36 +0000  7067 bytes for ./public/user-guide.html
+2025-12-04 20:42:36 +0000  copying file ./public/cordova_plugins.js ... 
+2025-12-04 20:42:36 +0000  0 bytes for ./public/cordova_plugins.js
+2025-12-04 20:42:36 +0000  copying file ./public/settings.html ... 
+2025-12-04 20:42:36 +0000  7053 bytes for ./public/settings.html
+2025-12-04 20:42:36 +0000  copying file ./public/data/metadata.json ... 
+2025-12-04 20:42:36 +0000  134648 bytes for ./public/data/metadata.json
+2025-12-04 20:42:36 +0000  copying file ./public/data/character_map.csv ... 
+2025-12-04 20:42:36 +0000  11734 bytes for ./public/data/character_map.csv
+2025-12-04 20:42:36 +0000  copying file ./public/data/explanations.json ... 
+2025-12-04 20:42:36 +0000  299036 bytes for ./public/data/explanations.json
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide-screenshots/all.jpg ... 
+2025-12-04 20:42:36 +0000  459884 bytes for ./public/user-guide-screenshots/all.jpg
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide-screenshots/some.jpg ... 
+2025-12-04 20:42:36 +0000  469654 bytes for ./public/user-guide-screenshots/some.jpg
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide-screenshots/most.jpg ... 
+2025-12-04 20:42:36 +0000  508852 bytes for ./public/user-guide-screenshots/most.jpg
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide-screenshots/none.jpg ... 
+2025-12-04 20:42:36 +0000  421457 bytes for ./public/user-guide-screenshots/none.jpg
+2025-12-04 20:42:36 +0000  copying file ./public/user-guide-screenshots/note-density.jpg ... 
+2025-12-04 20:42:36 +0000  424583 bytes for ./public/user-guide-screenshots/note-density.jpg
+2025-12-04 20:42:36 +0000  copying file ./Assets.car ... 
+2025-12-04 20:42:36 +0000  339640 bytes for ./Assets.car
+2025-12-04 20:42:36 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2025-12-04 20:42:36 +0000  13254 bytes for ./AppIcon76x76@2x~ipad.png
+copying file ./capacitor.config.json ... 
+2025-12-04 20:42:36 +0000  149 bytes for ./capacitor.config.json
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Capacitor.framework/_CodeSignature/CodeResources ... 
+2025-12-04 20:42:36 +0000  2252 bytes for ./Frameworks/Capacitor.framework/_CodeSignature/CodeResources
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Capacitor.framework/native-bridge.js ... 
+2025-12-04 20:42:36 +0000  52815 bytes for ./Frameworks/Capacitor.framework/native-bridge.js
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Capacitor.framework/Capacitor ... 
+2025-12-04 20:42:36 +0000  1468336 bytes for ./Frameworks/Capacitor.framework/Capacitor
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy ... 
+2025-12-04 20:42:36 +0000  373 bytes for ./Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Capacitor.framework/Info.plist ... 
+2025-12-04 20:42:36 +0000  786 bytes for ./Frameworks/Capacitor.framework/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Cordova.framework/_CodeSignature/CodeResources ... 
+2025-12-04 20:42:36 +0000  2034 bytes for ./Frameworks/Cordova.framework/_CodeSignature/CodeResources
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Cordova.framework/Cordova ... 
+2025-12-04 20:42:36 +0000  147376 bytes for ./Frameworks/Cordova.framework/Cordova
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Cordova.framework/PrivacyInfo.xcprivacy ... 
+2025-12-04 20:42:36 +0000  373 bytes for ./Frameworks/Cordova.framework/PrivacyInfo.xcprivacy
+2025-12-04 20:42:36 +0000  copying file ./Frameworks/Cordova.framework/Info.plist ... 
+2025-12-04 20:42:36 +0000  782 bytes for ./Frameworks/Cordova.framework/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./embedded.mobileprovision ... 
+2025-12-04 20:42:36 +0000  14564 bytes for ./embedded.mobileprovision
+2025-12-04 20:42:36 +0000  copying file ./Info.plist ... 
+2025-12-04 20:42:36 +0000  1421 bytes for ./Info.plist
+2025-12-04 20:42:36 +0000  copying file ./PkgInfo ... 
+2025-12-04 20:42:36 +0000  8 bytes for ./PkgInfo
+2025-12-04 20:42:36 +0000  /usr/bin/ditto exited with 0
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionEmbedProfileStep
+2025-12-04 20:42:36 +0000  Skipping profile for item: <IDEDistributionItem: 0x60000997f300; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x6000096a7480:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000099ca9a0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000079d380; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000993d320:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'>
+2025-12-04 20:42:36 +0000  Skipping profile for item: <IDEDistributionItem: 0x6000099ca520; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x6000095c21b0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60000997cde0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000007e9500; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x600009922ee0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'>
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionInfoPlistStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionSymbolsStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionAppThinningStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionArchThinningStep
+2025-12-04 20:42:36 +0000  Archs to thin for item /Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework are []
+2025-12-04 20:42:36 +0000  Archs to thin for item /Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework are []
+2025-12-04 20:42:36 +0000  Archs to thin for item /Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app are []
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionODRStep
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionStripXattrsStep
+2025-12-04 20:42:36 +0000  Skipping stripping extended attributes because the codesign step will strip them.
+2025-12-04 20:42:36 +0000  Skipping stripping extended attributes because the codesign step will strip them.
+2025-12-04 20:42:36 +0000  Skipping stripping extended attributes because the codesign step will strip them.
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionCodesignStep
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x60000997f300; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x6000096a7480:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000099ca9a0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000813cc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000993d320:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'>: {
+}
+2025-12-04 20:42:36 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x60000997f300; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x6000096a7480:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000099ca9a0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000813cc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000993d320:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'> are: {
+}
+2025-12-04 20:42:36 +0000  Writing entitlements for <IDEDistributionItem: 0x60000997f300; bundleID='org.cocoapods.Capacitor', path='<DVTFilePath:0x6000096a7480:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x6000099ca9a0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000813cc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Capacitor', executablePath='<DVTFilePath:0x60000993d320:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Capacitor.framework/Capacitor'>', hardenedRuntime='0'>'> to: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~rKTGJC
+2025-12-04 20:42:36 +0000  invoking codesign: <NSConcreteTask: 0x60000deea990; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    EC15D213920EFE3DC2328D15FE54CD164399800C,
+    "--entitlements",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~rKTGJC",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Capacitor.framework"
+)'>
+2025-12-04 20:42:36 +0000  codesign output: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Capacitor.framework: replacing existing signature
+/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Capacitor.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.Capacitor]
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x6000099ca520; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x6000095c21b0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60000997cde0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000007c1200; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x600009922ee0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'>: {
+}
+2025-12-04 20:42:36 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x6000099ca520; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x6000095c21b0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60000997cde0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000007cef40; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x600009922ee0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'> are: {
+}
+2025-12-04 20:42:36 +0000  Writing entitlements for <IDEDistributionItem: 0x6000099ca520; bundleID='org.cocoapods.Cordova', path='<DVTFilePath:0x6000095c21b0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60000997cde0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000007cef40; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='(null)', teamID='Q7GDVRDLKY', identifier='org.cocoapods.Cordova', executablePath='<DVTFilePath:0x600009922ee0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/Frameworks/Cordova.framework/Cordova'>', hardenedRuntime='0'>'> to: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~zCOXdW
+2025-12-04 20:42:36 +0000  invoking codesign: <NSConcreteTask: 0x60000de56da0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    EC15D213920EFE3DC2328D15FE54CD164399800C,
+    "--entitlements",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~zCOXdW",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Cordova.framework"
+)'>
+2025-12-04 20:42:36 +0000  codesign output: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Cordova.framework: replacing existing signature
+/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Cordova.framework: signed bundle with Mach-O thin (arm64) [org.cocoapods.Cordova]
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x600009989680; bundleID='dimm.explainers.shakespeare.romeo-and-juliet', path='<DVTFilePath:0x600009921620:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009988d20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000813cc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='{
+    "application-identifier" = "Q7GDVRDLKY.dimm.explainers.shakespeare.romeo-and-juliet";
+    "com.apple.developer.team-identifier" = Q7GDVRDLKY;
+    "get-task-allow" = 1;
+}', teamID='Q7GDVRDLKY', identifier='dimm.explainers.shakespeare.romeo-and-juliet', executablePath='<DVTFilePath:0x60000992afa0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "Q7GDVRDLKY.dimm.explainers.shakespeare.romeo-and-juliet";
+    "com.apple.developer.team-identifier" = Q7GDVRDLKY;
+    "get-task-allow" = 1;
+}
+2025-12-04 20:42:36 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-12-04 20:42:36 +0000  Entitlements for <IDEDistributionItem: 0x600009989680; bundleID='dimm.explainers.shakespeare.romeo-and-juliet', path='<DVTFilePath:0x600009921620:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009988d20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000813cc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='{
+    "application-identifier" = "Q7GDVRDLKY.dimm.explainers.shakespeare.romeo-and-juliet";
+    "com.apple.developer.team-identifier" = Q7GDVRDLKY;
+    "get-task-allow" = 1;
+}', teamID='Q7GDVRDLKY', identifier='dimm.explainers.shakespeare.romeo-and-juliet', executablePath='<DVTFilePath:0x60000992afa0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "Q7GDVRDLKY.dimm.explainers.shakespeare.romeo-and-juliet";
+    "com.apple.developer.team-identifier" = Q7GDVRDLKY;
+    "get-task-allow" = 1;
+}
+2025-12-04 20:42:36 +0000  Writing entitlements for <IDEDistributionItem: 0x600009989680; bundleID='dimm.explainers.shakespeare.romeo-and-juliet', path='<DVTFilePath:0x600009921620:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009988d20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000007cfcc0; name='Apple Development: jdimm@yahoo.com (7ZK58VJ3GL)', hash='EC15D213920EFE3DC2328D15FE54CD164399800C', serialNumber='629BD659B77987A5A0BD7A40DA5B071B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-11-11 16:08:39 +0000''>', entitlements='{
+    "application-identifier" = "Q7GDVRDLKY.dimm.explainers.shakespeare.romeo-and-juliet";
+    "com.apple.developer.team-identifier" = Q7GDVRDLKY;
+    "get-task-allow" = 1;
+}', teamID='Q7GDVRDLKY', identifier='dimm.explainers.shakespeare.romeo-and-juliet', executablePath='<DVTFilePath:0x60000992afa0:'/Users/johndimm/Library/Developer/Xcode/Archives/2025-12-04/App 12-4-25, 12.42 PM.xcarchive/Products/Applications/App.app/App'>', hardenedRuntime='0'>'> to: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~Do1L7W
+2025-12-04 20:42:36 +0000  invoking codesign: <NSConcreteTask: 0x60000de56a80; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    EC15D213920EFE3DC2328D15FE54CD164399800C,
+    "--entitlements",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/entitlements~~~Do1L7W",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app"
+)'>
+2025-12-04 20:42:36 +0000  codesign output: /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app: replacing existing signature
+/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app: signed app bundle with Mach-O thin (arm64) [dimm.explainers.shakespeare.romeo-and-juliet]
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionZipODRItemStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionCreateIPAStep
+2025-12-04 20:42:36 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root' '/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Packages/App.ipa'
+2025-12-04 20:42:36 +0000  >>> Copying /var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root 
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/_CodeSignature/CodeResources ... 
+2025-12-04 20:42:36 +0000  15515 bytes for ./Payload/App.app/_CodeSignature/CodeResources
+copying file ./Payload/App.app/App ... 
+2025-12-04 20:42:36 +0000  93264 bytes for ./Payload/App.app/App
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/AppIcon60x60@2x.png ... 
+2025-12-04 20:42:36 +0000  10151 bytes for ./Payload/App.app/AppIcon60x60@2x.png
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-12-04 20:42:36 +0000  858 bytes for ./Payload/App.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Base.lproj/Main.storyboardc/Info.plist ... 
+258 bytes for ./Payload/App.app/Base.lproj/Main.storyboardc/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib ... 
+2025-12-04 20:42:36 +0000  1278 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-snD-IY-ifK.nib
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-12-04 20:42:36 +0000  924 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-12-04 20:42:36 +0000  258 bytes for ./Payload/App.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+copying file ./Payload/App.app/config.xml ... 
+2025-12-04 20:42:36 +0000  185 bytes for ./Payload/App.app/config.xml
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/-1AfzIS1e6EHWV5OstlUg/_ssgManifest.js ... 
+2025-12-04 20:42:36 +0000  88 bytes for ./Payload/App.app/public/_next/static/-1AfzIS1e6EHWV5OstlUg/_ssgManifest.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/-1AfzIS1e6EHWV5OstlUg/_buildManifest.js ... 
+2025-12-04 20:42:36 +0000  578 bytes for ./Payload/App.app/public/_next/static/-1AfzIS1e6EHWV5OstlUg/_buildManifest.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/css/87cdf4bbcd263832.css ... 
+2025-12-04 20:42:36 +0000  38454 bytes for ./Payload/App.app/public/_next/static/css/87cdf4bbcd263832.css
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/webpack-4e7214a60fad8e88.js ... 
+2025-12-04 20:42:36 +0000  1319 bytes for ./Payload/App.app/public/_next/static/chunks/webpack-4e7214a60fad8e88.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/framework-ecc4130bc7a58a64.js ... 
+2025-12-04 20:42:36 +0000  140942 bytes for ./Payload/App.app/public/_next/static/chunks/framework-ecc4130bc7a58a64.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/main-ac52e5f1ea1d2a16.js ... 
+2025-12-04 20:42:36 +0000  109836 bytes for ./Payload/App.app/public/_next/static/chunks/main-ac52e5f1ea1d2a16.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/pages/_error-77823ddac6993d35.js ... 
+2025-12-04 20:42:36 +0000  247 bytes for ./Payload/App.app/public/_next/static/chunks/pages/_error-77823ddac6993d35.js
+copying file ./Payload/App.app/public/_next/static/chunks/pages/settings-756ce088933d2f83.js ... 
+2025-12-04 20:42:36 +0000  793 bytes for ./Payload/App.app/public/_next/static/chunks/pages/settings-756ce088933d2f83.js
+copying file ./Payload/App.app/public/_next/static/chunks/pages/user-guide-2ab5427b545eba73.js ... 
+2025-12-04 20:42:36 +0000  803 bytes for ./Payload/App.app/public/_next/static/chunks/pages/user-guide-2ab5427b545eba73.js
+copying file ./Payload/App.app/public/_next/static/chunks/pages/_app-661a2d0f632ffc7c.js ... 
+2025-12-04 20:42:36 +0000  22217 bytes for ./Payload/App.app/public/_next/static/chunks/pages/_app-661a2d0f632ffc7c.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/pages/about-4182f5665bf4a223.js ... 
+2025-12-04 20:42:36 +0000  782 bytes for ./Payload/App.app/public/_next/static/chunks/pages/about-4182f5665bf4a223.js
+copying file ./Payload/App.app/public/_next/static/chunks/pages/index-43d46c13b357d1cc.js ... 
+2025-12-04 20:42:36 +0000  144213 bytes for ./Payload/App.app/public/_next/static/chunks/pages/index-43d46c13b357d1cc.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/pages/print-37002003955457dc.js ... 
+789 bytes for ./Payload/App.app/public/_next/static/chunks/pages/print-37002003955457dc.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js ... 
+2025-12-04 20:42:36 +0000  91381 bytes for ./Payload/App.app/public/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/_next/data/-1AfzIS1e6EHWV5OstlUg/index.json ... 
+2025-12-04 20:42:36 +0000  385586 bytes for ./Payload/App.app/public/_next/data/-1AfzIS1e6EHWV5OstlUg/index.json
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/index.html ... 
+2025-12-04 20:42:36 +0000  813071 bytes for ./Payload/App.app/public/index.html
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/about.html ... 
+2025-12-04 20:42:36 +0000  7038 bytes for ./Payload/App.app/public/about.html
+copying file ./Payload/App.app/public/cordova.js ... 
+0 bytes for ./Payload/App.app/public/cordova.js
+copying file ./Payload/App.app/public/404.html ... 
+2025-12-04 20:42:36 +0000  7742 bytes for ./Payload/App.app/public/404.html
+copying file ./Payload/App.app/public/print.html ... 
+2025-12-04 20:42:36 +0000  5539 bytes for ./Payload/App.app/public/print.html
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/user-guide.html ... 
+2025-12-04 20:42:36 +0000  7067 bytes for ./Payload/App.app/public/user-guide.html
+copying file ./Payload/App.app/public/cordova_plugins.js ... 
+0 bytes for ./Payload/App.app/public/cordova_plugins.js
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/settings.html ... 
+2025-12-04 20:42:36 +0000  7053 bytes for ./Payload/App.app/public/settings.html
+copying file ./Payload/App.app/public/data/metadata.json ... 
+2025-12-04 20:42:36 +0000  134648 bytes for ./Payload/App.app/public/data/metadata.json
+copying file ./Payload/App.app/public/data/character_map.csv ... 
+2025-12-04 20:42:36 +0000  11734 bytes for ./Payload/App.app/public/data/character_map.csv
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/data/explanations.json ... 
+2025-12-04 20:42:36 +0000  299036 bytes for ./Payload/App.app/public/data/explanations.json
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/public/user-guide-screenshots/all.jpg ... 
+2025-12-04 20:42:36 +0000  459884 bytes for ./Payload/App.app/public/user-guide-screenshots/all.jpg
+copying file ./Payload/App.app/public/user-guide-screenshots/some.jpg ... 
+2025-12-04 20:42:36 +0000  469654 bytes for ./Payload/App.app/public/user-guide-screenshots/some.jpg
+copying file ./Payload/App.app/public/user-guide-screenshots/most.jpg ... 
+2025-12-04 20:42:36 +0000  508852 bytes for ./Payload/App.app/public/user-guide-screenshots/most.jpg
+copying file ./Payload/App.app/public/user-guide-screenshots/none.jpg ... 
+2025-12-04 20:42:36 +0000  421457 bytes for ./Payload/App.app/public/user-guide-screenshots/none.jpg
+copying file ./Payload/App.app/public/user-guide-screenshots/note-density.jpg ... 
+2025-12-04 20:42:36 +0000  424583 bytes for ./Payload/App.app/public/user-guide-screenshots/note-density.jpg
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Assets.car ... 
+2025-12-04 20:42:36 +0000  339640 bytes for ./Payload/App.app/Assets.car
+copying file ./Payload/App.app/AppIcon76x76@2x~ipad.png ... 
+2025-12-04 20:42:36 +0000  13254 bytes for ./Payload/App.app/AppIcon76x76@2x~ipad.png
+copying file ./Payload/App.app/capacitor.config.json ... 
+2025-12-04 20:42:36 +0000  149 bytes for ./Payload/App.app/capacitor.config.json
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Frameworks/Capacitor.framework/_CodeSignature/CodeResources ... 
+2025-12-04 20:42:36 +0000  2252 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/_CodeSignature/CodeResources
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/native-bridge.js ... 
+2025-12-04 20:42:36 +0000  52815 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/native-bridge.js
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/Capacitor ... 
+2025-12-04 20:42:36 +0000  1468336 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/Capacitor
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy ... 
+2025-12-04 20:42:36 +0000  373 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/PrivacyInfo.xcprivacy
+copying file ./Payload/App.app/Frameworks/Capacitor.framework/Info.plist ... 
+2025-12-04 20:42:36 +0000  786 bytes for ./Payload/App.app/Frameworks/Capacitor.framework/Info.plist
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Frameworks/Cordova.framework/_CodeSignature/CodeResources ... 
+2034 bytes for ./Payload/App.app/Frameworks/Cordova.framework/_CodeSignature/CodeResources
+2025-12-04 20:42:36 +0000  copying file ./Payload/App.app/Frameworks/Cordova.framework/Cordova ... 
+2025-12-04 20:42:36 +0000  147376 bytes for ./Payload/App.app/Frameworks/Cordova.framework/Cordova
+copying file ./Payload/App.app/Frameworks/Cordova.framework/PrivacyInfo.xcprivacy ... 
+2025-12-04 20:42:36 +0000  373 bytes for ./Payload/App.app/Frameworks/Cordova.framework/PrivacyInfo.xcprivacy
+copying file ./Payload/App.app/Frameworks/Cordova.framework/Info.plist ... 
+2025-12-04 20:42:36 +0000  782 bytes for ./Payload/App.app/Frameworks/Cordova.framework/Info.plist
+copying file ./Payload/App.app/embedded.mobileprovision ... 
+2025-12-04 20:42:36 +0000  14564 bytes for ./Payload/App.app/embedded.mobileprovision
+copying file ./Payload/App.app/Info.plist ... 
+2025-12-04 20:42:36 +0000  1421 bytes for ./Payload/App.app/Info.plist
+copying file ./Payload/App.app/PkgInfo ... 
+2025-12-04 20:42:36 +0000  8 bytes for ./Payload/App.app/PkgInfo
+2025-12-04 20:42:36 +0000  /usr/bin/ditto exited with 0
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2025-12-04 20:42:36 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-12-04 20:42:36 +0000  IDEDistributionItem init <DVTFilePath:0x60000943fe90:'/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Capacitor.framework'>
+2025-12-04 20:42:36 +0000  IDEDistributionItem init <DVTFilePath:0x6000095d8930:'/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app/Frameworks/Cordova.framework'>
+2025-12-04 20:42:36 +0000  IDEDistributionItem init <DVTFilePath:0x600009997300:'/var/folders/1_/nz8n1h4x6lvc9p0ls6sxc3zr0000gn/T/XcodeDistPipeline.~~~0jovQi/Root/Payload/App.app'>
+2025-12-04 20:42:36 +0000  Processing step: IDEDistributionCreateManifestStep

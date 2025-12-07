@@ -8,8 +8,22 @@ export default function WelcomePanel() {
   useEffect(() => {
     // Check if user has seen the welcome message
     if (typeof window !== 'undefined') {
+      // For testing: check URL parameter to reset welcome
+      const urlParams = new URLSearchParams(window.location.search);
+      const resetWelcome = urlParams.get('resetWelcome') === 'true';
+      
+      if (resetWelcome) {
+        localStorage.removeItem('romeo-juliet-welcome-seen');
+      }
+      
+      // Also check for development mode to always show in simulator/dev
+      const isDev = process.env.NODE_ENV === 'development' || 
+                    window.location.hostname === 'localhost' ||
+                    window.location.hostname.includes('127.0.0.1') ||
+                    urlParams.get('showWelcome') === 'true';
+      
       const hasSeenWelcome = localStorage.getItem('romeo-juliet-welcome-seen');
-      if (!hasSeenWelcome) {
+      if (!hasSeenWelcome || (isDev && urlParams.get('showWelcome') === 'true')) {
         // Show welcome after a brief delay to ensure page is loaded
         const timer = setTimeout(() => {
           setShowWelcome(true);

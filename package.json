@@ -46,7 +46,9 @@
     "fill:notes": "node scripts/fill_missing_explanations.mjs",
     "gen:missing:deepseek": "node scripts/gen-missing-notes-deepseek.mjs",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:comprehensive": "playwright test tests/comprehensive-features.spec.js",
+    "test:headed": "playwright test --headed"
   },
   "type": "module",
   "name": "romeo-and-juliet-explained"

@@ -795,46 +795,101 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
   // Handle scrolling when currentIdx changes (via prev/next buttons)
   useEffect(() => {
+    console.log('[Home] Scroll effect triggered', { totalMatches, currentIdx, matchRefsLength: matchRefs.current.length });
     if (totalMatches > 0 && currentIdx >= 0 && currentIdx < totalMatches) {
       // Use requestAnimationFrame to ensure DOM has updated with highlights
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-      const el = matchRefs.current[currentIdx];
+          console.log('[Home] Scroll effect: looking for element at index', currentIdx, { matchRefsLength: matchRefs.current.length });
+          const el = matchRefs.current[currentIdx];
           if (el) {
+            console.log('[Home] Scroll effect: found element, scrolling', { currentIdx, element: el });
             // Mark active class
             matchRefs.current.forEach((e) => e && e.classList.remove('current'));
-      el.classList.add('current');
-      // Scroll within our active scroller rather than window to avoid header shifts on mobile
-      const scroller = getScroller();
-      if (scroller) {
-        try {
-          const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
-          if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
-          else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
-        } catch (e) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-        }
-      } else {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-      }
+            el.classList.add('current');
+            // Scroll within our active scroller rather than window to avoid header shifts on mobile
+            const scroller = getScroller();
+            console.log('[Home] Scroll effect: scroller found', { scroller: scroller?.constructor?.name || 'null' });
+            if (scroller) {
+              try {
+                const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
+                console.log('[Home] Scroll effect: scrolling to', targetTop);
+                if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+              } catch (e) {
+                console.log('[Home] Scroll effect: error in scroll calculation, using scrollIntoView', e);
+                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+              }
+            } else {
+              console.log('[Home] Scroll effect: no scroller found, using scrollIntoView');
+              el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+            }
+          } else {
+            console.log('[Home] Scroll effect: element not found at index', currentIdx, { matchRefsLength: matchRefs.current.length, matchRefs: matchRefs.current });
+            // Try to find element in DOM directly
+            const highlights = Array.from(document.querySelectorAll('.highlight'));
+            console.log('[Home] Scroll effect: found highlights in DOM', highlights.length);
+            if (highlights[currentIdx]) {
+              console.log('[Home] Scroll effect: using DOM element', currentIdx);
+              const domEl = highlights[currentIdx];
+              matchRefs.current.forEach((e) => e && e.classList.remove('current'));
+              domEl.classList.add('current');
+              const scroller = getScroller();
+              if (scroller) {
+                try {
+                  const targetTop = Math.max(0, getElementTopWithin(domEl, scroller) - (scroller.clientHeight ? (scroller.clientHeight - domEl.clientHeight) / 2 : 80));
+                  if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                  else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
+                } catch (e) {
+                  domEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                }
+              } else {
+                domEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+              }
+            }
           }
         });
       });
     } else if (totalMatches === 0) {
+      console.log('[Home] Scroll effect: no matches, removing current class');
       // Ensure no stale 'current' class remains when there are no matches
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
+    } else {
+      console.log('[Home] Scroll effect: conditions not met', { totalMatches, currentIdx });
     }
   }, [currentIdx, totalMatches]);
 
-  const handlePrev = () => {
-    if (totalMatches === 0) return;
-    setCurrentIdx((i) => (i - 1 + totalMatches) % totalMatches);
-  };
+  const handlePrev = useCallback(() => {
+    console.log('[Home] handlePrev called', { totalMatches, currentIdx });
+    if (totalMatches === 0) {
+      console.log('[Home] handlePrev: totalMatches is 0, returning early');
+      return;
+    }
+    setCurrentIdx((i) => {
+      const newIdx = (i - 1 + totalMatches) % totalMatches;
+      console.log('[Home] handlePrev: updating currentIdx', { from: i, to: newIdx, totalMatches });
+      return newIdx;
+    });
+  }, [totalMatches]);
 
-  const handleNext = () => {
-    if (totalMatches === 0) return;
-    setCurrentIdx((i) => (i + 1) % totalMatches);
-  };
+  const handleNext = useCallback(() => {
+    console.log('[Home] handleNext called', { totalMatches, currentIdx });
+    if (totalMatches === 0) {
+      console.log('[Home] handleNext: totalMatches is 0, returning early');
+      return;
+    }
+    setCurrentIdx((i) => {
+      const newIdx = (i + 1) % totalMatches;
+      console.log('[Home] handleNext: updating currentIdx', { from: i, to: newIdx, totalMatches });
+      // Force a re-render by also dispatching a custom event
+      setTimeout(() => {
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('search-index-changed', { detail: { index: newIdx, total: totalMatches } }));
+        }
+      }, 0);
+      return newIdx;
+    });
+  }, [totalMatches, currentIdx]);
 
   const handleSubmitSearch = () => {
     setQuery(input.trim());
@@ -849,13 +904,14 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   const toc = useMemo(() => {
     if (!metadata?.scenes) return [];
     const scenes = metadata.scenes.filter((s) => s.act && s.scene);
+    // Map scene offset to original section index (before filtering)
     const mapSceneToSection = (offset) => {
       let idx = 0;
       for (let i = 0; i < sectionsWithOffsets.length; i++) {
         if (sectionsWithOffsets[i].startOffset <= offset) idx = i;
         else break;
       }
-      return idx;
+      return idx; // This returns the original index, which matches sectionElsRef indexing
     };
     const grouped = new Map();
     for (const s of scenes) {
@@ -1642,42 +1698,84 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     } catch {}
   }, [sectionsWithOffsets, metadata]);
 
-  const scrollToSection = (index) => {
-    const el = sectionElsRef.current[index];
-    if (!el) return;
-    const scroller = getScroller();
-    if (!scroller) return;
-    // Account for header height when scrolling to top
-    const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
-      parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
-    const target = getElementTopWithin(el, scroller) - 8 - (index === 0 ? headerHeight : 0);
-    const finalTarget = Math.max(0, target);
-    
-    // Scroll to section
-    if (scroller === window) {
-      window.scrollTo({ top: finalTarget, behavior: 'smooth' });
-    } else {
-      scroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
-    }
-    
-    // After smooth scroll completes, ensure scroll position is saved
-    // Smooth scroll can take ~500ms, so wait a bit longer
-    setTimeout(() => {
-      // Force a scroll event to trigger save
-      const currentScroll = scroller === window ? window.scrollY : scroller.scrollTop;
-      if (currentScroll > 100) {
-        // Manually trigger save by dispatching a scroll event
-        scroller.dispatchEvent(new Event('scroll', { bubbles: true }));
+  const scrollToSection = useCallback((index) => {
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Try to find element by index (TOC uses original section index)
+      let el = sectionElsRef.current[index];
+      
+      // If not found by index, try finding by data attribute
+      if (!el) {
+        const sections = document.querySelectorAll('[data-section-index]');
+        for (const section of sections) {
+          if (section.getAttribute('data-section-index') === String(index)) {
+            el = section;
+            break;
+          }
+        }
       }
-    }, 800);
-  };
+      
+      if (!el) {
+        // Element not found - might need to wait for render, try once more
+        setTimeout(() => {
+          const retryEl = sectionElsRef.current[index] || 
+            document.querySelector(`[data-section-index="${index}"]`);
+          if (retryEl) {
+            scrollToSection(index);
+          }
+        }, 100);
+        return;
+      }
+      
+      const scroller = getScroller();
+      if (!scroller) {
+        // Scroller not found - try again after a short delay
+        setTimeout(() => {
+          const retryScroller = getScroller();
+          if (retryScroller && el) {
+            const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
+              parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
+            const target = getElementTopWithin(el, retryScroller) - 8 - (index === 0 ? headerHeight : 0);
+            const finalTarget = Math.max(0, target);
+            if (retryScroller === window) {
+              window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+            } else {
+              retryScroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
+            }
+          }
+        }, 100);
+        return;
+      }
+      
+      // Account for header height when scrolling to top
+      const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
+        parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
+      const target = getElementTopWithin(el, scroller) - 8 - (index === 0 ? headerHeight : 0);
+      const finalTarget = Math.max(0, target);
+      
+      // Scroll to section
+      if (scroller === window) {
+        window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+      } else {
+        scroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
+      }
+      
+      // After smooth scroll completes, ensure scroll position is saved
+      setTimeout(() => {
+        const currentScroll = scroller === window ? window.scrollY : scroller.scrollTop;
+        if (currentScroll > 100) {
+          scroller.dispatchEvent(new Event('scroll', { bubbles: true }));
+        }
+      }, 800);
+    });
+  }, []);
 
-  const scrollToTocTop = () => {
+  const scrollToTocTop = useCallback(() => {
     const scroller = getScroller();
     if (!scroller) return;
     if (scroller === window) window.scrollTo({ top: 0, behavior: 'smooth' });
     else scroller.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
   // Listen for global header "Contents" command
   useEffect(() => {
@@ -2056,34 +2154,54 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   // Header search state sync (explanation navigation removed)
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const state = {
+        count: totalMatches,
+        index: totalMatches ? currentIdx + 1 : 0,
+        submitted: !!query,
+      };
+      console.log('[Home] Dispatching search-state event', state);
       window.dispatchEvent(new CustomEvent('search-state', {
-        detail: {
-          count: totalMatches,
-          index: totalMatches ? currentIdx + 1 : 0,
-          submitted: !!query,
-        },
+        detail: state,
       }));
     }
   }, [totalMatches, currentIdx, query]);
 
   // Bridge header search buttons (explanation navigation removed)
   useEffect(() => {
-    const onSubmit = (e) => setQuery((e.detail?.query || '').trim());
-    const onPrev = () => handlePrev();
-    const onNext = () => handleNext();
+    console.log('[Home] Setting up search event listeners', { totalMatches, hasHandlePrev: !!handlePrev, hasHandleNext: !!handleNext });
+    const onSubmit = (e) => {
+      const query = (e.detail?.query || '').trim();
+      setQuery(query);
+    };
+    const onPrev = (e) => {
+      console.log('[Home] search-prev event received', { e, totalMatches });
+      e?.preventDefault?.();
+      e?.stopPropagation?.();
+      handlePrev();
+    };
+    const onNext = (e) => {
+      console.log('[Home] search-next event received', { e, totalMatches });
+      e?.preventDefault?.();
+      e?.stopPropagation?.();
+      handleNext();
+    };
     if (typeof window !== 'undefined') {
       window.addEventListener('search-submit', onSubmit);
       window.addEventListener('search-prev', onPrev);
       window.addEventListener('search-next', onNext);
+      console.log('[Home] Event listeners registered');
+    } else {
+      console.log('[Home] Window is undefined, cannot register listeners');
     }
     return () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('search-submit', onSubmit);
         window.removeEventListener('search-prev', onPrev);
         window.removeEventListener('search-next', onNext);
+        console.log('[Home] Event listeners removed');
       }
     };
-  }, [totalMatches, currentIdx]);
+  }, [handlePrev, handleNext, totalMatches]);
 
   function deleteExplanationById(id) {
     const next = { ...conversations };
@@ -4966,6 +5084,21 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
     });
   }, [noteBySpeechKey, speeches]);
 
+  // Use state to set cursor after hydration to avoid server/client mismatch
+  // Start with default to match server render (consistent with server-side rendering)
+  const [cursorStyle, setCursorStyle] = useState('default');
+  
+  // Update cursor style after hydration to avoid mismatch
+  useEffect(() => {
+    if (isTouchDevice && mobileSelectMode) {
+      setCursorStyle('text');
+    } else if (sectionHasNotes) {
+      setCursorStyle('pointer');
+    } else {
+      setCursorStyle('default');
+    }
+  }, [isTouchDevice, mobileSelectMode, sectionHasNotes]);
+
   // Check if the current note in this section is visible/open (not suppressed)
   const sectionNoteIsOpen = useMemo(() => {
     if (!chosenItem || !speeches) return false;
@@ -4982,7 +5115,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
 
   // No overlay/measurement effects when suppressed; panel appears only when content is shown
   return (
-    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef}>
+    <div className={`section${hasAside ? '' : ' single'}`} ref={sectionRef} data-section-index={sectionIndex}>
       <div className="playText" style={{ position: 'relative' }}>
         {/* Invisible anchors at speech starts for IntersectionObserver */}
         {(() => {
@@ -5005,7 +5138,7 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
           data-note-open={sectionNoteIsOpen ? 'true' : 'false'}
           className={sectionHasNotes ? 'hasNotes' : ''}
           style={{ 
-            cursor: (isTouchDevice && mobileSelectMode) ? 'text' : (sectionHasNotes ? 'pointer' : 'default'),
+            cursor: cursorStyle,
             transition: 'all 0.2s ease',
             userSelect: 'text',  // Always allow text selection on mobile
             WebkitUserSelect: 'text',  // Always allow text selection on mobile

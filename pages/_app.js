@@ -75,23 +75,64 @@ function AppInner({ Component, pageProps }) {
     let rafId = null;
     let resizeTimeout = null;
     let observer = null;
+    let isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
+    let heightLocked = false; // Lock height on mobile after initial set
 
     const updateHeaderVar = () => {
       if (!headerRef.current || typeof document === 'undefined') return;
+      
+      // On mobile, after initial set, never update again to prevent second bad adjustment
+      if (isMobile && heightLocked) {
+        return; // Completely skip updates on mobile after locking
+      }
+      
       const height = headerRef.current.offsetHeight || 0;
-      document.documentElement.style.setProperty('--mobile-header-h', `${height}px`);
+      
+      if (isMobile) {
+        const baseHeight = 80;
+        const safeAreaTop = parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || '0'
+        ) || 0;
+        const expectedHeight = baseHeight + safeAreaTop;
+        
+        // Use expected height, never the measured height (which might be wrong)
+        // This prevents the second adjustment from using a bad measurement
+        document.documentElement.style.setProperty('--mobile-header-h', `${expectedHeight}px`);
+        heightLocked = true; // Lock it after first set
+      } else {
+        // Desktop: use measured height as-is
+        document.documentElement.style.setProperty('--mobile-header-h', `${height}px`);
+      }
     };
 
-    rafId = requestAnimationFrame(updateHeaderVar);
+    // Set initial value immediately to prevent visual jump
+    if (isMobile) {
+      const baseHeight = 80;
+      const safeAreaTop = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || '0'
+      ) || 0;
+      const initialHeight = baseHeight + safeAreaTop;
+      document.documentElement.style.setProperty('--mobile-header-h', `${initialHeight}px`);
+      heightLocked = true; // Lock immediately on mobile
+    }
+    
+    // Only measure on desktop - mobile is locked
+    if (!isMobile) {
+      rafId = requestAnimationFrame(updateHeaderVar);
+    }
 
     if (typeof window !== 'undefined') {
       const handleResize = () => {
+        // On mobile, ignore resize events after initial lock
+        if (isMobile && heightLocked) return;
+        
         if (resizeTimeout) clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => requestAnimationFrame(updateHeaderVar), 100);
       };
       window.addEventListener('resize', handleResize, { passive: true });
 
-      if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
+      // Only use ResizeObserver on desktop - completely disable on mobile
+      if (typeof ResizeObserver !== 'undefined' && headerRef.current && !isMobile) {
         observer = new ResizeObserver(() => updateHeaderVar());
         observer.observe(headerRef.current);
       }
@@ -215,12 +256,21 @@ function HeaderSearch() {
   React.useEffect(() => {
     const onState = (e) => {
       const { count = 0, index = 0, submitted = false } = e.detail || {};
+      console.log('[HeaderSearch] search-state event received', { count, index, submitted });
       setCount(count);
       setIndex(index);
       setSubmitted(submitted);
     };
-    if (typeof window !== 'undefined') window.addEventListener('search-state', onState);
-    return () => { if (typeof window !== 'undefined') window.removeEventListener('search-state', onState); };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('search-state', onState);
+      console.log('[HeaderSearch] search-state listener registered');
+    }
+    return () => { 
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('search-state', onState);
+        console.log('[HeaderSearch] search-state listener removed');
+      }
+    };
   }, []);
 
   // Shorter placeholder on very narrow screens
@@ -253,11 +303,39 @@ function HeaderSearch() {
     }
   };
 
+  const handlePrev = (e) => {
+    console.log('[HeaderSearch] handlePrev called', { count, e });
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    if (typeof window !== 'undefined' && count > 0) {
+      console.log('[HeaderSearch] Dispatching search-prev event, count:', count);
+      const event = new Event('search-prev', { bubbles: true, cancelable: true });
+      const dispatched = window.dispatchEvent(event);
+      console.log('[HeaderSearch] Event dispatched, result:', dispatched);
+    } else {
+      console.log('[HeaderSearch] Not dispatching search-prev - count is 0 or window undefined', { count, hasWindow: typeof window !== 'undefined' });
+    }
+  };
+
+  const handleNext = (e) => {
+    console.log('[HeaderSearch] handleNext called', { count, e });
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    if (typeof window !== 'undefined' && count > 0) {
+      console.log('[HeaderSearch] Dispatching search-next event, count:', count);
+      const event = new Event('search-next', { bubbles: true, cancelable: true });
+      const dispatched = window.dispatchEvent(event);
+      console.log('[HeaderSearch] Event dispatched, result:', dispatched);
+    } else {
+      console.log('[HeaderSearch] Not dispatching search-next - count is 0 or window undefined', { count, hasWindow: typeof window !== 'undefined' });
+    }
+  };
+
   return (
     <form className="searchBar headerSearchBar" role="search" onSubmit={(e) => { e.preventDefault(); submit(); }}>
       <input type="search" placeholder={ph} value={input} onChange={onInputChange} aria-label="Search text" />
-      <button type="button" onClick={() => window.dispatchEvent(new Event('search-prev'))} aria-label="Previous result" disabled={!count} title="Previous" style={{ marginLeft: 6 }}>◀</button>
-      <button type="button" onClick={() => window.dispatchEvent(new Event('search-next'))} aria-label="Next result" disabled={!count} title="Next" style={{ marginLeft: 4 }}>▶</button>
+      <button type="button" onClick={handlePrev} aria-label="Previous result" disabled={!count || count === 0} title="Previous" style={{ marginLeft: 6 }}>◀</button>
+      <button type="button" onClick={handleNext} aria-label="Next result" disabled={!count || count === 0} title="Next" style={{ marginLeft: 4 }}>▶</button>
       {count > 0 ? (
         <span className="searchCount" aria-live="polite">{`${index} / ${count}`}</span>
       ) : submitted ? (

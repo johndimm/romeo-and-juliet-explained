@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
   <key>method</key>
-  <string>release-testing</string>
+  <string>development</string>
   <key>compileBitcode</key>
   <false/>
   <key>uploadBitcode</key>
@@ -12,6 +12,8 @@
   <true/>
   <key>signingStyle</key>
   <string>automatic</string>
+  <key>teamID</key>
+  <string>Q7GDVRDLKY</string>
   <key>destination</key>
   <string>export</string>
 </dict>
