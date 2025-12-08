@@ -1138,6 +1138,13 @@ html.isPrintRoute .container { left: 0; }
     padding-right: env(safe-area-inset-right, 0);
     box-sizing: border-box;
   }
+  
+  /* In Capacitor iOS apps, ensure header also respects safe area */
+  html.isCapacitor .appHeader,
+  html[data-capacitor="true"] .appHeader {
+    padding-left: env(safe-area-inset-left, 0) !important;
+    padding-right: env(safe-area-inset-right, 0) !important;
+  }
   .appHeaderInner {
     height: auto;
     padding: 6px 16px;
