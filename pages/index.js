@@ -203,7 +203,10 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   // Disable browser's automatic scroll restoration to prevent conflicts
   useEffect(() => {
     if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+      // Disable browser scroll restoration - especially important on iOS
+      if (typeof window !== 'undefined' && window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
     }
   }, []);
 
@@ -235,15 +238,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       ua.includes('Capacitor') || ua.includes('ionic'));
     
     // If iOS or Capacitor, force enable scrolling
-    if (isIOS || isCapacitor) {
-      // Debug log (remove later)
-      if (typeof window !== 'undefined' && window.Capacitor) {
-        appLog('scroll', 'Capacitor detected, enabling scrolling...');
-      }
-      if (isIOS) {
-        appLog('scroll', 'iOS detected, enabling scrolling...');
-      }
-      
+    // Also allow ?forceMobile=1 to simulate iOS/Capacitor for debugging on desktop
+    const params = new URLSearchParams(window.location.search || '');
+    const forceMobile = params.get('forceMobile');
+    const isForced = forceMobile === '1' || forceMobile === 'true' || forceMobile === 'yes';
+    
+    if (isIOS || isCapacitor || isForced) {
       const html = document.documentElement;
       const body = document.body;
       const next = document.getElementById('__next');
@@ -274,48 +274,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         next.style.overflow = 'visible';
       }
       
-      // Fix page and container elements with delays to ensure DOM is ready
-      const fixLayout = () => {
-        const page = document.querySelector('.page');
-        const container = document.querySelector('.container');
-        const sidebar = document.querySelector('.sidebar');
-        
-        if (page) {
-          page.style.position = 'relative';
-          page.style.height = 'auto';
-          page.style.minHeight = '100vh';
-          page.style.overflow = 'visible';
-          page.style.top = '0';
-          page.style.bottom = 'auto';
-        }
-        if (container) {
-          container.style.position = 'relative';
-          container.style.height = 'auto';
-          container.style.overflow = 'visible';
-          container.style.overflowY = 'visible';
-          container.style.left = '0';
-          container.style.top = 'auto';
-          container.style.bottom = 'auto';
-        }
-        if (sidebar) {
-          sidebar.style.position = 'relative';
-          sidebar.style.height = 'auto';
-          sidebar.style.overflow = 'visible';
-        }
-      };
-      
-      // Try multiple times to ensure it applies
-      fixLayout();
-      setTimeout(fixLayout, 50);
-      setTimeout(fixLayout, 200);
-      setTimeout(fixLayout, 500);
-      
-      // Also listen for any layout changes
-      if (typeof ResizeObserver !== 'undefined') {
-        const ro = new ResizeObserver(() => fixLayout());
-        if (body) ro.observe(body);
-        if (next) ro.observe(next);
-      }
+      // No further layout overrides here; rely on CSS so the scroll container remains active
     }
   }, []);
 
@@ -795,42 +754,32 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
   // Handle scrolling when currentIdx changes (via prev/next buttons)
   useEffect(() => {
-    console.log('[Home] Scroll effect triggered', { totalMatches, currentIdx, matchRefsLength: matchRefs.current.length });
     if (totalMatches > 0 && currentIdx >= 0 && currentIdx < totalMatches) {
       // Use requestAnimationFrame to ensure DOM has updated with highlights
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          console.log('[Home] Scroll effect: looking for element at index', currentIdx, { matchRefsLength: matchRefs.current.length });
           const el = matchRefs.current[currentIdx];
           if (el) {
-            console.log('[Home] Scroll effect: found element, scrolling', { currentIdx, element: el });
             // Mark active class
             matchRefs.current.forEach((e) => e && e.classList.remove('current'));
             el.classList.add('current');
             // Scroll within our active scroller rather than window to avoid header shifts on mobile
             const scroller = getScroller();
-            console.log('[Home] Scroll effect: scroller found', { scroller: scroller?.constructor?.name || 'null' });
             if (scroller) {
               try {
                 const targetTop = Math.max(0, getElementTopWithin(el, scroller) - (scroller.clientHeight ? (scroller.clientHeight - el.clientHeight) / 2 : 80));
-                console.log('[Home] Scroll effect: scrolling to', targetTop);
                 if (scroller === window) window.scrollTo({ top: targetTop, behavior: 'smooth' });
                 else scroller.scrollTo({ top: targetTop, behavior: 'smooth' });
               } catch (e) {
-                console.log('[Home] Scroll effect: error in scroll calculation, using scrollIntoView', e);
                 el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
               }
             } else {
-              console.log('[Home] Scroll effect: no scroller found, using scrollIntoView');
               el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
             }
           } else {
-            console.log('[Home] Scroll effect: element not found at index', currentIdx, { matchRefsLength: matchRefs.current.length, matchRefs: matchRefs.current });
             // Try to find element in DOM directly
             const highlights = Array.from(document.querySelectorAll('.highlight'));
-            console.log('[Home] Scroll effect: found highlights in DOM', highlights.length);
             if (highlights[currentIdx]) {
-              console.log('[Home] Scroll effect: using DOM element', currentIdx);
               const domEl = highlights[currentIdx];
               matchRefs.current.forEach((e) => e && e.classList.remove('current'));
               domEl.classList.add('current');
@@ -851,36 +800,28 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         });
       });
     } else if (totalMatches === 0) {
-      console.log('[Home] Scroll effect: no matches, removing current class');
       // Ensure no stale 'current' class remains when there are no matches
       matchRefs.current.forEach((el) => el && el.classList.remove('current'));
     } else {
-      console.log('[Home] Scroll effect: conditions not met', { totalMatches, currentIdx });
     }
   }, [currentIdx, totalMatches]);
 
   const handlePrev = useCallback(() => {
-    console.log('[Home] handlePrev called', { totalMatches, currentIdx });
     if (totalMatches === 0) {
-      console.log('[Home] handlePrev: totalMatches is 0, returning early');
       return;
     }
     setCurrentIdx((i) => {
       const newIdx = (i - 1 + totalMatches) % totalMatches;
-      console.log('[Home] handlePrev: updating currentIdx', { from: i, to: newIdx, totalMatches });
       return newIdx;
     });
   }, [totalMatches]);
 
   const handleNext = useCallback(() => {
-    console.log('[Home] handleNext called', { totalMatches, currentIdx });
     if (totalMatches === 0) {
-      console.log('[Home] handleNext: totalMatches is 0, returning early');
       return;
     }
     setCurrentIdx((i) => {
       const newIdx = (i + 1) % totalMatches;
-      console.log('[Home] handleNext: updating currentIdx', { from: i, to: newIdx, totalMatches });
       // Force a re-render by also dispatching a custom event
       setTimeout(() => {
         if (typeof window !== 'undefined') {
@@ -1096,6 +1037,11 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
   }
 
   useEffect(() => {
+    // Mark page load time to prevent saving small scrolls during initial load
+    if (typeof window !== 'undefined' && !window.__pageLoadTime) {
+      window.__pageLoadTime = Date.now();
+    }
+    
     const scroller = getScroller();
     let rafId = null;
     let pendingUpdate = false;
@@ -1183,18 +1129,24 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                     containerType = isContainer ? 'container' : (isPage ? 'page' : (isBody ? 'body' : 'unknown'));
                   }
                 }
-                // Always save the current scroll position (don't skip if it's the same)
-                localStorage.setItem('last-scroll', String(scrollTop));
-                localStorage.setItem('last-scrollHeight', String(scrollHeight));
-                localStorage.setItem('last-scroll-container', containerType);
-                appLog('scroll', 'Saved scroll position', { scrollTop, containerType });
+                // Only save scroll positions after initial load period (2 seconds)
+                // This prevents saving small accidental scrolls during page load
+                const timeSinceLoad = typeof window !== 'undefined' && window.__pageLoadTime 
+                  ? Date.now() - window.__pageLoadTime 
+                  : Infinity;
+                if (timeSinceLoad > 2000) {
+                  localStorage.setItem('last-scroll', String(scrollTop));
+                  localStorage.setItem('last-scrollHeight', String(scrollHeight));
+                  localStorage.setItem('last-scroll-container', containerType);
+                  // appLog removed to quiet console
+                }
               } else {
                 // If scrolling back to top, clear saved position
                 if (scrollTop < 50) {
                   localStorage.removeItem('last-scroll');
                   localStorage.removeItem('last-scrollHeight');
                   localStorage.removeItem('last-scroll-container');
-                  appLog('scroll', 'Cleared scroll position (at top)');
+                  // appLog removed to quiet console
                 }
               }
               lastPosSaveRef.current = now;
@@ -1222,6 +1174,36 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     if (typeof window === 'undefined' || typeof document === 'undefined') {
       return;
     }
+
+    // Disable all automatic scroll restoration/adjustment on load.
+    if (typeof window !== 'undefined' && window.history && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // Pin all potential scrollers to the very top once at startup to counter any retained scroll
+    const resetAllScroll = () => {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+      const pageEl = document.querySelector('.page');
+      if (pageEl) pageEl.scrollTop = 0;
+      const containerEl = document.querySelector('.container');
+      if (containerEl) containerEl.scrollTop = 0;
+    };
+    resetAllScroll();
+    const raf = requestAnimationFrame(resetAllScroll);
+    const t = setTimeout(resetAllScroll, 200);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+
+    restoreAttemptedRef.current = false;
+    restoreCompletedRef.current = true;
+    return;
+    
+    // SIMPLIFIED: Just ensure scroll is at 0 on fresh launches
+    // No complex hacks - CSS handles layout, we just set scroll once
     
     // Helper to detect mobile vs desktop and get the correct scroller
     // On mobile: body is the scroller (overflow: auto on body)
@@ -1274,19 +1256,31 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       if (DEBUG_RESTORE) appLog('restore', 'Loaded from localStorage', { scrollTop: savedScroll, scrollHeight: savedScrollHeight, containerType: savedContainerType });
       
       // Check if we have a valid scroll position to restore
-      // Only ignore positions at 0 or very close to 0 (likely from initial page load, not intentional scrolling)
-      // Allow restoring positions > 50px (including near-top positions like Prologue)
-      const hasValidScroll = !isNaN(savedScroll) && savedScroll > 50;
+      // On fresh launches (no hash), never restore scroll - always show title
+      const hash = window.location.hash || '';
+      const isFreshLaunch = !hash || hash === '';
+      const isSelectionLink = /^#sel=/.test(hash);
+      
+      // Only restore scroll if it's a significant position (>100px) and not a fresh launch
+      const hasValidScroll = !isNaN(savedScroll) && savedScroll > 100 && !isFreshLaunch;
       
       if (!hasValidScroll) {
-      if (DEBUG_RESTORE) appLog('restore', 'No valid scroll position to restore', { savedScroll });
-        // Only clear positions that are exactly 0 or very close (likely from page load, not intentional scrolling)
+      if (DEBUG_RESTORE) appLog('restore', 'No valid scroll position to restore', { savedScroll, isFreshLaunch });
+        // Clear any saved positions on fresh launch to prevent accidental restore
+        // On iOS, be extra aggressive - clear ALL saved positions on fresh launch
         try {
-          if (!isNaN(savedScroll) && savedScroll <= 50) {
+          if (isFreshLaunch) {
+            // Always clear on fresh launch, regardless of saved value
             localStorage.removeItem('last-scroll');
             localStorage.removeItem('last-scrollHeight');
             localStorage.removeItem('last-scroll-container');
-        if (DEBUG_RESTORE) appLog('restore', 'Cleared very small saved position (likely from page load)');
+        if (DEBUG_RESTORE) appLog('restore', 'Cleared saved position (fresh launch)');
+          } else if (!isNaN(savedScroll) && savedScroll <= 100) {
+            // Also clear small saved positions (likely from page load artifacts)
+            localStorage.removeItem('last-scroll');
+            localStorage.removeItem('last-scrollHeight');
+            localStorage.removeItem('last-scroll-container');
+        if (DEBUG_RESTORE) appLog('restore', 'Cleared saved position (too small)');
           }
         } catch {}
         restoreAttemptedRef.current = false; // No restore needed, allow saving
@@ -1298,16 +1292,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         const setScrollToZero = () => {
           // On mobile, body is the scroller; on desktop, container
           if (isMobile) {
-            // Mobile: set on body first (most important) and use scrollIntoView as backup
-            if (document.body) {
-              document.body.scrollTop = 0;
-              // Also try scrollIntoView to ensure it works
-              try {
-                document.body.scrollIntoView({ behavior: 'auto', block: 'start' });
-              } catch(e) {}
-            }
+            // Mobile: set on page element (which is the scroller on mobile)
             const page = document.querySelector('.page');
-            if (page) page.scrollTop = 0;
+            if (page) {
+              page.scrollTop = 0;
+              // Also set on body as fallback
+              if (document.body) document.body.scrollTop = 0;
+            } else if (document.body) {
+              document.body.scrollTop = 0;
+            }
+            // Ensure window is also at top
+            window.scrollTo(0, 0);
           } else {
             // Desktop: set on container first
             const container = document.querySelector('.container');
@@ -1320,18 +1315,18 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           const container = document.querySelector('.container');
           if (container) container.scrollTop = 0;
           const page = document.querySelector('.page');
-          if (page) page.scrollTop = 0;
+          if (page) {
+            page.scrollTop = 0;
+          }
         };
         
-        // Set immediately (synchronously) at the very start
+        // Set scroll to 0 - simple, no hacks
+        // CSS already handles layout correctly, we just need to set scroll position
         setScrollToZero();
         
-        // Set it a few times via RAF to ensure it sticks, but don't overdo it
+        // Set once more after a brief delay to catch any browser restoration
         requestAnimationFrame(() => {
           setScrollToZero();
-          requestAnimationFrame(() => {
-            setScrollToZero();
-          });
         });
         return;
       }
@@ -1722,6 +1717,12 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             document.querySelector(`[data-section-index="${index}"]`);
           if (retryEl) {
             scrollToSection(index);
+          } else {
+            // Last resort: try scrollIntoView on any section element
+            const anySection = document.querySelector(`[data-section-index="${index}"]`);
+            if (anySection) {
+              anySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }
         }, 100);
         return;
@@ -1729,35 +1730,78 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       
       const scroller = getScroller();
       if (!scroller) {
-        // Scroller not found - try again after a short delay
+        // Scroller not found - try again after a short delay, or use scrollIntoView as fallback
         setTimeout(() => {
           const retryScroller = getScroller();
           if (retryScroller && el) {
+            // On mobile, page is already below header, so don't subtract header height
+            const isMobile = window.innerWidth <= 820;
             const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
               parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
-            const target = getElementTopWithin(el, retryScroller) - 8 - (index === 0 ? headerHeight : 0);
+            const offset = isMobile ? 8 : (8 + (index === 0 ? headerHeight : 0));
+            const target = getElementTopWithin(el, retryScroller) - offset;
             const finalTarget = Math.max(0, target);
             if (retryScroller === window) {
               window.scrollTo({ top: finalTarget, behavior: 'smooth' });
             } else {
               retryScroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
             }
+          } else if (el) {
+            // Fallback: use scrollIntoView
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }, 100);
         return;
       }
       
-      // Account for header height when scrolling to top
+      // On mobile, the page is already positioned below the header (top: var(--mobile-header-h))
+      // So we don't need to subtract header height - elements are already positioned correctly
+      const isMobile = window.innerWidth <= 820;
       const headerHeight = typeof window !== 'undefined' && window.getComputedStyle ? 
         parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '84', 10) : 84;
-      const target = getElementTopWithin(el, scroller) - 8 - (index === 0 ? headerHeight : 0);
+      
+      // Only subtract header height on desktop (where container scrolls within page)
+      // On mobile, page is the scroller and is already below header, so no subtraction needed
+      const offset = isMobile ? 8 : (8 + (index === 0 ? headerHeight : 0));
+      const target = getElementTopWithin(el, scroller) - offset;
       const finalTarget = Math.max(0, target);
       
-      // Scroll to section
-      if (scroller === window) {
-        window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+      // Scroll to section - use immediate scroll on iOS for better reliability
+      const isIOS = typeof navigator !== 'undefined' && /iPhone|iPad|iPod/.test(navigator.userAgent || '');
+      if (isIOS) {
+        // On iOS, use scrollIntoView with proper block positioning
+        // block: 'start' positions element at top of viewport (which is the page element on mobile)
+        try {
+          el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          // Also set scroll position directly as backup to ensure correct position
+          setTimeout(() => {
+            if (scroller === window) {
+              window.scrollTo(0, finalTarget);
+            } else {
+              scroller.scrollTop = finalTarget;
+            }
+            // Trigger a scroll event to ensure position is saved
+            const scrollEvent = new Event('scroll', { bubbles: true });
+            if (scroller === window) {
+              window.dispatchEvent(scrollEvent);
+            } else {
+              scroller.dispatchEvent(scrollEvent);
+            }
+          }, 50);
+        } catch (e) {
+          // If scrollIntoView fails, use direct scroll
+          if (scroller === window) {
+            window.scrollTo(0, finalTarget);
+          } else {
+            scroller.scrollTop = finalTarget;
+          }
+        }
       } else {
-        scroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
+        if (scroller === window) {
+          window.scrollTo({ top: finalTarget, behavior: 'smooth' });
+        } else {
+          scroller.scrollTo({ top: finalTarget, behavior: 'smooth' });
+        }
       }
       
       // After smooth scroll completes, ensure scroll position is saved
@@ -2039,11 +2083,8 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       const start = bytesToCharOffset(section, startBytes);
       const end = bytesToCharOffset(section, startBytes + length);
       if (end > start) setSelection({ sectionIndex, start, end });
-      // Scroll to section
-      const el = sectionElsRef.current[sectionIndex];
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     };
-    applyHash();
+    // Only react to explicit hash changes; do not auto-scroll on initial load
     window.addEventListener('hashchange', applyHash);
     return () => window.removeEventListener('hashchange', applyHash);
   }, [metadata, sectionsWithOffsets, sections, openOverlay]);
@@ -2159,7 +2200,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
         index: totalMatches ? currentIdx + 1 : 0,
         submitted: !!query,
       };
-      console.log('[Home] Dispatching search-state event', state);
       window.dispatchEvent(new CustomEvent('search-state', {
         detail: state,
       }));
@@ -2168,19 +2208,16 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
 
   // Bridge header search buttons (explanation navigation removed)
   useEffect(() => {
-    console.log('[Home] Setting up search event listeners', { totalMatches, hasHandlePrev: !!handlePrev, hasHandleNext: !!handleNext });
     const onSubmit = (e) => {
       const query = (e.detail?.query || '').trim();
       setQuery(query);
     };
     const onPrev = (e) => {
-      console.log('[Home] search-prev event received', { e, totalMatches });
       e?.preventDefault?.();
       e?.stopPropagation?.();
       handlePrev();
     };
     const onNext = (e) => {
-      console.log('[Home] search-next event received', { e, totalMatches });
       e?.preventDefault?.();
       e?.stopPropagation?.();
       handleNext();
@@ -2189,16 +2226,17 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
       window.addEventListener('search-submit', onSubmit);
       window.addEventListener('search-prev', onPrev);
       window.addEventListener('search-next', onNext);
-      console.log('[Home] Event listeners registered');
-    } else {
-      console.log('[Home] Window is undefined, cannot register listeners');
+      // Also listen on document for iOS compatibility
+      document.addEventListener('search-prev', onPrev);
+      document.addEventListener('search-next', onNext);
     }
     return () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('search-submit', onSubmit);
         window.removeEventListener('search-prev', onPrev);
         window.removeEventListener('search-next', onNext);
-        console.log('[Home] Event listeners removed');
+        document.removeEventListener('search-prev', onPrev);
+        document.removeEventListener('search-next', onNext);
       }
     };
   }, [handlePrev, handleNext, totalMatches]);
@@ -2647,11 +2685,9 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
     const currentConversations = conversationsRef.current;
     const currentMetadata = metadataRef.current;
     const currentSpeechMaps = speechMapsRef.current;
-    console.log('onMoreExplanation called', { id, conversationKeys: Object.keys(currentConversations) });
     try {
       const conv = currentConversations[id] || {};
       const existingExplanation = conv.last || '';
-      console.log('Found conversation', { id, hasLast: !!conv.last, hasMoreThreads: Array.isArray(conv.moreThreads), moreThreadsCount: conv.moreThreads?.length || 0 });
       
       // Get notes for context (current speech and prior speech)
       let noteText = '';
@@ -2743,7 +2779,6 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
           ...existingMoreThreads,
           { q: 'More', a: data.content, model: (options?.model || ''), provider: (options?.provider || ''), _id: moreId }
         ];
-        console.log('Updating moreThreads', { id, existingCount: existingMoreThreads.length, newCount: newMoreThreads.length });
         const next = {
           ...prev,
           [id]: {
@@ -2948,8 +2983,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                             href="#"
                             onClick={(e) => {
                               e.preventDefault();
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
                               scrollToSection(sc.sectionIndex);
                             }}
+                            onTouchStart={(e) => {
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                            }}
+                            onTouchEnd={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                              scrollToSection(sc.sectionIndex);
+                            }}
+                            style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent', cursor: 'pointer' }}
                             title="Prologue"
                           >
                             Prologue
@@ -2970,8 +3018,21 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                             href="#"
                             onClick={(e) => {
                               e.preventDefault();
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
                               scrollToSection(sc.sectionIndex);
                             }}
+                            onTouchStart={(e) => {
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                            }}
+                            onTouchEnd={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                              scrollToSection(sc.sectionIndex);
+                            }}
+                            style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent', cursor: 'pointer' }}
                             title={`Act ${sc.act}, Scene ${sc.scene}`}
                           >
                             {sc.title}
@@ -3131,7 +3192,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                 <span style={{ fontWeight: 600, fontSize: '1.1em' }}>Contents</span>
                 <button type="button" className="closeBtn" onClick={() => setTocOpen(false)} aria-label="Close contents">✕</button>
               </div>
-              <div className="toc" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+              <div className="toc" style={{ maxHeight: '70vh', overflowY: 'auto', WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}>
                 {toc.map((group) => (
                   <div key={`p-act-${group.act}`}>
                     {group.act === 'Prologue' ? (
@@ -3142,7 +3203,52 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                           const isActive = activeScene === key;
                           return (
                             <li key={`p-scene-${key}`} className={isActive ? 'active' : ''}>
-                              <a href="#" onClick={(e) => { e.preventDefault(); setTocOpen(false); scrollToSection(sc.sectionIndex); }} title="Prologue">Prologue</a>
+                              <a 
+                                href="#" 
+                                onClick={(e) => { 
+                                  e.preventDefault(); 
+                                  e.stopPropagation(); 
+                                  if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                                  setTocOpen(false); 
+                                  scrollToSection(sc.sectionIndex); 
+                                }} 
+                                onTouchStart={(e) => {
+                                  // Store touch start position to detect scroll vs tap
+                                  const touch = e.touches[0];
+                                  if (touch) {
+                                    e.currentTarget.dataset.touchStartX = touch.clientX;
+                                    e.currentTarget.dataset.touchStartY = touch.clientY;
+                                  }
+                                }}
+                                onTouchMove={(e) => {
+                                  // Mark as moved if touch moved significantly
+                                  const touch = e.touches[0];
+                                  const startX = parseFloat(e.currentTarget.dataset.touchStartX || '0');
+                                  const startY = parseFloat(e.currentTarget.dataset.touchStartY || '0');
+                                  if (touch && (Math.abs(touch.clientX - startX) > 10 || Math.abs(touch.clientY - startY) > 10)) {
+                                    e.currentTarget.dataset.touchMoved = 'true';
+                                  }
+                                }}
+                                onTouchEnd={(e) => { 
+                                  // Only trigger if it was a tap, not a scroll
+                                  const moved = e.currentTarget.dataset.touchMoved === 'true';
+                                  delete e.currentTarget.dataset.touchStartX;
+                                  delete e.currentTarget.dataset.touchStartY;
+                                  delete e.currentTarget.dataset.touchMoved;
+                                  
+                                  if (!moved) {
+                                    e.preventDefault(); 
+                                    e.stopPropagation(); 
+                                    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                                    setTocOpen(false); 
+                                    scrollToSection(sc.sectionIndex); 
+                                  }
+                                }}
+                                style={{ touchAction: 'pan-y', WebkitTapHighlightColor: 'transparent' }}
+                                title="Prologue"
+                              >
+                                Prologue
+                              </a>
                             </li>
                           );
                         })()}
@@ -3155,7 +3261,50 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
                           const isActive = activeScene === key;
                           return (
                             <li key={`p-scene-${key}`} className={isActive ? 'active' : ''}>
-                              <a href="#" onClick={(e) => { e.preventDefault(); setTocOpen(false); scrollToSection(sc.sectionIndex); }} title={`Act ${sc.act}, Scene ${sc.scene}`}>
+                              <a 
+                                href="#" 
+                                onClick={(e) => { 
+                                  e.preventDefault(); 
+                                  e.stopPropagation(); 
+                                  if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                                  setTocOpen(false); 
+                                  scrollToSection(sc.sectionIndex); 
+                                }} 
+                                onTouchStart={(e) => {
+                                  // Store touch start position to detect scroll vs tap
+                                  const touch = e.touches[0];
+                                  if (touch) {
+                                    e.currentTarget.dataset.touchStartX = touch.clientX;
+                                    e.currentTarget.dataset.touchStartY = touch.clientY;
+                                  }
+                                }}
+                                onTouchMove={(e) => {
+                                  // Mark as moved if touch moved significantly
+                                  const touch = e.touches[0];
+                                  const startX = parseFloat(e.currentTarget.dataset.touchStartX || '0');
+                                  const startY = parseFloat(e.currentTarget.dataset.touchStartY || '0');
+                                  if (touch && (Math.abs(touch.clientX - startX) > 10 || Math.abs(touch.clientY - startY) > 10)) {
+                                    e.currentTarget.dataset.touchMoved = 'true';
+                                  }
+                                }}
+                                onTouchEnd={(e) => { 
+                                  // Only trigger if it was a tap, not a scroll
+                                  const moved = e.currentTarget.dataset.touchMoved === 'true';
+                                  delete e.currentTarget.dataset.touchStartX;
+                                  delete e.currentTarget.dataset.touchStartY;
+                                  delete e.currentTarget.dataset.touchMoved;
+                                  
+                                  if (!moved) {
+                                    e.preventDefault(); 
+                                    e.stopPropagation(); 
+                                    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                                    setTocOpen(false); 
+                                    scrollToSection(sc.sectionIndex); 
+                                  }
+                                }}
+                                style={{ touchAction: 'pan-y', WebkitTapHighlightColor: 'transparent' }}
+                                title={`Act ${sc.act}, Scene ${sc.scene}`}
+                              >
                                 {sc.title}
                               </a>
                             </li>
@@ -4198,15 +4347,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
       // Create stable handler that always uses the latest onMoreExplanation via ref
       handlers.set(explanationId, async () => {
         const currentOnMoreExplanation = onMoreExplanationRef.current;
-        console.log('onMore called in Section', { 
-          hasOnMoreExplanation: !!currentOnMoreExplanation, 
-          explanationId, 
-          byteOffset: meta.byteOffset, 
-          passageTextLength: passageText?.length,
-          index: i,
-          totalExplanations: filteredSavedExplanations.length,
-          refCurrentType: typeof onMoreExplanationRef.current
-        });
         if (currentOnMoreExplanation) {
           try {
             await currentOnMoreExplanation(explanationId, meta, passageText, { 
@@ -4250,15 +4390,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
         // This ensures handlers work even on first render when useMemo might have stale values
         const handleMore = async () => {
           const currentOnMoreExplanation = onMoreExplanationRef.current;
-          console.log('onMore called in Section (inline handler)', { 
-            hasOnMoreExplanation: !!currentOnMoreExplanation, 
-            explanationId, 
-            byteOffset: meta.byteOffset, 
-            passageTextLength: passageText?.length,
-            index: i,
-            totalExplanations: filteredSavedExplanations.length,
-            refCurrentType: typeof currentOnMoreExplanation
-          });
           if (currentOnMoreExplanation) {
             try {
               await currentOnMoreExplanation(explanationId, meta, passageText, { 
@@ -4303,19 +4434,6 @@ function Section({ text, query, matchRefs, sectionRef, selectedRange, onSelectRa
             appLog('error', 'onFollowupExplanation not available');
           }
         };
-        
-        console.log('Rendering ExplanationCard', { 
-          explanationId, 
-          byteOffset: meta.byteOffset, 
-          textLength: textEncoder.encode(meta.text || passageText || '').length, 
-          hasOnMoreExplanation: !!onMoreExplanation,
-          hasOnMoreExplanationRef: !!onMoreExplanationRef.current,
-          hasHandleMore: !!handleMore,
-          handlerType: typeof handleMore,
-          index: i,
-          totalExplanations: filteredSavedExplanations.length
-        });
-        
         return (
           <ExplanationCard
             key={explanationId}
@@ -5992,12 +6110,10 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
       <div 
         style={{ marginTop: '0.25rem', cursor: onMore ? 'pointer' : 'default' }} 
         onClick={async (e) => { 
-          console.log('ExplanationCard: onClick FIRED', { hasOnMore: !!onMore, hasContent: !!content, onMoreType: typeof onMore });
           appLog('debug', 'ExplanationCard: onClick fired', { hasOnMore: !!onMore, hasContent: !!content });
           // Only trigger if clicking directly on the content div, not on selected text
           const selection = window.getSelection()?.toString().trim();
           if (selection) {
-            console.log('ExplanationCard: text selected, skipping', { selection });
             appLog('debug', 'ExplanationCard: text selected, skipping', { selection });
             // User is selecting text, don't trigger More
             return;
@@ -6006,12 +6122,10 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
         e.preventDefault();
           // If onMore is provided (for saved explanations), use it to add More response
           if (onMore) {
-            console.log('ExplanationCard: calling onMore function', { onMoreType: typeof onMore });
             appLog('debug', 'ExplanationCard: calling onMore', { hasOnMore: !!onMore });
             try {
               setLoading(true);
               await onMore();
-              console.log('ExplanationCard: onMore completed successfully');
               onLocate?.(); // Highlight source in text
             } catch (err) {
               console.error('ExplanationCard: onMore failed', err);
@@ -6023,7 +6137,6 @@ function ExplanationCard({ passage, content, onLocate, onCopy, onDelete, meta, o
             }
             return;
           }
-          console.log('ExplanationCard: onMore not provided, using internal ask');
           appLog('debug', 'ExplanationCard: onMore not provided, using internal ask');
           // Otherwise, use internal ask function (for inline explanations)
         // Also ensure the follow-up input is visible

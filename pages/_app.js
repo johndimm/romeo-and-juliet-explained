@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import '../styles/globals.css';
@@ -21,6 +22,25 @@ function AppInner({ Component, pageProps }) {
   const headerRef = React.useRef(null);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [forceMobile, setForceMobile] = React.useState(false);
+
+  // Allow ?forceMobile=1 to simulate the mobile layout on desktop (useful for debugging)
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const params = new URLSearchParams(window.location.search || '');
+    const val = params.get('forceMobile');
+    const enabled = val === '1' || val === 'true' || val === 'yes';
+    setForceMobile(enabled);
+    const html = document.documentElement;
+    if (html) {
+      if (enabled) html.classList.add('force-mobile');
+      else html.classList.remove('force-mobile');
+    }
+    return () => {
+      const h = document.documentElement;
+      if (h) h.classList.remove('force-mobile');
+    };
+  }, [router?.asPath]);
   
   const handleOverlayLink = React.useCallback(
     (event, name) => {
@@ -33,13 +53,16 @@ function AppInner({ Component, pageProps }) {
 
   // Detect mobile breakpoint
   React.useEffect(() => {
-    const checkMobile = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 820);
+    const checkMobile = () => {
+      const widthMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
+      setIsMobile(forceMobile || widthMobile);
+    };
     checkMobile();
     if (typeof window !== 'undefined') {
       window.addEventListener('resize', checkMobile);
       return () => window.removeEventListener('resize', checkMobile);
     }
-  }, []);
+  }, [forceMobile]);
 
   // Toggle html class for print route
   React.useEffect(() => {
@@ -75,64 +98,30 @@ function AppInner({ Component, pageProps }) {
     let rafId = null;
     let resizeTimeout = null;
     let observer = null;
-    let isMobile = typeof window !== 'undefined' && window.innerWidth <= 820;
-    let heightLocked = false; // Lock height on mobile after initial set
-
     const updateHeaderVar = () => {
       if (!headerRef.current || typeof document === 'undefined') return;
       
-      // On mobile, after initial set, never update again to prevent second bad adjustment
-      if (isMobile && heightLocked) {
-        return; // Completely skip updates on mobile after locking
-      }
-      
       const height = headerRef.current.offsetHeight || 0;
-      
-      if (isMobile) {
-        const baseHeight = 80;
-        const safeAreaTop = parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || '0'
-        ) || 0;
-        const expectedHeight = baseHeight + safeAreaTop;
-        
-        // Use expected height, never the measured height (which might be wrong)
-        // This prevents the second adjustment from using a bad measurement
-        document.documentElement.style.setProperty('--mobile-header-h', `${expectedHeight}px`);
-        heightLocked = true; // Lock it after first set
-      } else {
-        // Desktop: use measured height as-is
-        document.documentElement.style.setProperty('--mobile-header-h', `${height}px`);
-      }
+      // Keep CSS vars in sync with the real header height to prevent overlap/scroll jumps when fonts load
+      document.documentElement.style.setProperty('--header-h', `${height}px`);
+      document.documentElement.style.setProperty('--mobile-header-h', `${height}px`);
     };
 
-    // Set initial value immediately to prevent visual jump
-    if (isMobile) {
-      const baseHeight = 80;
-      const safeAreaTop = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || '0'
-      ) || 0;
-      const initialHeight = baseHeight + safeAreaTop;
-      document.documentElement.style.setProperty('--mobile-header-h', `${initialHeight}px`);
-      heightLocked = true; // Lock immediately on mobile
-    }
-    
-    // Only measure on desktop - mobile is locked
-    if (!isMobile) {
-      rafId = requestAnimationFrame(updateHeaderVar);
-    }
+    // Run once immediately to sync header height for both desktop and mobile
+    updateHeaderVar();
+
+    // Measure on RAF to sync after layout/async fonts
+    rafId = requestAnimationFrame(updateHeaderVar);
 
     if (typeof window !== 'undefined') {
       const handleResize = () => {
-        // On mobile, ignore resize events after initial lock
-        if (isMobile && heightLocked) return;
-        
         if (resizeTimeout) clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => requestAnimationFrame(updateHeaderVar), 100);
       };
       window.addEventListener('resize', handleResize, { passive: true });
 
-      // Only use ResizeObserver on desktop - completely disable on mobile
-      if (typeof ResizeObserver !== 'undefined' && headerRef.current && !isMobile) {
+      // Use ResizeObserver to track header height changes (fonts/loading)
+      if (typeof ResizeObserver !== 'undefined' && headerRef.current) {
         observer = new ResizeObserver(() => updateHeaderVar());
         observer.observe(headerRef.current);
       }
@@ -151,6 +140,19 @@ function AppInner({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
+      <Script
+        id="disable-sentry-app"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            // Prevent any injected Sentry snippet from running in this app
+            window.SENTRY_SDK_INIT = false;
+            window.__SENTRY__ = window.__SENTRY__ || {};
+            window.__SENTRY__.globalEventProcessors = [];
+            window.__SENTRY__.hub = null;
+          `,
+        }}
+      />
       {!isPrintRoute && (
         <header className={`appHeader ${isMobile ? 'appHeaderMobile' : 'appHeaderDesktop'}`}>
           <div className="appHeaderInner" ref={headerRef}>
@@ -256,19 +258,16 @@ function HeaderSearch() {
   React.useEffect(() => {
     const onState = (e) => {
       const { count = 0, index = 0, submitted = false } = e.detail || {};
-      console.log('[HeaderSearch] search-state event received', { count, index, submitted });
       setCount(count);
       setIndex(index);
       setSubmitted(submitted);
     };
     if (typeof window !== 'undefined') {
       window.addEventListener('search-state', onState);
-      console.log('[HeaderSearch] search-state listener registered');
     }
     return () => { 
       if (typeof window !== 'undefined') {
         window.removeEventListener('search-state', onState);
-        console.log('[HeaderSearch] search-state listener removed');
       }
     };
   }, []);
@@ -304,38 +303,40 @@ function HeaderSearch() {
   };
 
   const handlePrev = (e) => {
-    console.log('[HeaderSearch] handlePrev called', { count, e });
-    e?.preventDefault?.();
-    e?.stopPropagation?.();
+    if (e) {
+      e.preventDefault?.();
+      e.stopPropagation?.();
+      e.stopImmediatePropagation?.();
+    }
     if (typeof window !== 'undefined' && count > 0) {
-      console.log('[HeaderSearch] Dispatching search-prev event, count:', count);
-      const event = new Event('search-prev', { bubbles: true, cancelable: true });
-      const dispatched = window.dispatchEvent(event);
-      console.log('[HeaderSearch] Event dispatched, result:', dispatched);
-    } else {
-      console.log('[HeaderSearch] Not dispatching search-prev - count is 0 or window undefined', { count, hasWindow: typeof window !== 'undefined' });
+      // Use CustomEvent for better iOS compatibility
+      const event = new CustomEvent('search-prev', { bubbles: true, cancelable: true, detail: { count } });
+      // Dispatch on both window and document for iOS compatibility
+      window.dispatchEvent(event);
+      document.dispatchEvent(new CustomEvent('search-prev', { bubbles: true, cancelable: true, detail: { count } }));
     }
   };
 
   const handleNext = (e) => {
-    console.log('[HeaderSearch] handleNext called', { count, e });
-    e?.preventDefault?.();
-    e?.stopPropagation?.();
+    if (e) {
+      e.preventDefault?.();
+      e.stopPropagation?.();
+      e.stopImmediatePropagation?.();
+    }
     if (typeof window !== 'undefined' && count > 0) {
-      console.log('[HeaderSearch] Dispatching search-next event, count:', count);
-      const event = new Event('search-next', { bubbles: true, cancelable: true });
-      const dispatched = window.dispatchEvent(event);
-      console.log('[HeaderSearch] Event dispatched, result:', dispatched);
-    } else {
-      console.log('[HeaderSearch] Not dispatching search-next - count is 0 or window undefined', { count, hasWindow: typeof window !== 'undefined' });
+      // Use CustomEvent for better iOS compatibility
+      const event = new CustomEvent('search-next', { bubbles: true, cancelable: true, detail: { count } });
+      // Dispatch on both window and document for iOS compatibility
+      window.dispatchEvent(event);
+      document.dispatchEvent(new CustomEvent('search-next', { bubbles: true, cancelable: true, detail: { count } }));
     }
   };
 
   return (
     <form className="searchBar headerSearchBar" role="search" onSubmit={(e) => { e.preventDefault(); submit(); }}>
       <input type="search" placeholder={ph} value={input} onChange={onInputChange} aria-label="Search text" />
-      <button type="button" onClick={handlePrev} aria-label="Previous result" disabled={!count || count === 0} title="Previous" style={{ marginLeft: 6 }}>◀</button>
-      <button type="button" onClick={handleNext} aria-label="Next result" disabled={!count || count === 0} title="Next" style={{ marginLeft: 4 }}>▶</button>
+      <button type="button" onClick={handlePrev} onTouchStart={(e) => { e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation(); }} onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation(); handlePrev(e); }} aria-label="Previous result" disabled={!count || count === 0} title="Previous" style={{ marginLeft: 6, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}>◀</button>
+      <button type="button" onClick={handleNext} onTouchStart={(e) => { e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation(); }} onTouchEnd={(e) => { e.preventDefault(); e.stopPropagation(); if (e.stopImmediatePropagation) e.stopImmediatePropagation(); handleNext(e); }} aria-label="Next result" disabled={!count || count === 0} title="Next" style={{ marginLeft: 4, touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}>▶</button>
       {count > 0 ? (
         <span className="searchCount" aria-live="polite">{`${index} / ${count}`}</span>
       ) : submitted ? (
@@ -544,43 +545,30 @@ function HeaderNotesDensity() {
   }, []);
 
   const handleButtonClick = React.useCallback((e) => {
-    console.log('[HeaderNotesDensity] onClick fired', { isTouchDevice, open });
     e.preventDefault();
     e.stopPropagation();
-    setOpen((prev) => {
-      const newValue = !prev;
-      console.log('[HeaderNotesDensity] onClick setting open to:', newValue);
-      return newValue;
-    });
+    setOpen((prev) => !prev);
   }, [isTouchDevice, open]);
 
   const buttonTouchStartRef = React.useRef(false);
 
   const handleButtonTouchStart = React.useCallback((e) => {
-    console.log('[HeaderNotesDensity] onTouchStart fired');
     buttonTouchStartRef.current = true;
     e.stopPropagation();
     // Don't preventDefault here - let the browser handle touch normally
   }, []);
 
   const handleButtonTouchEnd = React.useCallback((e) => {
-    console.log('[HeaderNotesDensity] onTouchEnd fired', { buttonTouchStartRef: buttonTouchStartRef.current });
     if (!buttonTouchStartRef.current) {
-      console.log('[HeaderNotesDensity] onTouchEnd skipped (no touch start)');
       return;
     }
     buttonTouchStartRef.current = false;
     e.stopPropagation();
     e.preventDefault(); // Prevent default to avoid double-firing with click
-    console.log('[HeaderNotesDensity] onTouchEnd toggling, current open:', open);
-    setOpen((prev) => {
-      console.log('[HeaderNotesDensity] onTouchEnd setting open to:', !prev);
-      return !prev;
-    });
+    setOpen((prev) => !prev);
   }, [open]);
 
   const handleButtonTouchCancel = React.useCallback((e) => {
-    console.log('[HeaderNotesDensity] onTouchCancel fired');
     buttonTouchStartRef.current = false;
     e.stopPropagation();
   }, []);
@@ -603,7 +591,6 @@ function HeaderNotesDensity() {
       </button>
       {open ? (
         <div className="headerNotesPopover" role="dialog" aria-label="Note density selector" style={{ display: 'block' }}>
-          {console.log('[HeaderNotesDensity] Rendering popover, open:', open)}
           <div className="headerNotesOptions">
             {densityOptions.map((opt) => {
               const isActive = opt.key === currentKey;

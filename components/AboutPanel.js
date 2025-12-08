@@ -106,19 +106,19 @@ export default function AboutPanel() {
               If you're on a mobile device and want to use the desktop version with the three-column layout, you can access it at:
             </p>
             <p style={{ padding: '0.75rem 1rem', backgroundColor: '#f8f6f3', borderRadius: '6px', border: '1px solid #e7d7b8' }}>
-              <a
+            <a
                 href="https://romeo-and-juliet-explained.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
+              style={{
                   color: '#3b3228',
-                  textDecoration: 'none',
-                  fontWeight: '500',
+                textDecoration: 'none',
+                fontWeight: '500',
                   wordBreak: 'break-all',
-                }}
-              >
+              }}
+            >
                 https://romeo-and-juliet-explained.vercel.app/
-              </a>
+            </a>
             </p>
           </div>
         </div>
