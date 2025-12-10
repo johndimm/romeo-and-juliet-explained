@@ -11,6 +11,7 @@ import UserGuidePanel from '../components/UserGuidePanel';
 import AboutPanel from '../components/AboutPanel';
 import PrintPanel from '../components/PrintPanel';
 import WelcomePanel from '../components/WelcomePanel';
+import PromptsPanel from '../components/PromptsPanel';
 import { useOverlay } from '../contexts/OverlayContext';
 import { log as appLog } from '../utils/log';
 
@@ -130,7 +131,7 @@ export async function getStaticProps() {
 export default function Home({ sections, sectionsWithOffsets, metadata, markers }) {
   const router = useRouter();
   const { overlay: overlayView, openOverlay, closeOverlay } = useOverlay();
-  const isOverlayOpen = ['settings', 'user-guide', 'about', 'print'].includes(overlayView || '');
+  const isOverlayOpen = ['settings', 'user-guide', 'about', 'print', 'prompts'].includes(overlayView || '');
   
   // Client-side safeguard: filter out TOC sections (between Contents and THE PROLOGUE)
   // This ensures TOC is never shown in play text on any screen size, even if build-time filtering fails
@@ -3335,6 +3336,7 @@ export default function Home({ sections, sectionsWithOffsets, metadata, markers 
             )}
             {overlayView === 'user-guide' && <UserGuidePanel />}
             {overlayView === 'about' && <AboutPanel />}
+            {overlayView === 'prompts' && <PromptsPanel />}
             {overlayView === 'print' && (
               <PrintPanel
                 sections={sections}

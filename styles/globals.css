@@ -1896,7 +1896,7 @@ html.force-mobile .container {
 }
 
 /* About, User Guide, and Settings Page Styling */
-.about-page, .user-guide-page, .settings-page {
+.about-page, .user-guide-page, .settings-page, .prompts-page {
   /* Full page layout - not constrained by the main container */
   position: fixed;
   top: var(--header-h);
@@ -1909,7 +1909,7 @@ html.force-mobile .container {
   z-index: 1;
 }
 
-.about-page .about-content, .user-guide-page .guide-content, .settings-page .settings-content {
+.about-page .about-content, .user-guide-page .guide-content, .settings-page .settings-content, .prompts-page .prompts-content {
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
@@ -1962,7 +1962,7 @@ html.force-mobile .container {
   padding-bottom: 0.5rem;
 }
 
-.guide-intro {
+.guide-intro, .prompts-intro {
   font-size: 1.1rem;
   color: #6b5f53;
   text-align: center;
@@ -1970,18 +1970,18 @@ html.force-mobile .container {
   font-style: italic;
 }
 
-.about-section, .guide-section, .settings-section {
+.about-section, .guide-section, .settings-section, .prompts-section {
   margin-bottom: 2.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #f0f0f0;
 }
 
-.about-section:last-child, .guide-section:last-child, .settings-section:last-child {
+.about-section:last-child, .guide-section:last-child, .settings-section:last-child, .prompts-section:last-child {
   border-bottom: none;
   margin-bottom: 0;
 }
 
-.about-section h2, .guide-section h2, .settings-section h2 {
+.about-section h2, .guide-section h2, .settings-section h2, .prompts-section h2 {
   color: #3b3228;
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -2202,6 +2202,7 @@ html.force-mobile .container {
 .overlayPanel .settings-page,
 .overlayPanel .user-guide-page,
 .overlayPanel .about-page,
+.overlayPanel .prompts-page,
 .overlayPanel .print-overlay {
   position: static;
   top: auto;
@@ -2216,6 +2217,7 @@ html.force-mobile .container {
 .overlayPanel .guide-content,
 .overlayPanel .about-content,
 .overlayPanel .settings-content,
+.overlayPanel .prompts-content,
 .overlayPanel .printContainer {
   max-height: none;
 }
@@ -2425,17 +2427,17 @@ html.force-mobile .container {
 
 /* Mobile responsiveness for About and User Guide pages */
 @media (max-width: 820px) {
-  .about-page, .user-guide-page, .settings-page {
+  .about-page, .user-guide-page, .settings-page, .prompts-page {
     top: var(--mobile-header-h);
   }
   
-  .about-page .about-content, .user-guide-page .guide-content, .settings-page .settings-content {
+  .about-page .about-content, .user-guide-page .guide-content, .settings-page .settings-content, .prompts-page .prompts-content {
     margin: calc(8px + var(--safe-area-left)) calc(8px + var(--safe-area-right));
     padding: 1rem;
     border-radius: 8px;
   }
   
-  .about-title, .guide-title, .settings-title {
+  .about-title, .guide-title, .settings-title, .prompts-title {
     font-size: 2rem;
   }
   
@@ -2645,4 +2647,174 @@ html.force-mobile .container {
     width: 100%;
     padding: 0.65rem 1.25rem;
   }
+}
+
+/* Prompts page specific styles */
+.prompt-block {
+  margin-bottom: 2rem;
+  background-color: #f9f7f4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e0ddd8;
+}
+
+.prompt-block h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #8b7355;
+  font-family: "IM Fell English", serif;
+}
+
+.prompt-code {
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+  color: #2f2a25;
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 6px;
+  border: 1px solid #d8d5d0;
+  overflow-x: auto;
+  letter-spacing: 0.01em;
+}
+
+.prompt-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Structured prompt display */
+.prompt-structured {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prompt-text-block {
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #2f2a25;
+  white-space: pre-wrap;
+}
+
+.prompt-section-tag,
+.prompt-instruction-tag {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f0ede8;
+  border-left: 4px solid #8b7355;
+  border-radius: 4px;
+  margin: 0.25rem 0;
+}
+
+.prompt-section-tag {
+  background: #f5f3f0;
+  border-left-color: #6b5f53;
+}
+
+.prompt-instruction-tag {
+  background: #f8f6f3;
+  border-left-color: #a08d7a;
+}
+
+.prompt-tag-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8b7355;
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prompt-section-tag .prompt-tag-label {
+  color: #6b5f53;
+}
+
+.prompt-instruction-tag .prompt-tag-label {
+  color: #a08d7a;
+}
+
+.prompt-tag-content {
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2f2a25;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.prompt-code-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #f9f7f4;
+  border: 1px solid #e0ddd8;
+  border-radius: 4px;
+  margin: 0.25rem 0;
+}
+
+.prompt-code-block .prompt-tag-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8b7355;
+}
+
+.prompt-code-inline {
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #2f2a25;
+  white-space: pre-wrap;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+/* XML tag styling */
+.prompt-xml-tag {
+  margin: 0.75rem 0;
+  border: 1px solid #d8d5d0;
+  border-radius: 6px;
+  background: #faf9f7;
+  overflow: hidden;
+}
+
+.prompt-xml-tag-name {
+  display: block;
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #8b7355;
+  background: #f0ede8;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e0ddd8;
+  letter-spacing: 0.02em;
+}
+
+.prompt-xml-tag-content {
+  font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #2f2a25;
+  padding: 0.75rem 1rem;
+  white-space: pre-wrap;
 }

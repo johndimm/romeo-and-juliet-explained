@@ -172,6 +172,9 @@ function AppInner({ Component, pageProps }) {
                 <a href="/?overlay=about" className="lnk-about" onClick={(e) => handleOverlayLink(e, 'about')}>
                   <span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span>
                 </a>
+                <a href="/?overlay=prompts" className="lnk-prompts" onClick={(e) => handleOverlayLink(e, 'prompts')}>
+                  <span className="icon" aria-hidden>💬</span><span className="lbl">Prompts</span>
+                </a>
                 {isMobile ? (
                   <a
                     href="/?overlay=settings"
@@ -233,6 +236,7 @@ function AppInner({ Component, pageProps }) {
             )}
             <a className="menuItem" href="/?overlay=user-guide" onClick={(e) => handleOverlayLink(e, 'user-guide')}>📖 User Guide</a>
             <a className="menuItem" href="/?overlay=about" onClick={(e) => handleOverlayLink(e, 'about')}>ℹ️ About</a>
+            <a className="menuItem" href="/?overlay=prompts" onClick={(e) => handleOverlayLink(e, 'prompts')}>💬 Prompts</a>
             <a className="menuItem" href="/?overlay=settings" onClick={(e) => handleOverlayLink(e, 'settings')}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b3228" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }}>
                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v1.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-1.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
