@@ -172,9 +172,11 @@ function AppInner({ Component, pageProps }) {
                 <a href="/?overlay=about" className="lnk-about" onClick={(e) => handleOverlayLink(e, 'about')}>
                   <span className="icon" aria-hidden>ℹ️</span><span className="lbl">About</span>
                 </a>
-                <a href="/?overlay=prompts" className="lnk-prompts" onClick={(e) => handleOverlayLink(e, 'prompts')}>
-                  <span className="icon" aria-hidden>💬</span><span className="lbl">Prompts</span>
-                </a>
+                {!isMobile && (
+                  <a href="/?overlay=prompts" className="lnk-prompts" onClick={(e) => handleOverlayLink(e, 'prompts')}>
+                    <span className="icon" aria-hidden>💬</span><span className="lbl">Prompts</span>
+                  </a>
+                )}
                 {isMobile ? (
                   <a
                     href="/?overlay=settings"
@@ -248,6 +250,13 @@ function AppInner({ Component, pageProps }) {
         </div>
       )}
       <Component {...pageProps} />
+      <a
+        href="https://johndimm.vercel.app"
+        title="All apps — John Dimm"
+        aria-label="All apps"
+        style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: 9, border: '1px solid rgba(0,0,0,0.15)', background: 'rgba(246,241,232,0.92)', color: '#3b3228', fontSize: 15, textDecoration: 'none' }}
+      >🏠</a>
+      <div style={{ position: 'fixed', bottom: 4, left: 0, right: 0, textAlign: 'center', fontSize: 11, color: '#8a7f70', pointerEvents: 'none', zIndex: 9999 }}>© 2026 John Dimm</div>
     </>
   );
 }
