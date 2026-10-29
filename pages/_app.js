@@ -251,7 +251,7 @@ function AppInner({ Component, pageProps }) {
       )}
       <Component {...pageProps} />
       <a
-        href="https://johndimm.org"
+        href="https://www.johndimm.org"
         title="All apps — John Dimm"
         aria-label="All apps"
         style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: 9, border: '1px solid rgba(0,0,0,0.15)', background: 'rgba(246,241,232,0.92)', color: '#3b3228', fontSize: 15, textDecoration: 'none' }}

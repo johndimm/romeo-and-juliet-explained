@@ -1,0 +1,1380 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Romeo and Juliet Explained" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e6]:
+          - navigation [ref=e7]:
+            - link "Print" [ref=e8] [cursor=pointer]:
+              - /url: /?overlay=print
+              - generic [ref=e9]: 🖨️
+              - generic [ref=e10]: Print
+            - link "User Guide" [ref=e11] [cursor=pointer]:
+              - /url: /?overlay=user-guide
+              - generic [ref=e12]: 📖
+              - generic [ref=e13]: User Guide
+            - link "About" [ref=e14] [cursor=pointer]:
+              - /url: /?overlay=about
+              - generic [ref=e15]: ℹ️
+              - generic [ref=e16]: About
+            - link "Settings" [ref=e17] [cursor=pointer]:
+              - /url: /?overlay=settings
+              - img [ref=e19]
+              - generic [ref=e22]: Settings
+          - button "Note density (Some)" [ref=e24] [cursor=pointer]:
+            - img [ref=e25]
+            - generic [ref=e28]: Note density (Some)
+          - search [ref=e29]:
+            - searchbox "Search text" [ref=e30]
+            - button "Previous result" [disabled] [ref=e31]: ◀
+            - button "Next result" [disabled] [ref=e32]: ▶
+    - generic [ref=e33]:
+      - navigation [ref=e34]:
+        - generic [ref=e35]:
+          - heading "Contents" [level=2] [ref=e36]
+          - list [ref=e38]:
+            - listitem [ref=e39]:
+              - link "Prologue" [ref=e40] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e42]:
+            - listitem [ref=e43]: Act I
+            - listitem [ref=e44]:
+              - link "SCENE I. A public place." [ref=e45] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e46]:
+              - link "SCENE II. A Street." [ref=e47] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e48]:
+              - link "SCENE III. Room in Capulet’s House." [ref=e49] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e50]:
+              - link "SCENE IV. A Street." [ref=e51] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e52]:
+              - link "SCENE V. A Hall in Capulet’s House." [ref=e53] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e55]:
+            - listitem [ref=e56]: Act II
+            - listitem [ref=e57]:
+              - link "SCENE I. An open place adjoining Capulet’s Garden." [ref=e58] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e59]:
+              - link "SCENE II. Capulet’s Garden." [ref=e60] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e61]:
+              - link "SCENE III. Friar Lawrence’s Cell." [ref=e62] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e63]:
+              - link "SCENE IV. A Street." [ref=e64] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e65]:
+              - link "SCENE V. Capulet’s Garden." [ref=e66] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e67]:
+              - link "SCENE VI. Friar Lawrence’s Cell." [ref=e68] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e70]:
+            - listitem [ref=e71]: Act III
+            - listitem [ref=e72]:
+              - link "SCENE I. A public Place." [ref=e73] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e74]:
+              - link "SCENE II. A Room in Capulet’s House." [ref=e75] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e76]:
+              - link "SCENE III. Friar Lawrence’s cell." [ref=e77] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e78]:
+              - link "SCENE IV. A Room in Capulet’s House." [ref=e79] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e80]:
+              - link "SCENE V. An open Gallery to Juliet’s Chamber, overlooking the Garden." [ref=e81] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e83]:
+            - listitem [ref=e84]: Act IV
+            - listitem [ref=e85]:
+              - link "SCENE I. Friar Lawrence’s Cell." [ref=e86] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e87]:
+              - link "SCENE II. Hall in Capulet’s House." [ref=e88] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e89]:
+              - link "SCENE III. Juliet’s Chamber." [ref=e90] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e91]:
+              - link "SCENE IV. Hall in Capulet’s House." [ref=e92] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e93]:
+              - link "SCENE V. Juliet’s Chamber; Juliet on the bed." [ref=e94] [cursor=pointer]:
+                - /url: "#"
+          - list [ref=e96]:
+            - listitem [ref=e97]: Act V
+            - listitem [ref=e98]:
+              - link "SCENE I. Mantua. A Street." [ref=e99] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e100]:
+              - link "SCENE II. Friar Lawrence’s Cell." [ref=e101] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e102]:
+              - link "SCENE III. A churchyard; in it a Monument belonging to the Capulets." [ref=e103] [cursor=pointer]:
+                - /url: "#"
+      - main [ref=e104]:
+        - generic [ref=e107]: THE TRAGEDY OF ROMEO AND JULIET by William Shakespeare
+        - generic [ref=e110]: THE PROLOGUE Enter Chorus.
+        - generic [ref=e113] [cursor=pointer]: CHORUS. Two households, both alike in dignity, In fair Verona, where we lay our scene, From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fatal loins of these two foes A pair of star-cross’d lovers take their life; Whose misadventur’d piteous overthrows Doth with their death bury their parents’ strife. The fearful passage of their death-mark’d love, And the continuance of their parents’ rage, Which, but their children’s end, nought could remove, Is now the two hours’ traffic of our stage; The which, if you with patient ears attend, What here shall miss, our toil shall strive to mend. [_Exit._]
+        - generic [ref=e116]: ACT I
+        - generic [ref=e119]: SCENE I. A public place. Enter Sampson and Gregory armed with swords and bucklers.
+        - generic [ref=e122] [cursor=pointer]: SAMPSON. Gregory, on my word, we’ll not carry coals.
+        - generic [ref=e123]:
+          - generic [ref=e125] [cursor=pointer]: GREGORY. No, for then we should be colliers.
+          - complementary "Explanations" [ref=e126]:
+            - generic [ref=e128]:
+              - button "Hide note" [ref=e129] [cursor=pointer]: ✕
+              - generic [ref=e130] [cursor=pointer]:
+                - text: Gregory puns that if they carried coals they would be colliers (coal-carriers), a dirty and lowly job.
+                - generic: ▶
+              - generic [ref=e131]: DeepSeek
+        - generic [ref=e134] [cursor=pointer]: SAMPSON. I mean, if we be in choler, we’ll draw.
+        - generic [ref=e135]:
+          - generic [ref=e137] [cursor=pointer]: GREGORY. Ay, while you live, draw your neck out o’ the collar.
+          - complementary "Explanations" [ref=e138]:
+            - generic [ref=e140]:
+              - button "Hide note" [ref=e141] [cursor=pointer]: ✕
+              - generic [ref=e142] [cursor=pointer]:
+                - text: Gregory puns on 'draw' as pulling one's neck out of a hangman's collar, mocking Sampson's bravery.
+                - generic: ▶
+              - generic [ref=e143]: DeepSeek
+        - generic [ref=e146] [cursor=pointer]: SAMPSON. I strike quickly, being moved.
+        - generic [ref=e149] [cursor=pointer]: GREGORY. But thou art not quickly moved to strike.
+        - generic [ref=e152] [cursor=pointer]: SAMPSON. A dog of the house of Montague moves me.
+        - generic [ref=e153]:
+          - generic [ref=e155] [cursor=pointer]: "GREGORY. To move is to stir; and to be valiant is to stand: therefore, if thou art moved, thou runn’st away."
+          - complementary "Explanations" [ref=e156]:
+            - generic [ref=e158]:
+              - button "Hide note" [ref=e159] [cursor=pointer]: ✕
+              - generic [ref=e160] [cursor=pointer]:
+                - text: Gregory twists 'move' to mean flee, saying true courage means standing firm, so if moved you run away.
+                - generic: ▶
+              - generic [ref=e161]: DeepSeek
+        - generic [ref=e162]:
+          - generic [ref=e164] [cursor=pointer]: SAMPSON. A dog of that house shall move me to stand. I will take the wall of any man or maid of Montague’s.
+          - complementary "Explanations" [ref=e165]:
+            - generic [ref=e167]:
+              - button "Hide note" [ref=e168] [cursor=pointer]: ✕
+              - generic [ref=e169] [cursor=pointer]:
+                - text: Sampson redefines being moved by a Montague dog as a reason to stand and fight, not flee. He adds he will take the wall (privileged side of the sidewalk) from any Montague.
+                - generic: ▶
+              - generic [ref=e170]: DeepSeek
+        - generic [ref=e173] [cursor=pointer]: GREGORY. That shows thee a weak slave, for the weakest goes to the wall.
+        - generic [ref=e174]:
+          - generic [ref=e176] [cursor=pointer]: "SAMPSON. True, and therefore women, being the weaker vessels, are ever thrust to the wall: therefore I will push Montague’s men from the wall, and thrust his maids to the wall."
+          - complementary "Explanations" [ref=e177]:
+            - generic [ref=e179]:
+              - button "Hide note" [ref=e180] [cursor=pointer]: ✕
+              - generic [ref=e181] [cursor=pointer]:
+                - text: Sampson twists this, saying women as weaker vessels are thrust against the wall, so he will push Montague men from the wall and thrust Montague maids to it, implying sexual assault.
+                - generic: ▶
+              - generic [ref=e182]: DeepSeek
+        - generic [ref=e185] [cursor=pointer]: GREGORY. The quarrel is between our masters and us their men.
+        - generic [ref=e188] [cursor=pointer]: "SAMPSON. ’Tis all one, I will show myself a tyrant: when I have fought with the men I will be civil with the maids, I will cut off their heads."
+        - generic [ref=e191] [cursor=pointer]: GREGORY. The heads of the maids?
+        - generic [ref=e192]:
+          - generic [ref=e194] [cursor=pointer]: SAMPSON. Ay, the heads of the maids, or their maidenheads; take it in what sense thou wilt.
+          - complementary "Explanations" [ref=e195]:
+            - generic [ref=e197]:
+              - button "Hide note" [ref=e198] [cursor=pointer]: ✕
+              - generic [ref=e199] [cursor=pointer]:
+                - text: Sampson makes a pun on 'maidenheads' (virginity), leaving the meaning ambiguous and crude.
+                - generic: ▶
+              - generic [ref=e200]: DeepSeek
+        - generic [ref=e201]:
+          - generic [ref=e203] [cursor=pointer]: GREGORY. They must take it in sense that feel it.
+          - complementary "Explanations" [ref=e204]:
+            - generic [ref=e206]:
+              - button "Hide note" [ref=e207] [cursor=pointer]: ✕
+              - generic [ref=e208] [cursor=pointer]:
+                - text: Gregory replies that those who feel it will understand the sense (meaning) of his words, continuing the sexual innuendo.
+                - generic: ▶
+              - generic [ref=e209]: DeepSeek
+        - generic [ref=e212] [cursor=pointer]: "SAMPSON. Me they shall feel while I am able to stand: and ’tis known I am a pretty piece of flesh."
+        - generic [ref=e215] [cursor=pointer]: GREGORY. ’Tis well thou art not fish; if thou hadst, thou hadst been poor John. Draw thy tool; here comes of the house of Montagues. Enter Abram and Balthasar.
+        - generic [ref=e218] [cursor=pointer]: "SAMPSON. My naked weapon is out: quarrel, I will back thee."
+        - generic [ref=e221] [cursor=pointer]: GREGORY. How? Turn thy back and run?
+        - generic [ref=e224] [cursor=pointer]: SAMPSON. Fear me not.
+        - generic [ref=e227] [cursor=pointer]: GREGORY. No, marry; I fear thee!
+        - generic [ref=e230] [cursor=pointer]: SAMPSON. Let us take the law of our sides; let them begin.
+        - generic [ref=e233] [cursor=pointer]: GREGORY. I will frown as I pass by, and let them take it as they list.
+        - generic [ref=e236] [cursor=pointer]: SAMPSON. Nay, as they dare. I will bite my thumb at them, which is disgrace to them if they bear it.
+        - generic [ref=e239] [cursor=pointer]: ABRAM. Do you bite your thumb at us, sir?
+        - generic [ref=e242] [cursor=pointer]: SAMPSON. I do bite my thumb, sir.
+        - generic [ref=e245] [cursor=pointer]: ABRAM. Do you bite your thumb at us, sir?
+        - generic [ref=e248] [cursor=pointer]: SAMPSON. Is the law of our side if I say ay?
+        - generic [ref=e251] [cursor=pointer]: GREGORY. No.
+        - generic [ref=e254] [cursor=pointer]: SAMPSON. No sir, I do not bite my thumb at you, sir; but I bite my thumb, sir.
+        - generic [ref=e257] [cursor=pointer]: GREGORY. Do you quarrel, sir?
+        - generic [ref=e260] [cursor=pointer]: ABRAM. Quarrel, sir? No, sir.
+        - generic [ref=e263] [cursor=pointer]: SAMPSON. But if you do, sir, I am for you. I serve as good a man as you.
+        - generic [ref=e266] [cursor=pointer]: ABRAM. No better.
+        - generic [ref=e269] [cursor=pointer]: SAMPSON. Well, sir. Enter Benvolio.
+        - generic [ref=e272] [cursor=pointer]: GREGORY. Say better; here comes one of my master’s kinsmen.
+        - generic [ref=e275] [cursor=pointer]: SAMPSON. Yes, better, sir.
+        - generic [ref=e278] [cursor=pointer]: ABRAM. You lie.
+        - generic [ref=e281] [cursor=pointer]: SAMPSON. Draw, if you be men. Gregory, remember thy washing blow. [_They fight._]
+        - generic [ref=e284] [cursor=pointer]: BENVOLIO. Part, fools! put up your swords, you know not what you do. [_Beats down their swords._] Enter Tybalt.
+        - generic [ref=e287] [cursor=pointer]: TYBALT. What, art thou drawn among these heartless hinds? Turn thee Benvolio, look upon thy death.
+        - generic [ref=e290] [cursor=pointer]: BENVOLIO. I do but keep the peace, put up thy sword, Or manage it to part these men with me.
+        - generic [ref=e293] [cursor=pointer]: "TYBALT. What, drawn, and talk of peace? I hate the word As I hate hell, all Montagues, and thee: Have at thee, coward. [_They fight._] Enter three or four Citizens with clubs."
+        - generic [ref=e296] [cursor=pointer]: FIRST CITIZEN. Clubs, bills and partisans! Strike! Beat them down! Down with the Capulets! Down with the Montagues! Enter Capulet in his gown, and Lady Capulet.
+        - generic [ref=e299] [cursor=pointer]: CAPULET. What noise is this? Give me my long sword, ho!
+        - generic [ref=e302] [cursor=pointer]: LADY CAPULET. A crutch, a crutch! Why call you for a sword?
+        - generic [ref=e305] [cursor=pointer]: CAPULET. My sword, I say! Old Montague is come, And flourishes his blade in spite of me. Enter Montague and his Lady Montague.
+        - generic [ref=e308] [cursor=pointer]: MONTAGUE. Thou villain Capulet! Hold me not, let me go.
+        - generic [ref=e311] [cursor=pointer]: LADY MONTAGUE. Thou shalt not stir one foot to seek a foe. Enter Prince Escalus, with Attendants.
+        - generic [ref=e314] [cursor=pointer]: "PRINCE. Rebellious subjects, enemies to peace, Profaners of this neighbour-stained steel,— Will they not hear? What, ho! You men, you beasts, That quench the fire of your pernicious rage With purple fountains issuing from your veins, On pain of torture, from those bloody hands Throw your mistemper’d weapons to the ground And hear the sentence of your moved prince. Three civil brawls, bred of an airy word, By thee, old Capulet, and Montague, Have thrice disturb’d the quiet of our streets, And made Verona’s ancient citizens Cast by their grave beseeming ornaments, To wield old partisans, in hands as old, Canker’d with peace, to part your canker’d hate. If ever you disturb our streets again, Your lives shall pay the forfeit of the peace. For this time all the rest depart away: You, Capulet, shall go along with me, And Montague, come you this afternoon, To know our farther pleasure in this case, To old Free-town, our common judgement-place. Once more, on pain of death, all men depart. [_Exeunt Prince and Attendants; Capulet, Lady Capulet, Tybalt, Citizens and Servants._]"
+        - generic [ref=e317] [cursor=pointer]: MONTAGUE. Who set this ancient quarrel new abroach? Speak, nephew, were you by when it began?
+        - generic [ref=e320] [cursor=pointer]: BENVOLIO. Here were the servants of your adversary And yours, close fighting ere I did approach. I drew to part them, in the instant came The fiery Tybalt, with his sword prepar’d, Which, as he breath’d defiance to my ears, He swung about his head, and cut the winds, Who nothing hurt withal, hiss’d him in scorn. While we were interchanging thrusts and blows Came more and more, and fought on part and part, Till the Prince came, who parted either part.
+        - generic [ref=e323] [cursor=pointer]: LADY MONTAGUE. O where is Romeo, saw you him today? Right glad I am he was not at this fray.
+        - generic [ref=e326] [cursor=pointer]: BENVOLIO. Madam, an hour before the worshipp’d sun Peer’d forth the golden window of the east, A troubled mind drave me to walk abroad, Where underneath the grove of sycamore That westward rooteth from this city side, So early walking did I see your son. Towards him I made, but he was ware of me, And stole into the covert of the wood. I, measuring his affections by my own, Which then most sought where most might not be found, Being one too many by my weary self, Pursu’d my humour, not pursuing his, And gladly shunn’d who gladly fled from me.
+        - generic [ref=e329] [cursor=pointer]: MONTAGUE. Many a morning hath he there been seen, With tears augmenting the fresh morning’s dew, Adding to clouds more clouds with his deep sighs; But all so soon as the all-cheering sun Should in the farthest east begin to draw The shady curtains from Aurora’s bed, Away from light steals home my heavy son, And private in his chamber pens himself, Shuts up his windows, locks fair daylight out And makes himself an artificial night. Black and portentous must this humour prove, Unless good counsel may the cause remove.
+        - generic [ref=e332] [cursor=pointer]: BENVOLIO. My noble uncle, do you know the cause?
+        - generic [ref=e335] [cursor=pointer]: MONTAGUE. I neither know it nor can learn of him.
+        - generic [ref=e338] [cursor=pointer]: BENVOLIO. Have you importun’d him by any means?
+        - generic [ref=e341] [cursor=pointer]: MONTAGUE. Both by myself and many other friends; But he, his own affections’ counsellor, Is to himself—I will not say how true— But to himself so secret and so close, So far from sounding and discovery, As is the bud bit with an envious worm Ere he can spread his sweet leaves to the air, Or dedicate his beauty to the sun. Could we but learn from whence his sorrows grow, We would as willingly give cure as know. Enter Romeo.
+        - generic [ref=e344] [cursor=pointer]: BENVOLIO. See, where he comes. So please you step aside; I’ll know his grievance or be much denied.
+        - generic [ref=e347] [cursor=pointer]: MONTAGUE. I would thou wert so happy by thy stay To hear true shrift. Come, madam, let’s away, [_Exeunt Montague and Lady Montague._]
+        - generic [ref=e350] [cursor=pointer]: BENVOLIO. Good morrow, cousin.
+        - generic [ref=e353] [cursor=pointer]: ROMEO. Is the day so young?
+        - generic [ref=e356] [cursor=pointer]: BENVOLIO. But new struck nine.
+        - generic [ref=e359] [cursor=pointer]: ROMEO. Ay me, sad hours seem long. Was that my father that went hence so fast?
+        - generic [ref=e362] [cursor=pointer]: BENVOLIO. It was. What sadness lengthens Romeo’s hours?
+        - generic [ref=e365] [cursor=pointer]: ROMEO. Not having that which, having, makes them short.
+        - generic [ref=e368] [cursor=pointer]: BENVOLIO. In love?
+        - generic [ref=e371] [cursor=pointer]: ROMEO. Out.
+        - generic [ref=e374] [cursor=pointer]: BENVOLIO. Of love?
+        - generic [ref=e377] [cursor=pointer]: ROMEO. Out of her favour where I am in love.
+        - generic [ref=e380] [cursor=pointer]: BENVOLIO. Alas that love so gentle in his view, Should be so tyrannous and rough in proof.
+        - generic [ref=e381]:
+          - generic [ref=e383] [cursor=pointer]: "ROMEO. Alas that love, whose view is muffled still, Should, without eyes, see pathways to his will! Where shall we dine? O me! What fray was here? Yet tell me not, for I have heard it all. Here’s much to do with hate, but more with love: Why, then, O brawling love! O loving hate! O anything, of nothing first create! O heavy lightness! serious vanity! Misshapen chaos of well-seeming forms! Feather of lead, bright smoke, cold fire, sick health! Still-waking sleep, that is not what it is! This love feel I, that feel no love in this. Dost thou not laugh?"
+          - complementary "Explanations" [ref=e384]:
+            - generic [ref=e386]:
+              - button "Hide note" [ref=e387] [cursor=pointer]: ✕
+              - generic [ref=e388] [cursor=pointer]:
+                - text: "Romeo complains that blind love still finds ways to get what it wants. He abruptly asks where to dine, then reflects on the recent brawl, saying it involves hate but more love. He then launches into a series of oxymorons describing love's contradictions: brawling love, loving hate, heavy lightness, serious vanity, and more, concluding that he feels a love that brings no joy. He asks if Benvolio is laughing."
+                - generic: ▶
+              - generic [ref=e389]: DeepSeek
+        - generic [ref=e392] [cursor=pointer]: BENVOLIO. No coz, I rather weep.
+        - generic [ref=e395] [cursor=pointer]: ROMEO. Good heart, at what?
+        - generic [ref=e398] [cursor=pointer]: BENVOLIO. At thy good heart’s oppression.
+        - generic [ref=e401] [cursor=pointer]: "ROMEO. Why such is love’s transgression. Griefs of mine own lie heavy in my breast, Which thou wilt propagate to have it prest With more of thine. This love that thou hast shown Doth add more grief to too much of mine own. Love is a smoke made with the fume of sighs; Being purg’d, a fire sparkling in lovers’ eyes; Being vex’d, a sea nourish’d with lovers’ tears: What is it else? A madness most discreet, A choking gall, and a preserving sweet. Farewell, my coz. [_Going._]"
+        - generic [ref=e404] [cursor=pointer]: "BENVOLIO. Soft! I will go along: And if you leave me so, you do me wrong."
+        - generic [ref=e407] [cursor=pointer]: ROMEO. Tut! I have lost myself; I am not here. This is not Romeo, he’s some other where.
+        - generic [ref=e410] [cursor=pointer]: BENVOLIO. Tell me in sadness who is that you love?
+        - generic [ref=e413] [cursor=pointer]: ROMEO. What, shall I groan and tell thee?
+        - generic [ref=e416] [cursor=pointer]: BENVOLIO. Groan! Why, no; but sadly tell me who.
+        - generic [ref=e419] [cursor=pointer]: ROMEO. Bid a sick man in sadness make his will, A word ill urg’d to one that is so ill. In sadness, cousin, I do love a woman.
+        - generic [ref=e422] [cursor=pointer]: BENVOLIO. I aim’d so near when I suppos’d you lov’d.
+        - generic [ref=e425] [cursor=pointer]: ROMEO. A right good markman, and she’s fair I love.
+        - generic [ref=e428] [cursor=pointer]: BENVOLIO. A right fair mark, fair coz, is soonest hit.
+        - generic [ref=e429]:
+          - generic [ref=e431] [cursor=pointer]: "ROMEO. Well, in that hit you miss: she’ll not be hit With Cupid’s arrow, she hath Dian’s wit; And in strong proof of chastity well arm’d, From love’s weak childish bow she lives uncharm’d. She will not stay the siege of loving terms Nor bide th’encounter of assailing eyes, Nor ope her lap to saint-seducing gold: O she’s rich in beauty, only poor That when she dies, with beauty dies her store."
+          - complementary "Explanations" [ref=e432]:
+            - generic [ref=e434]:
+              - button "Hide note" [ref=e435] [cursor=pointer]: ✕
+              - generic [ref=e436] [cursor=pointer]:
+                - text: "Romeo says Benvolio missed the mark: his beloved cannot be hit by Cupid's arrow because she is chaste like Diana, goddess of chastity. She is armored against love's advances, won't listen to sweet words, withstands admiring looks, and cannot be bribed. She is rich in beauty but poor because her beauty will die with her, leaving no heirs."
+                - generic: ▶
+              - generic [ref=e437]: DeepSeek
+        - generic [ref=e440] [cursor=pointer]: BENVOLIO. Then she hath sworn that she will still live chaste?
+        - generic [ref=e443] [cursor=pointer]: ROMEO. She hath, and in that sparing makes huge waste; For beauty starv’d with her severity, Cuts beauty off from all posterity. She is too fair, too wise; wisely too fair, To merit bliss by making me despair. She hath forsworn to love, and in that vow Do I live dead, that live to tell it now.
+        - generic [ref=e446] [cursor=pointer]: BENVOLIO. Be rul’d by me, forget to think of her.
+        - generic [ref=e449] [cursor=pointer]: ROMEO. O teach me how I should forget to think.
+        - generic [ref=e452] [cursor=pointer]: BENVOLIO. By giving liberty unto thine eyes; Examine other beauties.
+        - generic [ref=e455] [cursor=pointer]: ROMEO. ’Tis the way To call hers, exquisite, in question more. These happy masks that kiss fair ladies’ brows, Being black, puts us in mind they hide the fair; He that is strucken blind cannot forget The precious treasure of his eyesight lost. Show me a mistress that is passing fair, What doth her beauty serve but as a note Where I may read who pass’d that passing fair? Farewell, thou canst not teach me to forget.
+        - generic [ref=e458] [cursor=pointer]: BENVOLIO. I’ll pay that doctrine, or else die in debt. [_Exeunt._]
+        - generic [ref=e461]: SCENE II. A Street. Enter Capulet, Paris and Servant.
+        - generic [ref=e464] [cursor=pointer]: CAPULET. But Montague is bound as well as I, In penalty alike; and ’tis not hard, I think, For men so old as we to keep the peace.
+        - generic [ref=e467] [cursor=pointer]: PARIS. Of honourable reckoning are you both, And pity ’tis you liv’d at odds so long. But now my lord, what say you to my suit?
+        - generic [ref=e470] [cursor=pointer]: CAPULET. But saying o’er what I have said before. My child is yet a stranger in the world, She hath not seen the change of fourteen years; Let two more summers wither in their pride Ere we may think her ripe to be a bride.
+        - generic [ref=e473] [cursor=pointer]: PARIS. Younger than she are happy mothers made.
+        - generic [ref=e476] [cursor=pointer]: "CAPULET. And too soon marr’d are those so early made. The earth hath swallowed all my hopes but she, She is the hopeful lady of my earth: But woo her, gentle Paris, get her heart, My will to her consent is but a part; And she agree, within her scope of choice Lies my consent and fair according voice. This night I hold an old accustom’d feast, Whereto I have invited many a guest, Such as I love, and you among the store, One more, most welcome, makes my number more. At my poor house look to behold this night Earth-treading stars that make dark heaven light: Such comfort as do lusty young men feel When well apparell’d April on the heel Of limping winter treads, even such delight Among fresh female buds shall you this night Inherit at my house. Hear all, all see, And like her most whose merit most shall be: Which, on more view of many, mine, being one, May stand in number, though in reckoning none. Come, go with me. Go, sirrah, trudge about Through fair Verona; find those persons out Whose names are written there, [_gives a paper_] and to them say, My house and welcome on their pleasure stay. [_Exeunt Capulet and Paris._]"
+        - generic [ref=e477]:
+          - generic [ref=e479] [cursor=pointer]: SERVANT. Find them out whose names are written here! It is written that the shoemaker should meddle with his yard and the tailor with his last, the fisher with his pencil, and the painter with his nets; but I am sent to find those persons whose names are here writ, and can never find what names the writing person hath here writ. I must to the learned. In good time! Enter Benvolio and Romeo.
+          - complementary "Explanations" [ref=e480]:
+            - generic [ref=e482]:
+              - button "Hide note" [ref=e483] [cursor=pointer]: ✕
+              - generic [ref=e484] [cursor=pointer]:
+                - text: The servant complains that he has been given a list of names to find but cannot read it. He humorously mixes up trades and tools (like a shoemaker with a yard, tailor with a last) to show he is out of his element, and says he must find someone educated to help.
+                - generic: ▶
+              - generic [ref=e485]: DeepSeek
+        - generic [ref=e488] [cursor=pointer]: "BENVOLIO. Tut, man, one fire burns out another’s burning, One pain is lessen’d by another’s anguish; Turn giddy, and be holp by backward turning; One desperate grief cures with another’s languish: Take thou some new infection to thy eye, And the rank poison of the old will die."
+        - generic [ref=e491] [cursor=pointer]: ROMEO. Your plantain leaf is excellent for that.
+        - generic [ref=e494] [cursor=pointer]: BENVOLIO. For what, I pray thee?
+        - generic [ref=e497] [cursor=pointer]: ROMEO. For your broken shin.
+        - generic [ref=e500] [cursor=pointer]: BENVOLIO. Why, Romeo, art thou mad?
+        - generic [ref=e503] [cursor=pointer]: "ROMEO. Not mad, but bound more than a madman is: Shut up in prison, kept without my food, Whipp’d and tormented and—God-den, good fellow."
+        - generic [ref=e506] [cursor=pointer]: SERVANT. God gi’ go-den. I pray, sir, can you read?
+        - generic [ref=e509] [cursor=pointer]: ROMEO. Ay, mine own fortune in my misery.
+        - generic [ref=e512] [cursor=pointer]: SERVANT. Perhaps you have learned it without book. But I pray, can you read anything you see?
+        - generic [ref=e515] [cursor=pointer]: ROMEO. Ay, If I know the letters and the language.
+        - generic [ref=e518] [cursor=pointer]: SERVANT. Ye say honestly, rest you merry!
+        - generic [ref=e521] [cursor=pointer]: ROMEO. Stay, fellow; I can read. [_He reads the letter._] _Signior Martino and his wife and daughters; County Anselmo and his beauteous sisters; The lady widow of Utruvio; Signior Placentio and his lovely nieces; Mercutio and his brother Valentine; Mine uncle Capulet, his wife, and daughters; My fair niece Rosaline and Livia; Signior Valentio and his cousin Tybalt; Lucio and the lively Helena. _ A fair assembly. [_Gives back the paper_] Whither should they come?
+        - generic [ref=e524] [cursor=pointer]: SERVANT. Up.
+        - generic [ref=e527] [cursor=pointer]: ROMEO. Whither to supper?
+        - generic [ref=e530] [cursor=pointer]: SERVANT. To our house.
+        - generic [ref=e533] [cursor=pointer]: ROMEO. Whose house?
+        - generic [ref=e536] [cursor=pointer]: SERVANT. My master’s.
+        - generic [ref=e539] [cursor=pointer]: ROMEO. Indeed I should have ask’d you that before.
+        - generic [ref=e542] [cursor=pointer]: SERVANT. Now I’ll tell you without asking. My master is the great rich Capulet, and if you be not of the house of Montagues, I pray come and crush a cup of wine. Rest you merry. [_Exit._]
+        - generic [ref=e545] [cursor=pointer]: BENVOLIO. At this same ancient feast of Capulet’s Sups the fair Rosaline whom thou so lov’st; With all the admired beauties of Verona. Go thither and with unattainted eye, Compare her face with some that I shall show, And I will make thee think thy swan a crow.
+        - generic [ref=e546]:
+          - generic [ref=e548] [cursor=pointer]: ROMEO. When the devout religion of mine eye Maintains such falsehood, then turn tears to fire; And these who, often drown’d, could never die, Transparent heretics, be burnt for liars. One fairer than my love? The all-seeing sun Ne’er saw her match since first the world begun.
+          - complementary "Explanations" [ref=e549]:
+            - generic [ref=e551]:
+              - button "Hide note" [ref=e552] [cursor=pointer]: ✕
+              - generic [ref=e553] [cursor=pointer]:
+                - text: "Romeo responds with a religious metaphor: if his eyes are so devoted they see falsely, then let them burn like heretics; he claims the sun has never seen anyone as fair as Rosaline since the world began."
+                - generic: ▶
+              - generic [ref=e554]: DeepSeek
+        - generic [ref=e557] [cursor=pointer]: "BENVOLIO. Tut, you saw her fair, none else being by, Herself pois’d with herself in either eye: But in that crystal scales let there be weigh’d Your lady’s love against some other maid That I will show you shining at this feast, And she shall scant show well that now shows best."
+        - generic [ref=e560] [cursor=pointer]: ROMEO. I’ll go along, no such sight to be shown, But to rejoice in splendour of my own. [_Exeunt._]
+        - generic [ref=e563]: SCENE III. Room in Capulet’s House. Enter Lady Capulet and Nurse.
+        - generic [ref=e566] [cursor=pointer]: LADY CAPULET. Nurse, where’s my daughter? Call her forth to me.
+        - generic [ref=e569] [cursor=pointer]: NURSE. Now, by my maidenhead, at twelve year old, I bade her come. What, lamb! What ladybird! God forbid! Where’s this girl? What, Juliet! Enter Juliet.
+        - generic [ref=e572] [cursor=pointer]: JULIET. How now, who calls?
+        - generic [ref=e575] [cursor=pointer]: NURSE. Your mother.
+        - generic [ref=e578] [cursor=pointer]: JULIET. Madam, I am here. What is your will?
+        - generic [ref=e581] [cursor=pointer]: LADY CAPULET. This is the matter. Nurse, give leave awhile, We must talk in secret. Nurse, come back again, I have remember’d me, thou’s hear our counsel. Thou knowest my daughter’s of a pretty age.
+        - generic [ref=e584] [cursor=pointer]: NURSE. Faith, I can tell her age unto an hour.
+        - generic [ref=e587] [cursor=pointer]: LADY CAPULET. She’s not fourteen.
+        - generic [ref=e590] [cursor=pointer]: NURSE. I’ll lay fourteen of my teeth, And yet, to my teen be it spoken, I have but four, She is not fourteen. How long is it now To Lammas-tide?
+        - generic [ref=e593] [cursor=pointer]: LADY CAPULET. A fortnight and odd days.
+        - generic [ref=e594]:
+          - generic [ref=e596] [cursor=pointer]: "NURSE. Even or odd, of all days in the year, Come Lammas Eve at night shall she be fourteen. Susan and she,—God rest all Christian souls!— Were of an age. Well, Susan is with God; She was too good for me. But as I said, On Lammas Eve at night shall she be fourteen; That shall she, marry; I remember it well. ’Tis since the earthquake now eleven years; And she was wean’d,—I never shall forget it—, Of all the days of the year, upon that day: For I had then laid wormwood to my dug, Sitting in the sun under the dovehouse wall; My lord and you were then at Mantua: Nay, I do bear a brain. But as I said, When it did taste the wormwood on the nipple Of my dug and felt it bitter, pretty fool, To see it tetchy, and fall out with the dug! Shake, quoth the dovehouse: ’twas no need, I trow, To bid me trudge. And since that time it is eleven years; For then she could stand alone; nay, by th’rood She could have run and waddled all about; For even the day before she broke her brow, And then my husband,—God be with his soul! A was a merry man,—took up the child: ‘Yea,’ quoth he, ‘dost thou fall upon thy face? Thou wilt fall backward when thou hast more wit; Wilt thou not, Jule?’ and, by my holidame, The pretty wretch left crying, and said ‘Ay’. To see now how a jest shall come about. I warrant, and I should live a thousand years, I never should forget it. ‘Wilt thou not, Jule?’ quoth he; And, pretty fool, it stinted, and said ‘Ay.’"
+          - complementary "Explanations" [ref=e597]:
+            - generic [ref=e599]:
+              - button "Hide note" [ref=e600] [cursor=pointer]: ✕
+              - generic [ref=e601] [cursor=pointer]:
+                - text: She says that on Lammas Eve at night Juliet will be fourteen, then recalls that her own daughter Susan was the same age but is now dead. She vividly remembers weaning Juliet on that day eleven years earlier during an earthquake, applying bitter wormwood to her breast so the baby would reject it, and tells how Juliet became fussy and the dovehouse shook. She adds that Juliet could stand and run by then, and recounts a time Juliet fell and got a bump, after which the Nurse’s husband joked that she would fall backward when older—meaning sexually—and Juliet stopped crying and said yes.
+                - generic: ▶
+              - generic [ref=e602]: DeepSeek
+        - generic [ref=e605] [cursor=pointer]: LADY CAPULET. Enough of this; I pray thee hold thy peace.
+        - generic [ref=e608] [cursor=pointer]: NURSE. Yes, madam, yet I cannot choose but laugh, To think it should leave crying, and say ‘Ay’; And yet I warrant it had upon it brow A bump as big as a young cockerel’s stone; A perilous knock, and it cried bitterly. ‘Yea,’ quoth my husband, ‘fall’st upon thy face? Thou wilt fall backward when thou comest to age; Wilt thou not, Jule?’ it stinted, and said ‘Ay’.
+        - generic [ref=e611] [cursor=pointer]: JULIET. And stint thou too, I pray thee, Nurse, say I.
+        - generic [ref=e614] [cursor=pointer]: "NURSE. Peace, I have done. God mark thee to his grace Thou wast the prettiest babe that e’er I nurs’d: And I might live to see thee married once, I have my wish."
+        - generic [ref=e617] [cursor=pointer]: LADY CAPULET. Marry, that marry is the very theme I came to talk of. Tell me, daughter Juliet, How stands your disposition to be married?
+        - generic [ref=e620] [cursor=pointer]: JULIET. It is an honour that I dream not of.
+        - generic [ref=e623] [cursor=pointer]: NURSE. An honour! Were not I thine only nurse, I would say thou hadst suck’d wisdom from thy teat.
+        - generic [ref=e626] [cursor=pointer]: "LADY CAPULET. Well, think of marriage now: younger than you, Here in Verona, ladies of esteem, Are made already mothers. By my count I was your mother much upon these years That you are now a maid. Thus, then, in brief; The valiant Paris seeks you for his love."
+        - generic [ref=e629] [cursor=pointer]: NURSE. A man, young lady! Lady, such a man As all the world—why he’s a man of wax.
+        - generic [ref=e632] [cursor=pointer]: LADY CAPULET. Verona’s summer hath not such a flower.
+        - generic [ref=e635] [cursor=pointer]: NURSE. Nay, he’s a flower, in faith a very flower.
+        - generic [ref=e636]:
+          - generic [ref=e638] [cursor=pointer]: "LADY CAPULET. What say you, can you love the gentleman? This night you shall behold him at our feast; Read o’er the volume of young Paris’ face, And find delight writ there with beauty’s pen. Examine every married lineament, And see how one another lends content; And what obscur’d in this fair volume lies, Find written in the margent of his eyes. This precious book of love, this unbound lover, To beautify him, only lacks a cover: The fish lives in the sea; and ’tis much pride For fair without the fair within to hide. That book in many’s eyes doth share the glory, That in gold clasps locks in the golden story; So shall you share all that he doth possess, By having him, making yourself no less."
+          - complementary "Explanations" [ref=e639]:
+            - generic [ref=e641]:
+              - button "Hide note" [ref=e642] [cursor=pointer]: ✕
+              - generic [ref=e643] [cursor=pointer]:
+                - text: "Lady Capulet asks if Juliet can love Paris and tells her she will see him at the feast. She uses an extended metaphor of reading a book: Juliet should study Paris's face like a volume, find delight in his beauty, examine his features, and see how they harmonize. What is unclear in this book she can find explained in the margins of his eyes. She calls Paris a precious but unbound book that only needs a cover—a wife—to be complete. Just as a fish belongs in the sea, it is fitting for external beauty to hide inner worth. This book is admired by many, like a golden-clasped volume containing a golden story; by having him, Juliet will share all he possesses without losing anything."
+                - generic: ▶
+              - generic [ref=e644]: DeepSeek
+        - generic [ref=e647] [cursor=pointer]: NURSE. No less, nay bigger. Women grow by men.
+        - generic [ref=e650] [cursor=pointer]: LADY CAPULET. Speak briefly, can you like of Paris’ love?
+        - generic [ref=e653] [cursor=pointer]: "JULIET. I’ll look to like, if looking liking move: But no more deep will I endart mine eye Than your consent gives strength to make it fly. Enter a Servant."
+        - generic [ref=e656] [cursor=pointer]: SERVANT. Madam, the guests are come, supper served up, you called, my young lady asked for, the Nurse cursed in the pantry, and everything in extremity. I must hence to wait, I beseech you follow straight.
+        - generic [ref=e659] [cursor=pointer]: LADY CAPULET. We follow thee. [_Exit Servant._] Juliet, the County stays.
+        - generic [ref=e662] [cursor=pointer]: NURSE. Go, girl, seek happy nights to happy days. [_Exeunt._]
+        - generic [ref=e665]: SCENE IV. A Street. Enter Romeo, Mercutio, Benvolio, with five or six Maskers; Torch-bearers and others.
+        - generic [ref=e668] [cursor=pointer]: ROMEO. What, shall this speech be spoke for our excuse? Or shall we on without apology?
+        - generic [ref=e671] [cursor=pointer]: "BENVOLIO. The date is out of such prolixity: We’ll have no Cupid hoodwink’d with a scarf, Bearing a Tartar’s painted bow of lath, Scaring the ladies like a crow-keeper; Nor no without-book prologue, faintly spoke After the prompter, for our entrance: But let them measure us by what they will, We’ll measure them a measure, and be gone."
+        - generic [ref=e674] [cursor=pointer]: ROMEO. Give me a torch, I am not for this ambling; Being but heavy I will bear the light.
+        - generic [ref=e677] [cursor=pointer]: MERCUTIO. Nay, gentle Romeo, we must have you dance.
+        - generic [ref=e680] [cursor=pointer]: ROMEO. Not I, believe me, you have dancing shoes, With nimble soles, I have a soul of lead So stakes me to the ground I cannot move.
+        - generic [ref=e683] [cursor=pointer]: MERCUTIO. You are a lover, borrow Cupid’s wings, And soar with them above a common bound.
+        - generic [ref=e686] [cursor=pointer]: ROMEO. I am too sore enpierced with his shaft To soar with his light feathers, and so bound, I cannot bound a pitch above dull woe. Under love’s heavy burden do I sink.
+        - generic [ref=e689] [cursor=pointer]: MERCUTIO. And, to sink in it, should you burden love; Too great oppression for a tender thing.
+        - generic [ref=e692] [cursor=pointer]: ROMEO. Is love a tender thing? It is too rough, Too rude, too boisterous; and it pricks like thorn.
+        - generic [ref=e695] [cursor=pointer]: "MERCUTIO. If love be rough with you, be rough with love; Prick love for pricking, and you beat love down. Give me a case to put my visage in: [_Putting on a mask._] A visor for a visor. What care I What curious eye doth quote deformities? Here are the beetle-brows shall blush for me."
+        - generic [ref=e698] [cursor=pointer]: BENVOLIO. Come, knock and enter; and no sooner in But every man betake him to his legs.
+        - generic [ref=e701] [cursor=pointer]: "ROMEO. A torch for me: let wantons, light of heart, Tickle the senseless rushes with their heels; For I am proverb’d with a grandsire phrase, I’ll be a candle-holder and look on, The game was ne’er so fair, and I am done."
+        - generic [ref=e702]:
+          - generic [ref=e704] [cursor=pointer]: "MERCUTIO. Tut, dun’s the mouse, the constable’s own word: If thou art dun, we’ll draw thee from the mire Or save your reverence love, wherein thou stickest Up to the ears. Come, we burn daylight, ho."
+          - complementary "Explanations" [ref=e705]:
+            - generic [ref=e707]:
+              - button "Hide note" [ref=e708] [cursor=pointer]: ✕
+              - generic [ref=e709] [cursor=pointer]:
+                - text: "Mercutio uses wordplay: 'dun’s the mouse' means 'keep still,' but if Romeo is stuck (dun) in the mire of love, they will pull him out. He says they are wasting daylight (time) by delaying."
+                - generic: ▶
+              - generic [ref=e710]: DeepSeek
+        - generic [ref=e713] [cursor=pointer]: ROMEO. Nay, that’s not so.
+        - generic [ref=e716] [cursor=pointer]: MERCUTIO. I mean sir, in delay We waste our lights in vain, light lights by day. Take our good meaning, for our judgment sits Five times in that ere once in our five wits.
+        - generic [ref=e719] [cursor=pointer]: ROMEO. And we mean well in going to this mask; But ’tis no wit to go.
+        - generic [ref=e722] [cursor=pointer]: MERCUTIO. Why, may one ask?
+        - generic [ref=e725] [cursor=pointer]: ROMEO. I dreamt a dream tonight.
+        - generic [ref=e728] [cursor=pointer]: MERCUTIO. And so did I.
+        - generic [ref=e731] [cursor=pointer]: ROMEO. Well what was yours?
+        - generic [ref=e734] [cursor=pointer]: MERCUTIO. That dreamers often lie.
+        - generic [ref=e737] [cursor=pointer]: ROMEO. In bed asleep, while they do dream things true.
+        - generic [ref=e738]:
+          - generic [ref=e740] [cursor=pointer]: "MERCUTIO. O, then, I see Queen Mab hath been with you. She is the fairies’ midwife, and she comes In shape no bigger than an agate-stone On the fore-finger of an alderman, Drawn with a team of little atomies Over men’s noses as they lie asleep: Her waggon-spokes made of long spinners’ legs; The cover, of the wings of grasshoppers; Her traces, of the smallest spider’s web; The collars, of the moonshine’s watery beams; Her whip of cricket’s bone; the lash, of film; Her waggoner, a small grey-coated gnat, Not half so big as a round little worm Prick’d from the lazy finger of a maid: Her chariot is an empty hazelnut, Made by the joiner squirrel or old grub, Time out o’ mind the fairies’ coachmakers. And in this state she gallops night by night Through lovers’ brains, and then they dream of love; O’er courtiers’ knees, that dream on curtsies straight; O’er lawyers’ fingers, who straight dream on fees; O’er ladies’ lips, who straight on kisses dream, Which oft the angry Mab with blisters plagues, Because their breaths with sweetmeats tainted are: Sometime she gallops o’er a courtier’s nose, And then dreams he of smelling out a suit; And sometime comes she with a tithe-pig’s tail, Tickling a parson’s nose as a lies asleep, Then dreams he of another benefice: Sometime she driveth o’er a soldier’s neck, And then dreams he of cutting foreign throats, Of breaches, ambuscados, Spanish blades, Of healths five fathom deep; and then anon Drums in his ear, at which he starts and wakes; And, being thus frighted, swears a prayer or two, And sleeps again. This is that very Mab That plats the manes of horses in the night; And bakes the elf-locks in foul sluttish hairs, Which, once untangled, much misfortune bodes: This is the hag, when maids lie on their backs, That presses them, and learns them first to bear, Making them women of good carriage: This is she,—"
+          - complementary "Explanations" [ref=e741]:
+            - generic [ref=e743]:
+              - button "Hide note" [ref=e744] [cursor=pointer]: ✕
+              - generic [ref=e745] [cursor=pointer]:
+                - text: Mercutio launches into his Queen Mab speech, describing the tiny fairy who causes people’s dreams by riding over them as they sleep. He details her miniature chariot and how she makes lovers dream of love, courtiers of etiquette, lawyers of fees, ladies of kisses (sometimes punished with blisters), courtiers of favors, parsons of extra income, and soldiers of battle—before they wake frightened. He adds that Mab tangles horses’ manes and maids’ hair, and teaches maids to bear weight, making them women. This extravagant speech mocks Romeo’s belief in dreams.
+                - generic: ▶
+              - generic [ref=e746]: DeepSeek
+        - generic [ref=e749] [cursor=pointer]: ROMEO. Peace, peace, Mercutio, peace, Thou talk’st of nothing.
+        - generic [ref=e752] [cursor=pointer]: MERCUTIO. True, I talk of dreams, Which are the children of an idle brain, Begot of nothing but vain fantasy, Which is as thin of substance as the air, And more inconstant than the wind, who woos Even now the frozen bosom of the north, And, being anger’d, puffs away from thence, Turning his side to the dew-dropping south.
+        - generic [ref=e755] [cursor=pointer]: "BENVOLIO. This wind you talk of blows us from ourselves: Supper is done, and we shall come too late."
+        - generic [ref=e758] [cursor=pointer]: "ROMEO. I fear too early: for my mind misgives Some consequence yet hanging in the stars, Shall bitterly begin his fearful date With this night’s revels; and expire the term Of a despised life, clos’d in my breast By some vile forfeit of untimely death. But he that hath the steerage of my course Direct my suit. On, lusty gentlemen!"
+        - generic [ref=e761] [cursor=pointer]: BENVOLIO. Strike, drum. [_Exeunt._]
+        - generic [ref=e764]: SCENE V. A Hall in Capulet’s House. Musicians waiting. Enter Servants.
+        - generic [ref=e767] [cursor=pointer]: FIRST SERVANT. Where’s Potpan, that he helps not to take away? He shift a trencher! He scrape a trencher!
+        - generic [ref=e770] [cursor=pointer]: SECOND SERVANT. When good manners shall lie all in one or two men’s hands, and they unwash’d too, ’tis a foul thing.
+        - generic [ref=e773] [cursor=pointer]: FIRST SERVANT. Away with the join-stools, remove the court-cupboard, look to the plate. Good thou, save me a piece of marchpane; and as thou loves me, let the porter let in Susan Grindstone and Nell. Antony and Potpan!
+        - generic [ref=e776] [cursor=pointer]: SECOND SERVANT. Ay, boy, ready.
+        - generic [ref=e779] [cursor=pointer]: FIRST SERVANT. You are looked for and called for, asked for and sought for, in the great chamber.
+        - generic [ref=e782] [cursor=pointer]: SECOND SERVANT. We cannot be here and there too. Cheerly, boys. Be brisk awhile, and the longer liver take all. [_Exeunt._] Enter Capulet, &c. with the Guests and Gentlewomen to the Maskers.
+        - generic [ref=e785] [cursor=pointer]: CAPULET. Welcome, gentlemen, ladies that have their toes Unplagu’d with corns will have a bout with you. Ah my mistresses, which of you all Will now deny to dance? She that makes dainty, She I’ll swear hath corns. Am I come near ye now? Welcome, gentlemen! I have seen the day That I have worn a visor, and could tell A whispering tale in a fair lady’s ear, Such as would please; ’tis gone, ’tis gone, ’tis gone, You are welcome, gentlemen! Come, musicians, play. A hall, a hall, give room! And foot it, girls. [_Music plays, and they dance._] More light, you knaves; and turn the tables up, And quench the fire, the room is grown too hot. Ah sirrah, this unlook’d-for sport comes well. Nay sit, nay sit, good cousin Capulet, For you and I are past our dancing days; How long is’t now since last yourself and I Were in a mask? CAPULET’S COUSIN. By’r Lady, thirty years.
+        - generic [ref=e788] [cursor=pointer]: "CAPULET. What, man, ’tis not so much, ’tis not so much: ’Tis since the nuptial of Lucentio, Come Pentecost as quickly as it will, Some five and twenty years; and then we mask’d. CAPULET’S COUSIN. ’Tis more, ’tis more, his son is elder, sir; His son is thirty."
+        - generic [ref=e791] [cursor=pointer]: CAPULET. Will you tell me that? His son was but a ward two years ago.
+        - generic [ref=e794] [cursor=pointer]: ROMEO. What lady is that, which doth enrich the hand Of yonder knight?
+        - generic [ref=e797] [cursor=pointer]: SERVANT. I know not, sir.
+        - generic [ref=e798]:
+          - generic [ref=e800] [cursor=pointer]: ROMEO. O, she doth teach the torches to burn bright! It seems she hangs upon the cheek of night As a rich jewel in an Ethiop’s ear; Beauty too rich for use, for earth too dear! So shows a snowy dove trooping with crows As yonder lady o’er her fellows shows. The measure done, I’ll watch her place of stand, And touching hers, make blessed my rude hand. Did my heart love till now? Forswear it, sight! For I ne’er saw true beauty till this night.
+          - complementary "Explanations" [ref=e801]:
+            - generic [ref=e803]:
+              - button "Hide note" [ref=e804] [cursor=pointer]: ✕
+              - generic [ref=e805] [cursor=pointer]:
+                - text: He exclaims that her beauty outshines the torches, comparing her to a jewel in an Ethiopian’s ear and a dove among crows. He vows to touch her hand after the dance and renounces his past loves, declaring this his first sight of true beauty. This speech marks his instant infatuation with Juliet.
+                - generic: ▶
+              - generic [ref=e806]: DeepSeek
+        - generic [ref=e809] [cursor=pointer]: TYBALT. This by his voice, should be a Montague. Fetch me my rapier, boy. What, dares the slave Come hither, cover’d with an antic face, To fleer and scorn at our solemnity? Now by the stock and honour of my kin, To strike him dead I hold it not a sin.
+        - generic [ref=e812] [cursor=pointer]: CAPULET. Why how now, kinsman! Wherefore storm you so?
+        - generic [ref=e815] [cursor=pointer]: TYBALT. Uncle, this is a Montague, our foe; A villain that is hither come in spite, To scorn at our solemnity this night.
+        - generic [ref=e818] [cursor=pointer]: CAPULET. Young Romeo, is it?
+        - generic [ref=e821] [cursor=pointer]: TYBALT. ’Tis he, that villain Romeo.
+        - generic [ref=e824] [cursor=pointer]: CAPULET. Content thee, gentle coz, let him alone, A bears him like a portly gentleman; And, to say truth, Verona brags of him To be a virtuous and well-govern’d youth. I would not for the wealth of all the town Here in my house do him disparagement. Therefore be patient, take no note of him, It is my will; the which if thou respect, Show a fair presence and put off these frowns, An ill-beseeming semblance for a feast.
+        - generic [ref=e827] [cursor=pointer]: "TYBALT. It fits when such a villain is a guest: I’ll not endure him."
+        - generic [ref=e830] [cursor=pointer]: CAPULET. He shall be endur’d. What, goodman boy! I say he shall, go to; Am I the master here, or you? Go to. You’ll not endure him! God shall mend my soul, You’ll make a mutiny among my guests! You will set cock-a-hoop, you’ll be the man!
+        - generic [ref=e833] [cursor=pointer]: TYBALT. Why, uncle, ’tis a shame.
+        - generic [ref=e836] [cursor=pointer]: "CAPULET. Go to, go to! You are a saucy boy. Is’t so, indeed? This trick may chance to scathe you, I know what. You must contrary me! Marry, ’tis time. Well said, my hearts!—You are a princox; go: Be quiet, or—More light, more light!—For shame! I’ll make you quiet. What, cheerly, my hearts."
+        - generic [ref=e839] [cursor=pointer]: "TYBALT. Patience perforce with wilful choler meeting Makes my flesh tremble in their different greeting. I will withdraw: but this intrusion shall, Now seeming sweet, convert to bitter gall. [_Exit._]"
+        - generic [ref=e840]:
+          - generic [ref=e842] [cursor=pointer]: ROMEO. [_To Juliet._] If I profane with my unworthiest hand This holy shrine, the gentle sin is this, My lips, two blushing pilgrims, ready stand To smooth that rough touch with a tender kiss.
+          - complementary "Explanations" [ref=e843]:
+            - generic [ref=e845]:
+              - button "Hide note" [ref=e846] [cursor=pointer]: ✕
+              - generic [ref=e847] [cursor=pointer]:
+                - text: Romeo addresses Juliet with a metaphor comparing her to a holy shrine and himself to a pilgrim. He says if his hand profanes her, his lips are like two blushing pilgrims ready to atone with a gentle kiss. This begins their poetic, religiously-inflected courtship.
+                - generic: ▶
+              - generic [ref=e848]: DeepSeek
+        - generic [ref=e849]:
+          - generic [ref=e851] [cursor=pointer]: JULIET. Good pilgrim, you do wrong your hand too much, Which mannerly devotion shows in this; For saints have hands that pilgrims’ hands do touch, And palm to palm is holy palmers’ kiss.
+          - complementary "Explanations" [ref=e852]:
+            - generic [ref=e854]:
+              - button "Hide note" [ref=e855] [cursor=pointer]: ✕
+              - generic [ref=e856] [cursor=pointer]:
+                - text: Juliet plays along with the metaphor, saying he undervalues his hand, which shows polite devotion. She notes that saints allow pilgrims to touch their hands, and that palm-to-palm contact is the holy kiss of pilgrims (palmers). She cleverly deflects the kiss while continuing the religious wordplay.
+                - generic: ▶
+              - generic [ref=e857]: DeepSeek
+        - generic [ref=e860] [cursor=pointer]: ROMEO. Have not saints lips, and holy palmers too?
+        - generic [ref=e863] [cursor=pointer]: JULIET. Ay, pilgrim, lips that they must use in prayer.
+        - generic [ref=e866] [cursor=pointer]: "ROMEO. O, then, dear saint, let lips do what hands do: They pray, grant thou, lest faith turn to despair."
+        - generic [ref=e869] [cursor=pointer]: JULIET. Saints do not move, though grant for prayers’ sake.
+        - generic [ref=e872] [cursor=pointer]: ROMEO. Then move not while my prayer’s effect I take. Thus from my lips, by thine my sin is purg’d. [_Kissing her._]
+        - generic [ref=e875] [cursor=pointer]: JULIET. Then have my lips the sin that they have took.
+        - generic [ref=e878] [cursor=pointer]: ROMEO. Sin from my lips? O trespass sweetly urg’d! Give me my sin again.
+        - generic [ref=e881] [cursor=pointer]: JULIET. You kiss by the book.
+        - generic [ref=e884] [cursor=pointer]: NURSE. Madam, your mother craves a word with you.
+        - generic [ref=e887] [cursor=pointer]: ROMEO. What is her mother?
+        - generic [ref=e890] [cursor=pointer]: NURSE. Marry, bachelor, Her mother is the lady of the house, And a good lady, and a wise and virtuous. I nurs’d her daughter that you talk’d withal. I tell you, he that can lay hold of her Shall have the chinks.
+        - generic [ref=e893] [cursor=pointer]: ROMEO. Is she a Capulet? O dear account! My life is my foe’s debt.
+        - generic [ref=e896] [cursor=pointer]: BENVOLIO. Away, be gone; the sport is at the best.
+        - generic [ref=e899] [cursor=pointer]: ROMEO. Ay, so I fear; the more is my unrest.
+        - generic [ref=e902] [cursor=pointer]: CAPULET. Nay, gentlemen, prepare not to be gone, We have a trifling foolish banquet towards. Is it e’en so? Why then, I thank you all; I thank you, honest gentlemen; good night. More torches here! Come on then, let’s to bed. Ah, sirrah, by my fay, it waxes late, I’ll to my rest. [_Exeunt all but Juliet and Nurse._]
+        - generic [ref=e905] [cursor=pointer]: JULIET. Come hither, Nurse. What is yond gentleman?
+        - generic [ref=e908] [cursor=pointer]: NURSE. The son and heir of old Tiberio.
+        - generic [ref=e911] [cursor=pointer]: JULIET. What’s he that now is going out of door?
+        - generic [ref=e914] [cursor=pointer]: NURSE. Marry, that I think be young Petruchio.
+        - generic [ref=e917] [cursor=pointer]: JULIET. What’s he that follows here, that would not dance?
+        - generic [ref=e920] [cursor=pointer]: NURSE. I know not.
+        - generic [ref=e923] [cursor=pointer]: JULIET. Go ask his name. If he be married, My grave is like to be my wedding bed.
+        - generic [ref=e926] [cursor=pointer]: NURSE. His name is Romeo, and a Montague, The only son of your great enemy.
+        - generic [ref=e929] [cursor=pointer]: JULIET. My only love sprung from my only hate! Too early seen unknown, and known too late! Prodigious birth of love it is to me, That I must love a loathed enemy.
+        - generic [ref=e932] [cursor=pointer]: NURSE. What’s this? What’s this?
+        - generic [ref=e935] [cursor=pointer]: JULIET. A rhyme I learn’d even now Of one I danc’d withal. [_One calls within, ‘Juliet’._]
+        - generic [ref=e938] [cursor=pointer]: NURSE. Anon, anon! Come let’s away, the strangers all are gone. [_Exeunt._]
+        - generic [ref=e941]: ACT II Enter Chorus.
+        - generic [ref=e944] [cursor=pointer]: "CHORUS. Now old desire doth in his deathbed lie, And young affection gapes to be his heir; That fair for which love groan’d for and would die, With tender Juliet match’d, is now not fair. Now Romeo is belov’d, and loves again, Alike bewitched by the charm of looks; But to his foe suppos’d he must complain, And she steal love’s sweet bait from fearful hooks: Being held a foe, he may not have access To breathe such vows as lovers use to swear; And she as much in love, her means much less To meet her new beloved anywhere. But passion lends them power, time means, to meet, Tempering extremities with extreme sweet. [_Exit._]"
+        - generic [ref=e947]: SCENE I. An open place adjoining Capulet’s Garden. Enter Romeo.
+        - generic [ref=e950] [cursor=pointer]: ROMEO. Can I go forward when my heart is here? Turn back, dull earth, and find thy centre out. [_He climbs the wall and leaps down within it._] Enter Benvolio and Mercutio.
+        - generic [ref=e953] [cursor=pointer]: BENVOLIO. Romeo! My cousin Romeo! Romeo!
+        - generic [ref=e956] [cursor=pointer]: MERCUTIO. He is wise, And on my life hath stol’n him home to bed.
+        - generic [ref=e959] [cursor=pointer]: "BENVOLIO. He ran this way, and leap’d this orchard wall: Call, good Mercutio."
+        - generic [ref=e960]:
+          - generic [ref=e962] [cursor=pointer]: MERCUTIO. Nay, I’ll conjure too. Romeo! Humours! Madman! Passion! Lover! Appear thou in the likeness of a sigh, Speak but one rhyme, and I am satisfied; Cry but ‘Ah me!’ Pronounce but Love and dove; Speak to my gossip Venus one fair word, One nickname for her purblind son and heir, Young Abraham Cupid, he that shot so trim When King Cophetua lov’d the beggar-maid. He heareth not, he stirreth not, he moveth not; The ape is dead, and I must conjure him. I conjure thee by Rosaline’s bright eyes, By her high forehead and her scarlet lip, By her fine foot, straight leg, and quivering thigh, And the demesnes that there adjacent lie, That in thy likeness thou appear to us.
+          - complementary "Explanations" [ref=e963]:
+            - generic [ref=e965]:
+              - button "Hide note" [ref=e966] [cursor=pointer]: ✕
+              - generic [ref=e967] [cursor=pointer]:
+                - text: Mercutio mockingly summons Romeo as if by magic, calling him by lover's traits and invoking Rosaline's features. He references Cupid and the tale of King Cophetua loving a beggar-maid, then declares Romeo must be dead to the world.
+                - generic: ▶
+              - generic [ref=e968]: DeepSeek
+        - generic [ref=e971] [cursor=pointer]: BENVOLIO. An if he hear thee, thou wilt anger him.
+        - generic [ref=e974] [cursor=pointer]: MERCUTIO. This cannot anger him. ’Twould anger him To raise a spirit in his mistress’ circle, Of some strange nature, letting it there stand Till she had laid it, and conjur’d it down; That were some spite. My invocation Is fair and honest, and, in his mistress’ name, I conjure only but to raise up him.
+        - generic [ref=e977] [cursor=pointer]: BENVOLIO. Come, he hath hid himself among these trees To be consorted with the humorous night. Blind is his love, and best befits the dark.
+        - generic [ref=e978]:
+          - generic [ref=e980] [cursor=pointer]: MERCUTIO. If love be blind, love cannot hit the mark. Now will he sit under a medlar tree, And wish his mistress were that kind of fruit As maids call medlars when they laugh alone. O Romeo, that she were, O that she were An open-arse and thou a poperin pear! Romeo, good night. I’ll to my truckle-bed. This field-bed is too cold for me to sleep. Come, shall we go?
+          - complementary "Explanations" [ref=e981]:
+            - generic [ref=e983]:
+              - button "Hide note" [ref=e984] [cursor=pointer]: ✕
+              - generic [ref=e985] [cursor=pointer]:
+                - text: Mercutio puns that if love is blind, it cannot hit its target. He then makes a series of crude sexual jokes about medlar fruit, which was slang for female genitalia, and 'poperin pear' for the male, wishing Romeo and his mistress were such fruits. He concludes he is going to his trundle bed, finding the field too cold.
+                - generic: ▶
+              - generic [ref=e986]: DeepSeek
+        - generic [ref=e989] [cursor=pointer]: BENVOLIO. Go then; for ’tis in vain To seek him here that means not to be found. [_Exeunt._]
+        - generic [ref=e992]: SCENE II. Capulet’s Garden. Enter Romeo.
+        - generic [ref=e993]:
+          - generic [ref=e995] [cursor=pointer]: ROMEO. He jests at scars that never felt a wound. Juliet appears above at a window. But soft, what light through yonder window breaks? It is the east, and Juliet is the sun! Arise fair sun and kill the envious moon, Who is already sick and pale with grief, That thou her maid art far more fair than she. Be not her maid since she is envious; Her vestal livery is but sick and green, And none but fools do wear it; cast it off. It is my lady, O it is my love! O, that she knew she were! She speaks, yet she says nothing. What of that? Her eye discourses, I will answer it. I am too bold, ’tis not to me she speaks. Two of the fairest stars in all the heaven, Having some business, do entreat her eyes To twinkle in their spheres till they return. What if her eyes were there, they in her head? The brightness of her cheek would shame those stars, As daylight doth a lamp; her eyes in heaven Would through the airy region stream so bright That birds would sing and think it were not night. See how she leans her cheek upon her hand. O that I were a glove upon that hand, That I might touch that cheek.
+          - complementary "Explanations" [ref=e996]:
+            - generic [ref=e998]:
+              - button "Hide note" [ref=e999] [cursor=pointer]: ✕
+              - generic [ref=e1000] [cursor=pointer]:
+                - text: Romeo says that only someone who has never been hurt can mock the pain of others. He sees Juliet at her window and compares her to the sun rising in the east, urging her to outshine the pale, envious moon. He tells her not to remain a virgin servant of the moon, whose greenish garb is worn only by fools. He wishes she knew he was there, and though she is silent, her eyes speak. He imagines her eyes are like stars that have swapped places with the real stars, and her cheek is so bright it would outshine them. He longs to be the glove on her hand so he could touch her cheek.
+                - generic: ▶
+              - generic [ref=e1001]: DeepSeek
+        - generic [ref=e1004] [cursor=pointer]: JULIET. Ay me.
+        - generic [ref=e1007] [cursor=pointer]: ROMEO. She speaks. O speak again bright angel, for thou art As glorious to this night, being o’er my head, As is a winged messenger of heaven Unto the white-upturned wondering eyes Of mortals that fall back to gaze on him When he bestrides the lazy-puffing clouds And sails upon the bosom of the air.
+        - generic [ref=e1010] [cursor=pointer]: JULIET. O Romeo, Romeo, wherefore art thou Romeo? Deny thy father and refuse thy name. Or if thou wilt not, be but sworn my love, And I’ll no longer be a Capulet.
+        - generic [ref=e1013] [cursor=pointer]: ROMEO. [_Aside._] Shall I hear more, or shall I speak at this?
+        - generic [ref=e1016] [cursor=pointer]: JULIET. ’Tis but thy name that is my enemy; Thou art thyself, though not a Montague. What’s Montague? It is nor hand nor foot, Nor arm, nor face, nor any other part Belonging to a man. O be some other name. What’s in a name? That which we call a rose By any other name would smell as sweet; So Romeo would, were he not Romeo call’d, Retain that dear perfection which he owes Without that title. Romeo, doff thy name, And for thy name, which is no part of thee, Take all myself.
+        - generic [ref=e1019] [cursor=pointer]: ROMEO. I take thee at thy word. Call me but love, and I’ll be new baptis’d; Henceforth I never will be Romeo.
+        - generic [ref=e1022] [cursor=pointer]: JULIET. What man art thou that, thus bescreen’d in night So stumblest on my counsel?
+        - generic [ref=e1025] [cursor=pointer]: "ROMEO. By a name I know not how to tell thee who I am: My name, dear saint, is hateful to myself, Because it is an enemy to thee. Had I it written, I would tear the word."
+        - generic [ref=e1028] [cursor=pointer]: JULIET. My ears have yet not drunk a hundred words Of thy tongue’s utterance, yet I know the sound. Art thou not Romeo, and a Montague?
+        - generic [ref=e1031] [cursor=pointer]: ROMEO. Neither, fair maid, if either thee dislike.
+        - generic [ref=e1034] [cursor=pointer]: JULIET. How cam’st thou hither, tell me, and wherefore? The orchard walls are high and hard to climb, And the place death, considering who thou art, If any of my kinsmen find thee here.
+        - generic [ref=e1037] [cursor=pointer]: "ROMEO. With love’s light wings did I o’erperch these walls, For stony limits cannot hold love out, And what love can do, that dares love attempt: Therefore thy kinsmen are no stop to me."
+        - generic [ref=e1040] [cursor=pointer]: JULIET. If they do see thee, they will murder thee.
+        - generic [ref=e1043] [cursor=pointer]: ROMEO. Alack, there lies more peril in thine eye Than twenty of their swords. Look thou but sweet, And I am proof against their enmity.
+        - generic [ref=e1046] [cursor=pointer]: JULIET. I would not for the world they saw thee here.
+        - generic [ref=e1049] [cursor=pointer]: ROMEO. I have night’s cloak to hide me from their eyes, And but thou love me, let them find me here. My life were better ended by their hate Than death prorogued, wanting of thy love.
+        - generic [ref=e1052] [cursor=pointer]: JULIET. By whose direction found’st thou out this place?
+        - generic [ref=e1055] [cursor=pointer]: ROMEO. By love, that first did prompt me to enquire; He lent me counsel, and I lent him eyes. I am no pilot; yet wert thou as far As that vast shore wash’d with the farthest sea, I should adventure for such merchandise.
+        - generic [ref=e1058] [cursor=pointer]: "JULIET. Thou knowest the mask of night is on my face, Else would a maiden blush bepaint my cheek For that which thou hast heard me speak tonight. Fain would I dwell on form, fain, fain deny What I have spoke; but farewell compliment. Dost thou love me? I know thou wilt say Ay, And I will take thy word. Yet, if thou swear’st, Thou mayst prove false. At lovers’ perjuries, They say Jove laughs. O gentle Romeo, If thou dost love, pronounce it faithfully. Or if thou thinkest I am too quickly won, I’ll frown and be perverse, and say thee nay, So thou wilt woo. But else, not for the world. In truth, fair Montague, I am too fond; And therefore thou mayst think my ’haviour light: But trust me, gentleman, I’ll prove more true Than those that have more cunning to be strange. I should have been more strange, I must confess, But that thou overheard’st, ere I was ’ware, My true-love passion; therefore pardon me, And not impute this yielding to light love, Which the dark night hath so discovered."
+        - generic [ref=e1061] [cursor=pointer]: ROMEO. Lady, by yonder blessed moon I vow, That tips with silver all these fruit-tree tops,—
+        - generic [ref=e1064] [cursor=pointer]: JULIET. O swear not by the moon, th’inconstant moon, That monthly changes in her circled orb, Lest that thy love prove likewise variable.
+        - generic [ref=e1067] [cursor=pointer]: ROMEO. What shall I swear by?
+        - generic [ref=e1070] [cursor=pointer]: JULIET. Do not swear at all. Or if thou wilt, swear by thy gracious self, Which is the god of my idolatry, And I’ll believe thee.
+        - generic [ref=e1073] [cursor=pointer]: ROMEO. If my heart’s dear love,—
+        - generic [ref=e1076] [cursor=pointer]: JULIET. Well, do not swear. Although I joy in thee, I have no joy of this contract tonight; It is too rash, too unadvis’d, too sudden, Too like the lightning, which doth cease to be Ere one can say “It lightens.” Sweet, good night. This bud of love, by summer’s ripening breath, May prove a beauteous flower when next we meet. Good night, good night. As sweet repose and rest Come to thy heart as that within my breast.
+        - generic [ref=e1079] [cursor=pointer]: ROMEO. O wilt thou leave me so unsatisfied?
+        - generic [ref=e1082] [cursor=pointer]: JULIET. What satisfaction canst thou have tonight?
+        - generic [ref=e1085] [cursor=pointer]: ROMEO. Th’exchange of thy love’s faithful vow for mine.
+        - generic [ref=e1088] [cursor=pointer]: JULIET. I gave thee mine before thou didst request it; And yet I would it were to give again.
+        - generic [ref=e1091] [cursor=pointer]: ROMEO. Would’st thou withdraw it? For what purpose, love?
+        - generic [ref=e1094] [cursor=pointer]: JULIET. But to be frank and give it thee again. And yet I wish but for the thing I have; My bounty is as boundless as the sea, My love as deep; the more I give to thee, The more I have, for both are infinite. I hear some noise within. Dear love, adieu. [_Nurse calls within._] Anon, good Nurse!—Sweet Montague be true. Stay but a little, I will come again. [_Exit._]
+        - generic [ref=e1097] [cursor=pointer]: ROMEO. O blessed, blessed night. I am afeard, Being in night, all this is but a dream, Too flattering sweet to be substantial. Enter Juliet above.
+        - generic [ref=e1100] [cursor=pointer]: JULIET. Three words, dear Romeo, and good night indeed. If that thy bent of love be honourable, Thy purpose marriage, send me word tomorrow, By one that I’ll procure to come to thee, Where and what time thou wilt perform the rite, And all my fortunes at thy foot I’ll lay And follow thee my lord throughout the world.
+        - generic [ref=e1103] [cursor=pointer]: NURSE. [_Within._] Madam.
+        - generic [ref=e1106] [cursor=pointer]: JULIET. I come, anon.— But if thou meanest not well, I do beseech thee,—
+        - generic [ref=e1109] [cursor=pointer]: NURSE. [_Within._] Madam.
+        - generic [ref=e1112] [cursor=pointer]: JULIET. By and by I come— To cease thy strife and leave me to my grief. Tomorrow will I send.
+        - generic [ref=e1115] [cursor=pointer]: ROMEO. So thrive my soul,—
+        - generic [ref=e1118] [cursor=pointer]: JULIET. A thousand times good night. [_Exit._]
+        - generic [ref=e1121] [cursor=pointer]: ROMEO. A thousand times the worse, to want thy light. Love goes toward love as schoolboys from their books, But love from love, towards school with heavy looks. [_Retiring slowly._] Re-enter Juliet, above.
+        - generic [ref=e1122]:
+          - generic [ref=e1124] [cursor=pointer]: JULIET. Hist! Romeo, hist! O for a falconer’s voice To lure this tassel-gentle back again. Bondage is hoarse and may not speak aloud, Else would I tear the cave where Echo lies, And make her airy tongue more hoarse than mine With repetition of my Romeo’s name.
+          - complementary "Explanations" [ref=e1125]:
+            - generic [ref=e1127]:
+              - button "Hide note" [ref=e1128] [cursor=pointer]: ✕
+              - generic [ref=e1129] [cursor=pointer]:
+                - text: She quietly calls him back, wishing for a falconer’s voice to call her 'tassel-gentle' (male falcon, meaning Romeo) back. She says her situation makes her speak softly, or else she would shout his name until Echo’s voice grew hoarse. This shows her longing and the constraints of their secrecy.
+                - generic: ▶
+              - generic [ref=e1130]: DeepSeek
+        - generic [ref=e1133] [cursor=pointer]: ROMEO. It is my soul that calls upon my name. How silver-sweet sound lovers’ tongues by night, Like softest music to attending ears.
+        - generic [ref=e1136] [cursor=pointer]: JULIET. Romeo.
+        - generic [ref=e1139] [cursor=pointer]: ROMEO. My dear?
+        - generic [ref=e1142] [cursor=pointer]: JULIET. What o’clock tomorrow Shall I send to thee?
+        - generic [ref=e1145] [cursor=pointer]: ROMEO. By the hour of nine.
+        - generic [ref=e1148] [cursor=pointer]: JULIET. I will not fail. ’Tis twenty years till then. I have forgot why I did call thee back.
+        - generic [ref=e1151] [cursor=pointer]: ROMEO. Let me stand here till thou remember it.
+        - generic [ref=e1154] [cursor=pointer]: JULIET. I shall forget, to have thee still stand there, Remembering how I love thy company.
+        - generic [ref=e1157] [cursor=pointer]: ROMEO. And I’ll still stay, to have thee still forget, Forgetting any other home but this.
+        - generic [ref=e1160] [cursor=pointer]: JULIET. ’Tis almost morning; I would have thee gone, And yet no farther than a wanton’s bird, That lets it hop a little from her hand, Like a poor prisoner in his twisted gyves, And with a silk thread plucks it back again, So loving-jealous of his liberty.
+        - generic [ref=e1163] [cursor=pointer]: ROMEO. I would I were thy bird.
+        - generic [ref=e1166] [cursor=pointer]: "JULIET. Sweet, so would I: Yet I should kill thee with much cherishing. Good night, good night. Parting is such sweet sorrow That I shall say good night till it be morrow. [_Exit._]"
+        - generic [ref=e1169] [cursor=pointer]: ROMEO. Sleep dwell upon thine eyes, peace in thy breast. Would I were sleep and peace, so sweet to rest. Hence will I to my ghostly Sire’s cell, His help to crave and my dear hap to tell. [_Exit._]
+        - generic [ref=e1172]: SCENE III. Friar Lawrence’s Cell. Enter Friar Lawrence with a basket.
+        - generic [ref=e1173]:
+          - generic [ref=e1175] [cursor=pointer]: "FRIAR LAWRENCE. The grey-ey’d morn smiles on the frowning night, Chequering the eastern clouds with streaks of light; And fleckled darkness like a drunkard reels From forth day’s pathway, made by Titan’s fiery wheels Now, ere the sun advance his burning eye, The day to cheer, and night’s dank dew to dry, I must upfill this osier cage of ours With baleful weeds and precious-juiced flowers. The earth that’s nature’s mother, is her tomb; What is her burying grave, that is her womb: And from her womb children of divers kind We sucking on her natural bosom find. Many for many virtues excellent, None but for some, and yet all different. O, mickle is the powerful grace that lies In plants, herbs, stones, and their true qualities. For naught so vile that on the earth doth live But to the earth some special good doth give; Nor aught so good but, strain’d from that fair use, Revolts from true birth, stumbling on abuse. Virtue itself turns vice being misapplied, And vice sometime’s by action dignified. Enter Romeo. Within the infant rind of this weak flower Poison hath residence, and medicine power: For this, being smelt, with that part cheers each part; Being tasted, slays all senses with the heart. Two such opposed kings encamp them still In man as well as herbs,—grace and rude will; And where the worser is predominant, Full soon the canker death eats up that plant."
+          - complementary "Explanations" [ref=e1176]:
+            - generic [ref=e1178]:
+              - button "Hide note" [ref=e1179] [cursor=pointer]: ✕
+              - generic [ref=e1180] [cursor=pointer]:
+                - text: "The dawn is replacing night, and I must fill my willow basket with both poisonous and medicinal plants. The earth is both a womb and a tomb, producing many different plants, each with its own virtues. Nothing is so evil that it does not give some good to the earth, and nothing so good that it cannot be abused. Virtue becomes vice if misused, and vice can be dignified by proper use. This flower contains both poison and medicine: smelling it revives, tasting it kills. Similarly, humans have grace and base desire; if the worse prevails, death destroys them."
+                - generic: ▶
+              - generic [ref=e1181]: DeepSeek
+        - generic [ref=e1184] [cursor=pointer]: ROMEO. Good morrow, father.
+        - generic [ref=e1187] [cursor=pointer]: FRIAR LAWRENCE. Benedicite! What early tongue so sweet saluteth me? Young son, it argues a distemper’d head So soon to bid good morrow to thy bed. Care keeps his watch in every old man’s eye, And where care lodges sleep will never lie; But where unbruised youth with unstuff’d brain Doth couch his limbs, there golden sleep doth reign. Therefore thy earliness doth me assure Thou art uprous’d with some distemperature; Or if not so, then here I hit it right, Our Romeo hath not been in bed tonight.
+        - generic [ref=e1190] [cursor=pointer]: ROMEO. That last is true; the sweeter rest was mine.
+        - generic [ref=e1193] [cursor=pointer]: FRIAR LAWRENCE. God pardon sin. Wast thou with Rosaline?
+        - generic [ref=e1196] [cursor=pointer]: ROMEO. With Rosaline, my ghostly father? No. I have forgot that name, and that name’s woe.
+        - generic [ref=e1199] [cursor=pointer]: FRIAR LAWRENCE. That’s my good son. But where hast thou been then?
+        - generic [ref=e1202] [cursor=pointer]: ROMEO. I’ll tell thee ere thou ask it me again. I have been feasting with mine enemy, Where on a sudden one hath wounded me That’s by me wounded. Both our remedies Within thy help and holy physic lies. I bear no hatred, blessed man; for lo, My intercession likewise steads my foe.
+        - generic [ref=e1205] [cursor=pointer]: FRIAR LAWRENCE. Be plain, good son, and homely in thy drift; Riddling confession finds but riddling shrift.
+        - generic [ref=e1208] [cursor=pointer]: ROMEO. Then plainly know my heart’s dear love is set On the fair daughter of rich Capulet. As mine on hers, so hers is set on mine; And all combin’d, save what thou must combine By holy marriage. When, and where, and how We met, we woo’d, and made exchange of vow, I’ll tell thee as we pass; but this I pray, That thou consent to marry us today.
+        - generic [ref=e1209]:
+          - generic [ref=e1211] [cursor=pointer]: FRIAR LAWRENCE. Holy Saint Francis! What a change is here! Is Rosaline, that thou didst love so dear, So soon forsaken? Young men’s love then lies Not truly in their hearts, but in their eyes. Jesu Maria, what a deal of brine Hath wash’d thy sallow cheeks for Rosaline! How much salt water thrown away in waste, To season love, that of it doth not taste. The sun not yet thy sighs from heaven clears, Thy old groans yet ring in mine ancient ears. Lo here upon thy cheek the stain doth sit Of an old tear that is not wash’d off yet. If ere thou wast thyself, and these woes thine, Thou and these woes were all for Rosaline, And art thou chang’d? Pronounce this sentence then, Women may fall, when there’s no strength in men.
+          - complementary "Explanations" [ref=e1212]:
+            - generic [ref=e1214]:
+              - button "Hide note" [ref=e1215] [cursor=pointer]: ✕
+              - generic [ref=e1216] [cursor=pointer]:
+                - text: "Holy Saint Francis! What a change is this! Is Rosaline, whom you loved so dearly, so quickly abandoned? Young men's love lies not in their hearts but in their eyes. Jesus Mary, how much salt water washed your pale cheeks for Rosaline! How much salt water wasted to season a love that had no taste. The sun hasn't yet cleared your sighs from heaven, your old groans still ring in my old ears. Here on your cheek sits the stain of an old tear not yet washed off. If you were ever yourself, these woes were all for Rosaline, and are you changed? Pronounce this verdict then: women may fall when men are weak."
+                - generic: ▶
+              - generic [ref=e1217]: DeepSeek
+        - generic [ref=e1220] [cursor=pointer]: ROMEO. Thou chidd’st me oft for loving Rosaline.
+        - generic [ref=e1223] [cursor=pointer]: FRIAR LAWRENCE. For doting, not for loving, pupil mine.
+        - generic [ref=e1226] [cursor=pointer]: ROMEO. And bad’st me bury love.
+        - generic [ref=e1229] [cursor=pointer]: FRIAR LAWRENCE. Not in a grave To lay one in, another out to have.
+        - generic [ref=e1232] [cursor=pointer]: ROMEO. I pray thee chide me not, her I love now Doth grace for grace and love for love allow. The other did not so.
+        - generic [ref=e1235] [cursor=pointer]: FRIAR LAWRENCE. O, she knew well Thy love did read by rote, that could not spell. But come young waverer, come go with me, In one respect I’ll thy assistant be; For this alliance may so happy prove, To turn your households’ rancour to pure love.
+        - generic [ref=e1238] [cursor=pointer]: ROMEO. O let us hence; I stand on sudden haste.
+        - generic [ref=e1241] [cursor=pointer]: FRIAR LAWRENCE. Wisely and slow; they stumble that run fast. [_Exeunt._]
+        - generic [ref=e1244]: SCENE IV. A Street. Enter Benvolio and Mercutio.
+        - generic [ref=e1247] [cursor=pointer]: MERCUTIO. Where the devil should this Romeo be? Came he not home tonight?
+        - generic [ref=e1250] [cursor=pointer]: BENVOLIO. Not to his father’s; I spoke with his man.
+        - generic [ref=e1253] [cursor=pointer]: MERCUTIO. Why, that same pale hard-hearted wench, that Rosaline, torments him so that he will sure run mad.
+        - generic [ref=e1256] [cursor=pointer]: BENVOLIO. Tybalt, the kinsman to old Capulet, hath sent a letter to his father’s house.
+        - generic [ref=e1259] [cursor=pointer]: MERCUTIO. A challenge, on my life.
+        - generic [ref=e1262] [cursor=pointer]: BENVOLIO. Romeo will answer it.
+        - generic [ref=e1265] [cursor=pointer]: MERCUTIO. Any man that can write may answer a letter.
+        - generic [ref=e1268] [cursor=pointer]: BENVOLIO. Nay, he will answer the letter’s master, how he dares, being dared.
+        - generic [ref=e1271] [cursor=pointer]: MERCUTIO. Alas poor Romeo, he is already dead, stabbed with a white wench’s black eye; run through the ear with a love song, the very pin of his heart cleft with the blind bow-boy’s butt-shaft. And is he a man to encounter Tybalt?
+        - generic [ref=e1274] [cursor=pointer]: BENVOLIO. Why, what is Tybalt?
+        - generic [ref=e1275]:
+          - generic [ref=e1277] [cursor=pointer]: "MERCUTIO. More than Prince of cats. O, he’s the courageous captain of compliments. He fights as you sing prick-song, keeps time, distance, and proportion. He rests his minim rest, one, two, and the third in your bosom: the very butcher of a silk button, a duellist, a duellist; a gentleman of the very first house, of the first and second cause. Ah, the immortal passado, the punto reverso, the hay."
+          - complementary "Explanations" [ref=e1278]:
+            - generic [ref=e1280]:
+              - button "Hide note" [ref=e1281] [cursor=pointer]: ✕
+              - generic [ref=e1282] [cursor=pointer]:
+                - text: Mercutio describes Tybalt as an expert, formal duelist who follows all the rules precisely, like a musician keeping time. He uses fencing terms like passado and punto reverso, calling him a prince of cats from folklore.
+                - generic: ▶
+              - generic [ref=e1283]: DeepSeek
+        - generic [ref=e1286] [cursor=pointer]: BENVOLIO. The what?
+        - generic [ref=e1289] [cursor=pointer]: MERCUTIO. The pox of such antic lisping, affecting phantasies; these new tuners of accent. By Jesu, a very good blade, a very tall man, a very good whore. Why, is not this a lamentable thing, grandsire, that we should be thus afflicted with these strange flies, these fashion-mongers, these pardon-me’s, who stand so much on the new form that they cannot sit at ease on the old bench? O their bones, their bones! Enter Romeo.
+        - generic [ref=e1292] [cursor=pointer]: BENVOLIO. Here comes Romeo, here comes Romeo!
+        - generic [ref=e1293]:
+          - generic [ref=e1295] [cursor=pointer]: "MERCUTIO. Without his roe, like a dried herring. O flesh, flesh, how art thou fishified! Now is he for the numbers that Petrarch flowed in. Laura, to his lady, was but a kitchen wench,—marry, she had a better love to berhyme her: Dido a dowdy; Cleopatra a gypsy; Helen and Hero hildings and harlots; Thisbe a grey eye or so, but not to the purpose. Signior Romeo, bonjour! There’s a French salutation to your French slop. You gave us the counterfeit fairly last night."
+          - complementary "Explanations" [ref=e1296]:
+            - generic [ref=e1298]:
+              - button "Hide note" [ref=e1299] [cursor=pointer]: ✕
+              - generic [ref=e1300] [cursor=pointer]:
+                - text: Mercutio jokes that Romeo looks thin and lovelorn, comparing him to a dried fish. He mockingly says Romeo's new love inspires bad love poetry, dismissing famous beauties like Laura and Cleopatra as unremarkable. He greets Romeo in French, mocking his fashionable loose trousers and his absence the previous night.
+                - generic: ▶
+              - generic [ref=e1301]: DeepSeek
+        - generic [ref=e1304] [cursor=pointer]: ROMEO. Good morrow to you both. What counterfeit did I give you?
+        - generic [ref=e1307] [cursor=pointer]: MERCUTIO. The slip sir, the slip; can you not conceive?
+        - generic [ref=e1310] [cursor=pointer]: ROMEO. Pardon, good Mercutio, my business was great, and in such a case as mine a man may strain courtesy.
+        - generic [ref=e1313] [cursor=pointer]: MERCUTIO. That’s as much as to say, such a case as yours constrains a man to bow in the hams.
+        - generic [ref=e1316] [cursor=pointer]: ROMEO. Meaning, to curtsy.
+        - generic [ref=e1319] [cursor=pointer]: MERCUTIO. Thou hast most kindly hit it.
+        - generic [ref=e1322] [cursor=pointer]: ROMEO. A most courteous exposition.
+        - generic [ref=e1325] [cursor=pointer]: MERCUTIO. Nay, I am the very pink of courtesy.
+        - generic [ref=e1328] [cursor=pointer]: ROMEO. Pink for flower.
+        - generic [ref=e1331] [cursor=pointer]: MERCUTIO. Right.
+        - generic [ref=e1334] [cursor=pointer]: ROMEO. Why, then is my pump well flowered.
+        - generic [ref=e1335]:
+          - generic [ref=e1337] [cursor=pointer]: MERCUTIO. Sure wit, follow me this jest now, till thou hast worn out thy pump, that when the single sole of it is worn, the jest may remain after the wearing, solely singular.
+          - complementary "Explanations" [ref=e1338]:
+            - generic [ref=e1340]:
+              - button "Hide note" [ref=e1341] [cursor=pointer]: ✕
+              - generic [ref=e1342] [cursor=pointer]:
+                - text: He urges Romeo to keep up the jest until his shoe is worn out, so the joke outlasts the shoe and remains uniquely clever.
+                - generic: ▶
+              - generic [ref=e1343]: DeepSeek
+        - generic [ref=e1346] [cursor=pointer]: ROMEO. O single-soled jest, solely singular for the singleness!
+        - generic [ref=e1349] [cursor=pointer]: MERCUTIO. Come between us, good Benvolio; my wits faint.
+        - generic [ref=e1352] [cursor=pointer]: ROMEO. Swits and spurs, swits and spurs; or I’ll cry a match.
+        - generic [ref=e1353]:
+          - generic [ref=e1355] [cursor=pointer]: MERCUTIO. Nay, if thy wits run the wild-goose chase, I am done. For thou hast more of the wild-goose in one of thy wits, than I am sure, I have in my whole five. Was I with you there for the goose?
+          - complementary "Explanations" [ref=e1356]:
+            - generic [ref=e1358]:
+              - button "Hide note" [ref=e1359] [cursor=pointer]: ✕
+              - generic [ref=e1360] [cursor=pointer]:
+                - text: He says if Romeo’s wits lead them on a wild-goose chase, he gives up, for Romeo has more foolishness in one wit than he has in all five senses, asking if he followed the goose joke.
+                - generic: ▶
+              - generic [ref=e1361]: DeepSeek
+        - generic [ref=e1364] [cursor=pointer]: ROMEO. Thou wast never with me for anything, when thou wast not there for the goose.
+        - generic [ref=e1367] [cursor=pointer]: MERCUTIO. I will bite thee by the ear for that jest.
+        - generic [ref=e1370] [cursor=pointer]: ROMEO. Nay, good goose, bite not.
+        - generic [ref=e1373] [cursor=pointer]: MERCUTIO. Thy wit is a very bitter sweeting, it is a most sharp sauce.
+        - generic [ref=e1376] [cursor=pointer]: ROMEO. And is it not then well served in to a sweet goose?
+        - generic [ref=e1379] [cursor=pointer]: MERCUTIO. O here’s a wit of cheveril, that stretches from an inch narrow to an ell broad.
+        - generic [ref=e1382] [cursor=pointer]: ROMEO. I stretch it out for that word broad, which added to the goose, proves thee far and wide a broad goose.
+        - generic [ref=e1385] [cursor=pointer]: MERCUTIO. Why, is not this better now than groaning for love? Now art thou sociable, now art thou Romeo; now art thou what thou art, by art as well as by nature. For this drivelling love is like a great natural, that runs lolling up and down to hide his bauble in a hole.
+        - generic [ref=e1388] [cursor=pointer]: BENVOLIO. Stop there, stop there.
+        - generic [ref=e1391] [cursor=pointer]: MERCUTIO. Thou desirest me to stop in my tale against the hair.
+        - generic [ref=e1394] [cursor=pointer]: BENVOLIO. Thou wouldst else have made thy tale large.
+        - generic [ref=e1397] [cursor=pointer]: MERCUTIO. O, thou art deceived; I would have made it short, for I was come to the whole depth of my tale, and meant indeed to occupy the argument no longer. Enter Nurse and Peter.
+        - generic [ref=e1400] [cursor=pointer]: ROMEO. Here’s goodly gear! A sail, a sail!
+        - generic [ref=e1403] [cursor=pointer]: MERCUTIO. Two, two; a shirt and a smock.
+        - generic [ref=e1406] [cursor=pointer]: NURSE. Peter!
+        - generic [ref=e1409] [cursor=pointer]: PETER. Anon.
+        - generic [ref=e1412] [cursor=pointer]: NURSE. My fan, Peter.
+        - generic [ref=e1415] [cursor=pointer]: MERCUTIO. Good Peter, to hide her face; for her fan’s the fairer face.
+        - generic [ref=e1418] [cursor=pointer]: NURSE. God ye good morrow, gentlemen.
+        - generic [ref=e1421] [cursor=pointer]: MERCUTIO. God ye good-den, fair gentlewoman.
+        - generic [ref=e1424] [cursor=pointer]: NURSE. Is it good-den?
+        - generic [ref=e1425]:
+          - generic [ref=e1427] [cursor=pointer]: MERCUTIO. ’Tis no less, I tell ye; for the bawdy hand of the dial is now upon the prick of noon.
+          - complementary "Explanations" [ref=e1428]:
+            - generic [ref=e1430]:
+              - button "Hide note" [ref=e1431] [cursor=pointer]: ✕
+              - generic [ref=e1432] [cursor=pointer]:
+                - text: He insists it is evening because the 'bawdy hand' (sexual pun on clock hand) is on the 'prick' (pun on noon marker and penis) of noon. This crude time-telling continues his sexual mockery.
+                - generic: ▶
+              - generic [ref=e1433]: DeepSeek
+        - generic [ref=e1436] [cursor=pointer]: NURSE. Out upon you! What a man are you?
+        - generic [ref=e1439] [cursor=pointer]: ROMEO. One, gentlewoman, that God hath made for himself to mar.
+        - generic [ref=e1442] [cursor=pointer]: NURSE. By my troth, it is well said; for himself to mar, quoth a? Gentlemen, can any of you tell me where I may find the young Romeo?
+        - generic [ref=e1445] [cursor=pointer]: "ROMEO. I can tell you: but young Romeo will be older when you have found him than he was when you sought him. I am the youngest of that name, for fault of a worse."
+        - generic [ref=e1448] [cursor=pointer]: NURSE. You say well.
+        - generic [ref=e1449]:
+          - generic [ref=e1451] [cursor=pointer]: MERCUTIO. Yea, is the worst well? Very well took, i’faith; wisely, wisely.
+          - complementary "Explanations" [ref=e1452]:
+            - generic [ref=e1454]:
+              - button "Hide note" [ref=e1455] [cursor=pointer]: ✕
+              - generic [ref=e1456] [cursor=pointer]:
+                - text: He puns on Romeo's 'for fault of a worse,' asking if 'the worst' is 'well,' then praises the wordplay as 'wisely taken.'
+                - generic: ▶
+              - generic [ref=e1457]: DeepSeek
+        - generic [ref=e1460] [cursor=pointer]: NURSE. If you be he, sir, I desire some confidence with you.
+        - generic [ref=e1463] [cursor=pointer]: BENVOLIO. She will endite him to some supper.
+        - generic [ref=e1464]:
+          - generic [ref=e1466] [cursor=pointer]: MERCUTIO. A bawd, a bawd, a bawd! So ho!
+          - complementary "Explanations" [ref=e1467]:
+            - generic [ref=e1469]:
+              - button "Hide note" [ref=e1470] [cursor=pointer]: ✕
+              - generic [ref=e1471] [cursor=pointer]:
+                - text: He shouts 'A bawd, a bawd!' (procuress) and 'So ho!' (hunting cry), implying the Nurse is a prostitute hunting for Romeo.
+                - generic: ▶
+              - generic [ref=e1472]: DeepSeek
+        - generic [ref=e1475] [cursor=pointer]: ROMEO. What hast thou found?
+        - generic [ref=e1476]:
+          - generic [ref=e1478] [cursor=pointer]: MERCUTIO. No hare, sir; unless a hare, sir, in a lenten pie, that is something stale and hoar ere it be spent. [_Sings._] An old hare hoar, And an old hare hoar, Is very good meat in Lent; But a hare that is hoar Is too much for a score When it hoars ere it be spent. Romeo, will you come to your father’s? We’ll to dinner thither.
+          - complementary "Explanations" [ref=e1479]:
+            - generic [ref=e1481]:
+              - button "Hide note" [ref=e1482] [cursor=pointer]: ✕
+              - generic [ref=e1483] [cursor=pointer]:
+                - text: "He says he found no hare (slang for prostitute) unless it's an old, stale one in a Lenten pie. His song continues the metaphor: an old gray-haired hare is good Lenten food, but one that's moldy ('hoar') before being eaten is too much for twenty people. He then invites Romeo to his father's for dinner."
+                - generic: ▶
+              - generic [ref=e1484]: DeepSeek
+        - generic [ref=e1487] [cursor=pointer]: ROMEO. I will follow you.
+        - generic [ref=e1490] [cursor=pointer]: MERCUTIO. Farewell, ancient lady; farewell, lady, lady, lady. [_Exeunt Mercutio and Benvolio._]
+        - generic [ref=e1493] [cursor=pointer]: NURSE. I pray you, sir, what saucy merchant was this that was so full of his ropery?
+        - generic [ref=e1496] [cursor=pointer]: ROMEO. A gentleman, Nurse, that loves to hear himself talk, and will speak more in a minute than he will stand to in a month.
+        - generic [ref=e1499] [cursor=pointer]: NURSE. And a speak anything against me, I’ll take him down, and a were lustier than he is, and twenty such Jacks. And if I cannot, I’ll find those that shall. Scurvy knave! I am none of his flirt-gills; I am none of his skains-mates.—And thou must stand by too and suffer every knave to use me at his pleasure!
+        - generic [ref=e1502] [cursor=pointer]: PETER. I saw no man use you at his pleasure; if I had, my weapon should quickly have been out. I warrant you, I dare draw as soon as another man, if I see occasion in a good quarrel, and the law on my side.
+        - generic [ref=e1505] [cursor=pointer]: "NURSE. Now, afore God, I am so vexed that every part about me quivers. Scurvy knave. Pray you, sir, a word: and as I told you, my young lady bid me enquire you out; what she bade me say, I will keep to myself. But first let me tell ye, if ye should lead her in a fool’s paradise, as they say, it were a very gross kind of behaviour, as they say; for the gentlewoman is young. And therefore, if you should deal double with her, truly it were an ill thing to be offered to any gentlewoman, and very weak dealing. ROMEO. Nurse, commend me to thy lady and mistress. I protest unto thee,—"
+        - generic [ref=e1508] [cursor=pointer]: NURSE. Good heart, and i’faith I will tell her as much. Lord, Lord, she will be a joyful woman.
+        - generic [ref=e1511] [cursor=pointer]: ROMEO. What wilt thou tell her, Nurse? Thou dost not mark me.
+        - generic [ref=e1514] [cursor=pointer]: NURSE. I will tell her, sir, that you do protest, which, as I take it, is a gentlemanlike offer.
+        - generic [ref=e1517] [cursor=pointer]: ROMEO. Bid her devise Some means to come to shrift this afternoon, And there she shall at Friar Lawrence’ cell Be shriv’d and married. Here is for thy pains.
+        - generic [ref=e1520] [cursor=pointer]: NURSE. No truly, sir; not a penny.
+        - generic [ref=e1523] [cursor=pointer]: ROMEO. Go to; I say you shall.
+        - generic [ref=e1526] [cursor=pointer]: NURSE. This afternoon, sir? Well, she shall be there.
+        - generic [ref=e1529] [cursor=pointer]: ROMEO. And stay, good Nurse, behind the abbey wall. Within this hour my man shall be with thee, And bring thee cords made like a tackled stair, Which to the high topgallant of my joy Must be my convoy in the secret night. Farewell, be trusty, and I’ll quit thy pains; Farewell; commend me to thy mistress.
+        - generic [ref=e1532] [cursor=pointer]: NURSE. Now God in heaven bless thee. Hark you, sir.
+        - generic [ref=e1535] [cursor=pointer]: ROMEO. What say’st thou, my dear Nurse?
+        - generic [ref=e1538] [cursor=pointer]: NURSE. Is your man secret? Did you ne’er hear say, Two may keep counsel, putting one away?
+        - generic [ref=e1541] [cursor=pointer]: ROMEO. I warrant thee my man’s as true as steel.
+        - generic [ref=e1544] [cursor=pointer]: NURSE. Well, sir, my mistress is the sweetest lady. Lord, Lord! When ’twas a little prating thing,—O, there is a nobleman in town, one Paris, that would fain lay knife aboard; but she, good soul, had as lief see a toad, a very toad, as see him. I anger her sometimes, and tell her that Paris is the properer man, but I’ll warrant you, when I say so, she looks as pale as any clout in the versal world. Doth not rosemary and Romeo begin both with a letter?
+        - generic [ref=e1547] [cursor=pointer]: ROMEO. Ay, Nurse; what of that? Both with an R.
+        - generic [ref=e1550] [cursor=pointer]: NURSE. Ah, mocker! That’s the dog’s name. R is for the—no, I know it begins with some other letter, and she hath the prettiest sententious of it, of you and rosemary, that it would do you good to hear it.
+        - generic [ref=e1553] [cursor=pointer]: ROMEO. Commend me to thy lady.
+        - generic [ref=e1556] [cursor=pointer]: NURSE. Ay, a thousand times. Peter! [_Exit Romeo._]
+        - generic [ref=e1559] [cursor=pointer]: PETER. Anon.
+        - generic [ref=e1562] [cursor=pointer]: NURSE. Before and apace. [_Exeunt._]
+        - generic [ref=e1565]: SCENE V. Capulet’s Garden. Enter Juliet.
+        - generic [ref=e1568] [cursor=pointer]: "JULIET. The clock struck nine when I did send the Nurse, In half an hour she promised to return. Perchance she cannot meet him. That’s not so. O, she is lame. Love’s heralds should be thoughts, Which ten times faster glides than the sun’s beams, Driving back shadows over lowering hills: Therefore do nimble-pinion’d doves draw love, And therefore hath the wind-swift Cupid wings. Now is the sun upon the highmost hill Of this day’s journey, and from nine till twelve Is three long hours, yet she is not come. Had she affections and warm youthful blood, She’d be as swift in motion as a ball; My words would bandy her to my sweet love, And his to me. But old folks, many feign as they were dead; Unwieldy, slow, heavy and pale as lead. Enter Nurse and Peter. O God, she comes. O honey Nurse, what news? Hast thou met with him? Send thy man away."
+        - generic [ref=e1571] [cursor=pointer]: NURSE. Peter, stay at the gate. [_Exit Peter._]
+        - generic [ref=e1574] [cursor=pointer]: JULIET. Now, good sweet Nurse,—O Lord, why look’st thou sad? Though news be sad, yet tell them merrily; If good, thou sham’st the music of sweet news By playing it to me with so sour a face.
+        - generic [ref=e1577] [cursor=pointer]: NURSE. I am aweary, give me leave awhile; Fie, how my bones ache! What a jaunt have I had!
+        - generic [ref=e1580] [cursor=pointer]: "JULIET. I would thou hadst my bones, and I thy news: Nay come, I pray thee speak; good, good Nurse, speak."
+        - generic [ref=e1583] [cursor=pointer]: NURSE. Jesu, what haste? Can you not stay a while? Do you not see that I am out of breath?
+        - generic [ref=e1586] [cursor=pointer]: JULIET. How art thou out of breath, when thou hast breath To say to me that thou art out of breath? The excuse that thou dost make in this delay Is longer than the tale thou dost excuse. Is thy news good or bad? Answer to that; Say either, and I’ll stay the circumstance. Let me be satisfied, is’t good or bad?
+        - generic [ref=e1589] [cursor=pointer]: NURSE. Well, you have made a simple choice; you know not how to choose a man. Romeo? No, not he. Though his face be better than any man’s, yet his leg excels all men’s, and for a hand and a foot, and a body, though they be not to be talked on, yet they are past compare. He is not the flower of courtesy, but I’ll warrant him as gentle as a lamb. Go thy ways, wench, serve God. What, have you dined at home?
+        - generic [ref=e1592] [cursor=pointer]: JULIET. No, no. But all this did I know before. What says he of our marriage? What of that?
+        - generic [ref=e1595] [cursor=pointer]: NURSE. Lord, how my head aches! What a head have I! It beats as it would fall in twenty pieces. My back o’ t’other side,—O my back, my back! Beshrew your heart for sending me about To catch my death with jauncing up and down.
+        - generic [ref=e1598] [cursor=pointer]: JULIET. I’faith, I am sorry that thou art not well. Sweet, sweet, sweet Nurse, tell me, what says my love?
+        - generic [ref=e1601] [cursor=pointer]: NURSE. Your love says like an honest gentleman, And a courteous, and a kind, and a handsome, And I warrant a virtuous,—Where is your mother?
+        - generic [ref=e1604] [cursor=pointer]: JULIET. Where is my mother? Why, she is within. Where should she be? How oddly thou repliest. ‘Your love says, like an honest gentleman, ‘Where is your mother?’
+        - generic [ref=e1607] [cursor=pointer]: NURSE. O God’s lady dear, Are you so hot? Marry, come up, I trow. Is this the poultice for my aching bones? Henceforward do your messages yourself.
+        - generic [ref=e1610] [cursor=pointer]: JULIET. Here’s such a coil. Come, what says Romeo?
+        - generic [ref=e1613] [cursor=pointer]: NURSE. Have you got leave to go to shrift today?
+        - generic [ref=e1616] [cursor=pointer]: JULIET. I have.
+        - generic [ref=e1619] [cursor=pointer]: NURSE. Then hie you hence to Friar Lawrence’ cell; There stays a husband to make you a wife. Now comes the wanton blood up in your cheeks, They’ll be in scarlet straight at any news. Hie you to church. I must another way, To fetch a ladder by the which your love Must climb a bird’s nest soon when it is dark. I am the drudge, and toil in your delight; But you shall bear the burden soon at night. Go. I’ll to dinner; hie you to the cell.
+        - generic [ref=e1622] [cursor=pointer]: JULIET. Hie to high fortune! Honest Nurse, farewell. [_Exeunt._]
+        - generic [ref=e1625]: SCENE VI. Friar Lawrence’s Cell. Enter Friar Lawrence and Romeo.
+        - generic [ref=e1628] [cursor=pointer]: FRIAR LAWRENCE. So smile the heavens upon this holy act That after-hours with sorrow chide us not.
+        - generic [ref=e1631] [cursor=pointer]: ROMEO. Amen, amen, but come what sorrow can, It cannot countervail the exchange of joy That one short minute gives me in her sight. Do thou but close our hands with holy words, Then love-devouring death do what he dare, It is enough I may but call her mine.
+        - generic [ref=e1634] [cursor=pointer]: "FRIAR LAWRENCE. These violent delights have violent ends, And in their triumph die; like fire and powder, Which as they kiss consume. The sweetest honey Is loathsome in his own deliciousness, And in the taste confounds the appetite. Therefore love moderately: long love doth so; Too swift arrives as tardy as too slow. Enter Juliet. Here comes the lady. O, so light a foot Will ne’er wear out the everlasting flint. A lover may bestride the gossamers That idles in the wanton summer air And yet not fall; so light is vanity."
+        - generic [ref=e1637] [cursor=pointer]: JULIET. Good even to my ghostly confessor.
+        - generic [ref=e1640] [cursor=pointer]: FRIAR LAWRENCE. Romeo shall thank thee, daughter, for us both.
+        - generic [ref=e1643] [cursor=pointer]: JULIET. As much to him, else is his thanks too much.
+        - generic [ref=e1646] [cursor=pointer]: ROMEO. Ah, Juliet, if the measure of thy joy Be heap’d like mine, and that thy skill be more To blazon it, then sweeten with thy breath This neighbour air, and let rich music’s tongue Unfold the imagin’d happiness that both Receive in either by this dear encounter.
+        - generic [ref=e1649] [cursor=pointer]: JULIET. Conceit more rich in matter than in words, Brags of his substance, not of ornament. They are but beggars that can count their worth; But my true love is grown to such excess, I cannot sum up sum of half my wealth.
+        - generic [ref=e1652] [cursor=pointer]: FRIAR LAWRENCE. Come, come with me, and we will make short work, For, by your leaves, you shall not stay alone Till holy church incorporate two in one. [_Exeunt._]
+        - generic [ref=e1655]: ACT III
+        - generic [ref=e1658]: SCENE I. A public Place. Enter Mercutio, Benvolio, Page and Servants.
+        - generic [ref=e1661] [cursor=pointer]: "BENVOLIO. I pray thee, good Mercutio, let’s retire: The day is hot, the Capulets abroad, And if we meet, we shall not scape a brawl, For now these hot days, is the mad blood stirring."
+        - generic [ref=e1664] [cursor=pointer]: MERCUTIO. Thou art like one of these fellows that, when he enters the confines of a tavern, claps me his sword upon the table, and says ‘God send me no need of thee!’ and by the operation of the second cup draws him on the drawer, when indeed there is no need.
+        - generic [ref=e1667] [cursor=pointer]: BENVOLIO. Am I like such a fellow?
+        - generic [ref=e1670] [cursor=pointer]: MERCUTIO. Come, come, thou art as hot a Jack in thy mood as any in Italy; and as soon moved to be moody, and as soon moody to be moved.
+        - generic [ref=e1673] [cursor=pointer]: BENVOLIO. And what to?
+        - generic [ref=e1676] [cursor=pointer]: MERCUTIO. Nay, an there were two such, we should have none shortly, for one would kill the other. Thou? Why, thou wilt quarrel with a man that hath a hair more or a hair less in his beard than thou hast. Thou wilt quarrel with a man for cracking nuts, having no other reason but because thou hast hazel eyes. What eye but such an eye would spy out such a quarrel? Thy head is as full of quarrels as an egg is full of meat, and yet thy head hath been beaten as addle as an egg for quarrelling. Thou hast quarrelled with a man for coughing in the street, because he hath wakened thy dog that hath lain asleep in the sun. Didst thou not fall out with a tailor for wearing his new doublet before Easter? with another for tying his new shoes with an old riband? And yet thou wilt tutor me from quarrelling!
+        - generic [ref=e1679] [cursor=pointer]: BENVOLIO. And I were so apt to quarrel as thou art, any man should buy the fee simple of my life for an hour and a quarter.
+        - generic [ref=e1682] [cursor=pointer]: MERCUTIO. The fee simple! O simple! Enter Tybalt and others.
+        - generic [ref=e1685] [cursor=pointer]: BENVOLIO. By my head, here comes the Capulets.
+        - generic [ref=e1688] [cursor=pointer]: MERCUTIO. By my heel, I care not.
+        - generic [ref=e1691] [cursor=pointer]: "TYBALT. Follow me close, for I will speak to them. Gentlemen, good-den: a word with one of you."
+        - generic [ref=e1694] [cursor=pointer]: MERCUTIO. And but one word with one of us? Couple it with something; make it a word and a blow.
+        - generic [ref=e1697] [cursor=pointer]: TYBALT. You shall find me apt enough to that, sir, and you will give me occasion.
+        - generic [ref=e1700] [cursor=pointer]: MERCUTIO. Could you not take some occasion without giving?
+        - generic [ref=e1703] [cursor=pointer]: TYBALT. Mercutio, thou consortest with Romeo.
+        - generic [ref=e1706] [cursor=pointer]: MERCUTIO. Consort? What, dost thou make us minstrels? And thou make minstrels of us, look to hear nothing but discords. Here’s my fiddlestick, here’s that shall make you dance. Zounds, consort!
+        - generic [ref=e1709] [cursor=pointer]: BENVOLIO. We talk here in the public haunt of men. Either withdraw unto some private place, And reason coldly of your grievances, Or else depart; here all eyes gaze on us.
+        - generic [ref=e1712] [cursor=pointer]: MERCUTIO. Men’s eyes were made to look, and let them gaze. I will not budge for no man’s pleasure, I. Enter Romeo.
+        - generic [ref=e1715] [cursor=pointer]: TYBALT. Well, peace be with you, sir, here comes my man.
+        - generic [ref=e1718] [cursor=pointer]: MERCUTIO. But I’ll be hanged, sir, if he wear your livery. Marry, go before to field, he’ll be your follower; Your worship in that sense may call him man.
+        - generic [ref=e1721] [cursor=pointer]: "TYBALT. Romeo, the love I bear thee can afford No better term than this: Thou art a villain."
+        - generic [ref=e1724] [cursor=pointer]: ROMEO. Tybalt, the reason that I have to love thee Doth much excuse the appertaining rage To such a greeting. Villain am I none; Therefore farewell; I see thou know’st me not.
+        - generic [ref=e1727] [cursor=pointer]: TYBALT. Boy, this shall not excuse the injuries That thou hast done me, therefore turn and draw.
+        - generic [ref=e1730] [cursor=pointer]: ROMEO. I do protest I never injur’d thee, But love thee better than thou canst devise Till thou shalt know the reason of my love. And so good Capulet, which name I tender As dearly as mine own, be satisfied.
+        - generic [ref=e1733] [cursor=pointer]: MERCUTIO. O calm, dishonourable, vile submission! [_Draws._] Alla stoccata carries it away. Tybalt, you rat-catcher, will you walk?
+        - generic [ref=e1736] [cursor=pointer]: TYBALT. What wouldst thou have with me?
+        - generic [ref=e1737]:
+          - generic [ref=e1739] [cursor=pointer]: MERCUTIO. Good King of Cats, nothing but one of your nine lives; that I mean to make bold withal, and, as you shall use me hereafter, dry-beat the rest of the eight. Will you pluck your sword out of his pilcher by the ears? Make haste, lest mine be about your ears ere it be out.
+          - complementary "Explanations" [ref=e1740]:
+            - generic [ref=e1742]:
+              - button "Hide note" [ref=e1743] [cursor=pointer]: ✕
+              - generic [ref=e1744] [cursor=pointer]:
+                - text: Mercutio, calling Tybalt 'Good King of Cats' (mocking 'Tybalt' from a cat in folklore), says he wants one of his nine lives, which he will boldly take, and depending on how Tybalt treats him later, he will dry-beat (beat without drawing blood) the other eight. He dares Tybalt to draw his sword quickly or he will strike him before it is out.
+                - generic: ▶
+              - generic [ref=e1745]: DeepSeek
+        - generic [ref=e1748] [cursor=pointer]: TYBALT. [_Drawing._] I am for you.
+        - generic [ref=e1751] [cursor=pointer]: ROMEO. Gentle Mercutio, put thy rapier up.
+        - generic [ref=e1754] [cursor=pointer]: MERCUTIO. Come, sir, your passado. [_They fight._]
+        - generic [ref=e1757] [cursor=pointer]: ROMEO. Draw, Benvolio; beat down their weapons. Gentlemen, for shame, forbear this outrage, Tybalt, Mercutio, the Prince expressly hath Forbid this bandying in Verona streets. Hold, Tybalt! Good Mercutio! [_Exeunt Tybalt with his Partizans._]
+        - generic [ref=e1760] [cursor=pointer]: MERCUTIO. I am hurt. A plague o’ both your houses. I am sped. Is he gone, and hath nothing?
+        - generic [ref=e1763] [cursor=pointer]: BENVOLIO. What, art thou hurt?
+        - generic [ref=e1766] [cursor=pointer]: MERCUTIO. Ay, ay, a scratch, a scratch. Marry, ’tis enough. Where is my page? Go villain, fetch a surgeon. [_Exit Page._]
+        - generic [ref=e1769] [cursor=pointer]: ROMEO. Courage, man; the hurt cannot be much.
+        - generic [ref=e1772] [cursor=pointer]: MERCUTIO. No, ’tis not so deep as a well, nor so wide as a church door, but ’tis enough, ’twill serve. Ask for me tomorrow, and you shall find me a grave man. I am peppered, I warrant, for this world. A plague o’ both your houses. Zounds, a dog, a rat, a mouse, a cat, to scratch a man to death. A braggart, a rogue, a villain, that fights by the book of arithmetic!—Why the devil came you between us? I was hurt under your arm.
+        - generic [ref=e1775] [cursor=pointer]: ROMEO. I thought all for the best.
+        - generic [ref=e1778] [cursor=pointer]: MERCUTIO. Help me into some house, Benvolio, Or I shall faint. A plague o’ both your houses. They have made worms’ meat of me. I have it, and soundly too. Your houses! [_Exeunt Mercutio and Benvolio._]
+        - generic [ref=e1781] [cursor=pointer]: ROMEO. This gentleman, the Prince’s near ally, My very friend, hath got his mortal hurt In my behalf; my reputation stain’d With Tybalt’s slander,—Tybalt, that an hour Hath been my cousin. O sweet Juliet, Thy beauty hath made me effeminate And in my temper soften’d valour’s steel. Re-enter Benvolio.
+        - generic [ref=e1784] [cursor=pointer]: BENVOLIO. O Romeo, Romeo, brave Mercutio’s dead, That gallant spirit hath aspir’d the clouds, Which too untimely here did scorn the earth.
+        - generic [ref=e1787] [cursor=pointer]: ROMEO. This day’s black fate on mo days doth depend; This but begins the woe others must end. Re-enter Tybalt.
+        - generic [ref=e1790] [cursor=pointer]: BENVOLIO. Here comes the furious Tybalt back again.
+        - generic [ref=e1791]:
+          - generic [ref=e1793] [cursor=pointer]: ROMEO. Again in triumph, and Mercutio slain? Away to heaven respective lenity, And fire-ey’d fury be my conduct now! Now, Tybalt, take the ‘villain’ back again That late thou gav’st me, for Mercutio’s soul Is but a little way above our heads, Staying for thine to keep him company. Either thou or I, or both, must go with him.
+          - complementary "Explanations" [ref=e1794]:
+            - generic [ref=e1796]:
+              - button "Hide note" [ref=e1797] [cursor=pointer]: ✕
+              - generic [ref=e1798] [cursor=pointer]:
+                - text: Romeo, seeing Tybalt return after killing Mercutio, renounces gentle mercy and calls for furious rage to guide him. He demands Tybalt take back the insult 'villain,' saying Mercutio’s soul is waiting for Tybalt’s to join it, so one or both of them must die.
+                - generic: ▶
+              - generic [ref=e1799]: DeepSeek
+        - generic [ref=e1802] [cursor=pointer]: TYBALT. Thou wretched boy, that didst consort him here, Shalt with him hence.
+        - generic [ref=e1805] [cursor=pointer]: ROMEO. This shall determine that. [_They fight; Tybalt falls._]
+        - generic [ref=e1808] [cursor=pointer]: BENVOLIO. Romeo, away, be gone! The citizens are up, and Tybalt slain. Stand not amaz’d. The Prince will doom thee death If thou art taken. Hence, be gone, away!
+        - generic [ref=e1811] [cursor=pointer]: ROMEO. O, I am fortune’s fool!
+        - generic [ref=e1814] [cursor=pointer]: BENVOLIO. Why dost thou stay? [_Exit Romeo._] Enter Citizens.
+        - generic [ref=e1817] [cursor=pointer]: FIRST CITIZEN. Which way ran he that kill’d Mercutio? Tybalt, that murderer, which way ran he?
+        - generic [ref=e1820] [cursor=pointer]: BENVOLIO. There lies that Tybalt.
+        - generic [ref=e1823] [cursor=pointer]: FIRST CITIZEN. Up, sir, go with me. I charge thee in the Prince’s name obey. Enter Prince, attended; Montague, Capulet, their Wives and others.
+        - generic [ref=e1826] [cursor=pointer]: PRINCE. Where are the vile beginners of this fray?
+        - generic [ref=e1829] [cursor=pointer]: BENVOLIO. O noble Prince, I can discover all The unlucky manage of this fatal brawl. There lies the man, slain by young Romeo, That slew thy kinsman, brave Mercutio.
+        - generic [ref=e1832] [cursor=pointer]: LADY CAPULET. Tybalt, my cousin! O my brother’s child! O Prince! O husband! O, the blood is spill’d Of my dear kinsman! Prince, as thou art true, For blood of ours shed blood of Montague. O cousin, cousin.
+        - generic [ref=e1835] [cursor=pointer]: PRINCE. Benvolio, who began this bloody fray?
+        - generic [ref=e1838] [cursor=pointer]: BENVOLIO. Tybalt, here slain, whom Romeo’s hand did slay; Romeo, that spoke him fair, bid him bethink How nice the quarrel was, and urg’d withal Your high displeasure. All this uttered With gentle breath, calm look, knees humbly bow’d Could not take truce with the unruly spleen Of Tybalt, deaf to peace, but that he tilts With piercing steel at bold Mercutio’s breast, Who, all as hot, turns deadly point to point, And, with a martial scorn, with one hand beats Cold death aside, and with the other sends It back to Tybalt, whose dexterity Retorts it. Romeo he cries aloud, ‘Hold, friends! Friends, part!’ and swifter than his tongue, His agile arm beats down their fatal points, And ’twixt them rushes; underneath whose arm An envious thrust from Tybalt hit the life Of stout Mercutio, and then Tybalt fled. But by and by comes back to Romeo, Who had but newly entertain’d revenge, And to’t they go like lightning; for, ere I Could draw to part them was stout Tybalt slain; And as he fell did Romeo turn and fly. This is the truth, or let Benvolio die.
+        - generic [ref=e1841] [cursor=pointer]: LADY CAPULET. He is a kinsman to the Montague. Affection makes him false, he speaks not true. Some twenty of them fought in this black strife, And all those twenty could but kill one life. I beg for justice, which thou, Prince, must give; Romeo slew Tybalt, Romeo must not live.
+        - generic [ref=e1844] [cursor=pointer]: PRINCE. Romeo slew him, he slew Mercutio. Who now the price of his dear blood doth owe?
+        - generic [ref=e1847] [cursor=pointer]: MONTAGUE. Not Romeo, Prince, he was Mercutio’s friend; His fault concludes but what the law should end, The life of Tybalt.
+        - generic [ref=e1850] [cursor=pointer]: PRINCE. And for that offence Immediately we do exile him hence. I have an interest in your hate’s proceeding, My blood for your rude brawls doth lie a-bleeding. But I’ll amerce you with so strong a fine That you shall all repent the loss of mine. I will be deaf to pleading and excuses; Nor tears nor prayers shall purchase out abuses. Therefore use none. Let Romeo hence in haste, Else, when he is found, that hour is his last. Bear hence this body, and attend our will. Mercy but murders, pardoning those that kill. [_Exeunt._]
+        - generic [ref=e1853]: SCENE II. A Room in Capulet’s House. Enter Juliet.
+        - generic [ref=e1854]:
+          - generic [ref=e1856] [cursor=pointer]: "JULIET. Gallop apace, you fiery-footed steeds, Towards Phoebus’ lodging. Such a waggoner As Phaeton would whip you to the west And bring in cloudy night immediately. Spread thy close curtain, love-performing night, That runaway’s eyes may wink, and Romeo Leap to these arms, untalk’d of and unseen. Lovers can see to do their amorous rites By their own beauties: or, if love be blind, It best agrees with night. Come, civil night, Thou sober-suited matron, all in black, And learn me how to lose a winning match, Play’d for a pair of stainless maidenhoods. Hood my unmann’d blood, bating in my cheeks, With thy black mantle, till strange love, grow bold, Think true love acted simple modesty. Come, night, come Romeo; come, thou day in night; For thou wilt lie upon the wings of night Whiter than new snow upon a raven’s back. Come gentle night, come loving black-brow’d night, Give me my Romeo, and when I shall die, Take him and cut him out in little stars, And he will make the face of heaven so fine That all the world will be in love with night, And pay no worship to the garish sun. O, I have bought the mansion of a love, But not possess’d it; and though I am sold, Not yet enjoy’d. So tedious is this day As is the night before some festival To an impatient child that hath new robes And may not wear them. O, here comes my Nurse, And she brings news, and every tongue that speaks But Romeo’s name speaks heavenly eloquence. Enter Nurse, with cords. Now, Nurse, what news? What hast thou there? The cords that Romeo bid thee fetch?"
+          - complementary "Explanations" [ref=e1857]:
+            - generic [ref=e1859]:
+              - button "Hide note" [ref=e1860] [cursor=pointer]: ✕
+              - generic [ref=e1861] [cursor=pointer]:
+                - text: Juliet implores the sun's horses to hurry toward sunset so night can come, allowing Romeo to visit her secretly. She imagines lovers can see by their own beauty or love's blindness fits night. She asks night to teach her to lose her virginity modestly and hide her blushing cheeks until love grows bold. She calls Romeo her day within night, whiter than snow on a raven, and fantasizes that after death he will become stars making night so beautiful the world ignores the sun. She feels she has bought love's mansion but not possessed it, and this day is as tedious as a child waiting to wear new robes. She sees the Nurse coming with news, and any word of Romeo is heavenly.
+                - generic: ▶
+              - generic [ref=e1862]: DeepSeek
+        - generic [ref=e1865] [cursor=pointer]: NURSE. Ay, ay, the cords. [_Throws them down._]
+        - generic [ref=e1868] [cursor=pointer]: JULIET. Ay me, what news? Why dost thou wring thy hands?
+        - generic [ref=e1871] [cursor=pointer]: NURSE. Ah, well-a-day, he’s dead, he’s dead, he’s dead! We are undone, lady, we are undone. Alack the day, he’s gone, he’s kill’d, he’s dead.
+        - generic [ref=e1874] [cursor=pointer]: JULIET. Can heaven be so envious?
+        - generic [ref=e1877] [cursor=pointer]: NURSE. Romeo can, Though heaven cannot. O Romeo, Romeo. Who ever would have thought it? Romeo!
+        - generic [ref=e1878]:
+          - generic [ref=e1880] [cursor=pointer]: JULIET. What devil art thou, that dost torment me thus? This torture should be roar’d in dismal hell. Hath Romeo slain himself? Say thou but Ay, And that bare vowel I shall poison more Than the death-darting eye of cockatrice. I am not I if there be such an I; Or those eyes shut that make thee answer Ay. If he be slain, say Ay; or if not, No. Brief sounds determine of my weal or woe.
+          - complementary "Explanations" [ref=e1881]:
+            - generic [ref=e1883]:
+              - button "Hide note" [ref=e1884] [cursor=pointer]: ✕
+              - generic [ref=e1885] [cursor=pointer]:
+                - text: Juliet calls the Nurse a devil tormenting her, saying this torture belongs in hell. She asks if Romeo killed himself, saying a mere 'Ay' would poison her more than a cockatrice's deadly gaze. She says she would not be herself if he were dead, and that brief sounds will decide her happiness or misery.
+                - generic: ▶
+              - generic [ref=e1886]: DeepSeek
+        - generic [ref=e1889] [cursor=pointer]: NURSE. I saw the wound, I saw it with mine eyes, God save the mark!—here on his manly breast. A piteous corse, a bloody piteous corse; Pale, pale as ashes, all bedaub’d in blood, All in gore-blood. I swounded at the sight.
+        - generic [ref=e1892] [cursor=pointer]: JULIET. O, break, my heart. Poor bankrout, break at once. To prison, eyes; ne’er look on liberty. Vile earth to earth resign; end motion here, And thou and Romeo press one heavy bier.
+        - generic [ref=e1895] [cursor=pointer]: NURSE. O Tybalt, Tybalt, the best friend I had. O courteous Tybalt, honest gentleman! That ever I should live to see thee dead.
+        - generic [ref=e1898] [cursor=pointer]: JULIET. What storm is this that blows so contrary? Is Romeo slaughter’d and is Tybalt dead? My dearest cousin, and my dearer lord? Then dreadful trumpet sound the general doom, For who is living, if those two are gone?
+        - generic [ref=e1901] [cursor=pointer]: NURSE. Tybalt is gone, and Romeo banished, Romeo that kill’d him, he is banished.
+        - generic [ref=e1904] [cursor=pointer]: JULIET. O God! Did Romeo’s hand shed Tybalt’s blood?
+        - generic [ref=e1907] [cursor=pointer]: NURSE. It did, it did; alas the day, it did.
+        - generic [ref=e1908]:
+          - generic [ref=e1910] [cursor=pointer]: JULIET. O serpent heart, hid with a flowering face! Did ever dragon keep so fair a cave? Beautiful tyrant, fiend angelical, Dove-feather’d raven, wolvish-ravening lamb! Despised substance of divinest show! Just opposite to what thou justly seem’st, A damned saint, an honourable villain! O nature, what hadst thou to do in hell When thou didst bower the spirit of a fiend In mortal paradise of such sweet flesh? Was ever book containing such vile matter So fairly bound? O, that deceit should dwell In such a gorgeous palace.
+          - complementary "Explanations" [ref=e1911]:
+            - generic [ref=e1913]:
+              - button "Hide note" [ref=e1914] [cursor=pointer]: ✕
+              - generic [ref=e1915] [cursor=pointer]:
+                - text: Juliet erupts in oxymorons, calling Romeo a serpent heart hidden by a flowering face, a dragon in a fair cave, a beautiful tyrant, angelic fiend, raven with dove feathers, wolf-like lamb. She says he is the opposite of what he seems—a damned saint, honorable villain. She asks why nature placed a fiend's spirit in such sweet flesh, like a book with vile matter beautifully bound, and that deceit lives in a gorgeous palace.
+                - generic: ▶
+              - generic [ref=e1916]: DeepSeek
+        - generic [ref=e1919] [cursor=pointer]: NURSE. There’s no trust, No faith, no honesty in men. All perjur’d, All forsworn, all naught, all dissemblers. Ah, where’s my man? Give me some aqua vitae. These griefs, these woes, these sorrows make me old. Shame come to Romeo.
+        - generic [ref=e1922] [cursor=pointer]: JULIET. Blister’d be thy tongue For such a wish! He was not born to shame. Upon his brow shame is asham’d to sit; For ’tis a throne where honour may be crown’d Sole monarch of the universal earth. O, what a beast was I to chide at him!
+        - generic [ref=e1925] [cursor=pointer]: NURSE. Will you speak well of him that kill’d your cousin?
+        - generic [ref=e1926]:
+          - generic [ref=e1928] [cursor=pointer]: JULIET. Shall I speak ill of him that is my husband? Ah, poor my lord, what tongue shall smooth thy name, When I thy three-hours’ wife have mangled it? But wherefore, villain, didst thou kill my cousin? That villain cousin would have kill’d my husband. Back, foolish tears, back to your native spring, Your tributary drops belong to woe, Which you mistaking offer up to joy. My husband lives, that Tybalt would have slain, And Tybalt’s dead, that would have slain my husband. All this is comfort; wherefore weep I then? Some word there was, worser than Tybalt’s death, That murder’d me. I would forget it fain, But O, it presses to my memory Like damned guilty deeds to sinners’ minds. Tybalt is dead, and Romeo banished. That ‘banished,’ that one word ‘banished,’ Hath slain ten thousand Tybalts. Tybalt’s death Was woe enough, if it had ended there. Or if sour woe delights in fellowship, And needly will be rank’d with other griefs, Why follow’d not, when she said Tybalt’s dead, Thy father or thy mother, nay or both, Which modern lamentation might have mov’d? But with a rear-ward following Tybalt’s death, ‘Romeo is banished’—to speak that word Is father, mother, Tybalt, Romeo, Juliet, All slain, all dead. Romeo is banished, There is no end, no limit, measure, bound, In that word’s death, no words can that woe sound. Where is my father and my mother, Nurse?
+          - complementary "Explanations" [ref=e1929]:
+            - generic [ref=e1931]:
+              - button "Hide note" [ref=e1932] [cursor=pointer]: ✕
+              - generic [ref=e1933] [cursor=pointer]:
+                - text: Juliet defends Romeo as her husband and laments that she, his wife of only three hours, has spoken ill of him. She reasons that Tybalt would have killed Romeo, so Romeo’s survival is a comfort, yet she weeps because Romeo’s banishment is worse than Tybalt’s death—it feels like endless, boundless sorrow, as if all her family and love are dead.
+                - generic: ▶
+              - generic [ref=e1934]: DeepSeek
+        - generic [ref=e1937] [cursor=pointer]: NURSE. Weeping and wailing over Tybalt’s corse. Will you go to them? I will bring you thither.
+        - generic [ref=e1938]:
+          - generic [ref=e1940] [cursor=pointer]: JULIET. Wash they his wounds with tears. Mine shall be spent, When theirs are dry, for Romeo’s banishment. Take up those cords. Poor ropes, you are beguil’d, Both you and I; for Romeo is exil’d. He made you for a highway to my bed, But I, a maid, die maiden-widowed. Come cords, come Nurse, I’ll to my wedding bed, And death, not Romeo, take my maidenhead.
+          - complementary "Explanations" [ref=e1941]:
+            - generic [ref=e1943]:
+              - button "Hide note" [ref=e1944] [cursor=pointer]: ✕
+              - generic [ref=e1945] [cursor=pointer]:
+                - text: Juliet says her parents can weep for Tybalt, but her tears will be for Romeo’s banishment. She addresses the bed cords, saying they were meant to lead Romeo to her bed, but now she will die a virgin widow, with death taking her maidenhead instead of Romeo.
+                - generic: ▶
+              - generic [ref=e1946]: DeepSeek
+        - generic [ref=e1949] [cursor=pointer]: NURSE. Hie to your chamber. I’ll find Romeo To comfort you. I wot well where he is. Hark ye, your Romeo will be here at night. I’ll to him, he is hid at Lawrence’ cell.
+        - generic [ref=e1952] [cursor=pointer]: JULIET. O find him, give this ring to my true knight, And bid him come to take his last farewell. [_Exeunt._]
+        - generic [ref=e1955]: SCENE III. Friar Lawrence’s cell. Enter Friar Lawrence.
+        - generic [ref=e1958] [cursor=pointer]: FRIAR LAWRENCE. Romeo, come forth; come forth, thou fearful man. Affliction is enanmour’d of thy parts And thou art wedded to calamity. Enter Romeo.
+        - generic [ref=e1961] [cursor=pointer]: ROMEO. Father, what news? What is the Prince’s doom? What sorrow craves acquaintance at my hand, That I yet know not?
+        - generic [ref=e1964] [cursor=pointer]: FRIAR LAWRENCE. Too familiar Is my dear son with such sour company. I bring thee tidings of the Prince’s doom.
+        - generic [ref=e1967] [cursor=pointer]: ROMEO. What less than doomsday is the Prince’s doom?
+        - generic [ref=e1970] [cursor=pointer]: FRIAR LAWRENCE. A gentler judgment vanish’d from his lips, Not body’s death, but body’s banishment.
+        - generic [ref=e1973] [cursor=pointer]: ROMEO. Ha, banishment? Be merciful, say death; For exile hath more terror in his look, Much more than death. Do not say banishment.
+        - generic [ref=e1976] [cursor=pointer]: FRIAR LAWRENCE. Hence from Verona art thou banished. Be patient, for the world is broad and wide.
+        - generic [ref=e1979] [cursor=pointer]: ROMEO. There is no world without Verona walls, But purgatory, torture, hell itself. Hence banished is banish’d from the world, And world’s exile is death. Then banished Is death misterm’d. Calling death banished, Thou cutt’st my head off with a golden axe, And smilest upon the stroke that murders me.
+        - generic [ref=e1982] [cursor=pointer]: FRIAR LAWRENCE. O deadly sin, O rude unthankfulness! Thy fault our law calls death, but the kind Prince, Taking thy part, hath brush’d aside the law, And turn’d that black word death to banishment. This is dear mercy, and thou see’st it not.
+        - generic [ref=e1985] [cursor=pointer]: ROMEO. ’Tis torture, and not mercy. Heaven is here Where Juliet lives, and every cat and dog, And little mouse, every unworthy thing, Live here in heaven and may look on her, But Romeo may not. More validity, More honourable state, more courtship lives In carrion flies than Romeo. They may seize On the white wonder of dear Juliet’s hand, And steal immortal blessing from her lips, Who, even in pure and vestal modesty Still blush, as thinking their own kisses sin. But Romeo may not, he is banished. This may flies do, when I from this must fly. They are free men but I am banished. And say’st thou yet that exile is not death? Hadst thou no poison mix’d, no sharp-ground knife, No sudden mean of death, though ne’er so mean, But banished to kill me? Banished? O Friar, the damned use that word in hell. Howling attends it. How hast thou the heart, Being a divine, a ghostly confessor, A sin-absolver, and my friend profess’d, To mangle me with that word banished?
+        - generic [ref=e1988] [cursor=pointer]: FRIAR LAWRENCE. Thou fond mad man, hear me speak a little,
+        - generic [ref=e1991] [cursor=pointer]: ROMEO. O, thou wilt speak again of banishment.
+        - generic [ref=e1994] [cursor=pointer]: FRIAR LAWRENCE. I’ll give thee armour to keep off that word, Adversity’s sweet milk, philosophy, To comfort thee, though thou art banished.
+        - generic [ref=e1997] [cursor=pointer]: ROMEO. Yet banished? Hang up philosophy. Unless philosophy can make a Juliet, Displant a town, reverse a Prince’s doom, It helps not, it prevails not, talk no more.
+        - generic [ref=e2000] [cursor=pointer]: FRIAR LAWRENCE. O, then I see that mad men have no ears.
+        - generic [ref=e2003] [cursor=pointer]: ROMEO. How should they, when that wise men have no eyes?
+        - generic [ref=e2006] [cursor=pointer]: FRIAR LAWRENCE. Let me dispute with thee of thy estate.
+        - generic [ref=e2009] [cursor=pointer]: ROMEO. Thou canst not speak of that thou dost not feel. Wert thou as young as I, Juliet thy love, An hour but married, Tybalt murdered, Doting like me, and like me banished, Then mightst thou speak, then mightst thou tear thy hair, And fall upon the ground as I do now, Taking the measure of an unmade grave. [_Knocking within._]
+        - generic [ref=e2012] [cursor=pointer]: FRIAR LAWRENCE. Arise; one knocks. Good Romeo, hide thyself.
+        - generic [ref=e2015] [cursor=pointer]: ROMEO. Not I, unless the breath of heartsick groans Mist-like infold me from the search of eyes. [_Knocking._]
+        - generic [ref=e2018] [cursor=pointer]: FRIAR LAWRENCE. Hark, how they knock!—Who’s there?—Romeo, arise, Thou wilt be taken.—Stay awhile.—Stand up. [_Knocking._] Run to my study.—By-and-by.—God’s will, What simpleness is this.—I come, I come. [_Knocking._] Who knocks so hard? Whence come you, what’s your will?
+        - generic [ref=e2021] [cursor=pointer]: NURSE. [_Within._] Let me come in, and you shall know my errand. I come from Lady Juliet.
+        - generic [ref=e2024] [cursor=pointer]: FRIAR LAWRENCE. Welcome then. Enter Nurse.
+        - generic [ref=e2027] [cursor=pointer]: NURSE. O holy Friar, O, tell me, holy Friar, Where is my lady’s lord, where’s Romeo?
+        - generic [ref=e2030] [cursor=pointer]: FRIAR LAWRENCE. There on the ground, with his own tears made drunk.
+        - generic [ref=e2033] [cursor=pointer]: NURSE. O, he is even in my mistress’ case. Just in her case! O woeful sympathy! Piteous predicament. Even so lies she, Blubbering and weeping, weeping and blubbering. Stand up, stand up; stand, and you be a man. For Juliet’s sake, for her sake, rise and stand. Why should you fall into so deep an O?
+        - generic [ref=e2034]:
+          - generic [ref=e2036] [cursor=pointer]: ROMEO. Nurse.
+          - complementary "Explanations" [ref=e2037]:
+            - generic [ref=e2039]:
+              - button "Hide note" [ref=e2040] [cursor=pointer]: ✕
+              - generic [ref=e2041] [cursor=pointer]:
+                - text: Romeo simply says 'Nurse,' acknowledging her.
+                - generic: ▶
+              - generic [ref=e2042]: DeepSeek
+        - generic [ref=e2045] [cursor=pointer]: NURSE. Ah sir, ah sir, death’s the end of all.
+        - generic [ref=e2048] [cursor=pointer]: ROMEO. Spakest thou of Juliet? How is it with her? Doth not she think me an old murderer, Now I have stain’d the childhood of our joy With blood remov’d but little from her own? Where is she? And how doth she? And what says My conceal’d lady to our cancell’d love?
+        - generic [ref=e2051] [cursor=pointer]: NURSE. O, she says nothing, sir, but weeps and weeps; And now falls on her bed, and then starts up, And Tybalt calls, and then on Romeo cries, And then down falls again.
+        - generic [ref=e2054] [cursor=pointer]: ROMEO. As if that name, Shot from the deadly level of a gun, Did murder her, as that name’s cursed hand Murder’d her kinsman. O, tell me, Friar, tell me, In what vile part of this anatomy Doth my name lodge? Tell me, that I may sack The hateful mansion. [_Drawing his sword._]
+        - generic [ref=e2057] [cursor=pointer]: FRIAR LAWRENCE. Hold thy desperate hand. Art thou a man? Thy form cries out thou art. Thy tears are womanish, thy wild acts denote The unreasonable fury of a beast. Unseemly woman in a seeming man, And ill-beseeming beast in seeming both! Thou hast amaz’d me. By my holy order, I thought thy disposition better temper’d. Hast thou slain Tybalt? Wilt thou slay thyself? And slay thy lady, that in thy life lives, By doing damned hate upon thyself? Why rail’st thou on thy birth, the heaven and earth? Since birth, and heaven and earth, all three do meet In thee at once; which thou at once wouldst lose. Fie, fie, thou sham’st thy shape, thy love, thy wit, Which, like a usurer, abound’st in all, And usest none in that true use indeed Which should bedeck thy shape, thy love, thy wit. Thy noble shape is but a form of wax, Digressing from the valour of a man; Thy dear love sworn but hollow perjury, Killing that love which thou hast vow’d to cherish; Thy wit, that ornament to shape and love, Misshapen in the conduct of them both, Like powder in a skilless soldier’s flask, Is set afire by thine own ignorance, And thou dismember’d with thine own defence. What, rouse thee, man. Thy Juliet is alive, For whose dear sake thou wast but lately dead. There art thou happy. Tybalt would kill thee, But thou slew’st Tybalt; there art thou happy. The law that threaten’d death becomes thy friend, And turns it to exile; there art thou happy. A pack of blessings light upon thy back; Happiness courts thee in her best array; But like a misshaped and sullen wench, Thou putt’st up thy Fortune and thy love. Take heed, take heed, for such die miserable. Go, get thee to thy love as was decreed, Ascend her chamber, hence and comfort her. But look thou stay not till the watch be set, For then thou canst not pass to Mantua; Where thou shalt live till we can find a time To blaze your marriage, reconcile your friends, Beg pardon of the Prince, and call thee back With twenty hundred thousand times more joy Than thou went’st forth in lamentation. Go before, Nurse. Commend me to thy lady, And bid her hasten all the house to bed, Which heavy sorrow makes them apt unto. Romeo is coming.
+        - generic [ref=e2060] [cursor=pointer]: NURSE. O Lord, I could have stay’d here all the night To hear good counsel. O, what learning is! My lord, I’ll tell my lady you will come.
+        - generic [ref=e2063] [cursor=pointer]: ROMEO. Do so, and bid my sweet prepare to chide.
+        - generic [ref=e2066] [cursor=pointer]: NURSE. Here sir, a ring she bid me give you, sir. Hie you, make haste, for it grows very late. [_Exit._]
+        - generic [ref=e2069] [cursor=pointer]: ROMEO. How well my comfort is reviv’d by this.
+        - generic [ref=e2072] [cursor=pointer]: "FRIAR LAWRENCE. Go hence, good night, and here stands all your state: Either be gone before the watch be set, Or by the break of day disguis’d from hence. Sojourn in Mantua. I’ll find out your man, And he shall signify from time to time Every good hap to you that chances here. Give me thy hand; ’tis late; farewell; good night."
+        - generic [ref=e2075] [cursor=pointer]: ROMEO. But that a joy past joy calls out on me, It were a grief so brief to part with thee. Farewell. [_Exeunt._]
+        - generic [ref=e2078]: SCENE IV. A Room in Capulet’s House. Enter Capulet, Lady Capulet and Paris.
+        - generic [ref=e2081] [cursor=pointer]: CAPULET. Things have fallen out, sir, so unluckily That we have had no time to move our daughter. Look you, she lov’d her kinsman Tybalt dearly, And so did I. Well, we were born to die. ’Tis very late; she’ll not come down tonight. I promise you, but for your company, I would have been abed an hour ago.
+        - generic [ref=e2084] [cursor=pointer]: PARIS. These times of woe afford no tune to woo. Madam, good night. Commend me to your daughter.
+        - generic [ref=e2087] [cursor=pointer]: LADY CAPULET. I will, and know her mind early tomorrow; Tonight she’s mew’d up to her heaviness.
+        - generic [ref=e2090] [cursor=pointer]: CAPULET. Sir Paris, I will make a desperate tender Of my child’s love. I think she will be rul’d In all respects by me; nay more, I doubt it not. Wife, go you to her ere you go to bed, Acquaint her here of my son Paris’ love, And bid her, mark you me, on Wednesday next, But, soft, what day is this?
+        - generic [ref=e2093] [cursor=pointer]: PARIS. Monday, my lord.
+        - generic [ref=e2096] [cursor=pointer]: CAPULET. Monday! Ha, ha! Well, Wednesday is too soon, A Thursday let it be; a Thursday, tell her, She shall be married to this noble earl. Will you be ready? Do you like this haste? We’ll keep no great ado,—a friend or two, For, hark you, Tybalt being slain so late, It may be thought we held him carelessly, Being our kinsman, if we revel much. Therefore we’ll have some half a dozen friends, And there an end. But what say you to Thursday?
+        - generic [ref=e2099] [cursor=pointer]: PARIS. My lord, I would that Thursday were tomorrow.
+        - generic [ref=e2102] [cursor=pointer]: CAPULET. Well, get you gone. A Thursday be it then. Go you to Juliet ere you go to bed, Prepare her, wife, against this wedding day. Farewell, my lord.—Light to my chamber, ho! Afore me, it is so very very late that we May call it early by and by. Good night. [_Exeunt._]
+        - generic [ref=e2105]: SCENE V. An open Gallery to Juliet’s Chamber, overlooking the Garden. Enter Romeo and Juliet.
+        - generic [ref=e2108] [cursor=pointer]: JULIET. Wilt thou be gone? It is not yet near day. It was the nightingale, and not the lark, That pierc’d the fearful hollow of thine ear; Nightly she sings on yond pomegranate tree. Believe me, love, it was the nightingale.
+        - generic [ref=e2111] [cursor=pointer]: ROMEO. It was the lark, the herald of the morn, No nightingale. Look, love, what envious streaks Do lace the severing clouds in yonder east. Night’s candles are burnt out, and jocund day Stands tiptoe on the misty mountain tops. I must be gone and live, or stay and die.
+        - generic [ref=e2114] [cursor=pointer]: JULIET. Yond light is not daylight, I know it, I. It is some meteor that the sun exhales To be to thee this night a torchbearer And light thee on thy way to Mantua. Therefore stay yet, thou need’st not to be gone.
+        - generic [ref=e2117] [cursor=pointer]: ROMEO. Let me be ta’en, let me be put to death, I am content, so thou wilt have it so. I’ll say yon grey is not the morning’s eye, ’Tis but the pale reflex of Cynthia’s brow. Nor that is not the lark whose notes do beat The vaulty heaven so high above our heads. I have more care to stay than will to go. Come, death, and welcome. Juliet wills it so. How is’t, my soul? Let’s talk. It is not day.
+        - generic [ref=e2120] [cursor=pointer]: JULIET. It is, it is! Hie hence, be gone, away. It is the lark that sings so out of tune, Straining harsh discords and unpleasing sharps. Some say the lark makes sweet division; This doth not so, for she divideth us. Some say the lark and loathed toad change eyes. O, now I would they had chang’d voices too, Since arm from arm that voice doth us affray, Hunting thee hence with hunt’s-up to the day. O now be gone, more light and light it grows.
+        - generic [ref=e2123] [cursor=pointer]: ROMEO. More light and light, more dark and dark our woes. Enter Nurse.
+        - generic [ref=e2126] [cursor=pointer]: NURSE. Madam.
+        - generic [ref=e2129] [cursor=pointer]: JULIET. Nurse?
+        - generic [ref=e2132] [cursor=pointer]: NURSE. Your lady mother is coming to your chamber. The day is broke, be wary, look about. [_Exit._]
+        - generic [ref=e2135] [cursor=pointer]: JULIET. Then, window, let day in, and let life out.
+        - generic [ref=e2138] [cursor=pointer]: ROMEO. Farewell, farewell, one kiss, and I’ll descend. [_Descends._]
+        - generic [ref=e2141] [cursor=pointer]: JULIET. Art thou gone so? Love, lord, ay husband, friend, I must hear from thee every day in the hour, For in a minute there are many days. O, by this count I shall be much in years Ere I again behold my Romeo.
+        - generic [ref=e2144] [cursor=pointer]: ROMEO. Farewell! I will omit no opportunity That may convey my greetings, love, to thee.
+        - generic [ref=e2147] [cursor=pointer]: JULIET. O thinkest thou we shall ever meet again?
+        - generic [ref=e2150] [cursor=pointer]: ROMEO. I doubt it not, and all these woes shall serve For sweet discourses in our time to come.
+        - generic [ref=e2153] [cursor=pointer]: JULIET. O God! I have an ill-divining soul! Methinks I see thee, now thou art so low, As one dead in the bottom of a tomb. Either my eyesight fails, or thou look’st pale.
+        - generic [ref=e2156] [cursor=pointer]: ROMEO. And trust me, love, in my eye so do you. Dry sorrow drinks our blood. Adieu, adieu. [_Exit below._]
+        - generic [ref=e2159] [cursor=pointer]: JULIET. O Fortune, Fortune! All men call thee fickle, If thou art fickle, what dost thou with him That is renown’d for faith? Be fickle, Fortune; For then, I hope thou wilt not keep him long But send him back.
+        - generic [ref=e2162] [cursor=pointer]: LADY CAPULET. [_Within._] Ho, daughter, are you up?
+        - generic [ref=e2165] [cursor=pointer]: JULIET. Who is’t that calls? Is it my lady mother? Is she not down so late, or up so early? What unaccustom’d cause procures her hither? Enter Lady Capulet.
+        - generic [ref=e2168] [cursor=pointer]: LADY CAPULET. Why, how now, Juliet?
+        - generic [ref=e2171] [cursor=pointer]: JULIET. Madam, I am not well.
+        - generic [ref=e2174] [cursor=pointer]: "LADY CAPULET. Evermore weeping for your cousin’s death? What, wilt thou wash him from his grave with tears? And if thou couldst, thou couldst not make him live. Therefore have done: some grief shows much of love, But much of grief shows still some want of wit."
+        - generic [ref=e2177] [cursor=pointer]: JULIET. Yet let me weep for such a feeling loss.
+        - generic [ref=e2180] [cursor=pointer]: LADY CAPULET. So shall you feel the loss, but not the friend Which you weep for.
+        - generic [ref=e2183] [cursor=pointer]: JULIET. Feeling so the loss, I cannot choose but ever weep the friend.
+        - generic [ref=e2186] [cursor=pointer]: LADY CAPULET. Well, girl, thou weep’st not so much for his death As that the villain lives which slaughter’d him.
+        - generic [ref=e2189] [cursor=pointer]: JULIET. What villain, madam?
+        - generic [ref=e2192] [cursor=pointer]: LADY CAPULET. That same villain Romeo.
+        - generic [ref=e2195] [cursor=pointer]: JULIET. Villain and he be many miles asunder. God pardon him. I do, with all my heart. And yet no man like he doth grieve my heart.
+        - generic [ref=e2198] [cursor=pointer]: LADY CAPULET. That is because the traitor murderer lives.
+        - generic [ref=e2201] [cursor=pointer]: JULIET. Ay madam, from the reach of these my hands. Would none but I might venge my cousin’s death.
+        - generic [ref=e2204] [cursor=pointer]: "LADY CAPULET. We will have vengeance for it, fear thou not. Then weep no more. I’ll send to one in Mantua, Where that same banish’d runagate doth live, Shall give him such an unaccustom’d dram That he shall soon keep Tybalt company: And then I hope thou wilt be satisfied."
+        - generic [ref=e2205]:
+          - generic [ref=e2207] [cursor=pointer]: JULIET. Indeed I never shall be satisfied With Romeo till I behold him—dead— Is my poor heart so for a kinsman vex’d. Madam, if you could find out but a man To bear a poison, I would temper it, That Romeo should upon receipt thereof, Soon sleep in quiet. O, how my heart abhors To hear him nam’d, and cannot come to him, To wreak the love I bore my cousin Upon his body that hath slaughter’d him.
+          - complementary "Explanations" [ref=e2208]:
+            - generic [ref=e2210]:
+              - button "Hide note" [ref=e2211] [cursor=pointer]: ✕
+              - generic [ref=e2212] [cursor=pointer]:
+                - text: Juliet says she will never be satisfied with Romeo until she sees him dead—but she means her heart is pained for her cousin. She pretends to want to poison Romeo herself, but secretly she is expressing her anguish that she cannot be with him to express her love, which now feels like a debt to Tybalt.
+                - generic: ▶
+              - generic [ref=e2213]: DeepSeek
+        - generic [ref=e2216] [cursor=pointer]: LADY CAPULET. Find thou the means, and I’ll find such a man. But now I’ll tell thee joyful tidings, girl.
+        - generic [ref=e2219] [cursor=pointer]: JULIET. And joy comes well in such a needy time. What are they, I beseech your ladyship?
+        - generic [ref=e2222] [cursor=pointer]: LADY CAPULET. Well, well, thou hast a careful father, child; One who to put thee from thy heaviness, Hath sorted out a sudden day of joy, That thou expects not, nor I look’d not for.
+        - generic [ref=e2225] [cursor=pointer]: JULIET. Madam, in happy time, what day is that?
+        - generic [ref=e2228] [cursor=pointer]: LADY CAPULET. Marry, my child, early next Thursday morn The gallant, young, and noble gentleman, The County Paris, at Saint Peter’s Church, Shall happily make thee there a joyful bride.
+        - generic [ref=e2231] [cursor=pointer]: JULIET. Now by Saint Peter’s Church, and Peter too, He shall not make me there a joyful bride. I wonder at this haste, that I must wed Ere he that should be husband comes to woo. I pray you tell my lord and father, madam, I will not marry yet; and when I do, I swear It shall be Romeo, whom you know I hate, Rather than Paris. These are news indeed.
+        - generic [ref=e2234] [cursor=pointer]: LADY CAPULET. Here comes your father, tell him so yourself, And see how he will take it at your hands. Enter Capulet and Nurse.
+        - generic [ref=e2237] [cursor=pointer]: CAPULET. When the sun sets, the air doth drizzle dew; But for the sunset of my brother’s son It rains downright. How now? A conduit, girl? What, still in tears? Evermore showering? In one little body Thou counterfeits a bark, a sea, a wind. For still thy eyes, which I may call the sea, Do ebb and flow with tears; the bark thy body is, Sailing in this salt flood, the winds, thy sighs, Who raging with thy tears and they with them, Without a sudden calm will overset Thy tempest-tossed body. How now, wife? Have you deliver’d to her our decree?
+        - generic [ref=e2240] [cursor=pointer]: LADY CAPULET. Ay, sir; but she will none, she gives you thanks. I would the fool were married to her grave.
+        - generic [ref=e2243] [cursor=pointer]: CAPULET. Soft. Take me with you, take me with you, wife. How, will she none? Doth she not give us thanks? Is she not proud? Doth she not count her blest, Unworthy as she is, that we have wrought So worthy a gentleman to be her bridegroom?
+        - generic [ref=e2246] [cursor=pointer]: JULIET. Not proud you have, but thankful that you have. Proud can I never be of what I hate; But thankful even for hate that is meant love.
+        - generic [ref=e2249] [cursor=pointer]: CAPULET. How now, how now, chopp’d logic? What is this? Proud, and, I thank you, and I thank you not; And yet not proud. Mistress minion you, Thank me no thankings, nor proud me no prouds, But fettle your fine joints ’gainst Thursday next To go with Paris to Saint Peter’s Church, Or I will drag thee on a hurdle thither. Out, you green-sickness carrion! Out, you baggage! You tallow-face!
+        - generic [ref=e2252] [cursor=pointer]: LADY CAPULET. Fie, fie! What, are you mad?
+        - generic [ref=e2255] [cursor=pointer]: JULIET. Good father, I beseech you on my knees, Hear me with patience but to speak a word.
+        - generic [ref=e2258] [cursor=pointer]: CAPULET. Hang thee young baggage, disobedient wretch! I tell thee what,—get thee to church a Thursday, Or never after look me in the face. Speak not, reply not, do not answer me. My fingers itch. Wife, we scarce thought us blest That God had lent us but this only child; But now I see this one is one too much, And that we have a curse in having her. Out on her, hilding.
+        - generic [ref=e2261] [cursor=pointer]: NURSE. God in heaven bless her. You are to blame, my lord, to rate her so.
+        - generic [ref=e2264] [cursor=pointer]: CAPULET. And why, my lady wisdom? Hold your tongue, Good prudence; smatter with your gossips, go.
+        - generic [ref=e2267] [cursor=pointer]: NURSE. I speak no treason.
+        - generic [ref=e2268]:
+          - generic [ref=e2270] [cursor=pointer]: CAPULET. O God ye good-en!
+          - complementary "Explanations" [ref=e2271]:
+            - generic [ref=e2273]:
+              - button "Hide note" [ref=e2274] [cursor=pointer]: ✕
+              - generic [ref=e2275] [cursor=pointer]:
+                - text: He exclaims 'God ye good-en' (a mild oath) in frustration.
+                - generic: ▶
+              - generic [ref=e2276]: DeepSeek
+        - generic [ref=e2279] [cursor=pointer]: NURSE. May not one speak?
+        - generic [ref=e2282] [cursor=pointer]: CAPULET. Peace, you mumbling fool! Utter your gravity o’er a gossip’s bowl, For here we need it not.
+        - generic [ref=e2285] [cursor=pointer]: LADY CAPULET. You are too hot.
+        - generic [ref=e2288] [cursor=pointer]: CAPULET. God’s bread, it makes me mad! Day, night, hour, ride, time, work, play, Alone, in company, still my care hath been To have her match’d, and having now provided A gentleman of noble parentage, Of fair demesnes, youthful, and nobly allied, Stuff’d, as they say, with honourable parts, Proportion’d as one’s thought would wish a man, And then to have a wretched puling fool, A whining mammet, in her fortune’s tender, To answer, ‘I’ll not wed, I cannot love, I am too young, I pray you pardon me.’ But, and you will not wed, I’ll pardon you. Graze where you will, you shall not house with me. Look to’t, think on’t, I do not use to jest. Thursday is near; lay hand on heart, advise. And you be mine, I’ll give you to my friend; And you be not, hang, beg, starve, die in the streets, For by my soul, I’ll ne’er acknowledge thee, Nor what is mine shall never do thee good. Trust to’t, bethink you, I’ll not be forsworn. [_Exit._]
+        - generic [ref=e2291] [cursor=pointer]: JULIET. Is there no pity sitting in the clouds, That sees into the bottom of my grief? O sweet my mother, cast me not away, Delay this marriage for a month, a week, Or, if you do not, make the bridal bed In that dim monument where Tybalt lies.
+        - generic [ref=e2294] [cursor=pointer]: LADY CAPULET. Talk not to me, for I’ll not speak a word. Do as thou wilt, for I have done with thee. [_Exit._]
+        - generic [ref=e2297] [cursor=pointer]: JULIET. O God! O Nurse, how shall this be prevented? My husband is on earth, my faith in heaven. How shall that faith return again to earth, Unless that husband send it me from heaven By leaving earth? Comfort me, counsel me. Alack, alack, that heaven should practise stratagems Upon so soft a subject as myself. What say’st thou? Hast thou not a word of joy? Some comfort, Nurse.
+        - generic [ref=e2300] [cursor=pointer]: "NURSE. Faith, here it is. Romeo is banished; and all the world to nothing That he dares ne’er come back to challenge you. Or if he do, it needs must be by stealth. Then, since the case so stands as now it doth, I think it best you married with the County. O, he’s a lovely gentleman. Romeo’s a dishclout to him. An eagle, madam, Hath not so green, so quick, so fair an eye As Paris hath. Beshrew my very heart, I think you are happy in this second match, For it excels your first: or if it did not, Your first is dead, or ’twere as good he were, As living here and you no use of him."
+        - generic [ref=e2303] [cursor=pointer]: JULIET. Speakest thou from thy heart?
+        - generic [ref=e2306] [cursor=pointer]: NURSE. And from my soul too, Or else beshrew them both.
+        - generic [ref=e2309] [cursor=pointer]: JULIET. Amen.
+        - generic [ref=e2312] [cursor=pointer]: NURSE. What?
+        - generic [ref=e2315] [cursor=pointer]: JULIET. Well, thou hast comforted me marvellous much. Go in, and tell my lady I am gone, Having displeas’d my father, to Lawrence’ cell, To make confession and to be absolv’d.
+        - generic [ref=e2318] [cursor=pointer]: NURSE. Marry, I will; and this is wisely done. [_Exit._]
+        - generic [ref=e2321] [cursor=pointer]: JULIET. Ancient damnation! O most wicked fiend! Is it more sin to wish me thus forsworn, Or to dispraise my lord with that same tongue Which she hath prais’d him with above compare So many thousand times? Go, counsellor. Thou and my bosom henceforth shall be twain. I’ll to the Friar to know his remedy. If all else fail, myself have power to die. [_Exit._]
+        - generic [ref=e2324]: ACT IV
+        - generic [ref=e2327]: SCENE I. Friar Lawrence’s Cell. Enter Friar Lawrence and Paris.
+        - generic [ref=e2330] [cursor=pointer]: FRIAR LAWRENCE. On Thursday, sir? The time is very short.
+        - generic [ref=e2333] [cursor=pointer]: PARIS. My father Capulet will have it so; And I am nothing slow to slack his haste.
+        - generic [ref=e2336] [cursor=pointer]: FRIAR LAWRENCE. You say you do not know the lady’s mind. Uneven is the course; I like it not.
+        - generic [ref=e2339] [cursor=pointer]: PARIS. Immoderately she weeps for Tybalt’s death, And therefore have I little talk’d of love; For Venus smiles not in a house of tears. Now, sir, her father counts it dangerous That she do give her sorrow so much sway; And in his wisdom, hastes our marriage, To stop the inundation of her tears, Which, too much minded by herself alone, May be put from her by society. Now do you know the reason of this haste.
+        - generic [ref=e2342] [cursor=pointer]: FRIAR LAWRENCE. [_Aside._] I would I knew not why it should be slow’d.— Look, sir, here comes the lady toward my cell. Enter Juliet.
+        - generic [ref=e2345] [cursor=pointer]: PARIS. Happily met, my lady and my wife!
+        - generic [ref=e2348] [cursor=pointer]: JULIET. That may be, sir, when I may be a wife.
+        - generic [ref=e2351] [cursor=pointer]: PARIS. That may be, must be, love, on Thursday next.
+        - generic [ref=e2354] [cursor=pointer]: JULIET. What must be shall be.
+        - generic [ref=e2357] [cursor=pointer]: FRIAR LAWRENCE. That’s a certain text.
+        - generic [ref=e2360] [cursor=pointer]: PARIS. Come you to make confession to this father?
+        - generic [ref=e2363] [cursor=pointer]: JULIET. To answer that, I should confess to you.
+        - generic [ref=e2366] [cursor=pointer]: PARIS. Do not deny to him that you love me.
+        - generic [ref=e2369] [cursor=pointer]: JULIET. I will confess to you that I love him.
+        - generic [ref=e2372] [cursor=pointer]: PARIS. So will ye, I am sure, that you love me.
+        - generic [ref=e2375] [cursor=pointer]: JULIET. If I do so, it will be of more price, Being spoke behind your back than to your face.
+        - generic [ref=e2378] [cursor=pointer]: PARIS. Poor soul, thy face is much abus’d with tears.
+        - generic [ref=e2381] [cursor=pointer]: JULIET. The tears have got small victory by that; For it was bad enough before their spite.
+        - generic [ref=e2384] [cursor=pointer]: PARIS. Thou wrong’st it more than tears with that report.
+        - generic [ref=e2387] [cursor=pointer]: JULIET. That is no slander, sir, which is a truth, And what I spake, I spake it to my face.
+        - generic [ref=e2390] [cursor=pointer]: PARIS. Thy face is mine, and thou hast slander’d it.
+        - generic [ref=e2393] [cursor=pointer]: JULIET. It may be so, for it is not mine own. Are you at leisure, holy father, now, Or shall I come to you at evening mass?
+        - generic [ref=e2396] [cursor=pointer]: FRIAR LAWRENCE. My leisure serves me, pensive daughter, now.— My lord, we must entreat the time alone.
+        - generic [ref=e2399] [cursor=pointer]: PARIS. God shield I should disturb devotion!— Juliet, on Thursday early will I rouse ye, Till then, adieu; and keep this holy kiss. [_Exit._]
+        - generic [ref=e2402] [cursor=pointer]: JULIET. O shut the door, and when thou hast done so, Come weep with me, past hope, past cure, past help!
+        - generic [ref=e2405] [cursor=pointer]: FRIAR LAWRENCE. O Juliet, I already know thy grief; It strains me past the compass of my wits. I hear thou must, and nothing may prorogue it, On Thursday next be married to this County.
+        - generic [ref=e2408] [cursor=pointer]: JULIET. Tell me not, Friar, that thou hear’st of this, Unless thou tell me how I may prevent it. If in thy wisdom, thou canst give no help, Do thou but call my resolution wise, And with this knife I’ll help it presently. God join’d my heart and Romeo’s, thou our hands; And ere this hand, by thee to Romeo’s seal’d, Shall be the label to another deed, Or my true heart with treacherous revolt Turn to another, this shall slay them both. Therefore, out of thy long-experienc’d time, Give me some present counsel, or behold ’Twixt my extremes and me this bloody knife Shall play the empire, arbitrating that Which the commission of thy years and art Could to no issue of true honour bring. Be not so long to speak. I long to die, If what thou speak’st speak not of remedy.
+        - generic [ref=e2411] [cursor=pointer]: FRIAR LAWRENCE. Hold, daughter. I do spy a kind of hope, Which craves as desperate an execution As that is desperate which we would prevent. If, rather than to marry County Paris Thou hast the strength of will to slay thyself, Then is it likely thou wilt undertake A thing like death to chide away this shame, That cop’st with death himself to scape from it. And if thou dar’st, I’ll give thee remedy.
+        - generic [ref=e2414] [cursor=pointer]: JULIET. O, bid me leap, rather than marry Paris, From off the battlements of yonder tower, Or walk in thievish ways, or bid me lurk Where serpents are. Chain me with roaring bears; Or hide me nightly in a charnel-house, O’er-cover’d quite with dead men’s rattling bones, With reeky shanks and yellow chapless skulls. Or bid me go into a new-made grave, And hide me with a dead man in his shroud; Things that, to hear them told, have made me tremble, And I will do it without fear or doubt, To live an unstain’d wife to my sweet love.
+        - generic [ref=e2417] [cursor=pointer]: FRIAR LAWRENCE. Hold then. Go home, be merry, give consent To marry Paris. Wednesday is tomorrow; Tomorrow night look that thou lie alone, Let not thy Nurse lie with thee in thy chamber. Take thou this vial, being then in bed, And this distilled liquor drink thou off, When presently through all thy veins shall run A cold and drowsy humour; for no pulse Shall keep his native progress, but surcease. No warmth, no breath shall testify thou livest, The roses in thy lips and cheeks shall fade To paly ashes; thy eyes’ windows fall, Like death when he shuts up the day of life. Each part depriv’d of supple government, Shall stiff and stark and cold appear like death. And in this borrow’d likeness of shrunk death Thou shalt continue two and forty hours, And then awake as from a pleasant sleep. Now when the bridegroom in the morning comes To rouse thee from thy bed, there art thou dead. Then as the manner of our country is, In thy best robes, uncover’d, on the bier, Thou shalt be borne to that same ancient vault Where all the kindred of the Capulets lie. In the meantime, against thou shalt awake, Shall Romeo by my letters know our drift, And hither shall he come, and he and I Will watch thy waking, and that very night Shall Romeo bear thee hence to Mantua. And this shall free thee from this present shame, If no inconstant toy nor womanish fear Abate thy valour in the acting it.
+        - generic [ref=e2420] [cursor=pointer]: JULIET. Give me, give me! O tell not me of fear!
+        - generic [ref=e2423] [cursor=pointer]: FRIAR LAWRENCE. Hold; get you gone, be strong and prosperous In this resolve. I’ll send a friar with speed To Mantua, with my letters to thy lord.
+        - generic [ref=e2426] [cursor=pointer]: JULIET. Love give me strength, and strength shall help afford. Farewell, dear father. [_Exeunt._]
+        - generic [ref=e2429]: SCENE II. Hall in Capulet’s House. Enter Capulet, Lady Capulet, Nurse and Servants.
+        - generic [ref=e2432] [cursor=pointer]: CAPULET. So many guests invite as here are writ. [_Exit first Servant._] Sirrah, go hire me twenty cunning cooks.
+        - generic [ref=e2435] [cursor=pointer]: SECOND SERVANT. You shall have none ill, sir; for I’ll try if they can lick their fingers.
+        - generic [ref=e2438] [cursor=pointer]: CAPULET. How canst thou try them so?
+        - generic [ref=e2441] [cursor=pointer]: SECOND SERVANT. Marry, sir, ’tis an ill cook that cannot lick his own fingers; therefore he that cannot lick his fingers goes not with me.
+        - generic [ref=e2444] [cursor=pointer]: CAPULET. Go, begone. [_Exit second Servant._] We shall be much unfurnish’d for this time. What, is my daughter gone to Friar Lawrence?
+        - generic [ref=e2447] [cursor=pointer]: NURSE. Ay, forsooth.
+        - generic [ref=e2450] [cursor=pointer]: CAPULET. Well, he may chance to do some good on her. A peevish self-will’d harlotry it is. Enter Juliet.
+        - generic [ref=e2453] [cursor=pointer]: NURSE. See where she comes from shrift with merry look.
+        - generic [ref=e2456] [cursor=pointer]: CAPULET. How now, my headstrong. Where have you been gadding?
+        - generic [ref=e2459] [cursor=pointer]: JULIET. Where I have learnt me to repent the sin Of disobedient opposition To you and your behests; and am enjoin’d By holy Lawrence to fall prostrate here, To beg your pardon. Pardon, I beseech you. Henceforward I am ever rul’d by you.
+        - generic [ref=e2462] [cursor=pointer]: CAPULET. Send for the County, go tell him of this. I’ll have this knot knit up tomorrow morning.
+        - generic [ref=e2465] [cursor=pointer]: JULIET. I met the youthful lord at Lawrence’ cell, And gave him what becomed love I might, Not stepping o’er the bounds of modesty.
+        - generic [ref=e2468] [cursor=pointer]: CAPULET. Why, I am glad on’t. This is well. Stand up. This is as’t should be. Let me see the County. Ay, marry. Go, I say, and fetch him hither. Now afore God, this reverend holy Friar, All our whole city is much bound to him.
+        - generic [ref=e2471] [cursor=pointer]: JULIET. Nurse, will you go with me into my closet, To help me sort such needful ornaments As you think fit to furnish me tomorrow?
+        - generic [ref=e2474] [cursor=pointer]: LADY CAPULET. No, not till Thursday. There is time enough.
+        - generic [ref=e2477] [cursor=pointer]: CAPULET. Go, Nurse, go with her. We’ll to church tomorrow. [_Exeunt Juliet and Nurse._]
+        - generic [ref=e2480] [cursor=pointer]: LADY CAPULET. We shall be short in our provision, ’Tis now near night.
+        - generic [ref=e2483] [cursor=pointer]: "CAPULET. Tush, I will stir about, And all things shall be well, I warrant thee, wife. Go thou to Juliet, help to deck up her. I’ll not to bed tonight, let me alone. I’ll play the housewife for this once.—What, ho!— They are all forth: well, I will walk myself To County Paris, to prepare him up Against tomorrow. My heart is wondrous light Since this same wayward girl is so reclaim’d. [_Exeunt._]"
+        - generic [ref=e2486]: SCENE III. Juliet’s Chamber. Enter Juliet and Nurse.
+        - generic [ref=e2489] [cursor=pointer]: JULIET. Ay, those attires are best. But, gentle Nurse, I pray thee leave me to myself tonight; For I have need of many orisons To move the heavens to smile upon my state, Which, well thou know’st, is cross and full of sin. Enter Lady Capulet.
+        - generic [ref=e2492] [cursor=pointer]: LADY CAPULET. What, are you busy, ho? Need you my help?
+        - generic [ref=e2495] [cursor=pointer]: JULIET. No, madam; we have cull’d such necessaries As are behoveful for our state tomorrow. So please you, let me now be left alone, And let the nurse this night sit up with you, For I am sure you have your hands full all In this so sudden business.
+        - generic [ref=e2498] [cursor=pointer]: LADY CAPULET. Good night. Get thee to bed and rest, for thou hast need. [_Exeunt Lady Capulet and Nurse._]
+        - generic [ref=e2499]:
+          - generic [ref=e2501] [cursor=pointer]: JULIET. Farewell. God knows when we shall meet again. I have a faint cold fear thrills through my veins That almost freezes up the heat of life. I’ll call them back again to comfort me. Nurse!—What should she do here? My dismal scene I needs must act alone. Come, vial. What if this mixture do not work at all? Shall I be married then tomorrow morning? No, No! This shall forbid it. Lie thou there. [_Laying down her dagger._] What if it be a poison, which the Friar Subtly hath minister’d to have me dead, Lest in this marriage he should be dishonour’d, Because he married me before to Romeo? I fear it is. And yet methinks it should not, For he hath still been tried a holy man. How if, when I am laid into the tomb, I wake before the time that Romeo Come to redeem me? There’s a fearful point! Shall I not then be stifled in the vault, To whose foul mouth no healthsome air breathes in, And there die strangled ere my Romeo comes? Or, if I live, is it not very like, The horrible conceit of death and night, Together with the terror of the place, As in a vault, an ancient receptacle, Where for this many hundred years the bones Of all my buried ancestors are pack’d, Where bloody Tybalt, yet but green in earth, Lies festering in his shroud; where, as they say, At some hours in the night spirits resort— Alack, alack, is it not like that I, So early waking, what with loathsome smells, And shrieks like mandrakes torn out of the earth, That living mortals, hearing them, run mad. O, if I wake, shall I not be distraught, Environed with all these hideous fears, And madly play with my forefathers’ joints? And pluck the mangled Tybalt from his shroud? And, in this rage, with some great kinsman’s bone, As with a club, dash out my desperate brains? O look, methinks I see my cousin’s ghost Seeking out Romeo that did spit his body Upon a rapier’s point. Stay, Tybalt, stay! Romeo, Romeo, Romeo, here’s drink! I drink to thee. [_Throws herself on the bed._]
+          - complementary "Explanations" [ref=e2502]:
+            - generic [ref=e2504]:
+              - button "Hide note" [ref=e2505] [cursor=pointer]: ✕
+              - generic [ref=e2506] [cursor=pointer]:
+                - text: "Alone, she expresses dread that they may not meet again. A chilling fear runs through her, nearly stopping her life’s warmth. She considers calling the Nurse back but decides she must face this grim situation alone. Taking the vial, she worries: if the potion fails, she’ll have to marry Paris—but her dagger will prevent that. She fears the Friar may have given her poison to avoid dishonor from her previous marriage to Romeo, but she trusts his holy reputation. She then imagines waking too early in the tomb, suffocating in the airless vault, or going mad from the horror—the stench, shrieks like mandrakes (whose roots were said to drive hearers insane), and the presence of Tybalt’s rotting corpse and ancestors’ bones. In frenzy, she might play with their bones or use one to smash her own skull. She hallucinates Tybalt’s ghost seeking Romeo, then toasts Romeo and drinks the potion. This soliloquy reveals her terror and resolve, heightening suspense before she takes the drug."
+                - generic: ▶
+              - generic [ref=e2507]: DeepSeek
+        - generic [ref=e2510]: SCENE IV. Hall in Capulet’s House. Enter Lady Capulet and Nurse.
+        - generic [ref=e2513] [cursor=pointer]: LADY CAPULET. Hold, take these keys and fetch more spices, Nurse.
+        - generic [ref=e2516] [cursor=pointer]: NURSE. They call for dates and quinces in the pastry. Enter Capulet.
+        - generic [ref=e2519] [cursor=pointer]: CAPULET. Come, stir, stir, stir! The second cock hath crow’d, The curfew bell hath rung, ’tis three o’clock. Look to the bak’d meats, good Angelica; Spare not for cost.
+        - generic [ref=e2522] [cursor=pointer]: NURSE. Go, you cot-quean, go, Get you to bed; faith, you’ll be sick tomorrow For this night’s watching.
+        - generic [ref=e2525] [cursor=pointer]: CAPULET. No, not a whit. What! I have watch’d ere now All night for lesser cause, and ne’er been sick.
+        - generic [ref=e2528] [cursor=pointer]: LADY CAPULET. Ay, you have been a mouse-hunt in your time; But I will watch you from such watching now. [_Exeunt Lady Capulet and Nurse._]
+        - generic [ref=e2531] [cursor=pointer]: CAPULET. A jealous-hood, a jealous-hood! Enter Servants, with spits, logs and baskets. Now, fellow, what’s there?
+        - generic [ref=e2534] [cursor=pointer]: FIRST SERVANT. Things for the cook, sir; but I know not what.
+        - generic [ref=e2537] [cursor=pointer]: CAPULET. Make haste, make haste. [_Exit First Servant._] —Sirrah, fetch drier logs. Call Peter, he will show thee where they are.
+        - generic [ref=e2540] [cursor=pointer]: SECOND SERVANT. I have a head, sir, that will find out logs And never trouble Peter for the matter. [_Exit._]
+        - generic [ref=e2543] [cursor=pointer]: CAPULET. Mass and well said; a merry whoreson, ha. Thou shalt be loggerhead.—Good faith, ’tis day. The County will be here with music straight, For so he said he would. I hear him near. [_Play music._] Nurse! Wife! What, ho! What, Nurse, I say! Re-enter Nurse. Go waken Juliet, go and trim her up. I’ll go and chat with Paris. Hie, make haste, Make haste; the bridegroom he is come already. Make haste I say. [_Exeunt._]
+        - generic [ref=e2546]: SCENE V. Juliet’s Chamber; Juliet on the bed. Enter Nurse.
+        - generic [ref=e2549] [cursor=pointer]: NURSE. Mistress! What, mistress! Juliet! Fast, I warrant her, she. Why, lamb, why, lady, fie, you slug-abed! Why, love, I say! Madam! Sweetheart! Why, bride! What, not a word? You take your pennyworths now. Sleep for a week; for the next night, I warrant, The County Paris hath set up his rest That you shall rest but little. God forgive me! Marry and amen. How sound is she asleep! I needs must wake her. Madam, madam, madam! Ay, let the County take you in your bed, He’ll fright you up, i’faith. Will it not be? What, dress’d, and in your clothes, and down again? I must needs wake you. Lady! Lady! Lady! Alas, alas! Help, help! My lady’s dead! O, well-a-day that ever I was born. Some aqua vitae, ho! My lord! My lady! Enter Lady Capulet.
+        - generic [ref=e2552] [cursor=pointer]: LADY CAPULET. What noise is here?
+        - generic [ref=e2555] [cursor=pointer]: NURSE. O lamentable day!
+        - generic [ref=e2558] [cursor=pointer]: LADY CAPULET. What is the matter?
+        - generic [ref=e2561] [cursor=pointer]: NURSE. Look, look! O heavy day!
+        - generic [ref=e2564] [cursor=pointer]: LADY CAPULET. O me, O me! My child, my only life. Revive, look up, or I will die with thee. Help, help! Call help. Enter Capulet.
+        - generic [ref=e2567] [cursor=pointer]: CAPULET. For shame, bring Juliet forth, her lord is come.
+        - generic [ref=e2570] [cursor=pointer]: NURSE. She’s dead, deceas’d, she’s dead; alack the day!
+        - generic [ref=e2573] [cursor=pointer]: LADY CAPULET. Alack the day, she’s dead, she’s dead, she’s dead!
+        - generic [ref=e2576] [cursor=pointer]: CAPULET. Ha! Let me see her. Out alas! She’s cold, Her blood is settled and her joints are stiff. Life and these lips have long been separated. Death lies on her like an untimely frost Upon the sweetest flower of all the field.
+        - generic [ref=e2579] [cursor=pointer]: NURSE. O lamentable day!
+        - generic [ref=e2582] [cursor=pointer]: LADY CAPULET. O woful time!
+        - generic [ref=e2585] [cursor=pointer]: CAPULET. Death, that hath ta’en her hence to make me wail, Ties up my tongue and will not let me speak. Enter Friar Lawrence and Paris with Musicians.
+        - generic [ref=e2588] [cursor=pointer]: FRIAR LAWRENCE. Come, is the bride ready to go to church?
+        - generic [ref=e2591] [cursor=pointer]: CAPULET. Ready to go, but never to return. O son, the night before thy wedding day Hath death lain with thy bride. There she lies, Flower as she was, deflowered by him. Death is my son-in-law, death is my heir; My daughter he hath wedded. I will die And leave him all; life, living, all is death’s.
+        - generic [ref=e2594] [cursor=pointer]: PARIS. Have I thought long to see this morning’s face, And doth it give me such a sight as this?
+        - generic [ref=e2597] [cursor=pointer]: LADY CAPULET. Accurs’d, unhappy, wretched, hateful day. Most miserable hour that e’er time saw In lasting labour of his pilgrimage. But one, poor one, one poor and loving child, But one thing to rejoice and solace in, And cruel death hath catch’d it from my sight.
+        - generic [ref=e2600] [cursor=pointer]: NURSE. O woe! O woeful, woeful, woeful day. Most lamentable day, most woeful day That ever, ever, I did yet behold! O day, O day, O day, O hateful day. Never was seen so black a day as this. O woeful day, O woeful day.
+        - generic [ref=e2603] [cursor=pointer]: PARIS. Beguil’d, divorced, wronged, spited, slain. Most detestable death, by thee beguil’d, By cruel, cruel thee quite overthrown. O love! O life! Not life, but love in death!
+        - generic [ref=e2606] [cursor=pointer]: CAPULET. Despis’d, distressed, hated, martyr’d, kill’d. Uncomfortable time, why cam’st thou now To murder, murder our solemnity? O child! O child! My soul, and not my child, Dead art thou. Alack, my child is dead, And with my child my joys are buried.
+        - generic [ref=e2607]:
+          - generic [ref=e2609] [cursor=pointer]: FRIAR LAWRENCE. Peace, ho, for shame. Confusion’s cure lives not In these confusions. Heaven and yourself Had part in this fair maid, now heaven hath all, And all the better is it for the maid. Your part in her you could not keep from death, But heaven keeps his part in eternal life. The most you sought was her promotion, For ’twas your heaven she should be advanc’d, And weep ye now, seeing she is advanc’d Above the clouds, as high as heaven itself? O, in this love, you love your child so ill That you run mad, seeing that she is well. She’s not well married that lives married long, But she’s best married that dies married young. Dry up your tears, and stick your rosemary On this fair corse, and, as the custom is, And in her best array bear her to church; For though fond nature bids us all lament, Yet nature’s tears are reason’s merriment.
+          - complementary "Explanations" [ref=e2610]:
+            - generic [ref=e2612]:
+              - button "Hide note" [ref=e2613] [cursor=pointer]: ✕
+              - generic [ref=e2614] [cursor=pointer]:
+                - text: He tells them to be quiet and ashamed, saying that disorder cannot be cured by more disorder. He argues that heaven now has Juliet entirely, which is better for her since she lives eternally. He chides them for weeping when she is exalted in heaven, saying they love her poorly by mourning when she is well off. He states that a long marriage is not the best; dying young after marriage is better. He tells them to dry tears, place rosemary (a funeral herb) on her body, dress her well, and take her to church, explaining that while natural grief makes us cry, reason should bring joy.
+                - generic: ▶
+              - generic [ref=e2615]: DeepSeek
+        - generic [ref=e2618] [cursor=pointer]: "CAPULET. All things that we ordained festival Turn from their office to black funeral: Our instruments to melancholy bells, Our wedding cheer to a sad burial feast; Our solemn hymns to sullen dirges change; Our bridal flowers serve for a buried corse, And all things change them to the contrary."
+        - generic [ref=e2621] [cursor=pointer]: FRIAR LAWRENCE. Sir, go you in, and, madam, go with him, And go, Sir Paris, everyone prepare To follow this fair corse unto her grave. The heavens do lower upon you for some ill; Move them no more by crossing their high will. [_Exeunt Capulet, Lady Capulet, Paris and Friar._]
+        - generic [ref=e2624] [cursor=pointer]: FIRST MUSICIAN. Faith, we may put up our pipes and be gone.
+        - generic [ref=e2627] [cursor=pointer]: NURSE. Honest good fellows, ah, put up, put up, For well you know this is a pitiful case.
+        - generic [ref=e2630] [cursor=pointer]: FIRST MUSICIAN. Ay, by my troth, the case may be amended. [_Exit Nurse._] Enter Peter.
+        - generic [ref=e2633] [cursor=pointer]: PETER. Musicians, O, musicians, ‘Heart’s ease,’ ‘Heart’s ease’, O, and you will have me live, play ‘Heart’s ease.’
+        - generic [ref=e2636] [cursor=pointer]: FIRST MUSICIAN. Why ‘Heart’s ease’?
+        - generic [ref=e2639] [cursor=pointer]: PETER. O musicians, because my heart itself plays ‘My heart is full’. O play me some merry dump to comfort me.
+        - generic [ref=e2642] [cursor=pointer]: FIRST MUSICIAN. Not a dump we, ’tis no time to play now.
+        - generic [ref=e2645] [cursor=pointer]: PETER. You will not then?
+        - generic [ref=e2648] [cursor=pointer]: FIRST MUSICIAN. No.
+        - generic [ref=e2651] [cursor=pointer]: PETER. I will then give it you soundly.
+        - generic [ref=e2654] [cursor=pointer]: FIRST MUSICIAN. What will you give us?
+        - generic [ref=e2657] [cursor=pointer]: PETER. No money, on my faith, but the gleek! I will give you the minstrel.
+        - generic [ref=e2660] [cursor=pointer]: FIRST MUSICIAN. Then will I give you the serving-creature.
+        - generic [ref=e2661]:
+          - generic [ref=e2663] [cursor=pointer]: PETER. Then will I lay the serving-creature’s dagger on your pate. I will carry no crotchets. I’ll re you, I’ll fa you. Do you note me?
+          - complementary "Explanations" [ref=e2664]:
+            - generic [ref=e2666]:
+              - button "Hide note" [ref=e2667] [cursor=pointer]: ✕
+              - generic [ref=e2668] [cursor=pointer]:
+                - text: He threatens to hit the musician's head with a dagger and says he will carry no crotchets, meaning both quarter notes in music and whims or complaints. He then puns on musical notes re and fa, meaning he will attack them.
+                - generic: ▶
+              - generic [ref=e2669]: DeepSeek
+        - generic [ref=e2672] [cursor=pointer]: FIRST MUSICIAN. And you re us and fa us, you note us.
+        - generic [ref=e2675] [cursor=pointer]: SECOND MUSICIAN. Pray you put up your dagger, and put out your wit.
+        - generic [ref=e2678] [cursor=pointer]: PETER. Then have at you with my wit. I will dry-beat you with an iron wit, and put up my iron dagger. Answer me like men. ‘When griping griefs the heart doth wound, And doleful dumps the mind oppress, Then music with her silver sound’— Why ‘silver sound’? Why ‘music with her silver sound’? What say you, Simon Catling?
+        - generic [ref=e2681] [cursor=pointer]: FIRST MUSICIAN. Marry, sir, because silver hath a sweet sound.
+        - generic [ref=e2684] [cursor=pointer]: PETER. Prates. What say you, Hugh Rebeck?
+        - generic [ref=e2687] [cursor=pointer]: SECOND MUSICIAN. I say ‘silver sound’ because musicians sound for silver.
+        - generic [ref=e2690] [cursor=pointer]: PETER. Prates too! What say you, James Soundpost?
+        - generic [ref=e2693] [cursor=pointer]: THIRD MUSICIAN. Faith, I know not what to say.
+        - generic [ref=e2696] [cursor=pointer]: PETER. O, I cry you mercy, you are the singer. I will say for you. It is ‘music with her silver sound’ because musicians have no gold for sounding. ‘Then music with her silver sound With speedy help doth lend redress.’ [_Exit._]
+        - generic [ref=e2699] [cursor=pointer]: FIRST MUSICIAN. What a pestilent knave is this same!
+        - generic [ref=e2702] [cursor=pointer]: SECOND MUSICIAN. Hang him, Jack. Come, we’ll in here, tarry for the mourners, and stay dinner. [_Exeunt._]
+        - generic [ref=e2705]: ACT V
+        - generic [ref=e2708]: SCENE I. Mantua. A Street. Enter Romeo.
+        - generic [ref=e2711] [cursor=pointer]: ROMEO. If I may trust the flattering eye of sleep, My dreams presage some joyful news at hand. My bosom’s lord sits lightly in his throne; And all this day an unaccustom’d spirit Lifts me above the ground with cheerful thoughts. I dreamt my lady came and found me dead,— Strange dream, that gives a dead man leave to think!— And breath’d such life with kisses in my lips, That I reviv’d, and was an emperor. Ah me, how sweet is love itself possess’d, When but love’s shadows are so rich in joy. Enter Balthasar. News from Verona! How now, Balthasar? Dost thou not bring me letters from the Friar? How doth my lady? Is my father well? How fares my Juliet? That I ask again; For nothing can be ill if she be well.
+        - generic [ref=e2714] [cursor=pointer]: BALTHASAR. Then she is well, and nothing can be ill. Her body sleeps in Capel’s monument, And her immortal part with angels lives. I saw her laid low in her kindred’s vault, And presently took post to tell it you. O pardon me for bringing these ill news, Since you did leave it for my office, sir.
+        - generic [ref=e2717] [cursor=pointer]: ROMEO. Is it even so? Then I defy you, stars! Thou know’st my lodging. Get me ink and paper, And hire post-horses. I will hence tonight.
+        - generic [ref=e2720] [cursor=pointer]: BALTHASAR. I do beseech you sir, have patience. Your looks are pale and wild, and do import Some misadventure.
+        - generic [ref=e2723] [cursor=pointer]: ROMEO. Tush, thou art deceiv’d. Leave me, and do the thing I bid thee do. Hast thou no letters to me from the Friar?
+        - generic [ref=e2726] [cursor=pointer]: BALTHASAR. No, my good lord.
+        - generic [ref=e2729] [cursor=pointer]: ROMEO. No matter. Get thee gone, And hire those horses. I’ll be with thee straight. [_Exit Balthasar._] Well, Juliet, I will lie with thee tonight. Let’s see for means. O mischief thou art swift To enter in the thoughts of desperate men. I do remember an apothecary,— And hereabouts he dwells,—which late I noted In tatter’d weeds, with overwhelming brows, Culling of simples, meagre were his looks, Sharp misery had worn him to the bones; And in his needy shop a tortoise hung, An alligator stuff’d, and other skins Of ill-shaped fishes; and about his shelves A beggarly account of empty boxes, Green earthen pots, bladders, and musty seeds, Remnants of packthread, and old cakes of roses Were thinly scatter’d, to make up a show. Noting this penury, to myself I said, And if a man did need a poison now, Whose sale is present death in Mantua, Here lives a caitiff wretch would sell it him. O, this same thought did but forerun my need, And this same needy man must sell it me. As I remember, this should be the house. Being holiday, the beggar’s shop is shut. What, ho! Apothecary! Enter Apothecary.
+        - generic [ref=e2732] [cursor=pointer]: APOTHECARY. Who calls so loud?
+        - generic [ref=e2735] [cursor=pointer]: ROMEO. Come hither, man. I see that thou art poor. Hold, there is forty ducats. Let me have A dram of poison, such soon-speeding gear As will disperse itself through all the veins, That the life-weary taker may fall dead, And that the trunk may be discharg’d of breath As violently as hasty powder fir’d Doth hurry from the fatal cannon’s womb.
+        - generic [ref=e2738] [cursor=pointer]: APOTHECARY. Such mortal drugs I have, but Mantua’s law Is death to any he that utters them.
+        - generic [ref=e2741] [cursor=pointer]: ROMEO. Art thou so bare and full of wretchedness, And fear’st to die? Famine is in thy cheeks, Need and oppression starveth in thine eyes, Contempt and beggary hangs upon thy back. The world is not thy friend, nor the world’s law; The world affords no law to make thee rich; Then be not poor, but break it and take this.
+        - generic [ref=e2744] [cursor=pointer]: APOTHECARY. My poverty, but not my will consents.
+        - generic [ref=e2747] [cursor=pointer]: ROMEO. I pay thy poverty, and not thy will.
+        - generic [ref=e2750] [cursor=pointer]: APOTHECARY. Put this in any liquid thing you will And drink it off; and, if you had the strength Of twenty men, it would despatch you straight.
+        - generic [ref=e2753] [cursor=pointer]: ROMEO. There is thy gold, worse poison to men’s souls, Doing more murder in this loathsome world Than these poor compounds that thou mayst not sell. I sell thee poison, thou hast sold me none. Farewell, buy food, and get thyself in flesh. Come, cordial and not poison, go with me To Juliet’s grave, for there must I use thee. [_Exeunt._]
+        - generic [ref=e2756]: SCENE II. Friar Lawrence’s Cell. Enter Friar John.
+        - generic [ref=e2759] [cursor=pointer]: FRIAR JOHN. Holy Franciscan Friar! Brother, ho! Enter Friar Lawrence.
+        - generic [ref=e2762] [cursor=pointer]: FRIAR LAWRENCE. This same should be the voice of Friar John. Welcome from Mantua. What says Romeo? Or, if his mind be writ, give me his letter.
+        - generic [ref=e2765] [cursor=pointer]: FRIAR JOHN. Going to find a barefoot brother out, One of our order, to associate me, Here in this city visiting the sick, And finding him, the searchers of the town, Suspecting that we both were in a house Where the infectious pestilence did reign, Seal’d up the doors, and would not let us forth, So that my speed to Mantua there was stay’d.
+        - generic [ref=e2768] [cursor=pointer]: FRIAR LAWRENCE. Who bare my letter then to Romeo?
+        - generic [ref=e2771] [cursor=pointer]: FRIAR JOHN. I could not send it,—here it is again,— Nor get a messenger to bring it thee, So fearful were they of infection.
+        - generic [ref=e2774] [cursor=pointer]: FRIAR LAWRENCE. Unhappy fortune! By my brotherhood, The letter was not nice, but full of charge, Of dear import, and the neglecting it May do much danger. Friar John, go hence, Get me an iron crow and bring it straight Unto my cell.
+        - generic [ref=e2777] [cursor=pointer]: FRIAR JOHN. Brother, I’ll go and bring it thee. [_Exit._]
+        - generic [ref=e2780] [cursor=pointer]: FRIAR LAWRENCE. Now must I to the monument alone. Within this three hours will fair Juliet wake. She will beshrew me much that Romeo Hath had no notice of these accidents; But I will write again to Mantua, And keep her at my cell till Romeo come. Poor living corse, clos’d in a dead man’s tomb. [_Exit._]
+        - generic [ref=e2783]: SCENE III. A churchyard; in it a Monument belonging to the Capulets. Enter Paris, and his Page bearing flowers and a torch.
+        - generic [ref=e2786] [cursor=pointer]: PARIS. Give me thy torch, boy. Hence and stand aloof. Yet put it out, for I would not be seen. Under yond yew tree lay thee all along, Holding thy ear close to the hollow ground; So shall no foot upon the churchyard tread, Being loose, unfirm, with digging up of graves, But thou shalt hear it. Whistle then to me, As signal that thou hear’st something approach. Give me those flowers. Do as I bid thee, go.
+        - generic [ref=e2789] [cursor=pointer]: PAGE. [_Aside._] I am almost afraid to stand alone Here in the churchyard; yet I will adventure. [_Retires._]
+        - generic [ref=e2792] [cursor=pointer]: PARIS. Sweet flower, with flowers thy bridal bed I strew. O woe, thy canopy is dust and stones, Which with sweet water nightly I will dew, Or wanting that, with tears distill’d by moans. The obsequies that I for thee will keep, Nightly shall be to strew thy grave and weep. [_The Page whistles._] The boy gives warning something doth approach. What cursed foot wanders this way tonight, To cross my obsequies and true love’s rite? What, with a torch! Muffle me, night, awhile. [_Retires._] Enter Romeo and Balthasar with a torch, mattock, &c.
+        - generic [ref=e2795] [cursor=pointer]: ROMEO. Give me that mattock and the wrenching iron. Hold, take this letter; early in the morning See thou deliver it to my lord and father. Give me the light; upon thy life I charge thee, Whate’er thou hear’st or seest, stand all aloof And do not interrupt me in my course. Why I descend into this bed of death Is partly to behold my lady’s face, But chiefly to take thence from her dead finger A precious ring, a ring that I must use In dear employment. Therefore hence, be gone. But if thou jealous dost return to pry In what I further shall intend to do, By heaven I will tear thee joint by joint, And strew this hungry churchyard with thy limbs. The time and my intents are savage-wild; More fierce and more inexorable far Than empty tigers or the roaring sea.
+        - generic [ref=e2798] [cursor=pointer]: BALTHASAR. I will be gone, sir, and not trouble you.
+        - generic [ref=e2801] [cursor=pointer]: ROMEO. So shalt thou show me friendship. Take thou that. Live, and be prosperous, and farewell, good fellow.
+        - generic [ref=e2804] [cursor=pointer]: BALTHASAR. For all this same, I’ll hide me hereabout. His looks I fear, and his intents I doubt. [_Retires_]
+        - generic [ref=e2807] [cursor=pointer]: ROMEO. Thou detestable maw, thou womb of death, Gorg’d with the dearest morsel of the earth, Thus I enforce thy rotten jaws to open, [_Breaking open the door of the monument._] And in despite, I’ll cram thee with more food.
+        - generic [ref=e2810] [cursor=pointer]: PARIS. This is that banish’d haughty Montague That murder’d my love’s cousin,—with which grief, It is supposed, the fair creature died,— And here is come to do some villainous shame To the dead bodies. I will apprehend him. [_Advances._] Stop thy unhallow’d toil, vile Montague. Can vengeance be pursu’d further than death? Condemned villain, I do apprehend thee. Obey, and go with me, for thou must die.
+        - generic [ref=e2813] [cursor=pointer]: ROMEO. I must indeed; and therefore came I hither. Good gentle youth, tempt not a desperate man. Fly hence and leave me. Think upon these gone; Let them affright thee. I beseech thee, youth, Put not another sin upon my head By urging me to fury. O be gone. By heaven I love thee better than myself; For I come hither arm’d against myself. Stay not, be gone, live, and hereafter say, A madman’s mercy bid thee run away.
+        - generic [ref=e2816] [cursor=pointer]: PARIS. I do defy thy conjuration, And apprehend thee for a felon here.
+        - generic [ref=e2819] [cursor=pointer]: ROMEO. Wilt thou provoke me? Then have at thee, boy! [_They fight._]
+        - generic [ref=e2822] [cursor=pointer]: PAGE. O lord, they fight! I will go call the watch. [_Exit._]
+        - generic [ref=e2825] [cursor=pointer]: PARIS. O, I am slain! [_Falls._] If thou be merciful, Open the tomb, lay me with Juliet. [_Dies._]
+        - generic [ref=e2826]:
+          - generic [ref=e2828] [cursor=pointer]: ROMEO. In faith, I will. Let me peruse this face. Mercutio’s kinsman, noble County Paris! What said my man, when my betossed soul Did not attend him as we rode? I think He told me Paris should have married Juliet. Said he not so? Or did I dream it so? Or am I mad, hearing him talk of Juliet, To think it was so? O, give me thy hand, One writ with me in sour misfortune’s book. I’ll bury thee in a triumphant grave. A grave? O no, a lantern, slaught’red youth, For here lies Juliet, and her beauty makes This vault a feasting presence full of light. Death, lie thou there, by a dead man interr’d. [_Laying Paris in the monument._] How oft when men are at the point of death Have they been merry! Which their keepers call A lightning before death. O, how may I Call this a lightning? O my love, my wife, Death that hath suck’d the honey of thy breath, Hath had no power yet upon thy beauty. Thou art not conquer’d. Beauty’s ensign yet Is crimson in thy lips and in thy cheeks, And death’s pale flag is not advanced there. Tybalt, liest thou there in thy bloody sheet? O, what more favour can I do to thee Than with that hand that cut thy youth in twain To sunder his that was thine enemy? Forgive me, cousin. Ah, dear Juliet, Why art thou yet so fair? Shall I believe That unsubstantial death is amorous; And that the lean abhorred monster keeps Thee here in dark to be his paramour? For fear of that I still will stay with thee, And never from this palace of dim night Depart again. Here, here will I remain With worms that are thy chambermaids. O, here Will I set up my everlasting rest; And shake the yoke of inauspicious stars From this world-wearied flesh. Eyes, look your last. Arms, take your last embrace! And, lips, O you The doors of breath, seal with a righteous kiss A dateless bargain to engrossing death. Come, bitter conduct, come, unsavoury guide. Thou desperate pilot, now at once run on The dashing rocks thy sea-sick weary bark. Here’s to my love! [_Drinks._] O true apothecary! Thy drugs are quick. Thus with a kiss I die. [_Dies._] Enter, at the other end of the Churchyard, Friar Lawrence, with a lantern, crow, and spade.
+          - complementary "Explanations" [ref=e2829]:
+            - generic [ref=e2831]:
+              - button "Hide note" [ref=e2832] [cursor=pointer]: ✕
+              - generic [ref=e2833] [cursor=pointer]:
+                - text: Romeo agrees to bury Paris, recognizing him as Mercutio's kinsman and recalling he was to marry Juliet. He calls him a fellow sufferer in misfortune and says he will place him in a triumphant grave—or rather a lantern, because Juliet's beauty lights the vault. He reflects that dying men are often cheerful, a 'lightning before death,' but wonders if this applies to him. He marvels that death has not dimmed Juliet's beauty, seeing color still in her lips and cheeks. He addresses Tybalt, asks forgiveness, and wonders if death is amorous and keeps Juliet as his lover. Resolving to stay, he declares he will set up his eternal rest here, free himself from fate, and embrace death. He drinks the poison, toasts Juliet, and dies.
+                - generic: ▶
+              - generic [ref=e2834]: DeepSeek
+        - generic [ref=e2837] [cursor=pointer]: FRIAR LAWRENCE. Saint Francis be my speed. How oft tonight Have my old feet stumbled at graves? Who’s there? Who is it that consorts, so late, the dead?
+        - generic [ref=e2840] [cursor=pointer]: BALTHASAR. Here’s one, a friend, and one that knows you well.
+        - generic [ref=e2843] [cursor=pointer]: FRIAR LAWRENCE. Bliss be upon you. Tell me, good my friend, What torch is yond that vainly lends his light To grubs and eyeless skulls? As I discern, It burneth in the Capels’ monument.
+        - generic [ref=e2846] [cursor=pointer]: BALTHASAR. It doth so, holy sir, and there’s my master, One that you love.
+        - generic [ref=e2849] [cursor=pointer]: FRIAR LAWRENCE. Who is it?
+        - generic [ref=e2852] [cursor=pointer]: BALTHASAR. Romeo.
+        - generic [ref=e2855] [cursor=pointer]: FRIAR LAWRENCE. How long hath he been there?
+        - generic [ref=e2858] [cursor=pointer]: BALTHASAR. Full half an hour.
+        - generic [ref=e2861] [cursor=pointer]: FRIAR LAWRENCE. Go with me to the vault.
+        - generic [ref=e2864] [cursor=pointer]: BALTHASAR. I dare not, sir; My master knows not but I am gone hence, And fearfully did menace me with death If I did stay to look on his intents.
+        - generic [ref=e2867] [cursor=pointer]: FRIAR LAWRENCE. Stay then, I’ll go alone. Fear comes upon me. O, much I fear some ill unlucky thing.
+        - generic [ref=e2870] [cursor=pointer]: BALTHASAR. As I did sleep under this yew tree here, I dreamt my master and another fought, And that my master slew him.
+        - generic [ref=e2873] [cursor=pointer]: FRIAR LAWRENCE. Romeo! [_Advances._] Alack, alack, what blood is this which stains The stony entrance of this sepulchre? What mean these masterless and gory swords To lie discolour’d by this place of peace? [_Enters the monument._] Romeo! O, pale! Who else? What, Paris too? And steep’d in blood? Ah what an unkind hour Is guilty of this lamentable chance? The lady stirs. [_Juliet wakes and stirs._]
+        - generic [ref=e2876] [cursor=pointer]: JULIET. O comfortable Friar, where is my lord? I do remember well where I should be, And there I am. Where is my Romeo? [_Noise within._]
+        - generic [ref=e2879] [cursor=pointer]: FRIAR LAWRENCE. I hear some noise. Lady, come from that nest Of death, contagion, and unnatural sleep. A greater power than we can contradict Hath thwarted our intents. Come, come away. Thy husband in thy bosom there lies dead; And Paris too. Come, I’ll dispose of thee Among a sisterhood of holy nuns. Stay not to question, for the watch is coming. Come, go, good Juliet. I dare no longer stay.
+        - generic [ref=e2882] [cursor=pointer]: JULIET. Go, get thee hence, for I will not away. [_Exit Friar Lawrence._] What’s here? A cup clos’d in my true love’s hand? Poison, I see, hath been his timeless end. O churl. Drink all, and left no friendly drop To help me after? I will kiss thy lips. Haply some poison yet doth hang on them, To make me die with a restorative. [_Kisses him._] Thy lips are warm!
+        - generic [ref=e2885] [cursor=pointer]: FIRST WATCH. [_Within._] Lead, boy. Which way?
+        - generic [ref=e2888] [cursor=pointer]: JULIET. Yea, noise? Then I’ll be brief. O happy dagger. [_Snatching Romeo’s dagger._] This is thy sheath. [_stabs herself_] There rest, and let me die. [_Falls on Romeo’s body and dies._] Enter Watch with the Page of Paris.
+        - generic [ref=e2891] [cursor=pointer]: PAGE. This is the place. There, where the torch doth burn.
+        - generic [ref=e2894] [cursor=pointer]: FIRST WATCH. The ground is bloody. Search about the churchyard. Go, some of you, whoe’er you find attach. [_Exeunt some of the Watch._] Pitiful sight! Here lies the County slain, And Juliet bleeding, warm, and newly dead, Who here hath lain this two days buried. Go tell the Prince; run to the Capulets. Raise up the Montagues, some others search. [_Exeunt others of the Watch._] We see the ground whereon these woes do lie, But the true ground of all these piteous woes We cannot without circumstance descry. Re-enter some of the Watch with Balthasar.
+        - generic [ref=e2897] [cursor=pointer]: SECOND WATCH. Here’s Romeo’s man. We found him in the churchyard.
+        - generic [ref=e2900] [cursor=pointer]: FIRST WATCH. Hold him in safety till the Prince come hither. Re-enter others of the Watch with Friar Lawrence. THIRD WATCH. Here is a Friar that trembles, sighs, and weeps. We took this mattock and this spade from him As he was coming from this churchyard side.
+        - generic [ref=e2903] [cursor=pointer]: FIRST WATCH. A great suspicion. Stay the Friar too. Enter the Prince and Attendants.
+        - generic [ref=e2906] [cursor=pointer]: PRINCE. What misadventure is so early up, That calls our person from our morning’s rest? Enter Capulet, Lady Capulet and others.
+        - generic [ref=e2909] [cursor=pointer]: CAPULET. What should it be that they so shriek abroad?
+        - generic [ref=e2912] [cursor=pointer]: LADY CAPULET. O the people in the street cry Romeo, Some Juliet, and some Paris, and all run With open outcry toward our monument.
+        - generic [ref=e2915] [cursor=pointer]: PRINCE. What fear is this which startles in our ears?
+        - generic [ref=e2918] [cursor=pointer]: FIRST WATCH. Sovereign, here lies the County Paris slain, And Romeo dead, and Juliet, dead before, Warm and new kill’d.
+        - generic [ref=e2921] [cursor=pointer]: PRINCE. Search, seek, and know how this foul murder comes.
+        - generic [ref=e2924] [cursor=pointer]: FIRST WATCH. Here is a Friar, and slaughter’d Romeo’s man, With instruments upon them fit to open These dead men’s tombs.
+        - generic [ref=e2927] [cursor=pointer]: CAPULET. O heaven! O wife, look how our daughter bleeds! This dagger hath mista’en, for lo, his house Is empty on the back of Montague, And it mis-sheathed in my daughter’s bosom.
+        - generic [ref=e2930] [cursor=pointer]: LADY CAPULET. O me! This sight of death is as a bell That warns my old age to a sepulchre. Enter Montague and others.
+        - generic [ref=e2933] [cursor=pointer]: PRINCE. Come, Montague, for thou art early up, To see thy son and heir more early down.
+        - generic [ref=e2936] [cursor=pointer]: MONTAGUE. Alas, my liege, my wife is dead tonight. Grief of my son’s exile hath stopp’d her breath. What further woe conspires against mine age?
+        - generic [ref=e2939] [cursor=pointer]: PRINCE. Look, and thou shalt see.
+        - generic [ref=e2942] [cursor=pointer]: MONTAGUE. O thou untaught! What manners is in this, To press before thy father to a grave?
+        - generic [ref=e2945] [cursor=pointer]: PRINCE. Seal up the mouth of outrage for a while, Till we can clear these ambiguities, And know their spring, their head, their true descent, And then will I be general of your woes, And lead you even to death. Meantime forbear, And let mischance be slave to patience. Bring forth the parties of suspicion.
+        - generic [ref=e2948] [cursor=pointer]: FRIAR LAWRENCE. I am the greatest, able to do least, Yet most suspected, as the time and place Doth make against me, of this direful murder. And here I stand, both to impeach and purge Myself condemned and myself excus’d.
+        - generic [ref=e2951] [cursor=pointer]: PRINCE. Then say at once what thou dost know in this.
+        - generic [ref=e2954] [cursor=pointer]: FRIAR LAWRENCE. I will be brief, for my short date of breath Is not so long as is a tedious tale. Romeo, there dead, was husband to that Juliet, And she, there dead, that Romeo’s faithful wife. I married them; and their stol’n marriage day Was Tybalt’s doomsday, whose untimely death Banish’d the new-made bridegroom from this city; For whom, and not for Tybalt, Juliet pin’d. You, to remove that siege of grief from her, Betroth’d, and would have married her perforce To County Paris. Then comes she to me, And with wild looks, bid me devise some means To rid her from this second marriage, Or in my cell there would she kill herself. Then gave I her, so tutored by my art, A sleeping potion, which so took effect As I intended, for it wrought on her The form of death. Meantime I writ to Romeo That he should hither come as this dire night To help to take her from her borrow’d grave, Being the time the potion’s force should cease. But he which bore my letter, Friar John, Was stay’d by accident; and yesternight Return’d my letter back. Then all alone At the prefixed hour of her waking Came I to take her from her kindred’s vault, Meaning to keep her closely at my cell Till I conveniently could send to Romeo. But when I came, some minute ere the time Of her awaking, here untimely lay The noble Paris and true Romeo dead. She wakes; and I entreated her come forth And bear this work of heaven with patience. But then a noise did scare me from the tomb; And she, too desperate, would not go with me, But, as it seems, did violence on herself. All this I know; and to the marriage Her Nurse is privy. And if ought in this Miscarried by my fault, let my old life Be sacrific’d, some hour before his time, Unto the rigour of severest law.
+        - generic [ref=e2957] [cursor=pointer]: PRINCE. We still have known thee for a holy man. Where’s Romeo’s man? What can he say to this?
+        - generic [ref=e2960] [cursor=pointer]: BALTHASAR. I brought my master news of Juliet’s death, And then in post he came from Mantua To this same place, to this same monument. This letter he early bid me give his father, And threaten’d me with death, going in the vault, If I departed not, and left him there.
+        - generic [ref=e2963] [cursor=pointer]: PRINCE. Give me the letter, I will look on it. Where is the County’s Page that rais’d the watch? Sirrah, what made your master in this place?
+        - generic [ref=e2966] [cursor=pointer]: PAGE. He came with flowers to strew his lady’s grave, And bid me stand aloof, and so I did. Anon comes one with light to ope the tomb, And by and by my master drew on him, And then I ran away to call the watch.
+        - generic [ref=e2969] [cursor=pointer]: PRINCE. This letter doth make good the Friar’s words, Their course of love, the tidings of her death. And here he writes that he did buy a poison Of a poor ’pothecary, and therewithal Came to this vault to die, and lie with Juliet. Where be these enemies? Capulet, Montague, See what a scourge is laid upon your hate, That heaven finds means to kill your joys with love! And I, for winking at your discords too, Have lost a brace of kinsmen. All are punish’d.
+        - generic [ref=e2972] [cursor=pointer]: CAPULET. O brother Montague, give me thy hand. This is my daughter’s jointure, for no more Can I demand.
+        - generic [ref=e2975] [cursor=pointer]: MONTAGUE. But I can give thee more, For I will raise her statue in pure gold, That whiles Verona by that name is known, There shall no figure at such rate be set As that of true and faithful Juliet.
+        - generic [ref=e2978] [cursor=pointer]: CAPULET. As rich shall Romeo’s by his lady’s lie, Poor sacrifices of our enmity.
+        - generic [ref=e2981] [cursor=pointer]: PRINCE. A glooming peace this morning with it brings; The sun for sorrow will not show his head. Go hence, to have more talk of these sad things. Some shall be pardon’d, and some punished, For never was a story of more woe Than this of Juliet and her Romeo. [_Exeunt._]
+    - generic [ref=e2983]:
+      - button "Close welcome message" [ref=e2984] [cursor=pointer]: ✕
+      - generic [ref=e2985]:
+        - heading "Welcome to Romeo and Juliet Explained!" [level=2] [ref=e2986]
+        - generic [ref=e2987]:
+          - paragraph [ref=e2988]: This interactive reading experience helps you understand Shakespeare's play with AI-powered explanations.
+          - paragraph [ref=e2989]:
+            - text: 👆
+            - strong [ref=e2990]: Click on any text
+            - text: to get an AI explanation
+          - paragraph [ref=e2991]: Simply tap or click on any word, sentence, or passage in the play to receive detailed explanations that help you understand the language, context, and meaning.
+          - paragraph [ref=e2993]:
+            - text: 💡
+            - strong [ref=e2994]: "Tip:"
+            - text: You can also ask follow-up questions or request more detail about any explanation.
+        - generic [ref=e2995]:
+          - button "Get Started" [ref=e2996] [cursor=pointer]
+          - button "Don't show again" [ref=e2997] [cursor=pointer]
+  - alert [ref=e2998]
+```
